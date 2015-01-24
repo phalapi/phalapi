@@ -4,5 +4,5 @@
  */
 
 return array(
-		
+	'debug' => false,
 );

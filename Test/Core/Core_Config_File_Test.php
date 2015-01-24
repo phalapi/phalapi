@@ -44,30 +44,16 @@ class PhpUnderControl_CoreConfigFile_Test extends PHPUnit_Framework_TestCase
 
     public function testGetNormal()
     {
-        $key = 'sys.db.user';
+        $key = 'sys.debug';
 
         $rs = $this->coreConfigFile->get($key);
 
-        $this->assertNotEmpty($rs);
-    }
-
-    public function testGetNormalArray()
-    {
-        $key = 'sys.db';
-
-        $rs = $this->coreConfigFile->get($key);
-
-        $this->assertTrue(is_array($rs));
-        $this->assertArrayHasKey('user', $rs);
-        $this->assertArrayHasKey('name', $rs);
-        $this->assertArrayHasKey('password', $rs);
-        $this->assertArrayHasKey('port', $rs);
-        $this->assertArrayHasKey('prefix', $rs);
+        $this->assertFalse($rs);
     }
 
     public function testGetAll()
     {
-        $key = 'app';
+        $key = 'dbs';
 
         $rs = $this->coreConfigFile->get($key);
 

@@ -40,7 +40,7 @@ class PhpUnderControl_CoreApi_Test extends PHPUnit_Framework_TestCase
 
     public function testInitializeWithWrongSign()
     {
-        $data[] = array();
+        $data = array();
         $data['service'] = 'Default.index';
 
         Core_DI::one()->request = new Core_Request($data);
