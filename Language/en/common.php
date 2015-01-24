@@ -15,5 +15,5 @@ return array(
     'wrong param: {name}' => 'wrong param: {name}',
 
     /** ---------------------- 项目应用的业务的翻译 - 产品维护 ---------------------- **/
-	'Hello {name}, Welcome to use PhalApi!' => 'Hello {name}, Welcome to use PhalApi!',
+	'Hello {name}! Welcome to use PhalApi!' => 'Hello {name}, Welcome to use PhalApi!',
 );
