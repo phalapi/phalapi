@@ -25,6 +25,6 @@ root   /.../PhalApi/Public;
 }
 ```
 
-###后台接口开发就是如此简单，Let's start from here and enjoy yourself !
+###后台接口开发就是如此简单，Write the code, enjoy yourself !
 
 更多信息，请访问：http://my.oschina.net/u/256338/blog/363288
