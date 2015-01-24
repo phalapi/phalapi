@@ -22,4 +22,5 @@ return array(
     'wrong param: {name}' => '非法参数：{name}',
 
     /** ---------------------- 项目应用的业务的翻译 - 产品维护 ---------------------- **/
+	'Hello {name}, Welcome to use PhalApi!' => '{name}您好，欢迎使用PhalApi！',
 );

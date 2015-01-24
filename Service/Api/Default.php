@@ -10,12 +10,6 @@ class Api_Default extends Core_Api
 	public function getRules()
     {
         return array(
-            //重写规则
-            '*' => array(
-                'appKey' 	=> array('name' => 'appKey'),
-                'sign' 		=> array('name' => 'sign', 'type' => 'string'),
-                'service' 	=> array('name' => 'service', 'require' => false),
-            ),
             'index' => array(
                 'username' 	=> array('name' => 'username', 'type' => 'string', 'default' => 'WeTime', 'require' => false),
             ),
@@ -26,7 +20,7 @@ class Api_Default extends Core_Api
 	{
         return array(
             'title' => 'Default Api',
-            'content' => T('Hello {name}, welcome to use PhalApi!', array('name' => $this->username)),
+            'content' => T('Hello {name}, Welcome to use PhalApi!', array('name' => $this->username)),
             'verion' => PHALAPI_VERION,
             'time' => $_SERVER['REQUEST_TIME'],
         );
