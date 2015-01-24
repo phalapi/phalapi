@@ -39,7 +39,7 @@ class Core_ApiFactory
         $action = lcfirst($action);
 	        		
         if(!class_exists($className)) {
-        	throw new Core_Exception_IllegalRequest(T("no such service as {className}", array('className' => $classname)));
+        	throw new Core_Exception_IllegalRequest(T("no such service as {className}", array('className' => $className)));
         }
         		
     	$controller = new $className();

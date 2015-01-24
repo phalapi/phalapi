@@ -1,13 +1,13 @@
 <?php
 /**
- * db table map
+ * 分库分表的自定义数据库路由配置
  * 
- * @author: dogstar 2014-11-22
+ * @author: dogstar
  */
 
 return array(
     /**
-     * avaiable db servers
+     * DB数据库服务器集群
      */
     'servers' => array(
         /**
@@ -22,7 +22,7 @@ return array(
     ),
 
     /**
-     * custom table map
+     * 自定义路由表
      */
     'tables' => array(
         /**

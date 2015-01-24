@@ -29,7 +29,7 @@ Core_DI::one()->logger = new Core_Logger_File(PHALAPI_ROOT . '/Runtime',
 
 //数据操作 - 基于NotORM
 Core_DI::one()->notorm = function() {
-    return new Core_DB_NotORM(Core_DI::one()->config->get('dbs'), $debug);
+    return new Core_DB_NotORM(Core_DI::one()->config->get('dbs'), false);
 };
 
 //缓存 - MC

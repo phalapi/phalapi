@@ -62,3 +62,25 @@ Core_DI::one()->loader->loadFile('PhalApi.php');
 date_default_timezone_set('Asia/Shanghai');
 
 Core_Translator::setLanguage('zh_cn');
+
+//加密，测试情况下为防止本地环境没有mcrypt模块 这里作了替身
+Core_DI::one()->crypt = function() {
+	//return new Crypt_Mock();
+	return new Core_Crypt_MultiMcrypt(Core_DI::one()->config->get('sys.crypt.mcrypt_iv'));
+};
+
+class Crypt_Mock implements Core_Crypt
+{
+	public function encrypt($data, $key)
+	{
+		echo "Crypt_Mock::encrypt($data, $key) ... \n";
+		return $data;
+	}
+	
+	public function decrypt($data, $key)
+		{
+		echo "Crypt_Mock::decrypt($data, $key) ... \n";
+		return $data;
+	}
+}
+
