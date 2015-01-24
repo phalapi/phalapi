@@ -154,7 +154,7 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
 					}
 				}
 				error_log("$backtrace[file]:$backtrace[line]:$debug\n", 0);
-                if (isset($_GET['__sql__']) && $_GET['__sql__'] == '1') echo "$debug<br />";    //@dogstar 2014-10-31
+                if ($this->notORM->debug) echo "$debug<br />";    //@dogstar 2014-10-31
 			} elseif (call_user_func($this->notORM->debug, $query, $parameters) === false) {
 				return false;
 			}
