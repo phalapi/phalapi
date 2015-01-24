@@ -11,7 +11,7 @@ class Api_Default extends Core_Api
     {
         return array(
             'index' => array(
-                'username' 	=> array('name' => 'username', 'type' => 'string', 'default' => 'WeTime', 'require' => false),
+                'username' 	=> array('name' => 'username', 'type' => 'string', 'default' => 'PHPer', 'require' => false),
             ),
         );
 	}
