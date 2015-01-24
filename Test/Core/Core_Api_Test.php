@@ -38,14 +38,9 @@ class PhpUnderControl_CoreApi_Test extends PHPUnit_Framework_TestCase
     }
 
 
-    /**
-     * @expectedException Core_Exception
-     */
     public function testInitializeWithWrongSign()
     {
-        $data['name'] = 'PhalApi';
-        $data['sign'] = 'cc5f25ff0e9dc7b850408a96629d4fa2XXX';
-        $data['appKey'] = 'mini';
+        $data[] = array();
         $data['service'] = 'Default.index';
 
         Core_DI::one()->request = new Core_Request($data);
@@ -54,10 +49,9 @@ class PhpUnderControl_CoreApi_Test extends PHPUnit_Framework_TestCase
 
     public function testInitializeWithRightSign()
     {
-        $data['name'] = 'PhalApi';
-        $data['sign'] = 'cc5f25ff0e9dc7b850408a96629d4fa2';
-        $data['appKey'] = 'mini';
+        $data = array();
         $data['service'] = 'Default.index';
+
         Core_DI::one()->request = new Core_Request($data);
         $rs = $this->coreApi->initialize();
 

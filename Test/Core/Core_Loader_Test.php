@@ -54,7 +54,7 @@ class PhpUnderControl_CoreLoader_Test extends PHPUnit_Framework_TestCase
      */ 
     public function testLoadFile()
     {
-        $filePath = PHALAPI_ROOT . '/Test/Core_tests/test_file_for_loader.php';
+        $filePath = PHALAPI_ROOT . '/Test/Core/test_file_for_loader.php';
 
         $this->coreLoader->loadFile($filePath);
     }
