@@ -24,7 +24,18 @@ root   /.../PhalApi/Public;
     "msg": ""
 }
 ```
+#在线体验
+```
+//默认的接口服务
+http://phalapi.oschina.mopaas.com/Public/
 
+//带参数的示例接口
+http://phalapi.oschina.mopaas.com/Public/?service=Demo.Test&username=oschina
+
+//故意请求一个非法的服务
+http://phalapi.oschina.mopaas.com/Public/?service=Demo.None
+```
+#文档说明
 ###后台接口开发就是如此简单，Write the code, enjoy yourself !
 
 更多信息，请访问：http://my.oschina.net/u/256338/blog/363288
