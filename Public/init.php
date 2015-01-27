@@ -34,7 +34,13 @@ Core_DI::one()->notorm = function() {
 
 //缓存 - MC
 Core_DI::one()->cache = function() {
-	$mc = new Core_Cache_Memecahced(Core_DI::one()->config->get('sys.memcached'));
+	//可以考虑将此配置放进./Config/sys.php
+	$mcConfig = array(
+        'host' => '127.0.0.1',
+        'port' => 11211,
+    );
+	
+	$mc = new Core_Cache_Memecahced($mcConfig);
 	return $mc;
 };
 

@@ -5,4 +5,11 @@
 
 return array(
 	'debug' => false,
+
+    /**
+     * 加密
+     */
+    'crypt' => array(
+        'mcrypt_iv' => '12345678',      //8位
+    ),
 );

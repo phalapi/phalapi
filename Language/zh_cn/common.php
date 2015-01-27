@@ -23,4 +23,5 @@ return array(
 
     /** ---------------------- 项目应用的业务的翻译 - 产品维护 ---------------------- **/
 	'Hello {name}, Welcome to use PhalApi!' => '{name}您好，欢迎使用PhalApi！',
+    'user not exists' => '用户不存在',
 );
