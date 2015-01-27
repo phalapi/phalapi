@@ -42,7 +42,7 @@ http://phalapi.oschina.mopaas.com/Public/?service=Demo.None
 //接口参数在线查询工具链接
 http://phalapi.oschina.mopaas.com/Public/helpers/checkApiParams.php
 ```
-如：http://phalapi.oschina.mopaas.com/Public/helpers/checkApiParams.php
+如：http://phalapi.oschina.mopaas.com/Public/helpers/checkApiParams.php ，访问效果如下：
 
  ![mahua](http://static.oschina.net/uploads/space/2015/0128/010444_ytat_256338.png)
 
@@ -51,7 +51,9 @@ http://phalapi.oschina.mopaas.com/Public/helpers/checkApiParams.php
 
 更多信息，请访问：http://my.oschina.net/u/256338/blog/363288
 
+## 
 ##/** ---------------------------- PHP黄金分割线 ---------------------------- **/
+## 
 
 #更新日记
 ##2015-01-28
