@@ -50,3 +50,6 @@ http://phalapi.oschina.mopaas.com/Public/helpers/checkApiParams.php
 ###后台接口开发就是如此简单，Write the code, enjoy yourself !
 
 更多信息，请访问：http://my.oschina.net/u/256338/blog/363288
+
+/** ---------------------------- PHP黄金分割线 ---------------------------- **/
+#更新日记
