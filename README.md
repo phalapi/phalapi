@@ -51,9 +51,9 @@ http://phalapi.oschina.mopaas.com/Public/helpers/checkApiParams.php
 
 更多信息，请访问：http://my.oschina.net/u/256338/blog/363288
 
-## <br />
+# <br />
 #/** ---------------------------- PHP黄金分割线 ---------------------------- **/
-## <br />
+# <br />
 
 #更新日记
 ##2015-01-28
