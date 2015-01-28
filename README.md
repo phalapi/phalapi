@@ -58,7 +58,7 @@ http://phalapi.oschina.mopaas.com/Public/?service=Demo.Test&username=oschina
 http://phalapi.oschina.mopaas.com/Public/?service=Demo.None
 
 ```
-##[酷！]接口参数在线查询
+#[酷！]接口参数在线查询
 为了方便客户端查看最新的接口参数，特别提供此在线工具，根据接口代码实时生成接口参数报表，完全不需要后台开发编写维护额外的文档。我觉得，这很符合敏捷开发之道。
 ```
 //接口参数在线查询工具链接
@@ -69,13 +69,14 @@ http://phalapi.oschina.mopaas.com/Public/helpers/checkApiParams.php
  ![mahua](http://static.oschina.net/uploads/space/2015/0128/010444_ytat_256338.png)
  因此，接口所需要的参数，对于接口开发人员，也只是简单配置一下参数规则，便可以轻松获取。
  
-##[赞！]接口单元测试
+#[赞！]接口单元测试
  //TODO: 不能被测试的代码，不是好代码。
 
-##文档说明
+#文档说明
 ###后台接口开发就是如此简单，Write the code, enjoy yourself !
 
-更多信息，请访问：http://my.oschina.net/u/256338/blog/363288  
+更多信息，请访问：![[PhalApi]轻量级PHP后台接口开发框架 - 让接口开发更简单](http://my.oschina.net/u/256338/blog/363288)  
+
 #更新日记
 以下更新日记，主要是为了说明，我们一直在努力更新和维护。
 ##2015-01-28
