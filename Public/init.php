@@ -31,7 +31,7 @@ DI()->logger = new Core_Logger_File(PHALAPI_ROOT . '/Runtime',
 
 //数据操作 - 基于NotORM
 DI()->notorm = function() {
-    return new Core_DB_NotORM(DI::one()->config->get('dbs'), false);
+    return new Core_DB_NotORM(DI()->config->get('dbs'), false);
 };
 
 //缓存 - MC

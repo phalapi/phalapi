@@ -67,7 +67,7 @@ class Memcached_Mock {
 //加密，测试情况下为防止本地环境没有mcrypt模块 这里作了替身
 DI()->crypt = function() {
 	//return new Crypt_Mock();
-	return new Core_Crypt_MultiMcrypt(DI::one()->config->get('sys.crypt.mcrypt_iv'));
+	return new Core_Crypt_MultiMcrypt(DI()->config->get('sys.crypt.mcrypt_iv'));
 };
 
 class Crypt_Mock implements Core_Crypt
