@@ -25,7 +25,7 @@ class Core_Loader
         $this->addDirs($dirs);
 
         //函数加载
-        $this->loadFile(dirname(__FILE__) . '/functions.php');
+        $this->loadFile(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'functions.php');
 
     	spl_autoload_register(array($this, 'load'));
     }
