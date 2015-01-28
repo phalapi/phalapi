@@ -9,7 +9,7 @@
  * @author: dogstar 2014-01-28
  */ 
 
-require_once dirname(__FILE__);
+require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'functions.php';
 
 class Core_Loader
 {
@@ -25,9 +25,6 @@ class Core_Loader
     		$this->dirs[] = '';
         }
         $this->addDirs($dirs);
-
-        //函数加载
-        $this->loadFile(dirname(__FILE__) . '/functions.php');
 
     	spl_autoload_register(array($this, 'load'));
     }
@@ -48,7 +45,7 @@ class Core_Loader
     
     public function loadFile($filePath)
     {
-        require_once substr($filePath, 0, 1) != '/'
+        require_once (substr($filePath, 0, 1) != '/' && substr($filePath, 1, 1) != ':')
             ? $this->basePath . DIRECTORY_SEPARATOR . $filePath : $filePath;
     }
     

@@ -10,7 +10,7 @@
  
 defined('PHALAPI_ROOT') || define('PHALAPI_ROOT', dirname(__FILE__));
 
-defined('PHALAPI_VERION') || define('PHALAPI_VERION', '1.0.0');
+defined('PHALAPI_VERSION') || define('PHALAPI_VERSION', '1.0.0');
 
 class PhalApi
 {

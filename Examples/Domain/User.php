@@ -1,6 +1,6 @@
 <?php
 
-class Domain_Examples_User
+class Domain_User
 {
     public function getBaseInfo($userId)
     {
@@ -11,7 +11,7 @@ class Domain_Examples_User
             return $rs;
         }
 
-        $model = new Model_Examples_User();
+        $model = new Model_User();
         $rs = $model->getByUserId($userId);
 
         return $rs;

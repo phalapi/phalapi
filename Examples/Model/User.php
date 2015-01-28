@@ -1,6 +1,6 @@
 <?php
 
-class Model_Examples_User
+class Model_User
 {
     public function getByUserId($userId)
     {

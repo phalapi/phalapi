@@ -5,6 +5,9 @@
 
 require_once dirname(__FILE__) . '/../init.php';
 
+//add Examples
+DI()->loader->addDirs('Examples');
+
 $service = Core_DI::one()->request->get('service', 'Default.index');
 
 $rules = array();

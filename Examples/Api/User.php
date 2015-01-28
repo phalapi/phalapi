@@ -1,6 +1,6 @@
 <?php
 
-class Api_Examples_User extends Core_Api
+class Api_User extends Core_Api
 {
     public function getRules()
     {
@@ -15,7 +15,7 @@ class Api_Examples_User extends Core_Api
     {
         $rs = array('code' => 0, 'msg' => '', 'info' => array());
 
-        $domain = new Domain_Examples_User();
+        $domain = new Domain_User();
         $info = $domain->getBaseInfo($this->userId);
 
         if (empty($info)) {
