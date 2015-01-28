@@ -61,3 +61,7 @@ http://phalapi.oschina.mopaas.com/Public/helpers/checkApiParams.php
 1、补充入门开发示例的文档，及相关的测试代码和产品代码，主要是examples；
 2、提供接口参数在线查询工具；
 ```
+##2015-01-24
+```
+1、PhalApi开源
+```
