@@ -9,6 +9,8 @@
  * @author: dogstar 2014-01-28
  */ 
 
+require_once dirname(__FILE__);
+
 class Core_Loader
 {
 	protected $dirs = array();

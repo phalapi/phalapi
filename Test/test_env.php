@@ -21,7 +21,7 @@ Core_DI::one()->logger = new Core_Logger_Explorer(
 		Core_Logger::LOG_LEVEL_DEBUG | Core_Logger::LOG_LEVEL_INFO | Core_Logger::LOG_LEVEL_ERROR);
 
 Core_DI::one()->notorm = function() {
-    $notorm = new Core_DB_NotORM(DI()->config->get('dbs_for_examples'), true);
+    $notorm = new Core_DB_NotORM(DI()->config->get('dbs'), true);
     return $notorm;
 };
 
