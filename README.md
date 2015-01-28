@@ -83,6 +83,11 @@ http://phalapi.oschina.mopaas.com/Public/helpers/checkApiParams.php
 
 #更新日记
 以下更新日记，主要是为了说明，我们一直在努力更新和维护。
+###2015-01-29
+```
+1、examples代码重新整理，及入门文档同步更新；
+2、入口文件的调整；
+```
 
 ###2015-01-28
 ```
@@ -91,5 +96,5 @@ http://phalapi.oschina.mopaas.com/Public/helpers/checkApiParams.php
 ```
 ###2015-01-24
 ```
-1、PhalApi开源
+1、PhalApi开源；
 ```
