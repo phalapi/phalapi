@@ -75,16 +75,16 @@ http://phalapi.oschina.mopaas.com/Public/helpers/checkApiParams.php
 #文档说明
 ###后台接口开发就是如此简单，Write the code, enjoy yourself !
 
-更多信息，请访问：![[PhalApi]轻量级PHP后台接口开发框架 - 让接口开发更简单](http://my.oschina.net/u/256338/blog/363288)  
+更多信息，请访问：[PhalApi - 轻量级PHP后台接口开发框架 - 让接口开发更简单](http://my.oschina.net/u/256338/blog/363288)  
 
 #更新日记
 以下更新日记，主要是为了说明，我们一直在努力更新和维护。
-##2015-01-28
+###2015-01-28
 ```
 1、补充入门开发示例的文档，及相关的测试代码和产品代码，主要是examples；
 2、提供接口参数在线查询工具；
 ```
-##2015-01-24
+###2015-01-24
 ```
 1、PhalApi开源
 ```
