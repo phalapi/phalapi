@@ -67,7 +67,7 @@ http://phalapi.oschina.mopaas.com/Public/helpers/checkApiParams.php
  ![mahua](http://static.oschina.net/uploads/space/2015/0128/010444_ytat_256338.png)
  因此，接口所需要的参数，对于接口开发人员，也只是简单配置一下参数规则，便可以轻松获取。
  
- ##[赞！]接口单元测试
+##[赞！]接口单元测试
  //TODO: 不能被测试的代码，不是好代码。
 
 ##文档说明
