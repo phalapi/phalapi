@@ -4,28 +4,35 @@
  * @author: dogstar 2014-10-04
  */
  
+/** ---------------- 根目录定义，自动加载 ---------------- **/
+
 defined('PHALAPI_ROOT') || define('PHALAPI_ROOT', dirname(__FILE__) . '/..');
 
 //自动加载
 require_once PHALAPI_ROOT . '/Core/Loader.php';
 $loader = new Core_Loader(PHALAPI_ROOT, array('Service'));
 
-//注册&初始化服务组件: 依赖注入、使用和创建分离
-Core_DI::one()->loader = $loader;
+date_default_timezone_set('Asia/Shanghai');
 
-Core_DI::one()->config = new Core_Config_File(PHALAPI_ROOT . '/Config');
+Core_Translator::setLanguage('zh_cn');
 
-Core_DI::one()->request = new Core_Request();
+/** ---------------- 注册&初始化服务组件 ---------------- **/
 
-Core_DI::one()->logger = new Core_Logger_Explorer(
+DI()->loader = $loader;
+
+DI()->config = new Core_Config_File(PHALAPI_ROOT . '/Config');
+
+DI()->request = new Core_Request();
+
+DI()->logger = new Core_Logger_Explorer(
 		Core_Logger::LOG_LEVEL_DEBUG | Core_Logger::LOG_LEVEL_INFO | Core_Logger::LOG_LEVEL_ERROR);
 
-Core_DI::one()->notorm = function() {
+DI()->notorm = function() {
     $notorm = new Core_DB_NotORM(DI()->config->get('dbs'), true);
     return $notorm;
 };
 
-Core_DI::one()->cache = function() {
+DI()->cache = function() {
     //$mc = new Core_Cache_Memecahced(Core_DI::one()->config->get('sys.memcached'));
     $mc = new Memcached_Mock();
 	return $mc;
@@ -57,16 +64,10 @@ class Memcached_Mock {
     }
 }
 
-Core_DI::one()->loader->loadFile('PhalApi.php');
-
-date_default_timezone_set('Asia/Shanghai');
-
-Core_Translator::setLanguage('zh_cn');
-
 //加密，测试情况下为防止本地环境没有mcrypt模块 这里作了替身
-Core_DI::one()->crypt = function() {
+DI()->crypt = function() {
 	//return new Crypt_Mock();
-	return new Core_Crypt_MultiMcrypt(Core_DI::one()->config->get('sys.crypt.mcrypt_iv'));
+	return new Core_Crypt_MultiMcrypt(DI::one()->config->get('sys.crypt.mcrypt_iv'));
 };
 
 class Crypt_Mock implements Core_Crypt
