@@ -62,7 +62,7 @@ http://phalapi.oschina.mopaas.com/Public/?service=Demo.None
 
 ```
 
-#文档说明
+#文档
 ###后台接口开发就是如此简单，Write the code, enjoy yourself !
 
 更多信息，请访问：[PhalApi - 轻量级PHP后台接口开发框架 - 让接口开发更简单](http://my.oschina.net/u/256338/blog/363288)  
