@@ -75,12 +75,7 @@ http://phalapi.oschina.mopaas.com/Public/helpers/checkApiParams.php
 ##文档说明
 ###后台接口开发就是如此简单，Write the code, enjoy yourself !
 
-更多信息，请访问：http://my.oschina.net/u/256338/blog/363288
-
-# <br />
-#/** ---------------------------- PHP黄金分割线 ---------------------------- **/
-# <br />
-
+更多信息，请访问：http://my.oschina.net/u/256338/blog/363288  
 #更新日记
 以下更新日记，主要是为了说明，我们一直在努力更新和维护。
 ##2015-01-28
