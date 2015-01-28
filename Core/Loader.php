@@ -46,7 +46,7 @@ class Core_Loader
     
     public function loadFile($filePath)
     {
-        require_once substr($filePath, 0, 1) != '/'
+        require_once (substr($filePath, 0, 1) != '/' && substr($filePath, 1, 1) != ':')
             ? $this->basePath . DIRECTORY_SEPARATOR . $filePath : $filePath;
     }
     
