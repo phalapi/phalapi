@@ -21,7 +21,7 @@ class Api_Default extends Core_Api
         return array(
             'title' => 'Default Api',
             'content' => T('Hello {name}, Welcome to use PhalApi!', array('name' => $this->username)),
-            'version' => PHALAPI_VERION,
+            'version' => PHALAPI_VERSION,
             'time' => $_SERVER['REQUEST_TIME'],
         );
 	}
