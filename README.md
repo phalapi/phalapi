@@ -18,7 +18,7 @@ root   /.../PhalApi/Public;
     "data": {
         "title": "Default Api",
         "content": "PHPer您好，欢迎使用PhalApi！",
-        "verion": "1.0.0",
+        "version": "1.0.0",
         "time": 1422118935
     },
     "msg": ""
