@@ -81,7 +81,7 @@ http://phalapi.oschina.mopaas.com/Public/helpers/checkApiParams.php
 #[赞！]接口单元测试
 不能被测试的代码，不是好代码。
 在使用此框架进行接口开发时，我们强烈建议使用测试驱动开发，以便于不断积累形成接口测试体系，保证接口向前向后兼容。  
-如下，是对示例接口的调用，按：**构造-操作-检验（BUILD-OPERATE-CHECK）模式**，即：  
+如下，是对示例接口的调用，按： **构造-操作-检验（BUILD-OPERATE-CHECK）模式** ，即：  
 
 ```
     /**
