@@ -8,7 +8,7 @@
 在iOS、Android、Windows Phone、PC版、Web版等各种终端和各种垂直应用不停更新迭代的大背景下，显然很是需要一组乃至一系列稳定的后台接口支撑。
 接口，是如此重要，正如Jaroslav Tulach在《软件框架设计的艺术》一书中说的：
 ```
-接口，一旦发布了，就要像恒星一样 -- 永远存在。
+API就如同恒星，一旦出现，便与我们永恒共存。
 ```
 
 所以，这里希望通过提供一个快速可用的后台接口开发框架，可以：
@@ -21,7 +21,7 @@
 
 如果您有接口项目开发的需要，又刚好需要一个PHP接口框架，欢迎使用！    我们也争取致力于将我们的PhalApi维护成像恒星一样：  
 ```
-不断更新，永远存在；为接口负责，为开源负责！
+不断更新，保持生气；为接口负责，为开源负责！
 ```
 
 
@@ -75,12 +75,42 @@ http://phalapi.oschina.mopaas.com/Public/helpers/checkApiParams.php
 ```
 如：http://phalapi.oschina.mopaas.com/Public/helpers/checkApiParams.php ，访问效果如下：
 
- ![mahua](http://static.oschina.net/uploads/space/2015/0128/010444_ytat_256338.png)
+ ![mahua](http://static.oschina.net/uploads/space/2015/0130/190225_8HRX_256338.jpg)
  因此，接口所需要的参数，对于接口开发人员，也只是简单配置一下参数规则，便可以轻松获取。
  
 #[赞！]接口单元测试
- //TODO: 不能被测试的代码，不是好代码。
+不能被测试的代码，不是好代码。
+在使用此框架进行接口开发时，我们强烈建议使用测试驱动开发，以便于不断积累形成接口测试体系，保证接口向前向后兼容。  
+如下，是对接口 **/?service=User.GetBaseInfo&userId=1** 进行单元测试时，按： **构造-操作-检验（BUILD-OPERATE-CHECK）模式** ，即：  
 
+```
+    /**
+     * @group testGetBaseInfo
+     */ 
+    public function testGetBaseInfo()
+    {
+        $str = 'service=User.GetBaseInfo&userId=1';
+        parse_str($str, $params);
+
+        Core_DI::one()->request = new Core_Request($params);
+
+        $api = new Api_User(); 
+        //自己进行初始化
+        $api->initialize();
+        $rs = $api->getBaseInfo();
+
+        $this->assertNotEmpty($rs);
+        $this->assertArrayHasKey('code', $rs);
+        $this->assertArrayHasKey('msg', $rs);
+        $this->assertArrayHasKey('info', $rs);
+
+        $this->assertEquals(0, $rs['code']);
+
+        $this->assertEquals('dogstar', $rs['info']['name']);
+        $this->assertEquals('oschina', $rs['info']['from']);
+    }
+```
+更多请参考：[最佳开发实践：自动化单元测试 - PHP](http://my.oschina.net/u/256338/blog/370605)
 #更新日记
 以下更新日记，主要是为了说明，我们一直在努力更新和维护。
 ###2015-01-29
