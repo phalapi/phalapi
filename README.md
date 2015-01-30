@@ -79,8 +79,37 @@ http://phalapi.oschina.mopaas.com/Public/helpers/checkApiParams.php
  因此，接口所需要的参数，对于接口开发人员，也只是简单配置一下参数规则，便可以轻松获取。
  
 #[赞！]接口单元测试
- //TODO: 不能被测试的代码，不是好代码。
+不能被测试的代码，不是好代码。
+在使用此框架进行接口开发时，我们强烈建议使用测试驱动开发，以便于不断积累形成接口测试体系，保证接口向前向后兼容。  
+如下，是对示例接口的调用，按：构造-操作-检验（BUILD-OPERATE-CHECK）模式，即：  
 
+```
+    /**
+     * @group testGetBaseInfo
+     */
+    public function testGetBaseInfo()
+    {
+        $str = 'service=Examples_User.GetBaseInfo&userId=1';
+        parse_str($str, $params);
+
+        Core_DI::one()->request = new Core_Request($params);
+
+        $api = new Api_Examples_User();
+        $api->initialize();
+        $rs = $api->getBaseInfo();
+
+        $this->assertNotEmpty($rs);
+        $this->assertArrayHasKey('code', $rs);
+        $this->assertArrayHasKey('msg', $rs);
+        $this->assertArrayHasKey('info', $rs);
+
+        $this->assertEquals(0, $rs['code']);
+
+        $this->assertEquals('dogstar', $rs['info']['name']);
+        $this->assertEquals('oschina', $rs['info']['from']);
+    }
+```
+更多请参考：[最佳开发实践：自动化单元测试 - PHP](http://my.oschina.net/u/256338/blog/370605)
 #更新日记
 以下更新日记，主要是为了说明，我们一直在努力更新和维护。
 ###2015-01-29
