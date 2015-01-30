@@ -75,7 +75,7 @@ http://phalapi.oschina.mopaas.com/Public/helpers/checkApiParams.php
 ```
 如：http://phalapi.oschina.mopaas.com/Public/helpers/checkApiParams.php ，访问效果如下：
 
- ![mahua](http://static.oschina.net/uploads/space/2015/0128/010444_ytat_256338.png)
+ ![mahua](http://static.oschina.net/uploads/space/2015/0130/190225_8HRX_256338.jpg)
  因此，接口所需要的参数，对于接口开发人员，也只是简单配置一下参数规则，便可以轻松获取。
  
 #[赞！]接口单元测试
