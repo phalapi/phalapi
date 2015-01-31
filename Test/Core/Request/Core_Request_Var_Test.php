@@ -184,19 +184,6 @@ class PhpUnderControl_CoreRequestVar_Test extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @group testFormatFixed
-     */ 
-    public function testFormatFixed()
-    {
-        $value = '2014';
-        $rule = array('default' => '2010');
-
-        $rs = Core_Request_Var::formatFixed($value, $rule);
-
-        $this->assertSame('2010', $rs);
-    }
-
-    /**
      * @group testFormatEnum
      */ 
     public function testFormatEnum()
