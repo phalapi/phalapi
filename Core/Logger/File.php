@@ -19,15 +19,19 @@ class Core_Logger_File extends Core_Logger
     protected $logFolder;
     protected $dateFormat;
 
+    protected $logFile;
+
     public function __construct($logFolder, $level, $dateFormat = 'Y-m-d H:i:s')
     {
         $this->logFolder = $logFolder;
         $this->dateFormat = $dateFormat;
 
         parent::__construct($level);
+
+        $this->init();
     }
 
-    public function log($type, $msg, $data)
+    protected function init()
     {
         $folder = $this->logFolder 
             . DIRECTORY_SEPARATOR . 'log' 
@@ -40,6 +44,16 @@ class Core_Logger_File extends Core_Logger
         $logFile = $folder 
             . DIRECTORY_SEPARATOR . date('Ymd', $_SERVER['REQUEST_TIME']) . '.log';
 
+        if (!file_exists($logFile)) {
+            touch($logFile);
+            chmod($logFile, 0777);
+        }
+
+        $this->logFile = $logFile;
+    }
+
+    public function log($type, $msg, $data)
+    {
         $msgArr = array();
         $msgArr[] = date($this->dateFormat, $_SERVER['REQUEST_TIME']);
         $msgArr[] = strtoupper($type);
@@ -50,6 +64,6 @@ class Core_Logger_File extends Core_Logger
 
         $content = implode('|', $msgArr) . PHP_EOL;
 
-        file_put_contents($logFile, $content, FILE_APPEND);
+        file_put_contents($this->logFile, $content, FILE_APPEND);
     }
 }
