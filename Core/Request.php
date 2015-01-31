@@ -17,9 +17,6 @@ class Core_Request
 		if (!isset($data) || empty($data)) {
             $data = $_REQUEST;
         }
-		foreach ($data as &$val) {
-			$val = addslashes($val);
-		}
 		$this->data = $data;
 	}
 	
