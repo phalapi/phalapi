@@ -9,9 +9,8 @@
  *  4、按业务需求进行格式化 
  * 
  * - 格式规则：
- *  array('name' => '', 'type' => 'string', 'default' => '', 'len' => ‘’,)
+ *  array('name' => '', 'type' => 'string', 'default' => '', 'min' => '', 'max' => '',)
  *  array('name' => '', 'type' => 'int', 'default' => '', 'min' => '', 'max' => '',)
- *  array('name' => '', 'type' => 'fixed', 'default' => '',)
  *  array('name' => '', 'type' => 'float', 'default' => '', 'min' => '', 'max' => '',)
  *  array('name' => '', 'type' => 'boolean', 'default' => '',)
  *  array('name' => '', 'type' => 'date', 'default' => '',)
@@ -74,10 +73,6 @@ class Core_Request_Var
                 break;
             case 'array':
                 $value = self::formatArray($value, $rule);
-                break;
-            //自定义业务类型
-            case 'fixed':
-                $value = self::formatFixed($value, $rule);
                 break;
             //枚举类型
             case 'enum':
@@ -206,21 +201,6 @@ class Core_Request_Var
                 $rs = array($rs);
             }
         }
-
-        return $rs;
-    }
-
-    /**
-     * 对固定值进行格式化
-     *
-     * @param mixed $value 变量值
-     * @parma array $rule array('defautl' => '固定值')
-     * @return mixed 格式化后的变量
-     *
-     */
-    public static function formatFixed($value, $rule)
-    {
-        $rs = isset($rule['default']) ? $rule['default'] : $value;
 
         return $rs;
     }
