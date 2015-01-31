@@ -116,7 +116,7 @@ http://phalapi.oschina.mopaas.com/Public/helpers/checkApiParams.php
 ###2015-01-31
 ```
 1、参数规则的解析，移除不必要的固定类型，以及addslashes转换，单元测试整理；
-2、参数规则文档编写，[PhalApi - 参数规则：接口参数规则配置](http://my.oschina.net/u/256338/blog/372947)
+2、参数规则文档编写：http://my.oschina.net/u/256338/blog/372947
 ```
 ###2015-01-29
 ```
