@@ -56,7 +56,7 @@ class Core_Crypt_Mcrypt implements Core_Crypt
         $cipher = mcrypt_module_open(MCRYPT_BLOWFISH, '', MCRYPT_MODE_CBC, '');
 
         if ($cipher === FALSE || $cipher < 0) {
-            throw new Core_Exception(T('mcrypt_module_open with {cipher}', array('cipher' => $cipher)));
+            throw new Core_Exception_InternalServerError(T('mcrypt_module_open with {cipher}', array('cipher' => $cipher)));
         }
 
         mcrypt_generic_init($cipher, $this->formatKey($key), $this->iv);

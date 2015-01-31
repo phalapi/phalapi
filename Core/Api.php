@@ -17,7 +17,7 @@ class Core_Api
     public function __get($name)
     {
     	if(!isset($this->name) || empty($name)) {
-            throw new Core_Exception_RuntimeError(T('Core_Api::' . $name . ' undefined'), 500);
+            throw new Core_Exception_InternalServerError(T('Core_Api::${name} undefined', array('name' => $name)));
             return null;
         }
 
@@ -53,7 +53,7 @@ class Core_Api
     public function getMethodRules()
     {
     	$allRules = $this->getRules();
-    	$service = Core_DI::one()->request->get('service', 'Default.index');
+    	$service = Core_DI::one()->request->get('service', 'Default.Index');
     	list($apiClassName, $action) = explode('.', $service);
         $action = lcfirst($action); 
     	

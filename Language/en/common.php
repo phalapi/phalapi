@@ -1,7 +1,7 @@
 <?php
 
 return array(
-    /** ---------------------- 框架核心类库的翻译 - 开发维护 ---------------------- **/
+    /** ---------------------- framework translation - developer ---------------------- **/
     'service ({service}) illegal' => 'service ({service}) illegal',
     'no such service as {className}' => 'no such service as {className}',
     'mcrypt_module_open with {cipher}' => 'mcrypt_module_open with {cipher}',
@@ -12,8 +12,12 @@ return array(
     "min should <= max, but now {name} min = {min} and max = {max}" => 'min should <= max, but now {name} min = {min} and max = {max}',
     '{name} should >= {min}, but now {name} = {value}' => '{name} should >= {min}, but now {name} = {value}',
     'miss name for rule' => 'miss name for rule',
-    'wrong param: {name}' => 'wrong param: {name}',
+    '{name} require, but miss' => '{name} require, but miss',
+    'Core_Api::${name} undefined' => 'Core_Api::${name} undefined',
+    'Bad Request: {message}' => 'Bad Request: {message}',
+    'Interal Server Error: {message}' => 'Interal Server Error: {message}',
 
-    /** ---------------------- 项目应用的业务的翻译 - 产品维护 ---------------------- **/
+    /** ---------------------- application translation - product ---------------------- **/
 	'Hello {name}, Welcome to use PhalApi!' => 'Hello {name}, Welcome to use PhalApi!',
+    'user not exists' => 'user not exists',
 );

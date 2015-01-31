@@ -59,7 +59,7 @@ class PhpUnderControl_CoreRequestVar_Test extends PHPUnit_Framework_TestCase
 
     /**
      * @group testFormatString
-     * @expectedException Core_Exception_RuleError
+     * @expectedException Core_Exception_InternalServerError
      */
     public function testFormatStringWithRuleExceptionMinGtMax()
     {
@@ -71,7 +71,7 @@ class PhpUnderControl_CoreRequestVar_Test extends PHPUnit_Framework_TestCase
 
     /**
      * @group testFormatString
-     * @expectedException Core_Exception_IllegalParam
+     * @expectedException Core_Exception_BadRequest
      */
     public function testFormatStringWithParamExceptionLtMin()
     {
@@ -83,7 +83,7 @@ class PhpUnderControl_CoreRequestVar_Test extends PHPUnit_Framework_TestCase
 
     /**
      * @group testFormatString
-     * @expectedException Core_Exception_IllegalParam
+     * @expectedException Core_Exception_BadRequest
      */
     public function testFormatStringWithParamExceptionGtMax()
     {
@@ -198,7 +198,7 @@ class PhpUnderControl_CoreRequestVar_Test extends PHPUnit_Framework_TestCase
 
     /**
      * @group testFormatEnum
-     * @expectedException Core_Exception_RuleError
+     * @expectedException Core_Exception_InternalServerError
      */
     public function testFormatEnumWithRuleException()
     {
@@ -210,7 +210,7 @@ class PhpUnderControl_CoreRequestVar_Test extends PHPUnit_Framework_TestCase
 
     /**
      * @group testFormatEnum
-     * @expectedException Core_Exception_IllegalParam
+     * @expectedException Core_Exception_BadRequest
      */
     public function testFormatEnumWithParamException()
     {

@@ -21,6 +21,10 @@ class PhpUnderControl_CoreMultiCryptMcrypt_Test extends PHPUnit_Framework_TestCa
     {
         parent::setUp();
 
+        if (!function_exists('mcrypt_module_open')) {
+            throw new Exception('function mcrypt_module_open() not exists');
+        }
+
         $this->coreMultiCryptMcrypt = new Core_Crypt_MultiMcrypt('12345678');
     }
 

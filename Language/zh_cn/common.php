@@ -19,7 +19,10 @@ return array(
     "min should <= max, but now {name} min = {min} and max = {max}" => '最小值应该小于等于最大值，但现在{name}的最小值为：{min}，最大值为：{max}',
     '{name} should >= {min}, but now {name} = {value}' => '{name}应该小于或等于{min}, 但现在{name} = {value}',
     'miss name for rule' => '参数规则缺少name',
-    'wrong param: {name}' => '非法参数：{name}',
+    '{name} require, but miss' => '缺少必要参数{name}',
+    'Core_Api::${name} undefined' => 'Core_Api::${name} 未定义',
+    'Bad Request: {message}' => '非法请求：{message}',
+    'Interal Server Error: {message}' => '服务器运行错误',
 
     /** ---------------------- 项目应用的业务的翻译 - 产品维护 ---------------------- **/
 	'Hello {name}, Welcome to use PhalApi!' => '{name}您好，欢迎使用PhalApi！',

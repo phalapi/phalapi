@@ -36,7 +36,7 @@ class PhalApi
     	try{
     		$controller = Core_ApiFactory::generateService(); 
     		
-    		$service = $di->request->get('service', 'Default.index');
+    		$service = $di->request->get('service', 'Default.Index');
     		list($apiClassName, $action) = explode('.', $service);
 				
         	$rs->setData(call_user_func(array($controller, $action)));

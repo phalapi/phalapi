@@ -212,12 +212,12 @@ class Core_Request_Var
     public static function formatEnum($value, $rule)
     {
         if (!isset($rule['range']) || empty($rule['range']) || !is_array($rule['range'])) {
-            throw new Core_Exception_RuleError(
+            throw new Core_Exception_InternalServerError(
                 T("miss {name}'s enum range", array('name' => $rule['name'])));
         }
 
         if (!in_array($value, $rule['range'])) {
-            throw new Core_Exception_IllegalParam(
+            throw new Core_Exception_BadRequest(
                 T('{name} should be in {range}, but now {name} = {value}', 
                     array('name' => $rule['name'], 'range' => implode('/', $rule['range']), 'value' => $value))
             );
@@ -247,21 +247,21 @@ class Core_Request_Var
     protected static function filterByRange($value, $rule)
     {
         if (isset($rule['min']) && isset($rule['max']) && $rule['min'] > $rule['max']) {
-            throw new Core_Exception_RuleError(
+            throw new Core_Exception_InternalServerError(
                 T('min should <= max, but now {name} min = {min} and max = {max}', 
                     array('name' => $rule['name'], 'min' => $rule['min'], 'max' => $rule['max']))
             );
         }
 
         if (isset($rule['min']) && $value < $rule['min']) {
-            throw new Core_Exception_IllegalParam(
+            throw new Core_Exception_BadRequest(
                 T('{name} should >= {min}, but now {name} = {value}', 
                     array('name' => $rule['name'], 'min' => $rule['min'], 'value' => $value))
             );
         }
 
         if (isset($rule['max']) && $value > $rule['max']) {
-            throw new Core_Exception_IllegalParam(
+            throw new Core_Exception_BadRequest(
                 T('{name} should <= {max}, but now {name} = {value}', 
                 array('name' => $rule['name'], 'max' => $rule['max'], 'value' => $value))
             );

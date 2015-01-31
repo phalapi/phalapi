@@ -26,11 +26,11 @@ class Core_ApiFactory
      */
 	static function generateService($isInitialize = true)
 	{
-		$service = Core_DI::one()->request->get('service', 'Default.index');
+		$service = Core_DI::one()->request->get('service', 'Default.Index');
 		
 		$serviceArr = explode('.', $service);
 		if (count($serviceArr) < 2) {
-			throw new Core_Exception_IllegalRequest(T("service ({service}) illegal", array('service' => $service)));
+			throw new Core_Exception_BadRequest(T("service ({service}) illegal", array('service' => $service)));
 		}
 		list($className, $action) = $serviceArr;
 		
@@ -39,13 +39,13 @@ class Core_ApiFactory
         $action = lcfirst($action);
 	        		
         if(!class_exists($className)) {
-        	throw new Core_Exception_IllegalRequest(T("no such service as {className}", array('className' => $className)));
+        	throw new Core_Exception_BadRequest(T("no such service as {className}", array('className' => $className)));
         }
         		
     	$controller = new $className();
     			
     	if(!method_exists($controller, $action) || !is_callable(array($controller, $action))) {
-    		throw new Core_Exception_IllegalRequest(T("no such service as {className}", array('className' => $service)));
+    		throw new Core_Exception_BadRequest(T("no such service as {className}", array('className' => $service)));
     	}
 
         if ($isInitialize) {

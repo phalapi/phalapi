@@ -56,7 +56,7 @@ class PhpUnderControl_CoreRequest_Test extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Core_Exception_IllegalParam
+     * @expectedException Core_Exception_BadRequest
      */
     public function testGetByComplexRule()
     {

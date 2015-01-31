@@ -33,7 +33,7 @@ class PhpUnderControl_CoreApi_Test extends PHPUnit_Framework_TestCase
      */ 
     public function testInitialize()
     {
-        Core_DI::one()->request = new Core_Request(array('__debug__' => 1, 'appKey' => 'mini', 'sign' => '', 'service' => 'Default.index'));
+        Core_DI::one()->request = new Core_Request(array('service' => 'Default.Index'));
         $rs = $this->coreApi->initialize();
     }
 
@@ -41,7 +41,7 @@ class PhpUnderControl_CoreApi_Test extends PHPUnit_Framework_TestCase
     public function testInitializeWithWrongSign()
     {
         $data = array();
-        $data['service'] = 'Default.index';
+        $data['service'] = 'Default.Index';
 
         Core_DI::one()->request = new Core_Request($data);
         $rs = $this->coreApi->initialize();
@@ -50,7 +50,7 @@ class PhpUnderControl_CoreApi_Test extends PHPUnit_Framework_TestCase
     public function testInitializeWithRightSign()
     {
         $data = array();
-        $data['service'] = 'Default.index';
+        $data['service'] = 'Default.Index';
 
         Core_DI::one()->request = new Core_Request($data);
         $rs = $this->coreApi->initialize();

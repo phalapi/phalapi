@@ -9,7 +9,7 @@
 
 class Core_Response
 {
-    private $ret = 0;
+    private $ret = 200;
     private $data = array();
     private $msg = '';
     

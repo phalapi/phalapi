@@ -40,9 +40,8 @@ class PhpUnderControl_CoreApiFactory_Test extends PHPUnit_Framework_TestCase
 
     public function testGenerateNormalClientService()
     {
-        $data['service'] = 'Default.index';
+        $data['service'] = 'Default.Index';
         $data['sign'] = '1ec92737c7c287c7249e0adef566544a';
-        $data['appKey'] = 'mini';
 
         Core_DI::one()->request = new Core_Request($data);
         $rs = Core_ApiFactory::generateService();
@@ -53,7 +52,7 @@ class PhpUnderControl_CoreApiFactory_Test extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Core_Exception_IllegalRequest
+     * @expectedException Core_Exception_BadRequest
      */
     public function testGenerateIllegalApiService()
     {
@@ -63,7 +62,7 @@ class PhpUnderControl_CoreApiFactory_Test extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Core_Exception_IllegalRequest
+     * @expectedException Core_Exception_BadRequest
      */
     public function testGenerateIllegalActionService()
     {

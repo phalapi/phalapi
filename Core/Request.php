@@ -35,13 +35,13 @@ class Core_Request
 		$rs = null;
 			
         if (!isset($rule['name'])) {
-            throw new Core_Exception_RuntimeError(T('miss name for rule'));
+            throw new Core_Exception_InternalServerError(T('miss name for rule'));
         }
         
         $rs = Core_Request_Var::format($rule['name'], $rule, $this->data);
         
         if ($rs === null && (isset($rule['require']) && $rule['require'])) {
-        	throw new Core_Exception_IllegalParam(T('wrong param: {name}', array('name' => $rule['name'])));
+        	throw new Core_Exception_BadRequest(T('{name} require, but miss', array('name' => $rule['name'])));
         }
 
         return $rs;

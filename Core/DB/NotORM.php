@@ -129,7 +129,7 @@ class Core_DB_NotORM /** implements Core_DB */
         $tableMap = !empty($this->_configs['tables'][$tableName]) 
             ? $this->_configs['tables'][$tableName] : $defaultMap;
         if (empty($tableMap)) {
-            throw new Core_Exception(T("No table map config for {tableName}", array('tableName' => $tableName)));
+            throw new Core_Exception_InternalServerError(T("No table map config for {tableName}", array('tableName' => $tableName)));
         }
 
         $dbKey = null;
@@ -162,7 +162,7 @@ class Core_DB_NotORM /** implements Core_DB */
             $rs['isNoSuffix'] = true;
         }
         if ($dbKey === null) {
-            throw new Core_Exception(T("No db router match for {tableName}", array('tableName' => $tableName)));
+            throw new Core_Exception_InternalServerError(T("No db router match for {tableName}", array('tableName' => $tableName)));
         }
 
         $rs['pdo'] = $this->getPdo($dbKey);

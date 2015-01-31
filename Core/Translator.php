@@ -23,7 +23,8 @@ class Core_Translator
         $path = dirname(__FILE__) . '/../Language/' . strtolower($language) . '/common.php';
 
         if (!file_exists($path)) {
-            throw new Core_Exception_RuntimeError($language . ' not found', 18);
+            throw new Core_Exception_InternalServerError(
+                T('./Language/{language}/common.php not found', array('language' => $language)));
         }
 
         self::$message = include $path;
