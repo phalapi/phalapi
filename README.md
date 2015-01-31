@@ -113,6 +113,11 @@ http://phalapi.oschina.mopaas.com/Public/helpers/checkApiParams.php
 更多请参考：[最佳开发实践：自动化单元测试 - PHP](http://my.oschina.net/u/256338/blog/370605)
 #更新日记
 以下更新日记，主要是为了说明，我们一直在努力更新和维护。
+###2015-01-31
+```
+1、参数规则的解析，移除不必要的固定类型，以及addslashes转换，单元测试整理；
+2、参数规则文档编写，[PhalApi - 参数规则：接口参数规则配置](http://my.oschina.net/u/256338/blog/372947)
+```
 ###2015-01-29
 ```
 1、examples代码重新整理，及入门文档同步更新；
