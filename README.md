@@ -36,7 +36,7 @@ API就如同恒星，一旦出现，便与我们永恒共存。
 root   /.../PhalApi/Public;
 ```
 
-为验证是否安装成功，可以访问默认接口服务，如：http://localhost/PhalApi/service/，正常时会返回类如：
+为验证是否安装成功，可以访问默认接口服务，如：http://localhost/PhalApi/demo/，正常时会返回类如：
 ```
 {
     "ret": 200,
@@ -52,17 +52,17 @@ root   /.../PhalApi/Public;
 #在线体验
 ```
 //默认的接口服务
-http://phalapi.oschina.mopaas.com/Public/service/
+http://phalapi.oschina.mopaas.com/Public/demo/
 
 //带参数的示例接口
-http://phalapi.oschina.mopaas.com/Public/service/?service=Default.Index&username=oschina
+http://phalapi.oschina.mopaas.com/Public/demo/?service=Default.Index&username=oschina
 
 //故意请求一个非法的服务
-http://phalapi.oschina.mopaas.com/Public/service/?service=Demo.None
+http://phalapi.oschina.mopaas.com/Public/demo/?service=Demo.None
 {
     "ret": 400,
     "data": [],
-    "msg": "非法请求：服务Api_Demo不存在"
+    "msg": "非法请求：服务Demo.None不存在"
 }
 ```
 
@@ -75,9 +75,9 @@ http://phalapi.oschina.mopaas.com/Public/service/?service=Demo.None
 为了方便客户端查看最新的接口参数，特别提供此在线工具，根据接口代码实时生成接口参数报表，完全不需要后台开发编写维护额外的文档。我觉得，这很符合敏捷开发之道。
 ```
 //接口参数在线查询工具链接
-http://phalapi.oschina.mopaas.com/Public/helpers/checkApiParams.php
+http://phalapi.oschina.mopaas.com/Public/demo/checkApiParams.php
 ```
-如：http://phalapi.oschina.mopaas.com/Public/helpers/checkApiParams.php ，访问效果如下：
+如：http://phalapi.oschina.mopaas.com/Public/demo/checkApiParams.php ，访问效果如下：
 
  ![mahua](http://static.oschina.net/uploads/space/2015/0130/190225_8HRX_256338.jpg)
  因此，接口所需要的参数，对于接口开发人员，也只是简单配置一下参数规则，便可以轻松获取。
@@ -133,7 +133,7 @@ http://phalapi.oschina.mopaas.com/Public/helpers/checkApiParams.php
 ├── Runtime         //项目接口运行文件目录，用于存放日记，可软链到别的区
 │
 │
-└── Service         //应用接口服务，名称自取，可多组
+└── Demo            //应用接口服务，名称自取，可多组
     ├── Api             //接口响应层
     ├── Domain          //接口领域层
     ├── Model           //接口持久层
