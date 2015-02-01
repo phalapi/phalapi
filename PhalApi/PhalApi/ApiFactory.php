@@ -39,7 +39,7 @@ class PhalApi_ApiFactory
         $action = lcfirst($action);
 	        		
         if(!class_exists($className)) {
-        	throw new PhalApi_Exception_BadRequest(T("no such service as {className}", array('className' => $className)));
+        	throw new PhalApi_Exception_BadRequest(T("no such service as {className}", array('className' => $service)));
         }
         		
     	$controller = new $className();
