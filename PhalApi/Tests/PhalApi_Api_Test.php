@@ -33,7 +33,7 @@ class PhpUnderControl_PhalApiApi_Test extends PHPUnit_Framework_TestCase
      */ 
     public function testInitialize()
     {
-        PhalApi_DI::one()->request = new PhalApi_Request(array('service' => 'Default.Index'));
+        DI()->request = new PhalApi_Request(array('service' => 'Default.Index'));
         $rs = $this->coreApi->initialize();
     }
 
@@ -43,7 +43,7 @@ class PhpUnderControl_PhalApiApi_Test extends PHPUnit_Framework_TestCase
         $data = array();
         $data['service'] = 'Default.Index';
 
-        PhalApi_DI::one()->request = new PhalApi_Request($data);
+        DI()->request = new PhalApi_Request($data);
         $rs = $this->coreApi->initialize();
     }
 
@@ -52,7 +52,7 @@ class PhpUnderControl_PhalApiApi_Test extends PHPUnit_Framework_TestCase
         $data = array();
         $data['service'] = 'Default.Index';
 
-        PhalApi_DI::one()->request = new PhalApi_Request($data);
+        DI()->request = new PhalApi_Request($data);
         $rs = $this->coreApi->initialize();
 
     }

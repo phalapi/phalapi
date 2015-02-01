@@ -8,7 +8,7 @@ require_once dirname(__FILE__) . '/../init.php';
 //装载你的接口
 DI()->loader->addDirs(array('Service', 'Examples'));
 
-$service = PhalApi_DI::one()->request->get('service', 'Default.Index');
+$service = DI()->request->get('service', 'Default.Index');
 
 $rules = array();
 

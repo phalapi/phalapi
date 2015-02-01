@@ -21,7 +21,7 @@ class PhpUnderControl_PhalApiLoader_Test extends PHPUnit_Framework_TestCase
     {
         parent::setUp();
 
-        $this->coreLoader = PhalApi_DI::one()->loader;
+        $this->coreLoader = DI()->loader;
     }
 
     protected function tearDown()

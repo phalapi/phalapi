@@ -46,14 +46,14 @@ class PhalApi_Api
     protected function createMemberValue()
     {
 		foreach ($this->getMethodRules() as $key => $rule) {
-    		$this->$key = PhalApi_DI::one()->request->getByRule($rule);
+    		$this->$key = DI()->request->getByRule($rule);
 		}
     }
 
     public function getMethodRules()
     {
     	$allRules = $this->getRules();
-    	$service = PhalApi_DI::one()->request->get('service', 'Default.Index');
+    	$service = DI()->request->get('service', 'Default.Index');
     	list($apiClassName, $action) = explode('.', $service);
         $action = lcfirst($action); 
     	
@@ -65,7 +65,7 @@ class PhalApi_Api
             $rules = array_merge($allRules['*'], $rules);
         }
 
-        $apiCommonRules = PhalApi_DI::one()->config->get('app.apiCommonRules', array());
+        $apiCommonRules = DI()->config->get('app.apiCommonRules', array());
         if (!empty($apiCommonRules)) {
             $rules = array_merge($apiCommonRules, $rules);
         }
@@ -75,7 +75,7 @@ class PhalApi_Api
 
     protected function filterCheck()
     {
-        $filter = PhalApi_DI::one()->filter;
+        $filter = DI()->filter;
 
         if (isset($filter)) {
             $filter->check();

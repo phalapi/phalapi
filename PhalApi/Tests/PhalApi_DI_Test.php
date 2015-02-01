@@ -34,7 +34,7 @@ class PhpUnderControl_PhalApiDI_Test extends PHPUnit_Framework_TestCase
      */ 
     public function testOne()
     {
-        $rs = PhalApi_DI::one();
+        $rs = DI();
     }
 
     public function testSetterAndGetter()

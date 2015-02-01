@@ -21,7 +21,7 @@ class PhpUnderControl_PhalApiConfigFile_Test extends PHPUnit_Framework_TestCase
     {
         parent::setUp();
 
-        $this->coreConfigFile = PhalApi_DI::one()->config;
+        $this->coreConfigFile = DI()->config;
     }
 
     protected function tearDown()

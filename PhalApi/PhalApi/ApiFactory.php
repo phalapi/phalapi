@@ -26,7 +26,7 @@ class PhalApi_ApiFactory
      */
 	static function generateService($isInitialize = true)
 	{
-		$service = PhalApi_DI::one()->request->get('service', 'Default.Index');
+		$service = DI()->request->get('service', 'Default.Index');
 		
 		$serviceArr = explode('.', $service);
 		if (count($serviceArr) < 2) {

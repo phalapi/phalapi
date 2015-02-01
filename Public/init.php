@@ -35,7 +35,7 @@ DI()->notorm = function() {
 };
 
 //缓存 - MC
-PhalApi_DI::one()->cache = function() {
+DI()->cache = function() {
 	//可以考虑将此配置放进./Config/sys.php
 	$mcConfig = array(
         'host' => '127.0.0.1',
