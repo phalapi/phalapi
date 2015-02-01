@@ -8,7 +8,7 @@
 
 require_once dirname(__FILE__) . '/../../Public/init.php';
 
-DI()->loader->addDirs('Examples');
+DI()->loader->addDirs('Demo');
 
 //日记纪录 - Explorer
 DI()->logger = new PhalApi_Logger_Explorer(API_ROOT . '/Runtime', 

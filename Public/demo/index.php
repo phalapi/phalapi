@@ -1,6 +1,6 @@
 <?php
 /**
- * Examples 统一入口
+ * Demo 统一入口
  */
 
 require_once dirname(__FILE__) . '/../init.php';

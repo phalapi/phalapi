@@ -2,7 +2,7 @@
 /**
  * PhpUnderControl_ApiUser_Test
  *
- * 针对 ../../Examples/Api/User.php Api_User 类的PHPUnit单元测试
+ * 针对 ../../Demo/Api/User.php Api_User 类的PHPUnit单元测试
  *
  * @author: dogstar 20150128
  */
@@ -10,7 +10,7 @@
 require_once dirname(__FILE__) . '/../test_env.php';
 
 if (!class_exists('Api_User')) {
-    require dirname(__FILE__) . '/../../Examples/Api/User.php';
+    require dirname(__FILE__) . '/../../Demo/Api/User.php';
 }
 
 class PhpUnderControl_ApiUser_Test extends PHPUnit_Framework_TestCase
