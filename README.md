@@ -36,15 +36,15 @@ API就如同恒星，一旦出现，便与我们永恒共存。
 root   /.../PhalApi/Public;
 ```
 
-为验证是否安装成功，可以访问默认接口服务，如：http://localhost/PhalApi/，正常时会返回类如：
+为验证是否安装成功，可以访问默认接口服务，如：http://localhost/PhalApi/service/，正常时会返回类如：
 ```
 {
     "ret": 0,
     "data": {
         "title": "Default Api",
         "content": "PHPer您好，欢迎使用PhalApi！",
-        "version": "1.0.0",
-        "time": 1422118935
+        "version": "1.1.0",
+        "time": 1422779027
     },
     "msg": ""
 }
@@ -52,13 +52,13 @@ root   /.../PhalApi/Public;
 #在线体验
 ```
 //默认的接口服务
-http://phalapi.oschina.mopaas.com/Public/
+http://phalapi.oschina.mopaas.com/Public/service/
 
 //带参数的示例接口
-http://phalapi.oschina.mopaas.com/Public/?service=Demo.Test&username=oschina
+http://phalapi.oschina.mopaas.com/Public/service/?service=Default.Index&username=oschina
 
 //故意请求一个非法的服务
-http://phalapi.oschina.mopaas.com/Public/?service=Demo.None
+http://phalapi.oschina.mopaas.com/Public/service/?service=Demo.None
 
 ```
 
@@ -113,6 +113,16 @@ http://phalapi.oschina.mopaas.com/Public/helpers/checkApiParams.php
 更多请参考：[最佳开发实践：自动化单元测试 - PHP](http://my.oschina.net/u/256338/blog/370605)
 #更新日记
 以下更新日记，主要是为了说明，我们一直在努力更新和维护。
+###2015-02-02 版本1.1.0 一个全新的开始！
+```
+此版本在原来的基础上进行了大量的重构和更多的规范统一，主要有：
+1、分离框架代码和项目代码，便于以后框架升级；
+2、统一全部的入口文件，以便不同的版本、终端、入口和测试环境使用，并隐藏PHP语言实现；
+3、框架代码统一从原来的Core_改名为PhalApi_，并且把PhalApi_DI::one()统一为快速函数的写法：DI()；
+4、重新界定应用项目的代码目录结构，以包的形式快速开发；
+5、全部文档相应更新；
+//注意。此版本不兼容旧的写法，如有问题，请与我联系。
+```
 ###2015-02-01
 ```
 1、正常时，ret返回调整为：200，原来为0；
