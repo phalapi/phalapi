@@ -127,7 +127,7 @@ http://phalapi.oschina.mopaas.com/Public/helpers/checkApiParams.php
 │   ├── helpers         //辅助在线工具
 │   └── service         //Service访问入口
 ├── Runtime         //运行文件目录，用于存放日记，可软链到别的区
-└── Service         //接口服务
+└── Service         //接口服务，根据项目需要，可以有多组
     ├── Api             //接口响应层
     ├── Domain          //接口领域层
     ├── Model           //接口持久层
