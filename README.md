@@ -114,19 +114,19 @@ http://phalapi.oschina.mopaas.com/Public/helpers/checkApiParams.php
 #主要目录结构
 ```
 .
-├── Config
-├── Data
-├── Language
-├── PhalApi
-├── Public
-│   ├── helpers
-│   └── service
-├── Runtime
-└── Service
-    ├── Api
-    ├── Domain
-    ├── Model
-    └── Tests
+├── Config          //项目接口配置，主要有：app.php, sys.php, dbs.php
+├── Data            //项目接口数据
+├── Language        //项目接口
+├── PhalApi         //PhalApi框架，后期可以整包升级
+├── Public          //对外访问目录，建议隐藏PHP实现
+│   ├── helpers         //辅助在线工具
+│   └── service         //Service访问入口
+├── Runtime         //运行文件目录，用于存放日记，可软链到别的区
+└── Service         //接口服务
+    ├── Api             //接口响应层
+    ├── Domain          //接口领域层
+    ├── Model           //接口持久层
+    └── Tests           //接口单元测试
 
 ```
 #更新日记
