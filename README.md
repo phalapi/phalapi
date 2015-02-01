@@ -1,4 +1,4 @@
-#PhalApi - 轻量级PHP后台接口开发框架 
+#PhalApi - 轻量级PHP后台接口开发框架 - V1.1.0
 
 
 ###PhalApi是一个轻量级PHP后台接口开发框架，目的是让接口开发更简单。
@@ -111,6 +111,24 @@ http://phalapi.oschina.mopaas.com/Public/helpers/checkApiParams.php
     }
 ```
 更多请参考：[最佳开发实践：自动化单元测试 - PHP](http://my.oschina.net/u/256338/blog/370605)
+#主要目录结构
+```
+.
+├── Config
+├── Data
+├── Language
+├── PhalApi
+├── Public
+│   ├── helpers
+│   └── service
+├── Runtime
+└── Service
+    ├── Api
+    ├── Domain
+    ├── Model
+    └── Tests
+
+```
 #更新日记
 以下更新日记，主要是为了说明，我们一直在努力更新和维护。
 ###2015-02-02    版本1.1.0    一个全新的开始！
@@ -121,7 +139,7 @@ http://phalapi.oschina.mopaas.com/Public/helpers/checkApiParams.php
 3、框架代码统一从原来的Core_改名为PhalApi_，并且把PhalApi_DI::one()统一为快速函数的写法：DI()；
 4、重新界定应用项目的代码目录结构，以包的形式快速开发；
 5、全部文档相应更新；
-//注意。此版本不兼容旧的写法，如有问题，请与我联系。
+//注意！此版本不兼容旧的写法，如有问题，请与我联系。
 ```
 ###2015-02-01
 ```
