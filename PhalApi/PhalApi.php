@@ -10,9 +10,9 @@
  
 defined('PHALAPI_ROOT') || define('PHALAPI_ROOT', dirname(__FILE__));
 
-defined('PHALAPI_VERSION') || define('PHALAPI_VERSION', '1.0.0');
+defined('PHALAPI_VERSION') || define('PHALAPI_VERSION', '1.1.0');
 
-require_once PHALAPI_ROOT . '/Core/Loader.php';
+require_once PHALAPI_ROOT . DIRECTORY_SEPARATOR . 'Core' . DIRECTORY_SEPARATOR . 'Loader.php';
 
 class PhalApi
 {
