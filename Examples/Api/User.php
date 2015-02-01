@@ -1,6 +1,6 @@
 <?php
 
-class Api_User extends Core_Api
+class Api_User extends PhalApi_Api
 {
     public function getRules()
     {

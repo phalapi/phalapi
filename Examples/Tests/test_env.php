@@ -11,6 +11,6 @@ require_once dirname(__FILE__) . '/../../Public/init.php';
 DI()->loader->addDirs('Examples');
 
 //日记纪录 - Explorer
-DI()->logger = new Core_Logger_Explorer(API_ROOT . '/Runtime', 
-    Core_Logger::LOG_LEVEL_DEBUG | Core_Logger::LOG_LEVEL_INFO | Core_Logger::LOG_LEVEL_ERROR);
+DI()->logger = new PhalApi_Logger_Explorer(API_ROOT . '/Runtime', 
+    PhalApi_Logger::LOG_LEVEL_DEBUG | PhalApi_Logger::LOG_LEVEL_INFO | PhalApi_Logger::LOG_LEVEL_ERROR);
 

@@ -5,7 +5,7 @@
  * @author: dogstar 2014-10-04
  */
 
-class Api_Default extends Core_Api
+class Api_Default extends PhalApi_Api
 {
 	public function getRules()
     {

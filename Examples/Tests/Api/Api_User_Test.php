@@ -45,7 +45,7 @@ class PhpUnderControl_ApiUser_Test extends PHPUnit_Framework_TestCase
         $str = 'service=User.GetBaseInfo&userId=1';
         parse_str($str, $params);
 
-        Core_DI::one()->request = new Core_Request($params);
+        PhalApi_DI::one()->request = new PhalApi_Request($params);
 
         $api = new Api_User(); 
         //自己进行初始化

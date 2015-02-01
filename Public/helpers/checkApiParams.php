@@ -8,7 +8,7 @@ require_once dirname(__FILE__) . '/../init.php';
 //装载你的接口
 DI()->loader->addDirs(array('Service', 'Examples'));
 
-$service = Core_DI::one()->request->get('service', 'Default.Index');
+$service = PhalApi_DI::one()->request->get('service', 'Default.Index');
 
 $rules = array();
 
@@ -24,9 +24,9 @@ $typeMaps = array(
 );
 
 try {
-    $api = Core_ApiFactory::generateService(false);
+    $api = PhalApi_ApiFactory::generateService(false);
     $rules = $api->getMethodRules();
-} catch (Core_Exception $ex){
+} catch (PhalApi_Exception $ex){
     $service .= ' - ' . $ex->getMessage();
 }
 

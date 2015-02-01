@@ -92,7 +92,7 @@ http://phalapi.oschina.mopaas.com/Public/helpers/checkApiParams.php
         $str = 'service=User.GetBaseInfo&userId=1';
         parse_str($str, $params);
 
-        Core_DI::one()->request = new Core_Request($params);
+        DI()->request = new PhalApi_Request($params);
 
         $api = new Api_User(); 
         //自己进行初始化
