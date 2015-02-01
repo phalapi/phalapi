@@ -5,8 +5,8 @@
 
 require_once dirname(__FILE__) . '/../init.php';
 
-//add Examples
-DI()->loader->addDirs('Examples');
+//装载你的接口
+DI()->loader->addDirs(array('Service', 'Examples'));
 
 $service = Core_DI::one()->request->get('service', 'Default.Index');
 

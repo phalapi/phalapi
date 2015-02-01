@@ -8,7 +8,7 @@
 defined('API_ROOT') || define('API_ROOT', dirname(__FILE__) . '/..');
 
 require_once API_ROOT . '/PhalApi/PhalApi.php';
-$loader = new Core_Loader(API_ROOT, array('Service'));
+$loader = new Core_Loader(API_ROOT);
 
 date_default_timezone_set('Asia/Shanghai');
 
