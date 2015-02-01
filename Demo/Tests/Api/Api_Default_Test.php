@@ -1,0 +1,66 @@
+<?php
+/**
+ * PhpUnderControl_ApiDefault_Test
+ *
+ * 针对 ../../Api/Default.php Api_Default 类的PHPUnit单元测试
+ *
+ * @author: dogstar 20150201
+ */
+
+require_once dirname(__FILE__) . '/../test_env.php';
+
+if (!class_exists('Api_Default')) {
+    require dirname(__FILE__) . '/../../Api/Default.php';
+}
+
+class PhpUnderControl_ApiDefault_Test extends PHPUnit_Framework_TestCase
+{
+    public $apiDefault;
+
+    protected function setUp()
+    {
+        parent::setUp();
+
+        $this->apiDefault = new Api_Default();
+    }
+
+    protected function tearDown()
+    {
+    }
+
+
+    /**
+     * @group testGetRules
+     */ 
+    public function testGetRules()
+    {
+        $rs = $this->apiDefault->getRules();
+
+        $this->assertNotEmpty($rs);
+    }
+
+    /**
+     * @group testIndex
+     */ 
+    public function testIndex()
+    {
+        $str = 'service=Default.Index&username=dogstar';
+        parse_str($str, $params);
+        
+        DI()->request = new PhalApi_Request($params);
+
+        $api = new Api_Default(); 
+        //自己进行初始化
+        $api->initialize();
+        $rs = $api->index();
+
+        $this->assertNotEmpty($rs);
+        $this->assertArrayHasKey('title', $rs);
+        $this->assertArrayHasKey('content', $rs);
+        $this->assertArrayHasKey('version', $rs);
+        $this->assertArrayHasKey('time', $rs);
+
+        $this->assertEquals('dogstar您好，欢迎使用PhalApi！', $rs['content']);
+    }
+
+}
