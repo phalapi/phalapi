@@ -6,7 +6,7 @@
 require_once dirname(__FILE__) . '/../init.php';
 
 //装载你的接口
-DI()->loader->addDirs(array('Service', 'Examples'));
+DI()->loader->addDirs('Demo');
 
 $service = DI()->request->get('service', 'Default.Index');
 

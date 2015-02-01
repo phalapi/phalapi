@@ -1,15 +1,16 @@
 <?php
 /**
- * Service 统一入口
+ * Examples 统一入口
  */
 
 require_once dirname(__FILE__) . '/../init.php';
 
 //装载你的接口
-DI()->loader->addDirs('Service');
+DI()->loader->addDirs('Demo');
 
 /** ---------------- 响应接口请求 ---------------- **/
+
 $server = new PhalApi();
 $rs = $server->response();
-$rs->output(); 
+$rs->output();
 
