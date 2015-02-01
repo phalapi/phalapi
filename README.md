@@ -59,7 +59,6 @@ http://phalapi.oschina.mopaas.com/Public/service/?service=Default.Index&username
 
 //故意请求一个非法的服务
 http://phalapi.oschina.mopaas.com/Public/service/?service=Demo.None
-
 {
     "ret": 400,
     "data": [],
