@@ -118,7 +118,7 @@ http://phalapi.oschina.mopaas.com/Public/demo/checkApiParams.php
 #主要目录结构
 ```
 .
-
+│
 ├── PhalApi         //PhalApi框架，后期可以整包升级
 │
 │
