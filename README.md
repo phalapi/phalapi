@@ -39,7 +39,7 @@ root   /.../PhalApi/Public;
 为验证是否安装成功，可以访问默认接口服务，如：http://localhost/PhalApi/service/，正常时会返回类如：
 ```
 {
-    "ret": 0,
+    "ret": 200,
     "data": {
         "title": "Default Api",
         "content": "PHPer您好，欢迎使用PhalApi！",
@@ -60,6 +60,11 @@ http://phalapi.oschina.mopaas.com/Public/service/?service=Default.Index&username
 //故意请求一个非法的服务
 http://phalapi.oschina.mopaas.com/Public/service/?service=Demo.None
 
+{
+    "ret": 400,
+    "data": [],
+    "msg": "非法请求：服务Api_Demo不存在"
+}
 ```
 
 #文档
