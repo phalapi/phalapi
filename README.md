@@ -123,8 +123,7 @@ http://phalapi.oschina.mopaas.com/Public/demo/checkApiParams.php
 │
 │
 ├── Public          //对外访问目录，建议隐藏PHP实现
-│   ├── helpers         //辅助在线工具
-│   └── service         //Service访问入口
+│   └── demo        //Demo服务访问入口
 │
 │
 ├── Config          //项目接口公共配置，主要有：app.php, sys.php, dbs.php
