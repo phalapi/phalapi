@@ -12,7 +12,7 @@ defined('PHALAPI_ROOT') || define('PHALAPI_ROOT', dirname(__FILE__));
 
 defined('PHALAPI_VERSION') || define('PHALAPI_VERSION', '1.1.0');
 
-require_once PHALAPI_ROOT . DIRECTORY_SEPARATOR . 'Core' . DIRECTORY_SEPARATOR . 'Loader.php';
+require_once PHALAPI_ROOT . DIRECTORY_SEPARATOR . 'PhalApi' . DIRECTORY_SEPARATOR . 'Loader.php';
 
 class PhalApi
 {
@@ -29,20 +29,18 @@ class PhalApi
      */
     public function response()
     {
-    	$di = Core_DI::one();
-    	
-    	$rs = new Core_Response();
+    	$rs = new PhalApi_Response();
     	
     	$rs->addHeaders('Content-Type', 'text/html;charset=utf-8');
     	
     	try{
-    		$controller = Core_ApiFactory::generateService(); 
+    		$controller = PhalApi_ApiFactory::generateService(); 
     		
-    		$service = $di->request->get('service', 'Default.Index');
+    		$service = DI()->request->get('service', 'Default.Index');
     		list($apiClassName, $action) = explode('.', $service);
 				
         	$rs->setData(call_user_func(array($controller, $action)));
-    	} catch (Core_Exception $ex){
+    	} catch (PhalApi_Exception $ex){
     		$rs->setRet($ex->getCode());
         	$rs->setMsg($ex->getMessage());
     	} catch (Exception $ex){

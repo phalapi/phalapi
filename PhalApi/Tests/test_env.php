@@ -10,30 +10,30 @@ defined('API_ROOT') || define('API_ROOT', dirname(__FILE__));
 
 //自动加载
 require_once API_ROOT . '/../PhalApi.php';
-$loader = new Core_Loader(API_ROOT, array('Service'));
+$loader = new PhalApi_Loader(API_ROOT, array('Service'));
 
 date_default_timezone_set('Asia/Shanghai');
 
-Core_Translator::setLanguage('zh_cn');
+PhalApi_Translator::setLanguage('zh_cn');
 
 /** ---------------- 注册&初始化服务组件 ---------------- **/
 
 DI()->loader = $loader;
 
-DI()->config = new Core_Config_File(dirname(__FILE__) . '/Config');
+DI()->config = new PhalApi_Config_File(dirname(__FILE__) . '/Config');
 
-DI()->request = new Core_Request();
+DI()->request = new PhalApi_Request();
 
-DI()->logger = new Core_Logger_Explorer(
-		Core_Logger::LOG_LEVEL_DEBUG | Core_Logger::LOG_LEVEL_INFO | Core_Logger::LOG_LEVEL_ERROR);
+DI()->logger = new PhalApi_Logger_Explorer(
+		PhalApi_Logger::LOG_LEVEL_DEBUG | PhalApi_Logger::LOG_LEVEL_INFO | PhalApi_Logger::LOG_LEVEL_ERROR);
 
 DI()->notorm = function() {
-    $notorm = new Core_DB_NotORM(DI()->config->get('dbs'), true);
+    $notorm = new PhalApi_DB_NotORM(DI()->config->get('dbs'), true);
     return $notorm;
 };
 
 DI()->cache = function() {
-    //$mc = new Core_Cache_Memecahced(Core_DI::one()->config->get('sys.memcached'));
+    //$mc = new PhalApi_Cache_Memecahced(PhalApi_DI::one()->config->get('sys.memcached'));
     $mc = new Memcached_Mock();
 	return $mc;
 };
@@ -67,10 +67,10 @@ class Memcached_Mock {
 //加密，测试情况下为防止本地环境没有mcrypt模块 这里作了替身
 DI()->crypt = function() {
 	//return new Crypt_Mock();
-	return new Core_Crypt_MultiMcrypt(DI()->config->get('sys.crypt.mcrypt_iv'));
+	return new PhalApi_Crypt_MultiMcrypt(DI()->config->get('sys.crypt.mcrypt_iv'));
 };
 
-class Crypt_Mock implements Core_Crypt
+class Crypt_Mock implements PhalApi_Crypt
 {
 	public function encrypt($data, $key)
 	{
