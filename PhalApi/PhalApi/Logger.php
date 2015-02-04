@@ -24,7 +24,7 @@
  *      //一些不该发生的事情
  *      $logger->error('this is error test');
  *
- * @author: dogstar 2014-10-02
+ * @author dogstar 2014-10-02
  */
 
 abstract class PhalApi_Logger

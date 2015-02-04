@@ -4,7 +4,7 @@
  *
  * - 拥有各种结果返回状态 ，以及对返回结果 的格式化
  *
- * @author: dogstar 2014-10-02
+ * @author dogstar 2014-10-02
  */
 
 class PhalApi_Response
@@ -43,26 +43,22 @@ class PhalApi_Response
     	$result = $this->formatResult();
     	
     	$this->handleHeaders($this->headers);
-    	
-    	if (is_array($result)) {
-    		print_r($result);
-        } else {
-            echo $result;
-        }
+
+        echo $result;
     }
     
-    private function formatResult()
+    protected function formatResult()
     {
-    	$result = array(
-    			'ret' => $this->ret,
-    			'data' => $this->data,
-    			'msg' => $this->msg,
-    			);
-    			
+        $result = array(
+            'ret' => $this->ret,
+            'data' => $this->data,
+            'msg' => $this->msg,
+        );
+
         return json_encode($result);
     }
     
-    private function handleHeaders($headers)
+    protected function handleHeaders($headers)
     {
     	foreach ($headers as $key => $content) {
     		header($key . ':' . $content);

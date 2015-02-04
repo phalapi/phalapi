@@ -1,4 +1,9 @@
 <?php
+/**
+ * PhalApi_Cache 缓存接口
+ *
+ * @author dogstar 2015-02-04
+ */
 
 interface PhalApi_Cache
 {

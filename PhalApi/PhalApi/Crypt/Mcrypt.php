@@ -3,7 +3,7 @@
  * 使用mcrypt扩展进加解密
  *
  * @link: http://php.net/manual/zh/function.mcrypt-generic.php
- * @author: dogstar 2014-12-10
+ * @author dogstar 2014-12-10
  */
 
 class PhalApi_Crypt_Mcrypt implements PhalApi_Crypt
@@ -56,7 +56,9 @@ class PhalApi_Crypt_Mcrypt implements PhalApi_Crypt
         $cipher = mcrypt_module_open(MCRYPT_BLOWFISH, '', MCRYPT_MODE_CBC, '');
 
         if ($cipher === FALSE || $cipher < 0) {
-            throw new PhalApi_Exception_InternalServerError(T('mcrypt_module_open with {cipher}', array('cipher' => $cipher)));
+            throw new PhalApi_Exception_InternalServerError(
+                T('mcrypt_module_open with {cipher}', array('cipher' => $cipher))
+            );
         }
 
         mcrypt_generic_init($cipher, $this->formatKey($key), $this->iv);

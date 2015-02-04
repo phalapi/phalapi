@@ -1,4 +1,20 @@
 <?php
+/**
+ * PhalApi_Translator 国际翻译
+ *
+ * - 根提供的语言包，进行翻译
+ * - 优先使用应用级的翻译，其次是框架默认的
+ * 
+ * 使用示例
+ *      //初始化，设置语言
+ *      PhalApi_Translator::setLanguage('zh_cn');
+ *
+ *      //翻译
+ *      $msg = T('hello {name}', array('name' => 'phper'));
+ *      var_dump($msg);
+ *
+ * @author dogstar 2015-02-04
+ */
 
 class PhalApi_Translator
 {

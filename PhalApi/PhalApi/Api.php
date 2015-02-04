@@ -4,7 +4,7 @@
  *
  * - 实现身份验证、参数获取生成等操作，并由开发人员自宝义的服务具体类继承
  *
- * @author: dogstar 2014-10-02
+ * @author dogstar 2014-10-02
  */
 
 class PhalApi_Api
@@ -17,18 +17,23 @@ class PhalApi_Api
     public function __get($name)
     {
     	if(!isset($this->name) || empty($name)) {
-            throw new PhalApi_Exception_InternalServerError(T('PhalApi_Api::${name} undefined', array('name' => $name)));
-            return null;
+            throw new PhalApi_Exception_InternalServerError(
+                T('PhalApi_Api::${name} undefined', array('name' => $name))
+            );
         }
 
     	return $this->$name;
     }
 
     /**
-     * 初始化，主要完成的初始化工作有：
-     * 1. 根据设置的自定义规则，从$_REQUEST获取所需要的参数，并保存在成员变量内 @see Controller::createMemberValue
+     * 初始化
+     *
+     * 主要完成的初始化工作有：
+     * 1. 根据设置的自定义规则，从$_REQUEST获取所需要的参数，并保存在成员变量内
      * 2. 验证App Key
      * 3. 验证用户身份
+     * 
+     * @see: PhalApi_Api::createMemberValue()
      */
     public function initialize()
     {
@@ -41,6 +46,7 @@ class PhalApi_Api
     
     /**
      * 过滤并创建参数
+     *
      * 根据客户商调用的方法名字，搜索相应的自定义参数规则进行过滤创建，并把参数存放在类成员变量里面。
      */
     protected function createMemberValue()
@@ -52,7 +58,8 @@ class PhalApi_Api
 
     public function getMethodRules()
     {
-    	$allRules = $this->getRules();
+        $allRules = $this->getRules();
+
     	$service = DI()->request->get('service', 'Default.Index');
     	list($apiClassName, $action) = explode('.', $service);
         $action = lcfirst($action); 
@@ -84,6 +91,7 @@ class PhalApi_Api
     
     /**
      * 验证用户身份
+     *
      * 可由开发人员根据需要重载
      */
     protected function checkStatus()
@@ -93,6 +101,7 @@ class PhalApi_Api
     
     /**
      * 获取参数设置的规则
+     *
      * 可由开发人员根据需要重载，如果有冲突，以子类为准
      */
     public function getRules()

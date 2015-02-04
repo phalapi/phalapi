@@ -124,7 +124,9 @@ class PhalApi_DI implements ArrayAccess
             return $this->get($key, isset($arguments[0]) ? $arguments[0] : null);
         }
 
-        throw new Exception(T('Call to undefined method PhalApi_DI::{name}() .', array('name' => $name)));
+        throw new PhaliApi_Exception_InternalServerError(
+            T('Call to undefined method PhalApi_DI::{name}() .', array('name' => $name))
+        );
     }
 
     public function __set($name, $value)

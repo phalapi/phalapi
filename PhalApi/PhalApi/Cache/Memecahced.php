@@ -4,13 +4,17 @@
  *
  * - 使用序列化对需要存储的值进行转换，以提高速度
  *
- * @author: dogstar 2014-11-14
+ * @author dogstar 2014-11-14
  */
 
 class PhalApi_Cache_Memecahced implements PhalApi_Cache
 {
     private $memcached = null;
 
+    /**
+     * @param string $config['host'] Memcache域名
+     * @param int $config['port'] Memcache端口
+     */
     public function __construct($config)
     {
         $this->memcached = new Memcached();

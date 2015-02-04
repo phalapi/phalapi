@@ -5,7 +5,7 @@
  * - 负责根据提供的参数规则，进行参数创建工作，并返回错误信息
  * - 需要与参数规则配合使用
  *
- * @author: dogstar 2014-10-02
+ * @author dogstar 2014-10-02
  */
 
 class PhalApi_Request
@@ -27,8 +27,11 @@ class PhalApi_Request
 	
 	/**
      * 获取参数
+     *
      * 根据提供的参数规则，进行参数创建工作，并返回错误信息
+     *
      * @param $rule array('name' => '', 'type' => '', 'defalt' => ...) 参数规则
+     * @return mixed
      */
 	public function getByRule($rule)
 	{
@@ -41,7 +44,9 @@ class PhalApi_Request
         $rs = PhalApi_Request_Var::format($rule['name'], $rule, $this->data);
         
         if ($rs === null && (isset($rule['require']) && $rule['require'])) {
-        	throw new PhalApi_Exception_BadRequest(T('{name} require, but miss', array('name' => $rule['name'])));
+            throw new PhalApi_Exception_BadRequest(
+                T('{name} require, but miss', array('name' => $rule['name']))
+            );
         }
 
         return $rs;

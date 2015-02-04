@@ -47,7 +47,7 @@
  *      $rs = $notorm->demo_1->select('*')->where('id = 11')->fetch();
  *
  * @link: http://www.notorm.com/
- * @author: dogstar 2014-11-22
+ * @author dogstar 2014-11-22
  */
 
 require_once PHALAPI_ROOT . DIRECTORY_SEPARATOR . 'NotORM' . DIRECTORY_SEPARATOR . 'NotORM.php';
@@ -128,8 +128,11 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */
             ? $this->_configs['tables']['__default__'] : array();
         $tableMap = !empty($this->_configs['tables'][$tableName]) 
             ? $this->_configs['tables'][$tableName] : $defaultMap;
+
         if (empty($tableMap)) {
-            throw new PhalApi_Exception_InternalServerError(T("No table map config for {tableName}", array('tableName' => $tableName)));
+            throw new PhalApi_Exception_InternalServerError(
+                T('No table map config for {tableName}', array('tableName' => $tableName))
+            );
         }
 
         $dbKey = null;
@@ -161,8 +164,11 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */
             $dbKey = $dbDefaultKey;
             $rs['isNoSuffix'] = true;
         }
+
         if ($dbKey === null) {
-            throw new PhalApi_Exception_InternalServerError(T("No db router match for {tableName}", array('tableName' => $tableName)));
+            throw new PhalApi_Exception_InternalServerError(
+                T('No db router match for {tableName}', array('tableName' => $tableName))
+            );
         }
 
         $rs['pdo'] = $this->getPdo($dbKey);
