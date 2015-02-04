@@ -46,3 +46,6 @@ DI()->cache = function() {
 	return $mc;
 };
 
+//签名验证服务
+//DI()->filter = 'Common_SignFilter';
+
