@@ -63,7 +63,8 @@ class PhalApi_DI implements ArrayAccess
      */ 
     public function onConstruct()
     {
-        //TODO
+        $this->request = 'PhalApi_Request';
+        $this->response = 'PhalApi_Response';
     }
 
     public function onInitialize()

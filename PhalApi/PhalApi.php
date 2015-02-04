@@ -29,7 +29,7 @@ class PhalApi
      */
     public function response()
     {
-    	$rs = new PhalApi_Response();
+    	$rs = DI()->response;
     	
     	$rs->addHeaders('Content-Type', 'text/html;charset=utf-8');
     	

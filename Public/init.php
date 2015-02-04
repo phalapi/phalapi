@@ -22,9 +22,6 @@ DI()->loader = $loader;
 //配置
 DI()->config = new PhalApi_Config_File(API_ROOT . '/Config');
 
-//参数请求
-DI()->request = new PhalApi_Request();
-
 //日记纪录
 DI()->logger = new PhalApi_Logger_File(API_ROOT . '/Runtime', 
     PhalApi_Logger::LOG_LEVEL_DEBUG | PhalApi_Logger::LOG_LEVEL_INFO | PhalApi_Logger::LOG_LEVEL_ERROR);
