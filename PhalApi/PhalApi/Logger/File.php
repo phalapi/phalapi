@@ -39,15 +39,13 @@ class PhalApi_Logger_File extends PhalApi_Logger {
             mkdir($folder . '/', 0777, true);
         }
 
-        $logFile = $folder 
+        $this->logFile = $folder 
             . DIRECTORY_SEPARATOR . date('Ymd', $_SERVER['REQUEST_TIME']) . '.log';
 
-        if (!file_exists($logFile)) {
-            touch($logFile);
-            chmod($logFile, 0777);
+        if (!file_exists($this->logFile)) {
+            touch($this->logFile);
+            chmod($this->logFile, 0777);
         }
-
-        $this->logFile = $logFile;
     }
 
     public function log($type, $msg, $data) {

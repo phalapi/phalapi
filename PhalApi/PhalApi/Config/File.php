@@ -11,13 +11,12 @@
  * @author dogstar 2014-10-02
  */
 
-class PhalApi_Config_File implements PhalApi_Config
-{
+class PhalApi_Config_File implements PhalApi_Config {
+
 	private $path = '';
 	private $map = null;
 	
-	public function __construct($configPath)
-	{
+	public function __construct($configPath) {
 		$this->path = $configPath;
 	}
 	
@@ -29,8 +28,7 @@ class PhalApi_Config_File implements PhalApi_Config
      * @return mixed 需要获取的配置值
      * @author dogstar 2012-12-23
      */
-	public function get($key, $default = null)
-	{
+	public function get($key, $default = null) {
 		$keyArr = explode('.', $key);
 		$fileName = $keyArr[0];
 		
@@ -60,8 +58,7 @@ class PhalApi_Config_File implements PhalApi_Config
      * @return 
      * @author	dogstar 2012-12-23
      */
-	private function loadConfig($fileName)
-	{
+	private function loadConfig($fileName) {
 		$config = include($this->path . DIRECTORY_SEPARATOR . $fileName . '.php');
 		
 		$this->map[$fileName] = $config;

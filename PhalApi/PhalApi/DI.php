@@ -112,12 +112,13 @@ class PhalApi_DI implements ArrayAccess {
         if (substr($name, 0, 3) == 'set') {
             $key = lcfirst(substr($name, 3));
             return $this->set($key, isset($arguments[0]) ? $arguments[0] : null);
-        } elseif(substr($name, 0, 3) == 'get') {
+        } else if (substr($name, 0, 3) == 'get') {
             $key = lcfirst(substr($name, 3));
             return $this->get($key, isset($arguments[0]) ? $arguments[0] : null);
+        } else {
         }
 
-        throw new PhaliApi_Exception_InternalServerError(
+        throw new PhalApi_Exception_InternalServerError(
             T('Call to undefined method PhalApi_DI::{name}() .', array('name' => $name))
         );
     }
@@ -176,7 +177,11 @@ class PhalApi_DI implements ArrayAccess {
     }
 
     protected function recordHitTimes($key) {
-        $this->hitTimes[$key] = isset($this->hitTimes[$key]) ? ++ $this->hitTimes[$key] : 1;
+        if (!isset($this->hitTimes[$key])) {
+            $this->hitTimes[$key] = 0;
+        }
+
+        $this->hitTimes[$key] ++;
     }
 }
 

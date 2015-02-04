@@ -63,7 +63,7 @@ class PhalApi_Request_Var {
                 $value = self::formatFloat($value, $rule);
                 break;
             case 'boolean':
-                $value = self::formatBoolean($value, $rule);
+                $value = self::formatBoolean($value);
                 break;
             //扩展常用类型
             case 'date':
@@ -141,7 +141,7 @@ class PhalApi_Request_Var {
      * @return boolean/string 格式化后的变量
      *
      */
-    public static function formatBoolean($value, $rule) {
+    public static function formatBoolean($value) {
         $rs = $value;
 
         if (!is_bool($value)) {
