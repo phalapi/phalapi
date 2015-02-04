@@ -94,11 +94,7 @@ class PhalApi_Request_Var {
      *
      */
     public static function formatString($value, $rule) {
-        $rs = strval($value);
-
-        $rs = strval(self::filterByStrLen($rs, $rule));
-
-        return $rs;
+        return strval(self::filterByStrLen(strval($value), $rule));
     }
 
     /**
@@ -110,11 +106,7 @@ class PhalApi_Request_Var {
      *
      */
     public static function formatInt($value, $rule) {
-        $rs = intval($value);
-
-        $rs = intval(self::filterByRange($rs, $rule));
-
-        return $rs;
+        return intval(self::filterByRange(intval($value), $rule));
     }
 
     /**
@@ -126,11 +118,7 @@ class PhalApi_Request_Var {
      *
      */
     public static function formatFloat($value, $rule) {
-        $rs = floatval($value);
-
-        $rs = floatval(self::filterByRange($rs, $rule));
-
-        return $rs;
+        return floatval(self::filterByRange(floatval($value), $rule));
     }
 
     /**
@@ -172,7 +160,7 @@ class PhalApi_Request_Var {
         $format = !empty($rule['format']) ? strtolower($rule['format']) : '';
         if ($format == 'timestamp') {
             $rs = strtotime($value);
-            if ($rs === false || $rs < 0) {
+            if ($rs <= 0) {
             	$rs = 0;
             }
         }
