@@ -16,12 +16,11 @@
  * @author dogstar 2015-02-04
  */
 
-class PhalApi_Translator
-{
+class PhalApi_Translator {
+
     protected static $message = null;
 
-    public static function get($key, $params = array())
-    {
+    public static function get($key, $params = array()) {
         if(self::$message === null) {
             self::setLanguage('en');
         }
@@ -34,8 +33,7 @@ class PhalApi_Translator
         return str_replace($names, array_values($params), $rs);
     }
 
-    public static function setLanguage($language)
-    {
+    public static function setLanguage($language) {
         self::$message = array();
 
         $path = PHALAPI_ROOT . DIRECTORY_SEPARATOR . 'Language' . DIRECTORY_SEPARATOR 
@@ -55,8 +53,7 @@ class PhalApi_Translator
         }
     }
 
-    public static function formatVar($name)
-    {
+    public static function formatVar($name) {
         return '{' . $name . '}';
     }
 }

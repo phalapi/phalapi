@@ -5,20 +5,17 @@
  * @author dogstar 2015-01-02
  */
 
-class PhalApi_CUrl
-{
-    public function get($url, $timeoutMs = 3000)
-    {
+class PhalApi_CUrl {
+
+    public function get($url, $timeoutMs = 3000) {
         return $this->request($url, false, $timeoutMs);
     } 
 
-    public function post($url, $data, $timeoutMs = 3000)
-    {
+    public function post($url, $data, $timeoutMs = 3000) {
         return $this->request($url, $data, $timeoutMs);
     }
 
-    protected function request($url, $data, $timeoutMs = 3000)
-    {
+    protected function request($url, $data, $timeoutMs = 3000) {
         $ch = curl_init();
 
         curl_setopt($ch, CURLOPT_URL, $url);

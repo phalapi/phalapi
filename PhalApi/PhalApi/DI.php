@@ -29,15 +29,14 @@
  * @author: dogstar 2014-01-22
  */ 
 
-class PhalApi_DI implements ArrayAccess
-{
+class PhalApi_DI implements ArrayAccess {
+
     protected static $instance = null;
 
     protected $hitTimes = array();
     protected $data = array();
 
-    public function __construct()
-    {
+    public function __construct() {
 
     }
 
@@ -46,8 +45,7 @@ class PhalApi_DI implements ArrayAccess
      * 1、将进行service级的构造与初始化
      * 2、也可以通过new创建，但不能实现service的共享
      */ 
-    public static function one()
-    {
+    public static function one() {
         if(self::$instance == null) {
             self::$instance = new PhalApi_DI();
             self::$instance->onConstruct();
@@ -61,14 +59,12 @@ class PhalApi_DI implements ArrayAccess
      * 1、可实现一些自定义业务的操作，如内置默认service
      * 2、首次创建时将会调用
      */ 
-    public function onConstruct()
-    {
+    public function onConstruct() {
         $this->request = 'PhalApi_Request';
         $this->response = 'PhalApi_Response';
     }
 
-    public function onInitialize()
-    {
+    public function onInitialize() {
         //TODO
     }
 
@@ -78,8 +74,7 @@ class PhalApi_DI implements ArrayAccess
      * @param string $key service注册名称，要求唯一，区分大小写
      * @parms mixed $value service的值，可以是具体的值或实例、类名、匿名函数、数组配置
      */ 
-    public function set($key, $value)
-    {
+    public function set($key, $value) {
         $this->resetHit($key);
 
         $this->data[$key] = $value;
@@ -97,8 +92,7 @@ class PhalApi_DI implements ArrayAccess
      * @param boolean $isShare 是否获取共享service
      * @return mixed
      */ 
-    public function get($key, $default = null)
-    {
+    public function get($key, $default = null) {
         if (!isset($this->data[$key])) {
             $this->data[$key] = $default;
         }
@@ -114,8 +108,7 @@ class PhalApi_DI implements ArrayAccess
 
     /** ------------------ 魔法方法 ------------------ **/
 
-    public function __call($name, $arguments)
-    {
+    public function __call($name, $arguments) {
         if (substr($name, 0, 3) == 'set') {
             $key = lcfirst(substr($name, 3));
             return $this->set($key, isset($arguments[0]) ? $arguments[0] : null);
@@ -129,42 +122,35 @@ class PhalApi_DI implements ArrayAccess
         );
     }
 
-    public function __set($name, $value)
-    {
+    public function __set($name, $value) {
         $this->set($name, $value);
     }
 
-    public function __get($name)
-    {
+    public function __get($name) {
         return $this->get($name, null);
     }
 
     /** ------------------ ArrayAccess（数组式访问）接口 ------------------ **/
 
-    public function offsetSet($offset, $value)
-    {
+    public function offsetSet($offset, $value) {
         $this->set($offset, $value);
     }
 
-    public function offsetGet($offset)
-    {
+    public function offsetGet($offset) {
         return $this->get($offset, null);
     }
 
-    public function offsetUnset($offset)
-    {
+    public function offsetUnset($offset) {
         unset($this->data[$offset]);
     }
 
-    public function offsetExists($offset)
-    {
+    public function offsetExists($offset) {
         return isset($this->data[$offset]);
     }
 
     /** ------------------ 内部方法 ------------------ **/
 
-    protected function initService($config)
-    {
+    protected function initService($config) {
         $rs = null;
 
         if ($config instanceOf Closure) {
@@ -181,18 +167,15 @@ class PhalApi_DI implements ArrayAccess
         return $rs;
     }
 
-    protected function resetHit($key)
-    {
+    protected function resetHit($key) {
         $this->hitTimes[$key] = 0;
     }
 
-    protected function isFirstHit($key)
-    {
+    protected function isFirstHit($key) {
         return $this->hitTimes[$key] == 1;
     }
 
-    protected function recordHitTimes($key)
-    {
+    protected function recordHitTimes($key) {
         $this->hitTimes[$key] = isset($this->hitTimes[$key]) ? ++ $this->hitTimes[$key] : 1;
     }
 }

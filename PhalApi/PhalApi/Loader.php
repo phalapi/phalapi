@@ -12,14 +12,13 @@
 //加载快速方法
 require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'functions.php';
 
-class PhalApi_Loader
-{
+class PhalApi_Loader {
+
 	protected $dirs = array();
 	
     protected $basePath = '';
 
-    public function __construct($basePath, $dirs = array())
-    {
+    public function __construct($basePath, $dirs = array()) {
         $this->setBasePath($basePath);
 
         if (!empty($dirs)) {
@@ -29,8 +28,7 @@ class PhalApi_Loader
     	spl_autoload_register(array($this, 'load'));
     }
     
-    public function addDirs($dirs)
-    {
+    public function addDirs($dirs) {
         if(!is_array($dirs)) {
             $dirs = array($dirs);
         }
@@ -38,13 +36,11 @@ class PhalApi_Loader
         $this->dirs = array_merge($this->dirs, $dirs);
     }
 
-    public function setBasePath($path)
-    {
+    public function setBasePath($path) {
     	$this->basePath = $path;
     }
     
-    public function loadFile($filePath)
-    {
+    public function loadFile($filePath) {
         require_once (substr($filePath, 0, 1) != '/' && substr($filePath, 1, 1) != ':')
             ? $this->basePath . DIRECTORY_SEPARATOR . $filePath : $filePath;
     }
@@ -56,8 +52,7 @@ class PhalApi_Loader
      *
      * @param string $className 等待加载的类名
      */ 
-    public function load($className)
-    {
+    public function load($className) {
         if (class_exists($className, false) || interface_exists($className, false)) {
             return;
         }
@@ -73,8 +68,7 @@ class PhalApi_Loader
     	}
     }
 
-    protected function loadClass($path, $className)
-    {
+    protected function loadClass($path, $className) {
         $toRequireFile = $path . DIRECTORY_SEPARATOR 
             . str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
         

@@ -5,8 +5,8 @@
  * @author dogstar 2015-02-04
  */
 
-interface PhalApi_Cache
-{
+interface PhalApi_Cache {
+
     public function set($key, $value, $expire = 600);
 
     public function get($key);

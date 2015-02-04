@@ -10,8 +10,7 @@
  * @author dogstar 2014-10-02
  */
 
-class PhalApi_ApiFactory
-{
+class PhalApi_ApiFactory {
 	/**
      * 创建服务器
      * 根据客户端提供控制器名称和需要调用的方法进行创建工作，如果创建失败，则抛出相应的自定义异常
@@ -24,8 +23,7 @@ class PhalApi_ApiFactory
      *
      * @return PhalApi_Api 自定义的控制器
      */
-	static function generateService($isInitialize = true)
-	{
+	static function generateService($isInitialize = true) {
 		$service = DI()->request->get('service', 'Default.Index');
 		
 		$serviceArr = explode('.', $service);

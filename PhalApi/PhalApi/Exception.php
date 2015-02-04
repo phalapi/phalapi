@@ -7,7 +7,6 @@
  * @author dogstar 2014-10-02
  */
 
-class PhalApi_Exception extends Exception
-{
+class PhalApi_Exception extends Exception {
 	
 }

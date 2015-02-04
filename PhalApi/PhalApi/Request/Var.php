@@ -17,11 +17,11 @@
  *  array('name' => '', 'type' => 'array', 'default' => '', 'format' => 'json/explode', 'separator' => '')
  *  array('name' => '', 'type' => 'enum', 'default' => '', 'range' => array(...))
  *
- * @author: dogstar 2014-10-04
+ * @author dogstar 2014-10-04
  */
 
-class PhalApi_Request_Var
-{
+class PhalApi_Request_Var {
+
     /** ------------------ 对外开放操作 ------------------ **/
 
     /**
@@ -39,10 +39,8 @@ class PhalApi_Request_Var
      * 扩展参数请参见各种类型格式化操作的参数说明
      * @param array $params 参数列表
      * @return miexd 格式后的变量
-     *
      */ 
-    public static function format($varName, $rule, $params)
-    {
+    public static function format($varName, $rule, $params) {
         $value = isset($rule['default']) ? $rule['default'] : null;
         $type = !empty($rule['type']) ? strtolower($rule['type']) : 'string';
 
@@ -95,8 +93,7 @@ class PhalApi_Request_Var
      * @return string 格式化后的变量
      *
      */
-    public static function formatString($value, $rule)
-    {
+    public static function formatString($value, $rule) {
         $rs = strval($value);
 
         $rs = strval(self::filterByStrLen($rs, $rule));
@@ -112,8 +109,7 @@ class PhalApi_Request_Var
      * @return int/string 格式化后的变量
      *
      */
-    public static function formatInt($value, $rule)
-    {
+    public static function formatInt($value, $rule) {
         $rs = intval($value);
 
         $rs = intval(self::filterByRange($rs, $rule));
@@ -129,8 +125,7 @@ class PhalApi_Request_Var
      * @return float/string 格式化后的变量
      *
      */
-    public static function formatFloat($value, $rule)
-    {
+    public static function formatFloat($value, $rule) {
         $rs = floatval($value);
 
         $rs = floatval(self::filterByRange($rs, $rule));
@@ -146,8 +141,7 @@ class PhalApi_Request_Var
      * @return boolean/string 格式化后的变量
      *
      */
-    public static function formatBoolean($value, $rule)
-    {
+    public static function formatBoolean($value, $rule) {
         $rs = $value;
 
         if (!is_bool($value)) {
@@ -172,8 +166,7 @@ class PhalApi_Request_Var
      * @return timesatmp/string 格式化后的变量
      *
      */
-    public static function formatDate($value, $rule)
-    {
+    public static function formatDate($value, $rule) {
         $rs = $value;
 
         $format = !empty($rule['format']) ? strtolower($rule['format']) : '';
@@ -187,8 +180,7 @@ class PhalApi_Request_Var
         return $rs;
     }
 
-    public static function formatArray($value, $rule)
-    {
+    public static function formatArray($value, $rule) {
         $rs = $value;
 
         if (!is_array($rs)) {
@@ -209,8 +201,7 @@ class PhalApi_Request_Var
      * 检测枚举类型
      * @return 当不符合时返回null
      */
-    public static function formatEnum($value, $rule)
-    {
+    public static function formatEnum($value, $rule) {
         if (!isset($rule['range']) || empty($rule['range']) || !is_array($rule['range'])) {
             throw new PhalApi_Exception_InternalServerError(
                 T("miss {name}'s enum range", array('name' => $rule['name'])));
@@ -231,8 +222,7 @@ class PhalApi_Request_Var
     /**
      * 根据字符串长度进行截取
      */
-    protected static function filterByStrLen($value, $rule)
-    {
+    protected static function filterByStrLen($value, $rule) {
         $lenRule = $rule;
         $lenRule['name'] = $lenRule['name'] . '.len';
         $lenValue = strlen($value);
@@ -244,8 +234,7 @@ class PhalApi_Request_Var
     /**
      * 根据范围进行控制
      */
-    protected static function filterByRange($value, $rule)
-    {
+    protected static function filterByRange($value, $rule) {
         if (isset($rule['min']) && isset($rule['max']) && $rule['min'] > $rule['max']) {
             throw new PhalApi_Exception_InternalServerError(
                 T('min should <= max, but now {name} min = {min} and max = {max}', 

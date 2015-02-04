@@ -1,9 +1,8 @@
 <?php
 
-class PhalApi_Logger_Explorer extends PhalApi_Logger
-{
-	public function log($type, $msg, $data)
-	{
+class PhalApi_Logger_Explorer extends PhalApi_Logger {
+
+	public function log($type, $msg, $data) {
         $msgArr = array();
         $msgArr[] = date('Y-m-d H:i:s', $_SERVER['REQUEST_TIME']);
         $msgArr[] = strtoupper($type);

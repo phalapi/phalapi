@@ -6,23 +6,21 @@
  * @author dogstar 2014-12-10
  */
 
-class PhalApi_Crypt_Mcrypt implements PhalApi_Crypt
-{
+class PhalApi_Crypt_Mcrypt implements PhalApi_Crypt {
+
     protected $iv;
 
     const MAX_IV_SIZE = 8;
     const MAX_KEY_LENGTH = 56;
 
-    public function __construct($iv = '********')
-    {
+    public function __construct($iv = '********') {
         $this->iv = str_pad($iv, self::MAX_IV_SIZE, '*');
         if (strlen($this->iv) > self::MAX_IV_SIZE) {
             $this->iv = substr($this->iv, 0, self::MAX_IV_SIZE);
         }
     }
 
-    public function encrypt($data, $key)
-    {
+    public function encrypt($data, $key) {
         if ($data === '') {
             return $data;
         }
@@ -36,8 +34,7 @@ class PhalApi_Crypt_Mcrypt implements PhalApi_Crypt
         return $encrypted;
     }
 
-    public function decrypt($data, $key)
-    {
+    public function decrypt($data, $key) {
         if ($data === '') {
             return $data;
         }
@@ -51,8 +48,7 @@ class PhalApi_Crypt_Mcrypt implements PhalApi_Crypt
         return rtrim($decrypted, "\0");
     }
 
-    protected function createCipher($key)
-    {
+    protected function createCipher($key) {
         $cipher = mcrypt_module_open(MCRYPT_BLOWFISH, '', MCRYPT_MODE_CBC, '');
 
         if ($cipher === FALSE || $cipher < 0) {
@@ -66,13 +62,11 @@ class PhalApi_Crypt_Mcrypt implements PhalApi_Crypt
         return $cipher;
     }
 
-    protected function formatKey($key)
-    {
+    protected function formatKey($key) {
         return strlen($key) > self::MAX_KEY_LENGTH ?  substr($key, 0, self::MAX_KEY_LENGTH) : $key;
     }
 
-    protected function clearCipher($cipher)
-    {
+    protected function clearCipher($cipher) {
         mcrypt_generic_deinit($cipher);
         mcrypt_module_close($cipher);
     }

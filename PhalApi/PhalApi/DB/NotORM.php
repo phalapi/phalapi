@@ -52,8 +52,8 @@
 
 require_once PHALAPI_ROOT . DIRECTORY_SEPARATOR . 'NotORM' . DIRECTORY_SEPARATOR . 'NotORM.php';
 
-class PhalApi_DB_NotORM /** implements PhalApi_DB */
-{
+class PhalApi_DB_NotORM /** implements PhalApi_DB */ {
+
     protected $_notorms = array();
 
     protected $_pdos = array();
@@ -62,15 +62,13 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */
 
     protected $debug = false;
 
-    public function __construct($configs, $debug = false)
-    {
+    public function __construct($configs, $debug = false) {
         $this->_configs = $configs;
 
         $this->debug = $debug;
     }
 
-    public function __get($name)
-    {
+    public function __get($name) {
         $notormKey = $this->createNotormKey($name);
 
         if (!isset($this->_notorms[$notormKey])) {
@@ -91,20 +89,17 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */
         return $this->_notorms[$notormKey]->$name;
     }
 
-    public function __set($name, $value)
-    {
+    public function __set($name, $value) {
         foreach ($this->_notorms as $key => $notorm) {
             $notorm->$name = $value;
         }
     }
 
-    protected function createNotormKey($tableName)
-    {
+    protected function createNotormKey($tableName) {
         return '__' . $tableName . '__';
     }
 
-    protected function parseName($name)
-    {
+    protected function parseName($name) {
         $tableName = $name;
         $suffix = null;
 
@@ -120,8 +115,7 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */
         return array($tableName, $suffix);
     }
 
-    protected function getDBRouter($tableName, $suffix)
-    {
+    protected function getDBRouter($tableName, $suffix) {
         $rs = array('prefix' => '', 'key' => '', 'pdo' => null, 'isNoSuffix' => false);
 
         $defaultMap = !empty($this->_configs['tables']['__default__']) 
@@ -178,8 +172,7 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */
         return $rs;
     }
 
-    protected function getPdo($dbKey)
-    {
+    protected function getPdo($dbKey) {
         if (!isset($this->_pdos[$dbKey])) {
             $dbCfg = isset($this->_configs['servers'][$dbKey]) 
                 ? $this->_configs['servers'][$dbKey] : array();

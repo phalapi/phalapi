@@ -7,39 +7,34 @@
  * @author dogstar 2014-10-02
  */
 
-class PhalApi_Response
-{
+class PhalApi_Response {
+
     private $ret = 200;
     private $data = array();
     private $msg = '';
     
     private $headers = array();
     
-    public function setRet($ret)
-    {
+    public function setRet($ret) {
     	$this->ret = $ret;
     	return $this;
     }
     
-    public function setData($data)
-    {
+    public function setData($data) {
     	$this->data = $data;
     	return $this;
     }
     
-    public function setMsg($msg)
-    {
+    public function setMsg($msg) {
     	$this->msg = $msg;
     	return $this;
     }
     
-    public function addHeaders($key, $content)
-    {
+    public function addHeaders($key, $content) {
     	$this->headers[$key] = $content;
     }
     
-    public function output()
-    {
+    public function output() {
     	$result = $this->formatResult();
     	
     	$this->handleHeaders($this->headers);
@@ -47,8 +42,7 @@ class PhalApi_Response
         echo $result;
     }
     
-    protected function formatResult()
-    {
+    protected function formatResult() {
         $result = array(
             'ret' => $this->ret,
             'data' => $this->data,
@@ -58,8 +52,7 @@ class PhalApi_Response
         return json_encode($result);
     }
     
-    protected function handleHeaders($headers)
-    {
+    protected function handleHeaders($headers) {
     	foreach ($headers as $key => $content) {
     		header($key . ':' . $content);
     	}

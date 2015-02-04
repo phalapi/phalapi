@@ -8,20 +8,18 @@
  * @author dogstar 2014-10-02
  */
 
-class PhalApi_Request
-{
+class PhalApi_Request {
+
 	protected $data = array();
 	
-	public function __construct($data = null)
-	{
+	public function __construct($data = null) {
 		if (!isset($data) || empty($data)) {
             $data = $_REQUEST;
         }
 		$this->data = $data;
 	}
 	
-	public function get($key, $default = null)
-	{
+	public function get($key, $default = null) {
 		return isset($this->data[$key]) ? $this->data[$key] : $default;
 	}
 	
@@ -33,8 +31,7 @@ class PhalApi_Request
      * @param $rule array('name' => '', 'type' => '', 'defalt' => ...) 参数规则
      * @return mixed
      */
-	public function getByRule($rule)
-	{
+	public function getByRule($rule) {
 		$rs = null;
 			
         if (!isset($rule['name'])) {
@@ -52,8 +49,7 @@ class PhalApi_Request
         return $rs;
     }
 	
-	public function getAll()
-	{
+	public function getAll() {
 		return $this->data;
 	}
 }

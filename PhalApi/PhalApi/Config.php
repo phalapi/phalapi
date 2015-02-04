@@ -7,8 +7,8 @@
  * @author dogstar 2014-10-02
  */
 
-interface PhalApi_Config
-{
+interface PhalApi_Config {
+
 	/**
      * 获取配置
      * @param $key string 配置键值

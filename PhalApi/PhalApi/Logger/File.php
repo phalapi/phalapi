@@ -14,15 +14,14 @@
  * @author dogstar 2014-10-02
  */
 
-class PhalApi_Logger_File extends PhalApi_Logger
-{
+class PhalApi_Logger_File extends PhalApi_Logger {
+
     protected $logFolder;
     protected $dateFormat;
 
     protected $logFile;
 
-    public function __construct($logFolder, $level, $dateFormat = 'Y-m-d H:i:s')
-    {
+    public function __construct($logFolder, $level, $dateFormat = 'Y-m-d H:i:s') {
         $this->logFolder = $logFolder;
         $this->dateFormat = $dateFormat;
 
@@ -31,8 +30,7 @@ class PhalApi_Logger_File extends PhalApi_Logger
         $this->init();
     }
 
-    protected function init()
-    {
+    protected function init() {
         $folder = $this->logFolder 
             . DIRECTORY_SEPARATOR . 'log' 
             . DIRECTORY_SEPARATOR . date('Ym', $_SERVER['REQUEST_TIME']);
@@ -52,8 +50,7 @@ class PhalApi_Logger_File extends PhalApi_Logger
         $this->logFile = $logFile;
     }
 
-    public function log($type, $msg, $data)
-    {
+    public function log($type, $msg, $data) {
         $msgArr = array();
         $msgArr[] = date($this->dateFormat, $_SERVER['REQUEST_TIME']);
         $msgArr[] = strtoupper($type);

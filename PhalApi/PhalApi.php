@@ -13,8 +13,7 @@ defined('PHALAPI_VERSION') || define('PHALAPI_VERSION', '1.1.0');
 
 require_once PHALAPI_ROOT . DIRECTORY_SEPARATOR . 'PhalApi' . DIRECTORY_SEPARATOR . 'Loader.php';
 
-class PhalApi
-{
+class PhalApi {
     
     /**
      * 响应操作
@@ -30,8 +29,7 @@ class PhalApi
      *	    'msg'   => '',		        //错误提示信息
      *  );
      */
-    public function response()
-    {
+    public function response() {
     	$rs = DI()->response;
     	
     	$rs->addHeaders('Content-Type', 'text/html;charset=utf-8');

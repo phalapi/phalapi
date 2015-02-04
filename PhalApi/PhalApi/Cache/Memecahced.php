@@ -7,32 +7,28 @@
  * @author dogstar 2014-11-14
  */
 
-class PhalApi_Cache_Memecahced implements PhalApi_Cache
-{
+class PhalApi_Cache_Memecahced implements PhalApi_Cache {
+
     private $memcached = null;
 
     /**
      * @param string $config['host'] Memcache域名
      * @param int $config['port'] Memcache端口
      */
-    public function __construct($config)
-    {
+    public function __construct($config) {
         $this->memcached = new Memcached();
         $this->memcached->addServer($config['host'], $config['port']);
     }
 
-    public function set($key, $value, $expire = 600)
-    {
+    public function set($key, $value, $expire = 600) {
         $this->memcached->set($key, serialize($value), $expire);
     }
 
-    public function get($key)
-    {
+    public function get($key) {
         return unserialize($this->memcached->get($key));
     }
 
-    public function delete($key)
-    {
+    public function delete($key) {
         return $this->memcached->delete($key);
     }
 }

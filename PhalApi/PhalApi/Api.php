@@ -7,15 +7,13 @@
  * @author dogstar 2014-10-02
  */
 
-class PhalApi_Api
-{
-    public function __set($name, $value)
-    {
+class PhalApi_Api {
+
+    public function __set($name, $value) {
     	$this->$name = $value;
     }
     
-    public function __get($name)
-    {
+    public function __get($name) {
     	if(!isset($this->name) || empty($name)) {
             throw new PhalApi_Exception_InternalServerError(
                 T('PhalApi_Api::${name} undefined', array('name' => $name))
@@ -35,8 +33,7 @@ class PhalApi_Api
      * 
      * @see: PhalApi_Api::createMemberValue()
      */
-    public function initialize()
-    {
+    public function initialize() {
     	$this->createMemberValue();
     	
     	$this->filterCheck();
@@ -49,15 +46,13 @@ class PhalApi_Api
      *
      * 根据客户商调用的方法名字，搜索相应的自定义参数规则进行过滤创建，并把参数存放在类成员变量里面。
      */
-    protected function createMemberValue()
-    {
+    protected function createMemberValue() {
 		foreach ($this->getMethodRules() as $key => $rule) {
     		$this->$key = DI()->request->getByRule($rule);
 		}
     }
 
-    public function getMethodRules()
-    {
+    public function getMethodRules() {
         $allRules = $this->getRules();
 
     	$service = DI()->request->get('service', 'Default.Index');
@@ -80,8 +75,7 @@ class PhalApi_Api
         return $rules;
     }
 
-    protected function filterCheck()
-    {
+    protected function filterCheck() {
         $filter = DI()->filter;
 
         if (isset($filter)) {
@@ -94,8 +88,7 @@ class PhalApi_Api
      *
      * 可由开发人员根据需要重载
      */
-    protected function checkStatus()
-    {
+    protected function checkStatus() {
     	
     }
     
@@ -104,8 +97,7 @@ class PhalApi_Api
      *
      * 可由开发人员根据需要重载，如果有冲突，以子类为准
      */
-    public function getRules()
-    {
+    public function getRules() {
     	return array();
     }
     

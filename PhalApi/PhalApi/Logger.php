@@ -27,16 +27,15 @@
  * @author dogstar 2014-10-02
  */
 
-abstract class PhalApi_Logger
-{
+abstract class PhalApi_Logger {
+
     protected $logLevel = 0;
 
     const LOG_LEVEL_DEBUG = 1;
     const LOG_LEVEL_INFO = 2;
     const LOG_LEVEL_ERROR = 4;
 
-    public function __construct($level)
-    {
+    public function __construct($level) {
         $this->logLevel = $level;
     }
 
@@ -45,8 +44,7 @@ abstract class PhalApi_Logger
     /**
      * 产品应用级日记
      */
-    public function info($msg, $data = null)
-    {
+    public function info($msg, $data = null) {
         if (($this->logLevel & self::LOG_LEVEL_INFO) == 0) {
             return;
         }
@@ -57,8 +55,7 @@ abstract class PhalApi_Logger
     /**
      * 开发调试级日记
      */
-    public function debug($msg, $data = null)
-    {
+    public function debug($msg, $data = null) {
         if (($this->logLevel & self::LOG_LEVEL_DEBUG) == 0) {
             return;
         }
@@ -69,8 +66,7 @@ abstract class PhalApi_Logger
     /**
      * 系统错误级日记
      */
-    public function error($msg, $data = null)
-    {
+    public function error($msg, $data = null) {
         if (($this->logLevel & self::LOG_LEVEL_ERROR) == 0) {
             return;
         }
