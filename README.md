@@ -119,8 +119,8 @@ http://phalapi.oschina.mopaas.com/Public/demo/checkApiParams.php
 ```
 运行效果：  
  ![运行效果](http://static.oschina.net/uploads/space/2015/0204/234130_GSJ6_256338.png)  
-当前核心框架的代码单元测试覆盖率：  
- ![单元测试代码覆盖率](http://static.oschina.net/uploads/space/2015/0205/131634_NHlk_256338.jpg)
+核心框架的代码单元测试覆盖率（截于2015-02-05）：  
+ ![单元测试代码覆盖率](http://static.oschina.net/uploads/space/2015/0205/131634_NHlk_256338.jpg)  
 更多请参考：[最佳开发实践：自动化单元测试 - PHP](http://my.oschina.net/u/256338/blog/370605)
 #主要目录结构
 ```
