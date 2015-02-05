@@ -29,15 +29,15 @@ class PhpUnderControl_PhalApiDBNotORM_Test extends PHPUnit_Framework_TestCase
              */
             'servers' => array(
                 'DB_A' => array(
-                    'host'      => '192.168.0.1',           //数据库域名
-                    'name'      => 'test',                  //数据库名字
+                    'host'      => '192.168.37.190',           //数据库域名
+                    'name'      => 'phalapi_test',                  //数据库名字
                     'user'      => 'root',                  //数据库用户名
                     'password'  => '123456',                //数据库密码
                     'port'      => '3306',                  //数据库端口
                 ),
                 'DB_DEMO' => array(
-                    'host'      => '192.168.0.2',           //数据库域名
-                    'name'      => 'test',                  //数据库名字
+                    'host'      => '192.168.37.190',           //数据库域名
+                    'name'      => 'phalapi_test',                  //数据库名字
                     'user'      => 'root',                  //数据库用户名
                     'password'  => '123456',                //数据库密码
                     'port'      => '3306',                  //数据库端口
@@ -49,14 +49,14 @@ class PhpUnderControl_PhalApiDBNotORM_Test extends PHPUnit_Framework_TestCase
              */
             'tables' => array(
                 '__default__' => array(
-                    'prefix' => 'weili_',
+                    'prefix' => 'tpl_',
                     'key' => 'id',
                     'map' => array(
                         array('db' => 'DB_A'),
                     ),
                 ),
                 'demo' => array(
-                    'prefix' => 'weili_',
+                    'prefix' => 'tpl_',
                     'key' => 'id',
                     'map' => array(
                         array('db' => 'DB_A'),
