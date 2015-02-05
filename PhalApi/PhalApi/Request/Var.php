@@ -157,8 +157,8 @@ class PhalApi_Request_Var {
     public static function formatDate($value, $rule) {
         $rs = $value;
 
-        $format = !empty($rule['format']) ? strtolower($rule['format']) : '';
-        if ($format == 'timestamp') {
+        $ruleFormat = !empty($rule['format']) ? strtolower($rule['format']) : '';
+        if ($ruleFormat == 'timestamp') {
             $rs = strtotime($value);
             if ($rs <= 0) {
             	$rs = 0;
@@ -172,10 +172,10 @@ class PhalApi_Request_Var {
         $rs = $value;
 
         if (!is_array($rs)) {
-            $format = !empty($rule['format']) ? strtolower($rule['format']) : '';
-            if ($format == 'explode') {
+            $ruleFormat = !empty($rule['format']) ? strtolower($rule['format']) : '';
+            if ($ruleFormat == 'explode') {
                 $rs = explode(isset($rule['separator']) ? $rule['separator'] : ',', $rs);
-            } else if ($format == 'json') {
+            } else if ($ruleFormat == 'json') {
                 $rs = json_decode($rs, true);
             } else {
                 $rs = array($rs);
@@ -190,19 +190,32 @@ class PhalApi_Request_Var {
      * @return 当不符合时返回null
      */
     public static function formatEnum($value, $rule) {
-        if (!isset($rule['range']) || empty($rule['range']) || !is_array($rule['range'])) {
+        self::formatEnumRule($rule);
+
+        self::formatEnumValue($value, $rule);
+
+        return $value;
+    }
+
+    protected static function formatEnumRule($rule) {
+        if (!isset($rule['range'])) {
             throw new PhalApi_Exception_InternalServerError(
                 T("miss {name}'s enum range", array('name' => $rule['name'])));
         }
 
+        if (empty($rule['range']) || !is_array($rule['range'])) {
+            throw new PhalApi_Exception_InternalServerError(
+                T("{name}'s enum range can not be empty", array('name' => $rule['name'])));
+        }
+    }
+
+    protected static function formatEnumValue($value, $rule) {
         if (!in_array($value, $rule['range'])) {
             throw new PhalApi_Exception_BadRequest(
                 T('{name} should be in {range}, but now {name} = {value}', 
                     array('name' => $rule['name'], 'range' => implode('/', $rule['range']), 'value' => $value))
             );
         }
-
-        return $value;
     }
 
     /** ------------------ 加强自动检测，进行有效性过滤 ------------------ **/
@@ -223,27 +236,39 @@ class PhalApi_Request_Var {
      * 根据范围进行控制
      */
     protected static function filterByRange($value, $rule) {
+        self::filterRangeMinLessThanOrEqualsMax($value, $rule);
+
+        self::filterRangeCheckMin($value, $rule);
+
+        self::filterRangeCheckMax($value, $rule);
+
+        return $value;
+    }
+
+    protected static function filterRangeMinLessThanOrEqualsMax($value, $rule) {
         if (isset($rule['min']) && isset($rule['max']) && $rule['min'] > $rule['max']) {
             throw new PhalApi_Exception_InternalServerError(
                 T('min should <= max, but now {name} min = {min} and max = {max}', 
                     array('name' => $rule['name'], 'min' => $rule['min'], 'max' => $rule['max']))
             );
         }
+    }
 
+    public static function filterRangeCheckMin($value, $rule) {
         if (isset($rule['min']) && $value < $rule['min']) {
             throw new PhalApi_Exception_BadRequest(
                 T('{name} should >= {min}, but now {name} = {value}', 
                     array('name' => $rule['name'], 'min' => $rule['min'], 'value' => $value))
             );
         }
+    }
 
+    public static function filterRangeCheckMax($value, $rule) {
         if (isset($rule['max']) && $value > $rule['max']) {
             throw new PhalApi_Exception_BadRequest(
                 T('{name} should <= {max}, but now {name} = {value}', 
                 array('name' => $rule['name'], 'max' => $rule['max'], 'value' => $value))
             );
         }
-
-        return $value;
     }
 }

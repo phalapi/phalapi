@@ -65,7 +65,6 @@ class PhalApi_DI implements ArrayAccess {
     }
 
     public function onInitialize() {
-        //TODO
     }
 
     /**

@@ -16,4 +16,5 @@ return array(
     'PhalApi_Api::${name} undefined' => 'PhalApi_Api::${name} undefined',
     'Bad Request: {message}' => 'Bad Request: {message}',
     'Interal Server Error: {message}' => 'Interal Server Error: {message}',
+    "{name}'s enum range can not be empty" => "{name}'s enum range can not be empty",
 );

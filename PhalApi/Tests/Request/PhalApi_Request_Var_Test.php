@@ -276,4 +276,12 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
         $rs = PhalApi_Request_Var::format('noThisKey', $rule,  $params);
         $this->assertSame(null, $rs);
     }
+
+    /**
+     * @expectedException PhalApi_Exception_InternalServerError
+     */
+    public function testGetEnumWithEmptyRange()
+    {
+        PhalApi_Request_Var::formatEnum('aHa~',  array('name' => 'key', 'type' => 'enum', 'range' => array()));
+    }
 }
