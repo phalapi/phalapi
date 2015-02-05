@@ -81,4 +81,11 @@ class PhpUnderControl_PhalApiLoader_Test extends PHPUnit_Framework_TestCase
 
         $obj = new PhalApi_DB_NotORM(array());
     }
+
+    public function testConstructAndAdd()
+    {
+        $loader = new PhalApi_Loader('./', array('./Config'));
+        $loader->addDirs('./Data');
+        $loader->addDirs(array('./Crypt'));
+    }
 }

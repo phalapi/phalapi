@@ -134,13 +134,27 @@ class PhpUnderControl_PhalApiDI_Test extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Exception
+     * hope nobody use DI as bellow
      */
     public function testException()
     {
-        $this->coreDI[array(1)] = 1;
-        $this->coreDI->set(array(1), array(1));
-        $this->coreDI->get(array(1), array(1));
+        try {
+            $this->coreDI[array(1)] = 1;
+            $this->fail('no way');
+        } catch (Exception $ex) {
+        }
+
+        try {
+            $this->coreDI->set(array(1), array(1));
+            $this->fail('no way');
+        } catch (Exception $ex) {
+        }
+
+        try {
+            $this->coreDI->get(array(1), array(1));
+            $this->fail('no way');
+        } catch (Exception $ex) {
+        }
     }
 
     public function testSetAgainAndAgain()
@@ -280,6 +294,24 @@ class PhpUnderControl_PhalApiDI_Test extends PHPUnit_Framework_TestCase
         $this->assertSame('value6', $this->coreDI['key6']);
     }
 
+    public function testOneWithInstanceNull()
+    {
+        $oldInstance = PhalApi_DI_Mock::getInstance();
+
+        PhalApi_DI_Mock::setInstance(null);
+        $newDI = PhalApi_DI::one();
+
+        if (!isset($newDI['tmp'])) {
+            $newDI['tmp'] = '2015';
+
+            $this->assertEquals('2015', $newDI['tmp']);
+            unset($newDI['tmp']);
+        }
+
+        $this->assertEquals(null, $newDI['tmp']);
+
+        PhalApi_DI_Mock::setInstance($oldInstance);
+    }
 }
 
 class Demo
@@ -339,3 +371,13 @@ class Demo2 extends Demo
     }
 }
 
+class PhalApi_DI_Mock extends PhalApi_DI {
+
+    public static function getInstance(){
+        return PhalApi_DI::$instance;
+    }
+
+    public static function setInstance($instance) {
+        PhalApi_DI::$instance = $instance;
+    }
+}

@@ -28,6 +28,10 @@ class PhpUnderControl_PhalApiConfigFile_Test extends PHPUnit_Framework_TestCase
     {
     }
 
+    public function testConstruct()
+    {
+        $config = new PhalApi_Config_File(dirname(__FILE__) . '/Config');
+    }
 
     /**
      * @group testGet

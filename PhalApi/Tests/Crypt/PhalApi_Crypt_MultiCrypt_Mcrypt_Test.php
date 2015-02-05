@@ -72,7 +72,7 @@ class PhpUnderControl_PhalApiMultiCryptMcrypt_Test extends PHPUnit_Framework_Tes
      */
     public function testWorkWithMoreComplicateData($data)
     {
-        $key = 'wetime';
+        $key = 'phalapi';
 
         $encryptData = $this->coreMultiCryptMcrypt->encrypt($data, $key);
 
@@ -94,5 +94,17 @@ class PhpUnderControl_PhalApiMultiCryptMcrypt_Test extends PHPUnit_Framework_Tes
             array('来点中文行不行？'),
             array('843435Jhe*&混合'),
             );
+    }
+
+    /**
+     * 当无法对称解密时，返回原数据
+     */
+    public function testIllegalData()
+    {
+        $encryptData = '';
+
+        $decryptData = $this->coreMultiCryptMcrypt->decrypt($encryptData, 'whatever');
+
+        $this->assertEquals($encryptData, $decryptData);
     }
 }

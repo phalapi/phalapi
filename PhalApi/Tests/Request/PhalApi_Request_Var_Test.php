@@ -159,6 +159,15 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
         $this->assertSame(1412136000, $rs);
     }
 
+    public function testFormatDateIllegal()
+    {
+        $value = '2014-99-99 XX:XX:XX';
+        $rule = array('format' => 'timestamp');
+
+        $rs = PhalApi_Request_Var::formatDate($value, $rule);
+        $this->assertEquals(0, $rs);
+    }
+
     /**
      * @group testFormatArray
      */ 
@@ -181,6 +190,15 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
         $rs = PhalApi_Request_Var::formatArray($value, $rule);
 
         $this->assertEquals(array(1, 2, 3, 4, 5), $rs);
+    }
+
+    public function testFormatArrayDefault()
+    {
+        $value = 'phalapi';
+        $rule = array();
+
+        $rs = PhalApi_Request_Var::formatArray($value, $rule);
+        $this->assertEquals(array('phalapi'), $rs);
     }
 
     /**
@@ -220,4 +238,42 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
         $rs = PhalApi_Request_Var::formatEnum($value, $rule);
     }
 
+    public function testFormatAllTypes()
+    {
+        $params = array(
+            'floatVal' => '1.0',
+            'booleanVal' => '1',
+            'dateVal' => '2015-02-05 00:00:00',
+            'arrayVal' => 'a,b,c',
+            'enumVal' => 'male',
+        );
+
+        $rule = array('name' => 'floatVal', 'type' => 'float');
+        $rs = PhalApi_Request_Var::format('floatVal', $rule,  $params);
+        $this->assertSame(1.0, $rs);
+
+        $rule = array('name' => 'booleanVal', 'type' => 'boolean');
+        $rs = PhalApi_Request_Var::format('booleanVal', $rule,  $params);
+        $this->assertSame(true, $rs);
+
+        $rule = array('name' => 'dateVal', 'type' => 'date', 'format' => 'timestamp');
+        $rs = PhalApi_Request_Var::format('dateVal', $rule,  $params);
+        $this->assertSame( 1423065600, $rs);
+
+        $rule = array('name' => 'arrayVal', 'type' => 'array', 'format' => 'explode');
+        $rs = PhalApi_Request_Var::format('arrayVal', $rule,  $params);
+        $this->assertSame(array('a', 'b', 'c'), $rs);
+
+        $rule = array('name' => 'enumVal', 'type' => 'enum', 'range' => array('female', 'male'));
+        $rs = PhalApi_Request_Var::format('enumVal', $rule,  $params);
+        $this->assertSame('male', $rs);
+
+        $rule = array('name' => 'noThisKey');
+        $rs = PhalApi_Request_Var::format('noThisKey', $rule,  $params);
+        $this->assertSame(null, $rs);
+
+        $rule = array('name' => 'noThisKey', 'type' => 'noThisType');
+        $rs = PhalApi_Request_Var::format('noThisKey', $rule,  $params);
+        $this->assertSame(null, $rs);
+    }
 }

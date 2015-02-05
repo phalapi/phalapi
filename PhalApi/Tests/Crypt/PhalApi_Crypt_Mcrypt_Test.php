@@ -67,7 +67,7 @@ class PhpUnderControl_PhalApiCryptMcrypt_Test extends PHPUnit_Framework_TestCase
         $mcrypt = new PhalApi_Crypt_Mcrypt($iv);
 
         $data = 'dogstar';
-        $key = 'wetime';
+        $key = 'phalapi';
         $this->assertEquals($mcrypt->decrypt($mcrypt->encrypt($data, $key), $key), $data);
     }
 
@@ -88,7 +88,7 @@ class PhpUnderControl_PhalApiCryptMcrypt_Test extends PHPUnit_Framework_TestCase
     public function testWorkWithMoreComplicateData($data)
     {
         $mcrypt = new PhalApi_Crypt_Mcrypt('12345678');
-        $key = 'wetime';
+        $key = 'phalapi';
 
         $encryptData = $mcrypt->encrypt($data, $key);
 

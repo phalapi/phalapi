@@ -63,4 +63,19 @@ class PhpUnderControl_PhalApiTranslator_Test extends PHPUnit_Framework_TestCase
         $this->assertEquals('{abc}', $rs);
     }
 
+    public function testGetWithNoLanguageSet()
+    {
+        PhalApi_Translator_Mock::setLanguageNameSimple(null);
+
+        $rs = T('test');
+
+        PhalApi_Translator::setLanguage('zh_cn');
+    }
+}
+
+class PhalApi_Translator_Mock extends PhalApi_Translator {
+
+    public static function setLanguageNameSimple($lan) {
+        PhalApi_Translator::$message = null;
+    }
 }

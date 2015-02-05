@@ -119,4 +119,10 @@ class PhpUnderControl_PhalApiDBNotORM_Test extends PHPUnit_Framework_TestCase
         $rs = $this->coreDBNotORM->demo_10->fetchAll();
         $this->assertNotEmpty($rs);
     }
+
+    public function testMultiSet()
+    {
+        $this->coreDBNotORM->debug = true;
+        $this->coreDBNotORM->debug = false;
+    }
 }

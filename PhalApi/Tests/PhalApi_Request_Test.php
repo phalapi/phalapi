@@ -76,4 +76,24 @@ class PhpUnderControl_PhalApiRequest_Test extends PHPUnit_Framework_TestCase
         $this->assertEquals(array('year' => '2014', 'version' => '1.0.0'), $rs);
     }
 
+    public function testConstructWithREQUEST()
+    {
+        $request = new PhalApi_Request();
+    }
+
+    /**
+     * @expectedException PhalApi_Exception_InternalServerError
+     */
+    public function testIllegalRule()
+    {
+        $this->coreRequest->getByRule(array());
+    }
+
+    /**
+     * @expectedException PhalApi_Exception_BadRequest
+     */
+    public function testGetRequireVal()
+    {
+        $this->coreRequest->getByRule(array('name' => 'requireVal', 'require' => true));
+    }
 }

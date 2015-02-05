@@ -21,12 +21,17 @@ class PhpUnderControl_PhalApiLoggerFile_Test extends PHPUnit_Framework_TestCase
     {
         parent::setUp();
 
+        $cmd = sprintf('rm %s -rf', dirname(__FILE__) . '/Runtime');
+        shell_exec($cmd);
+
         $this->coreLoggerFile = new PhalApi_Logger_File(dirname(__FILE__) . '/Runtime',
             PhalApi_Logger::LOG_LEVEL_DEBUG | PhalApi_Logger::LOG_LEVEL_INFO | PhalApi_Logger::LOG_LEVEL_ERROR);
     }
 
     protected function tearDown()
     {
+        $cmd = sprintf('rm %s -rf', dirname(__FILE__) . '/Runtime');
+        shell_exec($cmd);
     }
 
 

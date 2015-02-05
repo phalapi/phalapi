@@ -56,7 +56,7 @@ class PhpUnderControl_PhalApiApiFactory_Test extends PHPUnit_Framework_TestCase
      */
     public function testGenerateIllegalApiService()
     {
-        $data['service'] = 'NoThisService.index';
+        $data['service'] = 'NoThisService.Index';
         DI()->request = new PhalApi_Request($data);
         $rs = PhalApi_ApiFactory::generateService();
     }
@@ -71,6 +71,15 @@ class PhpUnderControl_PhalApiApiFactory_Test extends PHPUnit_Framework_TestCase
         $rs = PhalApi_ApiFactory::generateService();
     }
 
+    /**
+     * @expectedException PhalApi_Exception_BadRequest
+     */
+    public function testIllegalServiceName()
+    {
+        $data['service'] = 'Default';
+        DI()->request = new PhalApi_Request($data);
+        $rs = PhalApi_ApiFactory::generateService();
+    }
 }
 
 class Api_Default extends PhalApi_Api
