@@ -236,7 +236,7 @@ class PhalApi_Request_Var {
      * 根据范围进行控制
      */
     protected static function filterByRange($value, $rule) {
-        self::filterRangeMinLessThanOrEqualsMax($value, $rule);
+        self::filterRangeMinLessThanOrEqualsMax($rule);
 
         self::filterRangeCheckMin($value, $rule);
 
@@ -245,7 +245,7 @@ class PhalApi_Request_Var {
         return $value;
     }
 
-    protected static function filterRangeMinLessThanOrEqualsMax($value, $rule) {
+    protected static function filterRangeMinLessThanOrEqualsMax($rule) {
         if (isset($rule['min']) && isset($rule['max']) && $rule['min'] > $rule['max']) {
             throw new PhalApi_Exception_InternalServerError(
                 T('min should <= max, but now {name} min = {min} and max = {max}', 
