@@ -1,9 +1,8 @@
 <?php
 
-class Api_User extends PhalApi_Api
-{
-    public function getRules()
-    {
+class Api_User extends PhalApi_Api {
+
+    public function getRules() {
         return array(
             'getBaseInfo' => array(
                 'userId' => array('name' => 'userId', 'type' => 'int', 'min' => 1, 'require' => true),
@@ -11,8 +10,7 @@ class Api_User extends PhalApi_Api
         );
     }
 
-    public function getBaseInfo()
-    {
+    public function getBaseInfo() {
         $rs = array('code' => 0, 'msg' => '', 'info' => array());
 
         $domain = new Domain_User();

@@ -5,10 +5,9 @@
  * @author: dogstar 2014-10-04
  */
 
-class Api_Default extends PhalApi_Api
-{
-	public function getRules()
-    {
+class Api_Default extends PhalApi_Api {
+
+	public function getRules() {
         return array(
             'index' => array(
                 'username' 	=> array('name' => 'username', 'default' => 'PHPer', ),
@@ -16,8 +15,7 @@ class Api_Default extends PhalApi_Api
         );
 	}
 	
-	public function index()
-	{
+	public function index() {
         return array(
             'title' => 'Default Api',
             'content' => T('Hello {name}, Welcome to use PhalApi!', array('name' => $this->username)),

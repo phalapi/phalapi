@@ -1,9 +1,8 @@
 <?php
 
-class Domain_User
-{
-    public function getBaseInfo($userId)
-    {
+class Domain_User {
+
+    public function getBaseInfo($userId) {
         $rs = array();
 
         $userId = intval($userId);
