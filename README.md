@@ -154,6 +154,8 @@ http://phalapi.oschina.mopaas.com/Public/demo/checkApiParams.php
 ###2015-02-07
 ```
 1、完善接口调试下SQL的输出、示例和单元测试，以及WIKI文档的编写；
+2、日记接口文档的编写；
+3、合并master到release，并将版本号更新到1.1.1；
 ```
 ###2015-02-04
 ```
