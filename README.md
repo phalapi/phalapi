@@ -151,6 +151,10 @@ http://phalapi.oschina.mopaas.com/Public/demo/checkApiParams.php
 ```
 #更新日记
 以下更新日记，主要是为了说明，我们一直在努力更新和维护。
+###2015-02-07
+```
+1、完善接口调试下SQL的输出，以及[WIKI文档的编写](http://git.oschina.net/dogstar/PhalApi/wikis/%E6%8E%A5%E5%8F%A3%E8%B0%83%E8%AF%95%EF%BC%9A%E5%9C%A8%E7%BA%BFSQL%E8%AF%AD%E5%8F%A5%E6%9F%A5%E7%9C%8B%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96)；
+```
 ###2015-02-04
 ```
 1、根据质量分析后Sonar提供的报告，整理代码，包括统一的注释、对齐、代码风格、命名规则等；
