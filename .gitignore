@@ -8,3 +8,6 @@
 ./Runtime/*
 *.log
 
+./Demo/Api/DogstarTest.php
+Demo/Api/DogstarTest.php
+
