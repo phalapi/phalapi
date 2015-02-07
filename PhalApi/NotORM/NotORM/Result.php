@@ -10,6 +10,8 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
 	protected $union = array(), $unionOrder = array(), $unionLimit = null, $unionOffset = null;
 	protected $data, $referencing = array(), $aggregation = array(), $accessed, $access, $keys = array();
 	
+    public static $queryTimes = 0;
+
 	/** Create table result
 	* @param string
 	* @param NotORM
@@ -141,7 +143,13 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
 	}
 	
 	protected function query($query, $parameters) {
+        $debugTrace = array();
+
+        self::$queryTimes ++;
+
 		if ($this->notORM->debug) {
+            $debugTrace['startTime'] = microtime(true);
+
 			if (!is_callable($this->notORM->debug)) {
 				$debug = "$query;";
 				if ($parameters) {
@@ -154,7 +162,9 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
 					}
 				}
 				error_log("$backtrace[file]:$backtrace[line]:$debug\n", 0);
-                if ($this->notORM->debug) echo "$debug<br />";    //@dogstar 2014-10-31
+                //if ($this->notORM->debug) echo "$debug<br />\n";    //@dogstar 2014-10-31
+
+                $debugTrace['sql'] = $debug;
 			} elseif (call_user_func($this->notORM->debug, $query, $parameters) === false) {
 				return false;
 			}
@@ -173,7 +183,14 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
 
 		if (!$return || !$return->execute($parameters)) {
 			$return = false;
-		}
+        }
+
+        if ($this->notORM->debug) {
+            $debugTrace['endTime'] = microtime(true);
+
+            echo sprintf("[%s - %ss]%s<br>\n", self::$queryTimes, round($debugTrace['endTime'] - $debugTrace['startTime'], 5), $debugTrace['sql']);
+        }
+
 		if ($this->notORM->debugTimer) {
 			call_user_func($this->notORM->debugTimer);
 		}

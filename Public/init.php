@@ -28,7 +28,8 @@ DI()->logger = new PhalApi_Logger_File(API_ROOT . '/Runtime',
 
 //数据操作 - 基于NotORM
 DI()->notorm = function() {
-    return new PhalApi_DB_NotORM(DI()->config->get('dbs'), false);
+    $debug = isset($_GET['debug']) ? true : false;
+    return new PhalApi_DB_NotORM(DI()->config->get('dbs'), $debug);
 };
 
 //缓存 - MC

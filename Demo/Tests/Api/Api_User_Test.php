@@ -63,4 +63,28 @@ class PhpUnderControl_ApiUser_Test extends PHPUnit_Framework_TestCase
         $this->assertEquals('oschina', $rs['info']['from']);
     }
 
+    public function testGetMultiBaseInfo()
+    {
+        $str = 'service=User.GetMultiBaseInfo&userIds=1,2,3';
+        parse_str($str, $params);
+
+        DI()->request = new PhalApi_Request($params);
+
+        $api = new Api_User();
+        //自己进行初始化
+        $api->initialize();
+        $rs = $api->getMultiBaseInfo();
+
+        $this->assertNotEmpty($rs);
+        $this->assertArrayHasKey('code', $rs);
+        $this->assertArrayHasKey('msg', $rs);
+        $this->assertArrayHasKey('list', $rs);
+
+        foreach ($rs['list'] as $item) {
+            $this->assertArrayHasKey('id', $item);
+            $this->assertArrayHasKey('name', $item);
+            $this->assertArrayHasKey('from', $item);
+        }
+    }
+
 }
