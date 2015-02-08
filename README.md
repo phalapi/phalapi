@@ -111,7 +111,7 @@ http://phalapi.oschina.mopaas.com/Public/demo/?service=Demo.None
     杂谈：扯一些phal Api的前世和今生
 ```
 
-文档整体情况如上，目前文档还在努力编写中。如需要查看最新的文档，请访问访问：[Wiki](http://git.oschina.net/dogstar/PhalApi/wikis/pages)  
+文档整体情况如上，目前文档还在 **努力编写中** 。如需要 **查看最新的文档** ，请访问：[PhaApi Wiki](http://git.oschina.net/dogstar/PhalApi/wikis/pages)  
 
 #[酷！]接口参数在线查询
 为了方便客户端查看最新的接口参数，特别提供此在线工具，根据接口代码实时生成接口参数报表，完全不需要后台开发编写维护额外的文档。我觉得，这很符合敏捷开发之道。
