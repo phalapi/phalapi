@@ -84,7 +84,7 @@ http://phalapi.oschina.mopaas.com/Public/demo/?service=Demo.None
 上篇
     [1.1] 快速入门: 接口开发示例(源码+图文)
     [1.2] 参数规则：接口参数规则配置
-    [1.3] 统一的接口请求方式：?sevice=XXX.XXX //TODO
+    [1.3] 统一的接口请求方式：?sevice=XXX.XXX 
     [1.4] 统一的返回格式和结构：Ret Data Msg
     [1.5] 数据库操作：基于not Orm的使用及优化
     [1.6] 配置读取：内外网环境配置的完美切换 //TODO
@@ -103,7 +103,7 @@ http://phalapi.oschina.mopaas.com/Public/demo/?service=Demo.None
     [2.1] 核心思想：Di依赖注入 让资源更可控
     [2.2] 海量数据：可配置的分库分表
     [2.3] 接口调试：在线sql语句查看与性能优化
-    [2.4] TDD：意图导向编程下的接口开发 //TODO
+    [2.4] 测试驱动开发：意图导向编程下的接口开发
     [2.5] 计划任务：异步的后台定时计划任务 //TODO
     [2.6] 领域驱动设计：应对复杂领域业务的Domain层 //TODO
     [2.7] 数据来源：更广义上的Model层 //TODO
