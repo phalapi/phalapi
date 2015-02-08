@@ -77,12 +77,11 @@ http://phalapi.oschina.mopaas.com/Public/demo/?service=Demo.None
 ```
 
 前言
-
     首页
 
 基础入门
-上篇
 
+上篇
     [1.1] 快速入门: 接口开发示例(源码+图文)
     [1.2] 参数规则：接口参数规则配置
     [1.3] 统一的接口请求方式：?sevice=XXX.XXX //TODO
@@ -93,7 +92,6 @@ http://phalapi.oschina.mopaas.com/Public/demo/?service=Demo.None
     [1.8] 快速函数：人性化的关怀 //TODO
 
 下篇
-
     [1.10] 类的自动加载：遵循PEAR包的全名规范 //TODO
     [1.11] 签名验证：自定义签名规则
     [1.12] 请求和响应：GET和POST两者皆可得及超越JSON格式返回 //TODO
@@ -102,7 +100,6 @@ http://phalapi.oschina.mopaas.com/Public/demo/?service=Demo.None
     [1.14] 数据安全：数据对称加密方案 //TODO
 
 高级专题
-
     [2.1] 核心思想：Di依赖注入 让资源更可控
     [2.2] 海量数据：可配置的分库分表
     [2.3] 接口调试：在线sql语句查看与性能优化
@@ -114,18 +111,16 @@ http://phalapi.oschina.mopaas.com/Public/demo/?service=Demo.None
     [2.9] 组件库：可重用的组件库 //TODO
 
 项目实践
-
     [3.1] 开发实战1：微信服务号开发 //TODO
     [3.2] 开发实战2：模拟优酷开放平台接口项目开发 //TODO
     [3.3] 开发实战3：模拟腾讯开放平台接口项目开发 //TODO
     [3.4] 一键部署：利用Phing进行快速发布 //TODO
 
 其他
-
     杂谈：扯一些phal Api的前世和今生
 ```
 
-文档整体情况如上，如需要查看最新的文档，请访问访问：[Wiki](http://git.oschina.net/dogstar/PhalApi/wikis/pages)  
+文档整体情况如上，目前文档还在努力编写中。如需要查看最新的文档，请访问访问：[Wiki](http://git.oschina.net/dogstar/PhalApi/wikis/pages)  
 
 #[酷！]接口参数在线查询
 为了方便客户端查看最新的接口参数，特别提供此在线工具，根据接口代码实时生成接口参数报表，完全不需要后台开发编写维护额外的文档。我觉得，这很符合敏捷开发之道。
