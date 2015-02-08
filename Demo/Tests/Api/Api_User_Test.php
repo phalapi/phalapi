@@ -42,16 +42,19 @@ class PhpUnderControl_ApiUser_Test extends PHPUnit_Framework_TestCase
      */ 
     public function testGetBaseInfo()
     {
+        //当。。。
         $str = 'service=User.GetBaseInfo&userId=1';
-        parse_str($str, $params);
 
+        parse_str($str, $params);
         DI()->request = new PhalApi_Request($params);
 
         $api = new Api_User(); 
-        //自己进行初始化
         $api->initialize();
+
+        //做。。。
         $rs = $api->getBaseInfo();
 
+        //应该。。。
         $this->assertNotEmpty($rs);
         $this->assertArrayHasKey('code', $rs);
         $this->assertArrayHasKey('msg', $rs);
