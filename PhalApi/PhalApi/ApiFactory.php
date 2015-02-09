@@ -53,7 +53,7 @@ class PhalApi_ApiFactory {
     	}
 
         if ($isInitialize) {
-            $controller->initialize();
+            $controller->init();
         }
 		
 		return $controller;

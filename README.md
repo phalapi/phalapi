@@ -142,7 +142,7 @@ http://phalapi.oschina.mopaas.com/Public/demo/checkApiParams.php
 
         $api = new Api_User(); 
         //自己进行初始化
-        $api->initialize();
+        $api->init();
         $rs = $api->getBaseInfo();
 
         $this->assertNotEmpty($rs);

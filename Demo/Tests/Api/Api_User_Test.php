@@ -49,7 +49,7 @@ class PhpUnderControl_ApiUser_Test extends PHPUnit_Framework_TestCase
         DI()->request = new PhalApi_Request($params);
 
         $api = new Api_User(); 
-        $api->initialize();
+        $api->init();
 
         //做。。。
         $rs = $api->getBaseInfo();
@@ -75,7 +75,7 @@ class PhpUnderControl_ApiUser_Test extends PHPUnit_Framework_TestCase
 
         $api = new Api_User();
         //自己进行初始化
-        $api->initialize();
+        $api->init();
         $rs = $api->getMultiBaseInfo();
 
         $this->assertNotEmpty($rs);

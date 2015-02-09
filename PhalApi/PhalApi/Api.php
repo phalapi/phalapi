@@ -33,7 +33,7 @@ class PhalApi_Api {
      * 
      * @see: PhalApi_Api::createMemberValue()
      */
-    public function initialize() {
+    public function init() {
     	$this->createMemberValue();
     	
     	$this->filterCheck();

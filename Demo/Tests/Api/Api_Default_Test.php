@@ -51,7 +51,7 @@ class PhpUnderControl_ApiDefault_Test extends PHPUnit_Framework_TestCase
 
         $api = new Api_Default(); 
         //自己进行初始化
-        $api->initialize();
+        $api->init();
         $rs = $api->index();
 
         $this->assertNotEmpty($rs);

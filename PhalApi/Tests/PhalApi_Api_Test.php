@@ -34,7 +34,7 @@ class PhpUnderControl_PhalApiApi_Test extends PHPUnit_Framework_TestCase
     public function testInitialize()
     {
         DI()->request = new PhalApi_Request(array('service' => 'Default.Index'));
-        $rs = $this->coreApi->initialize();
+        $rs = $this->coreApi->init();
     }
 
 
@@ -44,7 +44,7 @@ class PhpUnderControl_PhalApiApi_Test extends PHPUnit_Framework_TestCase
         $data['service'] = 'Default.Index';
 
         DI()->request = new PhalApi_Request($data);
-        $rs = $this->coreApi->initialize();
+        $rs = $this->coreApi->init();
     }
 
     public function testInitializeWithRightSign()
@@ -53,7 +53,7 @@ class PhpUnderControl_PhalApiApi_Test extends PHPUnit_Framework_TestCase
         $data['service'] = 'Default.Index';
 
         DI()->request = new PhalApi_Request($data);
-        $rs = $this->coreApi->initialize();
+        $rs = $this->coreApi->init();
 
     }
 
@@ -83,7 +83,7 @@ class PhpUnderControl_PhalApiApi_Test extends PHPUnit_Framework_TestCase
         DI()->filter = 'PhalApi_Filter_Impl';
 
         $impl = new PhalApi_Api_Impl();
-        $impl->initialize();
+        $impl->init();
 
         $rs = $impl->add();
         $this->assertEquals(7, $rs);
