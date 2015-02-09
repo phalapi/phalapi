@@ -32,7 +32,10 @@ DI()->notorm = function() {
     return new PhalApi_DB_NotORM(DI()->config->get('dbs'), $debug);
 };
 
+/** ---------------- 以下服务组件就根据需要定制注册 ---------------- **/
+
 //缓存 - MC
+/**
 DI()->cache = function() {
 	//可以考虑将此配置放进./Config/sys.php
 	$mcConfig = array(
@@ -43,7 +46,14 @@ DI()->cache = function() {
 	$mc = new PhalApi_Cache_Memecahced($mcConfig);
 	return $mc;
 };
+ */
 
 //签名验证服务
 //DI()->filter = 'Common_SignFilter';
 
+//支持JsonP的返回
+/**
+if (!empty($_GET['callback'])) {
+    DI()->response = new PhalApi_Response_JsonP($_GET['callback']);
+}
+ */

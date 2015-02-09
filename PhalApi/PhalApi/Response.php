@@ -7,13 +7,13 @@
  * @author dogstar <chanzonghuang@gmail.com> 2014-10-02
  */
 
-class PhalApi_Response {
+abstract class PhalApi_Response {
 
-    private $ret = 200;
-    private $data = array();
-    private $msg = '';
+    protected $ret = 200;
+    protected $data = array();
+    protected $msg = '';
     
-    private $headers = array();
+    protected $headers = array();
     
     public function setRet($ret) {
     	$this->ret = $ret;
@@ -34,27 +34,32 @@ class PhalApi_Response {
     	$this->headers[$key] = $content;
     }
     
-    public function output() {
-    	$result = $this->formatResult();
-    	
-    	$this->handleHeaders($this->headers);
-
-        echo $result;
-    }
-    
-    protected function formatResult() {
-        $result = array(
+    public function getResult() {
+        $rs = array(
             'ret' => $this->ret,
             'data' => $this->data,
             'msg' => $this->msg,
         );
 
-        return json_encode($result);
+        return $rs;
     }
+
+    public function output() {
+    	$this->handleHeaders($this->headers);
+
+        $rs = $this->getResult();
+
+    	echo $this->formatResult($rs);
+    }
+
+    /**
+     * 格式化需要输出返回的结果
+     */
+    abstract protected function formatResult($result);
     
     protected function handleHeaders($headers) {
     	foreach ($headers as $key => $content) {
-    		header($key . ':' . $content);
+    		header($key . ': ' . $content);
     	}
     }
 }

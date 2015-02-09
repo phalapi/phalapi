@@ -32,8 +32,6 @@ class PhalApi {
     public function response() {
     	$rs = DI()->response;
     	
-    	$rs->addHeaders('Content-Type', 'text/html;charset=utf-8');
-    	
     	try{
     		$controller = PhalApi_ApiFactory::generateService(); 
     		

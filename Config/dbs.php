@@ -20,7 +20,7 @@ return array(
         ),
          */
         'db_demo' => array(
-            'host'      => '192.168.0.112',         //数据库域名
+            'host'      => '192.168.0.103',         //数据库域名
             'name'      => 'phalapi_test',          //数据库名字
             'user'      => 'root',                  //数据库用户名
             'password'  => '123456',	            //数据库密码
