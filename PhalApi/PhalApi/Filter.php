@@ -2,7 +2,7 @@
 /**
  * 拦截器接口
  *
- * @dogstar 2014-10-25
+ * @dogstar <chanzonghuang@gmail.com> 2014-10-25
  */
 
 interface PhalApi_Filter {

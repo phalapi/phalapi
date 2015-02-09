@@ -3,7 +3,7 @@
  * 使用mcrypt扩展进加解密
  *
  * @link: http://php.net/manual/zh/function.mcrypt-generic.php
- * @author dogstar 2014-12-10
+ * @author dogstar <chanzonghuang@gmail.com> 2014-12-10
  */
 
 class PhalApi_Crypt_Mcrypt implements PhalApi_Crypt {

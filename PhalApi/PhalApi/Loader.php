@@ -6,7 +6,7 @@
  * - 可以自定义加载指定文件
  *
  * @link: http://docs.phalconphp.com/en/latest/reference/loader.html，实现统一的类加载
- * @author dogstar 2014-01-28
+ * @author dogstar <chanzonghuang@gmail.com> 2014-01-28
  */ 
 
 //加载快速方法

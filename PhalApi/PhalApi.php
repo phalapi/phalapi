@@ -4,7 +4,7 @@
  *
  * - 实现远程服务的响应、调用等操作
  *
- * @author dogstar 2014-12-17
+ * @author dogstar <chanzonghuang@gmail.com> 2014-12-17
  */
  
 defined('PHALAPI_ROOT') || define('PHALAPI_ROOT', dirname(__FILE__));

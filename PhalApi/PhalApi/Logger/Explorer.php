@@ -1,4 +1,11 @@
 <?php
+/**
+ * 直接输出日记到控制台的日记类 PhalApi_Logger_Explorer
+ * 
+ * - 测试环境下使用
+ * 
+ * @author dogstar <chanzonghuang@gmail.com> 2015-02-09 
+ */
 
 class PhalApi_Logger_Explorer extends PhalApi_Logger {
 

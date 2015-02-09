@@ -2,7 +2,7 @@
 /**
  * 对称加密
  *
- * @author dogstar 2014-12-10
+ * @author dogstar <chanzonghuang@gmail.com> 2014-12-10
  */
 
 interface PhalApi_Crypt {

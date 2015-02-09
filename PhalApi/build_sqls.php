@@ -3,7 +3,7 @@
 /**
  * 根据配置自动生成SQL建表语句
  *
- * @author dogstar 2015-02-04 
+ * @author dogstar <chanzonghuang@gmail.com> 2015-02-04 
  */
 
 define('CUR_PATH', dirname(__FILE__));

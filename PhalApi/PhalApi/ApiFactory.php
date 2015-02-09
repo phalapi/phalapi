@@ -7,7 +7,7 @@
  *      //根据请求生成对应的接口服务，并进行初始化
  *      $api = PhalApi_ApiFactory::generateService();
  *
- * @author dogstar 2014-10-02
+ * @author dogstar <chanzonghuang@gmail.com> 2014-10-02
  */
 
 class PhalApi_ApiFactory {

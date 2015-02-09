@@ -13,7 +13,7 @@
  *
  * 备注：另可使用phpunit-skelgen进行骨架代码生成
  *
- * @author: dogstar 20150108
+ * @author: dogstar <chanzonghuang@gmail.com> 2015-01-08
  * @version: 4.0.0
  */
 

@@ -8,7 +8,7 @@
  *      $config = new PhalApi_Config_File('./Config');
  *      $config->get('sys.db.user');
  *
- * @author dogstar 2014-10-02
+ * @author dogstar <chanzonghuang@gmail.com> 2014-10-02
  */
 
 class PhalApi_Config_File implements PhalApi_Config {

@@ -2,7 +2,7 @@
 /**
  * 对底层的mcrypt进行简单的再封装，以便存储和保留类型
  *
- * @author dogstar 2014-12-11
+ * @author dogstar <chanzonghuang@gmail.com> 2014-12-11
  */
 
 class PhalApi_Crypt_MultiMcrypt implements PhalApi_Crypt {

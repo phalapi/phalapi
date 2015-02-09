@@ -2,7 +2,7 @@
 /**
  * 通过curl实现的快捷方便的接口请求类
  *
- * @author dogstar 2015-01-02
+ * @author dogstar <chanzonghuang@gmail.com> 2015-01-02
  */
 
 class PhalApi_CUrl {

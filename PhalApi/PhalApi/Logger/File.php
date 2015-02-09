@@ -11,7 +11,7 @@
  *      //日记会保存在在./Runtime/debug_log/目录下
  *      $logger->debug('this is bebug test');
  *
- * @author dogstar 2014-10-02
+ * @author dogstar <chanzonghuang@gmail.com> 2014-10-02
  */
 
 class PhalApi_Logger_File extends PhalApi_Logger {

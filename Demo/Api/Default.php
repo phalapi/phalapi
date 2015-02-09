@@ -2,7 +2,7 @@
 /**
  * 默认接口服务类
  *
- * @author: dogstar 2014-10-04
+ * @author: dogstar <chanzonghuang@gmail.com> 2014-10-04
  */
 
 class Api_Default extends PhalApi_Api {

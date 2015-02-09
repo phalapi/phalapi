@@ -17,7 +17,7 @@
  *  array('name' => '', 'type' => 'array', 'default' => '', 'format' => 'json/explode', 'separator' => '')
  *  array('name' => '', 'type' => 'enum', 'default' => '', 'range' => array(...))
  *
- * @author dogstar 2014-10-04
+ * @author dogstar <chanzonghuang@gmail.com> 2014-10-04
  */
 
 class PhalApi_Request_Var {

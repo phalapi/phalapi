@@ -2,7 +2,7 @@
 /**
  * 分库分表的自定义数据库路由配置
  * 
- * @author: dogstar
+ * @author: dogstar <chanzonghuang@gmail.com> 2015-02-09
  */
 
 return array(
@@ -20,7 +20,7 @@ return array(
         ),
          */
         'db_demo' => array(
-            'host'      => '192.168.0.103',         //数据库域名
+            'host'      => '192.168.0.112',         //数据库域名
             'name'      => 'phalapi_test',          //数据库名字
             'user'      => 'root',                  //数据库用户名
             'password'  => '123456',	            //数据库密码

@@ -4,7 +4,7 @@
  *
  * - 拥有各种结果返回状态 ，以及对返回结果 的格式化
  *
- * @author dogstar 2014-10-02
+ * @author dogstar <chanzonghuang@gmail.com> 2014-10-02
  */
 
 class PhalApi_Response {

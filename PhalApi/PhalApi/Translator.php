@@ -13,7 +13,7 @@
  *      $msg = T('hello {name}', array('name' => 'phper'));
  *      var_dump($msg);
  *
- * @author dogstar 2015-02-04
+ * @author dogstar <chanzonghuang@gmail.com> 2015-02-04
  */
 
 class PhalApi_Translator {

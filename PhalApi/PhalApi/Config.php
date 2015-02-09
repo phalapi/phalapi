@@ -4,7 +4,7 @@
  *
  * 获取系统所需要的参数配置
  *
- * @author dogstar 2014-10-02
+ * @author dogstar <chanzonghuang@gmail.com> 2014-10-02
  */
 
 interface PhalApi_Config {

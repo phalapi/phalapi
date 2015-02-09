@@ -10,7 +10,7 @@ DI()->loader->addDirs('Demo');
 
 /** ---------------- 响应接口请求 ---------------- **/
 
-$server = new PhalApi();
-$rs = $server->response();
+$api = new PhalApi();
+$rs = $api->response();
 $rs->output();
 

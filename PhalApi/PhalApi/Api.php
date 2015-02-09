@@ -4,7 +4,7 @@
  *
  * - 实现身份验证、参数获取生成等操作，并由开发人员自宝义的服务具体类继承
  *
- * @author dogstar 2014-10-02
+ * @author dogstar <chanzonghuang@gmail.com> 2014-10-02
  */
 
 class PhalApi_Api {

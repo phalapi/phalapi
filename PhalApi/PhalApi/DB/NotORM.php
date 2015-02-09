@@ -47,7 +47,7 @@
  *      $rs = $notorm->demo_1->select('*')->where('id = 11')->fetch();
  *
  * @link: http://www.notorm.com/
- * @author dogstar 2014-11-22
+ * @author dogstar <chanzonghuang@gmail.com> 2014-11-22
  */
 
 require_once PHALAPI_ROOT . DIRECTORY_SEPARATOR . 'NotORM' . DIRECTORY_SEPARATOR . 'NotORM.php';
