@@ -52,8 +52,6 @@ DI()->cache = function() {
 //DI()->filter = 'Common_SignFilter';
 
 //支持JsonP的返回
-/**
 if (!empty($_GET['callback'])) {
     DI()->response = new PhalApi_Response_JsonP($_GET['callback']);
 }
- */
