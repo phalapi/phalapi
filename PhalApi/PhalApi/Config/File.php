@@ -14,7 +14,7 @@
 class PhalApi_Config_File implements PhalApi_Config {
 
 	private $path = '';
-	private $map = null;
+	private $map = NULL;
 	
 	public function __construct($configPath) {
 		$this->path = $configPath;
@@ -28,7 +28,7 @@ class PhalApi_Config_File implements PhalApi_Config {
      * @return mixed 需要获取的配置值
      * @author dogstar 2012-12-23
      */
-	public function get($key, $default = null) {
+	public function get($key, $default = NULL) {
 		$keyArr = explode('.', $key);
 		$fileName = $keyArr[0];
 		
@@ -36,18 +36,18 @@ class PhalApi_Config_File implements PhalApi_Config {
 			$this->loadConfig($fileName);
 		}
 		
-		$rs = null;
+		$rs = NULL;
 		$preRs = $this->map;
 		foreach ($keyArr as $subKey) {
 			if (!isset($preRs[$subKey])) {
-				$rs = null;
+				$rs = NULL;
 				break;
 			}
 			$rs = $preRs[$subKey];
 			$preRs = $rs;
 		}
 		
-		return $rs !== null ? $rs : $default;
+		return $rs !== NULL ? $rs : $default;
 	}
 	
 	/**

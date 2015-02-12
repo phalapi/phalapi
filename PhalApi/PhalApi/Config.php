@@ -14,5 +14,5 @@ interface PhalApi_Config {
      * @param $key string 配置键值
      * @return mixed 需要获取的配置值
      */
-	public function get($key, $default = null);
+	public function get($key, $default = NULL);
 }

@@ -41,13 +41,13 @@ class PhalApi_Request_Var {
      * @return miexd 格式后的变量
      */ 
     public static function format($varName, $rule, $params) {
-        $value = isset($rule['default']) ? $rule['default'] : null;
+        $value = isset($rule['default']) ? $rule['default'] : NULL;
         $type = !empty($rule['type']) ? strtolower($rule['type']) : 'string';
 
         $key = isset($rule['name']) ? $rule['name'] : $varName;
         $value = isset($params[$key]) ? $params[$key] : $value;
 
-        if ($value === null) {
+        if ($value === NULL) {
             return $value;
         }
 
@@ -125,7 +125,7 @@ class PhalApi_Request_Var {
      * 对布尔型进行格式化
      *
      * @param mixed $value 变量值
-     * @parma array $rule array('true' => '成立时替换的内容', 'false' => '失败时替换的内容')
+     * @parma array $rule array('TRUE' => '成立时替换的内容', 'FALSE' => '失败时替换的内容')
      * @return boolean/string 格式化后的变量
      *
      */
@@ -134,12 +134,12 @@ class PhalApi_Request_Var {
 
         if (!is_bool($value)) {
             if (is_numeric($value)) {
-                $rs = $value > 0 ? true : false;
+                $rs = $value > 0 ? TRUE : FALSE;
             } else if (is_string($value)) {
                 $rs = in_array(strtolower($value), array('ok', 'true', 'success', 'on', 'yes')) 
-                    ? true : false;
+                    ? TRUE : FALSE;
             } else {
-                $rs = $value ? true : false;
+                $rs = $value ? TRUE : FALSE;
             }
         }
 
@@ -176,7 +176,7 @@ class PhalApi_Request_Var {
             if ($ruleFormat == 'explode') {
                 $rs = explode(isset($rule['separator']) ? $rule['separator'] : ',', $rs);
             } else if ($ruleFormat == 'json') {
-                $rs = json_decode($rs, true);
+                $rs = json_decode($rs, TRUE);
             } else {
                 $rs = array($rs);
             }
@@ -187,7 +187,7 @@ class PhalApi_Request_Var {
 
     /**
      * 检测枚举类型
-     * @return 当不符合时返回null
+     * @return 当不符合时返回NULL
      */
     public static function formatEnum($value, $rule) {
         self::formatEnumRule($rule);

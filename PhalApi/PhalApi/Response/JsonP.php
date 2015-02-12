@@ -15,7 +15,11 @@ class PhalApi_Response_JsonP extends PhalApi_Response {
         $this->addHeaders('Content-Type', 'text/javascript; charset=utf-8');
     }
 
-    //TODO
+    /**
+     * 对回调函数进行跨站清除处理
+     *
+     * - 可使用白名单或者黑名单方式处理，由接口开发再实现
+     */
     protected function clearRss($callback) {
         return $callback;
     }

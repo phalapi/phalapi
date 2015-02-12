@@ -60,9 +60,9 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */ {
 
     protected $_configs = array();
 
-    protected $debug = false;
+    protected $debug = FALSE;
 
-    public function __construct($configs, $debug = false) {
+    public function __construct($configs, $debug = FALSE) {
         $this->_configs = $configs;
 
         $this->debug = $debug;
@@ -101,10 +101,10 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */ {
 
     protected function parseName($name) {
         $tableName = $name;
-        $suffix = null;
+        $suffix = NULL;
 
         $pos = strrpos($name, '_');
-        if ($pos !== false) {
+        if ($pos !== FALSE) {
             $tableId = substr($name, $pos + 1);
             if (is_numeric($tableId)) {
                 $tableName = substr($name, 0, $pos);
@@ -116,7 +116,7 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */ {
     }
 
     protected function getDBRouter($tableName, $suffix) {
-        $rs = array('prefix' => '', 'key' => '', 'pdo' => null, 'isNoSuffix' => false);
+        $rs = array('prefix' => '', 'key' => '', 'pdo' => NULL, 'isNoSuffix' => FALSE);
 
         $defaultMap = !empty($this->_configs['tables']['__default__']) 
             ? $this->_configs['tables']['__default__'] : array();
@@ -129,37 +129,37 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */ {
             );
         }
 
-        $dbKey = null;
-        $dbDefaultKey = null;
+        $dbKey = NULL;
+        $dbDefaultKey = NULL;
         if (!isset($tableMap['map'])) {
             $tableMap['map'] = array();
         }
         foreach ($tableMap['map'] as $map) {
-            $isMatch = false;
+            $isMatch = FALSE;
 
             if ((isset($map['start']) && isset($map['end']))) {
-                if ($suffix !== null && $suffix >= $map['start'] && $suffix <= $map['end']) {
-                    $isMatch = true;
+                if ($suffix !== NULL && $suffix >= $map['start'] && $suffix <= $map['end']) {
+                    $isMatch = TRUE;
                 }
             } else {
                 $dbDefaultKey = $map['db'];
-                if ($suffix === null) {
-                    $isMatch = true;
+                if ($suffix === NULL) {
+                    $isMatch = TRUE;
                 }
             }
 
             if ($isMatch) {
-                $dbKey = isset($map['db']) ? trim($map['db']) : null;
+                $dbKey = isset($map['db']) ? trim($map['db']) : NULL;
                 break;
             }
         }
         //try to use default map if no perfect match
-        if ($dbKey === null) {
+        if ($dbKey === NULL) {
             $dbKey = $dbDefaultKey;
-            $rs['isNoSuffix'] = true;
+            $rs['isNoSuffix'] = TRUE;
         }
 
-        if ($dbKey === null) {
+        if ($dbKey === NULL) {
             throw new PhalApi_Exception_InternalServerError(
                 T('No db router match for {tableName}', array('tableName' => $tableName))
             );

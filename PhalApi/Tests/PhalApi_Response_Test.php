@@ -21,7 +21,7 @@ class PhpUnderControl_PhalApiResponse_Test extends PHPUnit_Framework_TestCase
     {
         parent::setUp();
 
-        $this->coreResponse = new PhalApi_Response();
+        $this->coreResponse = new PhalApi_Response_Json_Mock();
     }
 
     protected function tearDown()
