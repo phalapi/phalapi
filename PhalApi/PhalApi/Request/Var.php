@@ -51,6 +51,10 @@ class PhalApi_Request_Var {
             return $value;
         }
 
+        return self::formatAllType($type, $value, $rule);
+    }
+
+    protected static function formatAllType($type, $value, $rule) {
         switch ($type) {
             //基本类型
             case 'string':
