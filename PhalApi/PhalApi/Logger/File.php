@@ -36,7 +36,7 @@ class PhalApi_Logger_File extends PhalApi_Logger {
             . DIRECTORY_SEPARATOR . date('Ym', $_SERVER['REQUEST_TIME']);
         
         if (!file_exists($folder)) {
-            mkdir($folder . '/', 0777, true);
+            mkdir($folder . '/', 0777, TRUE);
         }
 
         $this->logFile = $folder 
@@ -53,7 +53,7 @@ class PhalApi_Logger_File extends PhalApi_Logger {
         $msgArr[] = date($this->dateFormat, $_SERVER['REQUEST_TIME']);
         $msgArr[] = strtoupper($type);
         $msgArr[] = str_replace(PHP_EOL, '\n', $msg);
-        if ($data !== null) {
+        if ($data !== NULL) {
             $msgArr[] = is_array($data) ? json_encode($data) : $data;
         }
 

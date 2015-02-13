@@ -14,7 +14,9 @@ abstract class PhalApi_Response {
     protected $msg = '';
     
     protected $headers = array();
-    
+
+    /** ------------------ setter ------------------ **/
+
     public function setRet($ret) {
     	$this->ret = $ret;
     	return $this;
@@ -33,6 +35,24 @@ abstract class PhalApi_Response {
     public function addHeaders($key, $content) {
     	$this->headers[$key] = $content;
     }
+
+    /** ------------------ 结果输出 ------------------ **/
+
+    public function output() {
+    	$this->handleHeaders($this->headers);
+
+        $rs = $this->getResult();
+
+    	echo $this->formatResult($rs);
+    }
+    
+    /** ------------------ 内部方法 ------------------ **/
+
+    protected function handleHeaders($headers) {
+    	foreach ($headers as $key => $content) {
+    		header($key . ': ' . $content);
+    	}
+    }
     
     public function getResult() {
         $rs = array(
@@ -44,22 +64,12 @@ abstract class PhalApi_Response {
         return $rs;
     }
 
-    public function output() {
-    	$this->handleHeaders($this->headers);
-
-        $rs = $this->getResult();
-
-    	echo $this->formatResult($rs);
-    }
-
     /**
      * 格式化需要输出返回的结果
+     *
+     * @param array $result 待返回的结果数据
+     *
+     * @see: PhalApi_Response::getResult()
      */
     abstract protected function formatResult($result);
-    
-    protected function handleHeaders($headers) {
-    	foreach ($headers as $key => $content) {
-    		header($key . ': ' . $content);
-    	}
-    }
 }

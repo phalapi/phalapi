@@ -31,7 +31,7 @@ Demo:
 
 $filePath = $argv[1];
 $className = $argv[2];
-$bootstrap = isset($argv[3]) ? $argv[3] : null;
+$bootstrap = isset($argv[3]) ? $argv[3] : NULL;
 $author = isset($argv[4]) ? $argv[4] : 'dogstar';
 
 if (!empty($bootstrap)) {
@@ -133,8 +133,8 @@ foreach ($methods as $method) {
             $default = var_export($default, true);
         } else if (is_bool($default)) {
             $default = $default ? 'true' : 'false';
-        } else if ($default === null) {
-            $default = 'null';
+        } else if ($default === NULL) {
+            $default = 'NULL';
         } else {
             $default = "''";
         }

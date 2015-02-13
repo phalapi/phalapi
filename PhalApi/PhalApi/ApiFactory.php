@@ -4,26 +4,30 @@
  *
  * - 将创建与使用分离，简化客户调用，负责控制器复杂的创建过程
  *
- *      //根据请求生成对应的接口服务，并进行初始化
+ *      //根据请求(?service=XXX.XXX)生成对应的接口服务，并进行初始化
  *      $api = PhalApi_ApiFactory::generateService();
  *
  * @author dogstar <chanzonghuang@gmail.com> 2014-10-02
  */
 
 class PhalApi_ApiFactory {
+
 	/**
      * 创建服务器
-     * 根据客户端提供控制器名称和需要调用的方法进行创建工作，如果创建失败，则抛出相应的自定义异常
+     * 根据客户端提供的接口服务名称和需要调用的方法进行创建工作，如果创建失败，则抛出相应的自定义异常
      *
      * 创建过程主要如下：
-     * 1. 是否缺少控制器名称和需要调用的方法
-     * 2. 控制器文件是否存在，并且控制器是否存在
-     * 3. 方法是否可调用
-     * 4. 控制器是否初始化成功
+     * 1、 是否缺少控制器名称和需要调用的方法
+     * 2、 控制器文件是否存在，并且控制器是否存在
+     * 3、 方法是否可调用
+     * 4、 控制器是否初始化成功
+     *
+     * @param boolen $isInitialize 是否在创建后进行初始化
+     * @param string $_REQUEST['service'] 接口服务名称，格式：XXX.XXX
      *
      * @return PhalApi_Api 自定义的控制器
      */
-	static function generateService($isInitialize = true) {
+	static function generateService($isInitialize = TRUE) {
 		$service = DI()->request->get('service', 'Default.Index');
 		
 		$serviceArr = explode('.', $service);
@@ -34,29 +38,29 @@ class PhalApi_ApiFactory {
             );
         }
 
-		list($className, $action) = $serviceArr;
-	    $className = 'Api_' . ucfirst($className);
+		list($apiClassName, $action) = $serviceArr;
+	    $apiClassName = 'Api_' . ucfirst($apiClassName);
         $action = lcfirst($action);
 
-        if(!class_exists($className)) {
+        if(!class_exists($apiClassName)) {
             throw new PhalApi_Exception_BadRequest(
-                T('no such service as {className}', array('className' => $service))
+                T('no such service as {service}', array('service' => $service))
             );
         }
         		
-    	$controller = new $className();
+    	$api = new $apiClassName();
     			
-    	if(!method_exists($controller, $action) || !is_callable(array($controller, $action))) {
+    	if(!method_exists($api, $action) || !is_callable(array($api, $action))) {
             throw new PhalApi_Exception_BadRequest(
-                T('no such service as {className}', array('className' => $service))
+                T('no such service as {service}', array('service' => $service))
             );
     	}
 
         if ($isInitialize) {
-            $controller->init();
+            $api->init();
         }
 		
-		return $controller;
+		return $api;
 	}
 	
 }

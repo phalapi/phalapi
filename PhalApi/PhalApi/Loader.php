@@ -53,7 +53,7 @@ class PhalApi_Loader {
      * @param string $className 等待加载的类名
      */ 
     public function load($className) {
-        if (class_exists($className, false) || interface_exists($className, false)) {
+        if (class_exists($className, FALSE) || interface_exists($className, FALSE)) {
             return;
         }
 
@@ -74,9 +74,9 @@ class PhalApi_Loader {
         
         if (file_exists($toRequireFile)) {
             require_once $toRequireFile;
-            return true;
+            return TRUE;
         }
 
-        return false;
+        return FALSE;
     }
 }
