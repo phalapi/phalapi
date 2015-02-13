@@ -10,7 +10,7 @@
 return array(
     /** ---------------------- 框架核心类库的翻译 - 开发维护 ---------------------- **/
     'service ({service}) illegal' => '非法服务：{service}',
-    'no such service as {className}' => '服务{className}不存在',
+    'no such service as {service}' => '接口服务{service}不存在',
     'mcrypt_module_open with {cipher}' => 'mcrypt_module_open with {cipher}',
     'No table map config for {tableName}' => '缺少表{tableName}的配置',
     'Call to undefined method PhalApi_DI::{name}() .' => '调用了未定义的方法PhalApi_DI::{name}()',

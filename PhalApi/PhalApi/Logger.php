@@ -39,13 +39,22 @@ abstract class PhalApi_Logger {
         $this->logLevel = $level;
     }
 
+    /**
+     * 日记纪录
+     *
+     * 可根据不同需要，将日记写入不同的媒介
+     *
+     * @param string $type 日记类型，如：info/debug/error, etc
+     * @param string $msg 日记关键描述
+     * @param string/array $data 场景上下文信息
+     */
     abstract public function log($type, $msg, $data);
 
     /**
      * 产品应用级日记
      */
-    public function info($msg, $data = null) {
-        if (($this->logLevel & self::LOG_LEVEL_INFO) == 0) {
+    public function info($msg, $data = NULL) {
+        if (!$this->isAllowToLog(self::LOG_LEVEL_INFO)) {
             return;
         }
 
@@ -55,8 +64,8 @@ abstract class PhalApi_Logger {
     /**
      * 开发调试级日记
      */
-    public function debug($msg, $data = null) {
-        if (($this->logLevel & self::LOG_LEVEL_DEBUG) == 0) {
+    public function debug($msg, $data = NULL) {
+        if (!$this->isAllowToLog(self::LOG_LEVEL_DEBUG)) {
             return;
         }
 
@@ -66,11 +75,15 @@ abstract class PhalApi_Logger {
     /**
      * 系统错误级日记
      */
-    public function error($msg, $data = null) {
-        if (($this->logLevel & self::LOG_LEVEL_ERROR) == 0) {
+    public function error($msg, $data = NULL) {
+        if (!$this->isAllowToLog(self::LOG_LEVEL_ERROR)) {
             return;
         }
 
         $this->log('error', $msg, $data);
+    }
+
+    protected function isAllowToLog($logLevel) {
+        return (($this->logLevel & $logLevel) != 0) ? TRUE : FALSE;
     }
 }

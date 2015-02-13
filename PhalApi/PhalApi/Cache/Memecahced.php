@@ -9,7 +9,7 @@
 
 class PhalApi_Cache_Memecahced implements PhalApi_Cache {
 
-    private $memcached = null;
+    private $memcached = NULL;
 
     /**
      * @param string $config['host'] Memcache域名

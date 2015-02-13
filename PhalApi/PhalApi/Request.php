@@ -11,15 +11,18 @@
 class PhalApi_Request {
 
 	protected $data = array();
-	
-	public function __construct($data = null) {
-		if (!isset($data) || empty($data)) {
+
+    /**
+     * @param array $data 参数来源，可以为：$_GET/$_POST/$_REQUEST/自定义
+     */
+	public function __construct($data = NULL) {
+		if (!isset($data) || !is_array($data)) {
             $data = $_REQUEST;
         }
 		$this->data = $data;
 	}
 	
-	public function get($key, $default = null) {
+	public function get($key, $default = NULL) {
 		return isset($this->data[$key]) ? $this->data[$key] : $default;
 	}
 	
@@ -32,7 +35,7 @@ class PhalApi_Request {
      * @return mixed
      */
 	public function getByRule($rule) {
-		$rs = null;
+		$rs = NULL;
 			
         if (!isset($rule['name'])) {
             throw new PhalApi_Exception_InternalServerError(T('miss name for rule'));
@@ -40,7 +43,7 @@ class PhalApi_Request {
         
         $rs = PhalApi_Request_Var::format($rule['name'], $rule, $this->data);
         
-        if ($rs === null && (isset($rule['require']) && $rule['require'])) {
+        if ($rs === NULL && (isset($rule['require']) && $rule['require'])) {
             throw new PhalApi_Exception_BadRequest(
                 T('{name} require, but miss', array('name' => $rule['name']))
             );

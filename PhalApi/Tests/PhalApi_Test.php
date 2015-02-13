@@ -32,6 +32,7 @@ class PhpUnderControl_PhalApi_Test extends PHPUnit_Framework_TestCase
 
     protected function tearDown()
     {
+        DI()->response = 'PhalApi_Response_Json';
     }
 
     /**
@@ -81,6 +82,36 @@ class PhpUnderControl_PhalApi_Test extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($expRs, $rs->getResult());
     }
+
+    public function testResponseWithBadRequest() {
+        $data = array(
+            'service' => 'AnotherImpl',
+        );
+
+        DI()->request = new PhalApi_Request($data);
+        DI()->response = 'PhalApi_Response_Json_Mock';
+
+        $phalApi = new PhalApi();
+
+        $rs = $phalApi->response();
+
+        $rs->output();
+
+        $this->expectOutputRegex('/"ret":400/');
+    }
+
+    /**
+     * @expectedException Exception
+     */
+    public function testResponseWithException() {
+        $data = array(
+            'service' => 'AnotherImpl.MakeSomeTrouble',
+        );
+
+        DI()->request = new PhalApi_Request($data);
+
+        $rs = $this->phalApi->response();
+    }
 }
 
 class Api_AnotherImpl extends PhalApi_Api {
@@ -88,16 +119,8 @@ class Api_AnotherImpl extends PhalApi_Api {
     public function doSth() {
         return 'hello wolrd!';
     }
-}
 
-class PhalApi_Response_Json_Mock extends PhalApi_Response_Json {
-
-    protected function handleHeaders($headers) {
-    }
-}
-
-class PhalApi_Response_JsonP_Mock extends PhalApi_Response_JsonP {
-
-    protected function handleHeaders($headers) {
+    public function makeSomeTrouble() {
+        throw new Exception('as u can see, i mean to make some trouble');
     }
 }
