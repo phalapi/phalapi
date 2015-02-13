@@ -197,6 +197,7 @@ http://phalapi.oschina.mopaas.com/Public/demo/checkApiParams.php
 1、代码小酌，重构代码、整理注释，让代码更明了，更统一，更达意；
 2、添加工具类，其中有：IP地址获取、随机字符串生成；
 3、添加扩展类库：微信开发，并编写相关使用文档；
+4、添加扩展类库：phprpc协议支持及WIKI编写；
 ```
 ###2015-02-11
 ```
