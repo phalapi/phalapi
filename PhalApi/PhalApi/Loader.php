@@ -49,6 +49,8 @@ class PhalApi_Loader {
 
     /**
      * 自动加载
+	 * 
+	 * 这里，我们之所以在未找到类时没有抛出异常是为了开发人员自动加载或者其他扩展类库有机会进行处理
      *
      * @param string $className 等待加载的类名
      */ 
