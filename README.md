@@ -100,9 +100,9 @@ http://phalapi.oschina.mopaas.com/Public/demo/?service=Demo.None
     ... ...
 
 工具与实践
-    [2.21] PHPUnit：自动化单元测试 //TODO
-    [2.22] Phing：一键部署、快速发布 //TODO
-    [2.23] autobench：接口压力测试与可视化图表 //TODO
+    [2.21] PHPUnit：自动化单元测试
+    [2.22] Phing：一键部署、快速发布
+    [2.23] autobench：接口压力测试与可视化图表
     ... ...
 
 扩展类库
@@ -114,9 +114,9 @@ http://phalapi.oschina.mopaas.com/Public/demo/?service=Demo.None
 
 项目实践
 
-    [4.1] 开发实战1：利用扩展库进行微信服务号开发 //TODO
-    [4.2] 开发实战2：模拟优酷开放平台接口项目开发 //TODO
-    [4.3] 开发实战3：模拟腾讯开放平台接口项目开发 //TODO
+    [4.1] 开发实战1：利用扩展库进行微信服务号开发
+    [4.2] 开发实战2：模拟优酷开放平台接口项目开发
+    [4.3] 开发实战3：模拟腾讯开放平台接口项目开发
     ... ...
 
 其他
