@@ -6,10 +6,10 @@
  *
  * @author dogstar <chanzonghuang@gmail.com> 2014-12-17
  */
- 
-defined('PHALAPI_ROOT') || define('PHALAPI_ROOT', dirname(__FILE__));
 
 defined('PHALAPI_VERSION') || define('PHALAPI_VERSION', '1.1.1');
+ 
+defined('PHALAPI_ROOT') || define('PHALAPI_ROOT', dirname(__FILE__));
 
 require_once PHALAPI_ROOT . DIRECTORY_SEPARATOR . 'PhalApi' . DIRECTORY_SEPARATOR . 'Loader.php';
 
@@ -32,17 +32,17 @@ class PhalApi {
     public function response() {
     	$rs = DI()->response;
     	
-    	try{
-    		$controller = PhalApi_ApiFactory::generateService(); 
+    	try {
+    		$api = PhalApi_ApiFactory::generateService(); 
     		
     		$service = DI()->request->get('service', 'Default.Index');
     		list($apiClassName, $action) = explode('.', $service);
 				
-        	$rs->setData(call_user_func(array($controller, $action)));
-    	} catch (PhalApi_Exception $ex){
+        	$rs->setData(call_user_func(array($api, $action)));
+    	} catch (PhalApi_Exception $ex) {
     		$rs->setRet($ex->getCode());
         	$rs->setMsg($ex->getMessage());
-    	} catch (Exception $ex){
+    	} catch (Exception $ex) {
     		throw $ex;
     	}
 		

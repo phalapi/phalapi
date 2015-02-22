@@ -18,10 +18,10 @@
 
 class PhalApi_Translator {
 
-    protected static $message = null;
+    protected static $message = NULL;
 
     public static function get($key, $params = array()) {
-        if(self::$message === null) {
+        if (self::$message === NULL) {
             self::setLanguage('en');
         }
 
@@ -33,27 +33,30 @@ class PhalApi_Translator {
         return str_replace($names, array_values($params), $rs);
     }
 
+    public static function formatVar($name) {
+        return '{' . $name . '}';
+    }
+
     public static function setLanguage($language) {
         self::$message = array();
 
-        $path = PHALAPI_ROOT . DIRECTORY_SEPARATOR . 'Language' . DIRECTORY_SEPARATOR 
-            . strtolower($language) . DIRECTORY_SEPARATOR . 'common.php';
+        $messagePath = self::getMessageFilePath(PHALAPI_ROOT, $language);
 
-        if (file_exists($path)) {
-            self::$message = include $path;
+        if (file_exists($messagePath)) {
+            self::$message = include $messagePath;
         }
 
         if (defined('API_ROOT')) {
-            $apiPath = API_ROOT . DIRECTORY_SEPARATOR . 'Language' . DIRECTORY_SEPARATOR
-                . strtolower($language) . DIRECTORY_SEPARATOR . 'common.php';
+            $appMessagePath = self::getMessageFilePath(API_ROOT, $language);
 
-            if (file_exists($apiPath)) {
-                self::$message = array_merge(self::$message, include $apiPath);
+            if (file_exists($appMessagePath)) {
+                self::$message = array_merge(self::$message, include $appMessagePath);
             }
         }
     }
 
-    public static function formatVar($name) {
-        return '{' . $name . '}';
+    protected static function getMessageFilePath($root, $language) {
+        return implode(DIRECTORY_SEPARATOR, 
+            array($root, 'Language', strtolower($language), 'common.php'));
     }
 }

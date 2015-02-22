@@ -1,8 +1,28 @@
 <?php
 /**
- * PhalApi_Api 服务基类
+ * PhalApi_Api 接口服务基类
  *
- * - 实现身份验证、参数获取生成等操作，并由开发人员自宝义的服务具体类继承
+ * - 实现身份验证、按参数规则解析生成接口参数等操作
+ * - 提供给开发人员自宝义的接口服务具体类继承
+ *
+ * 通常地，可以这样继承：
+ *
+ *  class Api_Demo extends PhalApi_Api {
+ *      
+ *      public function getRules() {
+ *          return array(
+ *              // ...
+ *          );
+ *      }
+ *
+ *      public function doSth() {
+ *          $rs = array();
+ *
+ *          // ...
+ *
+ *          return $rs;
+ *      }
+ *  }
  *
  * @author dogstar <chanzonghuang@gmail.com> 2014-10-02
  */
@@ -27,9 +47,9 @@ class PhalApi_Api {
      * 初始化
      *
      * 主要完成的初始化工作有：
-     * 1. 根据设置的自定义规则，从$_REQUEST获取所需要的参数，并保存在成员变量内
-     * 2. 验证App Key
-     * 3. 验证用户身份
+     * 1、[必须]按参数规则解析生成接口参数
+     * 2、[可选]过滤器调用，如：签名验证
+     * 3、[可选]用户身份验证
      * 
      * @see: PhalApi_Api::createMemberValue()
      */
@@ -38,21 +58,34 @@ class PhalApi_Api {
     	
     	$this->filterCheck();
     	
-    	$this->checkStatus();
+    	$this->userCheck();
     }
     
     /**
-     * 过滤并创建参数
+     * 按参数规则解析生成接口参数
      *
-     * 根据客户商调用的方法名字，搜索相应的自定义参数规则进行过滤创建，并把参数存放在类成员变量里面。
+     * 根据配置的参数规则，解析过滤，并将接口参数存放于类成员变量
      */
     protected function createMemberValue() {
-		foreach ($this->getMethodRules() as $key => $rule) {
+		foreach ($this->getApiRules() as $key => $rule) {
     		$this->$key = DI()->request->getByRule($rule);
 		}
     }
 
-    public function getMethodRules() {
+    /**
+     * 取接口参数规则
+     *
+     * 主要包括有：
+     * 1、[固定]系统级的service参数
+     * 2、应用级统一接口参数规则
+     * 3、接口级通常参数规则
+     * 4、接口级当前操作参数规则
+     *
+     * 当规则有冲突时，以后面为准。
+     *
+     * @return array
+     */
+    public function getApiRules() {
         $allRules = $this->getRules();
 
     	$service = DI()->request->get('service', 'Default.Index');
@@ -74,7 +107,23 @@ class PhalApi_Api {
 
         return $rules;
     }
+    
+    /**
+     * 获取参数设置的规则
+     *
+     * 可由开发人员根据需要重载
+     */
+    public function getRules() {
+    	return array();
+    }
 
+    /**
+     * 过滤器调用
+     *
+     * 注册的过滤器，请实现PhalApi_Filter::check()接口
+     *
+     * 可由开发人员根据需要重载
+     */
     protected function filterCheck() {
         $filter = DI()->filter;
 
@@ -84,21 +133,12 @@ class PhalApi_Api {
     }
     
     /**
-     * 验证用户身份
+     * 用户身份验证
      *
      * 可由开发人员根据需要重载
      */
-    protected function checkStatus() {
+    protected function userCheck() {
     	
-    }
-    
-    /**
-     * 获取参数设置的规则
-     *
-     * 可由开发人员根据需要重载，如果有冲突，以子类为准
-     */
-    public function getRules() {
-    	return array();
     }
     
 }

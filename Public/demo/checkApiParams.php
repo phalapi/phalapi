@@ -25,7 +25,7 @@ $typeMaps = array(
 
 try {
     $api = PhalApi_ApiFactory::generateService(false);
-    $rules = $api->getMethodRules();
+    $rules = $api->getApiRules();
 } catch (PhalApi_Exception $ex){
     $service .= ' - ' . $ex->getMessage();
 }

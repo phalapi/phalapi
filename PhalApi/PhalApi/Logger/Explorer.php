@@ -14,7 +14,7 @@ class PhalApi_Logger_Explorer extends PhalApi_Logger {
         $msgArr[] = date('Y-m-d H:i:s', $_SERVER['REQUEST_TIME']);
         $msgArr[] = strtoupper($type);
         $msgArr[] = str_replace(PHP_EOL, '\n', $msg);
-        if ($data !== null) {
+        if ($data !== NULL) {
             $msgArr[] = is_array($data) ? json_encode($data) : $data;
         }
 

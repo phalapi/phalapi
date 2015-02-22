@@ -3,7 +3,7 @@
 return array(
     /** ---------------------- framework translation - developer ---------------------- **/
     'service ({service}) illegal' => 'service ({service}) illegal',
-    'no such service as {className}' => 'no such service as {className}',
+    'no such service as {service}' => 'no such service as {service}',
     'mcrypt_module_open with {cipher}' => 'mcrypt_module_open with {cipher}',
     'No table map config for {tableName}' => 'No table map config for {tableName}',
     'Call to undefined method PhalApi_DI::{name}() .' => 'Call to undefined method PhalApi_DI::{name}() .',

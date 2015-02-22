@@ -51,5 +51,7 @@ class PhpUnderControl_PhalApiLoggerExplorer_Test extends PHPUnit_Framework_TestC
         $logger->info('no info');
         $logger->debug('no debug');
         $logger->error('no error');
+
+        $this->expectOutputString('');
     }
 }

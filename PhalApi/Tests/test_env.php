@@ -84,3 +84,18 @@ class Crypt_Mock implements PhalApi_Crypt
 		return $data;
 	}
 }
+
+/** ---------------- 公共的测试替身或桩 ---------------- **/
+
+class PhalApi_Response_Json_Mock extends PhalApi_Response_Json {
+
+    protected function handleHeaders($headers) {
+    }
+}
+
+class PhalApi_Response_JsonP_Mock extends PhalApi_Response_JsonP {
+
+    protected function handleHeaders($headers) {
+    }
+}
+
