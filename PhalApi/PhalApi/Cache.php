@@ -9,6 +9,9 @@ interface PhalApi_Cache {
 
     public function set($key, $value, $expire = 600);
 
+    /**
+    * @return NULL if fail
+    */
     public function get($key);
 
     public function delete($key);
