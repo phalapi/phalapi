@@ -14,14 +14,10 @@ class Domain_User {
         $model = new Model_User();
         $rs = $model->getByUserId($userId);
 
-		// 版本2：使用单点缓存/多级缓存
+		// 版本2：使用单点缓存/多级缓存 (应该移至Model层中)
 		/**
-		$key = 'userbaseinfo_' . $userId;
-		$rs = DI()->cache->get($key);
-		if ($rs === NULL) {
-			$rs = $model->getByUserId($userId);
-			DI()->cache->set($key, $rs, 600);
-		}
+        $model = new Model_User();
+        $rs = $model->getByUserIdWithCache($userId);
 		*/
 
 		// 版本3：缓存 + 代理
