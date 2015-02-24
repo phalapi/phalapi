@@ -10,7 +10,7 @@ interface PhalApi_Cache {
     public function set($key, $value, $expire = 600);
 
     /**
-    * @return NULL if fail
+    * @return mixed/NULL 失败情况下返回NULL
     */
     public function get($key);
 

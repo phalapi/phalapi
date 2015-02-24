@@ -19,6 +19,11 @@ abstract class PhalApi_ModelProxy {
 	 */
 	public function __construct(PhalApi_Cache $cache = NULL) {
 		$this->cache = $cache !== NULL ? $cache : DI()->cache;
+
+		//退而求其次
+		if ($this->cache === NULL) {
+			$this->cache = new PhalApi_Cache_None();
+		}
 	}
 
 	/**
