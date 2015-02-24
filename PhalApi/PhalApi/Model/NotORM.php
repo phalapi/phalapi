@@ -104,7 +104,7 @@ abstract class PhalApi_Model_NotORM implements PhalApi_Model {
 		}
 
 		foreach ($tabels as $tableName => $tableConfig) {
-			if (isset($tableConfig['start'] && isset($tableConfig['end']) {
+			if (isset($tableConfig['start']) && isset($tableConfig['end'])) {
 				for ($i = $tableConfig['start']; $i <= $tableConfig['end']; $i ++) {
 					self::$tableKeys[$tableName . '_' . $i] = $tableConfig['key'];
 				}
