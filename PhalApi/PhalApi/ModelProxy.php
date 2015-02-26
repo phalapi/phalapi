@@ -1,0 +1,73 @@
+<?php
+/**
+ * 模型Model代理
+ * 
+ * - 结合缓存，进行对重量级成本高的数据进行缓冲读取
+ * - 为了传递获取源数据而需要的参数，引入封装成值对象的PhalApi_ModelQuery查询对象
+ * - 具体子类需要实现源数据获取、返回缓存唯一key、和返回有效期
+ * - 仅在有需要的情况下，使用此Model代理
+ *
+ * @author dogstar <chanzonghuang@gmail.com> 2015-02-22
+ */
+
+abstract class PhalApi_ModelProxy {
+	
+	protected $cache;
+
+	/**
+	 * 为代理指定委托的缓存组件，默认情况下使用DI()->cache
+	 */
+	public function __construct(PhalApi_Cache $cache = NULL) {
+		$this->cache = $cache !== NULL ? $cache : DI()->cache;
+
+		//退而求其次
+		if ($this->cache === NULL) {
+			$this->cache = new PhalApi_Cache_None();
+		}
+	}
+
+	/**
+	 * 获取源数据 - 模板方法
+	 *
+	 * @param PhalApi_ModelQuery $query 查询对象
+	 * @return mixed 返回源数据，但在失败的情况下别返回NULL，否则依然会穿透到此
+	 */
+	public function getData(PhalApi_ModelQuery $query = NULL) {
+		$rs = NULL;
+
+		if ($query === NULL) {
+			$query = new PhalApi_ModelQuery();
+		}
+
+		if ($query->readCache) {
+			$rs = $this->cache->get($this->getkey($query));
+			if ($rs !== NULL) {
+				return $rs;
+			}
+		}
+
+		// 这里，将获取耗性能的数据
+		$rs = $this->doGetData($query);
+
+		if ($query->writeCache) {
+			$this->cache->set($this->getKey($query), $rs, $this->getExpire($query));
+		}
+
+		return $rs;
+	}
+	
+	/**
+	 * 获取源数据 - 具体实现
+	 */
+	abstract protected function doGetData($query);
+
+	/**
+	 * 返回唯一缓存key，这里将$query传入，以便同类数据根据不同的值生成不同的key
+	 */
+	abstract protected function getKey($query);
+
+	/**
+	 * 返回缓存有效时间，单位为：秒
+	 */
+	abstract protected function getExpire($query);
+}
