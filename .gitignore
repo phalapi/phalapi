@@ -13,3 +13,5 @@ Demo/Api/DogstarTest.php
 
 *.bak
 
+*.dat
+
