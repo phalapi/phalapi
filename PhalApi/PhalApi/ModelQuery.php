@@ -39,6 +39,6 @@ class PhalApi_ModelQuery {
 	}
 
 	public function toArray() {
-		//TODO
+        return get_object_vars($this);
 	}
 }
