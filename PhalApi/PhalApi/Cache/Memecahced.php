@@ -26,15 +26,12 @@ class PhalApi_Cache_Memecahced implements PhalApi_Cache {
     }
 
     public function set($key, $value, $expire = 600) {
-        $this->memcached->set($this->formatKey($key), serialize($value), $expire);
+        $this->memcached->set($this->formatKey($key), @serialize($value), $expire);
     }
 
-    /**
-    * TODO: FALSE or NULL?
-    */
     public function get($key) {
 		$value = $this->memcached->get($this->formatKey($key));
-        return $value !== FALSE ? unserialize($value) : NULL;
+        return $value !== FALSE ? @unserialize($value) : NULL;
     }
 
     public function delete($key) {
