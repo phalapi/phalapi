@@ -21,7 +21,7 @@ abstract class PhalApi_Model_NotORM implements PhalApi_Model {
 		$rs = DI()->notorm->$table
 			->select($needFields)
 			->where($this->getTableKey($table) . ' = ?', $id)
-			->fetchRow();
+			->fetch();
 
 		$this->parseExtData($rs);
 
@@ -60,7 +60,7 @@ abstract class PhalApi_Model_NotORM implements PhalApi_Model {
 	 * 对LOB的ext_data字段进行格式化(序列化)
 	 */
 	protected function formatExtData(&$data) {
-		if (isset($data['ext_data']) && !is_string($data['ext_data'])) {
+		if (isset($data['ext_data'])) {
 			$data['ext_data'] = json_encode($data['ext_data']);
 		}
 	}
@@ -69,7 +69,7 @@ abstract class PhalApi_Model_NotORM implements PhalApi_Model {
 	 * 对LOB的ext_data字段进行解析(反序列化)
 	 */
 	protected function parseExtData(&$data) {
-		if (isset($data['ext_data']) && !is_string($data['ext_data'])) {
+		if (isset($data['ext_data'])) {
 			$data['ext_data'] = json_decode($data['ext_data'], true);
 		}
 	}
@@ -103,7 +103,7 @@ abstract class PhalApi_Model_NotORM implements PhalApi_Model {
 			throw new PhalApi_Exception_InternalServerError(T('dbs.tables should not be empty'));
 		}
 
-		foreach ($tabels as $tableName => $tableConfig) {
+		foreach ($tables as $tableName => $tableConfig) {
 			if (isset($tableConfig['start']) && isset($tableConfig['end'])) {
 				for ($i = $tableConfig['start']; $i <= $tableConfig['end']; $i ++) {
 					self::$tableKeys[$tableName . '_' . $i] = $tableConfig['key'];
