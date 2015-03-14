@@ -77,6 +77,26 @@ class PhpUnderControl_PhalApiCryptRSAPri2Pub_Test extends PHPUnit_Framework_Test
     }
 
     /**
+     * demo
+     */
+    public function testDecryptAfterEncrypt()
+    {
+        $keyG = new PhalApi_Crypt_RSA_KeyGenerator();
+        $privkey = $keyG->getPriKey();
+        $pubkey = $keyG->getPubKey();
+
+        DI()->crypt = new PhalApi_Crypt_RSA_Pri2Pub();
+
+        $data = 'AHA! I have $2.22 dollars!';
+
+        $encryptData = DI()->crypt->encrypt($data, $privkey);
+
+        $decryptData = DI()->crypt->decrypt($encryptData, $pubkey);
+
+        $this->assertEquals($data, $decryptData);
+    }
+
+    /**
      * @dataProvider provideComplicateData
      */
     public function testWorkWithMoreComplicateData($data)
