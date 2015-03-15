@@ -16,11 +16,22 @@ class PhalApi_Request {
      * @param array $data 参数来源，可以为：$_GET/$_POST/$_REQUEST/自定义
      */
 	public function __construct($data = NULL) {
-		if (!isset($data) || !is_array($data)) {
-            $data = $_REQUEST;
-        }
-		$this->data = $data;
+		$this->data = $this->genData($data);
 	}
+
+    /**
+     * 生成请求参数
+     *
+     * 此生成过程便于项目根据不同的需要进行定制化参数的限制，如：
+	 * 如只允许接受POST数据，或者只接受GET方式的service参数，以及对称加密后的数据包等
+     */
+    protected function genData($data){
+		if (!isset($data) || !is_array($data)) {
+            return $_REQUEST;
+        }
+
+        return $data;
+    }
 	
 	public function get($key, $default = NULL) {
 		return isset($this->data[$key]) ? $this->data[$key] : $default;
