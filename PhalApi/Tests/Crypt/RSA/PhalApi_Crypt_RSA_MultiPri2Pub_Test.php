@@ -125,6 +125,7 @@ class PhpUnderControl_PhalApiCryptRSAMultiPri2Pub_Test extends PHPUnit_Framework
             array('843435Jhe*&混合'),
             array(json_encode(array('name' => 'dogstar', 'ext' => '来点中文行不行？'))),
             array('something important here ...'),
+            array(str_repeat('something long long here ...', 130)),
             );
     }
 
