@@ -5,13 +5,25 @@
  * @author dogstar <chanzonghuang@gmail.com> 2015-03-15
  */
 
-class PhalApi_Crypt_RSA_Pub2Pri extends PhalApi_Crypt_RSA_Base {
+class PhalApi_Crypt_RSA_Pub2Pri implements PhalApi_Crypt {
 
-    protected function doEncrypt($toCryptPie, &$encryptPie, $key) {
-        return @openssl_public_encrypt($toCryptPie, $encryptPie, $key);
+    public function encrypt($data, $pubkey) {
+        $rs = '';
+
+        if (@openssl_public_encrypt($data, $rs, $pubkey) === FALSE) {
+            return NULL;
+        }
+
+        return $rs;
     }
+    
+    public function decrypt($data, $prikey) {
+        $rs = '';
 
-    protected function doDecrypt($encryptPie, &$decryptPie, $key) {
-        return @openssl_private_decrypt($encryptPie, $decryptPie, $key);
+        if (@openssl_private_decrypt($data, $rs, $prikey) === FALSE) {
+            return NULL;
+        }
+
+        return $rs;
     }
 }

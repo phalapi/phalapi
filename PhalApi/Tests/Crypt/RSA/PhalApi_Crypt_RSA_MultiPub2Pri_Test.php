@@ -7,9 +7,9 @@
  * @author: dogstar 20150314
  */
 
-require_once dirname(__FILE__) . '/PhalApi_Crypt_RSA_Pri2Pub_Test.php';
+require_once dirname(__FILE__) . '/PhalApi_Crypt_RSA_MultiPri2Pub_Test.php';
 
-class PhpUnderControl_PhalApiCryptRSAPub2Pri_Test extends PhpUnderControl_PhalApiCryptRSAPri2Pub_Test
+class PhpUnderControl_PhalApiCryptRSAPub2Pri_Test extends PhpUnderControl_PhalApiCryptRSAMultiPri2Pub_Test
 {
     protected function setUp()
     {
@@ -21,7 +21,7 @@ class PhpUnderControl_PhalApiCryptRSAPub2Pri_Test extends PhpUnderControl_PhalAp
         $this->privkey = $keyG->getPubKey();
         $this->pubkey = $keyG->getPriKey();
 
-        $this->phalApiCryptRSAPri2Pub = new PhalApi_Crypt_RSA_Pub2Pri();
+        $this->phalApiCryptRSAMultiPri2Pub = new PhalApi_Crypt_RSA_MultiPub2Pri();
     }
 
 }

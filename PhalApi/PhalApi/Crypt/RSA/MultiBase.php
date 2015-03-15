@@ -9,7 +9,7 @@
  * @author dogstar <chanzonghuang@gmail.com> 2015-03-14
  */
 
-abstract class PhalApi_Crypt_RSA_Base implements PhalApi_Crypt {
+abstract class PhalApi_Crypt_RSA_MultiBase implements PhalApi_Crypt {
 
     const ALLOW_MAX_SPLIT_LEN = 117;
 
@@ -26,7 +26,8 @@ abstract class PhalApi_Crypt_RSA_Base implements PhalApi_Crypt {
 
 	/**
 	 * @param string $data 待加密的字符串，注意其他类型会强制转成字符串再处理
-	 * @param string $key 私钥/公钥
+     * @param string $key 私钥/公钥
+     * @return string NULL
 	 */
     public function encrypt($data, $key) {
         $base64Data = base64_encode(strval($data));
@@ -35,17 +36,17 @@ abstract class PhalApi_Crypt_RSA_Base implements PhalApi_Crypt {
 
         $encryptPieCollector = array();
         foreach ($base64DataArr as $toCryptPie) {
-            $encryptPie = '';
-            if ($this->doEncrypt($toCryptPie, $encryptPie, $key) === FALSE) {
+            $encryptPie = $this->doEncrypt($toCryptPie, $key);
+            if ($encryptPie === NULL) {
                 return NULL;
             }
-            $encryptPieCollector[] = $encryptPie;
+            $encryptPieCollector[] = base64_encode($encryptPie);
         }
 
-        return base64_encode(serialize($encryptPieCollector));
+        return base64_encode(json_encode($encryptPieCollector));
     }
 
-    abstract protected function doEncrypt($toCryptPie, &$encryptPie, $key);
+    abstract protected function doEncrypt($toCryptPie, $key);
 
 	/**
 	 * @param string $data 待解密的字符串
@@ -56,15 +57,19 @@ abstract class PhalApi_Crypt_RSA_Base implements PhalApi_Crypt {
             return $data;
         }
 
-        $encryptPieCollector = @unserialize(@base64_decode($data));
+        $encryptPieCollector = @json_decode(base64_decode($data), true);
         if (!is_array($encryptPieCollector)) {
             return NULL;
         }
 
         $decryptPieCollector = array();
         foreach ($encryptPieCollector as $encryptPie) {
-            $decryptPie = '';
-            if ($this->doDecrypt($encryptPie, $decryptPie, $key) === FALSE) {
+            $base64DecryptPie = @base64_decode($encryptPie);
+            if ($base64DecryptPie === FALSE) {
+                return NULL;
+            }
+            $decryptPie = $this->doDecrypt($base64DecryptPie, $key);
+            if ($decryptPie === NULL) {
                 return NULL;
             }
             $decryptPieCollector[] = $decryptPie;
@@ -77,7 +82,7 @@ abstract class PhalApi_Crypt_RSA_Base implements PhalApi_Crypt {
         return $rs !== FALSE ? $rs : NULL;
     }
 
-    abstract protected function doDecrypt($encryptPie, &$decryptPie, $key);
+    abstract protected function doDecrypt($encryptPie, $key);
 
     protected function getMaxSplitLen()
     {
