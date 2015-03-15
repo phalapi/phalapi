@@ -1,6 +1,6 @@
 <?php
 /**
- * RSA - 私钥加密，公钥解密
+ * RSA - 私钥加密，公钥解密 - 超长字符串的应对方案
  *
  * @author dogstar <chanzonghuang@gmail.com> 2015-03-14
  */

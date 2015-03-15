@@ -1,9 +1,9 @@
 <?php
 /**
- * 基于RSA非对称加密的层超类
+ * 基于RSA非对称加密的层超类 - 超长字符串的应对方案
  *
  * - 考虑到RSA对加密长度的限制，这里采用了分段加密
- * - 另外出于方便落地存储，使用了base64编码
+ * - 结合josn和base64编码作为中间层转换，只能与对应的加解密结合使用
  * - 只适合字符串的加密，其他类型会强制转成字符串
  *
  * @author dogstar <chanzonghuang@gmail.com> 2015-03-14
@@ -27,7 +27,7 @@ abstract class PhalApi_Crypt_RSA_MultiBase implements PhalApi_Crypt {
 	/**
 	 * @param string $data 待加密的字符串，注意其他类型会强制转成字符串再处理
      * @param string $key 私钥/公钥
-     * @return string NULL
+     * @return string 失败时返回NULL
 	 */
     public function encrypt($data, $key) {
         $base64Data = base64_encode(strval($data));
@@ -51,6 +51,7 @@ abstract class PhalApi_Crypt_RSA_MultiBase implements PhalApi_Crypt {
 	/**
 	 * @param string $data 待解密的字符串
 	 * @param string $key 公钥/私钥
+     * @return string 失败时返回NULL
 	 */
     public function decrypt($data, $key){
         if ($data === NULL || $data === '') {
