@@ -42,6 +42,10 @@ class PhalApi_Cache_File implements PhalApi_Cache {
             );
         }
 
+        if (!file_exists($filePath)) {
+            touch($filePath);
+            chmod($filePath, 0777);
+        }
         file_put_contents($filePath, $expireStr . serialize($value));
     }
 

@@ -81,16 +81,17 @@ class PhalApi_Api {
      * 3、接口级通常参数规则
      * 4、接口级当前操作参数规则
      *
-     * 当规则有冲突时，以后面为准。
+     * 当规则有冲突时，以后面为准。另外，被请求的函数名和配置的下标都转成小写再进行匹配。
      *
      * @return array
      */
     public function getApiRules() {
         $allRules = $this->getRules();
+		$allRules = array_change_key_case($allRules, CASE_LOWER);
 
     	$service = DI()->request->get('service', 'Default.Index');
     	list($apiClassName, $action) = explode('.', $service);
-        $action = lcfirst($action); 
+        $action = strtolower($action); 
     	
         $rules = array();
         if (isset($allRules[$action]) && is_array($allRules[$action])) {

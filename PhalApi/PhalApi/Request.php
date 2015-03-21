@@ -25,7 +25,7 @@ class PhalApi_Request {
      * 此生成过程便于项目根据不同的需要进行定制化参数的限制，如：
 	 * 如只允许接受POST数据，或者只接受GET方式的service参数，以及对称加密后的数据包等
      */
-    protected function genData($data){
+    protected function genData($data) {
 		if (!isset($data) || !is_array($data)) {
             return $_REQUEST;
         }

@@ -10,7 +10,6 @@
  
 在此借一行文字的空间，感谢 **开源中国** 这么好的分享平台，同时也感谢您花费宝贵的时间来阅读此文档，在开源的路上，您每一次真心的关注和肯定都是我们前进的最大动力！谢谢！    
   
-广告植入： **祝各位同学新春快乐，洋洋得意！**  
 
 #背景
 过去十年，是互联网时代；如今的十年，是移动时代。  
@@ -76,6 +75,9 @@ http://phalapi.oschina.mopaas.com/Public/demo/?service=Demo.None
 }
 ```
 
+#官网
+官网还在努力开发中，感兴趣的同学，可以访问：[www.phalapi.net](http://www.phalapi.net/)  ![apic](http://webtools.qiniudn.com/phalapi-logo-2-33.png)  
+  
 #文档
 ###后台接口开发就是如此简单，Write the code, enjoy yourself !
 ```
@@ -103,10 +105,8 @@ http://phalapi.oschina.mopaas.com/Public/demo/?service=Demo.None
     ... ...
 
 工具与实践
-    [2.21] PHPUnit：自动化单元测试
-    [2.22] Phing：一键部署、快速发布
-    [2.23] autobench：接口压力测试与可视化图表
-    ... ...
+    [2.21] 服务器统一部署方案简明版：CentOs + Nginx + php-fpm + MySql [+ Memcached]
+    [2.22] 更多工具：精英项目和团队建设
 
 扩展类库
 
@@ -129,9 +129,6 @@ http://phalapi.oschina.mopaas.com/Public/demo/?service=Demo.None
 ```
 
 文档整体情况如上，目前文档还在 **努力编写中** 。如需要 **查看最新的文档** ，请访问：[PhaApi Wiki](http://git.oschina.net/dogstar/PhalApi/wikis/pages)  
-
-#官网
-官网还在努力开发中，感兴趣的同学，可以访问：[www.phalapi.net](http://www.phalapi.net/)  ![apic](http://webtools.qiniudn.com/phalapi-logo-2-33.png)  
 
 
 #[酷！]接口参数在线查询
@@ -206,8 +203,15 @@ http://phalapi.oschina.mopaas.com/Public/demo/checkApiParams.php
     └── Tests           //接口单元测试
 
 ```
+
 #更新日记
 以下更新日记，主要是为了说明，我们一直在努力更新和维护。
+###2015-03-21
+```
+1、一些bugfixed：规则下标开头大小写问题、文件缓存个数问题预防等
+2、扩展类库：七牛云存储接口调用
+3、文档整理和编写新的文档
+```
 ###2015-03-15
 ```
 1、增加对RSA加密的支持，以及超长字符串的解决方案
@@ -297,3 +301,12 @@ http://phalapi.oschina.mopaas.com/Public/demo/checkApiParams.php
 ```
 1、PhalApi开源；
 ```
+
+#加入我们
+显然，这只是一个开始，我们要走的路还很长。这些也不是一个人可以完成的。即使可以，也需要很长一段时间。  
+  
+在一个人26岁的时候，我觉得，应该致力做一些对社会有意义的事情，因此我选择了开源。  
+  
+同样，如果能够有机会和你一起为之努力，将会是我的荣幸，也是一段令值得兴奋激动的。SO？如果你对此深感兴趣、有激情和时间，请联系我，邮箱一如既往是：chanzonghuang@gmail.com，或者开源中国站内留言，欢迎加入，谢谢！  
+  
+除此之外，你也可以通过其他的方式来支持我们。一如：关注和认可，因为在开源的路上，您每一次真心的关注和肯定都是我们前进的最大动力！谢谢！
