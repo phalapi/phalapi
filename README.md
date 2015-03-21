@@ -75,6 +75,9 @@ http://phalapi.oschina.mopaas.com/Public/demo/?service=Demo.None
 }
 ```
 
+#官网
+官网还在努力开发中，感兴趣的同学，可以访问：[www.phalapi.net](http://www.phalapi.net/)  ![apic](http://webtools.qiniudn.com/phalapi-logo-2-33.png)  
+  
 #文档
 ###后台接口开发就是如此简单，Write the code, enjoy yourself !
 ```
@@ -128,9 +131,6 @@ http://phalapi.oschina.mopaas.com/Public/demo/?service=Demo.None
 ```
 
 文档整体情况如上，目前文档还在 **努力编写中** 。如需要 **查看最新的文档** ，请访问：[PhaApi Wiki](http://git.oschina.net/dogstar/PhalApi/wikis/pages)  
-
-#官网
-官网还在努力开发中，感兴趣的同学，可以访问：[www.phalapi.net](http://www.phalapi.net/)  ![apic](http://webtools.qiniudn.com/phalapi-logo-2-33.png)  
 
 
 #[酷！]接口参数在线查询
