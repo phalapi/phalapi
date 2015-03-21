@@ -211,7 +211,8 @@ http://phalapi.oschina.mopaas.com/Public/demo/checkApiParams.php
 ###2015-03-21
 ```
 1、一些bugfixed：规则下标开头大小写问题、文件缓存个数问题预防等
-2、文档整理和编写新的文档
+2、扩展类库：七牛云存储接口调用
+3、文档整理和编写新的文档
 ```
 ###2015-03-15
 ```
