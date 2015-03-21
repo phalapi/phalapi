@@ -105,10 +105,8 @@ http://phalapi.oschina.mopaas.com/Public/demo/?service=Demo.None
     ... ...
 
 工具与实践
-    [2.21] PHPUnit：自动化单元测试
-    [2.22] Phing：一键部署、快速发布
-    [2.23] autobench：接口压力测试与可视化图表
-    ... ...
+    [2.21] 服务器统一部署方案简明版：CentOs + Nginx + php-fpm + MySql [+ Memcached]
+    [2.22] 更多工具：精英项目和团队建设
 
 扩展类库
 
