@@ -4,7 +4,6 @@
 .buildpath
 .project
 
-./Runtime
 ./Runtime/*
 *.log
 
