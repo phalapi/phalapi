@@ -159,6 +159,9 @@ class PhalApi_Api {
      * 		}
      * 	}
      * 
+     * </code> 
+     * <br>
+     * <code>
      *  //在初始化文件 init.php 中注册过滤器
      *  DI()->filter = 'My_Filter';
      * </code> 
