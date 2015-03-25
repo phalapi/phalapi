@@ -150,6 +150,7 @@ class PhalApi_Api {
      * <li>2、注册的过滤器到DI()->filter</li>
      *
      * 以下是一个简单的示例：
+ 	 * <br>
      * <code>
      * 	class My_Filter implements PhalApi_Filter {
      * 
