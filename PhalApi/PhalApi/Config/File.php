@@ -7,8 +7,8 @@
  * 使用示例：
  * <br>
  * <code>
- *      $config = new PhalApi_Config_File('./Config');
- *      $config->get('sys.db.user');
+ * $config = new PhalApi_Config_File('./Config');
+ * $config->get('sys.db.user');
  * </code>
  *
  * @package PhalApi\Config
