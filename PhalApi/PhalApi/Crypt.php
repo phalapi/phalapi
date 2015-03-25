@@ -2,6 +2,7 @@
 /**
  * PhalApi_Crypt对称加密接口
  *
+ * @package PhalApi\Crypt
  * @author dogstar <chanzonghuang@gmail.com> 2014-12-10
  */
 

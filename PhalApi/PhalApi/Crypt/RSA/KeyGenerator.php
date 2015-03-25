@@ -1,7 +1,9 @@
 <?php
 /**
+ * PhalApi_Crypt_RSA_KeyGenerator 生成器
  * RSA私钥或公钥的生成器
  *
+ * @package PhalApi\Crypt
  * @author dogstar <chanzonghuang@gmail.com> 2015-03-15
  */
 

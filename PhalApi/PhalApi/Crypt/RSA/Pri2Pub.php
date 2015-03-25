@@ -1,7 +1,9 @@
 <?php
 /**
+ * PhalApi_Crypt_RSA_Pri2Pub RSA原始加密
  * RSA - 私钥加密，公钥解密
  *
+ * @package PhalApi\Crypt
  * @author dogstar <chanzonghuang@gmail.com> 2015-03-14
  */
 

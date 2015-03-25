@@ -1,9 +1,12 @@
 <?php
 /**
+ * PhalApi_Crypt_Mcrypt 原始mcrypt加密
  * 使用mcrypt扩展进加解密
  *
  * 示例：
- *
+ * <br>
+ * 
+ * <code>
  *  $mcrypt = new PhalApi_Crypt_Mcrypt('12345678');
  *
  *  $data = 'dogstar love php';
@@ -14,17 +17,28 @@
  *
  *  // 解密
  *  $decryptData = $mcrypt->decrypt($encryptData, $key);
+ * </code>
  *
- *
- * @link: http://php.net/manual/zh/function.mcrypt-generic.php
+ * @package PhalApi\Crypt
+ * @link http://php.net/manual/zh/function.mcrypt-generic.php
  * @author dogstar <chanzonghuang@gmail.com> 2014-12-10
  */
 
 class PhalApi_Crypt_Mcrypt implements PhalApi_Crypt {
 
+	/**
+	 * @var string $iv 加密向量， 最大长度不得超过PhalApi_Crypt_Mcrypt::MAX_IV_SIZE
+	 */
     protected $iv;
 
+    /**
+     * @var int 最大加密向量长度
+     */
     const MAX_IV_SIZE = 8;
+    
+    /**
+     * @var int 最大加密key的长度
+     */
     const MAX_KEY_LENGTH = 56;
 
     /**
@@ -41,7 +55,7 @@ class PhalApi_Crypt_Mcrypt implements PhalApi_Crypt {
      * 对称加密 
      *
      * @param string $data 待加密的数据
-     * @key string 私钥
+     * @param string key 私钥
      * @return string 加密后的数据
      */
     public function encrypt($data, $key) {
@@ -61,11 +75,11 @@ class PhalApi_Crypt_Mcrypt implements PhalApi_Crypt {
     /**
      * 对称解密
      *
+     * @see PhalApi_Crypt_Mcrypt::encrypt()
+     * 
      * @param string $data 待解密的数据
-     * @key string 私钥
+     * @param string key 私钥
      * @return string 解密后的数据
-     *
-     * @see: PhalApi_Crypt_Mcrypt::encrypt()
      */
     public function decrypt($data, $key) {
         if ($data === '') {
@@ -81,6 +95,12 @@ class PhalApi_Crypt_Mcrypt implements PhalApi_Crypt {
         return rtrim($decrypted, "\0");
     }
 
+    /**
+     * 创建cipher
+     * @param string $key 私钥
+     * @return resource
+     * @throws PhalApi_Exception_InternalServerError
+     */
     protected function createCipher($key) {
         $cipher = mcrypt_module_open(MCRYPT_BLOWFISH, '', MCRYPT_MODE_CBC, '');
 
@@ -95,10 +115,18 @@ class PhalApi_Crypt_Mcrypt implements PhalApi_Crypt {
         return $cipher;
     }
 
+    /**
+     * 格式化私钥
+     * @param string $key 私钥
+     */
     protected function formatKey($key) {
         return strlen($key) > self::MAX_KEY_LENGTH ?  substr($key, 0, self::MAX_KEY_LENGTH) : $key;
     }
 
+    /**
+     * 释放cipher
+     * @param resource $cipher
+     */
     protected function clearCipher($cipher) {
         mcrypt_generic_deinit($cipher);
         mcrypt_module_close($cipher);

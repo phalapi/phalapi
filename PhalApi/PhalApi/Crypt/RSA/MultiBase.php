@@ -1,22 +1,30 @@
 <?php
 /**
+ * PhalApi_Crypt_RSA_MultiBase RSA加密层超类
  * 基于RSA非对称加密的层超类 - 超长字符串的应对方案
  *
- * - 考虑到RSA对加密长度的限制，这里采用了分段加密
- * - 结合josn和base64编码作为中间层转换，只能与对应的加解密结合使用
- * - 只适合字符串的加密，其他类型会强制转成字符串
+ * <li>考虑到RSA对加密长度的限制，这里采用了分段加密</li>
+ * <li>结合josn和base64编码作为中间层转换，只能与对应的加解密结合使用</li>
+ * <li>只适合字符串的加密，其他类型会强制转成字符串</li>
  *
+ * @package PhalApi\Crypt
  * @author dogstar <chanzonghuang@gmail.com> 2015-03-14
  */
 
 abstract class PhalApi_Crypt_RSA_MultiBase implements PhalApi_Crypt {
-
+	
+	/**
+	 * @var int 用户最大分割长度
+	 */
+	protected $maxSplitLen;
+	
+	/**
+	 * @var int 允许最大分割的长度
+	 */
     const ALLOW_MAX_SPLIT_LEN = 117;
 
-    protected $maxSplitLen;
-
 	/**
-	 * @param int $maxSplitLen 最大分割的彻底，应介于(0, self::ALLOW_MAX_SPLIT_LEN]
+	 * @param int $maxSplitLen 最大分割的彻底，应介于(0, PhalApi_Crypt_RSA_MultiBase::ALLOW_MAX_SPLIT_LEN]
 	 */
     public function __construct($maxSplitLen = 0)
     {
@@ -46,6 +54,11 @@ abstract class PhalApi_Crypt_RSA_MultiBase implements PhalApi_Crypt {
         return base64_encode(json_encode($encryptPieCollector));
     }
 
+    /**
+     * 具体的加密操作
+     * @param string $toCryptPie 待加密的片段
+     * @param string $key 公钥/私钥
+     */
     abstract protected function doEncrypt($toCryptPie, $key);
 
 	/**
@@ -83,8 +96,16 @@ abstract class PhalApi_Crypt_RSA_MultiBase implements PhalApi_Crypt {
         return $rs !== FALSE ? $rs : NULL;
     }
 
+    /**
+     * 具体加密的操作
+     * @param string $encryptPie 待加密的片段
+     * @param string $key 公钥/私钥
+     */
     abstract protected function doDecrypt($encryptPie, $key);
 
+    /**
+     * 取用户设置的取大分割长度
+     */
     protected function getMaxSplitLen()
     {
         return $this->maxSplitLen;

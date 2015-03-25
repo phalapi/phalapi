@@ -7,8 +7,8 @@
  * 使用示例：
  * <br>
  * <code>
- * $config = new PhalApi_Config_File('./Config');
- * $config->get('sys.db.user');
+ * 		$config = new PhalApi_Config_File('./Config');
+ * 		$config->get('sys.db.user');
  * </code>
  *
  * @package PhalApi\Config
@@ -26,7 +26,7 @@ class PhalApi_Config_File implements PhalApi_Config {
 	/**
 	 * @var array $map 配置文件的映射表，避免重复加载 
 	 */
-	private $map = NULL;
+	private $map = array();
 	
 	public function __construct($configPath) {
 		$this->path = $configPath;
