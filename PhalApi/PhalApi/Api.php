@@ -7,6 +7,7 @@
  *
  * 通常地，可以这样继承：
  *
+ *	<p>
  *  <code>
  *  class Api_Demo extends PhalApi_Api {
  *      
@@ -25,6 +26,7 @@
  *      }
  *  }
  *  </code>
+ *  </p>
  *
  * @property mixed $whatever 接口参数
  * 
