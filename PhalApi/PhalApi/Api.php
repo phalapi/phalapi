@@ -26,18 +26,17 @@
  *  }
  *  </code>
  *
+ * @property mixed $whatever 接口参数
+ * 
  * @author dogstar <chanzonghuang@gmail.com> 2014-10-02
  */
 
-/**
- * @property mixed $whatever 接口参数
- */
 class PhalApi_Api {
 
 	/**
 	 * 设置规则解析后的接口参数
-	 * @param string $name
-	 * @param mixed $value
+	 * @param string $name 接口参数名字
+	 * @param mixed $value 接口参数解析后的值
 	 */
     public function __set($name, $value) {
     	$this->$name = $value;
@@ -45,7 +44,7 @@ class PhalApi_Api {
     
     /**
      * 获取规则解析后的接口参数
-     * @param string $name
+     * @param string $name 接口参数名字
      * @throws PhalApi_Exception_InternalServerError 获取未设置的接口参数时，返回500
      * @return mixed
      */
