@@ -7,6 +7,7 @@
  * - 调用的方式有：set/get函数、魔法方法setX/getX、类变量$fdi->X、数组$fdi['X]
  * - 初始化的途径：直接赋值、类名、匿名函数
  *
+ * <br>使用示例：<br>
 ```
  *       $di = new Module_DI();
  *      
@@ -29,7 +30,7 @@
  *       };
 ```       
  *      
- * @link http://docs.phalconphp.com/en/latest/reference/di.html，实现统一的资源设置、获取与管理，支持延时加载
+ * @link http://docs.phalconphp.com/en/latest/reference/di.html 实现统一的资源设置、获取与管理，支持延时加载
  * @author dogstar <chanzonghuang@gmail.com> 2014-01-22
  */ 
 
