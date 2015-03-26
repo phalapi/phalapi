@@ -4,6 +4,7 @@
  *
  * <li>通过curl实现的快捷方便的接口请求类</li>
  *
+ * <br>
  * 示例：
  * <br>
  * <code>
@@ -17,19 +18,40 @@
  *  $rs = $curl->post('http://phalapi.oschina.mopaas.com/Public/demo/?service=Default.Index', $data);
  * </code>
  *
+ *@package PhalApi\CUrl
  * @author dogstar <chanzonghuang@gmail.com> 2015-01-02
  */
 
 class PhalApi_CUrl {
 
+	/**
+	 * GET方式的请求
+	 * @param string $url 请求的链接
+	 * @param int $timeoutMs 超时设置，单位：毫秒
+	 * @return string 接口返回的内容，超时返回false
+	 */
     public function get($url, $timeoutMs = 3000) {
         return $this->request($url, FALSE, $timeoutMs);
     } 
 
+    /**
+     * POST方式的请求
+     * @param string $url 请求的链接
+     * @param array $data POST的数据
+     * @param int $timeoutMs 超时设置，单位：毫秒
+     * @return string 接口返回的内容，超时返回false
+     */
     public function post($url, $data, $timeoutMs = 3000) {
         return $this->request($url, $data, $timeoutMs);
     }
 
+    /**
+     * 统一接口请求
+     * @param string $url 请求的链接
+     * @param array $data POST的数据
+     * @param int $timeoutMs 超时设置，单位：毫秒
+	 * @return string 接口返回的内容，超时返回false
+     */
     protected function request($url, $data, $timeoutMs = 3000) {
         $ch = curl_init();
 

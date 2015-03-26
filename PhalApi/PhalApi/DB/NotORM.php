@@ -1,11 +1,16 @@
 <?php
+require_once PHALAPI_ROOT . DIRECTORY_SEPARATOR . 'NotORM' . DIRECTORY_SEPARATOR . 'NotORM.php';
+
 /**
- * 分布式的DB存储
+ * PhalApi_DB_NotORM 分布式的DB存储
  *
- * - 可定义每个表的存储路由和规则，匹配顺序：
- *   自定义区间匹配 -> 自定义缺省匹配 -> 默认区间匹配 -> 默认缺省匹配
- * - 底层依赖NotORM实现数据库的操作
+ * 基于NotORM的数据库操作，支持分布式
  * 
+ * <li>可定义每个表的存储路由和规则，匹配顺序：
+ *   自定义区间匹配 -> 自定义缺省匹配 -> 默认区间匹配 -> 默认缺省匹配</li>
+ * <li>底层依赖NotORM实现数据库的操作</li>
+ * 
+ * <code>
  *      //需要提供以下格式的DB配置
  *      $config = array(
  *        //可用的DB服务器集群
@@ -45,12 +50,12 @@
  *      //根据ID对3取模的映射获取数据
  *      $rs = $notorm->demo_0->select('*')->where('id = 10')->fetch();
  *      $rs = $notorm->demo_1->select('*')->where('id = 11')->fetch();
+ * </code>
  *
- * @link: http://www.notorm.com/
+ * @package PhalApi\DB
+ * @link http://www.notorm.com/
  * @author dogstar <chanzonghuang@gmail.com> 2014-11-22
  */
-
-require_once PHALAPI_ROOT . DIRECTORY_SEPARATOR . 'NotORM' . DIRECTORY_SEPARATOR . 'NotORM.php';
 
 class PhalApi_DB_NotORM /** implements PhalApi_DB */ {
 
