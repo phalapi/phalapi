@@ -2,13 +2,13 @@
 /**
  * PhalApi_ApiFactory 创建控制器类 工厂方法
  *
- * <li>将创建与使用分离，简化客户调用，负责控制器复杂的创建过程</li>
+ * 将创建与使用分离，简化客户调用，负责控制器复杂的创建过程
  *
- * <code>
+```
  *      //根据请求(?service=XXX.XXX)生成对应的接口服务，并进行初始化
  *      $api = PhalApi_ApiFactory::generateService();
- * </code>
- *
+```
+ * @package PhalApi\Api
  * @author dogstar <chanzonghuang@gmail.com> 2014-10-02
  */
 
@@ -19,17 +19,17 @@ class PhalApi_ApiFactory {
      * 根据客户端提供的接口服务名称和需要调用的方法进行创建工作，如果创建失败，则抛出相应的自定义异常
      *
      * 创建过程主要如下：
-     * <li>1、 是否缺少控制器名称和需要调用的方法</li>
-     * <li>2、 控制器文件是否存在，并且控制器是否存在</li>
-     * <li>3、 方法是否可调用</li>
-     * <li>4、 控制器是否初始化成功</li>
+     * - 1、 是否缺少控制器名称和需要调用的方法
+     * - 2、 控制器文件是否存在，并且控制器是否存在
+     * - 3、 方法是否可调用
+     * - 4、 控制器是否初始化成功
      *
      * @param boolen $isInitialize 是否在创建后进行初始化
      * @param string $_REQUEST['service'] 接口服务名称，格式：XXX.XXX
+     * @return PhalApi_Api 自定义的控制器
      *
      * @uses PhalApi_Api::init()
      * @throws PhalApi_Exception_BadRequest 非法请求下返回400
-     * @return PhalApi_Api 自定义的控制器
      */
 	static function generateService($isInitialize = TRUE) {
 		$service = DI()->request->get('service', 'Default.Index');

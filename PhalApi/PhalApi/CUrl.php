@@ -2,12 +2,11 @@
 /**
  * CURL请求类
  *
- * <li>通过curl实现的快捷方便的接口请求类</li>
- *
- * <br>
- * 示例：
- * <br>
- * <code>
+ * 通过curl实现的快捷方便的接口请求类
+ * 
+ * <br>示例：<br>
+ * 
+```
  *  $curl = new PhalApi_CUrl();
  *
  *  // GET
@@ -16,9 +15,9 @@
  *  // POST
  *  $data = array('username' => 'dogstar');
  *  $rs = $curl->post('http://phalapi.oschina.mopaas.com/Public/demo/?service=Default.Index', $data);
- * </code>
+```
  *
- *@package PhalApi\CUrl
+ * @package PhalApi\CUrl
  * @author dogstar <chanzonghuang@gmail.com> 2015-01-02
  */
 
