@@ -1,13 +1,16 @@
 <?php
 /**
- * PhalApi_DI 依赖注入类 Dependency Injection
+ * PhalApi_DI 依赖注入类
  *
+ *  Dependency Injection 依赖注入容器
+ *  
  * - 调用的方式有：set/get函数、魔法方法setX/getX、类变量$fdi->X、数组$fdi['X]
  * - 初始化的途径：直接赋值、类名、匿名函数
  *
+```
  *       $di = new Module_DI();
  *      
- *       # 用的方式有：set/get函数  魔法方法setX/getX、类属性$di->X、数组$di['X']
+ *       // 用的方式有：set/get函数  魔法方法setX/getX、类属性$di->X、数组$di['X']
  *       $di->key = 'value';
  *       $di['key'] = 'value';
  *       $di->set('key', 'value');
@@ -18,15 +21,16 @@
  *       echo $di->get('key');
  *       echo $di->getKey();
  *      
- *       #初始化的途径：直接赋值、类名(会回调onInitialize函数)、匿名函数
+ *       // 初始化的途径：直接赋值、类名(会回调onInitialize函数)、匿名函数
  *       $di->simpleKey = array('value');
  *       $di->classKey = 'Module_DI';
  *       $di->closureKey = function () {
  *            return 'sth heavy ...';
  *       };
+```       
  *      
- * @link: http://docs.phalconphp.com/en/latest/reference/di.html，实现统一的资源设置、获取与管理，支持延时加载
- * @author: dogstar <chanzonghuang@gmail.com> 2014-01-22
+ * @link http://docs.phalconphp.com/en/latest/reference/di.html，实现统一的资源设置、获取与管理，支持延时加载
+ * @author dogstar <chanzonghuang@gmail.com> 2014-01-22
  */ 
 
 class PhalApi_DI implements ArrayAccess {
