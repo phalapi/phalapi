@@ -113,7 +113,7 @@ abstract class PhalApi_Logger {
     }
 
     /**
-     * 是否允许写入日记
+     * 是否允许写入日记，或运算
      * @param int $logLevel
      * @return boolean
      */

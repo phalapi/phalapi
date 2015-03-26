@@ -1,11 +1,12 @@
 <?php
 /**
- * 模型接口
+ * PhalApi_Model模型接口
  *
  * - 提供基于“表数据入口”模式的数据库接口
  * - 提供基于主键(id, etc)的基本操作，其中应对CLOB的ext_data字段的转换
  * - 为了支持数据库分表存储，实现类应该根据数据库配置读取相应的表名
  *
+ * @package PhalApi\Model
  * @author dogstar <chanzonghuang@gmail.com> 2015-02-22
  */
 

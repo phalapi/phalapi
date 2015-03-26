@@ -7,6 +7,7 @@
  * - 具体子类需要实现源数据获取、返回缓存唯一key、和返回有效期
  * - 仅在有需要的情况下，使用此Model代理
  *
+ * @package PhalApi\Model
  * @author dogstar <chanzonghuang@gmail.com> 2015-02-22
  */
 

@@ -2,6 +2,7 @@
 /**
  * PhalApi_Cache 缓存接口
  *
+ * @package PhalApi\Cache
  * @author dogstar <chanzonghuang@gmail.com> 2015-02-04
  */
 
