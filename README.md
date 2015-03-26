@@ -78,6 +78,9 @@ http://phalapi.oschina.mopaas.com/Public/demo/?service=Demo.None
 #官网
 官网还在努力开发中，感兴趣的同学，可以访问：[www.phalapi.net](http://www.phalapi.net/)  ![apic](http://webtools.qiniudn.com/phalapi-logo-2-33.png)  
   
+#类参考手册
+[类参考手册](http://www.phalapi.net/docs/)  
+  
 #文档
 ###后台接口开发就是如此简单，Write the code, enjoy yourself !
 ```
