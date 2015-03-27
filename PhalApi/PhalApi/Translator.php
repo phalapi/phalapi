@@ -5,21 +5,35 @@
  * - 根提供的语言包，进行翻译
  * - 优先使用应用级的翻译，其次是框架默认的
  * 
- * 使用示例
+ * <br>使用示例：<br>
+```
  *      //初始化，设置语言
  *      PhalApi_Translator::setLanguage('zh_cn');
  *
  *      //翻译
  *      $msg = T('hello {name}', array('name' => 'phper'));
  *      var_dump($msg);
+```
  *
+ * @package PhalApi\Translator
+ * @license http://www.phalapi.net/license
+ * @link http://www.phalapi.net/
  * @author dogstar <chanzonghuang@gmail.com> 2015-02-04
  */
 
 class PhalApi_Translator {
 
+	/**
+	 * @var array $message 翻译的映射
+	 */
     protected static $message = NULL;
 
+    /**
+     * 获取翻译
+     * @param string $key 翻译的内容
+     * @param array $params 动态参数
+     * @return string
+     */
     public static function get($key, $params = array()) {
         if (self::$message === NULL) {
             self::setLanguage('en');
@@ -37,6 +51,10 @@ class PhalApi_Translator {
         return '{' . $name . '}';
     }
 
+    /**
+     * 语言设置
+     * @param string $language 翻译包的目录名
+     */
     public static function setLanguage($language) {
         self::$message = array();
 

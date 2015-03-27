@@ -1,11 +1,17 @@
 <?php
+require_once PHALAPI_ROOT . DIRECTORY_SEPARATOR . 'NotORM' . DIRECTORY_SEPARATOR . 'NotORM.php';
+
 /**
- * 分布式的DB存储
+ * PhalApi_DB_NotORM 分布式的DB存储
  *
+ * 基于NotORM的数据库操作，支持分布式
+ * 
  * - 可定义每个表的存储路由和规则，匹配顺序：
  *   自定义区间匹配 -> 自定义缺省匹配 -> 默认区间匹配 -> 默认缺省匹配
  * - 底层依赖NotORM实现数据库的操作
  * 
+ * <br>使用示例：<br>
+```
  *      //需要提供以下格式的DB配置
  *      $config = array(
  *        //可用的DB服务器集群
@@ -43,25 +49,44 @@
  *      $notorm = new PhalApi_DB_NotORM($config);
  *
  *      //根据ID对3取模的映射获取数据
- *      $rs = $notorm->demo_0->select('*')->where('id = 10')->fetch();
- *      $rs = $notorm->demo_1->select('*')->where('id = 11')->fetch();
+ *      $rs = $notorm->demo_0->select('*')->where('id', 10)->fetch();
+ *      $rs = $notorm->demo_1->select('*')->where('id', 11)->fetch();
+```
  *
- * @link: http://www.notorm.com/
+ * @property string table_name 数据库表名
+ * @package PhalApi\DB
+ * @link http://www.notorm.com/
+ * @license http://www.phalapi.net/license
+ * @link http://www.phalapi.net/
  * @author dogstar <chanzonghuang@gmail.com> 2014-11-22
  */
 
-require_once PHALAPI_ROOT . DIRECTORY_SEPARATOR . 'NotORM' . DIRECTORY_SEPARATOR . 'NotORM.php';
-
 class PhalApi_DB_NotORM /** implements PhalApi_DB */ {
 
+	/**
+	 * @var NotORM $_notorms NotORM的实例池
+	 */
     protected $_notorms = array();
 
+    /**
+     * @var PDO $_pdos PDO连接池，统一管理，避免重复连接
+     */
     protected $_pdos = array();
 
+    /**
+     * @var array $_configs 数据库配置 
+     */
     protected $_configs = array();
 
+    /**
+     * @var boolean 是否开启调试模式，调试模式下会输出全部执行的SQL语句和对应消耗的时间
+     */
     protected $debug = FALSE;
 
+    /**
+     * @param array $configs 数据库配置 
+     * @param boolean $debug 是否开启调试模式
+     */
     public function __construct($configs, $debug = FALSE) {
         $this->_configs = $configs;
 
@@ -99,6 +124,11 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */ {
         return '__' . $tableName . '__';
     }
 
+    /**
+     * 解析分布式表名
+     * 表名  + ['_' + 数字后缀]，如：user_0, user_1, ... user_100
+     * @param string $name
+     */
     protected function parseName($name) {
         $tableName = $name;
         $suffix = NULL;
@@ -115,6 +145,13 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */ {
         return array($tableName, $suffix);
     }
 
+    /**
+     * 获取分布式数据库路由
+     * @param string $tableName 数据库表名
+     * @param string $suffix 分布式下的表后缀
+     * @return array 数据库配置
+     * @throws PhalApi_Exception_InternalServerError
+     */
     protected function getDBRouter($tableName, $suffix) {
         $rs = array('prefix' => '', 'key' => '', 'pdo' => NULL, 'isNoSuffix' => FALSE);
 
@@ -172,6 +209,11 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */ {
         return $rs;
     }
 
+    /**
+     * 获取 PDO连接
+     * @param string $dbKey 数据库表名唯一KEY
+     * @return PDO
+     */
     protected function getPdo($dbKey) {
         if (!isset($this->_pdos[$dbKey])) {
             $dbCfg = isset($this->_configs['servers'][$dbKey]) 

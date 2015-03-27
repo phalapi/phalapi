@@ -4,13 +4,19 @@
  *
  * - 将日记写入文件，文件目录可以自定义
  * 
+ * <br>使用示例：<br>
+```
  *      //目录为./Runtime，且保存全部类型的日记
  *      $logger = new PhalApi_Logger_File('./Runtime', 
  * 	        PhalApi_Logger::LOG_LEVEL_DEBUG | PhalApi_Logger::LOG_LEVEL_INFO | PhalApi_Logger::LOG_LEVEL_ERROR);
  *
  *      //日记会保存在在./Runtime/debug_log/目录下
  *      $logger->debug('this is bebug test');
+```
  *
+ * @package PhalApi\Logger
+ * @license http://www.phalapi.net/license
+ * @link http://www.phalapi.net/
  * @author dogstar <chanzonghuang@gmail.com> 2014-10-02
  */
 

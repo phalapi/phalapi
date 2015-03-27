@@ -1,16 +1,23 @@
 <?php
 /**
+ * PhalApi_Crypt_MultiMcrypt 多级mcrypt加密
  * 对底层的mcrypt进行简单的再封装，以便存储和保留类型
  *
  * - 依赖PhalApi_Crypt_Mcrypt进行加解密操作
  * - 支持任何数据类型的加解密
  * - 返回便于存储的字符串
  *
+ * @package PhalApi\Crypt
+ * @license http://www.phalapi.net/license
+ * @link http://www.phalapi.net/
  * @author dogstar <chanzonghuang@gmail.com> 2014-12-11
  */
 
 class PhalApi_Crypt_MultiMcrypt implements PhalApi_Crypt {
 
+	/**
+	 * @var PhalApi_Crypt_Mcrypt $mcrypt
+	 */
     protected $mcrypt = NULL;
 
     public function __construct($iv) {

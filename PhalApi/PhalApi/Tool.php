@@ -7,6 +7,9 @@
  * - IP地址获取
  * - 随机字符串生成
  *
+ * @package PhalApi\Tool
+ * @license http://www.phalapi.net/license
+ * @link http://www.phalapi.net/
  * @author dogstar <chanzonghuang@gmail.com> 2015-02-12
  */
 
@@ -15,7 +18,7 @@ class PhalApi_Tool {
     /**
      * IP地址获取
      *
-     * 失败的情况下，返回空
+     * @return string 如：192.168.1.1 失败的情况下，返回空
      */
     public static function getClientIp() {
         $unknown = 'unknown';
@@ -39,6 +42,7 @@ class PhalApi_Tool {
      * 随机字符串生成
      *
      * @param int $len 需要随机的长度，不要太长
+     * @return string
      */
     public static function createRandStr($len) {
         $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
