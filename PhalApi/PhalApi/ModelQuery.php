@@ -6,6 +6,8 @@
  * - 如需要拷贝值对象，可以结合使用构造函数和toArray()
  * 
  * @package PhalApi\Model
+ * @license http://www.phalapi.net/license
+ * @link http://www.phalapi.net/
  * @author dogstar <chanzonghuang@gmail.com> 2015-02-22
  */
 

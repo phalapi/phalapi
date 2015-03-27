@@ -21,6 +21,8 @@
  *
  * @package PhalApi\Crypt
  * @link http://php.net/manual/zh/function.mcrypt-generic.php
+ * @license http://www.phalapi.net/license
+ * @link http://www.phalapi.net/
  * @author dogstar <chanzonghuang@gmail.com> 2014-12-10
  */
 

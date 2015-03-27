@@ -8,6 +8,8 @@
  * - 仅在有需要的情况下，使用此Model代理
  *
  * @package PhalApi\Model
+ * @license http://www.phalapi.net/license
+ * @link http://www.phalapi.net/
  * @author dogstar <chanzonghuang@gmail.com> 2015-02-22
  */
 

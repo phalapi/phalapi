@@ -3,6 +3,8 @@
  * PhalApi_Crypt对称加密接口
  *
  * @package PhalApi\Crypt
+ * @license http://www.phalapi.net/license
+ * @link http://www.phalapi.net/
  * @author dogstar <chanzonghuang@gmail.com> 2014-12-10
  */
 

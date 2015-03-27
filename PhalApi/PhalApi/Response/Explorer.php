@@ -2,6 +2,9 @@
 /**
  * 控制台响应类
  *
+ * @package PhalApi\Response
+ * @license http://www.phalapi.net/license
+ * @link http://www.phalapi.net/
  * @author dogstar <chanzonghuang@gmail.com> 2015-02-09
  */
 

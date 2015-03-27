@@ -2,13 +2,15 @@
 /**
  * PhalApi_Request_Var 变量格式化类
  *
- * - 针对设定的规则进行对品购模块中的变量进行格式化操作
- *  1、根据字段与预定义变量对应关系，获取变量值
- *  2、对变量进行类型转换
- *  3、进行有效性判断过滤
- *  4、按业务需求进行格式化 
+ * 针对设定的规则进行对品购模块中的变量进行格式化操作
  * 
- * - 格式规则：
+ * - 1、根据字段与预定义变量对应关系，获取变量值
+ * - 2、对变量进行类型转换
+ * - 3、进行有效性判断过滤
+ * - 4、按业务需求进行格式化 
+ * 
+ * <br>格式规则：<br>
+```
  *  array('name' => '', 'type' => 'string', 'default' => '', 'min' => '', 'max' => '',)
  *  array('name' => '', 'type' => 'int', 'default' => '', 'min' => '', 'max' => '',)
  *  array('name' => '', 'type' => 'float', 'default' => '', 'min' => '', 'max' => '',)
@@ -16,7 +18,11 @@
  *  array('name' => '', 'type' => 'date', 'default' => '',)
  *  array('name' => '', 'type' => 'array', 'default' => '', 'format' => 'json/explode', 'separator' => '')
  *  array('name' => '', 'type' => 'enum', 'default' => '', 'range' => array(...))
+```
  *
+ * @package PhalApi\Request
+ * @license http://www.phalapi.net/license
+ * @link http://www.phalapi.net/
  * @author dogstar <chanzonghuang@gmail.com> 2014-10-04
  */
 
@@ -26,6 +32,7 @@ class PhalApi_Request_Var {
 
     /**
      * 统一格式化操作
+     * 扩展参数请参见各种类型格式化操作的参数说明
      *
      * @param string $varName 变量名
      * @param array $rule 格式规则：
@@ -36,7 +43,6 @@ class PhalApi_Request_Var {
      *  'format' => '格式化字符串'
      *  ...
      *  )
-     * 扩展参数请参见各种类型格式化操作的参数说明
      * @param array $params 参数列表
      * @return miexd 格式后的变量
      */ 
@@ -54,6 +60,13 @@ class PhalApi_Request_Var {
         return self::formatAllType($type, $value, $rule);
     }
 
+    /**
+     * 统一分发处理
+     * @param string $type 类型
+     * @param string $value 值
+     * @param array $rule 规则配置
+     * @return mixed
+     */
     protected static function formatAllType($type, $value, $rule) {
         switch ($type) {
             //基本类型
@@ -93,7 +106,7 @@ class PhalApi_Request_Var {
      * 对字符串进行格式化
      *
      * @param mixed $value 变量值
-     * @parma array $rule array('len' => ‘最长长度’)
+     * @@param array $rule array('len' => ‘最长长度’)
      * @return string 格式化后的变量
      *
      */
@@ -105,7 +118,7 @@ class PhalApi_Request_Var {
      * 对整型进行格式化
      *
      * @param mixed $value 变量值
-     * @parma array $rule array('min' => '最小值', 'max' => '最大值')
+     * @param array $rule array('min' => '最小值', 'max' => '最大值')
      * @return int/string 格式化后的变量
      *
      */
@@ -117,7 +130,7 @@ class PhalApi_Request_Var {
      * 对浮点型进行格式化
      *
      * @param mixed $value 变量值
-     * @parma array $rule array('min' => '最小值', 'max' => '最大值')
+     * @param array $rule array('min' => '最小值', 'max' => '最大值')
      * @return float/string 格式化后的变量
      *
      */
@@ -129,7 +142,7 @@ class PhalApi_Request_Var {
      * 对布尔型进行格式化
      *
      * @param mixed $value 变量值
-     * @parma array $rule array('TRUE' => '成立时替换的内容', 'FALSE' => '失败时替换的内容')
+     * @param array $rule array('TRUE' => '成立时替换的内容', 'FALSE' => '失败时替换的内容')
      * @return boolean/string 格式化后的变量
      *
      */
@@ -154,7 +167,7 @@ class PhalApi_Request_Var {
      * 对日期进行格式化
      *
      * @param timestamp $value 变量值
-     * @parma array $rule array('min' => '最小值', 'max' => '最大值')
+     * @param array $rule array('min' => '最小值', 'max' => '最大值')
      * @return timesatmp/string 格式化后的变量
      *
      */
@@ -172,6 +185,12 @@ class PhalApi_Request_Var {
         return $rs;
     }
 
+    /**
+     * 对数组格式化/数组转换
+     * @param string $value 变量值
+     * @param array $rule array('name' => '', 'type' => 'array', 'default' => '', 'format' => 'json/explode', 'separator' => '')
+     * @return array
+     */
     public static function formatArray($value, $rule) {
         $rs = $value;
 
@@ -191,7 +210,9 @@ class PhalApi_Request_Var {
 
     /**
      * 检测枚举类型
-     * @return 当不符合时返回NULL
+     * @param string $value 变量值
+     * @param array $rule array('name' => '', 'type' => 'enum', 'default' => '', 'range' => array(...))
+     * @return 当不符合时返回$rule
      */
     public static function formatEnum($value, $rule) {
         self::formatEnumRule($rule);
@@ -201,6 +222,11 @@ class PhalApi_Request_Var {
         return $value;
     }
 
+    /**
+     * 检测枚举规则的合法性
+     * @param array $rule array('name' => '', 'type' => 'enum', 'default' => '', 'range' => array(...))
+     * @throws PhalApi_Exception_InternalServerError
+     */
     protected static function formatEnumRule($rule) {
         if (!isset($rule['range'])) {
             throw new PhalApi_Exception_InternalServerError(
@@ -213,6 +239,12 @@ class PhalApi_Request_Var {
         }
     }
 
+    /**
+     * 格式化枚举类型
+     * @param string $value 变量值
+     * @param array $rule array('name' => '', 'type' => 'enum', 'default' => '', 'range' => array(...))
+     * @throws PhalApi_Exception_BadRequest
+     */
     protected static function formatEnumValue($value, $rule) {
         if (!in_array($value, $rule['range'])) {
             throw new PhalApi_Exception_BadRequest(
@@ -258,7 +290,7 @@ class PhalApi_Request_Var {
         }
     }
 
-    public static function filterRangeCheckMin($value, $rule) {
+    protected static function filterRangeCheckMin($value, $rule) {
         if (isset($rule['min']) && $value < $rule['min']) {
             throw new PhalApi_Exception_BadRequest(
                 T('{name} should >= {min}, but now {name} = {value}', 
@@ -267,7 +299,7 @@ class PhalApi_Request_Var {
         }
     }
 
-    public static function filterRangeCheckMax($value, $rule) {
+    protected static function filterRangeCheckMax($value, $rule) {
         if (isset($rule['max']) && $value > $rule['max']) {
             throw new PhalApi_Exception_BadRequest(
                 T('{name} should <= {max}, but now {name} = {value}', 

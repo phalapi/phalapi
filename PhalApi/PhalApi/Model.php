@@ -7,6 +7,8 @@
  * - 为了支持数据库分表存储，实现类应该根据数据库配置读取相应的表名
  *
  * @package PhalApi\Model
+ * @license http://www.phalapi.net/license
+ * @link http://www.phalapi.net/
  * @author dogstar <chanzonghuang@gmail.com> 2015-02-22
  */
 

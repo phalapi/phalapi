@@ -6,6 +6,8 @@
  * - 需要与参数规则配合使用
  *
  * @package PhalApi\Request
+ * @license http://www.phalapi.net/license
+ * @link http://www.phalapi.net/
  * @author dogstar <chanzonghuang@gmail.com> 2014-10-02
  */
 

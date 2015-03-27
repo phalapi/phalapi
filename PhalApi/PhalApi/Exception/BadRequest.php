@@ -1,9 +1,12 @@
 <?php
 /**
- * PhalApi_Exception_BadRequest
+ * PhalApi_Exception_BadRequest 客户端非法请求
  *
  * 客户端非法请求
  *
+ * @package PhalApi\Exception
+ * @license http://www.phalapi.net/license
+ * @link http://www.phalapi.net/
  * @author dogstar <chanzonghuang@gmail.com> 2015-02-05
  */
 

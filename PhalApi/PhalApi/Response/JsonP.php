@@ -2,6 +2,9 @@
 /**
  * JSON响应类
  *
+ * @package PhalApi\Response
+ * @license http://www.phalapi.net/license
+ * @link http://www.phalapi.net/
  * @author: dogstar <chanzonghuang@gmail.com> 2015-02-09
  */
 
@@ -9,6 +12,9 @@ class PhalApi_Response_JsonP extends PhalApi_Response {
 
     protected $callback = '';
 
+    /**
+     * @param string $callback JS回调函数名
+     */
     public function __construct($callback) {
         $this->callback = $this->clearXss($callback);
 

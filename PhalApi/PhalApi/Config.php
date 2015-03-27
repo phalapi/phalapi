@@ -5,6 +5,8 @@
  * 获取系统所需要的参数配置
  *
  * @package PhalApi\Config
+ * @license http://www.phalapi.net/license
+ * @link http://www.phalapi.net/
  * @author dogstar <chanzonghuang@gmail.com> 2014-10-02
  */
 

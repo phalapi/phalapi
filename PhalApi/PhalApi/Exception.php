@@ -5,6 +5,8 @@
  * - 对于系统已存在Exception类，故加Zen前缀以区分为自定义的类
  *
  * @package PhalApi\Exception
+ * @license http://www.phalapi.net/license
+ * @link http://www.phalapi.net/
  * @author dogstar <chanzonghuang@gmail.com> 2014-10-02
  */
 

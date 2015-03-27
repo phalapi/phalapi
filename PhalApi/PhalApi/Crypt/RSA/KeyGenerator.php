@@ -3,7 +3,9 @@
  * PhalApi_Crypt_RSA_KeyGenerator 生成器
  * RSA私钥或公钥的生成器
  *
- * @package PhalApi\Crypt
+ * @package PhalApi\Crypt\RSA
+ * @license http://www.phalapi.net/license
+ * @link http://www.phalapi.net/
  * @author dogstar <chanzonghuang@gmail.com> 2015-03-15
  */
 
