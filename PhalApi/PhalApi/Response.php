@@ -3,6 +3,7 @@
  * PhalApi_Response 响应类
  *
  * - 拥有各种结果返回状态 ，以及对返回结果 的格式化
+ * - 其中：200成功，400非法请求，500服务器错误
  *
  * @package PhalApi\Response
  * @license http://www.phalapi.net/license
