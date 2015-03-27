@@ -209,6 +209,10 @@ http://phalapi.oschina.mopaas.com/Public/demo/checkApiParams.php
 
 #更新日记
 以下更新日记，主要是为了说明，我们一直在努力更新和维护。
+###2015-03-27
+```
+1、代码注释完善与在线类参考手册生成：http://www.phalapi.net/docs/
+```
 ###2015-03-21
 ```
 1、一些bugfixed：规则下标开头大小写问题、文件缓存个数问题预防等
