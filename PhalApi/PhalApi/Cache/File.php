@@ -1,6 +1,6 @@
 <?php
 /**
- * 文件缓存
+ * PhalApi_Cache_File 文件缓存
  *
  * @package PhalApi\Cache
  * @license http://www.phalapi.net/license

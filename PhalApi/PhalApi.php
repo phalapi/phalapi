@@ -1,6 +1,12 @@
 <?php
+/**
+ * 框架版本号
+ */
 defined('PHALAPI_VERSION') || define('PHALAPI_VERSION', '1.1.1');
  
+/**
+ * 项目根目录
+ */
 defined('PHALAPI_ROOT') || define('PHALAPI_ROOT', dirname(__FILE__));
 
 require_once PHALAPI_ROOT . DIRECTORY_SEPARATOR . 'PhalApi' . DIRECTORY_SEPARATOR . 'Loader.php';

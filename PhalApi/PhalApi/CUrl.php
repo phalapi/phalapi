@@ -1,6 +1,6 @@
 <?php
 /**
- * CURL请求类
+ * PhalApi_CUrl CURL请求类
  *
  * 通过curl实现的快捷方便的接口请求类
  * 

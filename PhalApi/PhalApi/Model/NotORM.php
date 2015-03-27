@@ -1,6 +1,6 @@
 <?php
 /**
- * 基于NotORM的Model基类
+ * PhalApi_Model_NotORM 基于NotORM的Model基类
  *
  * - 我们这里对ext_data使用json而不是序列化，是为了更容易阅读、理解、测试
  * - 可重写formatExtData() & parseExtData()重新定制针对序列化LOB的转换

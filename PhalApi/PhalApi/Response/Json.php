@@ -1,6 +1,6 @@
 <?php
 /**
- * JSON响应类
+ * PhalApi_Response_Json JSON响应类
  *
  * @package PhalApi\Response
  * @license http://www.phalapi.net/license

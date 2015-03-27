@@ -1,6 +1,6 @@
 <?php
 /**
- * MC缓存
+ * PhalApi_Cache_Memecahced MC缓存
  *
  * - 使用序列化对需要存储的值进行转换，以提高速度
  *

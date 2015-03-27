@@ -1,6 +1,6 @@
 <?php
 /**
- * 控制台响应类
+ * PhalApi_Response_Explorer 控制台响应类
  *
  * @package PhalApi\Response
  * @license http://www.phalapi.net/license

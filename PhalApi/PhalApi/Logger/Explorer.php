@@ -1,6 +1,6 @@
 <?php
 /**
- * 直接输出日记到控制台的日记类 PhalApi_Logger_Explorer
+ * PhalApi_Logger_Explorer 直接输出日记到控制台的日记类 
  * 
  * - 测试环境下使用
  * 
