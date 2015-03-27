@@ -1,17 +1,27 @@
 <?php
-/**
- * PhalApi 应用类
- *
- * - 实现远程服务的响应、调用等操作
- *
- * @author dogstar <chanzonghuang@gmail.com> 2014-12-17
- */
-
 defined('PHALAPI_VERSION') || define('PHALAPI_VERSION', '1.1.1');
  
 defined('PHALAPI_ROOT') || define('PHALAPI_ROOT', dirname(__FILE__));
 
 require_once PHALAPI_ROOT . DIRECTORY_SEPARATOR . 'PhalApi' . DIRECTORY_SEPARATOR . 'Loader.php';
+
+/**
+ * PhalApi 应用类
+ *
+ * - 实现远程服务的响应、调用等操作
+ * 
+ * <br>使用示例：<br>
+```
+ * $api = new PhalApi();
+ * $rs = $api->response();
+ * $rs->output();
+```
+ *
+ * @package PhalApi\Response
+ * @license http://www.phalapi.net/license
+ * @link http://www.phalapi.net/
+ * @author dogstar <chanzonghuang@gmail.com> 2014-12-17
+ */
 
 class PhalApi {
     
@@ -22,12 +32,13 @@ class PhalApi {
      *
      * @return mixed 根据配置的或者手动设置的返回格式，将结果返回
      *  其结果包含以下元素：
-     *
+```
      *  array(
      *      'ret'   => 200,	            //服务器响应状态
      *      'data'  => array(),	        //正常并成功响应后，返回给客户端的数据	
      *	    'msg'   => '',		        //错误提示信息
      *  );
+```
      */
     public function response() {
     	$rs = DI()->response;
