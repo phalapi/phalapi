@@ -7,6 +7,32 @@
  * - 具体子类需要实现源数据获取、返回缓存唯一key、和返回有效期
  * - 仅在有需要的情况下，使用此Model代理
  *
+ * <br>实例和使用示例：<br>
+```
+ * class ModelProxy_UserBaseInfo extends PhalApi_ModelProxy {
+ *
+ *	protected function doGetData($query) {
+ *		$model = new Model_User();
+ *
+ *		return $model->getByUserId($query->id);
+ *	}
+ *
+ *	protected function getKey($query) {
+ *		return 'userbaseinfo_' . $query->id;
+ *	}
+ *
+ *	protected function getExpire($query) {
+ *		return 600;
+ *	}
+ * }
+ * 
+ * //最终的调用
+ * $query = new PhalApi_ModelQuery();
+ * $query->id = $userId;
+ * $modelProxy = new ModelProxy_UserBaseInfo();
+ * $rs = $modelProxy->getData($query);
+```
+ *
  * @package PhalApi\Model
  * @license http://www.phalapi.net/license
  * @link http://www.phalapi.net/

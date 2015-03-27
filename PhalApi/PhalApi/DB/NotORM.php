@@ -49,8 +49,8 @@ require_once PHALAPI_ROOT . DIRECTORY_SEPARATOR . 'NotORM' . DIRECTORY_SEPARATOR
  *      $notorm = new PhalApi_DB_NotORM($config);
  *
  *      //根据ID对3取模的映射获取数据
- *      $rs = $notorm->demo_0->select('*')->where('id = 10')->fetch();
- *      $rs = $notorm->demo_1->select('*')->where('id = 11')->fetch();
+ *      $rs = $notorm->demo_0->select('*')->where('id', 10)->fetch();
+ *      $rs = $notorm->demo_1->select('*')->where('id', 11)->fetch();
 ```
  *
  * @property string table_name 数据库表名
