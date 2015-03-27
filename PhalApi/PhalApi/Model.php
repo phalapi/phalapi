@@ -6,6 +6,30 @@
  * - 提供基于主键(id, etc)的基本操作，其中应对CLOB的ext_data字段的转换
  * - 为了支持数据库分表存储，实现类应该根据数据库配置读取相应的表名
  *
+ * <br>使用示例：<br>
+```
+ * 	class Model_User extends PhalApi_Model_NotORM {
+ * 
+ * 		protected function getTableName($id) {
+ * 			return 'user';
+ * 		}
+ * 	}
+ * 
+ * 	$model = new Model_User();
+ * 
+ * 	// 获取
+ *  $rs = $model->get($userId);
+ *  
+ *  // 插入
+ *  $model->insert(array('name' => 'whatever', 'from' => 'somewhere'));
+ *  
+ *  // 更新
+ *  $model->update(1, array('name' => 'dogstar huang'));
+ *  
+ *  // 删除
+ *  $model->delete(1);
+```
+ * 
  * @package PhalApi\Model
  * @license http://www.phalapi.net/license
  * @link http://www.phalapi.net/

@@ -1,12 +1,11 @@
 <?php
 /**
  * PhalApi_Crypt_Mcrypt 原始mcrypt加密
+ * 
  * 使用mcrypt扩展进加解密
  *
- * 示例：
- * <br>
- * 
- * <code>
+ * <br>使用示例：<br>
+```
  *  $mcrypt = new PhalApi_Crypt_Mcrypt('12345678');
  *
  *  $data = 'dogstar love php';
@@ -17,7 +16,7 @@
  *
  *  // 解密
  *  $decryptData = $mcrypt->decrypt($encryptData, $key);
- * </code>
+```
  *
  * @package PhalApi\Crypt
  * @link http://php.net/manual/zh/function.mcrypt-generic.php

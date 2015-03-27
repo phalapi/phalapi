@@ -1,11 +1,12 @@
 <?php
 /**
  * PhalApi_Crypt_RSA_MultiBase RSA加密层超类
+ * 
  * 基于RSA非对称加密的层超类 - 超长字符串的应对方案
  *
- * <li>考虑到RSA对加密长度的限制，这里采用了分段加密</li>
- * <li>结合josn和base64编码作为中间层转换，只能与对应的加解密结合使用</li>
- * <li>只适合字符串的加密，其他类型会强制转成字符串</li>
+ * - 考虑到RSA对加密长度的限制，这里采用了分段加密
+ * - 结合josn和base64编码作为中间层转换，只能与对应的加解密结合使用
+ * - 只适合字符串的加密，其他类型会强制转成字符串
  *
  * @package PhalApi\Crypt\RSA
  * @license http://www.phalapi.net/license

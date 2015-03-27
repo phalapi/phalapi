@@ -3,9 +3,9 @@
  * PhalApi_Crypt_MultiMcrypt 多级mcrypt加密
  * 对底层的mcrypt进行简单的再封装，以便存储和保留类型
  *
- * <li>依赖PhalApi_Crypt_Mcrypt进行加解密操作</li>
- * <li>支持任何数据类型的加解密</li>
- * <li>返回便于存储的字符串</li>
+ * - 依赖PhalApi_Crypt_Mcrypt进行加解密操作
+ * - 支持任何数据类型的加解密
+ * - 返回便于存储的字符串
  *
  * @package PhalApi\Crypt
  * @license http://www.phalapi.net/license

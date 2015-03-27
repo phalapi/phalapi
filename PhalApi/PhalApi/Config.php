@@ -3,6 +3,28 @@
  * PhalApi_Config 配置接口
  *
  * 获取系统所需要的参数配置
+ * 
+ * <br>使用示例：<br>
+```
+ * //假设有这样的app.php配置：
+ * return array(
+ *  'version' => '1.1.1',
+ * 
+ *  'email' => array(
+ *      'address' => 'chanzonghuang@gmail.com',
+ *   );
+ * );
+ *
+ * //我们就可以分别这样根据需要获取配置：
+ * //app.php里面的全部配置
+ * DI()->config->get('app');
+ * 
+ * //app.php里面的单个配置
+ * DI()->config->get('app.version');  //返回：1.1.1
+ * 
+ * //app.php里面的多级配置
+ * DI()->config->get('app.version');  //返回：chanzonghuang@gmail.com
+```
  *
  * @package PhalApi\Config
  * @license http://www.phalapi.net/license
