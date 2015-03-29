@@ -100,6 +100,16 @@ abstract class PhalApi_Model_NotORM implements PhalApi_Model {
 		return isset(self::$tableKeys[$table]) ? self::$tableKeys[$table] : self::$tableKeys['__default__'];
 	}
 
+	/**
+	 * 快速获取ORM实例
+	 * @param string/int $id
+	 * @return NotORM
+	 */
+	protected function getORM($id = NULL) {
+		$table = $this->getTableName($id);
+		return DI()->notorm->$table;
+	}
+	
 	protected function loadTableKeys() {
 		$tables = DI()->config->get('dbs.tables');
 		if (empty($tables)) {
