@@ -42,7 +42,7 @@ API就如同恒星，一旦出现，便与我们永恒共存。
 将代码下载解压到服务器后即可，然后把根目录设置为Public。如nginx下：
 
 ```
-root   /.../PhalApi/Public;
+root   /path/to/PhalApi/Public;
 ```
 
 为验证是否安装成功，可以访问默认接口服务，如：http://localhost/PhalApi/demo/，正常时会返回类如：
