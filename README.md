@@ -5,7 +5,7 @@
 ```
 此框架代码开源、产品开源、思想开源，可用于个人、商业用途等，请放心使用。
 如果您决定采用此框架，请邮件（chanzonghuang@gmail.com）知会我一下，以便我们能提供更多帮助，谢谢 ^_^
-如有问题，也可以通过国内的通道QQ（376741929）与我联系。
+如有问题，也可以通过国内的通道QQ（376741929）与我联系，或者在Git@OSC上新建Issue。
 ```
  
 在此借一行文字的空间，感谢 **开源中国** 这么好的分享平台，同时也感谢您花费宝贵的时间来阅读此文档，在开源的路上，您每一次真心的关注和肯定都是我们前进的最大动力！谢谢！    
@@ -76,11 +76,12 @@ http://phalapi.oschina.mopaas.com/Public/demo/?service=Demo.None
 ```
 
 #官网
-官网还在努力开发中，感兴趣的同学，可以访问：[www.phalapi.net](http://www.phalapi.net/)  ![apic](http://webtools.qiniudn.com/phalapi-logo-2-33.png)  
-![apic](http://static.oschina.net/uploads/space/2015/0331/082153_NJoU_256338.jpg)
+[http://www.phalapi.net](http://www.phalapi.net/)   
+![apic](http://webtools.qiniudn.com/phalapi-logo-2-33.png)  
+
   
 #类参考手册
-[类参考手册](http://www.phalapi.net/docs/)  
+[http://www.phalapi.net/docs/](http://www.phalapi.net/docs/)  
   
 #文档
 ###后台接口开发就是如此简单，Write the code, enjoy yourself !
