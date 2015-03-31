@@ -8,10 +8,10 @@
  *      //根据请求(?service=XXX.XXX)生成对应的接口服务，并进行初始化
  *      $api = PhalApi_ApiFactory::generateService();
 ```
- * @package PhalApi\Api
- * @license http://www.phalapi.net/license
- * @link http://www.phalapi.net/
- * @author dogstar <chanzonghuang@gmail.com> 2014-10-02
+ * @package     PhalApi\Api
+ * @license     http://www.phalapi.net/license
+ * @link        http://www.phalapi.net/
+ * @author      dogstar <chanzonghuang@gmail.com> 2014-10-02
  */
 
 class PhalApi_ApiFactory {

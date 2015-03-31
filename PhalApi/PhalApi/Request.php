@@ -5,10 +5,10 @@
  * - 负责根据提供的参数规则，进行参数创建工作，并返回错误信息
  * - 需要与参数规则配合使用
  *
- * @package PhalApi\Request
- * @license http://www.phalapi.net/license
- * @link http://www.phalapi.net/
- * @author dogstar <chanzonghuang@gmail.com> 2014-10-02
+ * @package     PhalApi\Request
+ * @license     http://www.phalapi.net/license
+ * @link        http://www.phalapi.net/
+ * @author      dogstar <chanzonghuang@gmail.com> 2014-10-02
  */
 
 class PhalApi_Request {

@@ -4,10 +4,10 @@
  * 
  * @TODO 待接口统一
  * 
- * @package PhalApi\DB
- * @license http://www.phalapi.net/license
- * @link http://www.phalapi.net/
- * @author dogstar <chanzonghuang@gmail.com> 2015-02-09
+ * @package     PhalApi\DB
+ * @license     http://www.phalapi.net/license
+ * @link        http://www.phalapi.net/
+ * @author      dogstar <chanzonghuang@gmail.com> 2015-02-09
  */
 interface PhalApi_DB{
 

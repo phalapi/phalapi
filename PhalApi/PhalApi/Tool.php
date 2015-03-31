@@ -7,10 +7,10 @@
  * - IP地址获取
  * - 随机字符串生成
  *
- * @package PhalApi\Tool
- * @license http://www.phalapi.net/license
- * @link http://www.phalapi.net/
- * @author dogstar <chanzonghuang@gmail.com> 2015-02-12
+ * @package     PhalApi\Tool
+ * @license     http://www.phalapi.net/license
+ * @link        http://www.phalapi.net/
+ * @author      dogstar <chanzonghuang@gmail.com> 2015-02-12
  */
 
 class PhalApi_Tool {

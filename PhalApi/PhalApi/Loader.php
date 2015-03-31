@@ -8,11 +8,11 @@ require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'functions.php';
  * - 按类名映射文件路径自动加载类文件
  * - 可以自定义加载指定文件
  *
- * @package PhalApi\Loader
- * @link http://docs.phalconphp.com/en/latest/reference/loader.html，实现统一的类加载
- * @license http://www.phalapi.net/license
- * @link http://www.phalapi.net/
- * @author dogstar <chanzonghuang@gmail.com> 2014-01-28
+ * @package     PhalApi\Loader
+ * @link        http://docs.phalconphp.com/en/latest/reference/loader.html，实现统一的类加载
+ * @license     http://www.phalapi.net/license
+ * @link        http://www.phalapi.net/
+ * @author      dogstar <chanzonghuang@gmail.com> 2014-01-28
  */ 
 
 class PhalApi_Loader {

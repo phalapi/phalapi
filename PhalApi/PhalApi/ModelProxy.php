@@ -33,10 +33,10 @@
  * $rs = $modelProxy->getData($query);
 ```
  *
- * @package PhalApi\Model
- * @license http://www.phalapi.net/license
- * @link http://www.phalapi.net/
- * @author dogstar <chanzonghuang@gmail.com> 2015-02-22
+ * @package     PhalApi\Model
+ * @license     http://www.phalapi.net/license
+ * @link        http://www.phalapi.net/
+ * @author      dogstar <chanzonghuang@gmail.com> 2015-02-22
  */
 
 abstract class PhalApi_ModelProxy {
