@@ -77,7 +77,7 @@ http://phalapi.oschina.mopaas.com/Public/demo/?service=Demo.None
 
 #官网
 官网还在努力开发中，感兴趣的同学，可以访问：[www.phalapi.net](http://www.phalapi.net/)  ![apic](http://webtools.qiniudn.com/phalapi-logo-2-33.png)  
-[apic](http://static.oschina.net/uploads/space/2015/0331/082153_NJoU_256338.jpg)
+![apic](http://static.oschina.net/uploads/space/2015/0331/082153_NJoU_256338.jpg)
   
 #类参考手册
 [类参考手册](http://www.phalapi.net/docs/)  
