@@ -84,56 +84,7 @@ http://phalapi.oschina.mopaas.com/Public/demo/?service=Demo.None
 [http://www.phalapi.net/docs/](http://www.phalapi.net/docs/)  
   
 #文档
-###后台接口开发就是如此简单，Write the code, enjoy yourself !
-```
-前言
-    首页
-
-基础入门
-开发手册
-    [1.11] 快速入门: 接口开发示例(源码+图文)
-    [1.12] 参数规则：接口参数规则配置
-    [1.13] 统一的接口请求方式：?sevice=XXX.XXX
-    ... ...
-
-更多技艺
-    [1.21] 类的自动加载：遵循PEAR包的命名规范
-    [1.22] 签名验证：自定义签名规则
-    [1.23] 请求和响应：GET和POST两者皆可得及超越JSON格式返回
-    ... ...
-
-高级专题
-思想与应用
-    [2.11] 核心思想：Di依赖注入 让资源更可控
-    [2.12] 海量数据：可配置的分库分表
-    [2.13] 接口调试：在线sql语句查看与性能优化
-    ... ...
-
-工具与实践
-    [2.21] 服务器统一部署方案简明版：CentOs + Nginx + php-fpm + MySql [+ Memcached]
-    [2.22] 更多工具：精英项目和团队建设
-
-扩展类库
-
-    [3.1] 扩展类库：微信开发
-    [3.2] 扩展类库：代理模式下phprpc协议的轻松支持
-    [3.3] 扩展类库：基于PHPMailer的邮件发送
-    ... ...
-
-项目实践
-
-    [4.1] 开发实战1：利用扩展库进行微信服务号开发
-    [4.2] 开发实战2：模拟优酷开放平台接口项目开发
-    [4.3] 开发实战3：模拟腾讯开放平台接口项目开发
-    ... ...
-
-其他
-    [5.1] 架构与思想：Phal Api核心设计和思想解读
-    [5.2] 杂谈：扯一些phal Api的前世和今生
-    附录1：接口文档参考模板
-```
-
-文档整体情况如上，目前文档还在 **努力编写中** 。如需要 **查看最新的文档** ，请访问：[PhaApi Wiki](http://git.oschina.net/dogstar/PhalApi/wikis/pages)  
+[http://git.oschina.net/dogstar/PhalApi/wikis/home](http://git.oschina.net/dogstar/PhalApi/wikis/home)  
 
 
 #[酷！]接口参数在线查询
