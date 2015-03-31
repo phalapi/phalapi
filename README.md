@@ -99,9 +99,9 @@ http://phalapi.oschina.mopaas.com/Public/demo/checkApiParams.php
  因此，接口所需要的参数，对于接口开发人员，也只是简单配置一下参数规则，便可以轻松获取。
  
 #[赞！]接口单元测试
-不能被测试的代码，不是好代码。
+不能被测试的代码，不是好代码。  
 在使用此框架进行接口开发时，我们强烈建议使用测试驱动开发，以便于不断积累形成接口测试体系，保证接口向前向后兼容。  
-如下，是对接口 **/?service=User.GetBaseInfo&userId=1** 进行单元测试时，按： **构造-操作-检验（BUILD-OPERATE-CHECK）模式** ，即：  
+例如对接口 **/?service=User.GetBaseInfo&userId=1** 进行单元测试时，按： **构造-操作-检验（BUILD-OPERATE-CHECK）模式** ，即：  
 
 ```
     /**
@@ -132,9 +132,9 @@ http://phalapi.oschina.mopaas.com/Public/demo/checkApiParams.php
 ```
 运行效果：  
  ![运行效果](http://static.oschina.net/uploads/space/2015/0204/234130_GSJ6_256338.png)  
-核心框架的代码单元测试覆盖率（截于2015-02-05）：  
- ![单元测试代码覆盖率](http://static.oschina.net/uploads/space/2015/0205/131634_NHlk_256338.jpg)  
-更多请参考：[最佳开发实践：自动化单元测试 - PHP](http://my.oschina.net/u/256338/blog/370605)
+   
+对于框架的核心代码，我们也一直坚持着单元测试，其核心框架代码的单元测试覆盖率可高达96%以上。
+  
 #主要目录结构
 ```
 .
