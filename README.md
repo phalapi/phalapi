@@ -170,5 +170,4 @@ http://phalapi.oschina.mopaas.com/Public/demo/checkApiParams.php
 除此之外，你也可以通过其他的方式来支持我们。一如：关注和认可，因为在开源的路上，您每一次真心的关注和肯定都是我们前进的最大动力！谢谢！
   
 #更新日记
-以下更新日记，主要是为了说明，我们一直在努力更新和维护。
-[更新日记](http://git.oschina.net/dogstar/PhalApi/wikis/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AE%B0)  
+此 [更新日记](http://git.oschina.net/dogstar/PhalApi/wikis/%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AE%B0) ，主要是为了说明，我们一直在努力更新和维护。
