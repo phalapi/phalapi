@@ -99,7 +99,8 @@ http://phalapi.oschina.mopaas.com/Public/demo/checkApiParams.php
  因此，接口所需要的参数，对于接口开发人员，也只是简单配置一下参数规则，便可以轻松获取。
  
 #[赞！]接口单元测试
-不能被测试的代码，不是好代码。  
+不能被测试的代码，不是好代码。 
+  
 在使用此框架进行接口开发时，我们强烈建议使用测试驱动开发，以便于不断积累形成接口测试体系，保证接口向前向后兼容。  
 例如对接口 **/?service=User.GetBaseInfo&userId=1** 进行单元测试时，按： **构造-操作-检验（BUILD-OPERATE-CHECK）模式** ，即：  
 
