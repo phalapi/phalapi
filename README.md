@@ -78,13 +78,13 @@ http://phalapi.oschina.mopaas.com/Public/demo/?service=Demo.None
 #官网
 [http://www.phalapi.net](http://www.phalapi.net/)   
 ![apic](http://webtools.qiniudn.com/phalapi-logo-2-33.png)  
+  
+#文档
+[http://git.oschina.net/dogstar/PhalApi/wikis/home](http://git.oschina.net/dogstar/PhalApi/wikis/home)  
 
   
 #类参考手册
 [http://www.phalapi.net/docs/](http://www.phalapi.net/docs/)  
-  
-#文档
-[http://git.oschina.net/dogstar/PhalApi/wikis/home](http://git.oschina.net/dogstar/PhalApi/wikis/home)  
 
 
 #[酷！]接口参数在线查询
