@@ -7,10 +7,10 @@
  * - 具体子类需要实现getTableName($id)以提供对应的表名或者分表名
  * - 对于如何寻找表主键，我们将配置中全部的表(包括分表)对应的主键进行了装配，如果觉得有性能问题，可重写getTableKey($table)；这是一个手动和自动的问题
  *
- * @package PhalApi\Model
- * @license http://www.phalapi.net/license
- * @link http://www.phalapi.net/
- * @author dogstar <chanzonghuang@gmail.com> 2015-02-22
+ * @package     PhalApi\Model
+ * @license     http://www.phalapi.net/license
+ * @link        http://www.phalapi.net/
+ * @author      dogstar <chanzonghuang@gmail.com> 2015-02-22
  */
 
 abstract class PhalApi_Model_NotORM implements PhalApi_Model {

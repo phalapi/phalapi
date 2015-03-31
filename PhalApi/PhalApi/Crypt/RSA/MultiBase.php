@@ -8,10 +8,10 @@
  * - 结合josn和base64编码作为中间层转换，只能与对应的加解密结合使用
  * - 只适合字符串的加密，其他类型会强制转成字符串
  *
- * @package PhalApi\Crypt\RSA
- * @license http://www.phalapi.net/license
- * @link http://www.phalapi.net/
- * @author dogstar <chanzonghuang@gmail.com> 2015-03-14
+ * @package     PhalApi\Crypt\RSA
+ * @license     http://www.phalapi.net/license
+ * @link        http://www.phalapi.net/
+ * @author      dogstar <chanzonghuang@gmail.com> 2015-03-14
  */
 
 abstract class PhalApi_Crypt_RSA_MultiBase implements PhalApi_Crypt {

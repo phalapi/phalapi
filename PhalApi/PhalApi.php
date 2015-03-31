@@ -23,10 +23,10 @@ require_once PHALAPI_ROOT . DIRECTORY_SEPARATOR . 'PhalApi' . DIRECTORY_SEPARATO
  * $rs->output();
 ```
  *
- * @package PhalApi\Response
- * @license http://www.phalapi.net/license
- * @link http://www.phalapi.net/
- * @author dogstar <chanzonghuang@gmail.com> 2014-12-17
+ * @package     PhalApi\Response
+ * @license     http://www.phalapi.net/license
+ * @link        http://www.phalapi.net/
+ * @author      dogstar <chanzonghuang@gmail.com> 2014-12-17
  */
 
 class PhalApi {

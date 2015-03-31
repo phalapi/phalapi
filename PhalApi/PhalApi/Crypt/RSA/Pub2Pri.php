@@ -4,10 +4,10 @@
  * 
  * RSA - 公钥加密，私钥解密
  *
- * @package PhalApi\Crypt\RSA
- * @license http://www.phalapi.net/license
- * @link http://www.phalapi.net/
- * @author dogstar <chanzonghuang@gmail.com> 2015-03-15
+ * @package     PhalApi\Crypt\RSA
+ * @license     http://www.phalapi.net/license
+ * @link        http://www.phalapi.net/
+ * @author      dogstar <chanzonghuang@gmail.com> 2015-03-15
  */
 
 class PhalApi_Crypt_RSA_Pub2Pri implements PhalApi_Crypt {

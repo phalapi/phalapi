@@ -5,10 +5,10 @@
  * - 可以自定义添加多重缓存，注意优先添加高效缓存
  * - 最终将委托给各级缓存进行数据的读写，其中读取为短路读取
  *
- * @package PhalApi\Cache
- * @license http://www.phalapi.net/license
- * @link http://www.phalapi.net/
- * @author dogstar <chanzonghuang@gmail.com> 2015-02-22
+ * @package     PhalApi\Cache
+ * @license     http://www.phalapi.net/license
+ * @link        http://www.phalapi.net/
+ * @author      dogstar <chanzonghuang@gmail.com> 2015-02-22
  */
 
 class PhalApi_Cache_Multi implements PhalApi_Cache {
