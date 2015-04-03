@@ -2,7 +2,7 @@
 <?php
 /**
  * chmod +x ./phalapi-buildtest
- * ln -s ./phalapi-buildtest /usr/bin/phalapi-buildtest
+ * ln -s /path/to/phalapi-buildtest /usr/bin/phalapi-buildtest
  */
 
 require_once dirname(__FILE__) . '/build_phpunit_test_tpl.php';

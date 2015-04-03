@@ -2,7 +2,7 @@
 <?php
 /**
  * chmod +x ./phalapi-buildsqls
- * ln -s ./phalapi-buildsqls /usr/bin/phalapi-buildsqls
+ * ln -s /path/to/phalapi-buildsqls /usr/bin/phalapi-buildsqls
  */
 require_once dirname(__FILE__) . '/build_sqls.php';
 
