@@ -15,3 +15,5 @@ Demo/Api/DogstarTest.php
 
 *.dat
 
+*.swp
+
