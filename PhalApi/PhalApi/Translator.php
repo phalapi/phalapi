@@ -15,10 +15,10 @@
  *      var_dump($msg);
 ```
  *
- * @package PhalApi\Translator
- * @license http://www.phalapi.net/license
- * @link http://www.phalapi.net/
- * @author dogstar <chanzonghuang@gmail.com> 2015-02-04
+ * @package     PhalApi\Translator
+ * @license     http://www.phalapi.net/license
+ * @link        http://www.phalapi.net/
+ * @author      dogstar <chanzonghuang@gmail.com> 2015-02-04
  */
 
 class PhalApi_Translator {

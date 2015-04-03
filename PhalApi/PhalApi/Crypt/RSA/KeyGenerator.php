@@ -4,10 +4,10 @@
  * 
  * RSA私钥或公钥的生成器
  *
- * @package PhalApi\Crypt\RSA
- * @license http://www.phalapi.net/license
- * @link http://www.phalapi.net/
- * @author dogstar <chanzonghuang@gmail.com> 2015-03-15
+ * @package     PhalApi\Crypt\RSA
+ * @license     http://www.phalapi.net/license
+ * @link        http://www.phalapi.net/
+ * @author      dogstar <chanzonghuang@gmail.com> 2015-03-15
  */
 
 class PhalApi_Crypt_RSA_KeyGenerator {

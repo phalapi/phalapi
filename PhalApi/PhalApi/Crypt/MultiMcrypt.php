@@ -7,10 +7,10 @@
  * - 支持任何数据类型的加解密
  * - 返回便于存储的字符串
  *
- * @package PhalApi\Crypt
- * @license http://www.phalapi.net/license
- * @link http://www.phalapi.net/
- * @author dogstar <chanzonghuang@gmail.com> 2014-12-11
+ * @package     PhalApi\Crypt
+ * @license     http://www.phalapi.net/license
+ * @link        http://www.phalapi.net/
+ * @author      dogstar <chanzonghuang@gmail.com> 2014-12-11
  */
 
 class PhalApi_Crypt_MultiMcrypt implements PhalApi_Crypt {

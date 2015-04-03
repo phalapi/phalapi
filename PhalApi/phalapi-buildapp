@@ -1,0 +1,66 @@
+#!/bin/bash
+#
+# chmod +x ./phalapi-buildapp
+# ln -s /path/to/phalapi-buildapp /usr/bin/phalapi-buildapp
+#
+# @author dogstar 20150403
+#
+
+## Usage
+if [ $# -lt 1 ] 
+then
+    echo "Usage: $0 <app>"
+    echo ""
+    exit 1
+fi
+
+## Env
+APP_NAME=$1
+APP_NAME=$(echo "$APP_NAME" | sed 's/\b[a-z]/\u&/g')
+
+BASE_PATH=$(cd `dirname $0`; pwd)
+
+if [ -d "$BASE_PATH/../$APP_NAME" ]
+then
+    echo "Error: $APP_NAME exists!"
+    echo ""
+    exit 2
+fi
+
+
+## Step 1. Create App
+mkdir -p $BASE_PATH/../$APP_NAME
+mkdir -p $BASE_PATH/../$APP_NAME/Api
+mkdir -p $BASE_PATH/../$APP_NAME/Domain
+mkdir -p $BASE_PATH/../$APP_NAME/Model
+mkdir -p $BASE_PATH/../$APP_NAME/Common
+
+cp $BASE_PATH/../Demo/Api/Default.php $BASE_PATH/../$APP_NAME/Api/
+
+## Step 2. Create Tests
+mkdir -p $BASE_PATH/../$APP_NAME/Tests
+
+mkdir -p $BASE_PATH/../$APP_NAME/Tests/Api
+mkdir -p $BASE_PATH/../$APP_NAME/Tests/Domain
+mkdir -p $BASE_PATH/../$APP_NAME/Tests/Model
+mkdir -p $BASE_PATH/../$APP_NAME/Tests/Common
+
+cp $BASE_PATH/../Demo/Tests/test_env.php $BASE_PATH/../$APP_NAME/Tests
+cp $BASE_PATH/../Demo/Tests/Api/Api_Default_Test.php $BASE_PATH/../$APP_NAME/Tests/Api/
+cp $BASE_PATH/../Demo/Tests/phpunit.xml $BASE_PATH/../$APP_NAME/Tests/
+
+## Step 3. Create Bootstrap
+PUBLIC_APP_NAME=$(echo "$APP_NAME" | sed 's/[A-Z]/\l&/g')
+
+mkdir -p $BASE_PATH/../Public/$PUBLIC_APP_NAME
+
+cp $BASE_PATH/../Public/demo/checkApiParams.php $BASE_PATH/../Public/$PUBLIC_APP_NAME/
+cp $BASE_PATH/../Public/demo/index.php $BASE_PATH/../Public/$PUBLIC_APP_NAME/
+
+sed "s/Demo/$APP_NAME/g" $BASE_PATH/../Public/$PUBLIC_APP_NAME/*.php -i
+
+echo ""
+echo "OK!"
+echo ""
+
+

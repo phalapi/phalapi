@@ -26,11 +26,11 @@
  *  }
 ```
  *
- * @property mixed $whatever 接口参数
- * @package PhalApi\Api
- * @license http://www.phalapi.net/license
- * @link http://www.phalapi.net/
- * @author dogstar <chanzonghuang@gmail.com> 2014-10-02
+ * @property    mixed $whatever 接口参数
+ * @package     PhalApi\Api
+ * @license     http://www.phalapi.net/license
+ * @link        http://www.phalapi.net/
+ * @author      dogstar <chanzonghuang@gmail.com> 2014-10-02
  */
 
 class PhalApi_Api {

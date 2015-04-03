@@ -1,6 +1,6 @@
 <?php
 /**
- * CURL请求类
+ * PhalApi_CUrl CURL请求类
  *
  * 通过curl实现的快捷方便的接口请求类
  * 
@@ -17,10 +17,10 @@
  *  $rs = $curl->post('http://phalapi.oschina.mopaas.com/Public/demo/?service=Default.Index', $data);
 ```
  *
- * @package PhalApi\CUrl
- * @license http://www.phalapi.net/license
- * @link http://www.phalapi.net/
- * @author dogstar <chanzonghuang@gmail.com> 2015-01-02
+ * @package     PhalApi\CUrl
+ * @license     http://www.phalapi.net/license
+ * @link        http://www.phalapi.net/
+ * @author      dogstar <chanzonghuang@gmail.com> 2015-01-02
  */
 
 class PhalApi_CUrl {

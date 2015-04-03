@@ -20,10 +20,10 @@
  *  array('name' => '', 'type' => 'enum', 'default' => '', 'range' => array(...))
 ```
  *
- * @package PhalApi\Request
- * @license http://www.phalapi.net/license
- * @link http://www.phalapi.net/
- * @author dogstar <chanzonghuang@gmail.com> 2014-10-04
+ * @package     PhalApi\Request
+ * @license     http://www.phalapi.net/license
+ * @link        http://www.phalapi.net/
+ * @author      dogstar <chanzonghuang@gmail.com> 2014-10-04
  */
 
 class PhalApi_Request_Var {

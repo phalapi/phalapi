@@ -1,16 +1,16 @@
 <?php
 /**
- * 工具集合类
+ * PhalApi_Tool 工具集合类
  *
  * 只提供通用的工具类操作，目前提供的有：
  *
  * - IP地址获取
  * - 随机字符串生成
  *
- * @package PhalApi\Tool
- * @license http://www.phalapi.net/license
- * @link http://www.phalapi.net/
- * @author dogstar <chanzonghuang@gmail.com> 2015-02-12
+ * @package     PhalApi\Tool
+ * @license     http://www.phalapi.net/license
+ * @link        http://www.phalapi.net/
+ * @author      dogstar <chanzonghuang@gmail.com> 2015-02-12
  */
 
 class PhalApi_Tool {

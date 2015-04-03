@@ -1,11 +1,11 @@
 <?php
 /**
- * 文件缓存
+ * PhalApi_Cache_File 文件缓存
  *
- * @package PhalApi\Cache
- * @license http://www.phalapi.net/license
- * @link http://www.phalapi.net/
- * @author dogstar <chanzonghuang@gmail.com> 2015-02-26
+ * @package     PhalApi\Cache
+ * @license     http://www.phalapi.net/license
+ * @link        http://www.phalapi.net/
+ * @author      dogstar <chanzonghuang@gmail.com> 2015-02-26
  */
 
 class PhalApi_Cache_File implements PhalApi_Cache {

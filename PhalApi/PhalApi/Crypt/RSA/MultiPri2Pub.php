@@ -4,10 +4,10 @@
  * 
  * RSA - 私钥加密，公钥解密 - 超长字符串的应对方案
  *
- * @package PhalApi\Crypt\RSA
- * @license http://www.phalapi.net/license
- * @link http://www.phalapi.net/
- * @author dogstar <chanzonghuang@gmail.com> 2015-03-14
+ * @package     PhalApi\Crypt\RSA
+ * @license     http://www.phalapi.net/license
+ * @link        http://www.phalapi.net/
+ * @author      dogstar <chanzonghuang@gmail.com> 2015-03-14
  */
 
 class PhalApi_Crypt_RSA_MultiPri2Pub extends PhalApi_Crypt_RSA_MultiBase {

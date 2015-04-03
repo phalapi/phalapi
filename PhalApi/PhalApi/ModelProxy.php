@@ -1,6 +1,6 @@
 <?php
 /**
- * 模型Model代理
+ * PhalApi_ModelProxy 模型Model代理 - 重量级数据获取的应对方案
  * 
  * - 结合缓存，进行对重量级成本高的数据进行缓冲读取
  * - 为了传递获取源数据而需要的参数，引入封装成值对象的PhalApi_ModelQuery查询对象
@@ -33,10 +33,10 @@
  * $rs = $modelProxy->getData($query);
 ```
  *
- * @package PhalApi\Model
- * @license http://www.phalapi.net/license
- * @link http://www.phalapi.net/
- * @author dogstar <chanzonghuang@gmail.com> 2015-02-22
+ * @package     PhalApi\Model
+ * @license     http://www.phalapi.net/license
+ * @link        http://www.phalapi.net/
+ * @author      dogstar <chanzonghuang@gmail.com> 2015-02-22
  */
 
 abstract class PhalApi_ModelProxy {

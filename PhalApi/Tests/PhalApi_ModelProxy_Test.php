@@ -57,7 +57,7 @@ class PhalApi_ModelProxy_Mock extends PhalApi_ModelProxy {
         return 'heavy data';
     }
 
-    protected function getkey($query) {
+    protected function getKey($query) {
         return 'heavy_data_' . $query->id;
     }
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * 拦截器接口
+ * PhalApi_Filter 拦截器接口
  *  
  * 为应用实现接口请求拦截提供统一处理接口
  * 
@@ -18,10 +18,10 @@
  * DI()->filter = 'Common_SignFilter';
 ```
  *
- * @package PhalApi\Filter
- * @license http://www.phalapi.net/license
- * @link http://www.phalapi.net/
- * @author dogstar <chanzonghuang@gmail.com> 2014-10-25
+ * @package     PhalApi\Filter
+ * @license     http://www.phalapi.net/license
+ * @link        http://www.phalapi.net/
+ * @author      dogstar <chanzonghuang@gmail.com> 2014-10-25
  */
 
 interface PhalApi_Filter {

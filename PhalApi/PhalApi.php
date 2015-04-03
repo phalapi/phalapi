@@ -1,6 +1,12 @@
 <?php
+/**
+ * 框架版本号
+ */
 defined('PHALAPI_VERSION') || define('PHALAPI_VERSION', '1.1.1');
  
+/**
+ * 项目根目录
+ */
 defined('PHALAPI_ROOT') || define('PHALAPI_ROOT', dirname(__FILE__));
 
 require_once PHALAPI_ROOT . DIRECTORY_SEPARATOR . 'PhalApi' . DIRECTORY_SEPARATOR . 'Loader.php';
@@ -17,10 +23,10 @@ require_once PHALAPI_ROOT . DIRECTORY_SEPARATOR . 'PhalApi' . DIRECTORY_SEPARATO
  * $rs->output();
 ```
  *
- * @package PhalApi\Response
- * @license http://www.phalapi.net/license
- * @link http://www.phalapi.net/
- * @author dogstar <chanzonghuang@gmail.com> 2014-12-17
+ * @package     PhalApi\Response
+ * @license     http://www.phalapi.net/license
+ * @link        http://www.phalapi.net/
+ * @author      dogstar <chanzonghuang@gmail.com> 2014-12-17
  */
 
 class PhalApi {

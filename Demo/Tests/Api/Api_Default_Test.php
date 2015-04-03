@@ -63,4 +63,21 @@ class PhpUnderControl_ApiDefault_Test extends PHPUnit_Framework_TestCase
         $this->assertEquals('dogstar您好，欢迎使用PhalApi！', $rs['content']);
     }
 
+    public function testIndexByRunner()
+    {
+        //Step 1. 构建请求URL
+        $url = 'service=Default.Index&username=dogstar';
+
+        //Step 2. 执行请求	
+        $rs = PhalApiTestRunner::go($url);
+
+        //Step 3. 验证
+        $this->assertNotEmpty($rs);
+        $this->assertArrayHasKey('title', $rs);
+        $this->assertArrayHasKey('content', $rs);
+        $this->assertArrayHasKey('version', $rs);
+        $this->assertArrayHasKey('time', $rs);
+
+        $this->assertEquals('dogstar您好，欢迎使用PhalApi！', $rs['content']);
+    }
 }

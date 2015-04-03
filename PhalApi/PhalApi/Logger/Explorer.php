@@ -1,13 +1,13 @@
 <?php
 /**
- * 直接输出日记到控制台的日记类 PhalApi_Logger_Explorer
+ * PhalApi_Logger_Explorer 直接输出日记到控制台的日记类 
  * 
  * - 测试环境下使用
  * 
- * @package PhalApi\Logger
- * @license http://www.phalapi.net/license
- * @link http://www.phalapi.net/
- * @author dogstar <chanzonghuang@gmail.com> 2015-02-09 
+ * @package     PhalApi\Logger
+ * @license     http://www.phalapi.net/license
+ * @link        http://www.phalapi.net/
+ * @author      dogstar <chanzonghuang@gmail.com> 2015-02-09 
  */
 
 class PhalApi_Logger_Explorer extends PhalApi_Logger {

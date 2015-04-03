@@ -54,11 +54,12 @@ require_once PHALAPI_ROOT . DIRECTORY_SEPARATOR . 'NotORM' . DIRECTORY_SEPARATOR
 ```
  *
  * @property string table_name 数据库表名
- * @package PhalApi\DB
- * @link http://www.notorm.com/
- * @license http://www.phalapi.net/license
- * @link http://www.phalapi.net/
- * @author dogstar <chanzonghuang@gmail.com> 2014-11-22
+ *
+ * @package     PhalApi\DB
+ * @link        http://www.notorm.com/
+ * @license     http://www.phalapi.net/license
+ * @link        http://www.phalapi.net/
+ * @author      dogstar <chanzonghuang@gmail.com> 2014-11-22
  */
 
 class PhalApi_DB_NotORM /** implements PhalApi_DB */ {

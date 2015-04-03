@@ -11,11 +11,11 @@
  * 		$config->get('sys.db.user');
  * </code>
  *
- * @package PhalApi\Config
- * @see PhalApi_Config::get()
- * @license http://www.phalapi.net/license
- * @link http://www.phalapi.net/
- * @author dogstar <chanzonghuang@gmail.com> 2014-10-02
+ * @package     PhalApi\Config
+ * @see         PhalApi_Config::get()
+ * @license     http://www.phalapi.net/license
+ * @link        http://www.phalapi.net/
+ * @author      dogstar <chanzonghuang@gmail.com> 2014-10-02
  */
 
 class PhalApi_Config_File implements PhalApi_Config {
