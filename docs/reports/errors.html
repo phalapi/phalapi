@@ -1,0 +1,2402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>     &raquo; Compilation errors
+</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">PhalApi docs - 1.1.2</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">265</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">2</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+
+            <ul class="side-nav nav nav-list">
+                <li class="nav-header">Navigation</li>
+                                                                                                                                    <li><a href="#PhalApi/Exception.php"><i class="icon-file"></i> PhalApi/Exception.php</a></li>
+                                                                                                    <li><a href="#PhalApi/Crypt.php"><i class="icon-file"></i> PhalApi/Crypt.php</a></li>
+                                                                                                    <li><a href="#PhalApi/Exception/InternalServerError.php"><i class="icon-file"></i> PhalApi/Exception/InternalServerError.php</a></li>
+                                                                                                    <li><a href="#PhalApi/Exception/BadRequest.php"><i class="icon-file"></i> PhalApi/Exception/BadRequest.php</a></li>
+                                                                                                    <li><a href="#PhalApi/DB/NotORM.php"><i class="icon-file"></i> PhalApi/DB/NotORM.php</a></li>
+                                                                                                    <li><a href="#PhalApi/ApiFactory.php"><i class="icon-file"></i> PhalApi/ApiFactory.php</a></li>
+                                                                                                    <li><a href="#PhalApi/Model.php"><i class="icon-file"></i> PhalApi/Model.php</a></li>
+                                                                                                    <li><a href="#PhalApi/Loader.php"><i class="icon-file"></i> PhalApi/Loader.php</a></li>
+                                                                                                    <li><a href="#PhalApi/Response/Explorer.php"><i class="icon-file"></i> PhalApi/Response/Explorer.php</a></li>
+                                                                                                    <li><a href="#PhalApi/Response/Json.php"><i class="icon-file"></i> PhalApi/Response/Json.php</a></li>
+                                                                                                    <li><a href="#PhalApi/Response/JsonP.php"><i class="icon-file"></i> PhalApi/Response/JsonP.php</a></li>
+                                                                                                    <li><a href="#PhalApi/Logger/Explorer.php"><i class="icon-file"></i> PhalApi/Logger/Explorer.php</a></li>
+                                                                                                    <li><a href="#PhalApi/Logger/File.php"><i class="icon-file"></i> PhalApi/Logger/File.php</a></li>
+                                                                                                                                                            <li><a href="#PhalApi/Logger.php"><i class="icon-file"></i> PhalApi/Logger.php</a></li>
+                                                                                                    <li><a href="#PhalApi/DI.php"><i class="icon-file"></i> PhalApi/DI.php</a></li>
+                                                                                                    <li><a href="#PhalApi/Response.php"><i class="icon-file"></i> PhalApi/Response.php</a></li>
+                                                                                                    <li><a href="#PhalApi/Filter.php"><i class="icon-file"></i> PhalApi/Filter.php</a></li>
+                                                                                                    <li><a href="#PhalApi/Cache/None.php"><i class="icon-file"></i> PhalApi/Cache/None.php</a></li>
+                                                                                                    <li><a href="#PhalApi/Cache/Multi.php"><i class="icon-file"></i> PhalApi/Cache/Multi.php</a></li>
+                                                                                                    <li><a href="#PhalApi/Cache/Memecahced.php"><i class="icon-file"></i> PhalApi/Cache/Memecahced.php</a></li>
+                                                                                                    <li><a href="#PhalApi/Cache/File.php"><i class="icon-file"></i> PhalApi/Cache/File.php</a></li>
+                                                                                                    <li><a href="#PhalApi/ModelQuery.php"><i class="icon-file"></i> PhalApi/ModelQuery.php</a></li>
+                                                                                                    <li><a href="#PhalApi/Model/NotORM.php"><i class="icon-file"></i> PhalApi/Model/NotORM.php</a></li>
+                                                                                                    <li><a href="#PhalApi/Config.php"><i class="icon-file"></i> PhalApi/Config.php</a></li>
+                                                                                                    <li><a href="#PhalApi/Config/File.php"><i class="icon-file"></i> PhalApi/Config/File.php</a></li>
+                                                                                                    <li><a href="#PhalApi/Request.php"><i class="icon-file"></i> PhalApi/Request.php</a></li>
+                                                                                                    <li><a href="#PhalApi/DB.php"><i class="icon-file"></i> PhalApi/DB.php</a></li>
+                                                                                                    <li><a href="#PhalApi/Cache.php"><i class="icon-file"></i> PhalApi/Cache.php</a></li>
+                                                                                                    <li><a href="#PhalApi/CUrl.php"><i class="icon-file"></i> PhalApi/CUrl.php</a></li>
+                                                                                                    <li><a href="#PhalApi/ModelProxy.php"><i class="icon-file"></i> PhalApi/ModelProxy.php</a></li>
+                                                                                                    <li><a href="#PhalApi/Translator.php"><i class="icon-file"></i> PhalApi/Translator.php</a></li>
+                                                                                                    <li><a href="#PhalApi/Request/Var.php"><i class="icon-file"></i> PhalApi/Request/Var.php</a></li>
+                                                                                                    <li><a href="#PhalApi/Api.php"><i class="icon-file"></i> PhalApi/Api.php</a></li>
+                                                                                                    <li><a href="#PhalApi/Tool.php"><i class="icon-file"></i> PhalApi/Tool.php</a></li>
+                                                                                                    <li><a href="#PhalApi/Crypt/RSA/Pri2Pub.php"><i class="icon-file"></i> PhalApi/Crypt/RSA/Pri2Pub.php</a></li>
+                                                                                                    <li><a href="#PhalApi/Crypt/RSA/MultiPri2Pub.php"><i class="icon-file"></i> PhalApi/Crypt/RSA/MultiPri2Pub.php</a></li>
+                                                                                                    <li><a href="#PhalApi/Crypt/RSA/MultiPub2Pri.php"><i class="icon-file"></i> PhalApi/Crypt/RSA/MultiPub2Pri.php</a></li>
+                                                                                                    <li><a href="#PhalApi/Crypt/RSA/MultiBase.php"><i class="icon-file"></i> PhalApi/Crypt/RSA/MultiBase.php</a></li>
+                                                                                                    <li><a href="#PhalApi/Crypt/RSA/KeyGenerator.php"><i class="icon-file"></i> PhalApi/Crypt/RSA/KeyGenerator.php</a></li>
+                                                                                                    <li><a href="#PhalApi/Crypt/RSA/Pub2Pri.php"><i class="icon-file"></i> PhalApi/Crypt/RSA/Pub2Pri.php</a></li>
+                                                                                                    <li><a href="#PhalApi/Crypt/Mcrypt.php"><i class="icon-file"></i> PhalApi/Crypt/Mcrypt.php</a></li>
+                                                                                                    <li><a href="#PhalApi/Crypt/MultiMcrypt.php"><i class="icon-file"></i> PhalApi/Crypt/MultiMcrypt.php</a></li>
+                                                                    </ul>
+        </div>
+
+        <div class="span10 offset2">
+            <ul class="breadcrumb">
+                <li><a href="../"><i class="icon-remove-sign"></i></a><span class="divider">\</span></li>
+                <li>Compilation Errors</li>
+            </ul>
+
+            
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Exception.php" id="PhalApi/Exception.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Exception.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Crypt.php" id="PhalApi/Crypt.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Crypt.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Exception/InternalServerError.php" id="PhalApi/Exception/InternalServerError.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Exception/InternalServerError.php
+                            <small style="float: right;padding-right: 10px;">4</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>13</td>
+                                        <td>Argument $message is missing from the Docblock of __construct</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>13</td>
+                                        <td>Argument $code is missing from the Docblock of __construct</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>13</td>
+                                        <td>No summary for method __construct()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Exception/BadRequest.php" id="PhalApi/Exception/BadRequest.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Exception/BadRequest.php
+                            <small style="float: right;padding-right: 10px;">4</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>15</td>
+                                        <td>Argument $message is missing from the Docblock of __construct</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>15</td>
+                                        <td>Argument $code is missing from the Docblock of __construct</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>15</td>
+                                        <td>No summary for method __construct()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/DB/NotORM.php" id="PhalApi/DB/NotORM.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/DB/NotORM.php
+                            <small style="float: right;padding-right: 10px;">9</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>91</td>
+                                        <td>No summary for method __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>97</td>
+                                        <td>Argument $name is missing from the Docblock of __get</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>97</td>
+                                        <td>No summary for method __get()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>118</td>
+                                        <td>Argument $name is missing from the Docblock of __set</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>118</td>
+                                        <td>Argument $value is missing from the Docblock of __set</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>118</td>
+                                        <td>No summary for method __set()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>124</td>
+                                        <td>Argument $tableName is missing from the Docblock of createNotormKey</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>124</td>
+                                        <td>No summary for method createNotormKey()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/ApiFactory.php" id="PhalApi/ApiFactory.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/ApiFactory.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Model.php" id="PhalApi/Model.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Model.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>72</td>
+                                        <td>Argument $id is missing from the Docblock of delete</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Loader.php" id="PhalApi/Loader.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Loader.php
+                            <small style="float: right;padding-right: 10px;">7</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>30</td>
+                                        <td>Argument $basePath is missing from the Docblock of __construct</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>30</td>
+                                        <td>Argument $dirs is missing from the Docblock of __construct</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>30</td>
+                                        <td>No summary for method __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>97</td>
+                                        <td>Argument $path is missing from the Docblock of loadClass</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>97</td>
+                                        <td>Argument $className is missing from the Docblock of loadClass</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>97</td>
+                                        <td>No summary for method loadClass()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Response/Explorer.php" id="PhalApi/Response/Explorer.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Response/Explorer.php
+                            <small style="float: right;padding-right: 10px;">3</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>13</td>
+                                        <td>Argument $result is missing from the Docblock of formatResult</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>13</td>
+                                        <td>No summary for method formatResult()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Response/Json.php" id="PhalApi/Response/Json.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Response/Json.php
+                            <small style="float: right;padding-right: 10px;">4</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>13</td>
+                                        <td>No summary for method __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>17</td>
+                                        <td>Argument $result is missing from the Docblock of formatResult</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>17</td>
+                                        <td>No summary for method formatResult()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Response/JsonP.php" id="PhalApi/Response/JsonP.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Response/JsonP.php
+                            <small style="float: right;padding-right: 10px;">6</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>18</td>
+                                        <td>No summary for method __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>29</td>
+                                        <td>Argument $callback is missing from the Docblock of clearXss</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>33</td>
+                                        <td>Argument $result is missing from the Docblock of formatResult</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>33</td>
+                                        <td>No summary for method formatResult()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>13</td>
+                                        <td>No summary for property $callback</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Logger/Explorer.php" id="PhalApi/Logger/Explorer.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Logger/Explorer.php
+                            <small style="float: right;padding-right: 10px;">5</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>15</td>
+                                        <td>Argument $type is missing from the Docblock of log</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>15</td>
+                                        <td>Argument $msg is missing from the Docblock of log</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>15</td>
+                                        <td>Argument $data is missing from the Docblock of log</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>15</td>
+                                        <td>No summary for method log()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Logger/File.php" id="PhalApi/Logger/File.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Logger/File.php
+                            <small style="float: right;padding-right: 10px;">13</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>30</td>
+                                        <td>Argument $logFolder is missing from the Docblock of __construct</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>30</td>
+                                        <td>Argument $level is missing from the Docblock of __construct</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>30</td>
+                                        <td>Argument $dateFormat is missing from the Docblock of __construct</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>30</td>
+                                        <td>No summary for method __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>39</td>
+                                        <td>No summary for method init()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>57</td>
+                                        <td>Argument $type is missing from the Docblock of log</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>57</td>
+                                        <td>Argument $msg is missing from the Docblock of log</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>57</td>
+                                        <td>Argument $data is missing from the Docblock of log</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>57</td>
+                                        <td>No summary for method log()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>25</td>
+                                        <td>No summary for property $logFolder</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>26</td>
+                                        <td>No summary for property $dateFormat</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>28</td>
+                                        <td>No summary for property $logFile</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Logger.php" id="PhalApi/Logger.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Logger.php
+                            <small style="float: right;padding-right: 10px;">3</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>59</td>
+                                        <td>Argument $level is missing from the Docblock of __construct</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>59</td>
+                                        <td>No summary for method __construct()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/DI.php" id="PhalApi/DI.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/DI.php
+                            <small style="float: right;padding-right: 10px;">26</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>66</td>
+                                        <td>No summary for method __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>96</td>
+                                        <td>No summary for method onInitialize()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>107</td>
+                                        <td>Argument $value is missing from the Docblock of set</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>143</td>
+                                        <td>Argument $name is missing from the Docblock of __call</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>143</td>
+                                        <td>Argument $arguments is missing from the Docblock of __call</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>158</td>
+                                        <td>Argument $name is missing from the Docblock of __set</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>158</td>
+                                        <td>Argument $value is missing from the Docblock of __set</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>158</td>
+                                        <td>No summary for method __set()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>162</td>
+                                        <td>Argument $name is missing from the Docblock of __get</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>162</td>
+                                        <td>No summary for method __get()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>168</td>
+                                        <td>Argument $offset is missing from the Docblock of offsetSet</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>168</td>
+                                        <td>Argument $value is missing from the Docblock of offsetSet</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>172</td>
+                                        <td>Argument $offset is missing from the Docblock of offsetGet</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>172</td>
+                                        <td>No summary for method offsetGet()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>176</td>
+                                        <td>Argument $offset is missing from the Docblock of offsetUnset</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>176</td>
+                                        <td>No summary for method offsetUnset()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>180</td>
+                                        <td>Argument $offset is missing from the Docblock of offsetExists</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>180</td>
+                                        <td>No summary for method offsetExists()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>186</td>
+                                        <td>Argument $config is missing from the Docblock of initService</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>203</td>
+                                        <td>Argument $key is missing from the Docblock of resetHit</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>203</td>
+                                        <td>No summary for method resetHit()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>207</td>
+                                        <td>Argument $key is missing from the Docblock of isFirstHit</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>207</td>
+                                        <td>No summary for method isFirstHit()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>211</td>
+                                        <td>Argument $key is missing from the Docblock of recordHitTimes</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>211</td>
+                                        <td>No summary for method recordHitTimes()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Response.php" id="PhalApi/Response.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Response.php
+                            <small style="float: right;padding-right: 10px;">3</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>92</td>
+                                        <td>Argument $headers is missing from the Docblock of handleHeaders</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>98</td>
+                                        <td>No summary for method getResult()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Filter.php" id="PhalApi/Filter.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Filter.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>29</td>
+                                        <td>No summary for method check()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Cache/None.php" id="PhalApi/Cache/None.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Cache/None.php
+                            <small style="float: right;padding-right: 10px;">9</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>13</td>
+                                        <td>Argument $key is missing from the Docblock of set</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>13</td>
+                                        <td>Argument $value is missing from the Docblock of set</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>13</td>
+                                        <td>Argument $expire is missing from the Docblock of set</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>13</td>
+                                        <td>No summary for method set()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>16</td>
+                                        <td>Argument $key is missing from the Docblock of get</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>16</td>
+                                        <td>No summary for method get()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>20</td>
+                                        <td>Argument $key is missing from the Docblock of delete</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>20</td>
+                                        <td>No summary for method delete()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Cache/Multi.php" id="PhalApi/Cache/Multi.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Cache/Multi.php
+                            <small style="float: right;padding-right: 10px;">12</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>18</td>
+                                        <td>Argument $cache is missing from the Docblock of addCache</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>18</td>
+                                        <td>No summary for method addCache()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>22</td>
+                                        <td>Argument $key is missing from the Docblock of set</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>22</td>
+                                        <td>Argument $value is missing from the Docblock of set</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>22</td>
+                                        <td>Argument $expire is missing from the Docblock of set</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>22</td>
+                                        <td>No summary for method set()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>28</td>
+                                        <td>Argument $key is missing from the Docblock of get</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>28</td>
+                                        <td>No summary for method get()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>39</td>
+                                        <td>Argument $key is missing from the Docblock of delete</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>39</td>
+                                        <td>No summary for method delete()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>16</td>
+                                        <td>No summary for property $caches</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Cache/Memecahced.php" id="PhalApi/Cache/Memecahced.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Cache/Memecahced.php
+                            <small style="float: right;padding-right: 10px;">14</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>24</td>
+                                        <td>No summary for method __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>31</td>
+                                        <td>Argument $key is missing from the Docblock of set</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>31</td>
+                                        <td>Argument $value is missing from the Docblock of set</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>31</td>
+                                        <td>Argument $expire is missing from the Docblock of set</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>31</td>
+                                        <td>No summary for method set()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>35</td>
+                                        <td>Argument $key is missing from the Docblock of get</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>35</td>
+                                        <td>No summary for method get()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>40</td>
+                                        <td>Argument $key is missing from the Docblock of delete</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>40</td>
+                                        <td>No summary for method delete()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>44</td>
+                                        <td>Argument $key is missing from the Docblock of formatKey</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>44</td>
+                                        <td>No summary for method formatKey()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>15</td>
+                                        <td>No summary for property $memcached</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>17</td>
+                                        <td>No summary for property $prefix</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Cache/File.php" id="PhalApi/Cache/File.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Cache/File.php
+                            <small style="float: right;padding-right: 10px;">15</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>17</td>
+                                        <td>Argument $config is missing from the Docblock of __construct</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>17</td>
+                                        <td>No summary for method __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>29</td>
+                                        <td>Argument $key is missing from the Docblock of set</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>29</td>
+                                        <td>Argument $value is missing from the Docblock of set</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>29</td>
+                                        <td>Argument $expire is missing from the Docblock of set</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>29</td>
+                                        <td>No summary for method set()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>55</td>
+                                        <td>Argument $key is missing from the Docblock of get</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>55</td>
+                                        <td>No summary for method get()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>69</td>
+                                        <td>Argument $key is missing from the Docblock of delete</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>69</td>
+                                        <td>No summary for method delete()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>82</td>
+                                        <td>Argument $key is missing from the Docblock of createCacheFilePath</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>92</td>
+                                        <td>No summary for method createCacheFileFolder()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>13</td>
+                                        <td>No summary for property $folder</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>15</td>
+                                        <td>No summary for property $prefix</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/ModelQuery.php" id="PhalApi/ModelQuery.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/ModelQuery.php
+                            <small style="float: right;padding-right: 10px;">9</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>36</td>
+                                        <td>Argument $queryArr is missing from the Docblock of __construct</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>36</td>
+                                        <td>No summary for method __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>44</td>
+                                        <td>Argument $name is missing from the Docblock of __set</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>44</td>
+                                        <td>Argument $value is missing from the Docblock of __set</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>44</td>
+                                        <td>No summary for method __set()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>48</td>
+                                        <td>Argument $name is missing from the Docblock of __get</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>48</td>
+                                        <td>No summary for method __get()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>56</td>
+                                        <td>No summary for method toArray()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Model/NotORM.php" id="PhalApi/Model/NotORM.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Model/NotORM.php
+                            <small style="float: right;padding-right: 10px;">17</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>20</td>
+                                        <td>Argument $id is missing from the Docblock of get</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>20</td>
+                                        <td>Argument $fields is missing from the Docblock of get</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>20</td>
+                                        <td>No summary for method get()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>34</td>
+                                        <td>Argument $data is missing from the Docblock of insert</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>34</td>
+                                        <td>Argument $id is missing from the Docblock of insert</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>34</td>
+                                        <td>No summary for method insert()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>44</td>
+                                        <td>Argument $id is missing from the Docblock of update</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>44</td>
+                                        <td>Argument $data is missing from the Docblock of update</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>44</td>
+                                        <td>No summary for method update()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>54</td>
+                                        <td>Argument $id is missing from the Docblock of delete</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>54</td>
+                                        <td>No summary for method delete()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>65</td>
+                                        <td>Argument $data is missing from the Docblock of formatExtData</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>74</td>
+                                        <td>Argument $data is missing from the Docblock of parseExtData</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>83</td>
+                                        <td>Argument $id is missing from the Docblock of getTableName</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>113</td>
+                                        <td>No summary for method loadTableKeys()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>18</td>
+                                        <td>No summary for property $tableKeys</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Config.php" id="PhalApi/Config.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Config.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Config/File.php" id="PhalApi/Config/File.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Config/File.php
+                            <small style="float: right;padding-right: 10px;">4</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>33</td>
+                                        <td>Argument $configPath is missing from the Docblock of __construct</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>33</td>
+                                        <td>No summary for method __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>44</td>
+                                        <td>Argument $default is missing from the Docblock of get</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Request.php" id="PhalApi/Request.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Request.php
+                            <small style="float: right;padding-right: 10px;">3</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>21</td>
+                                        <td>No summary for method __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>16</td>
+                                        <td>No summary for property $data</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/DB.php" id="PhalApi/DB.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/DB.php
+                            <small style="float: right;padding-right: 10px;">3</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>14</td>
+                                        <td>No summary for method connect()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>16</td>
+                                        <td>No summary for method disconnect()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Cache.php" id="PhalApi/Cache.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Cache.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/CUrl.php" id="PhalApi/CUrl.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/CUrl.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/ModelProxy.php" id="PhalApi/ModelProxy.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/ModelProxy.php
+                            <small style="float: right;padding-right: 10px;">6</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>49</td>
+                                        <td>Argument $cache is missing from the Docblock of __construct</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>91</td>
+                                        <td>Argument $query is missing from the Docblock of doGetData</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>96</td>
+                                        <td>Argument $query is missing from the Docblock of getKey</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>101</td>
+                                        <td>Argument $query is missing from the Docblock of getExpire</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>44</td>
+                                        <td>No summary for property $cache</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Translator.php" id="PhalApi/Translator.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Translator.php
+                            <small style="float: right;padding-right: 10px;">6</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>50</td>
+                                        <td>Argument $name is missing from the Docblock of formatVar</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>50</td>
+                                        <td>No summary for method formatVar()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>76</td>
+                                        <td>Argument $root is missing from the Docblock of getMessageFilePath</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>76</td>
+                                        <td>Argument $language is missing from the Docblock of getMessageFilePath</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>76</td>
+                                        <td>No summary for method getMessageFilePath()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Request/Var.php" id="PhalApi/Request/Var.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Request/Var.php
+                            <small style="float: right;padding-right: 10px;">16</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>113</td>
+                                        <td>Argument $value is missing from the Docblock of formatString</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>113</td>
+                                        <td>Argument $rule is missing from the Docblock of formatString</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>113</td>
+                                        <td>No summary for method formatString()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>262</td>
+                                        <td>Argument $value is missing from the Docblock of filterByStrLen</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>262</td>
+                                        <td>Argument $rule is missing from the Docblock of filterByStrLen</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>274</td>
+                                        <td>Argument $value is missing from the Docblock of filterByRange</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>274</td>
+                                        <td>Argument $rule is missing from the Docblock of filterByRange</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>284</td>
+                                        <td>Argument $rule is missing from the Docblock of filterRangeMinLessThanOrEqualsMax</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>284</td>
+                                        <td>No summary for method filterRangeMinLessThanOrEqualsMax()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>293</td>
+                                        <td>Argument $value is missing from the Docblock of filterRangeCheckMin</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>293</td>
+                                        <td>Argument $rule is missing from the Docblock of filterRangeCheckMin</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>293</td>
+                                        <td>No summary for method filterRangeCheckMin()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>302</td>
+                                        <td>Argument $value is missing from the Docblock of filterRangeCheckMax</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>302</td>
+                                        <td>Argument $rule is missing from the Docblock of filterRangeCheckMax</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>302</td>
+                                        <td>No summary for method filterRangeCheckMax()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Api.php" id="PhalApi/Api.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Api.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Tool.php" id="PhalApi/Tool.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Tool.php
+                            <small style="float: right;padding-right: 10px;">1</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Crypt/RSA/Pri2Pub.php" id="PhalApi/Crypt/RSA/Pri2Pub.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Crypt/RSA/Pri2Pub.php
+                            <small style="float: right;padding-right: 10px;">7</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>15</td>
+                                        <td>Argument $data is missing from the Docblock of encrypt</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>15</td>
+                                        <td>Argument $prikey is missing from the Docblock of encrypt</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>15</td>
+                                        <td>No summary for method encrypt()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>25</td>
+                                        <td>Argument $data is missing from the Docblock of decrypt</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>25</td>
+                                        <td>Argument $pubkey is missing from the Docblock of decrypt</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>25</td>
+                                        <td>No summary for method decrypt()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Crypt/RSA/MultiPri2Pub.php" id="PhalApi/Crypt/RSA/MultiPri2Pub.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Crypt/RSA/MultiPri2Pub.php
+                            <small style="float: right;padding-right: 10px;">9</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>17</td>
+                                        <td>No summary for method __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>23</td>
+                                        <td>Argument $toCryptPie is missing from the Docblock of doEncrypt</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>23</td>
+                                        <td>Argument $prikey is missing from the Docblock of doEncrypt</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>23</td>
+                                        <td>No summary for method doEncrypt()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>27</td>
+                                        <td>Argument $encryptPie is missing from the Docblock of doDecrypt</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>27</td>
+                                        <td>Argument $prikey is missing from the Docblock of doDecrypt</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>27</td>
+                                        <td>No summary for method doDecrypt()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>15</td>
+                                        <td>No summary for property $pri2pub</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Crypt/RSA/MultiPub2Pri.php" id="PhalApi/Crypt/RSA/MultiPub2Pri.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Crypt/RSA/MultiPub2Pri.php
+                            <small style="float: right;padding-right: 10px;">9</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>17</td>
+                                        <td>No summary for method __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>23</td>
+                                        <td>Argument $toCryptPie is missing from the Docblock of doEncrypt</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>23</td>
+                                        <td>Argument $pubkey is missing from the Docblock of doEncrypt</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>23</td>
+                                        <td>No summary for method doEncrypt()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>27</td>
+                                        <td>Argument $encryptPie is missing from the Docblock of doDecrypt</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>27</td>
+                                        <td>Argument $prikey is missing from the Docblock of doDecrypt</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>27</td>
+                                        <td>No summary for method doDecrypt()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>15</td>
+                                        <td>No summary for property $pub2pri</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Crypt/RSA/MultiBase.php" id="PhalApi/Crypt/RSA/MultiBase.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Crypt/RSA/MultiBase.php
+                            <small style="float: right;padding-right: 10px;">4</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>32</td>
+                                        <td>No summary for method __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>43</td>
+                                        <td>No summary for method encrypt()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>72</td>
+                                        <td>No summary for method decrypt()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Crypt/RSA/KeyGenerator.php" id="PhalApi/Crypt/RSA/KeyGenerator.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Crypt/RSA/KeyGenerator.php
+                            <small style="float: right;padding-right: 10px;">6</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>19</td>
+                                        <td>No summary for method __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>28</td>
+                                        <td>No summary for method getPriKey()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>32</td>
+                                        <td>No summary for method getPubKey()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>15</td>
+                                        <td>No summary for property $privkey</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>17</td>
+                                        <td>No summary for property $pubkey</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Crypt/RSA/Pub2Pri.php" id="PhalApi/Crypt/RSA/Pub2Pri.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Crypt/RSA/Pub2Pri.php
+                            <small style="float: right;padding-right: 10px;">7</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>15</td>
+                                        <td>Argument $data is missing from the Docblock of encrypt</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>15</td>
+                                        <td>Argument $pubkey is missing from the Docblock of encrypt</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>15</td>
+                                        <td>No summary for method encrypt()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>25</td>
+                                        <td>Argument $data is missing from the Docblock of decrypt</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>25</td>
+                                        <td>Argument $prikey is missing from the Docblock of decrypt</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>25</td>
+                                        <td>No summary for method decrypt()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Crypt/Mcrypt.php" id="PhalApi/Crypt/Mcrypt.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Crypt/Mcrypt.php
+                            <small style="float: right;padding-right: 10px;">2</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>48</td>
+                                        <td>No summary for method __construct()</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                            <div class="package-contents">
+                                            <a name="PhalApi/Crypt/MultiMcrypt.php" id="PhalApi/Crypt/MultiMcrypt.php"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            PhalApi/Crypt/MultiMcrypt.php
+                            <small style="float: right;padding-right: 10px;">8</small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>0</td>
+                                        <td>No summary was found for this file</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>23</td>
+                                        <td>Argument $iv is missing from the Docblock of __construct</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>23</td>
+                                        <td>No summary for method __construct()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>30</td>
+                                        <td>Argument $key is missing from the Docblock of encrypt</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>30</td>
+                                        <td>No summary for method encrypt()</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>43</td>
+                                        <td>Argument $data is missing from the Docblock of decrypt</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>43</td>
+                                        <td>Argument $key is missing from the Docblock of decrypt</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>error</td>
+                                        <td>21</td>
+                                        <td>No summary for property $mcrypt</td>
+                                    </tr>
+                                                            </tbody>
+                            </table>
+                        </div>
+                                    </div>
+                    </div>
+    </section>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on April 5th, 2015 at 06:33.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
