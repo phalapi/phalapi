@@ -1,5 +1,9 @@
 #PhalApi - 轻量级PHP后台接口开发框架 - V1.1.2
 
+#官网
+[http://www.phalapi.net](http://www.phalapi.net/)   
+![apic](http://webtools.qiniudn.com/phalapi-logo-2-33.png)  
+  
 
 ###PhalApi是一个轻量级PHP后台接口开发框架，目的是让接口开发更简单。
 ```
@@ -74,10 +78,6 @@ http://phalapi.oschina.mopaas.com/Public/demo/?service=Demo.None
 }
 ```
 
-#官网
-[http://www.phalapi.net](http://www.phalapi.net/)   
-![apic](http://webtools.qiniudn.com/phalapi-logo-2-33.png)  
-  
 #文档
 [http://git.oschina.net/dogstar/PhalApi/wikis/home](http://git.oschina.net/dogstar/PhalApi/wikis/home)  
 
