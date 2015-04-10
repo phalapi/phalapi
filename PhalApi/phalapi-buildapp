@@ -55,6 +55,7 @@ PUBLIC_APP_NAME=$(echo "$APP_NAME" | sed 's/[A-Z]/\l&/g')
 mkdir -p $BASE_PATH/../Public/$PUBLIC_APP_NAME
 
 cp $BASE_PATH/../Public/demo/checkApiParams.php $BASE_PATH/../Public/$PUBLIC_APP_NAME/
+cp $BASE_PATH/../Public/demo/listAllApis.php $BASE_PATH/../Public/$PUBLIC_APP_NAME/
 cp $BASE_PATH/../Public/demo/index.php $BASE_PATH/../Public/$PUBLIC_APP_NAME/
 
 sed "s/Demo/$APP_NAME/g" $BASE_PATH/../Public/$PUBLIC_APP_NAME/*.php -i
