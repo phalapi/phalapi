@@ -17,8 +17,8 @@ class Api_Default extends PhalApi_Api {
 	
 	public function index() {
         return array(
-            'title' => 'Default Api',
-            'content' => T('Hello {name}, Welcome to use PhalApi!', array('name' => $this->username)),
+            'title' => 'Hello World!',
+            'content' => T('Hi {name}, welcome to use PhalApi!', array('name' => $this->username)),
             'version' => PHALAPI_VERSION,
             'time' => $_SERVER['REQUEST_TIME'],
         );
