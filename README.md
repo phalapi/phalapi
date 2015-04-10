@@ -1,10 +1,14 @@
 #PhalApi - 轻量级PHP后台接口开发框架 - V1.1.2
 
+#官网
+[http://www.phalapi.net](http://www.phalapi.net/)   
+![apic](http://webtools.qiniudn.com/phalapi-logo-2-33.png)  
+  
 
 ###PhalApi是一个轻量级PHP后台接口开发框架，目的是让接口开发更简单。
 ```
 此框架代码开源、产品开源、思想开源，可用于个人、商业用途等，请放心使用。
-如有问题，可联系我们(Email:chanzonghuang@gmail.com   QQ:376741929)，或在Git@OSC上新建issue。
+如有问题，可联系我们(Email:chanzonghuang@gmail.com   QQ:376741929  QQ交流群：421032344 )，或在Git@OSC上新建issue。
 ```
  
 在此借一行文字的空间，感谢 **开源中国** 这么好的分享平台，同时也感谢您花费宝贵的时间来阅读此文档，在开源的路上，您每一次真心的关注和肯定都是我们前进的最大动力！谢谢！    
@@ -74,10 +78,6 @@ http://phalapi.oschina.mopaas.com/Public/demo/?service=Demo.None
 }
 ```
 
-#官网
-[http://www.phalapi.net](http://www.phalapi.net/)   
-![apic](http://webtools.qiniudn.com/phalapi-logo-2-33.png)  
-  
 #文档
 [http://git.oschina.net/dogstar/PhalApi/wikis/home](http://git.oschina.net/dogstar/PhalApi/wikis/home)  
 
