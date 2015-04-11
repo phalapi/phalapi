@@ -87,13 +87,7 @@ abstract class PhalApi_Response {
     	echo $this->formatResult($rs);
     }
     
-    /** ------------------ 内部方法 ------------------ **/
-
-    protected function handleHeaders($headers) {
-    	foreach ($headers as $key => $content) {
-    		header($key . ': ' . $content);
-    	}
-    }
+    /** ------------------ getter ------------------ **/
     
     public function getResult() {
         $rs = array(
@@ -103,6 +97,22 @@ abstract class PhalApi_Response {
         );
 
         return $rs;
+    }
+
+    public function getHeaders($key = NULL) {
+        if ($key === NULL) {
+            return $this->headers;
+        }
+
+        return isset($this->headers[$key]) ? $this->headers[$key] : '';
+    }
+
+    /** ------------------ 内部方法 ------------------ **/
+
+    protected function handleHeaders($headers) {
+    	foreach ($headers as $key => $content) {
+    		header($key . ': ' . $content);
+    	}
     }
 
     /**
