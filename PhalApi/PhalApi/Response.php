@@ -99,12 +99,18 @@ abstract class PhalApi_Response {
         return $rs;
     }
 
+	/**
+	 * 获取头部
+	 * 
+	 * @param string $key 头部的名称
+	 * @return string/array 对应的内容，不存在时返回NULL，$key为NULL时返回全部
+	 */
     public function getHeaders($key = NULL) {
         if ($key === NULL) {
             return $this->headers;
         }
 
-        return isset($this->headers[$key]) ? $this->headers[$key] : '';
+        return isset($this->headers[$key]) ? $this->headers[$key] : NULL;
     }
 
     /** ------------------ 内部方法 ------------------ **/
