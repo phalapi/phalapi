@@ -11,7 +11,7 @@
  * 
  * <br>格式规则：<br>
 ```
- *  array('name' => '', 'type' => 'string', 'default' => '', 'min' => '', 'max' => '', 'regx' => '')
+ *  array('name' => '', 'type' => 'string', 'default' => '', 'min' => '', 'max' => '', 'regex' => '')
  *  array('name' => '', 'type' => 'int', 'default' => '', 'min' => '', 'max' => '',)
  *  array('name' => '', 'type' => 'float', 'default' => '', 'min' => '', 'max' => '',)
  *  array('name' => '', 'type' => 'boolean', 'default' => '',)
@@ -113,7 +113,7 @@ class PhalApi_Request_Var {
     public static function formatString($value, $rule) {
         $rs = strval(self::filterByStrLen(strval($value), $rule));
 
-        self::filterByRegx($rs, $rule);
+        self::filterByRegex($rs, $rule);
 
         return $rs;
     }
@@ -121,15 +121,15 @@ class PhalApi_Request_Var {
     /**
      * 进行正则匹配
      */
-    protected static function filterByRegx($value, $rule) {
-        if (!isset($rule['regx']) || empty($rule['regx'])) {
+    protected static function filterByRegex($value, $rule) {
+        if (!isset($rule['regex']) || empty($rule['regex'])) {
             return;
         }
 
         //如果你看到此行报错，说明提供的正则表达式不合法
-        if (preg_match($rule['regx'], $value) <= 0) {
+        if (preg_match($rule['regex'], $value) <= 0) {
             throw new PhalApi_Exception_BadRequest(
-                T('{name} can not match {regx}', array('name' => $rule['name'], 'regx' => $rule['regx']))
+                T('{name} can not match {regex}', array('name' => $rule['name'], 'regex' => $rule['regex']))
             );
         }
     }

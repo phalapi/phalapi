@@ -288,7 +288,7 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
     public function testStringWithRegxRight()
     {
         //very simple mobile phone
-        $rule = array('name' => 'key', 'type' => 'string', 'regx' => '/^[0-9]{11}/');
+        $rule = array('name' => 'key', 'type' => 'string', 'regex' => '/^[0-9]{11}/');
         PhalApi_Request_Var::formatString('13800138000', $rule);
     }
 
@@ -297,7 +297,7 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
      */
     public function testStringWithRegxWrong()
     {
-        $rule = array('name' => 'key', 'type' => 'string', 'regx' => '/^[0-9]{11}/');
+        $rule = array('name' => 'key', 'type' => 'string', 'regex' => '/^[0-9]{11}/');
         PhalApi_Request_Var::formatString('no a number', $rule);
     }
 }
