@@ -5,6 +5,21 @@
  * - 原生态COOKIE操作的简单封装
  * - 注意，设置的COOKIE需要在下一次才能生效
  *
+ * <br>使用示例：<br>
+```
+ *   //COOKIE
+ *  DI()->cookie = 'PhalApi_Cookie';
+ *  
+ *   //设置COOKIE服务
+ *  DI()->cookie->set('name', 'phalapi', $_SERVER['REQUEST_TIME'] + 600);
+ *  
+ *  //获取
+ *  echo DI()->cookie->get('name');  //输出 phalapi
+ *  
+ *  //删除
+ *  DI()->cookie->delete('name');
+ *  
+```
  * @package PhalApi\Cookie
  * @license http://www.phalapi.net/license
  * @link http://www.phalapi.net/
