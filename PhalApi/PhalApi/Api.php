@@ -109,14 +109,19 @@ class PhalApi_Api {
      * @return array
      */
     public function getApiRules() {
+        $rules = array();
+
         $allRules = $this->getRules();
+		if (!is_array($allRules)) {
+			return $rules;
+		}
+
 		$allRules = array_change_key_case($allRules, CASE_LOWER);
 
     	$service = DI()->request->get('service', 'Default.Index');
     	list($apiClassName, $action) = explode('.', $service);
         $action = strtolower($action); 
     	
-        $rules = array();
         if (isset($allRules[$action]) && is_array($allRules[$action])) {
             $rules = $allRules[$action];
         }
@@ -125,7 +130,7 @@ class PhalApi_Api {
         }
 
         $apiCommonRules = DI()->config->get('app.apiCommonRules', array());
-        if (!empty($apiCommonRules)) {
+        if (!empty($apiCommonRules) && is_array($apiCommonRules)) {
             $rules = array_merge($apiCommonRules, $rules);
         }
 
