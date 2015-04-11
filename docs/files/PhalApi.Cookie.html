@@ -11,17 +11,7 @@
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/prism.css" rel="stylesheet" media="all"/>
     <link href="../css/template.css" rel="stylesheet" media="all"/>
-        <link href="../css/jquery.iviewer.css" rel="stylesheet" media="all"/>
-    <style>
-        #viewer {
-            position: relative;
-            width: 100%;
-        }
-        .wrapper {
-            overflow: hidden;
-        }
-    </style>
-
+    
     <!--[if lt IE 9]>
     <script src="../js/html5.js"></script>
     <![endif]-->
@@ -31,20 +21,53 @@
     <script src="../js/jquery.smooth-scroll.js"></script>
     <script src="../js/prism.min.js"></script>
     <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
-        <script src="../js/jquery.mousewheel.js" type="text/javascript"></script>
-    <script src="../js/jquery.iviewer.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        $(window).resize(function(){
-            $("#viewer").height($(window).height() - 100);
-        });
+        <script type="text/javascript">
+        function loadExternalCodeSnippets() {
+            Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+                var src = pre.getAttribute('data-src');
+                var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+                var language = 'php';
 
-        $(document).ready(function() {
-            $("#viewer").iviewer({src: '../graphs/classes.svg', zoom_animation: false});
-            $('#viewer img').bind('dragstart', function(event){
-                event.preventDefault();
+                var code = document.createElement('code');
+                code.className = 'language-' + language;
+
+                pre.textContent = '';
+
+                code.textContent = 'Loading…';
+
+                pre.appendChild(code);
+
+                var xhr = new XMLHttpRequest();
+
+                xhr.open('GET', src, true);
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+
+                        if (xhr.status < 400 && xhr.responseText) {
+                            code.textContent = xhr.responseText;
+
+                            Prism.highlightElement(code);
+                        }
+                        else if (xhr.status >= 400) {
+                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                        }
+                        else {
+                            code.textContent = '✖ Error: File does not exist or is empty';
+                        }
+                    }
+                };
+
+                xhr.send(null);
             });
-            $(window).resize();
+        }
+
+        $(document).ready(function(){
+            loadExternalCodeSnippets();
         });
+        $('#source-view').on('shown', function () {
+            loadExternalCodeSnippets();
+        })
     </script>
 
     <link rel="shortcut icon" href="../images/favicon.ico"/>
@@ -108,11 +131,122 @@
 </div>
 
 <div id="___" class="container-fluid">
-        <div class="row-fluid">
-        <div class="span12">
-            <div class="wrapper">
-                <div id="viewer" class="viewer"></div>
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1602654266"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
+            <div id="namespace-1602654266" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/PhalApi_Cache.html">PhalApi_Cache</a></li>
+                                                    <li class="interface"><a href="../classes/PhalApi_Config.html">PhalApi_Config</a></li>
+                                                    <li class="interface"><a href="../classes/PhalApi_Crypt.html">PhalApi_Crypt</a></li>
+                                                    <li class="interface"><a href="../classes/PhalApi_DB.html">PhalApi_DB</a></li>
+                                                    <li class="interface"><a href="../classes/PhalApi_Filter.html">PhalApi_Filter</a></li>
+                                                    <li class="interface"><a href="../classes/PhalApi_Model.html">PhalApi_Model</a></li>
+                                                                                                    <li class="class"><a href="../classes/PhalApi.html">PhalApi</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_Api.html">PhalApi_Api</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_ApiFactory.html">PhalApi_ApiFactory</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_Cache_File.html">PhalApi_Cache_File</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_Cache_Memecahced.html">PhalApi_Cache_Memecahced</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_Cache_Multi.html">PhalApi_Cache_Multi</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_Cache_None.html">PhalApi_Cache_None</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_Config_File.html">PhalApi_Config_File</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_Cookie.html">PhalApi_Cookie</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_Cookie_Multi.html">PhalApi_Cookie_Multi</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_Crypt_Mcrypt.html">PhalApi_Crypt_Mcrypt</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_Crypt_MultiMcrypt.html">PhalApi_Crypt_MultiMcrypt</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_Crypt_RSA_KeyGenerator.html">PhalApi_Crypt_RSA_KeyGenerator</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_Crypt_RSA_MultiBase.html">PhalApi_Crypt_RSA_MultiBase</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_Crypt_RSA_MultiPri2Pub.html">PhalApi_Crypt_RSA_MultiPri2Pub</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_Crypt_RSA_MultiPub2Pri.html">PhalApi_Crypt_RSA_MultiPub2Pri</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_Crypt_RSA_Pri2Pub.html">PhalApi_Crypt_RSA_Pri2Pub</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_Crypt_RSA_Pub2Pri.html">PhalApi_Crypt_RSA_Pub2Pri</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_CUrl.html">PhalApi_CUrl</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_DB_NotORM.html">PhalApi_DB_NotORM</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_DI.html">PhalApi_DI</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_Exception.html">PhalApi_Exception</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_Exception_BadRequest.html">PhalApi_Exception_BadRequest</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_Exception_InternalServerError.html">PhalApi_Exception_InternalServerError</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_Loader.html">PhalApi_Loader</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_Logger.html">PhalApi_Logger</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_Logger_Explorer.html">PhalApi_Logger_Explorer</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_Logger_File.html">PhalApi_Logger_File</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_Model_NotORM.html">PhalApi_Model_NotORM</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_ModelProxy.html">PhalApi_ModelProxy</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_ModelQuery.html">PhalApi_ModelQuery</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_Request.html">PhalApi_Request</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_Request_Var.html">PhalApi_Request_Var</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_Response.html">PhalApi_Response</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_Response_Explorer.html">PhalApi_Response_Explorer</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_Response_Json.html">PhalApi_Response_Json</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_Response_JsonP.html">PhalApi_Response_JsonP</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_Tool.html">PhalApi_Tool</a></li>
+                                                    <li class="class"><a href="../classes/PhalApi_Translator.html">PhalApi_Translator</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content file">
+                    <nav>
+                                                                    </nav>
+
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+                    <h1><small>PhalApi</small>Cookie.php</h1>
+                    <p><em></em></p>
+                    
+
+                    
+                    
+                                        <h2>Classes</h2>
+                    <table class="table table-hover">
+                                            <tr>
+                            <td><a href="../classes/PhalApi_Cookie.html">PhalApi_Cookie</a></td>
+                            <td><em>PhalApi_Cookie COOKIE操作</em></td>
+                        </tr>
+                                        </table>
+                                    </div>
+
+                <aside class="span4 detailsbar">
+                    <dl>
+                                                    <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\Default</div></dd>
+                        
+                        
+                    </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                                            </table>
+
+                </aside>
+            </div>
+
+            
+            
+        </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label"></h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/PhalApi/Cookie.php.txt" class="language-php line-numbers"></pre>
         </div>
     </div>
 

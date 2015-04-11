@@ -136,10 +136,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1260172174"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1090800289"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1260172174" class="accordion-body collapse in">
+            <div id="namespace-1090800289" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -206,18 +206,25 @@
                                             </nav>
                     <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
 
-                    <h1><small>\</small>PhalApi_Logger_File</h1>
-                    <p><em>PhalApi_Logger_File 文件日记纪录类</em></p>
+                    <h1><small>\</small>PhalApi_Cookie</h1>
+                    <p><em>PhalApi_Cookie COOKIE操作</em></p>
                     <ul>
-<li>将日记写入文件，文件目录可以自定义</li>
+<li>原生态COOKIE操作的简单封装</li>
+<li>注意，设置的COOKIE需要在下一次才能生效</li>
 </ul>
 <p><br>使用示例：<br></p>
-<pre><code>     //目录为./Runtime，且保存全部类型的日记
-     $logger = new PhalApi_Logger_File('./Runtime',
-            PhalApi_Logger::LOG_LEVEL_DEBUG | PhalApi_Logger::LOG_LEVEL_INFO | PhalApi_Logger::LOG_LEVEL_ERROR);
+<pre><code>  //COOKIE
+ DI()-&gt;cookie = 'PhalApi_Cookie';
 
-     //日记会保存在在./Runtime/debug_log/目录下
-     $logger-&gt;debug('this is bebug test');</code></pre>
+  //设置COOKIE服务
+ DI()-&gt;cookie-&gt;set('name', 'phalapi', $_SERVER['REQUEST_TIME'] + 600);
+
+ //获取
+ echo DI()-&gt;cookie-&gt;get('name');  //输出 phalapi
+
+ //删除
+ DI()-&gt;cookie-&gt;delete('name');
+</code></pre>
                     
                                         
                     <section id="summary">
@@ -235,31 +242,25 @@
                         </section>
                         <section class="row-fluid public">
                             <section class="span4">
-                                                                    <a href="../classes/PhalApi_Logger_File.html#method___construct" class="">__construct()</a><br />
-                                                                    <a href="../classes/PhalApi_Logger_File.html#method_log" class="">log()</a><br />
-                                                                    <a href="../classes/PhalApi_Logger.html#method_info" class="">info()</a><br />
-                                                                    <a href="../classes/PhalApi_Logger.html#method_debug" class="">debug()</a><br />
-                                                                    <a href="../classes/PhalApi_Logger.html#method_error" class="">error()</a><br />
+                                                                    <a href="../classes/PhalApi_Cookie.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/PhalApi_Cookie.html#method_get" class="">get()</a><br />
+                                                                    <a href="../classes/PhalApi_Cookie.html#method_set" class="">set()</a><br />
+                                                                    <a href="../classes/PhalApi_Cookie.html#method_delete" class="">delete()</a><br />
+                                                                    <a href="../classes/PhalApi_Cookie.html#method_getConfig" class="">getConfig()</a><br />
                                                             </section>
                             <section class="span4">
                                                                     <em>No public properties found</em>
                                                             </section>
                             <section class="span4">
-                                                                    <a href="../classes/PhalApi_Logger.html#constant_LOG_LEVEL_DEBUG" class="">LOG_LEVEL_DEBUG</a><br />
-                                                                    <a href="../classes/PhalApi_Logger.html#constant_LOG_LEVEL_INFO" class="">LOG_LEVEL_INFO</a><br />
-                                                                    <a href="../classes/PhalApi_Logger.html#constant_LOG_LEVEL_ERROR" class="">LOG_LEVEL_ERROR</a><br />
+                                                                    <em>No constants found</em>
                                                             </section>
                         </section>
                         <section class="row-fluid protected">
                             <section class="span4">
-                                                                    <a href="../classes/PhalApi_Logger.html#method_isAllowToLog" class="">isAllowToLog()</a><br />
-                                                                    <a href="../classes/PhalApi_Logger_File.html#method_init" class="">init()</a><br />
+                                                                    <em>No protected methods found</em>
                                                             </section>
                             <section class="span4">
-                                                                    <a href="../classes/PhalApi_Logger.html#property_logLevel" class="">$logLevel</a><br />
-                                                                    <a href="../classes/PhalApi_Logger_File.html#property_logFolder" class="">$logFolder</a><br />
-                                                                    <a href="../classes/PhalApi_Logger_File.html#property_dateFormat" class="">$dateFormat</a><br />
-                                                                    <a href="../classes/PhalApi_Logger_File.html#property_logFile" class="">$logFile</a><br />
+                                                                    <a href="../classes/PhalApi_Cookie.html#property_config" class="">$config</a><br />
                                                             </section>
                             <section class="span4">
                                 <em>N/A</em>
@@ -283,14 +284,12 @@
                     
                     <dl>
                         <dt>File</dt>
-                            <dd><a href="../files/PhalApi.Logger.File.html"><div class="path-wrapper">PhalApi/Logger/File.php</div></a></dd>
+                            <dd><a href="../files/PhalApi.Cookie.html"><div class="path-wrapper">PhalApi/Cookie.php</div></a></dd>
                                                 <dt>Package</dt>
-                            <dd><div class="namespace-wrapper">PhalApi\Logger</div></dd>
+                            <dd><div class="namespace-wrapper">PhalApi\Cookie</div></dd>
                                                 <dt>Class hierarchy</dt>
                             <dd class="hierarchy">
-                                                                                                                                                                                                                                                                                                
-                                        <div class="namespace-wrapper"><a href="../classes/PhalApi_Logger.html">\PhalApi_Logger</a></div>
-                                                                                                    <div class="namespace-wrapper">\PhalApi_Logger_File</div>
+                                                                                                                                                                    <div class="namespace-wrapper">\PhalApi_Cookie</div>
                             </dd>
 
                         
@@ -315,91 +314,14 @@
                                 author
                             </th>
                             <td>
-                                                                    <p>dogstar <a href="mailto:chanzonghuang@gmail.com">chanzonghuang@gmail.com</a> 2014-10-02</p>
+                                                                    <p>dogstar <a href="mailto:chanzonghuang@gmail.com">chanzonghuang@gmail.com</a> 2015-04-11</p>
                                                             </td>
                         </tr>
                                         </table>
                 </aside>
             </div>
 
-                                    <a id="constants" name="constants"></a>
-            <div class="row-fluid">
-                <div class="span8 content class">
-                    <h2>Constants</h2>
-                </div>
-                <aside class="span4 detailsbar"></aside>
-            </div>
-
-                                <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="constant_LOG_LEVEL_DEBUG" name="constant_LOG_LEVEL_DEBUG" class="anchor"></a>
-            <article id="constant_LOG_LEVEL_DEBUG" class="constant">
-                <h3 class="">LOG_LEVEL_DEBUG</h3>
-                <pre class="signature">LOG_LEVEL_DEBUG</pre>
-                <p><em></em></p>
-                
-            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/PhalApi_Logger.html"><div class="path-wrapper">\PhalApi_Logger</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="constant_LOG_LEVEL_INFO" name="constant_LOG_LEVEL_INFO" class="anchor"></a>
-            <article id="constant_LOG_LEVEL_INFO" class="constant">
-                <h3 class="">LOG_LEVEL_INFO</h3>
-                <pre class="signature">LOG_LEVEL_INFO</pre>
-                <p><em></em></p>
-                
-            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/PhalApi_Logger.html"><div class="path-wrapper">\PhalApi_Logger</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="constant_LOG_LEVEL_ERROR" name="constant_LOG_LEVEL_ERROR" class="anchor"></a>
-            <article id="constant_LOG_LEVEL_ERROR" class="constant">
-                <h3 class="">LOG_LEVEL_ERROR</h3>
-                <pre class="signature">LOG_LEVEL_ERROR</pre>
-                <p><em></em></p>
-                
-            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/PhalApi_Logger.html"><div class="path-wrapper">\PhalApi_Logger</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                            
+                        
                                     <a id="properties" name="properties"></a>
             <div class="row-fluid">
                 <div class="span8 content class">
@@ -410,85 +332,11 @@
 
                                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_logLevel" name="property_logLevel" class="anchor"></a>
+            <a id="property_config" name="property_config" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$logLevel</h3>
-                <pre class="signature">$logLevel : integer</pre>
-                <p><em></em></p>
-                
-
-                                <h4>Type</h4>
-                integer
-                &mdash; 多个日记级别                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/PhalApi_Logger.html"><div class="path-wrapper">\PhalApi_Logger</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_logFolder" name="property_logFolder" class="anchor"></a>
-            <article class="property">
-                <h3 class="protected ">$logFolder</h3>
-                <pre class="signature">$logFolder : </pre>
-                <p><em></em></p>
-                
-
-                                <h4>Type</h4>
-                
-                                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_dateFormat" name="property_dateFormat" class="anchor"></a>
-            <article class="property">
-                <h3 class="protected ">$dateFormat</h3>
-                <pre class="signature">$dateFormat : </pre>
-                <p><em></em></p>
-                
-
-                                <h4>Type</h4>
-                
-                                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_logFile" name="property_logFile" class="anchor"></a>
-            <article class="property">
-                <h3 class="protected ">$logFile</h3>
-                <pre class="signature">$logFile : </pre>
-                <p><em></em></p>
+                <h3 class="protected ">$config</h3>
+                <pre class="signature">$config : </pre>
+                <p><em>COOKIE配置</em></p>
                 
 
                                 <h4>Type</h4>
@@ -519,7 +367,7 @@
             <article class="method">
                 <h3 class="public ">__construct()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">__construct(  <span class="argument">$logFolder</span>,   <span class="argument">$level</span>,   <span class="argument">$dateFormat = &#039;Y-m-d H:i:s&#039;</span>) </pre>
+                <pre class="signature" style="margin-right: 54px;">__construct(  <span class="argument">$config = array()</span>) </pre>
                 <p><em></em></p>
                 
 
@@ -527,17 +375,7 @@
                     <table class="table table-condensed table-hover">
                                                     <tr>
                                 <td></td>
-                                <td>$logFolder </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td></td>
-                                <td>$level </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td></td>
-                                <td>$dateFormat </td>
+                                <td>$config </td>
                                 <td></td>
                             </tr>
                                             </table>
@@ -549,7 +387,9 @@
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
                                                             <dl>
-                                                                            </dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="http://php.net/manual/zh/function.setcookie.php"><span class="namespace-wrapper">http://php.net/manual/zh/function.setcookie.php</span></a></dd>
+                                                                </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
                                     <tr><td colspan="2"><em>None found</em></td></tr>
@@ -559,36 +399,27 @@
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_log" name="method_log" class="anchor"></a>
+            <a id="method_get" name="method_get" class="anchor"></a>
             <article class="method">
-                <h3 class="public ">log()</h3>
+                <h3 class="public ">get()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">log(string  <span class="argument">$type</span>, string  <span class="argument">$msg</span>, \string/array  <span class="argument">$data</span>) : NULL</pre>
-                <p><em>日记纪录</em></p>
-                <p>可根据不同需要，将日记写入不同的媒介</p>
+                <pre class="signature" style="margin-right: 54px;">get(string  <span class="argument">$name = NULL</span>) : \string/NULL/array</pre>
+                <p><em>获取COOKIE</em></p>
+                
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
                                 <td>string</td>
-                                <td>$type </td>
-                                <td><p>日记类型，如：info/debug/error, etc</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$msg </td>
-                                <td><p>日记关键描述</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>\string/array</td>
-                                <td>$data </td>
-                                <td><p>场景上下文信息</p></td>
+                                <td>$name </td>
+                                <td><p>待获取的COOKIE名字</p></td>
                             </tr>
                                             </table>
                 
                 
                                     <h4>Returns</h4>
-                    NULL
+                    \string/NULL/array
+                                            &mdash; <p>$name为NULL时返回整个$_COOKIE，存在时返回COOKIE，否则返回NULL</p>
                                     				
                             </article>
         </div>
@@ -605,164 +436,41 @@
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_info" name="method_info" class="anchor"></a>
+            <a id="method_set" name="method_set" class="anchor"></a>
             <article class="method">
-                <h3 class="public ">info()</h3>
+                <h3 class="public ">set()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">info(string  <span class="argument">$msg</span>, \string/array  <span class="argument">$data = NULL</span>) : NULL</pre>
-                <p><em>应用产品级日记</em></p>
+                <pre class="signature" style="margin-right: 54px;">set(string  <span class="argument">$name</span>, \string/int  <span class="argument">$value</span>, integer  <span class="argument">$expire = NULL</span>) </pre>
+                <p><em>设置COOKIE</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
                                 <td>string</td>
-                                <td>$msg </td>
-                                <td><p>日记关键描述</p></td>
+                                <td>$name </td>
+                                <td><p>待设置的COOKIE名字</p></td>
                             </tr>
                                                     <tr>
-                                <td>\string/array</td>
-                                <td>$data </td>
-                                <td><p>场景上下文信息</p></td>
+                                <td>\string/int</td>
+                                <td>$value </td>
+                                <td><p>建议COOKIE值为一些简单的字符串或数字，不推荐存放敏感数据</p></td>
                             </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    NULL
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/PhalApi_Logger.html"><div class="path-wrapper">\PhalApi_Logger</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_debug" name="method_debug" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">debug()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">debug(string  <span class="argument">$msg</span>, \string/array  <span class="argument">$data = NULL</span>) : NULL</pre>
-                <p><em>开发调试级日记</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$msg </td>
-                                <td><p>日记关键描述</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>\string/array</td>
-                                <td>$data </td>
-                                <td><p>场景上下文信息</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    NULL
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/PhalApi_Logger.html"><div class="path-wrapper">\PhalApi_Logger</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_error" name="method_error" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">error()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">error(string  <span class="argument">$msg</span>, \string/array  <span class="argument">$data = NULL</span>) : NULL</pre>
-                <p><em>系统错误级日记</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$msg </td>
-                                <td><p>日记关键描述</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>\string/array</td>
-                                <td>$data </td>
-                                <td><p>场景上下文信息</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    NULL
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/PhalApi_Logger.html"><div class="path-wrapper">\PhalApi_Logger</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_isAllowToLog" name="method_isAllowToLog" class="anchor"></a>
-            <article class="method">
-                <h3 class="protected ">isAllowToLog()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">isAllowToLog(integer  <span class="argument">$logLevel</span>) : boolean</pre>
-                <p><em>是否允许写入日记，或运算</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
                                                     <tr>
                                 <td>integer</td>
-                                <td>$logLevel </td>
-                                <td></td>
+                                <td>$expire </td>
+                                <td><p>有效期的timestamp，为NULL时默认存放一个月</p></td>
                             </tr>
                                             </table>
                 
                 
-                                    <h4>Returns</h4>
-                    boolean
-                                    				
+                				
                             </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
                                                             <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/PhalApi_Logger.html"><div class="path-wrapper">\PhalApi_Logger</div></a></dd>
-                                                            </dl>
+                                                                            </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
                                     <tr><td colspan="2"><em>None found</em></td></tr>
@@ -772,12 +480,48 @@
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_init" name="method_init" class="anchor"></a>
+            <a id="method_delete" name="method_delete" class="anchor"></a>
             <article class="method">
-                <h3 class="protected ">init()</h3>
+                <h3 class="public ">delete()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">init() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">delete(\strint  <span class="argument">$name</span>) </pre>
+                <p><em>删除COOKIE</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\strint</td>
+                                <td>$name </td>
+                                <td><p>待删除的COOKIE名字</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="../classes/PhalApi_Cookie.html#method_set"><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getConfig" name="method_getConfig" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getConfig()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getConfig() </pre>
+                <p><em>获取COOKIE的配置</em></p>
                 
 
                 
@@ -796,16 +540,16 @@
         </aside>
     </div>
 
-                                                    </div>
+                                                                    </div>
     </section>
 
     <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="source-view-label">File.php</h3>
+            <h3 id="source-view-label">Cookie.php</h3>
         </div>
         <div class="modal-body">
-            <pre data-src="../files/PhalApi/Logger/File.php.txt" class="language-php line-numbers"></pre>
+            <pre data-src="../files/PhalApi/Cookie.php.txt" class="language-php line-numbers"></pre>
         </div>
     </div>
 
