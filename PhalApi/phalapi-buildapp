@@ -50,7 +50,9 @@ cp $BASE_PATH/../Demo/Tests/Api/Api_Default_Test.php $BASE_PATH/../$APP_NAME/Tes
 cp $BASE_PATH/../Demo/Tests/phpunit.xml $BASE_PATH/../$APP_NAME/Tests/
 
 ## Step 3. Create Bootstrap
-PUBLIC_APP_NAME=$(echo "$APP_NAME" | sed 's/[A-Z]/\l&/g')
+#PUBLIC_APP_NAME=$(echo "$APP_NAME" | sed 's/[A-Z]/\l&/g')
+#bugfixed by 阿董
+PUBLIC_APP_NAME=$(echo "$APP_NAME" | tr '[A-Z]' '[a-z]')
 
 mkdir -p $BASE_PATH/../Public/$PUBLIC_APP_NAME
 
