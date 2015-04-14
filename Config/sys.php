@@ -4,6 +4,8 @@
  */
 
 return array(
+	//此debug目前没有实际作用，各项目可根据需要定义使用
+	//通常 DI()->debug = DI()->config->get('sys.debug')，但应支持：DI->debug = $_GET['debug']
 	'debug' => false,
 
     /**
