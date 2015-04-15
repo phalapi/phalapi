@@ -17,6 +17,14 @@ function DI() {
 }
 
 /**
+ * 设定语言，SL为setLanguage的简写
+ * @param string $language 翻译包的目录名
+ */
+function SL($language) {
+	PhalApi_Translator::setLanguage($language);
+}
+
+/**
  * 快速翻译
  * @param string $msg 待翻译的内容
  * @param array $params 动态参数

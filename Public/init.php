@@ -12,7 +12,7 @@ $loader = new PhalApi_Loader(API_ROOT);
 
 date_default_timezone_set('Asia/Shanghai');
 
-PhalApi_Translator::setLanguage('zh_cn');
+SL('zh_cn');
 
 /** ---------------- 注册&初始化服务组件 ---------------- **/
 
@@ -26,11 +26,14 @@ DI()->config = new PhalApi_Config_File(API_ROOT . '/Config');
 DI()->logger = new PhalApi_Logger_File(API_ROOT . '/Runtime', 
     PhalApi_Logger::LOG_LEVEL_DEBUG | PhalApi_Logger::LOG_LEVEL_INFO | PhalApi_Logger::LOG_LEVEL_ERROR);
 
-//数据操作 - 基于NotORM
+//数据操作 - 基于NotORM，$_GET['__sql__']可自行改名
 DI()->notorm = function() {
-    $debug = isset($_GET['debug']) ? true : false;
+    $debug = !empty($_GET['__sql__']) ? true : false;
     return new PhalApi_DB_NotORM(DI()->config->get('dbs'), $debug);
 };
+
+//调试模式，$_GET['__debug__']可自行改名
+DI()->debug = !empty($_GET['__debug__']) ? true : DI()->config->get('sys.debug');
 
 /** ---------------- 以下服务组件就根据需要定制注册 ---------------- **/
 
