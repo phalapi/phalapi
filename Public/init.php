@@ -5,14 +5,12 @@
  
 /** ---------------- 根目录定义，自动加载 ---------------- **/
 
+date_default_timezone_set('Asia/Shanghai');
+
 defined('API_ROOT') || define('API_ROOT', dirname(__FILE__) . '/..');
 
 require_once API_ROOT . '/PhalApi/PhalApi.php';
 $loader = new PhalApi_Loader(API_ROOT);
-
-date_default_timezone_set('Asia/Shanghai');
-
-SL('zh_cn');
 
 /** ---------------- 注册&初始化服务组件 ---------------- **/
 
@@ -35,18 +33,15 @@ DI()->notorm = function() {
 //调试模式，$_GET['__debug__']可自行改名
 DI()->debug = !empty($_GET['__debug__']) ? true : DI()->config->get('sys.debug');
 
+//翻译语言包设定
+SL('zh_cn');
+
 /** ---------------- 以下服务组件就根据需要定制注册 ---------------- **/
 
 //缓存 - MC
 /**
 DI()->cache = function() {
-	//可以考虑将此配置放进./Config/sys.php
-	$mcConfig = array(
-        'host' => '127.0.0.1',
-        'port' => 11211,
-    );
-	
-	$mc = new PhalApi_Cache_Memecahced($mcConfig);
+	$mc = new PhalApi_Cache_Memecahced(DI()->config->get('sys.mc'));
 	return $mc;
 };
  */
