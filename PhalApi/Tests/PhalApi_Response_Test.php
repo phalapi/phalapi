@@ -70,6 +70,17 @@ class PhpUnderControl_PhalApiResponse_Test extends PHPUnit_Framework_TestCase
         $rs = $this->coreResponse->addHeaders($key, $content);
     }
 
+    public function testGetHeaders()
+    {
+        $key = 'Version';
+        $content = '1.1.2';
+
+        $rs = $this->coreResponse->addHeaders($key, $content);
+
+        $this->assertEquals($content, $this->coreResponse->getHeaders($key));
+        $this->assertTrue(is_array($this->coreResponse->getHeaders()));
+    }
+
     /**
      * @group testOutput
      */ 

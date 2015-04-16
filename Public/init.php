@@ -5,14 +5,12 @@
  
 /** ---------------- 根目录定义，自动加载 ---------------- **/
 
+date_default_timezone_set('Asia/Shanghai');
+
 defined('API_ROOT') || define('API_ROOT', dirname(__FILE__) . '/..');
 
 require_once API_ROOT . '/PhalApi/PhalApi.php';
 $loader = new PhalApi_Loader(API_ROOT);
-
-date_default_timezone_set('Asia/Shanghai');
-
-PhalApi_Translator::setLanguage('zh_cn');
 
 /** ---------------- 注册&初始化服务组件 ---------------- **/
 
@@ -26,24 +24,24 @@ DI()->config = new PhalApi_Config_File(API_ROOT . '/Config');
 DI()->logger = new PhalApi_Logger_File(API_ROOT . '/Runtime', 
     PhalApi_Logger::LOG_LEVEL_DEBUG | PhalApi_Logger::LOG_LEVEL_INFO | PhalApi_Logger::LOG_LEVEL_ERROR);
 
-//数据操作 - 基于NotORM
+//数据操作 - 基于NotORM，$_GET['__sql__']可自行改名
 DI()->notorm = function() {
-    $debug = isset($_GET['debug']) ? true : false;
+    $debug = !empty($_GET['__sql__']) ? true : false;
     return new PhalApi_DB_NotORM(DI()->config->get('dbs'), $debug);
 };
+
+//调试模式，$_GET['__debug__']可自行改名
+DI()->debug = !empty($_GET['__debug__']) ? true : DI()->config->get('sys.debug');
+
+//翻译语言包设定
+SL('zh_cn');
 
 /** ---------------- 以下服务组件就根据需要定制注册 ---------------- **/
 
 //缓存 - MC
 /**
 DI()->cache = function() {
-	//可以考虑将此配置放进./Config/sys.php
-	$mcConfig = array(
-        'host' => '127.0.0.1',
-        'port' => 11211,
-    );
-	
-	$mc = new PhalApi_Cache_Memecahced($mcConfig);
+	$mc = new PhalApi_Cache_Memecahced(DI()->config->get('sys.mc'));
 	return $mc;
 };
  */

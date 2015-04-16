@@ -7,7 +7,8 @@
  * <br>示例：<br>
  * 
 ```
- *  $curl = new PhalApi_CUrl();
+ *  // 失败时再重试2次
+ *  $curl = new PhalApi_CUrl(2);
  *
  *  // GET
  *  $rs = $curl->get('http://phalapi.oschina.mopaas.com/Public/demo/?service=Default.Index');
@@ -24,6 +25,24 @@
  */
 
 class PhalApi_CUrl {
+
+    /**
+     * 最大重试次数
+     */
+    const MAX_RETRY_TIMES = 10;
+
+	/**
+	 * @var int $retryTimes 超时重试次数；注意，此为失败重试的次数，即：总次数 = 1 + 重试次数
+	 */
+    protected $retryTimes;
+
+	/**
+	 * @param int $retryTimes 超时重试次数，默认为1
+	 */
+    public function __construct($retryTimes = 1) {
+        $this->retryTimes = $retryTimes < self::MAX_RETRY_TIMES 
+            ? $retryTimes : self::MAX_RETRY_TIMES;
+    }
 
 	/**
 	 * GET方式的请求
@@ -66,7 +85,11 @@ class PhalApi_CUrl {
             curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         }
 
-        $rs = curl_exec($ch);
+        $curRetryTimes = $this->retryTimes;
+        do {
+            $rs = curl_exec($ch);
+            $curRetryTimes--;
+        } while($rs === FALSE && $curRetryTimes >= 0);
 
         curl_close($ch);
 
