@@ -61,42 +61,43 @@ class PhalApi_Translator {
      * @param string $language 翻译包的目录名
      */
     public static function setLanguage($language) {
-		self::$language = $language;
+        self::$language = $language;
 
         self::$message = array();
 
-		self::addMessage(PHALAPI_ROOT);
+        self::addMessage(PHALAPI_ROOT);
 
         if (defined('API_ROOT')) {
-			self::addMessage(API_ROOT);
+            self::addMessage(API_ROOT);
         }
     }
 
-	/**
-	 * 添加更多翻译
-	 * 
-	 * - 为扩展类库或者外部提供更方便的方式追加翻译的内容
-	 *
-	 * @param string $path 待追加的路径
-	 * @return NULL
-	 */
-	public static function addMessage($path) {
-		$moreMessagePath = self::getMessageFilePath($path, self::$language);
+    /**
+     * 添加更多翻译
+     * 
+     * - 为扩展类库或者外部提供更方便的方式追加翻译的内容
+     *
+     * @param string $path 待追加的路径
+     * @return NULL
+     */
+    public static function addMessage($path) {
+        $moreMessagePath = self::getMessageFilePath($path, self::$language);
 
         if (file_exists($moreMessagePath)) {
-			self::$message = array_merge(self::$message, include $moreMessagePath);
+            self::$message = array_merge(self::$message, include $moreMessagePath);
         }
-	}
+    }
 
     protected static function getMessageFilePath($root, $language) {
         return implode(DIRECTORY_SEPARATOR, 
             array($root, 'Language', strtolower($language), 'common.php'));
     }
 
-	/**
-	 * 取当前的语言
-	 */
-	public static function getLanguage() {
-		return self::$language;
-	}
+    /**
+     * 取当前的语言
+     */
+    public static function getLanguage() {
+        return self::$language;
+    }
 }
+

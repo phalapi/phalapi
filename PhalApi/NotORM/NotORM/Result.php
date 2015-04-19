@@ -717,6 +717,16 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
 		return $return;
 	}
 
+	/**
+     * 只查询第一行纪录
+     * @author: dogstar 2015-04-18
+     */
+    function fetchRow($column = '') {
+        $this->limit(1)->execute();
+        return $this->fetch($column);
+    }
+
+
     /**
      * 返回全部的数据
      * @author: dogstar 2014-11-01
