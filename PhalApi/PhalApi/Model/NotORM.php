@@ -19,12 +19,10 @@ abstract class PhalApi_Model_NotORM implements PhalApi_Model {
 	
 	public function get($id, $fields = '*') {
 		$needFields = is_array($fields) ? implode(',', $fields) : $fields;
-		$table = $this->getTableName($id);
+        $notorm = $this->getORM($id);
 
-		$rs = DI()->notorm->$table
-			->select($needFields)
-			->where($this->getTableKey($table) . ' = ?', $id)
-			->fetch();
+		$rs = $notorm->select($needFields)
+			->where($this->getTableKey($table), $id)->fetch();
 
 		$this->parseExtData($rs);
 
@@ -34,29 +32,24 @@ abstract class PhalApi_Model_NotORM implements PhalApi_Model {
 	public function insert($data, $id = NULL) {
 		$this->formatExtData($data);
 
-		$table = $this->getTableName($id);
+        $notorm = $this->getORM($id);
+        $notorm->insert($data);
 
-		$notorm = DI()->notorm->$table;
-		$notorm->insert($data);
 		return $notorm->insert_id();
 	}
 
 	public function update($id, $data) {
 		$this->formatExtData($data);
 
-		$table = $this->getTableName($id);
+        $notorm = $this->getORM($id);
 
-		return DI()->notorm->$table
-			->where($this->getTableKey($table) . ' = ?', $id)
-			->update($data);
+		return $notorm->where($this->getTableKey($table), $id)->update($data);
 	}
 
 	public function delete($id) {
-		$table = $this->getTableName($id);
+        $notorm = $this->getORM($id);
 
-		return DI()->notorm->$table
-			->where($this->getTableKey($table) . ' = ?', $id)
-			->delete();
+		return $notorm->where($this->getTableKey($table), $id)->delete();
 	}
 
 	/**
