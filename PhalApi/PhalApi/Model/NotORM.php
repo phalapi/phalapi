@@ -16,73 +16,73 @@
 abstract class PhalApi_Model_NotORM implements PhalApi_Model {
 
 	protected static $tableKeys = array();
-	
-	public function get($id, $fields = '*') {
-		$needFields = is_array($fields) ? implode(',', $fields) : $fields;
+
+    public function get($id, $fields = '*') {
+        $needFields = is_array($fields) ? implode(',', $fields) : $fields;
         $notorm = $this->getORM($id);
 
-		$rs = $notorm->select($needFields)
-			->where($this->getTableKey($table), $id)->fetch();
+        $rs = $notorm->select($needFields)
+            ->where($this->getTableKey($table), $id)->fetch();
 
-		$this->parseExtData($rs);
+        $this->parseExtData($rs);
 
-		return $rs;
-	}
+        return $rs;
+    }
 
-	public function insert($data, $id = NULL) {
-		$this->formatExtData($data);
+    public function insert($data, $id = NULL) {
+        $this->formatExtData($data);
 
         $notorm = $this->getORM($id);
         $notorm->insert($data);
 
-		return $notorm->insert_id();
-	}
+        return $notorm->insert_id();
+    }
 
-	public function update($id, $data) {
-		$this->formatExtData($data);
+    public function update($id, $data) {
+        $this->formatExtData($data);
 
         $notorm = $this->getORM($id);
 
-		return $notorm->where($this->getTableKey($table), $id)->update($data);
-	}
+        return $notorm->where($this->getTableKey($table), $id)->update($data);
+    }
 
-	public function delete($id) {
+    public function delete($id) {
         $notorm = $this->getORM($id);
 
-		return $notorm->where($this->getTableKey($table), $id)->delete();
-	}
+        return $notorm->where($this->getTableKey($table), $id)->delete();
+    }
 
-	/**
-	 * 对LOB的ext_data字段进行格式化(序列化)
-	 */
-	protected function formatExtData(&$data) {
-		if (isset($data['ext_data'])) {
-			$data['ext_data'] = json_encode($data['ext_data']);
-		}
-	}
+    /**
+     * 对LOB的ext_data字段进行格式化(序列化)
+     */
+    protected function formatExtData(&$data) {
+        if (isset($data['ext_data'])) {
+            $data['ext_data'] = json_encode($data['ext_data']);
+        }
+    }
 
-	/**
-	 * 对LOB的ext_data字段进行解析(反序列化)
-	 */
-	protected function parseExtData(&$data) {
-		if (isset($data['ext_data'])) {
-			$data['ext_data'] = json_decode($data['ext_data'], true);
-		}
-	}
+    /**
+     * 对LOB的ext_data字段进行解析(反序列化)
+     */
+    protected function parseExtData(&$data) {
+        if (isset($data['ext_data'])) {
+            $data['ext_data'] = json_decode($data['ext_data'], true);
+        }
+    }
 
-	/**
-	 * 根据主键值返回对应的表名，注意分表的情况
-	 */
-	abstract protected function getTableName($id);
+    /**
+     * 根据主键值返回对应的表名，注意分表的情况
+     */
+    abstract protected function getTableName($id);
 
-	/**
-	 * 根据表名获取主键名
-	 *
-	 * - 考虑到配置中的表主键不一定是id，所以这里将默认自动装配数据库配置并匹配对应的主键名
-	 * - 如果不希望因自动匹配所带来的性能问题，可以在每个实现子类手工返回对应的主键名
-	 * - 注意分表的情况
-	 * 
-	 * @param string $table 表名/分表名
+    /**
+     * 根据表名获取主键名
+     *
+     * - 考虑到配置中的表主键不一定是id，所以这里将默认自动装配数据库配置并匹配对应的主键名
+     * - 如果不希望因自动匹配所带来的性能问题，可以在每个实现子类手工返回对应的主键名
+     * - 注意分表的情况
+     * 
+     * @param string $table 表名/分表名
 	 * @return string 主键名
 	 */
 	protected function getTableKey($table) {
