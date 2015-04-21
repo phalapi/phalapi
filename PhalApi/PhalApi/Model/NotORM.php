@@ -15,7 +15,7 @@
 
 abstract class PhalApi_Model_NotORM implements PhalApi_Model {
 
-	protected static $tableKeys = array();
+    protected static $tableKeys = array();
 
     public function get($id, $fields = '*') {
         $needFields = is_array($fields) ? implode(',', $fields) : $fields;
@@ -83,40 +83,40 @@ abstract class PhalApi_Model_NotORM implements PhalApi_Model {
      * - 注意分表的情况
      * 
      * @param string $table 表名/分表名
-	 * @return string 主键名
-	 */
-	protected function getTableKey($table) {
-		if (empty(self::$tableKeys)) {
-			$this->loadTableKeys();
-		}
+     * @return string 主键名
+     */
+    protected function getTableKey($table) {
+        if (empty(self::$tableKeys)) {
+            $this->loadTableKeys();
+        }
 
-		return isset(self::$tableKeys[$table]) ? self::$tableKeys[$table] : self::$tableKeys['__default__'];
-	}
+        return isset(self::$tableKeys[$table]) ? self::$tableKeys[$table] : self::$tableKeys['__default__'];
+    }
 
-	/**
-	 * 快速获取ORM实例
-	 * @param string/int $id
-	 * @return NotORM
-	 */
-	protected function getORM($id = NULL) {
-		$table = $this->getTableName($id);
-		return DI()->notorm->$table;
-	}
-	
-	protected function loadTableKeys() {
-		$tables = DI()->config->get('dbs.tables');
-		if (empty($tables)) {
-			throw new PhalApi_Exception_InternalServerError(T('dbs.tables should not be empty'));
-		}
+    /**
+     * 快速获取ORM实例
+     * @param string/int $id
+     * @return NotORM
+     */
+    protected function getORM($id = NULL) {
+        $table = $this->getTableName($id);
+        return DI()->notorm->$table;
+    }
 
-		foreach ($tables as $tableName => $tableConfig) {
-			if (isset($tableConfig['start']) && isset($tableConfig['end'])) {
-				for ($i = $tableConfig['start']; $i <= $tableConfig['end']; $i ++) {
-					self::$tableKeys[$tableName . '_' . $i] = $tableConfig['key'];
-				}
-			} else {
-				self::$tableKeys[$tableName] = $tableConfig['key'];
-			}
-		}
-	}
+    protected function loadTableKeys() {
+        $tables = DI()->config->get('dbs.tables');
+        if (empty($tables)) {
+            throw new PhalApi_Exception_InternalServerError(T('dbs.tables should not be empty'));
+        }
+
+        foreach ($tables as $tableName => $tableConfig) {
+            if (isset($tableConfig['start']) && isset($tableConfig['end'])) {
+                for ($i = $tableConfig['start']; $i <= $tableConfig['end']; $i ++) {
+                    self::$tableKeys[$tableName . '_' . $i] = $tableConfig['key'];
+                }
+            } else {
+                self::$tableKeys[$tableName] = $tableConfig['key'];
+            }
+        }
+    }
 }
