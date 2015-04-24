@@ -220,12 +220,17 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */ {
             $dbCfg = isset($this->_configs['servers'][$dbKey]) 
                 ? $this->_configs['servers'][$dbKey] : array();
 
-            $this->_pdos[$dbKey] = new PDO(
-                'mysql:dbname=' . $dbCfg['name'] . ';host=' . $dbCfg['host'],
-                $dbCfg['user'],
-                $dbCfg['password'],
-                array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\'')
-            );
+            try {
+                $this->_pdos[$dbKey] = new PDO(
+                    'mysql:dbname=' . $dbCfg['name'] . ';host=' . $dbCfg['host'],
+                    $dbCfg['user'],
+                    $dbCfg['password'],
+                    array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\'')
+                );
+            } catch (Exception $ex) {
+                //异常时，接口异常返回，并隐藏数据库帐号信息
+                throw new PhalApi_Exception_InternalServerError('can not connect to database ' . $dbKey);
+            }
         }
 
         return $this->_pdos[$dbKey];
