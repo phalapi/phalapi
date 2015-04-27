@@ -147,6 +147,16 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
 
         self::$queryTimes ++;
 
+        /**
+         * 修正当参数过多时的SQLSTATE[HY093] @dogstar 2014-11-18
+         */
+        $parameters = array_map(array($this, 'formatValue'), $parameters);
+        foreach ($parameters as $key => $val) {
+            if (substr($key, 0, 1) == ':' && stripos($query, $key) === false) {
+                unset($parameters[$key]);
+            }
+        }
+
 		if ($this->notORM->debug) {
             $debugTrace['startTime'] = microtime(true);
 
@@ -170,18 +180,12 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
 			}
 		}
         $return = $this->notORM->connection->prepare($query);
-
-        /**
-         * 修正当参数过多时的SQLSTATE[HY093] @dogstar 2014-11-18
-         */
-        $parameters = array_map(array($this, 'formatValue'), $parameters);
-        foreach ($parameters as $key => $val) {
-            if (substr($key, 0, 1) == ':' && stripos($query, $key) === false) {
-                unset($parameters[$key]);
-            }
-        }
+		$errorMessage = null;
 
 		if (!$return || !$return->execute($parameters)) {
+			$errorInfo = $return->errorInfo();
+            $errorMessage = isset($errorInfo[2]) ? $errorInfo[2] : $errorMessage;
+
 			$return = false;
         }
 
@@ -189,6 +193,11 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
             $debugTrace['endTime'] = microtime(true);
 
             echo sprintf("[%s - %ss]%s<br>\n", self::$queryTimes, round($debugTrace['endTime'] - $debugTrace['startTime'], 5), $debugTrace['sql']);
+        }
+
+        //显式抛出异常，以让开发同学尽早发现SQL语法问题 @dogstar 20150426
+        if ($return === false && $errorMessage !== null) {
+            throw new PDOException($errorMessage);
         }
 
 		if ($this->notORM->debugTimer) {
@@ -684,41 +693,49 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
 				}
 			}
 			$this->rows = array();
-			if ($result) {
-				$result->setFetchMode(PDO::FETCH_ASSOC);
-				foreach ($result as $key => $row) {
-					if (isset($row[$this->primary])) {
-						$key = $row[$this->primary];
-						if (!is_string($this->access)) {
-							$this->access[$this->primary] = true;
-						}
-					}
-					//$this->rows[$key] = new $this->notORM->rowClass($row, $this);
+            if ($result) {
+                $result->setFetchMode(PDO::FETCH_ASSOC);
+                foreach ($result as $key => $row) {
+                    if (isset($row[$this->primary])) {
+                        $key = $row[$this->primary];
+                        if (!is_string($this->access)) {
+                            $this->access[$this->primary] = true;
+                        }
+                    }
+                    //$this->rows[$key] = new $this->notORM->rowClass($row, $this);
                     //@dogstar 改用返回数组 2014-11-01
                     $this->rows[$key] = $row;
-				}
-			}
-			$this->data = $this->rows;
-		}
-	}
-	
-	/** Fetch next row of result
-	* @param string column name to return or an empty string for the whole row
-	* @return mixed string or null with $column, NotORM_Row without $column, false if there is no row
-	*/
-	function fetch($column = '') {
-		// no $this->select($column) because next calls can access different columns
-		$this->execute();
-		$return = current($this->data);
-		next($this->data);
-		if ($return && $column != '') {
-			return $return[$column];
-		}
-		return $return;
-	}
+                }
+            }
+            $this->data = $this->rows;
+        }
+    }
 
-	/**
-     * 只查询第一行纪录
+    /** Fetch next row of result
+     * @param string column name to return or an empty string for the whole row
+     * @return mixed string or null with $column, NotORM_Row without $column, false if there is no row
+     */
+    function fetch($column = '') {
+        // no $this->select($column) because next calls can access different columns
+        $this->execute();
+        $return = current($this->data);
+        next($this->data);
+        if ($return && $column != '') {
+            return $return[$column];
+        }
+        return $return;
+    }
+
+    /**
+     * fetchRow别名，等效于NotORM_Result::fetchRow()
+     * @author: dogstar 2015-04-26
+     */
+    function fetchOne($column = '') {
+        return $this->fetchRow($column);
+    }
+
+    /**
+     * 只查询第一行纪录，等效于NotORM_Result::fetchOne()
      * @author: dogstar 2015-04-18
      */
     function fetchRow($column = '') {
@@ -726,24 +743,37 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
         return $this->fetch($column);
     }
 
-
     /**
-     * 返回全部的数据
+     * 返回全部的数据，等效于NotORM_Result::fetchRows()
      * @author: dogstar 2014-11-01
      */
-    function fetchAll()
-    {
+    function fetchAll() {
         $this->execute();
         return $this->data;
     }
 
     /**
-     * 根据SQL查询全部数据
+     * fetchAll别名，等效于NotORM_Result::fetchAll()
+     * @author: dogstar 2015-04-26
+     */
+    function fetchRows() {
+        return $this->fetchAll();
+    }
+
+    /**
+     * queryRows别名，等效于NotORM_Result::queryRows($sql, $parmas)
+     * @author: dogstar 2015-04-26
+     */
+    function queryAll($sql, $parmas) {
+        return $this->queryRows($sql, $parmas);
+    }
+
+    /**
+     * 根据SQL查询全部数据，等效于NotORM_Result::queryAll($sql, $parmas)
      * @return array
      * @author: dogstar 2014-11-01
      */
-    function queryRows($sql, $parmas)
-    {
+    function queryRows($sql, $parmas) {
         $result = $this->query($sql, $parmas);
 
         $rows = array();
