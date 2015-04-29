@@ -17,7 +17,7 @@ return array(
     "miss {name}'s enum range" => '{name}缺少枚举范围',
     '{name} should be in {range}, but now {name} = {value}' => '参数{name}应该为：{range}，但现在{name} = {value}',
     "min should <= max, but now {name} min = {min} and max = {max}" => '最小值应该小于等于最大值，但现在{name}的最小值为：{min}，最大值为：{max}',
-    '{name} should >= {min}, but now {name} = {value}' => '{name}应该小于或等于{min}, 但现在{name} = {value}',
+    '{name} should >= {min}, but now {name} = {value}' => '{name}应该大于或等于{min}, 但现在{name} = {value}',
     'miss name for rule' => '参数规则缺少name',
     '{name} require, but miss' => '缺少必要参数{name}',
     'PhalApi_Api::${name} undefined' => 'PhalApi_Api::${name} 未定义',
