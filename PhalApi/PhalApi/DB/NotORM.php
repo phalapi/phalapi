@@ -227,7 +227,7 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */ {
                     $dbCfg['password'],
                     array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\'')
                 );
-            } catch (Exception $ex) {
+            } catch (PDOException $ex) {
                 //异常时，接口异常返回，并隐藏数据库帐号信息
                 throw new PhalApi_Exception_InternalServerError('can not connect to database ' . $dbKey);
             }
