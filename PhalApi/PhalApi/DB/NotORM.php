@@ -235,5 +235,15 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */ {
 
         return $this->_pdos[$dbKey];
     }
+
+	/**
+	 * 断开数据库链接
+	 */
+    public function disconnect() {
+        foreach ($this->_pdos as $dbKey => $pdo) {
+            $this->_pdos[$dbKey] = null;
+            unset($this->_pdos[$dbKey]);
+        }
+    }
 }
 
