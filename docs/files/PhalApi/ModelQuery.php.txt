@@ -36,6 +36,11 @@ class PhalApi_ModelQuery {
 	public function __construct($queryArr = array()) {
 		$this->timestamp = $_SERVER['REQUEST_TIME'];
 
+		if (DI()->debug) {
+			$this->readCache = FALSE;
+			$this->writeCache = FALSE;
+		}
+
 		foreach ($queryArr as $key => $value) {
 			$this->$key = $value;
 		}
