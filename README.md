@@ -1,4 +1,4 @@
-#PhalApi - 轻量级PHP后台接口开发框架 - V1.1.3
+#PhalApi - 轻量级PHP后台接口开发框架 - V1.1.4
 
 #[官网 - www.phalapi.net](http://www.phalapi.net)
 ![apic](http://webtools.qiniudn.com/master-LOGO-20150410_50.jpg)  
