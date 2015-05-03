@@ -106,7 +106,7 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">274</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">275</span>
                                 </a>
                             </li>
                             <li>
@@ -136,10 +136,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1479328450"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-203949743"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1479328450" class="accordion-body collapse in">
+            <div id="namespace-203949743" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -210,7 +210,8 @@
                     <p><em>PhalApi_CUrl CURL请求类</em></p>
                     <p>通过curl实现的快捷方便的接口请求类</p>
 <p><br>示例：<br></p>
-<pre><code> $curl = new PhalApi_CUrl();
+<pre><code> // 失败时再重试2次
+ $curl = new PhalApi_CUrl(2);
 
  // GET
  $rs = $curl-&gt;get('http://phalapi.oschina.mopaas.com/Public/demo/?service=Default.Index');
@@ -235,6 +236,7 @@
                         </section>
                         <section class="row-fluid public">
                             <section class="span4">
+                                                                    <a href="../classes/PhalApi_CUrl.html#method___construct" class="">__construct()</a><br />
                                                                     <a href="../classes/PhalApi_CUrl.html#method_get" class="">get()</a><br />
                                                                     <a href="../classes/PhalApi_CUrl.html#method_post" class="">post()</a><br />
                                                             </section>
@@ -242,7 +244,7 @@
                                                                     <em>No public properties found</em>
                                                             </section>
                             <section class="span4">
-                                                                    <em>No constants found</em>
+                                                                    <a href="../classes/PhalApi_CUrl.html#constant_MAX_RETRY_TIMES" class="">MAX_RETRY_TIMES</a><br />
                                                             </section>
                         </section>
                         <section class="row-fluid protected">
@@ -250,7 +252,7 @@
                                                                     <a href="../classes/PhalApi_CUrl.html#method_request" class="">request()</a><br />
                                                             </section>
                             <section class="span4">
-                                                                    <em>No protected properties found</em>
+                                                                    <a href="../classes/PhalApi_CUrl.html#property_retryTimes" class="">$retryTimes</a><br />
                                                             </section>
                             <section class="span4">
                                 <em>N/A</em>
@@ -311,13 +313,108 @@
                 </aside>
             </div>
 
-                        
-                        
+                                    <a id="constants" name="constants"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Constants</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_MAX_RETRY_TIMES" name="constant_MAX_RETRY_TIMES" class="anchor"></a>
+            <article id="constant_MAX_RETRY_TIMES" class="constant">
+                <h3 class="">MAX_RETRY_TIMES</h3>
+                <pre class="signature">MAX_RETRY_TIMES</pre>
+                <p><em>最大重试次数</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_retryTimes" name="property_retryTimes" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$retryTimes</h3>
+                <pre class="signature">$retryTimes : integer</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                integer
+                &mdash; 超时重试次数；注意，此为失败重试的次数，即：总次数 = 1 + 重试次数                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                            
                                     <a id="methods" name="methods"></a>
             <div class="row-fluid">
                 <div class="span8 content class"><h2>Methods</h2></div>
                 <aside class="span4 detailsbar"></aside>
             </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(integer  <span class="argument">$retryTimes = 1</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$retryTimes </td>
+                                <td><p>超时重试次数，默认为1</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
@@ -504,7 +601,7 @@
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on April 11th, 2015 at 13:00.
+                    on May 3rd, 2015 at 06:17.
                 </section>
             </section>
         </section>
