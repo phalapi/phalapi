@@ -6,10 +6,10 @@
  * - 默认不使用zlib对值压缩
  * - 请尽量使用Memcached扩展
  *
- * Created by PhpStorm.
- * User: George
- * Date: 15/5/6
- * Time: 下午8:53
+ * @package     PhalApi\Cache
+ * @license     http://www.phalapi.net/license
+ * @link        http://www.phalapi.net/
+ * @author      PhpStorm George <plzhuangyuan@163.com> 15/5/6 下午8:53
  */
 
 class PhalApi_Cache_Memcache implements PhalApi_Cache {
@@ -24,7 +24,7 @@ class PhalApi_Cache_Memcache implements PhalApi_Cache {
      * @param string $config['prefix'] Memcache key prefix
      */
     public function __construct($config) {
-        $this->memcache = new Memcache();
+        $this->memcache = $this->createMemcache();
         $this->memcache->addServer($config['host'], $config['port']);
         $this->prefix = isset($config['prefix']) ? $config['prefix'] : 'phalapi_';
     }
@@ -40,6 +40,14 @@ class PhalApi_Cache_Memcache implements PhalApi_Cache {
 
     public function delete($key) {
         return $this->memcache->delete($this->formatKey($key));
+    }
+
+    /**
+     * 获取MC实例，以便提供桩入口
+	 * @return Memcache
+     */
+    protected function createMemcache() {
+        return new Memcache();
     }
 
     protected function formatKey($key) {
