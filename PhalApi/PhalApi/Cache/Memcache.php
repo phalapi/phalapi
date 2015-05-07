@@ -30,7 +30,7 @@ class PhalApi_Cache_Memcache implements PhalApi_Cache {
     }
 
     public function set($key, $value, $expire = 600) {
-        $this->memcache->set($this->formatKey($key), @serialize($value),0,$expire);
+        $this->memcache->set($this->formatKey($key), @serialize($value), 0, $expire);
     }
 
     public function get($key) {

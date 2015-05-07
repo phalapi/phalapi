@@ -12,6 +12,13 @@
 
 class PhalApi_Cache_Memcached extends PhalApi_Cache_Memcache {
 
+	/**
+	 * 注意参数的微妙区别
+	 */
+    public function set($key, $value, $expire = 600) {
+        $this->memcache->set($this->formatKey($key), @serialize($value), $expire);
+    }
+
     /**
      * 返回更高版本的MC实例
 	 * @return Memcached
