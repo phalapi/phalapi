@@ -1,6 +1,6 @@
 <?php
 /**
- * PhalApi_Cache_Memecahced MC缓存
+ * PhalApi_Cache_Memcached MC缓存
  *
  * - 使用序列化对需要存储的值进行转换，以提高速度
  *
@@ -10,7 +10,7 @@
  * @author      dogstar <chanzonghuang@gmail.com> 2014-11-14
  */
 
-class PhalApi_Cache_Memecahced implements PhalApi_Cache {
+class PhalApi_Cache_Memcached implements PhalApi_Cache {
 
     protected $memcached = null;
 

@@ -33,7 +33,7 @@ DI()->notorm = function() {
 };
 
 DI()->cache = function() {
-    //$mc = new PhalApi_Cache_Memecahced(DI()->config->get('sys.memcached'));
+    //$mc = new PhalApi_Cache_Memcached(DI()->config->get('sys.mc'));
     $mc = new Memcached_Mock();
 	return $mc;
 };

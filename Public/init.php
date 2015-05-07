@@ -43,7 +43,7 @@ SL('zh_cn');
 DI()->cache = function() {
     //根据Memcached是否加载
     if(extension_loaded('memcached')){
-        $mc = new PhalApi_Cache_Memecahced(DI()->config->get('sys.mc'));
+        $mc = new PhalApi_Cache_Memcached(DI()->config->get('sys.mc'));
     }else{
         $mc = new PhalApi_Cache_Memcache(DI()->config->get('sys.mc'));
     }
