@@ -13,52 +13,52 @@
 
 class PhalApi_ModelQuery {
 
-	/**
-	 * @var boolean $readCache 是否读取缓存
-	 */
-	public $readCache = true;
+    /**
+     * @var boolean $readCache 是否读取缓存
+     */
+    public $readCache = true;
 
-	/**
-	 * @var boolean $writeCache 是否写入缓存
-	 */
-	public $writeCache = true;
+    /**
+     * @var boolean $writeCache 是否写入缓存
+     */
+    public $writeCache = true;
 
-	/**
-	 * @var string/int ID
-	 */
-	public $id;
-	
-	/**
-	 * @var int $timestamp 时间戳
-	 */
-	public $timestamp;
+    /**
+     * @var string/int ID
+     */
+    public $id;
 
-	public function __construct($queryArr = array()) {
-		$this->timestamp = $_SERVER['REQUEST_TIME'];
+    /**
+     * @var int $timestamp 时间戳
+     */
+    public $timestamp;
 
-		if (DI()->debug) {
-			$this->readCache = FALSE;
-			$this->writeCache = FALSE;
-		}
+    public function __construct($queryArr = array()) {
+        $this->timestamp = $_SERVER['REQUEST_TIME'];
 
-		foreach ($queryArr as $key => $value) {
-			$this->$key = $value;
-		}
-	}
+        if (DI()->debug) {
+            $this->readCache = FALSE;
+            $this->writeCache = FALSE;
+        }
 
-	public function __set($name, $value) {
-		$this->$name = $value;
-	}
+        foreach ($queryArr as $key => $value) {
+            $this->$key = $value;
+        }
+    }
 
-	public function __get($name) {
-		if (isset($this->$name)) {
-			return $this->$name;
-		}
+    public function __set($name, $value) {
+        $this->$name = $value;
+    }
 
-		return NULL;
-	}
+    public function __get($name) {
+        if (isset($this->$name)) {
+            return $this->$name;
+        }
 
-	public function toArray() {
+        return NULL;
+    }
+
+    public function toArray() {
         return get_object_vars($this);
-	}
+    }
 }
