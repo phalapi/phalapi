@@ -55,7 +55,7 @@ class PhalApi_Redis implements PhalApi_Cache {
 	 * @description : 检测是否存在key,若不存在则赋值value
 	 */
 	public function setnx($key,$value){
-		$thi->redis->setnx($key,$value);
+		$this->redis->setnx($key,$value);
 	}
 
 	public function get($key) {
