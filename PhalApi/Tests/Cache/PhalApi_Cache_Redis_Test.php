@@ -9,7 +9,7 @@
 
 require_once dirname(__FILE__) . '/../test_env.php';
 
-if (!class_exists('PhalApi_Redis')) {
+if (!class_exists('PhalApi_Cache_Redis')) {
     require dirname(__FILE__) . '/../../PhalApi/Cache/Redis.php';
 }
 

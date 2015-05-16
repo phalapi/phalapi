@@ -12,7 +12,7 @@
  * @modify      dogstar <chanzonghuang@gmail.com> 20150516
  */
 
-class PhalApi_Redis implements PhalApi_Cache {
+class PhalApi_Cache_Redis implements PhalApi_Cache {
 
 	protected $redis;
 
