@@ -76,7 +76,7 @@ abstract class PhalApi_Model_NotORM implements PhalApi_Model {
     /**
      * 根据主键值返回对应的表名，注意分表的情况
      */
-    abstract protected function getTableName($id);
+    abstract protected function getTableName($id = NULL);
 
     /**
      * 根据表名获取主键名

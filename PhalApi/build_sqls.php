@@ -1,4 +1,3 @@
-#!/usr/bin/env php
 <?php
 /**
  * 根据配置自动生成SQL建表语句
