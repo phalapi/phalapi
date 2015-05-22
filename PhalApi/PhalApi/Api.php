@@ -113,7 +113,7 @@ class PhalApi_Api {
 
         $allRules = $this->getRules();
 		if (!is_array($allRules)) {
-			return $rules;
+			$allRules = array();
 		}
 
 		$allRules = array_change_key_case($allRules, CASE_LOWER);
