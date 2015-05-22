@@ -5,10 +5,10 @@ class Api_User extends PhalApi_Api {
     public function getRules() {
         return array(
             'getBaseInfo' => array(
-                'userId' => array('name' => 'userId', 'type' => 'int', 'min' => 1, 'require' => true),
+                'userId' => array('name' => 'user_id', 'type' => 'int', 'min' => 1, 'require' => true),
             ),
             'getMultiBaseInfo' => array(
-                'userIds' => array('name' => 'userIds', 'type' => 'array', 'format' => 'explode', 'require' => true),
+                'userIds' => array('name' => 'user_ids', 'type' => 'array', 'format' => 'explode', 'require' => true),
             ),
         );
     }

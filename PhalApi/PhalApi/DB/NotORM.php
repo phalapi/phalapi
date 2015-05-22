@@ -16,13 +16,14 @@ require_once PHALAPI_ROOT . DIRECTORY_SEPARATOR . 'NotORM' . DIRECTORY_SEPARATOR
  *      $config = array(
  *        //可用的DB服务器集群
  *       'servers' => array(
- *           'db_demo' => array(
- *               'host'      => 'localhost',                //数据库域名
- *               'name'      => 'test',                     //数据库名字
- *               'user'      => 'root',                     //数据库用户名
- *               'password'  => '123456',	                //数据库密码
- *               'port'      => '3306',		                //数据库端口
- *           ),
+ *          'db_demo' => array(
+ *              'host'      => 'localhost',             //数据库域名
+ *              'name'      => 'phalapi',               //数据库名字
+ *              'user'      => 'root',                  //数据库用户名
+ *              'password'  => '',	                    //数据库密码
+ *              'port'      => '3306',		            //数据库端口
+ *              'charset'   => 'UTF8',                  //数据库字符集
+ *          ),
  *       ),
  *
  *        //自定义表的存储路由
@@ -221,11 +222,18 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */ {
                 ? $this->_configs['servers'][$dbKey] : array();
 
             try {
+                $dsn = sprintf('mysql:dbname=%s;host=%s;port=%d',
+                    $dbCfg['name'], 
+                    isset($dbCfg['host']) ? $dbCfg['host'] : 'localhost', 
+                    isset($dbCfg['port']) ? $dbCfg['port'] : 3306
+                );
+                $charset = isset($dbCfg['charset']) ? $dbCfg['charset'] : 'UTF8';
+
                 $this->_pdos[$dbKey] = new PDO(
-                    'mysql:dbname=' . $dbCfg['name'] . ';host=' . $dbCfg['host'],
+                    $dsn,
                     $dbCfg['user'],
                     $dbCfg['password'],
-                    array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\'')
+                    array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES '{$charset}'")
                 );
             } catch (PDOException $ex) {
                 //异常时，接口异常返回，并隐藏数据库帐号信息
