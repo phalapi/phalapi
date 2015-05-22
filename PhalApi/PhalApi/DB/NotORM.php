@@ -225,7 +225,7 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */ {
                 $dsn = sprintf('mysql:dbname=%s;host=%s;port=%d',
                     $dbCfg['name'], 
                     isset($dbCfg['host']) ? $dbCfg['host'] : 'localhost', 
-                    isset($dbCfg['port']) ? $dbCfg['port'], 3306
+                    isset($dbCfg['port']) ? $dbCfg['port'] : 3306
                 );
                 $charset = isset($dbCfg['charset']) ? $dbCfg['charset'] : 'UTF8';
 
