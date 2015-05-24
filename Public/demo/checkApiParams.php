@@ -21,6 +21,7 @@ $typeMaps = array(
     'array' => '数组',
     'fixed' => '固定值',
     'enum' => '枚举类型',
+    'object' => '对象',
 );
 
 try {
@@ -28,6 +29,39 @@ try {
     $rules = $api->getApiRules();
 } catch (PhalApi_Exception $ex){
     $service .= ' - ' . $ex->getMessage();
+}
+
+list($className, $methodName) = explode('.', $service);
+$className = 'Api_' . $className;
+
+$rMethod = new ReflectionMethod($className, $methodName);
+$docComment = $rMethod->getDocComment();
+$docCommentArr = explode("\n", $docComment);
+
+$description = '';
+$returnArr = array();
+
+foreach ($docCommentArr as $comment) {
+	$comment = trim($comment);
+	//var_dump($comment);
+    if (empty($description) && strpos($comment, '@') === false && strpos($comment, '/') === false) {
+        $description = substr($comment, strpos($comment, '*') + 1);
+        continue;
+    }
+
+    $pos = stripos($comment, '@return');
+    if ($pos === false) {
+        continue;
+    }
+
+    $returnCommentArr = explode(' ', substr($comment, $pos + 8));
+    if (count($returnCommentArr) < 2) {
+        continue;
+    }
+    if (!isset($returnCommentArr[2])) {
+        $returnCommentArr[2] = '';	//可选的字段说明
+    }
+    $returnArr[] = $returnCommentArr; 
 }
 
 /** ---------------- 页面输出 ---------------- **/
@@ -56,9 +90,10 @@ echo <<<EOT
 
 EOT;
 
-echo "<h2>接口：$service</h2><br/>";
+echo "<h2>接口：$service</h2><br/><p>$description</p><br/>";
 
 echo <<<EOT
+<h3>接口参数</h3>
 <table class="table table-striped" >
 <thead>
 <tr><th>参数名字</th><th>类型</th><th>是否必须</th><th>默认值</th><th>其他</th></tr>
@@ -90,10 +125,32 @@ foreach ($rules as $key => $rule) {
 echo <<<EOT
 </table>
 
+<br>
+
+<h3>返回结果</h3>
+<table class="table table-striped" >
+<thead>
+<tr><th>返回字段</th><th>类型</th><th>说明</th></tr>
+EOT;
+
+foreach ($returnArr as $item) {
+	$name = $item[1];
+	$type = isset($typeMaps[$item[0]]) ? $typeMaps[$item[0]] : $item[0];
+	$detail = $item[2];
+	
+	echo "<tr><td>$name</td><td>$type</td><td>$detail</td></tr>";
+}
+
+echo <<<EOT
+
+</table>
+
+<br/>
+
     <div role="alert" class="alert alert-info">
       <strong>温馨提示：</strong> 此接口参数列表根据后台代码自动生成，可将 ?service= 改成您需要查询的接口/服务
     </div>
-
+    
 </div>
 
 </div> <!-- /container -->
