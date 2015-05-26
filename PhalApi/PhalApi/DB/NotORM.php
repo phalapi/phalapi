@@ -220,11 +220,11 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */ {
         if (!isset($this->_pdos[$dbKey])) {
             $dbCfg = isset($this->_configs['servers'][$dbKey]) 
                 ? $this->_configs['servers'][$dbKey] : array();
-            
-			if (empty($dbCfg)) {
-				throw new PhalApi_Exception_InternalServerError(
-					T('no such db:{db} in servers', array('db' => $dbKey)));
-			}
+
+            if (empty($dbCfg)) {
+                throw new PhalApi_Exception_InternalServerError(
+                    T('no such db:{db} in servers', array('db' => $dbKey)));
+            }
 
             try {
                 $dsn = sprintf('mysql:dbname=%s;host=%s;port=%d',
@@ -243,16 +243,16 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */ {
             } catch (PDOException $ex) {
                 //异常时，接口异常返回，并隐藏数据库帐号信息
                 throw new PhalApi_Exception_InternalServerError(
-					T('can not connect to database:{db}', array('db' => $dbKey)));
+                    T('can not connect to database:{db}', array('db' => $dbKey)));
             }
         }
 
         return $this->_pdos[$dbKey];
     }
 
-	/**
-	 * 断开数据库链接
-	 */
+    /**
+     * 断开数据库链接
+     */
     public function disconnect() {
         foreach ($this->_pdos as $dbKey => $pdo) {
             $this->_pdos[$dbKey] = NULL;
