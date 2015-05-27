@@ -287,17 +287,18 @@ class PhalApi_Request_Var {
         $default = isset($rule['default']) ? $rule['default'] : NULL;
 
         $index = $rule['name'];
-        if (!isset($_FILES[$index])) {
+        if (!isset($_FILES[$index]) && $default !== NULL) {
             return $default;
         }
 
         if (!isset($_FILES[$index]) || !isset($_FILES[$index]['error']) || is_array($_FILES[$index]['error'])) {
-            throw new PhalApi_Exception_BadRequest('miss upload file');
+            throw new PhalApi_Exception_BadRequest(
+                T('miss upload file: {file}', array('file' => $index)));
         }
 
         if ($_FILES[$index]['error'] != UPLOAD_ERR_OK) {
-            throw new PhalApi_Exception_BadRequest('Fail to upload file with error = {error}', 
-                array('error' => $_FILES[$index]['error']));
+            throw new PhalApi_Exception_BadRequest(
+                T('fail to upload file with error = {error}', array('error' => $_FILES[$index]['error'])));
         }
 
         $sizeRule = $rule;
@@ -305,7 +306,8 @@ class PhalApi_Request_Var {
         self::filterByRange($_FILES[$index]['size'], $sizeRule);
 
         if (!empty($rule['range']) && is_array($rule['range'])) {
-            self::formatEnumValue($_FILES[$index]['type'], $rule);
+		    $rule['range'] = array_map('strtolower', $rule['range']);
+            self::formatEnumValue(strtolower($_FILES[$index]['type']), $rule);
         }
 
         return $_FILES[$index];

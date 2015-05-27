@@ -26,4 +26,6 @@ return array(
     "{name}'s enum range can not be empty" => '{name}枚举规则中的range不能为空',
 	'no such db:{db} in servers' => '在servers中缺少{db}的配置',
 	'can not connect to database:{db}' => '数据库{db}连接失败',
+    'miss upload file: {file}' => '缺少上传文件：{file}',
+    'fail to upload file with error = {error}' => '上传文件失败，error = {error}',
 );
