@@ -10,7 +10,7 @@ require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'functions.php';
  *
  * @package     PhalApi\Loader
  * @link        http://docs.phalconphp.com/en/latest/reference/loader.html，实现统一的类加载
- * @license     http://www.phalapi.net/license
+ * @license     http://www.phalapi.net/license GPL 协议
  * @link        http://www.phalapi.net/
  * @author      dogstar <chanzonghuang@gmail.com> 2014-01-28
  */ 
