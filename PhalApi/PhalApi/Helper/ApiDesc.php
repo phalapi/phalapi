@@ -15,6 +15,7 @@ class PhalApi_Helper_ApiDesc {
 
         $rules = array();
         $returns = array();
+        $description = '';
 
         $typeMaps = array(
             'string' => '字符串',
@@ -43,9 +44,6 @@ class PhalApi_Helper_ApiDesc {
         $rMethod = new ReflectionMethod($className, $methodName);
         $docComment = $rMethod->getDocComment();
         $docCommentArr = explode("\n", $docComment);
-
-        $description = '';
-        $returns = array();
 
         foreach ($docCommentArr as $comment) {
             $comment = trim($comment);
