@@ -237,9 +237,9 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */ {
                 $this->_pdos[$dbKey] = new PDO(
                     $dsn,
                     $dbCfg['user'],
-                    $dbCfg['password'],
-                    array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES '{$charset}'")
+                    $dbCfg['password']
                 );
+                $this->_pdos[$dbKey]->exec("SET NAMES '{$charset}'");
             } catch (PDOException $ex) {
                 //异常时，接口异常返回，并隐藏数据库帐号信息
                 throw new PhalApi_Exception_InternalServerError(
