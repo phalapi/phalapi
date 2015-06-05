@@ -29,7 +29,7 @@
  * 
  * @package PhalApi\Logger
  * @link http://www.php-fig.org/psr/psr-3/ Logger Interface
- * @license http://www.phalapi.net/license
+ * @license http://www.phalapi.net/license GPL 协议
  * @link http://www.phalapi.net/
  * @author dogstar <chanzonghuang@gmail.com> 2014-10-02
  */

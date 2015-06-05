@@ -2,7 +2,7 @@
 /**
  * 考虑再三，出于人性化关怀，提供要些快速的函数和方法
  *
- * @license     http://www.phalapi.net/license
+ * @license     http://www.phalapi.net/license GPL 协议
  * @link        http://www.phalapi.net/
  * @author      dogstar <chanzonghuang@gmail.com> 2014-12-17
  */

@@ -69,7 +69,7 @@ class PhpUnderControl_ApiDefault_Test extends PHPUnit_Framework_TestCase
         $url = 'service=Default.Index&username=dogstar';
 
         //Step 2. 执行请求	
-        $rs = PhalApiTestRunner::go($url);
+        $rs = PhalApi_Helper_TestRunner::go($url);
 
         //Step 3. 验证
         $this->assertNotEmpty($rs);
