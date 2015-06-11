@@ -100,31 +100,35 @@ foreach ($tableMap['map'] as $mapItem) {
  */
 ";
 
+    $charset = isset($dbsConfig['servers'][$dbName]['charset']) 
+        ? $dbsConfig['servers'][$dbName]['charset'] : 'utf8';
+
     if (isset($mapItem['start']) && isset($mapItem['end'])) {
         for ($i = $mapItem['start']; $i <= $mapItem['end']; $i ++) {
             $outputSql .= genSql(
                 $tableMap['prefix'] . $tableName . '_' . $i, 
                 $tableMap['key'], 
                 $sqlContent, 
-                $engine
+                $engine,
+                $charset
             );
         }
     } else {
-        $outputSql .= genSql($tableMap['prefix'] . $tableName, $tableMap['key'], $sqlContent, $engine);
+        $outputSql .= genSql($tableMap['prefix'] . $tableName, $tableMap['key'], $sqlContent, $engine, $charset);
     }
 }
 
 
 echo $outputSql;
 
-function genSql($tableName, $tableKey, $sqlContent, $engine) {
+function genSql($tableName, $tableKey, $sqlContent, $engine, $charset) {
     return sprintf("
 CREATE TABLE `%s` (
     `%s` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
     %s
     `ext_data` text COMMENT 'json data here',
      PRIMARY KEY (`%s`)
- ) ENGINE=%s DEFAULT CHARSET=utf8;
+ ) ENGINE=%s DEFAULT CHARSET=%s;
             
-", $tableName, $tableKey, $sqlContent, $tableKey, $engine);
+", $tableName, $tableKey, $sqlContent, $tableKey, $engine, $charset);
 }
