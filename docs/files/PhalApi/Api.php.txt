@@ -28,7 +28,7 @@
  *
  * @property    mixed $whatever 接口参数
  * @package     PhalApi\Api
- * @license     http://www.phalapi.net/license
+ * @license     http://www.phalapi.net/license GPL 协议 GPL 协议
  * @link        http://www.phalapi.net/
  * @author      dogstar <chanzonghuang@gmail.com> 2014-10-02
  */
@@ -113,7 +113,7 @@ class PhalApi_Api {
 
         $allRules = $this->getRules();
 		if (!is_array($allRules)) {
-			return $rules;
+			$allRules = array();
 		}
 
 		$allRules = array_change_key_case($allRules, CASE_LOWER);

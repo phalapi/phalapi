@@ -6,7 +6,7 @@
  * - 最终将委托给各级缓存进行数据的读写，其中读取为短路读取
  *
  * @package     PhalApi\Cache
- * @license     http://www.phalapi.net/license
+ * @license     http://www.phalapi.net/license GPL 协议
  * @link        http://www.phalapi.net/
  * @author      dogstar <chanzonghuang@gmail.com> 2015-02-22
  */

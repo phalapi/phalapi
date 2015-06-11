@@ -3,7 +3,7 @@
  * PhalApi_Cache_None 空缓存 - NULL-Object空对象模式
  *
  * @package     PhalApi\Cache
- * @license     http://www.phalapi.net/license
+ * @license     http://www.phalapi.net/license GPL 协议
  * @link        http://www.phalapi.net/
  * @author      dogstar <chanzonghuang@gmail.com> 2015-02-04
  */

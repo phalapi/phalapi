@@ -21,6 +21,7 @@ abstract class PhalApi_Model_NotORM implements PhalApi_Model {
         $needFields = is_array($fields) ? implode(',', $fields) : $fields;
         $notorm = $this->getORM($id);
 
+        $table = $this->getTableName($id);
         $rs = $notorm->select($needFields)
             ->where($this->getTableKey($table), $id)->fetch();
 
@@ -43,12 +44,14 @@ abstract class PhalApi_Model_NotORM implements PhalApi_Model {
 
         $notorm = $this->getORM($id);
 
+        $table = $this->getTableName($id);
         return $notorm->where($this->getTableKey($table), $id)->update($data);
     }
 
     public function delete($id) {
         $notorm = $this->getORM($id);
 
+        $table = $this->getTableName($id);
         return $notorm->where($this->getTableKey($table), $id)->delete();
     }
 
