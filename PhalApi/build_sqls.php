@@ -61,7 +61,7 @@ if (empty($dbsConfig) || empty($dbsConfig['servers']) || empty($dbsConfig['table
     exit();
     }
 
-$tableMap = isset($dbsConfig['tables'][$tableName]) ? $dbsConfig['tables'][$tableName] : array();
+$tableMap = isset($dbsConfig['tables'][$tableName]) ? $dbsConfig['tables'][$tableName] : $dbsConfig['tables']['__default__'];
 if (empty($tableMap)) {
     echo "Error: no table map for $tableName !\n";
     exit();
