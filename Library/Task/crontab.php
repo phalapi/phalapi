@@ -8,6 +8,8 @@ try {
     $progress = new Task_Progress();
     $progress->run();
 } catch (Exception $ex) {
+    echo $ex->getMessage();
+    echo "\n\n";
     echo $ex->getTraceAsString();
     // notify ...
 }
