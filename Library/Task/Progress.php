@@ -60,14 +60,14 @@ class Task_Progress {
             $params = $item['fire_params'];
 
             if (empty($class) || !class_exists($class)) {
-                DI()->logger->error('task can not run illegal class', $item);
+                DI()->logger->error('Error: task can not run illegal class', $item);
                 $this->model->updateExceptionItem($item['id'], 'task can not run illegal class');
                 continue;
             }
 
             $trigger = new $class();
             if (!is_callable(array($class, 'fire'))) {
-                DI()->logger->error('task can not call fire()', $item);
+                DI()->logger->error('Error: task can not call fire()', $item);
                 $this->model->updateExceptionItem($item['id'], 'task can not call fire()');
                 continue;
             }
