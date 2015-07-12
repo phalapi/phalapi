@@ -54,7 +54,7 @@ class PhalApi_Request_Var {
         $key = isset($rule['name']) ? $rule['name'] : $varName;
         $value = isset($params[$key]) ? $params[$key] : $value;
 
-        if ($value === NULL) {
+        if ($value === NULL && $type != 'file') { //排除文件类型
             return $value;
         }
 
