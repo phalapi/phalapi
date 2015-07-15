@@ -40,6 +40,13 @@ foreach ($rules as $key => $rule) {
     $type = isset($typeMaps[$rule['type']]) ? $typeMaps[$rule['type']] : $rule['type'];
     $require = isset($rule['require']) && $rule['require'] ? '<font color="red">必须</font>' : '可选';
     $default = isset($rule['default']) ? $rule['default'] : '';
+    if ($default === NULL) {
+        $default = 'NULL';
+    } else if (is_array($default)) {
+        $default = json_encode($default);
+    } else if (!is_string($default)) {
+        $default = var_export($default, true);
+    }
 
     $other = '';
     if (isset($rule['min'])) {
