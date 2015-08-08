@@ -29,7 +29,7 @@ echo <<<EOT
 <h3>接口参数</h3>
 <table class="table table-striped" >
 <thead>
-<tr><th>参数名字</th><th>类型</th><th>是否必须</th><th>默认值</th><th>其他</th></tr>
+<tr><th>参数名字</th><th>类型</th><th>是否必须</th><th>默认值</th><th>其他</th><th>说明</th></tr>
 EOT;
 
 foreach ($rules as $key => $rule) {
@@ -58,8 +58,9 @@ foreach ($rules as $key => $rule) {
     if (isset($rule['range'])) {
         $other .= ' 范围：' . implode('/', $rule['range']);
     }
+    $desc = isset($rule['desc']) ? trim($rule['desc']) : '';
 
-    echo "<tr><td>$name</td><td>$type</td><td>$require</td><td>$default</td><td>$other</td></tr>\n";
+    echo "<tr><td>$name</td><td>$type</td><td>$require</td><td>$default</td><td>$other</td><td>$desc</td></tr>\n";
 }
 
 echo <<<EOT
