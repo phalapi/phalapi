@@ -23,7 +23,7 @@
  * DI()->config->get('app.version');  //返回：1.1.1
  * 
  * //app.php里面的多级配置
- * DI()->config->get('app.version');  //返回：chanzonghuang@gmail.com
+ * DI()->config->get('app.version.address');  //返回：chanzonghuang@gmail.com
 ```
  *
  * @package PhalApi\Config
