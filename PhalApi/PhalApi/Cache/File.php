@@ -33,11 +33,6 @@ class PhalApi_Cache_File implements PhalApi_Cache {
 
         $filePath = $this->createCacheFilePath($key);
 
-        if (!file_exists($filePath)) {
-            touch($filePath);
-            chmod($filePath, 0777);
-        }
-
         $expireStr = sprintf('%010d', $expire + time());
         if (strlen($expireStr) > 10) {
             throw new PhalApi_Exception_InternalServerError(
