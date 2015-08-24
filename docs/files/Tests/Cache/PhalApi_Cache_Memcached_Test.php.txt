@@ -1,0 +1,75 @@
+#!/usr/bin/env php
+<?php
+/**
+ * PhpUnderControl_PhalApiCacheMemcached_Test
+ *
+ * 针对 ../../PhalApi/Cache/Memcached.php PhalApi_Cache_Memcached 类的PHPUnit单元测试
+ *
+ * @author: dogstar 20150507
+ */
+
+require_once dirname(__FILE__) . '/../test_env.php';
+
+if (!class_exists('PhalApi_Cache_Memcached')) {
+    require dirname(__FILE__) . '/../../PhalApi/Cache/Memcached.php';
+}
+
+class PhpUnderControl_PhalApiCacheMemcached_Test extends PHPUnit_Framework_TestCase
+{
+    public $phalApiCacheMemcached;
+
+    protected function setUp()
+    {
+        parent::setUp();
+
+        $config = array('host' => '127.0.0.1', 'port' => '11211');
+        $this->phalApiCacheMemcached = new PhalApi_Cache_Memcached($config);
+    }
+
+    protected function tearDown()
+    {
+    }
+
+
+    /**
+     * @group testSet
+     */ 
+    public function testSet()
+    {
+        $key = 'key-2015-05-07';
+        $value = 'phalapi';
+        $expire = 60;
+
+        $this->phalApiCacheMemcached->set($key, $value, $expire);
+
+        $this->assertEquals('phalapi', $this->phalApiCacheMemcached->get($key));
+    }
+
+    /**
+     * @group testGet
+     */ 
+    public function testGet()
+    {
+        $key = 'no-this-key';
+
+        $rs = $this->phalApiCacheMemcached->get($key);
+
+        $this->assertSame(NULL, $rs);
+    }
+
+    /**
+     * @group testDelete
+     */ 
+    public function testDelete()
+    {
+        $key = 'key-2015-05-07';
+
+        $this->assertNotNull($this->phalApiCacheMemcached->get($key));
+
+        $this->phalApiCacheMemcached->delete($key);
+
+        $this->assertNull($this->phalApiCacheMemcached->get($key));
+    }
+
+}
+
