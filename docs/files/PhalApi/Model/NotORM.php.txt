@@ -97,7 +97,7 @@ abstract class PhalApi_Model_NotORM implements PhalApi_Model {
     }
 
     /**
-     * 快速获取ORM实例
+     * 快速获取ORM实例，注意每次获取都是新的实例
      * @param string/int $id
      * @return NotORM
      */
