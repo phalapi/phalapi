@@ -565,7 +565,15 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
 		return $this;
 	}
 	
-	/** Set limit clause, more calls rewrite old values
+	/** 
+	* 对查询进行limit操作
+	* 
+	* 请注意以下两种用法，与NotORM原来的定义有所区别
+	* 
+	* - limit(数量)
+	* - limit(开始位置，数量)
+	* 
+	* Set limit clause, more calls rewrite old values
 	* @param int
 	* @param int
 	* @return NotORM_Result fluent interface

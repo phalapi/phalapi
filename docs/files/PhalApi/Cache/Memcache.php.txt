@@ -7,7 +7,7 @@
  * - 请尽量使用Memcached扩展
  *
  * @package     PhalApi\Cache
- * @license     http://www.phalapi.net/license
+ * @license     http://www.phalapi.net/license GPL 协议
  * @link        http://www.phalapi.net/
  * @author      PhpStorm George <plzhuangyuan@163.com> 15/5/6 下午8:53
  */
@@ -30,7 +30,7 @@ class PhalApi_Cache_Memcache implements PhalApi_Cache {
     }
 
     public function set($key, $value, $expire = 600) {
-        $this->memcache->set($this->formatKey($key), @serialize($value),0,$expire);
+        $this->memcache->set($this->formatKey($key), @serialize($value), 0, $expire);
     }
 
     public function get($key) {

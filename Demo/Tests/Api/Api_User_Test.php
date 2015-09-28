@@ -43,7 +43,7 @@ class PhpUnderControl_ApiUser_Test extends PHPUnit_Framework_TestCase
     public function testGetBaseInfo()
     {
         //当。。。
-        $str = 'service=User.GetBaseInfo&userId=1';
+        $str = 'service=User.GetBaseInfo&user_id=1';
 
         parse_str($str, $params);
         DI()->request = new PhalApi_Request($params);
@@ -68,7 +68,7 @@ class PhpUnderControl_ApiUser_Test extends PHPUnit_Framework_TestCase
 
     public function testGetMultiBaseInfo()
     {
-        $str = 'service=User.GetMultiBaseInfo&userIds=1,2,3';
+        $str = 'service=User.GetMultiBaseInfo&user_ids=1,2,3';
         parse_str($str, $params);
 
         DI()->request = new PhalApi_Request($params);

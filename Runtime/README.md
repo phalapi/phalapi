@@ -1,1 +1,0 @@
-chmod +r ./Runtime

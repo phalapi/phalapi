@@ -1,4 +1,4 @@
-#PhalApi - 轻量级PHP后台接口开发框架 - V1.2.0
+#PhalApi - 轻量级PHP后台接口开发框架 - V1.2.1
 
 #[官网 - www.phalapi.net](http://www.phalapi.net)
 ![apic](http://webtools.qiniudn.com/master-LOGO-20150410_50.jpg)  
@@ -63,13 +63,13 @@ root   /path/to/PhalApi/Public;
 #在线体验
 ```
 //默认的接口服务
-http://phalapi.oschina.mopaas.com/Public/demo/
+http://demo.phalapi.net/
 
 //带参数的示例接口
-http://phalapi.oschina.mopaas.com/Public/demo/?service=Default.Index&username=oschina
+http://demo.phalapi.net/?service=Default.Index&username=oschina
 
 //故意请求一个非法的服务
-http://phalapi.oschina.mopaas.com/Public/demo/?service=Demo.None
+http://demo.phalapi.net/?service=Demo.None
 {
     "ret": 400,
     "data": [],
@@ -78,7 +78,7 @@ http://phalapi.oschina.mopaas.com/Public/demo/?service=Demo.None
 ```
 
 #文档
-[http://git.oschina.net/dogstar/PhalApi/wikis/home](http://git.oschina.net/dogstar/PhalApi/wikis/home)  
+[http://www.phalapi.net/wikis/](http://www.phalapi.net/wikis/)  
 
   
 #类参考手册
@@ -89,11 +89,11 @@ http://phalapi.oschina.mopaas.com/Public/demo/?service=Demo.None
 为了方便客户端查看最新的接口参数，特别提供此在线工具，根据接口代码实时生成接口参数报表，完全不需要后台开发编写维护额外的文档。我觉得，这很符合敏捷开发之道。
 ```
 //接口参数在线查询工具链接
-http://phalapi.oschina.mopaas.com/Public/demo/checkApiParams.php
+http://demo.phalapi.net/checkApiParams.php
 ```
-如：http://phalapi.oschina.mopaas.com/Public/demo/checkApiParams.php ，访问效果如下：
+如：http://demo.phalapi.net/checkApiParams.php ，访问效果如下：
 
- ![mahua](http://static.oschina.net/uploads/space/2015/0130/190225_8HRX_256338.jpg)
+ ![mahua](http://7qnay5.com1.z0.glb.clouddn.com/20150613.png)
  因此，接口所需要的参数，对于接口开发人员，也只是简单配置一下参数规则，便可以轻松获取。
  
 #[赞！]接口单元测试
@@ -168,4 +168,4 @@ http://phalapi.oschina.mopaas.com/Public/demo/checkApiParams.php
 除此之外，你也可以通过其他的方式来支持我们。一如：在你使用此框架进行实际项目开发过程中所遇到的问题或者更好的解决方案都可以反馈给我们；又如：关注和认可，因为在开源的路上，您每一次真心的关注和肯定都是我们前进的最大动力！谢谢！
   
 #更新日记
-此 [更新日记](http://git.oschina.net/dogstar/PhalApi/wikis/%5B5.6%5D-%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AE%B0) ，主要是为了说明，我们一直在努力更新和维护。
+此 [更新日记](http://www.phalapi.net/wikis/%5B5.6%5D-%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AE%B0.html) ，主要是为了说明，我们一直在努力更新和维护。

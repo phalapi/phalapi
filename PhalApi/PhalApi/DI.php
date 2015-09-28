@@ -30,18 +30,18 @@
  *       };
 ```       
  *      
- * @property PhalApi_Request $request 请求
- * @property PhalApi_Response_Json $response 结果响应
- * @property PhalApi_Cache $cache 缓存
- * @property PhalApi_Crypt $crypt 加密
- * @property PhalApi_Config $config 配置
- * @property PhalApi_Logger $logger 日记
- * @property PhalApi_DB_NotORM $notorm 数据库
- * @property PhalApi_Loader $loader 自动加载
+ * @property PhalApi_Request        $request    请求
+ * @property PhalApi_Response_Json  $response   结果响应
+ * @property PhalApi_Cache          $cache      缓存
+ * @property PhalApi_Crypt          $crypt      加密
+ * @property PhalApi_Config         $config     配置
+ * @property PhalApi_Logger         $logger     日记
+ * @property PhalApi_DB_NotORM      $notorm     数据库
+ * @property PhalApi_Loader         $loader     自动加载
  * 
  * @package     PhalApi\DI
  * @link        http://docs.phalconphp.com/en/latest/reference/di.html 实现统一的资源设置、获取与管理，支持延时加载
- * @license     http://www.phalapi.net/license
+ * @license     http://www.phalapi.net/license GPL 协议
  * @link        http://www.phalapi.net/
  * @author      dogstar <chanzonghuang@gmail.com> 2014-01-22
  */ 

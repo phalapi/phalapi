@@ -31,14 +31,14 @@
         <!--
         <tr>
             <td></td>
-            <td><a href="/fami/checkApiParams.php?service=" target="_blank">User_Login.Weixin</a></td>
+            <td><a href="/fami/checkApiParams.php?service=" target="_blank">XXX.XXX</a></td>
             <td></td>
             <td></td>
         </tr>
         -->
         <tr>
             <td>1</td>
-            <td><a href="/demo/checkApiParams.php?service=User_Info.GetUserInfo" target="_blank">User_Info.GetUserInfo</a></td>
+            <td><a href="/demo/checkApiParams.php?service=User.GetBaseInfo" target="_blank">User.GetBaseInfo</a></td>
             <td>获取用户信息</td>
             <td></td>
         </tr>
@@ -49,4 +49,4 @@
 </div> <!-- /container -->
 
 </body>
-</html>
+</seInfohtml>

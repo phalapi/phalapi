@@ -9,7 +9,7 @@
  * - 只适合字符串的加密，其他类型会强制转成字符串
  *
  * @package     PhalApi\Crypt\RSA
- * @license     http://www.phalapi.net/license
+ * @license     http://www.phalapi.net/license GPL 协议
  * @link        http://www.phalapi.net/
  * @author      dogstar <chanzonghuang@gmail.com> 2015-03-14
  */

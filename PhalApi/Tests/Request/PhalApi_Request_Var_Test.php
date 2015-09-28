@@ -202,6 +202,95 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @group testFile
+     */
+    public function testFormatFile()
+    {
+        $_FILES['aFile'] = array('name' => 'aHa~', 'type' => 'image/jpeg', 'size' => 100, 'tmp_name' => '/tmp/123456', 'error' => 0);
+
+        $rule = array('name' => 'aFile', 'range' => array('image/jpeg'), 'min' => 50, 'max' => 1024, 'require' => true, 'default' => array());
+
+        $rs = PhalApi_Request_Var::formatFile($rule);
+        $this->assertEquals($_FILES['aFile'], $rs);
+    }
+
+    /**
+     * @group testFile
+     */
+    public function testFormatFileInsensiveCase()
+    {
+        $_FILES['aFile'] = array('name' => 'aHa~', 'type' => 'image/jpeg', 'size' => 100, 'tmp_name' => '/tmp/123456', 'error' => 0);
+
+        $rule = array('name' => 'aFile', 'range' => array('image/JPEG'), 'min' => 50, 'max' => 1024, 'require' => true, 'default' => array());
+
+        $rs = PhalApi_Request_Var::formatFile($rule);
+        $this->assertEquals($_FILES['aFile'], $rs);
+    }
+
+    /**
+     * @group testFile
+     * @expectedException PhalApi_Exception_BadRequest
+     */
+    public function testFormatFileButTooLarge()
+    {
+        $_FILES['aFile'] = array('name' => 'aHa~', 'type' => 'image/jpeg', 'size' => 9999, 'tmp_name' => '/tmp/123456', 'error' => 0);
+
+        $rule = array('name' => 'aFile', 'range' => array('image/jpeg'), 'min' => 50, 'max' => 1024, 'require' => true, 'default' => array());
+
+        $rs = PhalApi_Request_Var::formatFile($rule);
+    }
+
+    /**
+     * @group testFile
+     * @expectedException PhalApi_Exception_BadRequest
+     */
+    public function testFormatFileButWrongType()
+    {
+        $_FILES['aFile'] = array('name' => 'aHa~', 'type' => 'image/png', 'size' => 100, 'tmp_name' => '/tmp/123456', 'error' => 0);
+
+        $rule = array('name' => 'aFile', 'range' => array('image/jpeg'), 'min' => 50, 'max' => 1024, 'require' => true, 'default' => array());
+
+        $rs = PhalApi_Request_Var::formatFile($rule);
+    }
+
+    /**
+     * @group testFile
+     * @expectedException PhalApi_Exception_BadRequest
+     */
+    public function testFormatFileButError()
+    {
+        $_FILES['aFile'] = array('name' => 'aHa~', 'type' => 'image/png', 'size' => 100, 'tmp_name' => '/tmp/123456', 'error' => 2);
+
+        $rule = array('name' => 'aFile', 'range' => array('image/jpeg'), 'min' => 50, 'max' => 1024, 'require' => true, 'default' => array());
+
+        $rs = PhalApi_Request_Var::formatFile($rule);
+    }
+
+    /**
+     * @group testFile
+     * @expectedException PhalApi_Exception_BadRequest
+     */
+    public function testFormatFileEmptyButRequire()
+    {
+        $rule = array('name' => 'aFile');
+
+        $rs = PhalApi_Request_Var::formatFile($rule);
+        $this->assertEquals(NULL, $rs);
+    }
+
+    /**
+     * $group testFile
+     */
+    public function testFormatFileEmptyWithDefualt()
+    {
+        $default = array('name' => 'test.txt', 'type' => 'txt', 'tmp_name' => '/tmp/test.txt');
+        $rule = array('name' => 'aFile', 'default' => $default);
+
+        $rs = PhalApi_Request_Var::formatFile($rule);
+        $this->assertEquals($default, $rs);
+    }
+
+    /**
      * @group testFormatEnum
      */ 
     public function testFormatEnum()
@@ -275,6 +364,11 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
         $rule = array('name' => 'noThisKey', 'type' => 'noThisType');
         $rs = PhalApi_Request_Var::format('noThisKey', $rule,  $params);
         $this->assertSame(null, $rs);
+
+        $_FILES['aFile'] = array('name' => 'aHa~', 'type' => 'image/jpeg', 'size' => 100, 'tmp_name' => '/tmp/123456', 'error' => 0);
+        $rule = array('name' => 'aFile', 'range' => array('image/jpeg'), 'min' => 50, 'max' => 1024, 'require' => true, 'default' => array(), 'type' => 'file');
+        $rs = PhalApi_Request_Var::format('aFile', $rule, $params);
+        $this->assertNotEmpty($rs);
     }
 
     /**

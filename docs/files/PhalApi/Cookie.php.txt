@@ -7,10 +7,10 @@
  *
  * <br>使用示例：<br>
 ```
- *   //COOKIE
+ *  //COOKIE
  *  DI()->cookie = 'PhalApi_Cookie';
  *  
- *   //设置COOKIE服务
+ *  //设置COOKIE服务
  *  DI()->cookie->set('name', 'phalapi', $_SERVER['REQUEST_TIME'] + 600);
  *  
  *  //获取
@@ -21,7 +21,7 @@
  *  
 ```
  * @package PhalApi\Cookie
- * @license http://www.phalapi.net/license
+ * @license http://www.phalapi.net/license GPL 协议
  * @link http://www.phalapi.net/
  * @author dogstar <chanzonghuang@gmail.com> 2015-04-11
  */

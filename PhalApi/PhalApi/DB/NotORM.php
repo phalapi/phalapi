@@ -58,7 +58,7 @@ require_once PHALAPI_ROOT . DIRECTORY_SEPARATOR . 'NotORM' . DIRECTORY_SEPARATOR
  *
  * @package     PhalApi\DB
  * @link        http://www.notorm.com/
- * @license     http://www.phalapi.net/license
+ * @license     http://www.phalapi.net/license GPL 协议
  * @link        http://www.phalapi.net/
  * @author      dogstar <chanzonghuang@gmail.com> 2014-11-22
  */
@@ -221,6 +221,11 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */ {
             $dbCfg = isset($this->_configs['servers'][$dbKey]) 
                 ? $this->_configs['servers'][$dbKey] : array();
 
+            if (empty($dbCfg)) {
+                throw new PhalApi_Exception_InternalServerError(
+                    T('no such db:{db} in servers', array('db' => $dbKey)));
+            }
+
             try {
                 $dsn = sprintf('mysql:dbname=%s;host=%s;port=%d',
                     $dbCfg['name'], 
@@ -232,21 +237,22 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */ {
                 $this->_pdos[$dbKey] = new PDO(
                     $dsn,
                     $dbCfg['user'],
-                    $dbCfg['password'],
-                    array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES '{$charset}'")
+                    $dbCfg['password']
                 );
+                $this->_pdos[$dbKey]->exec("SET NAMES '{$charset}'");
             } catch (PDOException $ex) {
                 //异常时，接口异常返回，并隐藏数据库帐号信息
-                throw new PhalApi_Exception_InternalServerError('can not connect to database ' . $dbKey);
+                throw new PhalApi_Exception_InternalServerError(
+                    T('can not connect to database:{db}', array('db' => $dbKey)));
             }
         }
 
         return $this->_pdos[$dbKey];
     }
 
-	/**
-	 * 断开数据库链接
-	 */
+    /**
+     * 断开数据库链接
+     */
     public function disconnect() {
         foreach ($this->_pdos as $dbKey => $pdo) {
             $this->_pdos[$dbKey] = NULL;

@@ -3,7 +3,7 @@
  * PhalApi_Cache_File 文件缓存
  *
  * @package     PhalApi\Cache
- * @license     http://www.phalapi.net/license
+ * @license     http://www.phalapi.net/license GPL 协议
  * @link        http://www.phalapi.net/
  * @author      dogstar <chanzonghuang@gmail.com> 2015-02-26
  */
@@ -32,11 +32,6 @@ class PhalApi_Cache_File implements PhalApi_Cache {
         }
 
         $filePath = $this->createCacheFilePath($key);
-
-        if (!file_exists($filePath)) {
-            touch($filePath);
-            chmod($filePath, 0777);
-        }
 
         $expireStr = sprintf('%010d', $expire + time());
         if (strlen($expireStr) > 10) {

@@ -6,7 +6,7 @@
  * - 提供更多redis的操作，以供扩展类库使用
  *
  * @package     PhalApi\Cache
- * @license     http://www.phalapi.net/license
+ * @license     http://www.phalapi.net/license GPL 协议
  * @link        http://www.phalapi.net/
  * @author      zzguo   2015-5-11
  * @modify      dogstar <chanzonghuang@gmail.com> 20150516

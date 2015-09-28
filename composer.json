@@ -1,0 +1,19 @@
+{
+    "name": "phalapi/phalapi",
+    "description": "A light-weight framework focus on how to develop API faster and simple.",
+    "keywords": ["api"],
+    "homepage": "http://www.phalapi.net",
+    "license" : "GPL",
+    "authors": [
+        {
+            "name": "Dogstar Huang",
+            "email": "chanzonghuang@gmail.com",
+            "homepage" : "http://my.oschina.net/dogstar",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "another-vendor/package": "1.2.0"
+    }
+}

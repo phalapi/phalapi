@@ -16,13 +16,14 @@ require_once PHALAPI_ROOT . DIRECTORY_SEPARATOR . 'NotORM' . DIRECTORY_SEPARATOR
  *      $config = array(
  *        //可用的DB服务器集群
  *       'servers' => array(
- *           'db_demo' => array(
- *               'host'      => 'localhost',                //数据库域名
- *               'name'      => 'test',                     //数据库名字
- *               'user'      => 'root',                     //数据库用户名
- *               'password'  => '123456',	                //数据库密码
- *               'port'      => '3306',		                //数据库端口
- *           ),
+ *          'db_demo' => array(
+ *              'host'      => 'localhost',             //数据库域名
+ *              'name'      => 'phalapi',               //数据库名字
+ *              'user'      => 'root',                  //数据库用户名
+ *              'password'  => '',	                    //数据库密码
+ *              'port'      => '3306',		            //数据库端口
+ *              'charset'   => 'UTF8',                  //数据库字符集
+ *          ),
  *       ),
  *
  *        //自定义表的存储路由
@@ -57,7 +58,7 @@ require_once PHALAPI_ROOT . DIRECTORY_SEPARATOR . 'NotORM' . DIRECTORY_SEPARATOR
  *
  * @package     PhalApi\DB
  * @link        http://www.notorm.com/
- * @license     http://www.phalapi.net/license
+ * @license     http://www.phalapi.net/license GPL 协议
  * @link        http://www.phalapi.net/
  * @author      dogstar <chanzonghuang@gmail.com> 2014-11-22
  */
@@ -220,25 +221,38 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */ {
             $dbCfg = isset($this->_configs['servers'][$dbKey]) 
                 ? $this->_configs['servers'][$dbKey] : array();
 
+            if (empty($dbCfg)) {
+                throw new PhalApi_Exception_InternalServerError(
+                    T('no such db:{db} in servers', array('db' => $dbKey)));
+            }
+
             try {
-                $this->_pdos[$dbKey] = new PDO(
-                    'mysql:dbname=' . $dbCfg['name'] . ';host=' . $dbCfg['host'],
-                    $dbCfg['user'],
-                    $dbCfg['password'],
-                    array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\'')
+                $dsn = sprintf('mysql:dbname=%s;host=%s;port=%d',
+                    $dbCfg['name'], 
+                    isset($dbCfg['host']) ? $dbCfg['host'] : 'localhost', 
+                    isset($dbCfg['port']) ? $dbCfg['port'] : 3306
                 );
+                $charset = isset($dbCfg['charset']) ? $dbCfg['charset'] : 'UTF8';
+
+                $this->_pdos[$dbKey] = new PDO(
+                    $dsn,
+                    $dbCfg['user'],
+                    $dbCfg['password']
+                );
+                $this->_pdos[$dbKey]->exec("SET NAMES '{$charset}'");
             } catch (PDOException $ex) {
                 //异常时，接口异常返回，并隐藏数据库帐号信息
-                throw new PhalApi_Exception_InternalServerError('can not connect to database ' . $dbKey);
+                throw new PhalApi_Exception_InternalServerError(
+                    T('can not connect to database:{db}', array('db' => $dbKey)));
             }
         }
 
         return $this->_pdos[$dbKey];
     }
 
-	/**
-	 * 断开数据库链接
-	 */
+    /**
+     * 断开数据库链接
+     */
     public function disconnect() {
         foreach ($this->_pdos as $dbKey => $pdo) {
             $this->_pdos[$dbKey] = NULL;
@@ -246,3 +260,4 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */ {
         }
     }
 }
+

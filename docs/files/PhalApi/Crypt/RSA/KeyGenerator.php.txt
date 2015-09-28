@@ -5,7 +5,7 @@
  * RSA私钥或公钥的生成器
  *
  * @package     PhalApi\Crypt\RSA
- * @license     http://www.phalapi.net/license
+ * @license     http://www.phalapi.net/license GPL 协议
  * @link        http://www.phalapi.net/
  * @author      dogstar <chanzonghuang@gmail.com> 2015-03-15
  */
