@@ -10,4 +10,6 @@
 return array(
 	'Hello {name}, Welcome to use PhalApi!' => '{name}您好，欢迎使用PhalApi！',
     'user not exists' => '用户不存在',
+    '{0} I love you' => '{0} 我爱你',
+    '{0} I love you because {1}' => '{0} 我爱你因为{1}',
 );

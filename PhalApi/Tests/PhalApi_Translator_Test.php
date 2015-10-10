@@ -39,6 +39,9 @@ class PhpUnderControl_PhalApiTranslator_Test extends PHPUnit_Framework_TestCase
         $this->assertEquals('用户不存在', PhalApi_Translator::get('user not exists'));
 
         $this->assertEquals('PHPUnit您好，欢迎使用PhalApi！', PhalApi_Translator::get('Hello {name}, Welcome to use PhalApi!', array('name' => 'PHPUnit')));
+
+        $this->assertEquals('PhalApi 我爱你', T('{0} I love you', array('PhalApi')));
+        $this->assertEquals('PhalApi 我爱你因为no reasons', T('{0} I love you because {1}', array('PhalApi', 'no reasons')));
     }
 
     /**
