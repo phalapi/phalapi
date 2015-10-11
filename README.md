@@ -4,7 +4,7 @@
 ![apic](http://webtools.qiniudn.com/master-LOGO-20150410_50.jpg)  
   
 
-###PhalApi是一个轻量级PHP后台接口开发框架，目的是让接口开发更简单。
+###PhalApi是一个PHP轻量级开源接口框架，目的是让接口开发更简单。
 ```
 此框架代码开源、产品开源、思想开源，可用于个人、商业用途等，请放心使用。
 如有问题，可联系我们(Email:chanzonghuang@gmail.com   QQ:376741929  QQ交流群：421032344 )，或在Git@OSC上新建issue。
