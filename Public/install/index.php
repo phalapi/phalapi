@@ -46,6 +46,7 @@ case 3:
     //Project
     $project = ucwords($_POST['project']);
     $appPath = dirname(__FILE__) . implode(D_S, array('', '..', '..', $project,));
+    $demoPath = dirname(__FILE__) . implode(D_S, array('', '..', '..', 'Demo',));
     if (!file_exists($appPath)) {
         //项目目录
         mkdir($appPath . D_S);
@@ -54,6 +55,11 @@ case 3:
         mkdir($appPath . D_S . 'Model');
         mkdir($appPath . D_S . 'Common');
 
+        copy(
+            $demoPath . D_S . 'Api' . D_S . 'Default.php',
+            $appPath . D_S . 'Api' . D_S . 'Default.php'
+        );
+
         mkdir($appPath . D_S . 'Tests');
         mkdir($appPath . D_S . 'Tests' . D_S . 'Api');
         mkdir($appPath . D_S . 'Tests' . D_S . 'Domain');
@@ -61,7 +67,6 @@ case 3:
         mkdir($appPath . D_S . 'Tests' . D_S . 'Common');
 
         //单元测试
-        $demoPath = dirname(__FILE__) . implode(D_S, array('', '..', '..', 'Demo',));
         copy(
             $demoPath . D_S . 'Tests' . D_S . 'test_env.php', 
             $appPath . D_S . 'Tests'  . D_S . 'test_env.php'
