@@ -7,6 +7,11 @@ switch ($step) {
     case 2:
         include dirname(__FILE__) . DIRECTORY_SEPARATOR . '_step2.php';
         break;
+    case 3:
+        $relatePath = substr($_SERVER['REQUEST_URI'], 0, stripos($_SERVER['REQUEST_URI'], '/install/'));
+        $apiUrl = 'http://' . $_SERVER['HTTP_HOST'] . '/' . $relatePath . '/demo';
+        include dirname(__FILE__) . DIRECTORY_SEPARATOR . '_step3.php';
+        break;
     default:
         //-1：必须但不支持 0：可选但不支持 1：完美支持
         $checkList = array(
@@ -35,9 +40,9 @@ switch ($step) {
             $checkList['mcrypt']['status'] = 1;
         }
         $runtimePath = dirname(__FILE__) . implode(DIRECTORY_SEPARATOR, array('', '..', '..', 'Runtime'));
-        $runtimePath = realpath($runtimePath);
+        $runtimePath = file_exists($runtimePath) ? realpath($runtimePath) : $runtimePath;
         $checkList['runtime']['tip'] = $runtimePath . '<br>' . $checkList['runtime']['tip'];
-        if (file_exists($runtimePath) && is_writeable($runtimePath)) {
+        if (is_writeable($runtimePath)) {
             $checkList['runtime']['status'] =  1;
         }
 

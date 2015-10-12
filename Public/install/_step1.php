@@ -27,7 +27,9 @@
             </tbody>
         </table>
 
-        <p><a class="btn btn-lg btn-success" href="./?step=2" role="button">下一步</a></p>
+        <br />
+
+        <p><a class="btn btn btn-success" href="./?step=2" role="button">下一步</a></p>
       </div>
 
 <?php include dirname(__FILE__) . DIRECTORY_SEPARATOR . '_footer.php'; ?>
