@@ -8,9 +8,9 @@
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="http://webtools.qiniudn.com/dog_catch.png">
 
-    <title>Install - Narrow Jumbotron Template for Bootstrap</title>
+    <title>快速安装 - PhalApi</title>
 
     <!-- Bootstrap core CSS -->
     <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
@@ -35,12 +35,12 @@
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="active"><a href="#">Home</a></li>
-            <li role="presentation"><a href="#">About</a></li>
-            <li role="presentation"><a href="#">Contact</a></li>
+          <li role="presentation" <?php if ($step == 1) echo 'class="active"'; ?>><a href="#">第1步：环境检查</a></li>
+          <li role="presentation" <?php if ($step == 2) echo 'class="active"'; ?>><a href="#">第2步：系统配置</a></li>
+          <li role="presentation" <?php if ($step == 3) echo 'class="active"'; ?>><a href="#">第3步：接口请求</a></li>
           </ul>
         </nav>
-        <h3 class="text-muted">Project name</h3>
+        <h3 class="text-muted">PhalApi</h3>
       </div>
 
 

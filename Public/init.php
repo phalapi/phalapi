@@ -38,8 +38,8 @@ SL('zh_cn');
 
 /** ---------------- 以下服务组件就根据需要定制注册 ---------------- **/
 
-//缓存 - Memcached
 /**
+//缓存 - Memcached
 DI()->cache = function() {
     //根据Memcached是否加载
     if(extension_loaded('memcached')){
@@ -51,18 +51,14 @@ DI()->cache = function() {
 };
  */
 
-
-DI()->cache = function() {
-    $mc = new PhalApi_Cache_Memcache(DI()->config->get('sys.mc'));
-    return $mc;
-};
-
-
-
+/**
 //签名验证服务
-//DI()->filter = 'Common_SignFilter';
+DI()->filter = 'Common_SignFilter';
+ */
 
+/**
 //支持JsonP的返回
 if (!empty($_GET['callback'])) {
     DI()->response = new PhalApi_Response_JsonP($_GET['callback']);
 }
+ */

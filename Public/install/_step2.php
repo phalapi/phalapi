@@ -44,13 +44,13 @@
           <div class="form-group">
             <label class="col-sm-2 control-label">MySql数据库名称</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" placeholder="数据库不存在时需要先创建" name="name" >
+              <input type="text" class="form-control" placeholder="数据库不存在时需要先创建" name="name" value="phalapi" >
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-2 control-label">MySql数据库表前缀</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" placeholder="同数据库安装多个本程序时需要更改" name="prefix" value="phalapi_" >
+              <input type="text" class="form-control" placeholder="同数据库安装多个本程序时需要更改" name="prefix" value="pa_" >
             </div>
           </div>
           <div class="form-group">
@@ -81,7 +81,7 @@
             <br />
 
           <div class="form-group">
-              <button type="submit" class="btn btn-success">开始安装</button>
+              <button type="submit" class="btn btn-success" name="doSubmit" value="ok" >开始安装</button>
           </div>
         </form>
 
