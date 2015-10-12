@@ -1,68 +1,152 @@
 <?php
 define('PHALAPI_INSTALL', TRUE);
+define('D_S', DIRECTORY_SEPARATOR);
 
 $step = isset($_GET['step']) ? intval($_GET['step']) : 1;
 
 switch ($step) {
-    case 2:
-        include dirname(__FILE__) . DIRECTORY_SEPARATOR . '_step2.php';
-        break;
-    case 3:
-        if (empty($_POST['doSubmit']) || empty($_POST)) {
-            header('Location: ./?step=1');
-            exit(0);
-        }
+    //第2步：系统配置
+case 2:
+    include dirname(__FILE__) . D_S . '_step2.php';
+    break;
+    //第3步：接口请求
+case 3:
+    if (empty($_POST['doSubmit']) || empty($_POST)) {
+        header('Location: ./?step=1');
+        exit(0);
+    }
 
-        //DB config
-        $search = array('{project}', '{host}', '{name}', '{user}', '{password}', '{port}', '{charset}', '{prefix}', );
-        $replace = array(strtolower($_POST['project']), $_POST['host'], $_POST['name'], $_POST['user'], $_POST['password'], $_POST['port'], $_POST['charset'], $_POST['prefix']);
-        $configDbsContent = str_replace($search, $replace, getConfigDbsTpl());
-        file_put_contents(dirname(__FILE__) . implode(DIRECTORY_SEPARATOR, array('', '..', '..', 'Config', 'dbs.php')), $configDbsContent);
+    //数据库配置文件
+    $search = array(
+        '{project}', 
+        '{host}', 
+        '{name}', 
+        '{user}', 
+        '{password}', 
+        '{port}', 
+        '{charset}', 
+        '{prefix}', 
+    );
+    $replace = array(
+        strtolower($_POST['project']), 
+        $_POST['host'], 
+        $_POST['name'], 
+        $_POST['user'], 
+        $_POST['password'], 
+        $_POST['port'], 
+        $_POST['charset'], 
+        $_POST['prefix'],
+    );
+    $configDbsContent = str_replace($search, $replace, getConfigDbsTpl());
+    file_put_contents(
+        dirname(__FILE__) . implode(D_S, array('', '..', '..', 'Config', 'dbs.php')), 
+        $configDbsContent
+    );
 
-        $relatePath = substr($_SERVER['REQUEST_URI'], 0, stripos($_SERVER['REQUEST_URI'], '/install/'));
-        $apiUrl = 'http://' . $_SERVER['HTTP_HOST'] . '/' . $relatePath . '/demo';
-        include dirname(__FILE__) . DIRECTORY_SEPARATOR . '_step3.php';
-        break;
-    default:
-        //-1：必须但不支持 0：可选但不支持 1：完美支持
-        $checkList = array(
-            'php'       => array('name' => 'PHP 版本', 'status' => -1, 'tip' => '建议使用PHP 5.3.3及以上版本，否则DI无法支持匿名函数'),
-            'pdo'       => array('name' => '数据库模块', 'status' => -1, 'tip' => '建议使用PDO扩展，否则NotORM无法使用PDO进行数据库操作'),
-            'memcache'  => array('name' => 'Memcache扩展', 'status' => 0, 'tip' => '无此扩展时，不能使用Memcache缓存'),
-            'mcrypt'    => array('name' => 'Mcrypt扩展', 'status' => 0, 'tip' => '无此扩展时，不能使用mcrypt进行加密处理'),
-            'runtime'   => array('name' => '目录权限', 'status' => -1, 'tip' => '日志目录若缺少写入权限，则不能写入日记和进行文件缓存'),
+    //Project
+    $project = ucwords($_POST['project']);
+    $appPath = dirname(__FILE__) . implode(D_S, array('', '..', '..', $project,));
+    if (!file_exists($appPath)) {
+        //项目目录
+        mkdir($appPath . D_S);
+        mkdir($appPath . D_S . 'Api');
+        mkdir($appPath . D_S . 'Domain');
+        mkdir($appPath . D_S . 'Model');
+        mkdir($appPath . D_S . 'Common');
+
+        mkdir($appPath . D_S . 'Tests');
+        mkdir($appPath . D_S . 'Tests' . D_S . 'Api');
+        mkdir($appPath . D_S . 'Tests' . D_S . 'Domain');
+        mkdir($appPath . D_S . 'Tests' . D_S . 'Model');
+        mkdir($appPath . D_S . 'Tests' . D_S . 'Common');
+
+        //单元测试
+        $demoPath = dirname(__FILE__) . implode(D_S, array('', '..', '..', 'Demo',));
+        copy(
+            $demoPath . D_S . 'Tests' . D_S . 'test_env.php', 
+            $appPath . D_S . 'Tests'  . D_S . 'test_env.php'
+        );
+        copy(
+            $demoPath . D_S . 'Tests' . D_S . 'Api' . D_S . 'Api_Default_Test.php', 
+            $appPath . D_S . 'Tests' . D_S . 'Api' . D_S . 'Api_Default_Test.php'
+        );
+        copy(
+            $demoPath . D_S . 'Tests' . D_S . 'phpunit.xml', 
+            $appPath . D_S . 'Tests' . D_S . 'phpunit.xml'
         );
 
-        if (version_compare(PHP_VERSION, '5.3.3', '>=')) {
-            $checkList['php']['status'] = 1;
-        }
-        if (class_exists('PDO', false) && extension_loaded('PDO')) {
-            $checkList['pdo']['status'] = 1;
-        }
-        if (class_exists('Memcache', false) && extension_loaded('memcache')) {
-            $checkList['memcache']['status'] = 1;
-        }
-        /**
-        if (class_exists('Memcached', false) && extension_loaded('memcached')) {
-            $checkList['memcached']['status'] = 1;
-        }
-         */
-        if (extension_loaded('mcrypt')) {
-            $checkList['mcrypt']['status'] = 1;
-        }
-        $runtimePath = dirname(__FILE__) . implode(DIRECTORY_SEPARATOR, array('', '..', '..', 'Runtime'));
-        $runtimePath = file_exists($runtimePath) ? realpath($runtimePath) : $runtimePath;
-        $checkList['runtime']['tip'] = $runtimePath . '<br>' . $checkList['runtime']['tip'];
-        if (is_writeable($runtimePath)) {
-            $checkList['runtime']['status'] =  1;
-        }
+        //访问入口
+        $appPublicPath = dirname(__FILE__) . implode(D_S, array('', '..', strtolower($project), ));
+        $demoPublicPath = dirname(__FILE__) . implode(D_S, array('', '..', 'demo',));
 
-        include dirname(__FILE__) . DIRECTORY_SEPARATOR . '_step1.php';
+        mkdir($appPublicPath);
+
+        copy(
+            $demoPublicPath . D_S . 'checkApiParams.php',
+            $appPublicPath . D_S . 'checkApiParams.php'
+        );
+        copy(
+            $demoPublicPath . D_S . 'listAllApis.php',
+            $appPublicPath . D_S . 'listAllApis.php'
+        );
+        copy(
+            $demoPublicPath . D_S . 'index.php',
+            $appPublicPath . D_S . 'index.php'
+        );
+        //入口挂靠
+        file_put_contents(
+            $appPublicPath . D_S . 'index.php', 
+            str_replace('Demo', $project, file_get_contents($appPublicPath . D_S . 'index.php'))
+        );
+    }
+
+    touch('_install.lock');
+
+    //请求链接
+    $relatePath = substr($_SERVER['REQUEST_URI'], 0, stripos($_SERVER['REQUEST_URI'], '/install/'));
+    $apiUrl = 'http://' . $_SERVER['HTTP_HOST'] . '/' . $relatePath . '/' . strtolower($project);
+    include dirname(__FILE__) . D_S . '_step3.php';
+    break;
+default:
+    if (file_exists('_install.lock')) {
+        $error = '项目已安装，请不要重复安装，并建议手动删除 ./install 此目录以及目录下的全部文件';
+        include dirname(__FILE__) . D_S . '_error.php';
+        exit(0);
+    }
+    //-1：必须但不支持 0：可选但不支持 1：完美支持
+    $checkList = array(
+        'php'       => array('name' => 'PHP 版本', 'status' => -1, 'tip' => '建议使用PHP 5.3.3及以上版本，否则DI无法支持匿名函数'),
+        'pdo'       => array('name' => '数据库模块', 'status' => -1, 'tip' => '建议使用PDO扩展，否则NotORM无法使用PDO进行数据库操作'),
+        'memcache'  => array('name' => 'Memcache扩展', 'status' => 0, 'tip' => '无此扩展时，不能使用Memcache缓存'),
+        'mcrypt'    => array('name' => 'Mcrypt扩展', 'status' => 0, 'tip' => '无此扩展时，不能使用mcrypt进行加密处理'),
+        'runtime'   => array('name' => '目录权限', 'status' => -1, 'tip' => '日志目录若缺少写入权限，则不能写入日记和进行文件缓存'),
+    );
+
+    if (version_compare(PHP_VERSION, '5.3.3', '>=')) {
+        $checkList['php']['status'] = 1;
+    }
+    if (class_exists('PDO', false) && extension_loaded('PDO')) {
+        $checkList['pdo']['status'] = 1;
+    }
+    if (class_exists('Memcache', false) && extension_loaded('memcache')) {
+        $checkList['memcache']['status'] = 1;
+    }
+    if (extension_loaded('mcrypt')) {
+        $checkList['mcrypt']['status'] = 1;
+    }
+    $runtimePath = dirname(__FILE__) . implode(D_S, array('', '..', '..', 'Runtime'));
+    $runtimePath = file_exists($runtimePath) ? realpath($runtimePath) : $runtimePath;
+    $checkList['runtime']['tip'] = $runtimePath . '<br>' . $checkList['runtime']['tip'];
+    if (is_writeable($runtimePath)) {
+        $checkList['runtime']['status'] =  1;
+    }
+
+    include dirname(__FILE__) . D_S . '_step1.php';
 }
 
 
 function getConfigDbsTpl() {
-$configDbs = <<<EOT
+    $configDbs = <<<EOT
 <?php
 /**
  * 分库分表的自定义数据库路由配置
@@ -111,76 +195,5 @@ return array(
 
 EOT;
 
-return $configDbs;
-}
-
-
-function getInitTpl() {
-$initTpl = <<<EOT
-<?php
-/**
- * 统一初始化
- */
- 
-/** ---------------- 根目录定义，自动加载 ---------------- **/
-
-date_default_timezone_set('Asia/Shanghai');
-
-defined('API_ROOT') || define('API_ROOT', dirname(__FILE__) . '/..');
-
-require_once API_ROOT . '/PhalApi/PhalApi.php';
-$loader = new PhalApi_Loader(API_ROOT);
-
-/** ---------------- 注册&初始化服务组件 ---------------- **/
-
-//自动加载
-DI()->loader = $loader;
-
-//配置
-DI()->config = new PhalApi_Config_File(API_ROOT . '/Config');
-
-//日记纪录
-DI()->logger = new PhalApi_Logger_File(API_ROOT . '/Runtime', 
-    PhalApi_Logger::LOG_LEVEL_DEBUG | PhalApi_Logger::LOG_LEVEL_INFO | PhalApi_Logger::LOG_LEVEL_ERROR);
-
-//数据操作 - 基于NotORM，$_GET['__sql__']可自行改名
-DI()->notorm = function() {
-    $debug = !empty($_GET['__sql__']) ? true : false;
-    return new PhalApi_DB_NotORM(DI()->config->get('dbs'), $debug);
-};
-
-//调试模式，$_GET['__debug__']可自行改名
-DI()->debug = !empty($_GET['__debug__']) ? true : DI()->config->get('sys.debug');
-
-//翻译语言包设定
-SL('{language}');
-
-/** ---------------- 以下服务组件就根据需要定制注册 ---------------- **/
-
-//签名验证服务
-DI()->filter = 'Common_SignFilter';
-
-/**
-//缓存 - Memcached
-DI()->cache = function() {
-    //根据Memcached是否加载
-    if(extension_loaded('memcached')){
-        $mc = new PhalApi_Cache_Memcached(DI()->config->get('sys.mc'));
-    }else{
-        $mc = new PhalApi_Cache_Memcache(DI()->config->get('sys.mc'));
-    }
-	return $mc;
-};
- */
-
-/**
-//支持JsonP的返回
-if (!empty($_GET['callback'])) {
-    DI()->response = new PhalApi_Response_JsonP($_GET['callback']);
-}
- */
-
-EOT;
-
-return $initTpl;
+    return $configDbs;
 }

@@ -2,7 +2,7 @@
 <?php include dirname(__FILE__) . DIRECTORY_SEPARATOR . '_header.php'; ?>
 
       <div class="row">
-        <h1>服务器环境检查</h1>
+        <h1>环境检查</h1>
         <p class="lead">为了确保接口顺利响应, 您的服务器需要满足以下系统需求的运行环境</p>
 
         <br />

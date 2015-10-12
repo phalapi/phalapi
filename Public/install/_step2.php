@@ -60,6 +60,7 @@
             </div>
           </div>
 
+          <!--  
             <hr />
 
           <div class="form-group">
@@ -77,6 +78,7 @@
                 <select name="db_engine" class="form-control"><option value="zh_cn">中文</option><option value="en">English</option></select>
             </div>
           </div>
+           -->
 
             <br />
 

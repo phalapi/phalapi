@@ -1,7 +1,7 @@
 <?php defined('PHALAPI_INSTALL') || die('no access'); ?>
 
       <footer class="footer">
-        <p>&copy; Company 2014</p>
+        <p>&copy;2015 <a href="http://www.phalapi.net/" >PhalApi</a> All Rights Reserved. 粤ICP备15028808号</p>
       </footer>
 
     </div> <!-- /container -->
