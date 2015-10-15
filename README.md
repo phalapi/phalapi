@@ -159,6 +159,9 @@ http://demo.phalapi.net/checkApiParams.php
 
 ```
 
+##目录结构图解
+![](http://7qnay5.com1.z0.glb.clouddn.com/QQ-20151015214456.jpg)   
+
 #加入我们
 显然，这只是一个开始，我们要走的路还很长。这些也不是一个人可以完成的。即使可以，也需要很长一段时间。  
   
