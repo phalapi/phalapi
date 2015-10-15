@@ -159,7 +159,7 @@ http://demo.phalapi.net/checkApiParams.php
 
 ```
 
-##目录结构图解
+##示例目录结构图解
 ![](http://7qnay5.com1.z0.glb.clouddn.com/QQ-20151015214456.jpg)   
 
 #加入我们
