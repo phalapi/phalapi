@@ -9,7 +9,7 @@ $apiDirName = 'Demo';
  * 不参与到接口文档中的文件名 例：['.','..','Test.php']那么Test.php中的方法将不被列出
  * 注：. 和 .. 是必须得有的！！！！！
  */
-$prevention = ['.','..'];
+$prevention = array('.','..');
 
 require_once $root . '/../init.php';
 DI()->loader->addDirs([$apiDirName]);
