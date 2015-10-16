@@ -26,8 +26,6 @@
 class PhalApiClient {
 
     protected $host;
-    //protected PhalApiClientFilter $filter;
-    //protected PhalApiClientParser $parser;
     protected $filter;
     protected $parser;
     protected $service;
