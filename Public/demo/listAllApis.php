@@ -21,9 +21,13 @@ foreach( $files as $value ){
     foreach( $Method as $MValue ){
         $rMethod = new ReflectionMethod('Api_'.$ApiServer, $MValue);
         $docComment = $rMethod->getDocComment();
-        $docCommentArr = explode("\n", $docComment);
-        $comment = trim($docCommentArr[1]);
-        $desc = substr($comment, strpos($comment, '*') + 1);
+        if( $docComment != false ){
+            $docCommentArr = explode("\n", $docComment);
+            $comment = trim($docCommentArr[1]);
+            $desc = substr($comment, strpos($comment, '*') + 1);
+        }else{
+            $desc = '请检测函数注释';
+        }
         $description[$ApiServer.'.'.$MValue] = $desc;
         $ApiS[] = $ApiServer.'.'.$MValue;
     }
