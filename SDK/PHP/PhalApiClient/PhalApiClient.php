@@ -76,6 +76,10 @@ class PhalApiClient {
         return $this;
     }
 
+    /**
+     * 重置，将接口服务名称、接口参数、请求超时进行重置，便于重复请求
+     * @return PhalApiClient
+     */
     public function reset() {
         $this->service = "";
         $this->timeoutMs = 3000;
