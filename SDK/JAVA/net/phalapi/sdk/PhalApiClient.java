@@ -1,12 +1,16 @@
 package net.phalapi.sdk;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.json.JSONObject;
 
@@ -150,11 +154,30 @@ public class PhalApiClient {
 		URL url = null;
 		HttpURLConnection connection = null;
 		InputStreamReader in = null;
-		Log.v("[PhalApiClient requestUrl]", requestUrl);
 		
 		url = new URL(requestUrl);
 		connection = (HttpURLConnection) url.openConnection();
+		connection.setDoInput(true);
+		connection.setDoOutput(true);
+		connection.setRequestMethod("POST"); // 请求方式
+		connection.setUseCaches(false);
 		connection.setConnectTimeout(timeoutMs);
+		
+        DataOutputStream out = new DataOutputStream(connection.getOutputStream());
+        
+        //用户名和密码
+        String postContent = "";
+        Iterator<Entry<String, String>> iter = params.entrySet().iterator();
+        while (iter.hasNext()) {
+        	Map.Entry<String, String> entry = (Map.Entry<String, String>) iter.next(); 
+        	postContent += "&" + entry.getKey() + "=" + entry.getValue();
+        }
+        out.writeBytes(postContent);
+        out.flush();
+        out.close();
+
+		Log.v("[PhalApiClient requestUrl]", requestUrl + postContent);
+        
 		in = new InputStreamReader(connection.getInputStream());
 		BufferedReader bufferedReader = new BufferedReader(in);
 		StringBuffer strBuffer = new StringBuffer();
@@ -171,7 +194,7 @@ public class PhalApiClient {
 			try {
 				in.close();
 			} catch (IOException e) {
-				result = e.getMessage();
+				e.printStackTrace();
 			}
 		}
 

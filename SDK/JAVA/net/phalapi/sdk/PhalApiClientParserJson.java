@@ -18,7 +18,7 @@ public class PhalApiClientParserJson implements PhalApiClientParser {
 			return new PhalApiClientResponse(
 					jsonObj.getInt("ret"), new JSONObject(jsonObj.getString("data")), jsonObj.getString("msg"));
 		} catch (Exception ex) {
-			return new PhalApiClientResponse(500, new JSONObject(), "Internal Server Error: " + ex.getMessage());
+			return new PhalApiClientResponse(500, new JSONObject(), "Internal Server Error");
 		}
 	}
 }

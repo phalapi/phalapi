@@ -5,7 +5,7 @@ require_once dirname(__FILE__) . '/PhalApiClient.php';
 $rs = PhalApiClient::create()
     ->withHost('http://demo.phalapi.net/')
     ->withService('Default.Index')
-    ->withParams('name', 'dogstar')
+    ->withParams('username', 'dogstar')
     ->withTimeout(3000)
     ->request();
 
@@ -23,7 +23,7 @@ array(4) {
     ["title"]=>
     string(12) "Hello World!"
     ["content"]=>
-    string(36) "PHPer您好，欢迎使用PhalApi！"
+    string(36) "dogstar您好，欢迎使用PhalApi！"
     ["version"]=>
     string(5) "1.2.1"
     ["time"]=>
