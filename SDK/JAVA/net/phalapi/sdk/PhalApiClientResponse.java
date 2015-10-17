@@ -1,7 +1,5 @@
 package net.phalapi.sdk;
 
-import org.json.JSONObject;
-
 /**
  * 接口返回结果
  *
@@ -10,34 +8,34 @@ import org.json.JSONObject;
 public class PhalApiClientResponse {
 
     protected int ret;
-    protected JSONObject data;
+    protected String data;
     protected String msg;
 
     /**
      * 完全构造函数
      * @param int ret
-     * @param JSONObject data
+     * @param String data
      * @param String msg
      */
-    public PhalApiClientResponse(int ret, JSONObject data, String msg) {
+    public PhalApiClientResponse(int ret, String data, String msg) {
         this.ret = ret;
         this.data = data;
         this.msg = msg;
     }
 
-    public PhalApiClientResponse(int ret, JSONObject data) {
+    public PhalApiClientResponse(int ret, String data) {
     	this(ret, data, "");
     }
     
     public PhalApiClientResponse(int ret) {
-    	this(ret, new JSONObject(), "");
+    	this(ret, "", "");
     }
     
     public int getRet() {
         return this.ret;
     }
 
-    public JSONObject getData() {
+    public String getData() {
         return this.data;
     }
 

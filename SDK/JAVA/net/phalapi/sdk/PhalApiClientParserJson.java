@@ -9,16 +9,16 @@ public class PhalApiClientParserJson implements PhalApiClientParser {
 
 	public PhalApiClientResponse parse(String apiResult) {
 		if (apiResult == null) {
-			return new PhalApiClientResponse(408, new JSONObject(), "Request Timeout");
+			return new PhalApiClientResponse(408, "", "Request Timeout");
 		}
 		
 		try {
 			JSONObject jsonObj = new JSONObject(apiResult);
 			
 			return new PhalApiClientResponse(
-					jsonObj.getInt("ret"), new JSONObject(jsonObj.getString("data")), jsonObj.getString("msg"));
+					jsonObj.getInt("ret"), jsonObj.getString("data"), jsonObj.getString("msg"));
 		} catch (Exception ex) {
-			return new PhalApiClientResponse(500, new JSONObject(), "Internal Server Error");
+			return new PhalApiClientResponse(500, "", "Internal Server Error Or " + ex.getMessage());
 		}
 	}
 }

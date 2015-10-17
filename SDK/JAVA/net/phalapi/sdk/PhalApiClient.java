@@ -61,9 +61,9 @@ public class PhalApiClient {
 
     protected PhalApiClient() {
     	this.host = "";
-    	this.timeoutMs = 0;
+    	this.reset();
+
         this.parser = new PhalApiClientParserJson();
-        this.params = new HashMap<String, String>();
     }
 
     /**
@@ -96,6 +96,18 @@ public class PhalApiClient {
         return this;
     }
 
+    /**
+     * 重置，将接口服务名称、接口参数、请求超时进行重置，便于重复请求
+     * @return PhalApiClient
+     */
+    public PhalApiClient reset() {
+    	this.service = "";
+    	this.timeoutMs = 3000;
+        this.params = new HashMap<String, String>();
+        
+        return this;
+    }
+    
     /**
      * 设置将在调用的接口服务名称，如：Default.Index
      * @param String service 接口服务名称
@@ -145,7 +157,7 @@ public class PhalApiClient {
         	String rs = this.doRequest(url, this.params, this.timeoutMs);
         	return this.parser.parse(rs);
         } catch (Exception ex) {
-        	return new PhalApiClientResponse(408, new JSONObject(), ex.getMessage());
+        	return new PhalApiClientResponse(408, "", ex.getMessage());
         }
     }
     
@@ -176,7 +188,7 @@ public class PhalApiClient {
         out.flush();
         out.close();
 
-		Log.v("[PhalApiClient requestUrl]", requestUrl + postContent);
+		Log.d("[PhalApiClient requestUrl]", requestUrl + postContent);
         
 		in = new InputStreamReader(connection.getInputStream());
 		BufferedReader bufferedReader = new BufferedReader(in);
@@ -186,6 +198,9 @@ public class PhalApiClient {
 			strBuffer.append(line);
 		}
 		result = strBuffer.toString();
+		
+		Log.d("[PhalApiClient apiResult]", result);
+		
 		if (connection != null) {
 			connection.disconnect();
 		}

@@ -2,8 +2,10 @@
 
 require_once dirname(__FILE__) . '/PhalApiClient.php';
 
-$rs = PhalApiClient::create()
-    ->withHost('http://demo.phalapi.net/')
+$client = PhalApiClient::create()
+        ->withHost('http://demo.phalapi.net/');
+
+$rs = $client->reset()
     ->withService('Default.Index')
     ->withParams('username', 'dogstar')
     ->withTimeout(3000)
@@ -33,3 +35,33 @@ array(4) {
 string(0) ""
 
 */
+
+echo "\n--------------------\n";
+
+//one more time
+$rs = $client->reset()
+    ->withService("User.GetBaseInfo")
+    ->withParams("user_id", "1")
+    ->request();
+
+var_dump($rs->getRet());
+echo "\n";
+var_dump($rs->getData());
+echo "\n";
+var_dump($rs->getMsg());
+
+
+echo "\n--------------------\n";
+
+//illegal request
+$rs = $client->reset()
+    ->withService("XXX.XXXXX")
+    ->withParams("user_id", "1")
+    ->request();
+
+var_dump($rs->getRet());
+echo "\n";
+var_dump($rs->getData());
+echo "\n";
+var_dump($rs->getMsg());
+

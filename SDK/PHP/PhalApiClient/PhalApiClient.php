@@ -41,6 +41,8 @@ class PhalApiClient {
     }
 
     protected function __construct() {
+        $this->host = "";
+
         $this->parser = new PhalApiClientParserJson();
     }
 
@@ -71,6 +73,14 @@ class PhalApiClient {
      */
     public function withParser(PhalApiClientParser $parser) {
         $this->parser = $parser;
+        return $this;
+    }
+
+    public function reset() {
+        $this->service = "";
+        $this->timeoutMs = 3000;
+        $this->params = array();
+
         return $this;
     }
 
