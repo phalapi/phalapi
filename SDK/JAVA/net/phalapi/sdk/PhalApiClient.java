@@ -165,7 +165,7 @@ public class PhalApiClient {
 		
         DataOutputStream out = new DataOutputStream(connection.getOutputStream());
         
-        //用户名和密码
+        //POST参数
         String postContent = "";
         Iterator<Entry<String, String>> iter = params.entrySet().iterator();
         while (iter.hasNext()) {
