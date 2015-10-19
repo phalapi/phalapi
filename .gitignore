@@ -17,3 +17,4 @@ Demo/Api/DogstarTest.php
 
 *.swp
 
+.DS_Store
