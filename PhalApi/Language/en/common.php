@@ -17,4 +17,5 @@ return array(
     'Bad Request: {message}' => 'Bad Request: {message}',
     'Interal Server Error: {message}' => 'Interal Server Error: {message}',
     "{name}'s enum range can not be empty" => "{name}'s enum range can not be empty",
+	'DI()->filter should be instanceof PhalApi_Filter' => 'DI()->filter should be instanceof PhalApi_Filter',
 );

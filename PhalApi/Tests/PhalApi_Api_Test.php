@@ -88,6 +88,17 @@ class PhpUnderControl_PhalApiApi_Test extends PHPUnit_Framework_TestCase
         $rs = $impl->add();
         $this->assertEquals(7, $rs);
     }
+
+    /**
+     * @expectedException PhalApi_Exception_InternalServerError
+     */
+    public function testIllegalFilter()
+    {
+        DI()->filter = 'PhalApi_Filter_Impl_NotFound';
+
+        $impl = new PhalApi_Api_Impl();
+        $impl->init();
+    }
 }
 
 class PhalApi_Api_Impl extends PhalApi_Api {

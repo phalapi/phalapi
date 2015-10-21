@@ -176,6 +176,11 @@ class PhalApi_Api {
         $filter = DI()->filter;
 
         if (isset($filter)) {
+            if (!($filter instanceof PhalApi_Filter)) {
+                throw new PhalApi_Exception_InternalServerError(
+                    T('DI()->filter should be instanceof PhalApi_Filter'));
+            }
+
             $filter->check();
         }
     }
