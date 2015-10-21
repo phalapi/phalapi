@@ -143,8 +143,8 @@
 }
 
 - (float)timeout {
-    // 默认30s超时
-    return (_timeout > 0 ? _timeout : 30);
+    // 默认60s超时
+    return (_timeout > 0 ? _timeout : 60);
 }
 
 #pragma mark - request
@@ -224,36 +224,3 @@
 @end
 
 
-
-
-
-
-
-
-//- (void)request:(HttpCompleteBlock)completeBlock failureBlock:(HttpFailureBlock)failureBlock {
-//
-//    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", self.host, self.service]];
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:(self.timeout <= 0 ? 3.f : self.timeout)];
-//    request.HTTPMethod = @"POST";
-//
-////    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; charset=utf-8;boundary=%@", boundary];
-////    [request setValue:contentType forHTTPHeaderField:@"Content-Type"];
-//
-//    NSURLSession *session = [NSURLSession sharedSession];
-//    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//        ;
-//    }];
-//    [task resume];
-//}
-
-//- (void)requestWithDataToUpload:(NSData*)data completeBlock:(HttpCompleteBlock)completeBlock failureBlock:(HttpFailureBlock)failureBlock {
-//
-//    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", self.host, self.service]];
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:(self.timeout <= 0 ? 3.f : self.timeout)];
-//
-//    NSURLSession *session = [NSURLSession sharedSession];
-//    NSURLSessionUploadTask *task = [session uploadTaskWithRequest:request fromData:data completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//        ;
-//    }];
-//    [task resume];
-//}

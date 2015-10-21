@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>PhalApi_Demo</title>
+  <script src="js/SDK/jquery.min.js"></script>
+  <script src="js/SDK/PhalApi.js"></script>
+</head>
+<body>
+
+</br></br>
+<table>
+  <tr>
+    <td> U R L:<input type="txt" id="url"/></td>
+    <td> A P I:<input type="txt" id="api"/></td>
+  </tr>
+  <tr>
+    <td>参数名1:<input type="txt" id="param1"/></td>
+    <td>参数值1:<input type="txt" id="value1"/></td>
+  </tr>
+  <tr>
+    <td>参数名2:<input type="txt" id="param2"/></td>
+    <td>参数值2:<input type="txt" id="value2"/></td>
+  </tr>
+  <tr>
+    <td>参数名3:<input type="txt" id="param3"/></td>
+    <td>参数值3:<input type="txt" id="value3"/></td>
+  </tr>
+  <tr>
+    <td>返回结果:<textarea rows="10" cols="30" id="rs_data"></textarea></td>
+  </tr>
+
+</table>
+</br></br>
+<input onclick="post()" type="button" value="post请求" name="post"/>
+<input onclick="get()" type="button" value="get请求" name="get"/>
+<input onclick="jsonp()" type="button" value="jsonp请求" name="jsonp"/>
+</body>
+<script>
+
+  var url = $('#url').val('http://127.0.0.1/'); //请求地址
+  var api = $('#api').val('Default.Index');                    //请求接口
+
+  //使用普通的post请求
+  function post(){
+    var url = $('#url').val();
+    var api = $('#api').val();
+    var param1 = $('#param1').val();
+    var param2 = $('#param2').val();
+    var param3 = $('#param3').val();
+    var value1 = $('#value1').val();
+    var value2 = $('#value2').val();
+    var value3 = $('#value3').val();
+    var rs_data = $('#rs_data').val();
+
+    var data = {};
+    data[param1] = value1;
+    data[param2] = value2;
+    data[param3] = value3;
+    query_post(url, api, data, function(rs){
+      //回调函数
+      if(rs.ret == 200){
+        $('#rs_data').val(JSON.stringify(rs));
+        //如果成功打印信息并且做出相应的处理
+        alert(rs.ret);
+      }else{
+        $('#rs_data').val(JSON.stringify(rs));
+        //如果失败打印失败信息并且做出相应的处理
+        alert(rs.msg);
+      }
+    });
+
+  }
+
+  //使用普通的get请求
+  function get(){
+    var url = $('#url').val();
+    var api = $('#api').val();
+    var param1 = $('#param1').val();
+    var param2 = $('#param2').val();
+    var param3 = $('#param3').val();
+    var value1 = $('#value1').val();
+    var value2 = $('#value2').val();
+    var value3 = $('#value3').val();
+    //拼接GET参数
+    var data = '&' + param1 + '=' + value1 + '&' + param2 + '=' + value2 + '&' + param3 + '=' + value3;
+
+    query_get(url, api, data, function(rs){
+      //回调函数
+      if(rs.ret == 200){
+        $('#rs_data').val(JSON.stringify(rs));
+        //如果成功打印信息并且做出相应的处理
+        alert(rs.ret);
+      }else{
+        $('#rs_data').val(JSON.stringify(rs));
+        //如果失败打印失败信息并且做出相应的处理
+        alert(rs.msg);
+      }
+    });
+  }
+
+  //使用jsonP get跨域访问
+  function jsonp(){
+    var url = $('#url').val();
+    var api = $('#api').val();
+    var param1 = $('#param1').val();
+    var param2 = $('#param2').val();
+    var param3 = $('#param3').val();
+    var value1 = $('#value1').val();
+    var value2 = $('#value2').val();
+    var value3 = $('#value3').val();
+    //拼接GET参数
+    var data = '&' + param1 + '=' + value1 + '&' + param2 + '=' + value2 + '&' + param3 + '=' + value3;
+
+    query_jsonp(url, api, data, function(rs){
+      //回调函数
+      if(rs.ret == 200){
+        $('#rs_data').val(JSON.stringify(rs));
+        //如果成功打印信息并且做出相应的处理
+        alert(rs.ret);
+      }else{
+        $('#rs_data').val(JSON.stringify(rs));
+        //如果失败打印失败信息并且做出相应的处理
+        alert(rs.msg);
+      }
+    });
+  }
+
+</script>
+</html>

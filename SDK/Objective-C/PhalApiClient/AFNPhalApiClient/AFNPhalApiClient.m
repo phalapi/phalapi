@@ -85,6 +85,11 @@
             completeBlock(responseObject);
         }
     } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        if (error.code == NSURLErrorTimedOut) {
+            NSDictionary *timeoutDict = @{@"ret": @408, @"data": @{}, @"msg": @"Request Timeout"};
+            failureBlock(timeoutDict);
+            return ;
+        }
         if (failureBlock) {
             failureBlock(error);
         }

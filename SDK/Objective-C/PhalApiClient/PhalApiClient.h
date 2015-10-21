@@ -16,7 +16,7 @@
 #endif
 
 typedef void(^HttpCompleteBlock)(id resultObject);
-typedef void(^HttpFailureBlock)(NSError *error);
+typedef void(^HttpFailureBlock)(id error);
 typedef void(^FormDataBlock)(id formData);
 
 @interface PhalApiClient : NSObject
