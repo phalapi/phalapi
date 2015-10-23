@@ -173,7 +173,7 @@ class PhalApi_Api {
      * @throws PhalApi_Exception_BadRequest 当验证失败时，请抛出此异常，以返回400
      */
     protected function filterCheck() {
-        $filter = DI()->filter;
+        $filter = DI()->get('filter', 'PhalApi_Filter_None');
 
         if (isset($filter)) {
             if (!($filter instanceof PhalApi_Filter)) {
