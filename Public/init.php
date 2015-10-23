@@ -53,7 +53,7 @@ DI()->cache = function() {
 
 /**
 //签名验证服务
-DI()->filter = 'Common_SignFilter';
+DI()->filter = 'PhalApi_Filter_SimpleMD5';
  */
 
 /**
