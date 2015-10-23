@@ -55,6 +55,12 @@ class PhalApi_ApiFactory {
         }
         		
     	$api = new $apiClassName();
+
+        if (!is_subclass_of($api, 'PhalApi_Api')) {
+            throw new PhalApi_Exception_InternalServerError(
+                T('{class} should be subclass of PhalApi_Api', array('class' => $apiClassName))
+            );
+        }
     			
     	if(!method_exists($api, $action) || !is_callable(array($api, $action))) {
             throw new PhalApi_Exception_BadRequest(
