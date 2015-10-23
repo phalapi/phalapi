@@ -100,30 +100,3 @@ class PhpUnderControl_PhalApiApi_Test extends PHPUnit_Framework_TestCase
         $impl->init();
     }
 }
-
-class PhalApi_Api_Impl extends PhalApi_Api {
-
-    public function getRules() {
-        return array(
-            '*' => array( 
-                'version' => array('name' => 'version'),
-            ),
-            'add' => array(
-                'left' => array('name' => 'left', 'type' => 'int'),
-                'right' => array('name' => 'right', 'type' => 'int'),
-            ),
-        );
-    }
-
-    public function add()
-    {
-        return $this->left + $this->right;
-    }
-}
-
-class PhalApi_Filter_Impl implements PhalApi_Filter {
-
-    public function check() {
-
-    }
-}

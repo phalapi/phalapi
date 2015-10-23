@@ -29,4 +29,5 @@ return array(
     'miss upload file: {file}' => '缺少上传文件：{file}',
     'fail to upload file with error = {error}' => '上传文件失败，error = {error}',
 	'DI()->filter should be instanceof PhalApi_Filter' => 'DI()->filter未实现PhalApi_Filter接口',
+    'wrong sign' => '签名错误',
 );
