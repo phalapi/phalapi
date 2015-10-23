@@ -44,11 +44,11 @@ class PhalApi_ApiFactory {
             );
         }
 
-		list($apiClassName, $action) = $serviceArr;
+		list ($apiClassName, $action) = $serviceArr;
 	    $apiClassName = 'Api_' . ucfirst($apiClassName);
         $action = lcfirst($action);
 
-        if(!class_exists($apiClassName)) {
+        if (!class_exists($apiClassName)) {
             throw new PhalApi_Exception_BadRequest(
                 T('no such service as {service}', array('service' => $service))
             );
@@ -62,7 +62,7 @@ class PhalApi_ApiFactory {
             );
         }
     			
-    	if(!method_exists($api, $action) || !is_callable(array($api, $action))) {
+    	if (!method_exists($api, $action) || !is_callable(array($api, $action))) {
             throw new PhalApi_Exception_BadRequest(
                 T('no such service as {service}', array('service' => $service))
             );
