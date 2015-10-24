@@ -2,9 +2,46 @@
 define('PHALAPI_INSTALL', TRUE);
 define('D_S', DIRECTORY_SEPARATOR);
 
-$step = isset($_GET['step']) ? intval($_GET['step']) : 1;
+$step = isset($_GET['step']) ? intval($_GET['step']) : 0;
 
 switch ($step) {
+    //第一步：环境检测
+case 1:
+    if (file_exists('_install.lock')) {
+        $error = '项目已安装，请不要重复安装，并建议手动删除 ./install 此目录以及目录下的全部文件';
+        include dirname(__FILE__) . D_S . '_error.php';
+        exit(0);
+    }
+    //-1：必须但不支持 0：可选但不支持 1：完美支持
+    $checkList = array(
+        'php'       => array('name' => 'PHP 版本', 'status' => -1, 'tip' => '建议使用PHP 5.3.3及以上版本，否则DI无法支持匿名函数'),
+        'pdo'       => array('name' => '数据库模块', 'status' => -1, 'tip' => '建议使用PDO扩展，否则NotORM无法使用PDO进行数据库操作'),
+        'memcache'  => array('name' => 'Memcache扩展', 'status' => 0, 'tip' => '无此扩展时，不能使用Memcache缓存'),
+        'mcrypt'    => array('name' => 'Mcrypt扩展', 'status' => 0, 'tip' => '无此扩展时，不能使用mcrypt进行加密处理'),
+        'runtime'   => array('name' => '目录权限', 'status' => -1, 'tip' => '日志目录若缺少写入权限，则不能写入日记和进行文件缓存'),
+    );
+
+    if (version_compare(PHP_VERSION, '5.3.3', '>=')) {
+        $checkList['php']['status'] = 1;
+    }
+    if (class_exists('PDO', false) && extension_loaded('PDO')) {
+        $checkList['pdo']['status'] = 1;
+    }
+    if (class_exists('Memcache', false) && extension_loaded('memcache')) {
+        $checkList['memcache']['status'] = 1;
+    }
+    if (extension_loaded('mcrypt')) {
+        $checkList['mcrypt']['status'] = 1;
+    }
+    $runtimePath = dirname(__FILE__) . implode(D_S, array('', '..', '..', 'Runtime'));
+    $runtimePath = file_exists($runtimePath) ? realpath($runtimePath) : $runtimePath;
+    $checkList['runtime']['tip'] = $runtimePath . '<br>' . $checkList['runtime']['tip'];
+    if (is_writeable($runtimePath)) {
+        $checkList['runtime']['status'] =  1;
+    }
+
+    include dirname(__FILE__) . D_S . '_step1.php';
+    break;
     //第2步：系统配置
 case 2:
     include dirname(__FILE__) . D_S . '_step2.php';
@@ -113,40 +150,7 @@ case 3:
     include dirname(__FILE__) . D_S . '_step3.php';
     break;
 default:
-    if (file_exists('_install.lock')) {
-        $error = '项目已安装，请不要重复安装，并建议手动删除 ./install 此目录以及目录下的全部文件';
-        include dirname(__FILE__) . D_S . '_error.php';
-        exit(0);
-    }
-    //-1：必须但不支持 0：可选但不支持 1：完美支持
-    $checkList = array(
-        'php'       => array('name' => 'PHP 版本', 'status' => -1, 'tip' => '建议使用PHP 5.3.3及以上版本，否则DI无法支持匿名函数'),
-        'pdo'       => array('name' => '数据库模块', 'status' => -1, 'tip' => '建议使用PDO扩展，否则NotORM无法使用PDO进行数据库操作'),
-        'memcache'  => array('name' => 'Memcache扩展', 'status' => 0, 'tip' => '无此扩展时，不能使用Memcache缓存'),
-        'mcrypt'    => array('name' => 'Mcrypt扩展', 'status' => 0, 'tip' => '无此扩展时，不能使用mcrypt进行加密处理'),
-        'runtime'   => array('name' => '目录权限', 'status' => -1, 'tip' => '日志目录若缺少写入权限，则不能写入日记和进行文件缓存'),
-    );
-
-    if (version_compare(PHP_VERSION, '5.3.3', '>=')) {
-        $checkList['php']['status'] = 1;
-    }
-    if (class_exists('PDO', false) && extension_loaded('PDO')) {
-        $checkList['pdo']['status'] = 1;
-    }
-    if (class_exists('Memcache', false) && extension_loaded('memcache')) {
-        $checkList['memcache']['status'] = 1;
-    }
-    if (extension_loaded('mcrypt')) {
-        $checkList['mcrypt']['status'] = 1;
-    }
-    $runtimePath = dirname(__FILE__) . implode(D_S, array('', '..', '..', 'Runtime'));
-    $runtimePath = file_exists($runtimePath) ? realpath($runtimePath) : $runtimePath;
-    $checkList['runtime']['tip'] = $runtimePath . '<br>' . $checkList['runtime']['tip'];
-    if (is_writeable($runtimePath)) {
-        $checkList['runtime']['status'] =  1;
-    }
-
-    include dirname(__FILE__) . D_S . '_step1.php';
+    include dirname(__FILE__) . D_S . '_start.php';
 }
 
 
