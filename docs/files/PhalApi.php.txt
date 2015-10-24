@@ -2,7 +2,7 @@
 /**
  * 框架版本号
  */
-defined('PHALAPI_VERSION') || define('PHALAPI_VERSION', '1.2.1');
+defined('PHALAPI_VERSION') || define('PHALAPI_VERSION', '1.3.0');
  
 /**
  * 项目根目录

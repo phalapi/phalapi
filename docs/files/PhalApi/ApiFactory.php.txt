@@ -44,19 +44,25 @@ class PhalApi_ApiFactory {
             );
         }
 
-		list($apiClassName, $action) = $serviceArr;
+		list ($apiClassName, $action) = $serviceArr;
 	    $apiClassName = 'Api_' . ucfirst($apiClassName);
         $action = lcfirst($action);
 
-        if(!class_exists($apiClassName)) {
+        if (!class_exists($apiClassName)) {
             throw new PhalApi_Exception_BadRequest(
                 T('no such service as {service}', array('service' => $service))
             );
         }
         		
     	$api = new $apiClassName();
+
+        if (!is_subclass_of($api, 'PhalApi_Api')) {
+            throw new PhalApi_Exception_InternalServerError(
+                T('{class} should be subclass of PhalApi_Api', array('class' => $apiClassName))
+            );
+        }
     			
-    	if(!method_exists($api, $action) || !is_callable(array($api, $action))) {
+    	if (!method_exists($api, $action) || !is_callable(array($api, $action))) {
             throw new PhalApi_Exception_BadRequest(
                 T('no such service as {service}', array('service' => $service))
             );

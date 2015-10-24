@@ -88,32 +88,16 @@ class PhpUnderControl_PhalApiApi_Test extends PHPUnit_Framework_TestCase
         $rs = $impl->add();
         $this->assertEquals(7, $rs);
     }
-}
 
-class PhalApi_Api_Impl extends PhalApi_Api {
-
-    public function getRules() {
-        return array(
-            '*' => array( 
-                'version' => array('name' => 'version'),
-            ),
-            'add' => array(
-                'left' => array('name' => 'left', 'type' => 'int'),
-                'right' => array('name' => 'right', 'type' => 'int'),
-            ),
-        );
-    }
-
-    public function add()
+    /**
+     * @expectedException PhalApi_Exception_InternalServerError
+     */
+    public function testIllegalFilter()
     {
-        return $this->left + $this->right;
-    }
-}
+        DI()->filter = 'PhalApi_Filter_Impl_NotFound';
 
-class PhalApi_Filter_Impl implements PhalApi_Filter {
-
-    public function check() {
-
+        $impl = new PhalApi_Api_Impl();
+        $impl->init();
     }
 }
 

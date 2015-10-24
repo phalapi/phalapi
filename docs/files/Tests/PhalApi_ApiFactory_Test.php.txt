@@ -80,11 +80,28 @@ class PhpUnderControl_PhalApiApiFactory_Test extends PHPUnit_Framework_TestCase
         DI()->request = new PhalApi_Request($data);
         $rs = PhalApi_ApiFactory::generateService();
     }
+
+    /**
+     * @expectedException PhalApi_Exception_InternalServerError
+     */
+    public function testNotPhalApiSubclass()
+    {
+        $data['service'] = 'Crazy.What';
+        DI()->request = new PhalApi_Request($data);
+        $rs = PhalApi_ApiFactory::generateService();
+    }
 }
 
 class Api_Default extends PhalApi_Api
 {
     public function index()
+    {
+    }
+}
+
+class Api_Crazy
+{
+    public function what()
     {
     }
 }
