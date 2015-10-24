@@ -42,10 +42,14 @@ API就如同恒星，一旦出现，便与我们永恒共存。
 + *建议PHP >= 5.3.3*
 
 将代码下载解压到服务器后即可，然后打开浏览器，访问安装向导（推荐使用nginx，并将根目录设置为Public）：  
+```
+http://localhost/PhalApi/Public/install/
+```
+  
 ![](http://7xiz2f.com1.z0.glb.clouddn.com/QQ20151024155002.jpg)  
 
 
-为验证是否安装成功，可以访问默认接口服务，如：http://localhost/PhalApi/Public/demo/，正常时会返回类如：
+为验证是否安装成功，可以访问默认接口服务，如：http://localhost/PhalApi/Public/demo/ ，正常时会返回类如：
 ```
 {
     "ret": 200,
