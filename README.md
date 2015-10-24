@@ -134,6 +134,24 @@ http://demo.phalapi.net/checkApiParams.php
    
 对于框架的核心代码，我们也一直坚持着单元测试，其核心框架代码的单元测试覆盖率可高达96%以上。
   
+#[项!]基于接口查询语言的SDK包支持
+可用一句话来描述接口请求，如JAVA的请求示例：
+```
+PhalApiClientResponse response = PhalApiClient.create()
+       .withHost("http://demo.phalapi.net/")
+       .withService("Default.Index")          //接口服务
+       .withParams("username", "dogstar")     //接口参数
+       .withTimeout(3000)                     //接口超时
+       .request();
+```
+  
+目前已提供的SDK有：  
+ + JAVA版 
+ + Objective-c版
+ + PHP版
+ + C#版
+ + JS版
+  
 #主要目录结构
 ```
 .
@@ -159,7 +177,7 @@ http://demo.phalapi.net/checkApiParams.php
 
 ```
 
-##示例目录结构图解
+以下为一示例目录结构图解
 ![](http://7qnay5.com1.z0.glb.clouddn.com/QQ-20151015214456.jpg)   
 
 #加入我们
