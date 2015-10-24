@@ -41,13 +41,11 @@ API就如同恒星，一旦出现，便与我们永恒共存。
 + *推荐在Linux服务器上进行开发*
 + *建议PHP >= 5.3.3*
 
-将代码下载解压到服务器后即可，然后把根目录设置为Public。如nginx下：
+将代码下载解压到服务器后即可，然后打开浏览器，访问安装向导（推荐使用nginx，并将根目录设置为Public）：  
+![](http://7xiz2f.com1.z0.glb.clouddn.com/QQ20151024155002.jpg)  
 
-```
-root   /path/to/PhalApi/Public;
-```
 
-为验证是否安装成功，可以访问默认接口服务，如：http://localhost/PhalApi/demo/，正常时会返回类如：
+为验证是否安装成功，可以访问默认接口服务，如：http://localhost/PhalApi/Public/demo/，正常时会返回类如：
 ```
 {
     "ret": 200,
@@ -134,7 +132,7 @@ http://demo.phalapi.net/checkApiParams.php
    
 对于框架的核心代码，我们也一直坚持着单元测试，其核心框架代码的单元测试覆盖率可高达96%以上。
   
-#[项!]基于接口查询语言的SDK包支持
+#[项！]基于接口查询语言的SDK包支持
 可用一句话来描述接口请求，如JAVA的请求示例：
 ```
 PhalApiClientResponse response = PhalApiClient.create()
