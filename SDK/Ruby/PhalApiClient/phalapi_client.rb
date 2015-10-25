@@ -13,7 +13,7 @@ require 'json'
 #   .withHost('http://demo.phalapi.net') \
 #   .withService('Default.Index') \
 #   .withParams('username', 'dogstar') \
-#   .withParams('v', '1.3.0') \
+#   .withTimeout(3000) \
 #   .request
 #
 # puts a_response.ret, a_response.data, a_response.msg

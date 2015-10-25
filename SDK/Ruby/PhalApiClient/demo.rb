@@ -7,6 +7,13 @@ def show_res(response)
     puts "response: #{response.ret}, #{response.data}, #{response.msg}"
 end
 
+a_client = PhalApi::Client.create.withHost('http://demo.phalapi.net')
+a_response = a_client.withService('Default.Index').withParams('username', 'dogstar').withTimeout(3000).request()
+
+puts a_response.ret, a_response.data, a_response.msg
+
+puts "--------------------"
+
 a_client = PhalApi::Client.create
 #a_client = PhalApi::Client.new
 
@@ -33,6 +40,7 @@ show_res a_response
 puts "--------------------"
 
 a_response = a_client.reset.withService('XXXX.noThisMethod').request
+puts a_response.ret, a_response.data, a_response.msg
 show_res a_response
 
 puts 'we done!'
