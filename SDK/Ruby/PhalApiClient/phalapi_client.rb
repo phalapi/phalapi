@@ -2,8 +2,33 @@ require 'open-uri'
 require 'net/http'
 require 'json'
 
+# PhalApi 客户端SDK包(Ruby版)
+#
+# - 以接口查询语言（ASQL）的方式来实现接口请求
+# - 出于简明客户端，将全部的类都归于同一个文件，避免过多的加载
+#
+# <br>使用示例：<br>
+# ```
+# a_response = PhalApi::Client.create \
+#   .withHost('http://demo.phalapi.net') \
+#   .withService('Default.Index') \
+#   .withParams('username', 'dogstar') \
+#   .withParams('v', '1.3.0') \
+#   .request
+#
+# puts a_response.ret, a_response.data, a_response.msg
+#
+# ```
+#
+# @package     PhalApi\SDK
+# @license     http://www.phalapi.net/license GPL 协议
+# @link        http://www.phalapi.net/
+# @author      dogstar <chanzonghuang@gmail.com> 2015-10-25
 
 module PhalApi
+
+    # PhalApi::Client 客户端入口类
+    # 完成总的调用
     class Client
         def self.create
             self.new
@@ -47,10 +72,11 @@ module PhalApi
             self
         end
 
+        # 发起接口请求
         def request
             url = @host
 
-            url += "?service=" + @service if @service != nil
+            url += "?service=" + @service if @service != nil and @service != ''
 
             @filter.send :filter, @service, @params if @filter != nil
 
@@ -76,6 +102,9 @@ module PhalApi
         end
     end
 
+    # 接口返回结果
+    # 
+    # - 与接口返回的格式对应，即有：ret/data/msg
     class ClientResponse
         def initialize(ret, data = nil, msg = nil)
             @ret, @data, @msg = ret, data, msg
@@ -95,28 +124,34 @@ module PhalApi
 
     end
 
+    # 接口结果解析器
+    # 
+    # - 可用于不同接口返回格式的处理
     class ClientParser
         def parse(rs)
             raise 'hey guys, you should rewrite PhalApi::ClientPaser.parse'
         end
     end
 
+    # JSON解析
     class ClientParserJson < PhalApi::ClientParser
         def parse(rs)
+            #puts "what we got: #{rs}"
             return PhalApi::ClientResponse.new(408, [], 'Request Timeout') if rs == nil
 
-            a_json = JSON.parse(rs)
-
-            return PhalApi::ClientResponse.new(500, [], 'Internal Server Error') if a_json == nil
-
-            return PhalApi::ClientResponse.new(a_json['ret'], a_json['data'], a_json['msg'])
+            begin
+                a_json = JSON.parse(rs)
+                return PhalApi::ClientResponse.new(a_json['ret'], a_json['data'], a_json['msg'])
+            rescue JSON::ParserError => e
+                return PhalApi::ClientResponse.new(500, [], 'Internal Server Error')
+            end
         end
     end
 
+    # 接口过滤器
     class ClientFilter
         def filter(service, *params)
             #nothing here ...
-            #params.each do |key, value| puts "filter: #{key}, #{value}" end
         end
     end
 
