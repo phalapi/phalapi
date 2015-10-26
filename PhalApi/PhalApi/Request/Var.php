@@ -97,6 +97,7 @@ class PhalApi_Request_Var {
 			//文件类型
             case 'file':
                 $value = self::formatFile($rule);
+                break;
             default:
                 break;
         }
