@@ -26,7 +26,7 @@
  * @modify      Aevit, dogstar <chanzonghuang@gmail.com> 2014-10-29
  */
 
-define(D_S, DIRECTORY_SEPARATOR);
+define("D_S", DIRECTORY_SEPARATOR);
 $root = dirname(__FILE__);
 
 /**
