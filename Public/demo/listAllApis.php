@@ -12,7 +12,7 @@ $apiDirName = 'Demo';
 $prevention = array('.','..');
 
 require_once $root . '/../init.php';
-DI()->loader->addDirs([$apiDirName]);
+DI()->loader->addDirs($apiDirName);
 $files = scandir($root.'/../../'.$apiDirName.'/Api');
 $files = array_diff($files, $prevention);
 foreach( $files as $value ){
