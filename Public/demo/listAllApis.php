@@ -1,50 +1,100 @@
 <?php
+/**
+ * PhalApi接口列表 - 自动生成
+ *
+ * - 对Api_系列的接口，进行罗列
+ * - 可按注释进行字典排列
+ * 
+ * <br>使用示例：<br>
+```
+ * <?php
+ * class Api_Demo extends PhalApi_Api {
+ *
+ *      /**
+ *       * 1.1 可在这里输入接口的服务名称
+ *       * /
+ *      public function index() {
+ *          // todo ...    
+ *      }
+ * }
+ *
+```
+ * @license     http://www.phalapi.net/license GPL 协议
+ * @link        http://www.phalapi.net/
+ * @author      xiaoxunzhao 2015-10-25
+ * @modify      Aevit, dogstar <chanzonghuang@gmail.com> 2014-10-29
+ */
+
+define(D_S, DIRECTORY_SEPARATOR);
 $root = dirname(__FILE__);
 
 /**
- * 项目的文件夹名
+ * 项目的文件夹名 - 如有需要，请更新此值
  */
 $apiDirName = 'Demo';
-/**
- * 不参与到接口文档中的文件名 例：['.','..','Test.php']那么Test.php中的方法将不被列出
- * 注：. 和 .. 是必须得有的！！！！！
- */
-$prevention = array('.','..');
 
-require_once $root . '/../init.php';
+require_once implode(D_S, array($root, '..', 'init.php'));
 DI()->loader->addDirs($apiDirName);
-$files = scandir($root.'/../../'.$apiDirName.'/Api');
-$files = array_diff($files, $prevention);
-foreach( $files as $value ){
-    $ApiServer = rtrim($value,'.php');
-    $Method = array_diff(get_class_methods('Api_'.$ApiServer), get_class_methods('PhalApi_Api'));
-    foreach( $Method as $MValue ){
-        $rMethod = new ReflectionMethod('Api_'.$ApiServer, $MValue);
+$files = listDir(implode(D_S, array($root, '..', '..', $apiDirName, 'Api')));
+$allPhalApiApiMethods = get_class_methods('PhalApi_Api');
+
+$allApiS = array();
+
+foreach ($files as $value) {
+    $subValue = substr($value, strpos($value, D_S . 'Api' . D_S) + 1);
+    $apiServer = str_replace(array(D_S, '.php'), array('_', ''), $subValue);
+
+    $method = array_diff(get_class_methods($apiServer), $allPhalApiApiMethods);
+
+    foreach ($method as $mValue) {
+        $rMethod = new Reflectionmethod($apiServer, $mValue);
+        if (!$rMethod->isPublic()) {
+            continue;
+        }
+
+        $title = '//请检测函数注释';
         $docComment = $rMethod->getDocComment();
-        if( $docComment != false ){
+        if ($docComment !== false) {
             $docCommentArr = explode("\n", $docComment);
             $comment = trim($docCommentArr[1]);
-            $desc = substr($comment, strpos($comment, '*') + 1);
-        }else{
-            $desc = '请检测函数注释';
+            $title = trim(substr($comment, strpos($comment, '*') + 1));
         }
-        $description[$ApiServer.'.'.$MValue] = $desc;
-        $ApiS[] = $ApiServer.'.'.$MValue;
+
+        $allApiS[$title] = array(
+            'service' => $apiServer . '.' . ucfirst($mValue),
+            'title' => $title,
+        );
     }
+}
+
+//字典排列
+ksort($allApiS);
+
+function listDir($dir) {
+    $dir .= substr($dir, -1) == '/' ? '' : '/';
+    $dirInfo = array();
+    foreach(glob($dir.'*') as $v) {
+        if (is_dir($v)) {
+            $dirInfo = array_merge($dirInfo, listDir($v));
+        } else {
+            $dirInfo[] = $v; 
+        }
+    }
+    return $dirInfo;
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>freeApi - 接口列表</title>
+    <title><?php echo $apiDirName; ?> - 接口列表</title>
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">
 </head>
 <body>
 <br />
 <div class="container">
     <div class="page-header">
-        <h1>用户模块</h1>
+        <h1>接口列表</h1>
     </div>
     <table class="table table-hover">
         <thead>
@@ -54,9 +104,12 @@ foreach( $files as $value ){
         </thead>
         <tbody>
         <?php
-        foreach( $ApiS as $KK => $VV ){
-            $NO = $KK + 1;
-            echo "<tr><td>{$NO}</td><td><a href='checkApiParams.php?service={$VV}' target='_blank'>{$VV}</a></td><td>{$description[$VV]}</td><td></td></tr>";
+        $num = 1;
+        $uri = str_replace('listAllApis.php', 'checkApiParams.php', $_SERVER['REQUEST_URI']);
+
+        foreach ($allApiS as $key => $item) {
+            $NO = $num++;
+            echo "<tr><td>{$NO}</td><td><a href=\"{$uri}\"?service={$item['service']}' target='_blank'>{$item['service']}</a></td><td>{$item['title']}</td><td></td></tr>";
         }
         ?>
         </tbody>
