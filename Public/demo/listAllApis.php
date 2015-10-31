@@ -42,8 +42,13 @@ $allPhalApiApiMethods = get_class_methods('PhalApi_Api');
 $allApiS = array();
 
 foreach ($files as $value) {
+    $value = realpath($value);
     $subValue = substr($value, strpos($value, D_S . 'Api' . D_S) + 1);
     $apiServer = str_replace(array(D_S, '.php'), array('_', ''), $subValue);
+
+    if (!class_exists($apiServer)) {
+        continue;
+    }
 
     $method = array_diff(get_class_methods($apiServer), $allPhalApiApiMethods);
 
