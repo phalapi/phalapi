@@ -114,8 +114,9 @@ function listDir($dir) {
         $uri = str_ireplace('listAllApis.php', 'checkApiParams.php', $_SERVER['REQUEST_URI']);
 
         foreach ($allApiS as $key => $item) {
+            $link = $uri . '?service=' . $item['service'];
             $NO = $num++;
-            echo "<tr><td>{$NO}</td><td><a href=\"{$uri}\"?service={$item['service']}' target='_blank'>{$item['service']}</a></td><td>{$item['title']}</td><td></td></tr>";
+            echo "<tr><td>{$NO}</td><td><a href=\"$link\" target='_blank'>{$item['service']}</a></td><td>{$item['title']}</td><td></td></tr>";
         }
         ?>
         </tbody>
