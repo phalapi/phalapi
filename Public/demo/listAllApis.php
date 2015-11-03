@@ -3,7 +3,7 @@
  * PhalApi接口列表 - 自动生成
  *
  * - 对Api_系列的接口，进行罗列
- * - 可按注释进行字典排列
+ * - 按service进行字典排序
  * - 支持多级目录扫描
  * 
  * <br>使用示例：<br>
@@ -66,8 +66,9 @@ foreach ($files as $value) {
             $title = trim(substr($comment, strpos($comment, '*') + 1));
         }
 
-        $allApiS[$title] = array(
-            'service' => substr($apiServer, 4) . '.' . ucfirst($mValue),
+        $service = substr($apiServer, 4) . '.' . ucfirst($mValue);
+        $allApiS[$service] = array(
+            'service' => $service,
             'title' => $title,
         );
     }
