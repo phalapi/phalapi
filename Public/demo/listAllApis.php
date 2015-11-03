@@ -67,7 +67,7 @@ foreach ($files as $value) {
         }
 
         $allApiS[$title] = array(
-            'service' => $apiServer . '.' . ucfirst($mValue),
+            'service' => substr($apiServer, 4) . '.' . ucfirst($mValue),
             'title' => $title,
         );
     }
