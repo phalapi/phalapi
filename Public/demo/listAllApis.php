@@ -99,6 +99,7 @@ function listDir($dir) {
 <body>
 <br />
 <div class="container">
+<div class="jumbotron">
     <div class="page-header">
         <h1>接口列表</h1>
     </div>
@@ -121,6 +122,7 @@ function listDir($dir) {
         ?>
         </tbody>
     </table>
+</div>
 </div>
 
 </body>
