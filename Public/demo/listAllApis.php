@@ -77,7 +77,7 @@ foreach ($files as $value) {
 ksort($allApiS);
 
 function listDir($dir) {
-    $dir .= substr($dir, -1) == '/' ? '' : '/';
+    $dir .= substr($dir, -1) == D_S ? '' : D_S;
     $dirInfo = array();
     foreach(glob($dir.'*') as $v) {
         if (is_dir($v)) {
@@ -111,7 +111,7 @@ function listDir($dir) {
         <tbody>
         <?php
         $num = 1;
-        $uri = str_replace('listAllApis.php', 'checkApiParams.php', $_SERVER['REQUEST_URI']);
+        $uri = str_ireplace('listAllApis.php', 'checkApiParams.php', $_SERVER['REQUEST_URI']);
 
         foreach ($allApiS as $key => $item) {
             $NO = $num++;
