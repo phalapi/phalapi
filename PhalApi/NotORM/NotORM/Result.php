@@ -772,7 +772,7 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
      * queryRows别名，等效于NotORM_Result::queryRows($sql, $parmas)
      * @author: dogstar 2015-04-26
      */
-    function queryAll($sql, $parmas) {
+    function queryAll($sql, $parmas = array()) {
         return $this->queryRows($sql, $parmas);
     }
 
@@ -781,7 +781,7 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
      * @return array
      * @author: dogstar 2014-11-01
      */
-    function queryRows($sql, $parmas) {
+    function queryRows($sql, $parmas = array()) {
         $result = $this->query($sql, $parmas);
 
         $rows = array();
