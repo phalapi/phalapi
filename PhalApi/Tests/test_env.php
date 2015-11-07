@@ -64,6 +64,22 @@ class Memcached_Mock {
     }
 }
 
+if (!class_exists('Memcached')) {
+    class Memcached extends Memcached_Mock {
+    }
+}
+
+if (!class_exists('Redis')) {
+
+    class Redis {
+
+        public function __call($method, $params) {
+            echo 'Redis::' . $method . '() with: ', json_encode($params), " ... \n";
+        }
+
+    }
+}
+
 //加密，测试情况下为防止本地环境没有mcrypt模块 这里作了替身
 DI()->crypt = function() {
 	//return new Crypt_Mock();
