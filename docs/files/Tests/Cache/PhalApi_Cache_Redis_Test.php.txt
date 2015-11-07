@@ -22,7 +22,7 @@ class PhpUnderControl_PhalApiRedis_Test extends PHPUnit_Framework_TestCase
         parent::setUp();
 
         $config = array('host' => '127.0.0.1', 'port' => 6379);
-        $this->phalApiRedis = new PhalApi_Redis($config);
+        $this->phalApiRedis = new PhalApi_Cache_Redis($config);
     }
 
     protected function tearDown()

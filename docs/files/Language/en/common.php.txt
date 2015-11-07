@@ -19,5 +19,7 @@ return array(
     "{name}'s enum range can not be empty" => "{name}'s enum range can not be empty",
 	'DI()->filter should be instanceof PhalApi_Filter' => 'DI()->filter should be instanceof PhalApi_Filter',
     'wrong sign' => 'wrong sign',
+    'invalid type: {type} for rule: {name}' => 'invalid type: {type} for rule: {name}',
+    'invalid callback for rule: {name}' => 'invalid callback for rule: {name}',
 );
 

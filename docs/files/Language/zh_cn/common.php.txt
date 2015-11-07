@@ -30,5 +30,7 @@ return array(
     'fail to upload file with error = {error}' => '上传文件失败，error = {error}',
 	'DI()->filter should be instanceof PhalApi_Filter' => 'DI()->filter未实现PhalApi_Filter接口',
     'wrong sign' => '签名错误',
+    'invalid type: {type} for rule: {name}' => "{name}参数规则的类型({type})非法",
+    'invalid callback for rule: {name}' => '{name}参数规则的回调函数非法',
 );
 

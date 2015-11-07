@@ -48,10 +48,8 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
      */ 
     public function testFormatString()
     {
-        $value = 2014;
-        $rule = array('name' => 'testKey');
-
-        $rs = PhalApi_Request_Var::formatString($value, $rule);
+        $rs = PhalApi_Request_Var::format(
+            'testKey', array('name' => 'testKey'), array('testKey' => 2014));
 
         $this->assertSame('2014', $rs);
     }
@@ -63,10 +61,8 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
      */
     public function testFormatStringWithRuleExceptionMinGtMax()
     {
-        $value = '2014';
-        $rule = array('name' => 'testKey', 'min' => 9, 'max' => 5);
-
-        $rs = PhalApi_Request_Var::formatString($value, $rule);
+        $rs = PhalApi_Request_Var::format(
+            'testKey', array('name' => 'testKey', 'min' => 9, 'max' => 5), array('testKey' => '2014'));
     }
 
     /**
@@ -75,10 +71,8 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
      */
     public function testFormatStringWithParamExceptionLtMin()
     {
-        $value = '2014';
-        $rule = array('name' => 'testKey', 'min' => 8, );
-
-        $rs = PhalApi_Request_Var::formatString($value, $rule);
+        $rs = PhalApi_Request_Var::format(
+            'testKey', array('name' => 'testKey', 'min' => 8), array('testKey' => 2014));
     }
 
     /**
@@ -90,7 +84,8 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
         $value = '2014';
         $rule = array('name' => 'testKey', 'max' => 2, );
 
-        $rs = PhalApi_Request_Var::formatString($value, $rule);
+        $rs = PhalApi_Request_Var::format(
+            'testKey', array('name' => 'testKey', 'max' => 2), array('testKey' => 2014));
     }
 
     /**
@@ -98,10 +93,8 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
      */ 
     public function testFormatInt()
     {
-        $value = '2014';
-        $rule = array('name' => 'testKey', );
-
-        $rs = PhalApi_Request_Var::formatInt($value, $rule);
+        $rs = PhalApi_Request_Var::format(
+            'testKey', array('name' => 'testKey', 'type' => 'int'), array('testKey' => 2014));
 
         $this->assertSame(2014, $rs);
     }
@@ -111,10 +104,8 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
      */ 
     public function testFormatFloat()
     {
-        $value = '3.14';
-        $rule = array('name' => 'testKey', );
-
-        $rs = PhalApi_Request_Var::formatFloat($value, $rule);
+        $rs = PhalApi_Request_Var::format(
+            'testKey', array('name' => 'testKey', 'type' => 'float'), array('testKey' => '3.14'));
 
         $this->assertSame(3.14, $rs);
     }
@@ -125,10 +116,8 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
      */ 
     public function testFormatBoolean($oriValue, $expValue)
     {
-        $value = $oriValue;
-        $rule = array();
-
-        $rs = PhalApi_Request_Var::formatBoolean($value, $rule);
+        $rs = PhalApi_Request_Var::format(
+            'testKey', array('name' => 'testKey', 'type' => 'boolean'), array('testKey' => $oriValue));
 
         $this->assertSame($expValue, $rs);
     }
@@ -150,22 +139,31 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
      */ 
     public function testFormatDate()
     {
-        $value = '2014-10-01 12:00:00';
-        $rule = array('format' => 'timestamp');
-
-        $rs = PhalApi_Request_Var::formatDate($value, $rule);
+        $rs = PhalApi_Request_Var::format(
+            'testKey', array('name' => 'testKey', 'type' => 'date', 'format' => 'timestamp'), array('testKey' => '2014-10-01 12:00:00')); 
 
         $this->assertTrue(is_numeric($rs));
         $this->assertSame(1412136000, $rs);
     }
 
+    /**
+     * @group testFormatDate
+     */ 
     public function testFormatDateIllegal()
     {
-        $value = '2014-99-99 XX:XX:XX';
-        $rule = array('format' => 'timestamp');
-
-        $rs = PhalApi_Request_Var::formatDate($value, $rule);
+        $rs = PhalApi_Request_Var::format(
+            'testKey', array('name' => 'testKey', 'type' => 'date', 'format' => 'timestamp'), array('testKey' => '2014-99-99 XX:XX:XX'));
         $this->assertEquals(0, $rs);
+    }
+
+    /**
+     * @group testFormatDate
+     * @expectedException PhalApi_Exception_BadRequest
+     */ 
+    public function testFormatDateRange()
+    {
+        $rs = PhalApi_Request_Var::format(
+            'testKey', array('name' => 'testKey', 'type' => 'date', 'format' => 'timestamp', 'max' => 100), array('testKey' => '2014-10-01 12:00:00')); 
     }
 
     /**
@@ -174,31 +172,48 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
     public function testFormatArrayWithJson()
     {
         $arr = array('age' => 100, 'sex' => 'male');
-        $value = json_encode($arr);
-        $rule = array('format' => 'json');
 
-        $rs = PhalApi_Request_Var::formatArray($value, $rule);
+        $rs = PhalApi_Request_Var::format(
+            'testKey', 
+            array('name' => 'testKey', 'type' => 'array', 'format' => 'json'),
+            array('testKey' => json_encode($arr))
+        );
 
         $this->assertSame($arr, $rs);
     }
 
     public function testFormatArrayWithExplode()
     {
-        $value = '1|2|3|4|5';
-        $rule = array('format' => 'explode', 'separator' => '|');
-
-        $rs = PhalApi_Request_Var::formatArray($value, $rule);
+        $rs = PhalApi_Request_Var::format(
+            'testKey', 
+            array('name' => 'testKey', 'type' => 'array', 'format' => 'explode', 'separator' => '|'),
+            array('testKey' => '1|2|3|4|5')
+        );
 
         $this->assertEquals(array(1, 2, 3, 4, 5), $rs);
     }
 
     public function testFormatArrayDefault()
     {
-        $value = 'phalapi';
-        $rule = array();
+        $rs = PhalApi_Request_Var::format(
+            'testKey', 
+            array('name' => 'testKey', 'type' => 'array'),
+            array('testKey' => 'phalapi')
+        );
 
-        $rs = PhalApi_Request_Var::formatArray($value, $rule);
         $this->assertEquals(array('phalapi'), $rs);
+    }
+
+    /**
+     * @expectedException PhalApi_Exception_BadRequest
+     */
+    public function testFormatArrayRange()
+    {
+        $rs = PhalApi_Request_Var::format(
+            'testKey', 
+            array('name' => 'testKey', 'type' => 'array', 'format' => 'explode', 'separator' => '|', 'max' => 3),
+            array('testKey' => '1|2|3|4|5')
+        );
     }
 
     /**
@@ -208,9 +223,10 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
     {
         $_FILES['aFile'] = array('name' => 'aHa~', 'type' => 'image/jpeg', 'size' => 100, 'tmp_name' => '/tmp/123456', 'error' => 0);
 
-        $rule = array('name' => 'aFile', 'range' => array('image/jpeg'), 'min' => 50, 'max' => 1024, 'require' => true, 'default' => array());
+        $rule = array('name' => 'aFile', 'range' => array('image/jpeg'), 'min' => 50, 'max' => 1024, 'require' => true, 'default' => array(), 'type' => 'file');
 
-        $rs = PhalApi_Request_Var::formatFile($rule);
+        $rs = PhalApi_Request_Var::format('aFile', $rule, array());
+
         $this->assertEquals($_FILES['aFile'], $rs);
     }
 
@@ -221,9 +237,10 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
     {
         $_FILES['aFile'] = array('name' => 'aHa~', 'type' => 'image/jpeg', 'size' => 100, 'tmp_name' => '/tmp/123456', 'error' => 0);
 
-        $rule = array('name' => 'aFile', 'range' => array('image/JPEG'), 'min' => 50, 'max' => 1024, 'require' => true, 'default' => array());
+        $rule = array('name' => 'aFile', 'range' => array('image/JPEG'), 'min' => 50, 'max' => 1024, 'require' => true, 'default' => array(), 'type' => 'file');
 
-        $rs = PhalApi_Request_Var::formatFile($rule);
+        $rs = PhalApi_Request_Var::format('aFile', $rule, array());
+
         $this->assertEquals($_FILES['aFile'], $rs);
     }
 
@@ -235,9 +252,9 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
     {
         $_FILES['aFile'] = array('name' => 'aHa~', 'type' => 'image/jpeg', 'size' => 9999, 'tmp_name' => '/tmp/123456', 'error' => 0);
 
-        $rule = array('name' => 'aFile', 'range' => array('image/jpeg'), 'min' => 50, 'max' => 1024, 'require' => true, 'default' => array());
+        $rule = array('name' => 'aFile', 'range' => array('image/jpeg'), 'min' => 50, 'max' => 1024, 'require' => true, 'default' => array(), 'type' => 'file');
 
-        $rs = PhalApi_Request_Var::formatFile($rule);
+        $rs = PhalApi_Request_Var::format('aFile', $rule, array());
     }
 
     /**
@@ -248,9 +265,9 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
     {
         $_FILES['aFile'] = array('name' => 'aHa~', 'type' => 'image/png', 'size' => 100, 'tmp_name' => '/tmp/123456', 'error' => 0);
 
-        $rule = array('name' => 'aFile', 'range' => array('image/jpeg'), 'min' => 50, 'max' => 1024, 'require' => true, 'default' => array());
+        $rule = array('name' => 'aFile', 'range' => array('image/jpeg'), 'min' => 50, 'max' => 1024, 'require' => true, 'default' => array(), 'type' => 'file');
 
-        $rs = PhalApi_Request_Var::formatFile($rule);
+        $rs = PhalApi_Request_Var::format('aFile', $rule, array());
     }
 
     /**
@@ -261,9 +278,9 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
     {
         $_FILES['aFile'] = array('name' => 'aHa~', 'type' => 'image/png', 'size' => 100, 'tmp_name' => '/tmp/123456', 'error' => 2);
 
-        $rule = array('name' => 'aFile', 'range' => array('image/jpeg'), 'min' => 50, 'max' => 1024, 'require' => true, 'default' => array());
+        $rule = array('name' => 'aFile', 'range' => array('image/jpeg'), 'min' => 50, 'max' => 1024, 'require' => true, 'default' => array(), 'type' => 'file');
 
-        $rs = PhalApi_Request_Var::formatFile($rule);
+        $rs = PhalApi_Request_Var::format('aFile', $rule, array());
     }
 
     /**
@@ -272,9 +289,9 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
      */
     public function testFormatFileEmptyButRequire()
     {
-        $rule = array('name' => 'aFile');
+        $rule = array('name' => 'aFile', 'type' => 'file');
 
-        $rs = PhalApi_Request_Var::formatFile($rule);
+        $rs = PhalApi_Request_Var::format('aFile', $rule, array());
         $this->assertEquals(NULL, $rs);
     }
 
@@ -284,9 +301,9 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
     public function testFormatFileEmptyWithDefualt()
     {
         $default = array('name' => 'test.txt', 'type' => 'txt', 'tmp_name' => '/tmp/test.txt');
-        $rule = array('name' => 'aFile', 'default' => $default);
+        $rule = array('name' => 'aFile', 'default' => $default, 'type' => 'file');
 
-        $rs = PhalApi_Request_Var::formatFile($rule);
+        $rs = PhalApi_Request_Var::format('aFile', $rule, array());
         $this->assertEquals($default, $rs);
     }
 
@@ -295,10 +312,8 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
      */ 
     public function testFormatEnum()
     {
-        $value = 'ios';
-        $rule = array('range' => array('ios', 'android'));
-
-        $rs = PhalApi_Request_Var::formatEnum($value, $rule);
+        $rs = PhalApi_Request_Var::format(
+            'testKey', array('range' => array('ios', 'android'), 'type' => 'enum'), array('testKey' => 'ios'));
 
         $this->assertSame('ios', $rs);
     }
@@ -309,10 +324,8 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
      */
     public function testFormatEnumWithRuleException()
     {
-        $value = 'ios';
-        $rule = array('name' => 'testKey');
-
-        $rs = PhalApi_Request_Var::formatEnum($value, $rule);
+        $rs = PhalApi_Request_Var::format(
+            'testKey', array('type' => 'enum', 'name' => 'testKey'), array('testKey' => 'ios'));
     }
 
     /**
@@ -321,10 +334,8 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
      */
     public function testFormatEnumWithParamException()
     {
-        $value = 'pc';
-        $rule = array('name' => 'testKey', 'range' => array('ios', 'android'));
-
-        $rs = PhalApi_Request_Var::formatEnum($value, $rule);
+        $rs = PhalApi_Request_Var::format(
+            'testKey', array('type' => 'enum', 'name' => 'testKey', 'range' => array('ios', 'android')), array('testKey' => 'pc'));
     }
 
     public function testFormatAllTypes()
@@ -376,14 +387,14 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
      */
     public function testGetEnumWithEmptyRange()
     {
-        PhalApi_Request_Var::formatEnum('aHa~',  array('name' => 'key', 'type' => 'enum', 'range' => array()));
+        PhalApi_Request_Var::format('key',  array('name' => 'key', 'type' => 'enum', 'range' => array()), array('key' => 'aHa~'));
     }
 
     public function testStringWithRegxRight()
     {
         //very simple mobile phone
         $rule = array('name' => 'key', 'type' => 'string', 'regex' => '/^[0-9]{11}/');
-        PhalApi_Request_Var::formatString('13800138000', $rule);
+        PhalApi_Request_Var::format('testKey', $rule, array('testKey' => '13800138000'));
     }
 
     /**
@@ -392,7 +403,37 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
     public function testStringWithRegxWrong()
     {
         $rule = array('name' => 'key', 'type' => 'string', 'regex' => '/^[0-9]{11}/');
-        PhalApi_Request_Var::formatString('no a number', $rule);
+        PhalApi_Request_Var::format('key', $rule, array('key' => 'no a number'));
+    }
+
+    public function testFormatCallable()
+    {
+        $rs = PhalApi_Request_Var::format(
+            'testKey', 
+            array('name' => 'testKey', 'type' => 'callable', 'callback' => array('PhalApi_Request_Var_MyCallback', 'go')),
+            array('testKey' => 1)
+        );
+
+        $this->assertSame(2, $rs);
+    }
+
+    /**
+     * @expectedException PhalApi_Exception_InternalServerError
+     */
+    public function testFormatCallableButWroing()
+    {
+        $rs = PhalApi_Request_Var::format(
+            'testKey', 
+            array('name' => 'testKey', 'type' => 'callable', 'callback' => 'xxx'),
+            array('testKey' => 1)
+        );
+    }
+}
+
+class PhalApi_Request_Var_MyCallback {
+
+    public static function go($value, $rule) {
+        return $value + 1;
     }
 }
 
