@@ -17,14 +17,14 @@ $_GET['__sql__'] = 1;
 
 class PhpUnderControl_PhalApiDBNotORM_Test extends PHPUnit_Framework_TestCase
 {
-    public $coreDBNotORM;
+    public $notorm;
 
     protected function setUp()
     {
         parent::setUp();
 
-        $this->coreDBNotORM = new PhalApi_DB_NotORM(DI()->config->get('dbs'));
-        $this->coreDBNotORM->debug = true;
+        $this->notorm = new PhalApi_DB_NotORM(DI()->config->get('dbs'));
+        $this->notorm->debug = true;
     }
 
     protected function tearDown()
@@ -36,7 +36,7 @@ class PhpUnderControl_PhalApiDBNotORM_Test extends PHPUnit_Framework_TestCase
      */
     public function testHere($table)
     {
-        $demo = $this->coreDBNotORM->$table;
+        $demo = $this->notorm->$table;
         $this->assertNotNull($demo);
         //var_dump($demo);
 
@@ -66,19 +66,56 @@ class PhpUnderControl_PhalApiDBNotORM_Test extends PHPUnit_Framework_TestCase
 
     public function testNoDbRouter()
     {
-        $rs = $this->coreDBNotORM->demo->fetchAll();
+        $rs = $this->notorm->demo->fetchAll();
         $this->assertNotEmpty($rs);
     }
 
     public function testUseDefaultDbKey()
     {
-        $rs = $this->coreDBNotORM->demo_10->fetchAll();
+        $rs = $this->notorm->demo_10->fetchAll();
         $this->assertNotEmpty($rs);
     }
 
     public function testMultiSet()
     {
-        $this->coreDBNotORM->debug = true;
-        $this->coreDBNotORM->debug = false;
+        $this->notorm->debug = true;
+        $this->notorm->debug = false;
+    }
+
+    public function testTransactionCommit()
+    {
+        //Step 1: 开启事务
+        $this->notorm->beginTransaction('DB_A');
+
+        //Step 2: 数据库操作
+        $this->notorm->demo->insert(array('name' => 'commit at ' . $_SERVER['REQUEST_TIME']));
+        $this->notorm->demo->insert(array('name' => 'commit again at ' . $_SERVER['REQUEST_TIME']));
+
+        //Step 3: 提交事务
+        $this->notorm->commit('DB_A');
+
+    }
+
+    public function testTransactionRollback()
+    {
+        //Step 1: 开启事务
+        $this->notorm->beginTransaction('DB_A');
+
+        //Step 2: 数据库操作
+        $this->notorm->demo->insert(array('name' => 'test rollback'));
+
+        //Step 3: 回滚事务
+        $this->notorm->rollback('DB_A');
+
+        $rs = $this->notorm->demo->where('name', 'test rollback')->fetchRow();
+        $this->assertEmpty($rs);
+    }
+
+    /**
+     * @expectedException PhalApi_Exception_InternalServerError
+     */
+    public function testTransactionException()
+    {
+        $this->notorm->beginTransaction('NO_THIS_DB');
     }
 }

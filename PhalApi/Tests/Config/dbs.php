@@ -11,14 +11,14 @@ return array(
      */
     'servers' => array(
         'DB_A' => array(
-            'host'      => '192.168.0.102',           //数据库域名
+            'host'      => '192.168.0.109',           //数据库域名
             'name'      => 'phalapi_test',                  //数据库名字
             'user'      => 'root',                  //数据库用户名
             'password'  => '123456',                //数据库密码
             'port'      => '3306',                  //数据库端口
         ),
         'DB_DEMO' => array(
-            'host'      => '192.168.0.102',           //数据库域名
+            'host'      => '192.168.0.109',           //数据库域名
             'name'      => 'phalapi_test',                  //数据库名字
             'user'      => 'root',                  //数据库用户名
             'password'  => '123456',                //数据库密码

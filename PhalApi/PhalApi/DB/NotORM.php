@@ -259,4 +259,33 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */ {
             unset($this->_pdos[$dbKey]);
         }
     }
+
+    /** ------------------ 事务操作 ------------------ **/
+
+    /**
+     * 开启数据库事务
+     * @param string $whichDB 指定数据库标识
+     * @return NULL
+     */
+    public function beginTransaction($whichDB) {
+        $this->getPdo($whichDB)->beginTransaction();
+    }
+
+    /**
+     * 提交数据库事务
+     * @param string $whichDB 指定数据库标识
+     * @return NULL
+     */
+    public function commit($whichDB) {
+        $this->getPdo($whichDB)->commit();
+    }
+
+    /**
+     * 回滚数据库事务
+     * @param string $whichDB 指定数据库标识
+     * @return NULL
+     */
+    public function rollback($whichDB) {
+        $this->getPdo($whichDB)->rollback();
+    }
 }
