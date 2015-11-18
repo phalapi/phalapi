@@ -227,19 +227,7 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */ {
             }
 
             try {
-                $dsn = sprintf('mysql:dbname=%s;host=%s;port=%d',
-                    $dbCfg['name'], 
-                    isset($dbCfg['host']) ? $dbCfg['host'] : 'localhost', 
-                    isset($dbCfg['port']) ? $dbCfg['port'] : 3306
-                );
-                $charset = isset($dbCfg['charset']) ? $dbCfg['charset'] : 'UTF8';
-
-                $this->_pdos[$dbKey] = new PDO(
-                    $dsn,
-                    $dbCfg['user'],
-                    $dbCfg['password']
-                );
-                $this->_pdos[$dbKey]->exec("SET NAMES '{$charset}'");
+                $this->_pdos[$dbKey] = $this->createPDOBy($dbCfg);
             } catch (PDOException $ex) {
                 //异常时，接口异常返回，并隐藏数据库帐号信息
                 throw new PhalApi_Exception_InternalServerError(
@@ -248,6 +236,29 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */ {
         }
 
         return $this->_pdos[$dbKey];
+    }
+
+    /**
+     * 针对MySQL的PDO链接，如果需要采用其他数据库，可重载此函数
+     * @param array $dbCfg 数据库配置
+     * @return PDO
+     */
+    protected function createPDOBy($dbCfg) {
+        $dsn = sprintf('mysql:dbname=%s;host=%s;port=%d',
+            $dbCfg['name'], 
+            isset($dbCfg['host']) ? $dbCfg['host'] : 'localhost', 
+            isset($dbCfg['port']) ? $dbCfg['port'] : 3306
+        );
+        $charset = isset($dbCfg['charset']) ? $dbCfg['charset'] : 'UTF8';
+
+        $pdo = new PDO(
+            $dsn,
+            $dbCfg['user'],
+            $dbCfg['password']
+        );
+        $pdo->exec("SET NAMES '{$charset}'");
+
+        return $pdo;
     }
 
     /**
