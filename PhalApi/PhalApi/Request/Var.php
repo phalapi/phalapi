@@ -74,7 +74,7 @@ class PhalApi_Request_Var {
 
         $formatter = DI()->get($diKey, $diDefautl);
 
-        if (!($formatter instanceof phalapi_Request_Formatter)) {
+        if (!($formatter instanceof Phalapi_Request_Formatter)) {
             throw new PhalApi_Exception_InternalServerError(
                 T('invalid type: {type} for rule: {name}', array('type' => $type, 'name' => $rule['name']))
             );

@@ -302,6 +302,7 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
     {
         $default = array('name' => 'test.txt', 'type' => 'txt', 'tmp_name' => '/tmp/test.txt');
         $rule = array('name' => 'aFile', 'default' => $default, 'type' => 'file');
+        $_FILES['aFile'] = null;
 
         $rs = PhalApi_Request_Var::format('aFile', $rule, array());
         $this->assertEquals($default, $rs);
