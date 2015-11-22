@@ -118,4 +118,21 @@ class PhpUnderControl_PhalApiDBNotORM_Test extends PHPUnit_Framework_TestCase
     {
         $this->notorm->beginTransaction('NO_THIS_DB');
     }
+
+    public function testFetchPairs()
+    {
+
+        $rs = $this->notorm->demo->fetchPairs('id', 'name');
+        //var_dump($rs);
+        foreach ($rs as $key => $row) {
+            $this->assertTrue(is_string($row));
+        }
+
+        $rs = $this->notorm->demo->select('name')->fetchPairs('id');
+        //var_dump($rs);
+        foreach ($rs as $key => $row) {
+            $this->assertTrue(is_array($row));
+            $this->assertArrayHasKey('name', $row);
+        }
+    }
 }

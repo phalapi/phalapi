@@ -818,7 +818,10 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
 			$clone->select = array("$key, $this->table.*");
 		}
 		foreach ($clone as $row) {
-			$values = array_values(iterator_to_array($row));
+			//$values = array_values(iterator_to_array($row));
+			//bugfixed: Argument 1 passed to iterator_to_array() must implement interface Traversable, array given
+			//@Scott @dogstar 20151122
+			$values = ($row instanceof Traversable) ? array_values(iterator_to_array($row)) : array_values($row);
 			if ($value != "" && $clone instanceof NotORM_MultiResult) {
 				array_shift($values);
 			}
