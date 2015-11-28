@@ -1,4 +1,4 @@
-#PhalApi - PHP轻量级开源接口框架 - V1.3.0
+#PhalApi - PHP轻量级开源接口框架 - V1.3.1
 
 #[官网 - www.phalapi.net](http://www.phalapi.net)
 ![apic](http://webtools.qiniudn.com/master-LOGO-20150410_50.jpg)  
