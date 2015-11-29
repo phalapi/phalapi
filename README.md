@@ -110,16 +110,13 @@ http://demo.phalapi.net/checkApiParams.php
      */ 
     public function testGetBaseInfo()
     {
+        //Step 1. 构建请求URL
         $str = 'service=User.GetBaseInfo&userId=1';
-        parse_str($str, $params);
 
-        DI()->request = new PhalApi_Request($params);
+	//Step 2. 执行请求（模拟接口请求）	
+        $rs = PhalApi_Helper_TestRunner::go($url);
 
-        $api = new Api_User(); 
-        //自己进行初始化
-        $api->init();
-        $rs = $api->getBaseInfo();
-
+        //Step 3. 验证
         $this->assertNotEmpty($rs);
         $this->assertArrayHasKey('code', $rs);
         $this->assertArrayHasKey('msg', $rs);
