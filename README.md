@@ -113,7 +113,7 @@ http://demo.phalapi.net/checkApiParams.php
         //Step 1. 构建请求URL
         $str = 'service=User.GetBaseInfo&userId=1';
 
-	//Step 2. 执行请求（模拟接口请求）	
+        //Step 2. 执行请求（模拟接口请求）	
         $rs = PhalApi_Helper_TestRunner::go($url);
 
         //Step 3. 验证
