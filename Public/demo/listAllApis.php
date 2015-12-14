@@ -59,17 +59,26 @@ foreach ($files as $value) {
         }
 
         $title = '//请检测函数注释';
+        $desc = '//请使用@desc 注释';
         $docComment = $rMethod->getDocComment();
         if ($docComment !== false) {
             $docCommentArr = explode("\n", $docComment);
             $comment = trim($docCommentArr[1]);
             $title = trim(substr($comment, strpos($comment, '*') + 1));
+
+            foreach ($docCommentArr as $comment) {
+                $pos = stripos($comment, '@desc');
+                if ($pos !== false) {
+                    $desc = substr($comment, $pos + 5);
+                }
+            }
         }
 
         $service = substr($apiServer, 4) . '.' . ucfirst($mValue);
         $allApiS[$service] = array(
             'service' => $service,
             'title' => $title,
+            'desc' => $desc,
         );
     }
 }
@@ -118,7 +127,7 @@ function listDir($dir) {
         foreach ($allApiS as $key => $item) {
             $link = $uri . '?service=' . $item['service'];
             $NO = $num++;
-            echo "<tr><td>{$NO}</td><td><a href=\"$link\" target='_blank'>{$item['service']}</a></td><td>{$item['title']}</td><td></td></tr>";
+            echo "<tr><td>{$NO}</td><td><a href=\"$link\" target='_blank'>{$item['service']}</a></td><td>{$item['title']}</td><td>{$item['desc']}</td></tr>";
         }
         ?>
         </tbody>
