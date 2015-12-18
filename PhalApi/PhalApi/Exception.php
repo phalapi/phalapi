@@ -2,7 +2,7 @@
 /**
  * PhalApi_Exception 自定义异常类
  *
- * - 对于系统已存在Exception类，故加Zen前缀以区分为自定义的类
+ * - 可以继承此框架异常类，定义项目的业务异常类，以便被框架自动捕捉处理
  *
  * @package     PhalApi\Exception
  * @license     http://www.phalapi.net/license GPL 协议
