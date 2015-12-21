@@ -76,7 +76,8 @@ NSString *URLStr = @\"http://www.xsdota.com/PhalApi/Public/demo/?service=User.Ap
     } uploadProgress:\^(float uploadPercent) {
         NSLog(@\"%f\",uploadPercent);
     }];
-```javascript    
+```
+
 ###上传多张图片的POST请求
 ```javascript   
     NSArray *images = @[[UIImage imageNamed:@\"0\"],
@@ -90,6 +91,6 @@ NSString *URLStr = @\"http://www.xsdota.com/PhalApi/Public/demo/?service=User.Ap
     } uploadProgress:\^(float uploadPercent) {
         NSLog(@\"%f\",uploadPercent);
     }];
-```javascript
+```
 
 
