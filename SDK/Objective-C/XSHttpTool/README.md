@@ -13,30 +13,30 @@ http://www.xsdota.com/PhalApi/Public/demo/?service=User.AppList
 	
 你应该这样设置:
 ```javascript
-static NSString \*const HOST\_ADDRESS = @\"http://www.xsdota.com/PhalApi/Public/demo";
-static NSString \*const EXTRA_STR    = @\"?service=\";
+static NSString *const HOST_ADDRESS = @"http://www.xsdota.com/PhalApi/Public/demo";
+static NSString *const EXTRA_STR    = @"?service=";
 ```
 根据具体的需求可以灵活修改,这两个字符串就是拼接作用.
 
 ##GET请求
 ### 然后使用GET请求的时候这样使用:
 ```javascript
-NSString *URLStr = @\"User.AppList\";
-[XSHttpTool GET:URLStr param:nil success:\^(id responseObject) {
-        NSLog(@\"%@\",responseObject);
-    } failure:\^(NSError *error) {
-        NSLog(@\"%@\",error);
+NSString *URLStr = @"User.AppList";
+[XSHttpTool GET:URLStr param:nil success:^(id responseObject) {
+        NSLog(@"%@",responseObject);
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
     }];
 ```   
 
 ###  下面这个调用和上面结果一致   
  对于不同主机的api,直接请求URL也是可以的,不过要以http或https开头才能生效
 ```javascript
-NSString *URLStr = @\"http://www.xsdota.com/PhalApi/Public/demo/?service=User.AppList";
-[XSHttpTool GET:URLStr param:nil success:\^(id responseObject) {
-        NSLog(@\"%@\",responseObject);
-    } failure:\^(NSError *error) {
-        NSLog(@\"%@\",error);
+NSString *URLStr = @"http://www.xsdota.com/PhalApi/Public/demo/?service=User.AppList";
+[XSHttpTool GET:URLStr param:nil success:^(id responseObject) {
+        NSLog(@"%@",responseObject);
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
     }];   
 ```    
     
@@ -56,40 +56,40 @@ NSString *URLStr = @\"http://www.xsdota.com/PhalApi/Public/demo/?service=User.Ap
 ##POST请求
 ###普通的POST请求
 ```javascript
-	NSDictionary *params = @{@\"userName\" : @\"xiaos\",
-                             @\"password\" : @\"111111\" };
+	NSDictionary *params = @{@"userName" : @"xiaos",
+                             @"password" : @"111111" };
                              
-    [XSHttpTool POST:@\"User.TimeLines\" param:params success:\^(id responseObject) {
-        NSLog(@\"%@\",responseObject);
-    } failure:\^(NSError *error) {
-        NSLog(@\"%@\",error);
+    [XSHttpTool POST:@"User.TimeLines" param:params success:^(id responseObject) {
+        NSLog(@"%@",responseObject);
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
     }];
 ```    
 ###在body中存放数据的POST请求(用于上传一段二进制数据,比如一段文本或者一张图片)
 ```javascript	
-    NSData *strData = [@\"hello\" dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *strData = [@"hello" dataUsingEncoding:NSUTF8StringEncoding];
     
-    [XSHttpTool UpLoadData:strData to:@\"User.TimeLines\" withParamName:nil fileName:@\"file\" mimeType:@\"text/html\" param:nil success:\^(id responseObject) {
-        NSLog(@\"%@\",responseObject);
-    } failure:\^(NSError *error) {
-        NSLog(@\"%@\",error);
-    } uploadProgress:\^(float uploadPercent) {
-        NSLog(@\"%f\",uploadPercent);
+    [XSHttpTool UpLoadData:strData to:@"User.TimeLines" withParamName:nil fileName:@"file" mimeType:@"text/html" param:nil success:^(id responseObject) {
+        NSLog(@"%@",responseObject);
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    } uploadProgress:^(float uploadPercent) {
+        NSLog(@"%f",uploadPercent);
     }];
 ```
 
 ###上传多张图片的POST请求
 ```javascript   
-    NSArray *images = @[[UIImage imageNamed:@\"0\"],
-                        [UIImage imageNamed:@\"1\"],
-                        [UIImage imageNamed:@\"2\"]
+    NSArray *images = @[[UIImage imageNamed:@"0"],
+                        [UIImage imageNamed:@"1"],
+                        [UIImage imageNamed:@"2"]
                         ];
-    [XSHttpTool upLoadImages:images to:@\"User.UpImages\" withParamName:nil ratio:0.1f param:nil success:\^(id responseObject) {
-        NSLog(@\"%@\",responseObject);
-    } failure:\^(NSError *error) {
-        NSLog(@\"%@\",error);
-    } uploadProgress:\^(float uploadPercent) {
-        NSLog(@\"%f\",uploadPercent);
+    [XSHttpTool upLoadImages:images to:@"User.UpImages" withParamName:nil ratio:0.1f param:nil success:^(id responseObject) {
+        NSLog(@"%@",responseObject);
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    } uploadProgress:^(float uploadPercent) {
+        NSLog(@"%f",uploadPercent);
     }];
 ```
 
