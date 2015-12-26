@@ -136,6 +136,19 @@ class PhpUnderControl_PhalApiDBNotORM_Test extends PHPUnit_Framework_TestCase
         }
     }
 
+    public function testLimit()
+    {
+        $rs1 = $this->notorm->demo->limit(1, 2)->fetchAll();
+        $rs2 = $this->notorm->demo->limit('1', 2)->fetchAll();
+        $rs3 = $this->notorm->demo->limit(1, '2')->fetchAll();
+        $rs4 = $this->notorm->demo->limit('1', '2')->fetchAll();
+        //var_dump($rs1);
+
+        $this->assertEquals($rs1, $rs2);
+        $this->assertEquals($rs2, $rs3);
+        $this->assertEquals($rs3, $rs4);
+    }
+
     public function testLimitInQueryRows()
     {
         //int
