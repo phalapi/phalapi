@@ -191,6 +191,7 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
         $return = $this->notORM->connection->prepare($query);
 
         //对于替换参数进行处理   @喵了个咪 2015-12-25
+        $sum = 1;
         foreach($parameters as $key => $val){
             if(strstr($key, ':')){
                 if(is_int($val)){
@@ -204,14 +205,15 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
                 }
             }else{
                 if(is_int($val)){
-                    $return->bindValue($key + 1, $val, PDO::PARAM_INT);
+                    $return->bindValue($sum, $val, PDO::PARAM_INT);
                 }elseif(is_bool($val)){
-                    $return->bindValue($key + 1, $val, PDO::PARAM_BOOL);
+                    $return->bindValue($sum, $val, PDO::PARAM_BOOL);
                 }elseif(is_null($val)){
-                    $return->bindValue($key + 1, $val, PDO::PARAM_NULL);
+                    $return->bindValue($sum, $val, PDO::PARAM_NULL);
                 }else{
-                    $return->bindValue($key + 1, $val);
+                    $return->bindValue($sum, $val);
                 }
+                $sum++;
             }
         }
 
