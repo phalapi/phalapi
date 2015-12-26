@@ -139,10 +139,14 @@ class PhpUnderControl_PhalApiDBNotORM_Test extends PHPUnit_Framework_TestCase
     public function testLimitInQueryRows()
     {
         //int
-        $sql = 'SELECT * FROM demo LIMIT :start, :len';
+        $sql = 'SELECT * FROM tbl_demo LIMIT :start, :len';
         $params = array(':start' => 1, ':len' => 2);
         $rows = $this->notorm->demo->queryRows($sql, $params);
-        var_dump($rows);
+        //var_dump($rows);
+        $this->assertNotEmpty($rows);
+
+        //not support yet
+        return;
 
         //string
         $params = array(':start' => '1', ':len' => '2');
@@ -153,5 +157,39 @@ class PhpUnderControl_PhalApiDBNotORM_Test extends PHPUnit_Framework_TestCase
         $params = array(':start' => '1', ':len' => 2);
         $rows = $this->notorm->demo->queryRows($sql, $params);
         var_dump($rows);
+    }
+
+    public function testHereAgain()
+    {
+        $rs = $this->notorm->demo->select('name')->where('id', 1)->fetchRows();
+        $this->assertNotEmpty($rs);
+
+        $rs = $this->notorm->demo->select('name')->where('id = ?', 1)->fetchRows();
+        $this->assertNotEmpty($rs);
+    }
+
+    public function testQueryRowsWithBoundValuesAndInputOnly()
+    {
+        $sql = 'SELECT * FROM tbl_demo WHERE id = ? OR id = ?';
+        $params = array(1, 2);
+        $rows1 = $this->notorm->demo->queryRows($sql, $params);
+        //var_dump($rows1);
+
+        $sql = 'SELECT * FROM tbl_demo WHERE id = :id1 OR id = :id2';
+        $params = array(':id2' => 2, ':id1' => 1);
+        $rows2 = $this->notorm->demo->queryRows($sql, $params);
+
+        $this->assertEquals($rows1, $rows2);
+
+        //兼容不连续的下标
+        $sql = 'SELECT * FROM tbl_demo WHERE id = ? OR id = ?';
+        $params = array(5 => 1, 9 => 2);
+        $rows3 = $this->notorm->demo->queryRows($sql, $params);
+        $this->assertEquals($rows1, $rows3);
+
+        //should not use in this way
+        $sql = 'SELECT * FROM tbl_demo WHERE id = ? OR id = :id';
+        $params = array(1, ':id' => 2);
+        //$rows = $this->notorm->demo->queryRows($sql, $params);
     }
 }
