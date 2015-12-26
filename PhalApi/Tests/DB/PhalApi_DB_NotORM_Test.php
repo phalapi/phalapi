@@ -135,4 +135,23 @@ class PhpUnderControl_PhalApiDBNotORM_Test extends PHPUnit_Framework_TestCase
             $this->assertArrayHasKey('name', $row);
         }
     }
+
+    public function testLimitInQueryRows()
+    {
+        //int
+        $sql = 'SELECT * FROM demo LIMIT :start, :len';
+        $params = array(':start' => 1, ':len' => 2);
+        $rows = $this->notorm->demo->queryRows($sql, $params);
+        var_dump($rows);
+
+        //string
+        $params = array(':start' => '1', ':len' => '2');
+        $rows = $this->notorm->demo->queryRows($sql, $params);
+        var_dump($rows);
+
+        //int and string
+        $params = array(':start' => '1', ':len' => 2);
+        $rows = $this->notorm->demo->queryRows($sql, $params);
+        var_dump($rows);
+    }
 }
