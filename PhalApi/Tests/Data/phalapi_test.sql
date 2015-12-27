@@ -73,3 +73,24 @@ CREATE TABLE `tbl_demo_3` (
 -- Records of tbl_demo_3
 -- ----------------------------
 INSERT INTO `tbl_demo_3` VALUES ('1', '1');
+
+
+-- ----------------------------
+-- Table structure for `tbl_user`
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_user`;
+CREATE TABLE `tbl_user` (
+      `id` int(11) NOT NULL,
+      `name` varchar(45) DEFAULT NULL,
+      `note` varchar(45) DEFAULT NULL,
+      `create_date` datetime DEFAULT NULL,
+      PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tbl_user
+-- ----------------------------
+INSERT INTO `tbl_user` VALUES ('1', 'dogstar', 'oschina', '2015-12-01 09:42:31');
+INSERT INTO `tbl_user` VALUES ('2', 'Tom', 'USA', '2015-12-08 09:42:38');
+INSERT INTO `tbl_user` VALUES ('3', 'King', 'game', '2015-12-23 09:42:42');
+

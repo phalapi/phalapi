@@ -23,8 +23,7 @@ class PhpUnderControl_PhalApiDBNotORM_Test extends PHPUnit_Framework_TestCase
     {
         parent::setUp();
 
-        $this->notorm = new PhalApi_DB_NotORM(DI()->config->get('dbs'));
-        $this->notorm->debug = true;
+        $this->notorm = new PhalApi_DB_NotORM(DI()->config->get('dbs')/** , true **/);
     }
 
     protected function tearDown()
@@ -204,5 +203,13 @@ class PhpUnderControl_PhalApiDBNotORM_Test extends PHPUnit_Framework_TestCase
         $sql = 'SELECT * FROM tbl_demo WHERE id = ? OR id = :id';
         $params = array(1, ':id' => 2);
         //$rows = $this->notorm->demo->queryRows($sql, $params);
+    }
+
+    public function testParametersMixed()
+    {
+        $sql = "SELECT * FROM tbl_user WHERE name LIKE ? AND create_date >= '2015-10-1 10:00:00' AND create_date < '2015-12-31 10:00:00'";
+        $params = array('%a%');
+        $rows = $this->notorm->demo->queryRows($sql, $params);
+        $this->assertNotEmpty($rows);
     }
 }
