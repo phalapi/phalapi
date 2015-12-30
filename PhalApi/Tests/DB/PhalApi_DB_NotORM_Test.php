@@ -121,18 +121,36 @@ class PhpUnderControl_PhalApiDBNotORM_Test extends PHPUnit_Framework_TestCase
     public function testFetchPairs()
     {
 
-        $rs = $this->notorm->demo->fetchPairs('id', 'name');
+        $rs = $this->notorm->demo->limit(3)->fetchPairs('id', 'name');
         //var_dump($rs);
         foreach ($rs as $key => $row) {
             $this->assertTrue(is_string($row));
         }
 
-        $rs = $this->notorm->demo->select('name')->fetchPairs('id');
+        $rs = $this->notorm->demo->select('name')->limit(3)->fetchPairs('id');
         //var_dump($rs);
         foreach ($rs as $key => $row) {
             $this->assertTrue(is_array($row));
             $this->assertArrayHasKey('name', $row);
         }
+    }
+
+    public function testAllAggreation()
+    {
+        $rs = $this->notorm->demo->where('id > 10')->count('id');
+        //var_dump($rs);
+        $this->assertTrue(is_numeric($rs));
+
+        $rs = $this->notorm->demo->where('id > 10')->min('id');
+        $this->assertTrue(is_numeric($rs));
+
+        $rs = $this->notorm->demo->where('id > 10')->max('id');
+        //var_dump($rs);
+        $this->assertTrue(is_numeric($rs));
+
+        $rs = $this->notorm->demo->where('id > 10')->sum('id');
+        //var_dump($rs);
+        $this->assertTrue(is_numeric($rs));
     }
 
     public function testLimit()
@@ -212,4 +230,5 @@ class PhpUnderControl_PhalApiDBNotORM_Test extends PHPUnit_Framework_TestCase
         $rows = $this->notorm->demo->queryRows($sql, $params);
         $this->assertNotEmpty($rows);
     }
+
 }
