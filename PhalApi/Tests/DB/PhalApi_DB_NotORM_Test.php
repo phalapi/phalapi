@@ -231,4 +231,23 @@ class PhpUnderControl_PhalApiDBNotORM_Test extends PHPUnit_Framework_TestCase
         $this->assertNotEmpty($rows);
     }
 
+    public function testNoKeyIndexAgain()
+    {
+        $notorm = new PhalApi_DB_NotORM(DI()->config->get('dbs')/** , true **/);
+        $rs = $notorm->demo->order('id DESC')->limit(1, 2)->fetchAll();
+        //var_dump($rs);
+        //echo (json_encode($rs)), "\n\n";
+        $keys = array_keys($rs);
+        $this->assertGreaterThan($keys[1], $keys[0]);
+
+        $notorm = new PhalApi_DB_NotORM(DI()->config->get('dbs')/** , true **/);
+        $notorm->keepPrimaryKeyIndex();
+        $rs = $notorm->demo->order('id DESC')->limit(1, 2)->fetchAll();
+        //var_dump($rs);
+        //echo (json_encode($rs)), "\n\n";
+        $keys = array_keys($keys);
+        $this->assertGreaterThan($keys[0], $keys[1]);
+        $this->assertEquals(0, $keys[0]);
+        $this->assertEquals(1, $keys[1]);
+    }
 }

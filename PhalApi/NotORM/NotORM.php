@@ -32,6 +32,7 @@ abstract class NotORM_Abstract {
 	protected $freeze = false;
 	protected $rowClass = 'NotORM_Row';
 	protected $jsonAsArray = false;
+    protected $isKeepPrimaryKeyIndex = FALSE; //@dogstar 20151230
 	
 	protected function access($key, $delete = false) {
 	}
@@ -76,7 +77,7 @@ class NotORM extends NotORM_Abstract {
 	* @return null
 	*/
 	function __set($name, $value) {
-		if ($name == "debug" || $name == "debugTimer" || $name == "freeze" || $name == "rowClass" || $name == "jsonAsArray") {
+		if ($name == "debug" || $name == "debugTimer" || $name == "freeze" || $name == "rowClass" || $name == "jsonAsArray" || $name == 'isKeepPrimaryKeyIndex') {
 			$this->$name = $value;
 		}
 		if ($name == "transaction") {

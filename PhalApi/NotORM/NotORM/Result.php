@@ -783,8 +783,13 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
                         }
                     }
                     //$this->rows[$key] = new $this->notORM->rowClass($row, $this);
-                    //@dogstar 改用返回数组 2014-11-01
-                    $this->rows[$key] = $row;
+                    if ($this->notORM->isKeepPrimaryKeyIndex) {
+                        //@dogstar 采用数组的形式返回，不再采用主键作为下标 20151230
+                        $this->rows[] = $row;
+                    } else {
+                        //@dogstar 改用返回数组 2014-11-01
+                        $this->rows[$key] = $row;
+                    }
                 }
             }
             $this->data = $this->rows;
