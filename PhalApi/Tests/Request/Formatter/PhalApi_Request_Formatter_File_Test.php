@@ -144,7 +144,7 @@ class PhpUnderControl_PhalApiRequestFormatterFile_Test extends PHPUnit_Framework
 
     /**
      * @dataProvider provideFileForSuffix
-     * @expectedException PhalApiApi_Exception_BadRequest
+     * @expectedException PhalApi_Exception_BadRequest
      */
     public function testSuffixMultiInArrayAndExcpetion($fileIndex, $fileData)
     {
