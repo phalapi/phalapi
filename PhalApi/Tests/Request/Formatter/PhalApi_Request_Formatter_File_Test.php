@@ -55,7 +55,7 @@ class PhpUnderControl_PhalApiRequestFormatterFile_Test extends PHPUnit_Framework
             'name' => $fileIndex, 
             'require' => true, 
             'default' => array(), 
-            'suffix' => array('txt'),
+            'ext' => array('txt'),
             'type' => 'file',
         );
         $rs = $this->phalApiRequestFormatterFile->parse($value, $rule);
@@ -73,7 +73,7 @@ class PhpUnderControl_PhalApiRequestFormatterFile_Test extends PHPUnit_Framework
             'name' => $fileIndex, 
             'require' => true, 
             'default' => array(), 
-            'suffix' => 'txt',
+            'ext' => 'txt',
             'type' => 'file',
         );
         $rs = $this->phalApiRequestFormatterFile->parse($value, $rule);
@@ -91,7 +91,7 @@ class PhpUnderControl_PhalApiRequestFormatterFile_Test extends PHPUnit_Framework
             'name' => $fileIndex, 
             'require' => true, 
             'default' => array(), 
-            'suffix' => array('TXT', 'dat', 'bak'),
+            'ext' => array('TXT', 'dat', 'bak'),
             'type' => 'file',
         );
         $rs = $this->phalApiRequestFormatterFile->parse($value, $rule);
@@ -109,7 +109,34 @@ class PhpUnderControl_PhalApiRequestFormatterFile_Test extends PHPUnit_Framework
             'name' => $fileIndex, 
             'require' => true, 
             'default' => array(), 
-            'suffix' => 'txt, DAT, baK',
+            'ext' => 'txt, DAT, baK',
+            'type' => 'file',
+        );
+        $rs = $this->phalApiRequestFormatterFile->parse($value, $rule);
+
+    }
+
+    /**
+     * @expectedException PhalApi_Exception_BadRequest
+     */
+    public function testSuffixForSpecialBug()
+    {
+        // no ext
+        $aFile = array(
+            'name' => '2016', 
+            'type' => 'application/text', 
+            'size' => 100, 
+            'tmp_name' => '/tmp/123456', 
+            'error' => 0
+        );
+        $_FILES['aFile'] = $aFile;
+        $value = array();
+
+        $rule = array(
+            'name' => 'aFile', 
+            'require' => true, 
+            'default' => array(), 
+            'ext' => 'txt, DAT, baK,', //小心最后的逗号
             'type' => 'file',
         );
         $rs = $this->phalApiRequestFormatterFile->parse($value, $rule);
@@ -128,7 +155,7 @@ class PhpUnderControl_PhalApiRequestFormatterFile_Test extends PHPUnit_Framework
             'name' => $fileIndex, 
             'require' => true, 
             'default' => array(), 
-            'suffix' => array('XML', 'HTML'),
+            'ext' => array('XML', 'HTML'),
             'type' => 'file',
         );
         $rs = $this->phalApiRequestFormatterFile->parse($value, $rule);
@@ -136,7 +163,16 @@ class PhpUnderControl_PhalApiRequestFormatterFile_Test extends PHPUnit_Framework
 
     public function provideFileForSuffix()
     {
-        $aFile = array(
+        // one ext
+        $bFile = array(
+            'name' => '2016.txt', 
+            'type' => 'application/text', 
+            'size' => 100, 
+            'tmp_name' => '/tmp/123456', 
+            'error' => 0
+        );
+        // tow ext
+        $cFile = array(
             'name' => '2016.log.txt', 
             'type' => 'application/text', 
             'size' => 100, 
@@ -145,7 +181,8 @@ class PhpUnderControl_PhalApiRequestFormatterFile_Test extends PHPUnit_Framework
         );
 
         return array(
-            array('aFile', $aFile),
+            array('bFile', $bFile),
+            array('cFile', $cFile),
         );
     }
 }
