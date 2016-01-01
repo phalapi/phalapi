@@ -117,8 +117,7 @@ class PhpUnderControl_PhalApiRequestFormatterFile_Test extends PHPUnit_Framework
     }
 
     /**
-     * @dataProvider provideFileForSuffix
-     * @expectedException PhalApiApi_Exception_BadRequest
+     * @expectedException PhalApi_Exception_BadRequest
      */
     public function testSuffixForSpecialBug()
     {
@@ -164,14 +163,6 @@ class PhpUnderControl_PhalApiRequestFormatterFile_Test extends PHPUnit_Framework
 
     public function provideFileForSuffix()
     {
-        // no ext
-        $aFile = array(
-            'name' => '2016', 
-            'type' => 'application/text', 
-            'size' => 100, 
-            'tmp_name' => '/tmp/123456', 
-            'error' => 0
-        );
         // one ext
         $bFile = array(
             'name' => '2016.txt', 
@@ -190,7 +181,6 @@ class PhpUnderControl_PhalApiRequestFormatterFile_Test extends PHPUnit_Framework
         );
 
         return array(
-            //array('aFile', $aFile),
             array('bFile', $bFile),
             array('cFile', $cFile),
         );
