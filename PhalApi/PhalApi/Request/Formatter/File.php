@@ -42,11 +42,14 @@ class PhalApi_Request_Formatter_File extends PhalApi_Request_Formatter_Base impl
             $this->formatEnumValue(strtolower($_FILES[$index]['type']), $rule);
         }
 
+        //对于文件后缀进行验证
         if(!empty($rule['ext'])){
             $ext = trim(strrchr($_FILES[$index]['name'], '.'), '.');
-            //判断是否是 用,号隔开的string类型
             if(is_string($rule['ext'])){
                 $rule['ext'] = explode(',', $rule['ext']);
+            }
+            if(!$ext){
+                throw new PhalApi_Exception_BadRequest(T('Not the file type {ext}', array('ext' => json_encode($rule['ext']))));
             }
             if(is_array($rule['ext'])){
                 $rule['ext'] = array_map('strtolower', $rule['ext']);
@@ -55,7 +58,6 @@ class PhalApi_Request_Formatter_File extends PhalApi_Request_Formatter_Base impl
                 }
             }
         }
-
         return $_FILES[$index];
     }
 }
