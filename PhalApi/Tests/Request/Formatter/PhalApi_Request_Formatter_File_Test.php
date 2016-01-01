@@ -109,7 +109,7 @@ class PhpUnderControl_PhalApiRequestFormatterFile_Test extends PHPUnit_Framework
             'name' => $fileIndex, 
             'require' => true, 
             'default' => array(), 
-            'ext' => 'txt, DAT, baK',
+            'ext' => 'DAT, txt, baK',
             'type' => 'file',
         );
         $rs = $this->phalApiRequestFormatterFile->parse($value, $rule);

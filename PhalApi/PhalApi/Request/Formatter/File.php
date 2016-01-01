@@ -53,11 +53,13 @@ class PhalApi_Request_Formatter_File extends PhalApi_Request_Formatter_Base impl
             }
             if (is_array($rule['ext'])) {
                 $rule['ext'] = array_map('strtolower', $rule['ext']);
+                $rule['ext'] = array_map('trim', $rule['ext']);
                 if (!in_array(strtolower($ext), $rule['ext'])) {
                     throw new PhalApi_Exception_BadRequest(T('Not the file type {ext}', array('ext' => json_encode($rule['ext']))));
                 }
             }
         }
+
         return $_FILES[$index];
     }
 }
