@@ -113,6 +113,34 @@ class PhpUnderControl_PhalApiRequestFormatterFile_Test extends PHPUnit_Framework
             'type' => 'file',
         );
         $rs = $this->phalApiRequestFormatterFile->parse($value, $rule);
+
+    }
+
+    /**
+     * @dataProvider provideFileForSuffix
+     * @expectedException PhalApiApi_Exception_BadRequest
+     */
+    public function testSuffixForSpecialBug()
+    {
+        // no ext
+        $aFile = array(
+            'name' => '2016', 
+            'type' => 'application/text', 
+            'size' => 100, 
+            'tmp_name' => '/tmp/123456', 
+            'error' => 0
+        );
+        $_FILES['aFile'] = $aFile;
+        $value = array();
+
+        $rule = array(
+            'name' => 'aFile', 
+            'require' => true, 
+            'default' => array(), 
+            'suffix' => 'txt, DAT, baK,', //小心最后的逗号
+            'type' => 'file',
+        );
+        $rs = $this->phalApiRequestFormatterFile->parse($value, $rule);
     }
 
     /**
@@ -136,7 +164,24 @@ class PhpUnderControl_PhalApiRequestFormatterFile_Test extends PHPUnit_Framework
 
     public function provideFileForSuffix()
     {
+        // no ext
         $aFile = array(
+            'name' => '2016', 
+            'type' => 'application/text', 
+            'size' => 100, 
+            'tmp_name' => '/tmp/123456', 
+            'error' => 0
+        );
+        // one ext
+        $bFile = array(
+            'name' => '2016.txt', 
+            'type' => 'application/text', 
+            'size' => 100, 
+            'tmp_name' => '/tmp/123456', 
+            'error' => 0
+        );
+        // tow ext
+        $cFile = array(
             'name' => '2016.log.txt', 
             'type' => 'application/text', 
             'size' => 100, 
@@ -145,7 +190,9 @@ class PhpUnderControl_PhalApiRequestFormatterFile_Test extends PHPUnit_Framework
         );
 
         return array(
-            array('aFile', $aFile),
+            //array('aFile', $aFile),
+            array('bFile', $bFile),
+            array('cFile', $cFile),
         );
     }
 }
