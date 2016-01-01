@@ -55,7 +55,7 @@ class PhpUnderControl_PhalApiRequestFormatterFile_Test extends PHPUnit_Framework
             'name' => $fileIndex, 
             'require' => true, 
             'default' => array(), 
-            'suffix' => array('txt'),
+            'ext' => array('txt'),
             'type' => 'file',
         );
         $rs = $this->phalApiRequestFormatterFile->parse($value, $rule);
@@ -73,7 +73,7 @@ class PhpUnderControl_PhalApiRequestFormatterFile_Test extends PHPUnit_Framework
             'name' => $fileIndex, 
             'require' => true, 
             'default' => array(), 
-            'suffix' => 'txt',
+            'ext' => 'txt',
             'type' => 'file',
         );
         $rs = $this->phalApiRequestFormatterFile->parse($value, $rule);
@@ -91,7 +91,7 @@ class PhpUnderControl_PhalApiRequestFormatterFile_Test extends PHPUnit_Framework
             'name' => $fileIndex, 
             'require' => true, 
             'default' => array(), 
-            'suffix' => array('TXT', 'dat', 'bak'),
+            'ext' => array('TXT', 'dat', 'bak'),
             'type' => 'file',
         );
         $rs = $this->phalApiRequestFormatterFile->parse($value, $rule);
@@ -109,7 +109,7 @@ class PhpUnderControl_PhalApiRequestFormatterFile_Test extends PHPUnit_Framework
             'name' => $fileIndex, 
             'require' => true, 
             'default' => array(), 
-            'suffix' => 'txt, DAT, baK',
+            'ext' => 'txt, DAT, baK',
             'type' => 'file',
         );
         $rs = $this->phalApiRequestFormatterFile->parse($value, $rule);
@@ -137,7 +137,7 @@ class PhpUnderControl_PhalApiRequestFormatterFile_Test extends PHPUnit_Framework
             'name' => 'aFile', 
             'require' => true, 
             'default' => array(), 
-            'suffix' => 'txt, DAT, baK,', //小心最后的逗号
+            'ext' => 'txt, DAT, baK,', //小心最后的逗号
             'type' => 'file',
         );
         $rs = $this->phalApiRequestFormatterFile->parse($value, $rule);
@@ -156,7 +156,7 @@ class PhpUnderControl_PhalApiRequestFormatterFile_Test extends PHPUnit_Framework
             'name' => $fileIndex, 
             'require' => true, 
             'default' => array(), 
-            'suffix' => array('XML', 'HTML'),
+            'ext' => array('XML', 'HTML'),
             'type' => 'file',
         );
         $rs = $this->phalApiRequestFormatterFile->parse($value, $rule);
