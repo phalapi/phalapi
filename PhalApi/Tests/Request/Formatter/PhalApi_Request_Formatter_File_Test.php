@@ -185,4 +185,16 @@ class PhpUnderControl_PhalApiRequestFormatterFile_Test extends PHPUnit_Framework
             array('cFile', $cFile),
         );
     }
+
+    public function testParseNotRequire()
+    {
+        $value = array();
+
+        $rule = array(
+            'name' => 'maybeFile', 
+            'require' => false, 
+            'type' => 'file',
+        );
+        $rs = $this->phalApiRequestFormatterFile->parse($value, $rule);
+    }
 }
