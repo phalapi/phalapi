@@ -59,6 +59,7 @@ class PhpUnderControl_PhalApiRequestFormatterFile_Test extends PHPUnit_Framework
             'type' => 'file',
         );
         $rs = $this->phalApiRequestFormatterFile->parse($value, $rule);
+        $this->assertEquals($fileData, $rs);
     }
 
     /**
@@ -77,6 +78,7 @@ class PhpUnderControl_PhalApiRequestFormatterFile_Test extends PHPUnit_Framework
             'type' => 'file',
         );
         $rs = $this->phalApiRequestFormatterFile->parse($value, $rule);
+        $this->assertEquals($fileData, $rs);
     }
 
     /**
@@ -95,6 +97,7 @@ class PhpUnderControl_PhalApiRequestFormatterFile_Test extends PHPUnit_Framework
             'type' => 'file',
         );
         $rs = $this->phalApiRequestFormatterFile->parse($value, $rule);
+        $this->assertEquals($fileData, $rs);
     }
 
     /**
@@ -113,7 +116,7 @@ class PhpUnderControl_PhalApiRequestFormatterFile_Test extends PHPUnit_Framework
             'type' => 'file',
         );
         $rs = $this->phalApiRequestFormatterFile->parse($value, $rule);
-
+        $this->assertEquals($fileData, $rs);
     }
 
     /**
