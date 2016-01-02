@@ -201,4 +201,24 @@ class PhpUnderControl_PhalApiRequestFormatterFile_Test extends PHPUnit_Framework
         $rs = $this->phalApiRequestFormatterFile->parse($value, $rule);
         $this->assertNull($rs);
     }
+
+    public function testParseNotRequireButUpload()
+    {
+        $_FILES['maybeFile'] = array(
+            'name' => '2016.log.txt', 
+            'type' => 'application/text', 
+            'size' => 100, 
+            'tmp_name' => '/tmp/123456', 
+            'error' => 0
+        );
+        $value = array();
+
+        $rule = array(
+            'name' => 'maybeFile', 
+            'require' => false, 
+            'type' => 'file',
+        );
+        $rs = $this->phalApiRequestFormatterFile->parse($value, $rule);
+        $this->assertNotNull($rs);
+    }
 }
