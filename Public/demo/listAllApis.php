@@ -44,6 +44,9 @@ $allApiS = array();
 foreach ($files as $value) {
     $value = realpath($value);
     $subValue = substr($value, strpos($value, D_S . 'Api' . D_S) + 1);
+    //进行处理对于类似与Api/Auth/Api/Api.php 多层嵌套只取 Api/Api.php进行处理
+    $arr       = explode('/', $subValue);
+    $subValue  = implode('/', array_slice($arr, -2, 2));
     $apiServer = str_replace(array(D_S, '.php'), array('_', ''), $subValue);
 
     if (!class_exists($apiServer)) {
