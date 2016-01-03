@@ -24,8 +24,7 @@ DI()->config = new PhalApi_Config_File(API_ROOT . '/Config');
 DI()->debug = !empty($_GET['__debug__']) ? true : DI()->config->get('sys.debug');
 
 //日记纪录
-DI()->logger = new PhalApi_Logger_File(API_ROOT . '/Runtime', 
-    PhalApi_Logger::LOG_LEVEL_DEBUG | PhalApi_Logger::LOG_LEVEL_INFO | PhalApi_Logger::LOG_LEVEL_ERROR);
+DI()->logger = new PhalApi_Logger_File(API_ROOT . '/Runtime', PhalApi_Logger::LOG_LEVEL_DEBUG | PhalApi_Logger::LOG_LEVEL_INFO | PhalApi_Logger::LOG_LEVEL_ERROR);
 
 //数据操作 - 基于NotORM，$_GET['__sql__']可自行改名
 DI()->notorm = new PhalApi_DB_NotORM(DI()->config->get('dbs'), !empty($_GET['__sql__']));
