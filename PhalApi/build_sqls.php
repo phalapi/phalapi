@@ -8,7 +8,7 @@
 define('CUR_PATH', dirname(__FILE__));
 
 if ($argc < 3) {
-    echo "Usage: $argv[0] <dbs.php> <table> [engine=InnoDB]\n";
+    echo "Usage: $argv[0] <dbs.php> <table> [engine=InnoDB]\n\n";
     //echo "\n", implode("\n", array_keys($dbsConfig['tables'])), "\n\n";
     exit(1);
 }

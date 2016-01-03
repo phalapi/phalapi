@@ -61,6 +61,7 @@ cp $BASE_PATH/../Public/demo/listAllApis.php $BASE_PATH/../Public/$PUBLIC_APP_NA
 cp $BASE_PATH/../Public/demo/index.php $BASE_PATH/../Public/$PUBLIC_APP_NAME/
 
 sed "s/Demo/$APP_NAME/g" $BASE_PATH/../Public/$PUBLIC_APP_NAME/*.php -i
+sed "s/Demo/$APP_NAME/g" $BASE_PATH/../$APP_NAME/Tests/*.php -i
 
 echo ""
 echo "OK!"

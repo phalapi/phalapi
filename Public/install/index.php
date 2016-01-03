@@ -108,6 +108,11 @@ case 3:
             $demoPath . D_S . 'Tests' . D_S . 'test_env.php', 
             $appPath . D_S . 'Tests'  . D_S . 'test_env.php'
         );
+        file_put_contents(
+            $appPath . D_S . 'Tests'  . D_S . 'test_env.php',
+            str_replace('Demo', $project, file_get_contents($appPath . D_S . 'Tests'  . D_S . 'test_env.php'))
+        );
+
         copy(
             $demoPath . D_S . 'Tests' . D_S . 'Api' . D_S . 'Api_Default_Test.php', 
             $appPath . D_S . 'Tests' . D_S . 'Api' . D_S . 'Api_Default_Test.php'
@@ -135,11 +140,14 @@ case 3:
             $demoPublicPath . D_S . 'index.php',
             $appPublicPath . D_S . 'index.php'
         );
-        //入口挂靠
-        file_put_contents(
-            $appPublicPath . D_S . 'index.php', 
-            str_replace('Demo', $project, file_get_contents($appPublicPath . D_S . 'index.php'))
-        );
+
+        // 挂载项目
+        foreach (array('checkApiParams.php', 'listAllApis.php', 'index.php') as $publicFile) {
+            file_put_contents(
+                $appPublicPath . D_S . $publicFile,
+                str_replace('Demo', $project, file_get_contents($demoPublicPath . D_S . $publicFile))
+            );
+        }
     }
 
     touch('_install.lock');
