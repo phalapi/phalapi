@@ -61,7 +61,7 @@
           <label for="name">数据库名称</label>
         </div>
         <div class="field">
-          <input type="text" class="input" name="name" size="30" placeholder="数据库不存在时需要先创建" value="comb"/>
+          <input type="text" class="input" name="name" size="30" placeholder="数据库不存在时需要先创建" value="phalapi_demo"/>
         </div>
       </div>
 
@@ -70,7 +70,7 @@
           <label for="prefix">数据库表前缀</label>
         </div>
         <div class="field">
-          <input type="text" class="input" name="prefix" size="30" placeholder="同数据库安装多个本程序时需要更改" value="co_"/>
+          <input type="text" class="input" name="prefix" size="30" placeholder="同数据库安装多个本程序时需要更改" value="pa_"/>
         </div>
       </div>
       <div class="form-group">

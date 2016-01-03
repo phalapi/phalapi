@@ -91,9 +91,9 @@ http://demo.phalapi.net/?service=Demo.None
 为了方便客户端查看最新的接口参数，特别提供此在线工具，根据接口代码实时生成接口参数报表，完全不需要后台开发编写维护额外的文档。我觉得，这很符合敏捷开发之道。
 ```
 //接口参数在线查询工具链接
-http://demo.phalapi.net/checkApiParams.php
+http://demo.phalapi.net/demo/checkApiParams.php
 ```
-如：http://demo.phalapi.net/checkApiParams.php ，访问效果如下：
+如：http://demo.phalapi.net/demo/checkApiParams.php ，访问效果如下：
 
  ![mahua](http://7qnay5.com1.z0.glb.clouddn.com/20150613.png)
  因此，接口所需要的参数，对于接口开发人员，也只是简单配置一下参数规则，便可以轻松获取。
