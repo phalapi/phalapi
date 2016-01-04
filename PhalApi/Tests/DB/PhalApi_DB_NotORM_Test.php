@@ -181,12 +181,12 @@ class PhpUnderControl_PhalApiDBNotORM_Test extends PHPUnit_Framework_TestCase
         //string
         $params = array(':start' => '1', ':len' => '2');
         $rows = $this->notorm->demo->queryRows($sql, $params);
-        var_dump($rows);
+        //var_dump($rows);
 
         //int and string
         $params = array(':start' => '1', ':len' => 2);
         $rows = $this->notorm->demo->queryRows($sql, $params);
-        var_dump($rows);
+        //var_dump($rows);
     }
 
     public function testHereAgain()

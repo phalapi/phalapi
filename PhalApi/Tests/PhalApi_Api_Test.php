@@ -26,6 +26,7 @@ class PhpUnderControl_PhalApiApi_Test extends PHPUnit_Framework_TestCase
 
     protected function tearDown()
     {
+        DI()->filter = NULL;
     }
 
     /**

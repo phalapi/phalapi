@@ -39,7 +39,7 @@ class PhpUnderControl_PhalApiCUrl_Test extends PHPUnit_Framework_TestCase
         $timeoutMs = 1000;
 
         $rs = $this->phalApiCUrl->get($url, $timeoutMs);
-        var_dump($rs);
+        //var_dump($rs);
 
         $this->assertTrue(is_string($rs));
 
