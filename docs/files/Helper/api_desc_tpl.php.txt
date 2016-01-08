@@ -23,7 +23,7 @@ echo <<<EOT
 
 EOT;
 
-echo "<h2>接口：$service</h2><br/><p>$description</p><br/>";
+echo "<h2>接口：$service</h2><br/><p><strong>$description</strong><br/>$descComment</p><br/>";
 
 echo <<<EOT
 <h3>接口参数</h3>

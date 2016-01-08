@@ -86,6 +86,11 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */ {
     protected $debug = FALSE;
 
     /**
+     * @var boolean 是否保持原来数据库结果集中以主键为KEY的返回方式（默认不使用）
+     */
+    protected $isKeepPrimaryKeyIndex = FALSE;
+
+    /**
      * @param array $configs 数据库配置 
      * @param boolean $debug 是否开启调试模式
      */
@@ -107,6 +112,7 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */ {
             $this->_notorms[$notormKey] = new NotORM($router['pdo'], $structure);
 
             $this->_notorms[$notormKey]->debug = $this->debug;
+            $this->_notorms[$notormKey]->isKeepPrimaryKeyIndex = $this->isKeepPrimaryKeyIndex;
 
             if ($router['isNoSuffix']) {
                 $name = $tableName;
@@ -269,6 +275,19 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */ {
             $this->_pdos[$dbKey] = NULL;
             unset($this->_pdos[$dbKey]);
         }
+    }
+
+    /**
+     * 为历史修改埋单：保持原来数据库结果集中以主键为KEY的返回方式
+     *
+     * - PhalSpi 1.3.1 及以下版本才需要用到此切换动作
+     * - 涉及影响的数据库操作有：fetchAll()/fetchRows()等
+     *
+     * ＠return PhalApi_DB_NotORM
+     */
+    public function keepPrimaryKeyIndex() {
+        $this->isKeepPrimaryKeyIndex = TRUE;
+        return $this;
     }
 
     /** ------------------ 事务操作 ------------------ **/

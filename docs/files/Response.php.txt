@@ -117,7 +117,7 @@ abstract class PhalApi_Response {
 
     protected function handleHeaders($headers) {
     	foreach ($headers as $key => $content) {
-    		header($key . ': ' . $content);
+    		@header($key . ': ' . $content);
     	}
     }
 

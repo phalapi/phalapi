@@ -250,4 +250,14 @@ class PhpUnderControl_PhalApiDBNotORM_Test extends PHPUnit_Framework_TestCase
         $this->assertEquals(0, $keys[0]);
         $this->assertEquals(1, $keys[1]);
     }
+
+    public function testInsertMulti()
+    {
+        $rows = array(
+            array('name' => 'A君', 'age' => 12, 'note' => 'AA'),
+            array('name' => 'B君', 'age' => 14, 'note' => 'BB'),
+            array('name' => 'C君', 'age' => 16, 'note' => 'CC'),
+        );
+        $rs = $this->notorm->user->insert_multi($rows);
+    }
 }

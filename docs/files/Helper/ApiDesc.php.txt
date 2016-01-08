@@ -16,6 +16,7 @@ class PhalApi_Helper_ApiDesc {
         $rules = array();
         $returns = array();
         $description = '';
+        $descComment = '//请使用@desc 注释';
 
         $typeMaps = array(
             'string' => '字符串',
@@ -47,12 +48,21 @@ class PhalApi_Helper_ApiDesc {
 
         foreach ($docCommentArr as $comment) {
             $comment = trim($comment);
-            //var_dump($comment);
+
+            //标题描述
             if (empty($description) && strpos($comment, '@') === false && strpos($comment, '/') === false) {
                 $description = substr($comment, strpos($comment, '*') + 1);
                 continue;
             }
 
+            //@desc注释
+            $pos = stripos($comment, '@desc');
+            if ($pos !== false) {
+                $descComment = substr($comment, $pos + 5);
+                continue;
+            }
+
+            //@return注释
             $pos = stripos($comment, '@return');
             if ($pos === false) {
                 continue;
