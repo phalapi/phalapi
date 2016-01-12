@@ -63,7 +63,7 @@ class PhpUnderControl_ApiUser_Test extends PHPUnit_Framework_TestCase
         $this->assertEquals(0, $rs['code']);
 
         $this->assertEquals('dogstar', $rs['info']['name']);
-        $this->assertEquals('oschina', $rs['info']['from']);
+        $this->assertEquals('oschina', $rs['info']['note']);
     }
 
     public function testGetMultiBaseInfo()
@@ -86,7 +86,7 @@ class PhpUnderControl_ApiUser_Test extends PHPUnit_Framework_TestCase
         foreach ($rs['list'] as $item) {
             $this->assertArrayHasKey('id', $item);
             $this->assertArrayHasKey('name', $item);
-            $this->assertArrayHasKey('from', $item);
+            $this->assertArrayHasKey('note', $item);
         }
     }
 
