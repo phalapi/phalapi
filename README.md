@@ -67,6 +67,7 @@ http://localhost/PhalApi/Public/install/
 我们以最大的努力，保证完美兼容性的升级。当框架有新版本需要升级，只需要简单一步：  
 ```
 更新替换 ./PhalApi/PhalApi 核心框架目录即可。
+```
 
 #在线体验
 ```
@@ -83,8 +84,6 @@ http://demo.phalapi.net/?service=Demo.None
     "data": [],
     "msg": "非法请求：服务Demo.None不存在"
 }
-```
-
 ```
 
 #文档
