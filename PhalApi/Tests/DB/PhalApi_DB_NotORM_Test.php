@@ -238,7 +238,7 @@ class PhpUnderControl_PhalApiDBNotORM_Test extends PHPUnit_Framework_TestCase
         //var_dump($rs);
         //echo (json_encode($rs)), "\n\n";
         $keys = array_keys($rs);
-        $this->assertGreaterThan($keys[1], $keys[0]);
+        $this->assertEquals(0, $keys[0]);
 
         $notorm = new PhalApi_DB_NotORM(DI()->config->get('dbs')/** , true **/);
         $notorm->keepPrimaryKeyIndex();
@@ -259,5 +259,17 @@ class PhpUnderControl_PhalApiDBNotORM_Test extends PHPUnit_Framework_TestCase
             array('name' => 'C君', 'age' => 16, 'note' => 'CC'),
         );
         $rs = $this->notorm->user->insert_multi($rows);
+    }
+
+    public function testFetchNothing()
+    {
+        $rs = $this->notorm->user->where('id', 4040404)->fetch();
+        $this->assertFalse($rs);
+
+        $rs = $this->notorm->user->where('id', 4040404)->fetchOne();
+        $this->assertFalse($rs);
+
+        $rs = $this->notorm->user->where('id', 4040404)->fetchAll();
+        $this->assertEquals(array(), $rs);
     }
 }
