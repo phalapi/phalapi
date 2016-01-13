@@ -784,7 +784,7 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
                     }
                     //$this->rows[$key] = new $this->notORM->rowClass($row, $this);
                     if ($this->notORM->isKeepPrimaryKeyIndex) {
-                        //@dogstar 采用数组的形式返回，不再采用主键作为下标 20151230
+                        //@dogstar 采用主键作为下标 2015-12-30
                         $this->rows[$key] = $row;
                     } else {
                         //@dogstar 改用返回数组 2014-11-01
