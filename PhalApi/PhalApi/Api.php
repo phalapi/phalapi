@@ -51,7 +51,7 @@ class PhalApi_Api {
      * @return mixed
      */
     public function __get($name) {
-        if(!isset($this->name) || empty($name)) {
+        if(!isset($this->$name) || empty($name)) {
             throw new PhalApi_Exception_InternalServerError(
                 T('PhalApi_Api::${name} undefined', array('name' => $name))
             );
