@@ -41,7 +41,7 @@ class Task_Progress {
         $wrongItems = $this->model->getWrongItems($maxLastFireTime);
 
         foreach ($wrongItems as $item) {
-            $this->model->resetWrongItems($item);
+            $this->model->resetWrongItems($item['id']);
 
             DI()->logger->debug('task try to reset wrong items', $item);
         }
