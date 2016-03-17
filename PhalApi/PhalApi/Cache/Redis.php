@@ -38,21 +38,26 @@ class PhalApi_Cache_Redis implements PhalApi_Cache {
         }
 
         $this->redis = new Redis();
-        if(isset($config['type'])&&$config['type']=='unix'){
+
+        if(isset($config['type']) && $config['type']=='unix') {
             if(!isset($config['socket'])){
                  throw new PhalApi_Exception_InternalServerError(T("redis config not found 'socket'"));
             }
             $this->redis->connect($config['socket']);
+        } else {
+            $port    = isset($config['port']) ? intval($config['port']) : 6379;
+            $timeout = isset($config['timeout']) ? intval($config['timeout']) : 300;
+            $this->redis->connect($config['host'], $port, $timeout);
         }
-        else{
-            $this->redis->connect($config['host'], isset($config['port'])?intval($config['port'])?6379,isset($config['timeout'])?intval($config['timeout']) :300);
-        }
+
 		$this->prefix = isset($config['prefix']) ? $config['prefix'] : 'phalapi:';
         $this->auth = isset($config['auth']) ? $config['auth'] : '';
 		if($this->auth != ''){
 			$this->redis->auth($this->auth);
 		}
-        $this->redis->select(isset($config['db']) ? intval($config['db']) : 0);
+        $this->redis->select(isset($config['db'])
+            ? intval($config['db']) : 0
+        );
 	}
 	/**
      * 将value 的值赋值给key,生存时间为expire秒
@@ -100,11 +105,11 @@ class PhalApi_Cache_Redis implements PhalApi_Cache {
 	}
 
     protected function formatValue($value) {
-        return @json_encode($value);
+        return @serialize($value);
     }
 
     protected function unformatValue($value) {
-        return @json_decode($value,true);
+        return @unserialize($value,true);
     }
 
 }
