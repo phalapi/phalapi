@@ -21,21 +21,38 @@ class PhalApi_Cache_Redis implements PhalApi_Cache {
 	protected $prefix;
 
 	/**
+	 * @param string $config['type'] Redis连接方式 unix,http
+	 * @param string $config['socket'] unix方式连接时，需要配置
 	 * @param string $config['host'] Redis域名
 	 * @param int $config['port'] Redis端口,默认为6379
 	 * @param string $config['prefix'] Redis key prefix
 	 * @param string $config['auth'] Redis 身份验证
+	 * @param int $config['db'] Redis库,默认0
+	 * @param int $config['timeout'] 连接超时时间,单位秒,默认300
 	 */
 	public function __construct($config) {
+
+		 if ( ! extension_loaded('redis'))
+        {
+            throw new PhalApi_Exception_InternalServerError(T("redis extension not found"));
+        }
+
         $this->redis = new Redis();
-
-		$this->redis->pconnect($config['host'], $config['port'], 300);
-		$this->prefix = isset($config['prefix']) ? $config['prefix'] : 'phalapi_';
+        if(isset($config['type'])&&$config['type']=='unix'){
+            if(!isset($config['socket'])){
+                 throw new PhalApi_Exception_InternalServerError(T("redis config not found 'socket'"));
+            }
+            $this->redis->connect($config['socket']);
+        }
+        else{
+            $this->redis->connect($config['host'], isset($config['port'])?intval($config['port'])?6379,isset($config['timeout'])?intval($config['timeout']) :300);
+        }
+		$this->prefix = isset($config['prefix']) ? $config['prefix'] : 'phalapi:';
         $this->auth = isset($config['auth']) ? $config['auth'] : '';
-
 		if($this->auth != ''){
 			$this->redis->auth($this->auth);
 		}
+        $this->redis->select(isset($config['db']) ? intval($config['db']) : 0);
 	}
 	/**
      * 将value 的值赋值给key,生存时间为expire秒
@@ -83,11 +100,11 @@ class PhalApi_Cache_Redis implements PhalApi_Cache {
 	}
 
     protected function formatValue($value) {
-        return @serialize($value);
+        return @json_encode($value);
     }
 
     protected function unformatValue($value) {
-        return @unserialize($value);
+        return @json_decode($value,true);
     }
 
 }
