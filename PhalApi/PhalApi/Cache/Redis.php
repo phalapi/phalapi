@@ -52,6 +52,7 @@ class PhalApi_Cache_Redis implements PhalApi_Cache {
         if($this->auth != ''){
             $this->redis->auth($this->auth);
         }
+
         $this->redis->select(isset($config['db'])
             ? intval($config['db']) : 0
         );
