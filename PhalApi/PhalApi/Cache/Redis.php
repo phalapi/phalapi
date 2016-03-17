@@ -30,9 +30,9 @@ class PhalApi_Cache_Redis implements PhalApi_Cache {
 	 * @param int $config['db'] Redis库,默认0
 	 * @param int $config['timeout'] 连接超时时间,单位秒,默认300
 	 */
-	public function __construct($config) {
+    public function __construct($config) {
 
-		if (!extension_loaded('redis')) {
+        if (!extension_loaded('redis')) {
             throw new PhalApi_Exception_InternalServerError(T("redis extension not found"));
         }
 
@@ -40,7 +40,7 @@ class PhalApi_Cache_Redis implements PhalApi_Cache {
 
         if(isset($config['type']) && $config['type']=='unix') {
             if(!isset($config['socket'])) {
-                 throw new PhalApi_Exception_InternalServerError(T("redis config not found 'socket'"));
+                throw new PhalApi_Exception_InternalServerError(T("redis config not found 'socket'"));
             }
             $this->redis->connect($config['socket']);
         } else {
@@ -61,25 +61,25 @@ class PhalApi_Cache_Redis implements PhalApi_Cache {
 	/**
      * 将value 的值赋值给key,生存时间为expire秒
 	 */
-	public function set($key, $value, $expire = 600){
+    public function set($key, $value, $expire = 600){
 		$this->redis->setex($this->formatKey($key), $expire, $this->formatValue($value));
-	}
+    }
 
-	public function get($key) {
+    public function get($key) {
 		$value = $this->redis->get($this->formatKey($key));
 		return $value !== FALSE ? $this->unformatValue($value) : NULL;
 	}
 
-	public function delete($key) {
-		return $this->redis->delete($this->formatKey($key));
-	}
+    public function delete($key) {
+        return $this->redis->delete($this->formatKey($key));
+    }
 
-	/**
+    /**
      * 检测是否存在key,若不存在则赋值value
-	 */
-	public function setnx($key, $value){
-		return $this->redis->setnx($this->formatKey($key), $this->formatValue($value));
-	}
+     */
+    public function setnx($key, $value){
+        return $this->redis->setnx($this->formatKey($key), $this->formatValue($value));
+    }
 
     public function lPush($key, $value) {
         return $this->redis->lPush($this->formatKey($key), $this->formatValue($value));
@@ -99,9 +99,9 @@ class PhalApi_Cache_Redis implements PhalApi_Cache {
         return $value !== FALSE ? $this->unformatValue($value) : NULL;
     }
 
-	protected function formatKey($key) {
-		return $this->prefix . $key;
-	}
+    protected function formatKey($key) {
+        return $this->prefix . $key;
+    }
 
     protected function formatValue($value) {
         return @serialize($value);
