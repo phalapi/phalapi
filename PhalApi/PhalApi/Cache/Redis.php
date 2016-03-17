@@ -32,15 +32,14 @@ class PhalApi_Cache_Redis implements PhalApi_Cache {
 	 */
 	public function __construct($config) {
 
-		 if ( ! extension_loaded('redis'))
-        {
+		if (!extension_loaded('redis')) {
             throw new PhalApi_Exception_InternalServerError(T("redis extension not found"));
         }
 
         $this->redis = new Redis();
 
         if(isset($config['type']) && $config['type']=='unix') {
-            if(!isset($config['socket'])){
+            if(!isset($config['socket'])) {
                  throw new PhalApi_Exception_InternalServerError(T("redis config not found 'socket'"));
             }
             $this->redis->connect($config['socket']);
@@ -109,7 +108,7 @@ class PhalApi_Cache_Redis implements PhalApi_Cache {
     }
 
     protected function unformatValue($value) {
-        return @unserialize($value,true);
+        return @unserialize($value);
     }
 
 }
