@@ -11,6 +11,4 @@
 return array(
 	'Hi {name}, welcome to use PhalApi!' => '{name}您好，欢迎使用PhalApi！',
     'user not exists' => '用户不存在',
-    'redis extension not found' => 'redis扩展未加载',
-    'redis config key [socket] not found' => 'redis配置键[socket]未设置',
 );

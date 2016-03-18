@@ -21,46 +21,47 @@ class PhalApi_Cache_Redis implements PhalApi_Cache {
     protected $prefix;
 
     /**
-     * @param string $config['type'] Redis连接方式 unix,http
-     * @param string $config['socket'] unix方式连接时，需要配置
-     * @param string $config['host'] Redis域名
-     * @param int $config['port'] Redis端口,默认为6379
-     * @param string $config['prefix'] Redis key prefix
-     * @param string $config['auth'] Redis 身份验证
-     * @param int $config['db'] Redis库,默认0
-     * @param int $config['timeout'] 连接超时时间,单位秒,默认300
+     * @param string $config['type']    Redis连接方式 unix,http
+     * @param string $config['socket']  unix方式连接时，需要配置
+     * @param string $config['host']    Redis域名
+     * @param int    $config['port']    Redis端口,默认为6379
+     * @param string $config['prefix']  Redis key prefix
+     * @param string $config['auth']    Redis 身份验证
+     * @param int    $config['db']      Redis库,默认0
+     * @param int    $config['timeout'] 连接超时时间,单位秒,默认300
      */
     public function __construct($config) {
-        if (!extension_loaded('redis')) {
-            throw new PhalApi_Exception_InternalServerError(T("redis extension not found"));
-        }
         $this->redis = new Redis();
 
-        if(isset($config['type']) && $config['type']=='unix') {
-            if(!isset($config['socket'])) {
-                throw new PhalApi_Exception_InternalServerError(T("redis config not found 'socket'"));
+        // 连接
+        if (isset($config['type']) && $config['type'] == 'unix') {
+            if (!isset($config['socket'])) {
+                throw new PhalApi_Exception_InternalServerError(T('redis config key [socket] not found'));
             }
             $this->redis->connect($config['socket']);
         } else {
-            $port    = isset($config['port']) ? intval($config['port']) : 6379;
+            $port = isset($config['port']) ? intval($config['port']) : 6379;
             $timeout = isset($config['timeout']) ? intval($config['timeout']) : 300;
             $this->redis->connect($config['host'], $port, $timeout);
         }
-        $this->prefix = isset($config['prefix']) ? $config['prefix'] : 'phalapi:';
-        $this->auth = isset($config['auth']) ? $config['auth'] : '';
 
-        if($this->auth != ''){
+        // 验证
+        $this->auth = isset($config['auth']) ? $config['auth'] : '';
+        if ($this->auth != '') {
             $this->redis->auth($this->auth);
         }
 
-        $this->redis->select(isset($config['db'])
-            ? intval($config['db']) : 0
-        );
+        // 选择
+        $dbIndex = isset($config['db']) ? intval($config['db']) : 0;
+        $this->redis->select($dbIndex);
+
+        $this->prefix = isset($config['prefix']) ? $config['prefix'] : 'phalapi:';
     }
+
     /**
      * 将value 的值赋值给key,生存时间为expire秒
      */
-    public function set($key, $value, $expire = 600){
+    public function set($key, $value, $expire = 600) {
         $this->redis->setex($this->formatKey($key), $expire, $this->formatValue($value));
     }
 
@@ -76,7 +77,7 @@ class PhalApi_Cache_Redis implements PhalApi_Cache {
     /**
      * 检测是否存在key,若不存在则赋值value
      */
-    public function setnx($key, $value){
+    public function setnx($key, $value) {
         return $this->redis->setnx($this->formatKey($key), $this->formatValue($value));
     }
 
@@ -109,5 +110,4 @@ class PhalApi_Cache_Redis implements PhalApi_Cache {
     protected function unformatValue($value) {
         return @unserialize($value);
     }
-
 }
