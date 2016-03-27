@@ -9,7 +9,7 @@
  *
  * <br>使用示例：<br>
 ```
- *       $di = new Module_DI();
+ *       $di = new PhalApi_DI();
  *      
  *       // 用的方式有：set/get函数  魔法方法setX/getX、类属性$di->X、数组$di['X']
  *       $di->key = 'value';
@@ -24,7 +24,7 @@
  *      
  *       // 初始化的途径：直接赋值、类名(会回调onInitialize函数)、匿名函数
  *       $di->simpleKey = array('value');
- *       $di->classKey = 'Module_DI';
+ *       $di->classKey = 'PhalApi_DI';
  *       $di->closureKey = function () {
  *            return 'sth heavy ...';
  *       };
