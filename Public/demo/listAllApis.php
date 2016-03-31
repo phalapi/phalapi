@@ -57,7 +57,7 @@ foreach ($files as $value) {
 
     foreach ($method as $mValue) {
         $rMethod = new Reflectionmethod($apiServer, $mValue);
-        if (!$rMethod->isPublic()) {
+        if (!$rMethod->isPublic() || strpos($mValue, '__') === 0) {
             continue;
         }
 
