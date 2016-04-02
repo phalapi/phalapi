@@ -68,7 +68,7 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
 
     /**
      * @group testFormatStringMinMax
-     * @expectedException PhalApi_Exception_InternalServerError
+     * @expectedException PhalApi_Exception_BadRequest
      */
     public function testFormatStringExceptionMinMax()
     {
