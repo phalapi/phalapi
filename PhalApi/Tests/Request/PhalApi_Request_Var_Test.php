@@ -31,7 +31,7 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
 
     /**
      * @group testFormat
-     */ 
+     */
     public function testFormat()
     {
         $varName = 'testKey';
@@ -45,7 +45,7 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
 
     /**
      * @group testFormatString
-     */ 
+     */
     public function testFormatString()
     {
         $rs = PhalApi_Request_Var::format(
@@ -54,6 +54,28 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
         $this->assertSame('2014', $rs);
     }
 
+    /**
+     * @group testFormatStringMinMax
+     */
+    public function testFormatStringMinMax()
+    {
+        $rs = PhalApi_Request_Var::format(
+            'testKey', array('name' => 'testKey', "max" => 9, 'min' => 9, "format" => 'utf8'), array('testKey' => 'PhalApi测试'));
+
+        $this->assertSame('PhalApi测试', $rs);
+    }
+
+
+    /**
+     * @group testFormatStringMinMax
+     * @expectedException PhalApi_Exception_InternalServerError
+     */
+    public function testFormatStringExceptionMinMax()
+    {
+        $rs = PhalApi_Request_Var::format(
+            'testKey', array('name' => 'testKey', "max" => 8, 'min' => 8, "format" => 'utf8'), array('testKey' => 'PhalApi测试'));
+
+    }
 
     /**
      * @group testFormatString
@@ -90,7 +112,7 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
 
     /**
      * @group testFormatInt
-     */ 
+     */
     public function testFormatInt()
     {
         $rs = PhalApi_Request_Var::format(
@@ -101,7 +123,7 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
 
     /**
      * @group testFormatFloat
-     */ 
+     */
     public function testFormatFloat()
     {
         $rs = PhalApi_Request_Var::format(
@@ -113,7 +135,7 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
     /**
      * @dataProvider provideDataForFormatBoolean
      * @group testFormatBoolean
-     */ 
+     */
     public function testFormatBoolean($oriValue, $expValue)
     {
         $rs = PhalApi_Request_Var::format(
@@ -136,11 +158,11 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
 
     /**
      * @group testFormatDate
-     */ 
+     */
     public function testFormatDate()
     {
         $rs = PhalApi_Request_Var::format(
-            'testKey', array('name' => 'testKey', 'type' => 'date', 'format' => 'timestamp'), array('testKey' => '2014-10-01 12:00:00')); 
+            'testKey', array('name' => 'testKey', 'type' => 'date', 'format' => 'timestamp'), array('testKey' => '2014-10-01 12:00:00'));
 
         $this->assertTrue(is_numeric($rs));
         $this->assertSame(1412136000, $rs);
@@ -148,7 +170,7 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
 
     /**
      * @group testFormatDate
-     */ 
+     */
     public function testFormatDateIllegal()
     {
         $rs = PhalApi_Request_Var::format(
@@ -159,22 +181,22 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
     /**
      * @group testFormatDate
      * @expectedException PhalApi_Exception_BadRequest
-     */ 
+     */
     public function testFormatDateRange()
     {
         $rs = PhalApi_Request_Var::format(
-            'testKey', array('name' => 'testKey', 'type' => 'date', 'format' => 'timestamp', 'max' => 100), array('testKey' => '2014-10-01 12:00:00')); 
+            'testKey', array('name' => 'testKey', 'type' => 'date', 'format' => 'timestamp', 'max' => 100), array('testKey' => '2014-10-01 12:00:00'));
     }
 
     /**
      * @group testFormatArray
-     */ 
+     */
     public function testFormatArrayWithJson()
     {
         $arr = array('age' => 100, 'sex' => 'male');
 
         $rs = PhalApi_Request_Var::format(
-            'testKey', 
+            'testKey',
             array('name' => 'testKey', 'type' => 'array', 'format' => 'json'),
             array('testKey' => json_encode($arr))
         );
@@ -185,7 +207,7 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
     public function testFormatArrayWithExplode()
     {
         $rs = PhalApi_Request_Var::format(
-            'testKey', 
+            'testKey',
             array('name' => 'testKey', 'type' => 'array', 'format' => 'explode', 'separator' => '|'),
             array('testKey' => '1|2|3|4|5')
         );
@@ -196,7 +218,7 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
     public function testFormatArrayDefault()
     {
         $rs = PhalApi_Request_Var::format(
-            'testKey', 
+            'testKey',
             array('name' => 'testKey', 'type' => 'array'),
             array('testKey' => 'phalapi')
         );
@@ -210,7 +232,7 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
     public function testFormatArrayRange()
     {
         $rs = PhalApi_Request_Var::format(
-            'testKey', 
+            'testKey',
             array('name' => 'testKey', 'type' => 'array', 'format' => 'explode', 'separator' => '|', 'max' => 3),
             array('testKey' => '1|2|3|4|5')
         );
@@ -310,7 +332,7 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
 
     /**
      * @group testFormatEnum
-     */ 
+     */
     public function testFormatEnum()
     {
         $rs = PhalApi_Request_Var::format(
@@ -410,7 +432,7 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
     public function testFormatCallable()
     {
         $rs = PhalApi_Request_Var::format(
-            'testKey', 
+            'testKey',
             array('name' => 'testKey', 'type' => 'callable', 'callback' => array('PhalApi_Request_Var_MyCallback', 'go')),
             array('testKey' => 1)
         );
@@ -424,7 +446,7 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
     public function testFormatCallableButWroing()
     {
         $rs = PhalApi_Request_Var::format(
-            'testKey', 
+            'testKey',
             array('name' => 'testKey', 'type' => 'callable', 'callback' => 'xxx'),
             array('testKey' => 1)
         );
