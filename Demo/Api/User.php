@@ -20,7 +20,7 @@ class Api_User extends PhalApi_Api {
      * @return object info 用户信息对象
      * @return int info.id 用户ID
      * @return string info.name 用户名字
-     * @return string info.from 用户来源
+     * @return string info.note 用户来源
      * @return string msg 提示信息
      */
     public function getBaseInfo() {
@@ -49,7 +49,7 @@ class Api_User extends PhalApi_Api {
      * @return array list 用户列表
      * @return int list[].id 用户ID
      * @return string list[].name 用户名字
-     * @return string list[].from 用户来源
+     * @return string list[].note 用户来源
      * @return string msg 提示信息
      */
     public function getMultiBaseInfo() {

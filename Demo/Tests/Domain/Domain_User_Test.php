@@ -40,7 +40,7 @@ class PhpUnderControl_DomainUser_Test extends PHPUnit_Framework_TestCase
 
         $this->assertArrayHasKey('id', $rs);
         $this->assertArrayHasKey('name', $rs);
-        $this->assertArrayHasKey('from', $rs);
+        $this->assertArrayHasKey('note', $rs);
 
         $this->assertEquals('dogstar', $rs['name']);
     }

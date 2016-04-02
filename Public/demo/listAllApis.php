@@ -44,9 +44,9 @@ $allApiS = array();
 foreach ($files as $value) {
     $value = realpath($value);
     $subValue = substr($value, strpos($value, D_S . 'Api' . D_S) + 1);
-    //进行处理对于类似与Api/Auth/Api/Api.php 多层嵌套只取 Api/Api.php进行处理
+    //支持多层嵌套，不限级
     $arr       = explode(D_S, $subValue);
-    $subValue  = implode(D_S, array_slice($arr, -2, 2));
+	$subValue  = implode(D_S, $arr);
     $apiServer = str_replace(array(D_S, '.php'), array('_', ''), $subValue);
 
     if (!class_exists($apiServer)) {
@@ -57,7 +57,7 @@ foreach ($files as $value) {
 
     foreach ($method as $mValue) {
         $rMethod = new Reflectionmethod($apiServer, $mValue);
-        if (!$rMethod->isPublic()) {
+        if (!$rMethod->isPublic() || strpos($mValue, '__') === 0) {
             continue;
         }
 

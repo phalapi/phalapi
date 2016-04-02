@@ -35,15 +35,15 @@
 
 class PhalApi_Api {
 
-	/**
-	 * 设置规则解析后的接口参数
-	 * @param string $name 接口参数名字
-	 * @param mixed $value 接口参数解析后的值
-	 */
+    /**
+     * 设置规则解析后的接口参数
+     * @param string $name 接口参数名字
+     * @param mixed $value 接口参数解析后的值
+     */
     public function __set($name, $value) {
-    	$this->$name = $value;
+        $this->$name = $value;
     }
-    
+
     /**
      * 获取规则解析后的接口参数
      * @param string $name 接口参数名字
@@ -51,13 +51,13 @@ class PhalApi_Api {
      * @return mixed
      */
     public function __get($name) {
-    	if(!isset($this->name) || empty($name)) {
+        if(!isset($this->$name) || empty($name)) {
             throw new PhalApi_Exception_InternalServerError(
                 T('PhalApi_Api::${name} undefined', array('name' => $name))
             );
         }
 
-    	return $this->$name;
+        return $this->$name;
     }
 
     /**
@@ -74,13 +74,13 @@ class PhalApi_Api {
      * @return null
      */
     public function init() {
-    	$this->createMemberValue();
-    	
-    	$this->filterCheck();
-    	
-    	$this->userCheck();
+        $this->createMemberValue();
+
+        $this->filterCheck();
+
+        $this->userCheck();
     }
-    
+
     /**
      * 按参数规则解析生成接口参数
      *
@@ -89,9 +89,9 @@ class PhalApi_Api {
      * @uses PhalApi_Api::getApiRules()
      */
     protected function createMemberValue() {
-		foreach ($this->getApiRules() as $key => $rule) {
-    		$this->$key = DI()->request->getByRule($rule);
-		}
+        foreach ($this->getApiRules() as $key => $rule) {
+            $this->$key = DI()->request->getByRule($rule);
+        }
     }
 
     /**
@@ -112,16 +112,16 @@ class PhalApi_Api {
         $rules = array();
 
         $allRules = $this->getRules();
-		if (!is_array($allRules)) {
-			$allRules = array();
-		}
+        if (!is_array($allRules)) {
+            $allRules = array();
+        }
 
-		$allRules = array_change_key_case($allRules, CASE_LOWER);
+        $allRules = array_change_key_case($allRules, CASE_LOWER);
 
-    	$service = DI()->request->get('service', 'Default.Index');
-    	list($apiClassName, $action) = explode('.', $service);
+        $service = DI()->request->get('service', 'Default.Index');
+        list($apiClassName, $action) = explode('.', $service);
         $action = strtolower($action); 
-    	
+
         if (isset($allRules[$action]) && is_array($allRules[$action])) {
             $rules = $allRules[$action];
         }
@@ -136,7 +136,7 @@ class PhalApi_Api {
 
         return $rules;
     }
-    
+
     /**
      * 获取参数设置的规则
      *
@@ -145,7 +145,7 @@ class PhalApi_Api {
      * @return array
      */
     public function getRules() {
-    	return array();
+        return array();
     }
 
     /**
@@ -184,7 +184,7 @@ class PhalApi_Api {
             $filter->check();
         }
     }
-    
+
     /**
      * 用户身份验证
      *
@@ -193,7 +193,7 @@ class PhalApi_Api {
      * @throws PhalApi_Exception_BadRequest 当验证失败时，请抛出此异常，以返回400
      */
     protected function userCheck() {
-    	
+
     }
-    
+
 }

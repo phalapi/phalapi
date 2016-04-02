@@ -39,31 +39,7 @@ class PhpUnderControl_ApiDefault_Test extends PHPUnit_Framework_TestCase
         $this->assertNotEmpty($rs);
     }
 
-    /**
-     * @group testIndex
-     */ 
     public function testIndex()
-    {
-        $str = 'service=Default.Index&username=dogstar';
-        parse_str($str, $params);
-        
-        DI()->request = new PhalApi_Request($params);
-
-        $api = new Api_Default(); 
-        //自己进行初始化
-        $api->init();
-        $rs = $api->index();
-
-        $this->assertNotEmpty($rs);
-        $this->assertArrayHasKey('title', $rs);
-        $this->assertArrayHasKey('content', $rs);
-        $this->assertArrayHasKey('version', $rs);
-        $this->assertArrayHasKey('time', $rs);
-
-        $this->assertEquals('dogstar您好，欢迎使用PhalApi！', $rs['content']);
-    }
-
-    public function testIndexByRunner()
     {
         //Step 1. 构建请求URL
         $url = 'service=Default.Index&username=dogstar';

@@ -42,19 +42,13 @@ class PhpUnderControl_ApiUser_Test extends PHPUnit_Framework_TestCase
      */ 
     public function testGetBaseInfo()
     {
-        //当。。。
-        $str = 'service=User.GetBaseInfo&user_id=1';
+        //Step 1. 构建请求URL
+        $url = 'service=User.GetBaseInfo&user_id=1';
 
-        parse_str($str, $params);
-        DI()->request = new PhalApi_Request($params);
+        //Step 2. 执行请求	
+        $rs = PhalApi_Helper_TestRunner::go($url);
 
-        $api = new Api_User(); 
-        $api->init();
-
-        //做。。。
-        $rs = $api->getBaseInfo();
-
-        //应该。。。
+        //Step 3. 验证
         $this->assertNotEmpty($rs);
         $this->assertArrayHasKey('code', $rs);
         $this->assertArrayHasKey('msg', $rs);
@@ -63,21 +57,18 @@ class PhpUnderControl_ApiUser_Test extends PHPUnit_Framework_TestCase
         $this->assertEquals(0, $rs['code']);
 
         $this->assertEquals('dogstar', $rs['info']['name']);
-        $this->assertEquals('oschina', $rs['info']['from']);
+        $this->assertEquals('oschina', $rs['info']['note']);
     }
 
     public function testGetMultiBaseInfo()
     {
-        $str = 'service=User.GetMultiBaseInfo&user_ids=1,2,3';
-        parse_str($str, $params);
+        //Step 1. 构建请求URL
+        $url = 'service=User.GetMultiBaseInfo&user_ids=1,2,3';
 
-        DI()->request = new PhalApi_Request($params);
+        //Step 2. 执行请求	
+        $rs = PhalApi_Helper_TestRunner::go($url);
 
-        $api = new Api_User();
-        //自己进行初始化
-        $api->init();
-        $rs = $api->getMultiBaseInfo();
-
+        //Step 3. 验证
         $this->assertNotEmpty($rs);
         $this->assertArrayHasKey('code', $rs);
         $this->assertArrayHasKey('msg', $rs);
@@ -86,7 +77,7 @@ class PhpUnderControl_ApiUser_Test extends PHPUnit_Framework_TestCase
         foreach ($rs['list'] as $item) {
             $this->assertArrayHasKey('id', $item);
             $this->assertArrayHasKey('name', $item);
-            $this->assertArrayHasKey('from', $item);
+            $this->assertArrayHasKey('note', $item);
         }
     }
 

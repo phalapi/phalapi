@@ -1,17 +1,10 @@
-#PhalApi - PHP轻量级开源接口框架 - V1.3.2
-
-#[官网 - www.phalapi.net](http://www.phalapi.net)
-![apic](http://webtools.qiniudn.com/master-LOGO-20150410_50.jpg)  
-  
-
-###PhalApi是一个PHP轻量级开源接口框架，目的是让接口开发更简单。
-```
-此框架代码开源、产品开源、思想开源，可用于个人、商业用途等，请放心使用。
-如有问题，可联系我们(Email:chanzonghuang@gmail.com   QQ:376741929  QQ交流群：421032344 )，或在Git@OSC上新建issue。
-```
- 
+#[PhalApi(π框架) - PHP轻量级开源接口框架 - V1.3.3](http://www.phalapi.net)
+PhalApi，简称π框架，专注于接口开发，致力让接口开发更简单。支持HTTP、SOAP和RPC协议，可用于快速搭建微服务、RESTful接口或web services，关注于测试驱动开发、领域驱动设计、极限编程、敏捷开发以及如何快速、稳定、持续交付有价值的接口服务。
+   
 在此借一行文字的空间，感谢 **开源中国** 这么好的分享平台，同时也感谢您花费宝贵的时间来阅读此文档，在开源的路上，您每一次真心的关注和肯定都是我们前进的最大动力！谢谢！    
   
+此框架代码开源、产品开源、思想开源，可用于个人、商业用途等，请放心使用。更多内容，请访问官网：  
+![apic](http://webtools.qiniudn.com/master-LOGO-20150410_50.jpg)  
 
 #背景
 过去十年，是互联网时代；如今的十年，是移动时代。  
@@ -62,6 +55,13 @@ http://localhost/PhalApi/Public/install/
     "msg": ""
 }
 ```
+  
+#框架升级
+我们以最大的努力，保证完美兼容性的升级。当框架有新版本需要升级，只需要简单一步：  
+```
+更新替换 ./PhalApi/PhalApi 核心框架目录即可。
+```
+
 #在线体验
 ```
 //默认的接口服务

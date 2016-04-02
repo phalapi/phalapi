@@ -31,4 +31,5 @@ return array(
     'invalid type: {type} for rule: {name}'                         => "{name}参数规则的类型({type})非法",
     'invalid callback for rule: {name}'                             => '{name}参数规则的回调函数非法',
     'Not the file type {ext}'                                       => '上传失败不是文件类型 {ext}',
+    'redis config key [socket] not found' => 'redis配置键[socket]未设置',
 );

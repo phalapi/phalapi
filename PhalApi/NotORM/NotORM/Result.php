@@ -179,7 +179,7 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
                         break;
                     }
                 }
-                error_log("$backtrace[file]:$backtrace[line]:$debug\n", 0);
+                error_log("{$backtrace['file']}:{$backtrace['line']}:$debug\n", 0);
                 //if ($this->notORM->debug) echo "$debug<br />\n";    //@dogstar 2014-10-31
 
                 $debugTrace['sql'] = $debug;
@@ -784,11 +784,11 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
                     }
                     //$this->rows[$key] = new $this->notORM->rowClass($row, $this);
                     if ($this->notORM->isKeepPrimaryKeyIndex) {
-                        //@dogstar 采用数组的形式返回，不再采用主键作为下标 20151230
-                        $this->rows[] = $row;
+                        //@dogstar 采用主键作为下标 2015-12-30
+                        $this->rows[$key] = $row;
                     } else {
                         //@dogstar 改用返回数组 2014-11-01
-                        $this->rows[$key] = $row;
+                        $this->rows[] = $row;
                     }
                 }
             }

@@ -69,6 +69,7 @@ class PhpUnderControl_PhalApiApi_Test extends PHPUnit_Framework_TestCase
      */
     public function testGetUndefinedProperty()
     {
+        $this->coreApi->name = 'PhalApi';
         $rs = $this->coreApi->noThisKey;
     }
 
