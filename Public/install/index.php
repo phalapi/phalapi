@@ -18,7 +18,7 @@ case 1:
         'pdo'       => array('name' => '数据库模块', 'status' => -1, 'tip' => '建议使用PDO扩展，否则NotORM无法使用PDO进行数据库操作'),
         'memcache'  => array('name' => 'Memcache扩展', 'status' => 0, 'tip' => '无此扩展时，不能使用Memcache缓存'),
         'mcrypt'    => array('name' => 'Mcrypt扩展', 'status' => 0, 'tip' => '无此扩展时，不能使用mcrypt进行加密处理'),
-        'runtime'   => array('name' => '目录权限', 'status' => -1, 'tip' => '日志目录若缺少写入权限，则不能写入日记和进行文件缓存'),
+        'runtime'   => array('name' => '目录权限', 'status' => -1, 'tip' => '日志或配置文件目录若缺少写入权限，则不能写入日记和进行文件缓存以及接下配置无法生效'),
     );
 
     if (version_compare(PHP_VERSION, '5.3.3', '>=')) {
@@ -36,7 +36,12 @@ case 1:
     $runtimePath = dirname(__FILE__) . implode(D_S, array('', '..', '..', 'Runtime'));
     $runtimePath = file_exists($runtimePath) ? realpath($runtimePath) : $runtimePath;
     $checkList['runtime']['tip'] = $runtimePath . '<br>' . $checkList['runtime']['tip'];
-    if (is_writeable($runtimePath)) {
+
+    $configPath = dirname(__FILE__) . implode(D_S, array('', '..', '..', 'Config'));
+    $configPath = file_exists($configPath) ? realpath($configPath) : $configPath;
+    $checkList['runtime']['tip'] = $configPath . '<br>' . $checkList['runtime']['tip'];
+
+    if (is_writeable($runtimePath) && is_writeable($configPath)) {
         $checkList['runtime']['status'] =  1;
     }
 
@@ -55,28 +60,28 @@ case 3:
 
     //数据库配置文件
     $search = array(
-        '{project}', 
-        '{host}', 
-        '{name}', 
-        '{user}', 
-        '{password}', 
-        '{port}', 
-        '{charset}', 
-        '{prefix}', 
+        '{project}',
+        '{host}',
+        '{name}',
+        '{user}',
+        '{password}',
+        '{port}',
+        '{charset}',
+        '{prefix}',
     );
     $replace = array(
-        strtolower($_POST['project']), 
-        $_POST['host'], 
-        $_POST['name'], 
-        $_POST['user'], 
-        $_POST['password'], 
-        $_POST['port'], 
-        $_POST['charset'], 
+        strtolower($_POST['project']),
+        $_POST['host'],
+        $_POST['name'],
+        $_POST['user'],
+        $_POST['password'],
+        $_POST['port'],
+        $_POST['charset'],
         $_POST['prefix'],
     );
     $configDbsContent = str_replace($search, $replace, getConfigDbsTpl());
     file_put_contents(
-        dirname(__FILE__) . implode(D_S, array('', '..', '..', 'Config', 'dbs.php')), 
+        dirname(__FILE__) . implode(D_S, array('', '..', '..', 'Config', 'dbs.php')),
         $configDbsContent
     );
 
@@ -105,7 +110,7 @@ case 3:
 
         //单元测试
         copy(
-            $demoPath . D_S . 'Tests' . D_S . 'test_env.php', 
+            $demoPath . D_S . 'Tests' . D_S . 'test_env.php',
             $appPath . D_S . 'Tests'  . D_S . 'test_env.php'
         );
         file_put_contents(
@@ -114,11 +119,11 @@ case 3:
         );
 
         copy(
-            $demoPath . D_S . 'Tests' . D_S . 'Api' . D_S . 'Api_Default_Test.php', 
+            $demoPath . D_S . 'Tests' . D_S . 'Api' . D_S . 'Api_Default_Test.php',
             $appPath . D_S . 'Tests' . D_S . 'Api' . D_S . 'Api_Default_Test.php'
         );
         copy(
-            $demoPath . D_S . 'Tests' . D_S . 'phpunit.xml', 
+            $demoPath . D_S . 'Tests' . D_S . 'phpunit.xml',
             $appPath . D_S . 'Tests' . D_S . 'phpunit.xml'
         );
 
@@ -150,7 +155,7 @@ case 3:
         }
     }
 
-    touch('_install.lock');
+    @touch('_install.lock');
 
     //请求链接
     $relatePath = substr($_SERVER['REQUEST_URI'], 0, stripos($_SERVER['REQUEST_URI'], '/install/'));
