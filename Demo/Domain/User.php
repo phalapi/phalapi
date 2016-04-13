@@ -10,17 +10,17 @@ class Domain_User {
             return $rs;
         }
 
-		// °æ±¾1£º¼òµ¥µÄ»ñÈ¡
+		// ç‰ˆæœ¬1ï¼šç®€å•çš„èŽ·å–
         $model = new Model_User();
         $rs = $model->getByUserId($userId);
 
-		// °æ±¾2£ºÊ¹ÓÃµ¥µã»º´æ/¶à¼¶»º´æ (Ó¦¸ÃÒÆÖÁModel²ãÖÐ)
+		// ç‰ˆæœ¬2ï¼šä½¿ç”¨å•ç‚¹ç¼“å­˜/å¤šçº§ç¼“å­˜ (åº”è¯¥ç§»è‡³Modelå±‚ä¸­)
 		/**
         $model = new Model_User();
         $rs = $model->getByUserIdWithCache($userId);
 		*/
 
-		// °æ±¾3£º»º´æ + ´úÀí
+		// ç‰ˆæœ¬3ï¼šç¼“å­˜ + ä»£ç†
 		/**
 		$query = new PhalApi_ModelQuery();
 		$query->id = $userId;
