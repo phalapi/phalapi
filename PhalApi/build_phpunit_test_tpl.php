@@ -51,7 +51,8 @@ if (!empty($bootstrap)) {
 require $filePath;
 
 if (!class_exists($className)) {
-    die("Error: cannot find class($className). \n");
+    echo colorfulString("Error: cannot find class($className). \n\n", 'FAILURE');
+    die();
 }
 
 $reflector = new ReflectionClass($className);
