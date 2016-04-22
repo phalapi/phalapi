@@ -74,7 +74,11 @@ class PhalApi_Helper_ApiDesc {
             }
             if (!isset($returnCommentArr[2])) {
                 $returnCommentArr[2] = '';	//可选的字段说明
+            } else {
+                //兼容处理有空格的注释
+                $returnCommentArr[2] = implode(' ', array_slice($returnCommentArr, 2));
             }
+
             $returns[] = $returnCommentArr; 
         }
 

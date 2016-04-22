@@ -47,23 +47,23 @@ class PhalApi {
 ```
      */
     public function response() {
-    	$rs = DI()->response;
-    	
-    	try {
-    		$api = PhalApi_ApiFactory::generateService(); 
-    		
-    		$service = DI()->request->get('service', 'Default.Index');
-    		list($apiClassName, $action) = explode('.', $service);
-				
-        	$rs->setData(call_user_func(array($api, $action)));
-    	} catch (PhalApi_Exception $ex) {
-    		$rs->setRet($ex->getCode());
-        	$rs->setMsg($ex->getMessage());
-    	} catch (Exception $ex) {
-    		throw $ex;
-    	}
-		
-    	return $rs;
+        $rs = DI()->response;
+
+        try {
+            $api = PhalApi_ApiFactory::generateService(); 
+
+            $service = DI()->request->get('service', 'Default.Index');
+            list($apiClassName, $action) = explode('.', $service);
+
+            $rs->setData(call_user_func(array($api, $action)));
+        } catch (PhalApi_Exception $ex) {
+            $rs->setRet($ex->getCode());
+            $rs->setMsg($ex->getMessage());
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+
+        return $rs;
     }
     
 }

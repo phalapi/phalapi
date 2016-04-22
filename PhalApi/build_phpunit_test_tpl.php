@@ -7,30 +7,41 @@
  * Usage: php ./build_phpunit_test_tpl.php <file_path> <class_name> [bootstrap] [author = dogstar]
  *
  * 1、针对全部public的函数进行单元测试
- * 2、各个函数对应返回格式测试与业务数据测试
- * 3、源文件加载（在没有自动加载的情况下）
+ * 2、可根据@testcase注释自动生成测试用例
  *
  * 备注：另可使用phpunit-skelgen进行骨架代码生成
  *
- * @author: dogstar <chanzonghuang@gmail.com> 2015-01-08
- * @version: 4.0.0
+ * @author: dogstar 20150119
+ * @version: 4.0.2
  */
 
 if ($argc < 3) {
-    echo "
-Usage: 
-        php $argv[0] <file_path> <class_name> [bootstrap] [author = dogstar]
+    echo "\n";
+    echo colorfulString("Usage:\n", 'WARNING');
+    echo "    php $argv[0] <file_path> <class_name> [bootstrap] [author]\n";
+    echo "\n";
 
-Demo:
-        php ./build_phpunit_test_tpl.php ./Demo.php Demo > Demo_Test.php
-        
-";
+    echo colorfulString("Options:\n", 'WARNING');
+    echo colorfulString('    file_path', 'NOTE'), "             Require. Path to the PHP source code file\n";
+    echo colorfulString('    class_name', 'NOTE'), "            Require. The class name need to be tested\n";
+    echo colorfulString('    bootstrap', 'NOTE'), "             NOT require. Path to the bootsrap file, usually is test_env.php\n";
+    echo colorfulString('    author', 'NOTE'), "                NOT require. Your great name here, default is dogstar\n";
+    echo "\n";
+
+    echo colorfulString("Demo:\n", 'WARNING');
+    echo "    php ./build_phpunit_test_tpl.php ./Demo.php Demo > Demo_Test.php\n";
+    echo "\n";
+
+    echo colorfulString("Tips:\n", 'WARNING');
+    echo "    This will output the code directly, you can save them to test file like with _Test.php suffix.\n";
+    echo "\n";
+
     die();
 }
 
 $filePath = $argv[1];
 $className = $argv[2];
-$bootstrap = isset($argv[3]) ? $argv[3] : NULL;
+$bootstrap = isset($argv[3]) ? $argv[3] : null;
 $author = isset($argv[4]) ? $argv[4] : 'dogstar';
 
 if (!empty($bootstrap)) {
@@ -50,6 +61,8 @@ $methods = $reflector->getMethods(ReflectionMethod::IS_PUBLIC);
 date_default_timezone_set('Asia/Shanghai');
 $objName = lcfirst(str_replace('_', '', $className));
 
+/** ------------------- 生成通用的单元测试代码 ------------------ **/
+
 $code = "<?php
 /**
  * PhpUnderControl_" . str_replace('_', '', $className) . "_Test
@@ -61,8 +74,11 @@ $code = "<?php
 
 ";
 
-if (true || file_exists(dirname(__FILE__) . '/test_env.php')) {
+if (file_exists(dirname(__FILE__) . '/test_env.php')) {
     $code .= "require_once dirname(__FILE__) . '/test_env.php';
+";
+} else {
+    $code .= "//require_once dirname(__FILE__) . '/test_env.php';
 ";
 }
 
@@ -132,8 +148,8 @@ foreach ($methods as $method) {
             $default = var_export($default, true);
         } else if (is_bool($default)) {
             $default = $default ? 'true' : 'false';
-        } else if ($default === NULL) {
-            $default = 'NULL';
+        } else if ($default === null) {
+            $default = 'null';
         } else {
             $default = "''";
         }
@@ -209,7 +225,12 @@ foreach ($methods as $method) {
         $returnCommentArr = explode(' ', strrchr($comment, '@testcase'));
         if (count($returnCommentArr) > 1) {
             $expRs = $returnCommentArr[1];
-            $callParamStrInCase = isset($returnCommentArr[2]) ? $returnCommentArr[2] : '';
+
+            //去掉@testcase和期望的结果
+            array_shift($returnCommentArr);
+            array_shift($returnCommentArr);
+
+            $callParamStrInCase = !empty($returnCommentArr) ? implode(' ', $returnCommentArr) : '';
 
             $code .= "
     /**
@@ -226,9 +247,7 @@ foreach ($methods as $method) {
             $caseNum ++;
 
         }
-
     }
-
 }
 
 $code .= "
@@ -236,3 +255,19 @@ $code .= "
 
 echo $code;
 echo "\n";
+
+function colorfulString($text, $type = NULL) {
+    $colors = array(
+        'WARNING'   => '1;33',
+        'NOTE'      => '1;36',
+        'SUCCESS'   => '1;32',
+        'FAILURE'   => '1;35',
+    );
+
+    if (empty($type) || !isset($colors[$type])){
+        return $text;
+    }
+
+    return "\033[" . $colors[$type] . "m" . $text . "\033[0m";
+}
+

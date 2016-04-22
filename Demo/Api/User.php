@@ -16,7 +16,7 @@ class Api_User extends PhalApi_Api {
     /**
      * 获取用户基本信息
      * @desc 用于获取单个用户基本信息
-     * @return int code 操作码，0表示成功，1表示用户不存在
+     * @return int code 操作码，0表示成功， 1表示用户不存在
      * @return object info 用户信息对象
      * @return int info.id 用户ID
      * @return string info.name 用户名字
