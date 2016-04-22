@@ -22,7 +22,7 @@ then
     echo ""
 
     echo -e "${WARNING}Options:${RES}"
-    echo -e "    ${NOTE}app${RES}                    Require. The app name you want to create"
+    echo -e "    ${NOTE}app${RES}               Require. The app name you want to create"
     echo ""
 
     echo -e "${WARNING}Demo:${RES}"

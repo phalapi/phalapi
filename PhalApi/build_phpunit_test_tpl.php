@@ -22,10 +22,10 @@ if ($argc < 3) {
     echo "\n";
 
     echo colorfulString("Options:\n", 'WARNING');
-    echo colorfulString('    file_path', 'NOTE'), "             Require. Path to the PHP source code file\n";
-    echo colorfulString('    class_name', 'NOTE'), "            Require. The class name need to be tested\n";
-    echo colorfulString('    bootstrap', 'NOTE'), "             NOT require. Path to the bootsrap file, usually is test_env.php\n";
-    echo colorfulString('    author', 'NOTE'), "                NOT require. Your great name here, default is dogstar\n";
+    echo colorfulString('    file_path', 'NOTE'), "         Require. Path to the PHP source code file\n";
+    echo colorfulString('    class_name', 'NOTE'), "        Require. The class name need to be tested\n";
+    echo colorfulString('    bootstrap', 'NOTE'), "         NOT require. Path to the bootsrap file, usually is test_env.php\n";
+    echo colorfulString('    author', 'NOTE'), "            NOT require. Your great name here, default is dogstar\n";
     echo "\n";
 
     echo colorfulString("Demo:\n", 'WARNING');

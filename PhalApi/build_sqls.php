@@ -14,9 +14,9 @@ if ($argc < 3) {
     echo "\n";
 
     echo colorfulString("Options:\n", 'WARNING');
-    echo colorfulString('    dbs_config', 'NOTE'), "             Require. Path to ./Config/dbs.php\n";
-    echo colorfulString('    table', 'NOTE'), "                  Require. Table name\n";
-    echo colorfulString('    engine', 'NOTE'), "                 NOT require. Database engine, default is Innodb\n";
+    echo colorfulString('    dbs_config', 'NOTE'), "        Require. Path to ./Config/dbs.php\n";
+    echo colorfulString('    table', 'NOTE'), "             Require. Table name\n";
+    echo colorfulString('    engine', 'NOTE'), "            NOT require. Database engine, default is Innodb\n";
     echo "\n";
 
     echo colorfulString("Demo:\n", 'WARNING');
