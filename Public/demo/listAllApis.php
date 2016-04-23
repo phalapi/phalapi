@@ -106,7 +106,7 @@ function listDir($dir) {
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title><?php echo $apiDirName; ?> - 接口列表</title>
+    <title><?php echo $apiDirName; ?> - 在线接口列表</title>
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">
 </head>
 <body>
@@ -136,6 +136,8 @@ function listDir($dir) {
         </tbody>
     </table>
 </div>
+
+<p>&copy; Powered  By <a href="http://www.phalapi.net/" target="_blank">PhalApi <?php echo PHALAPI_VERSION; ?></a> <p>
 </div>
 
 </body>

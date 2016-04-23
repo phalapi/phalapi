@@ -4,7 +4,7 @@ echo <<<EOT
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>接口参数在线查询</title>
+    <title>{$service} - 在线接口文档</title>
 
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -82,6 +82,8 @@ foreach ($returns as $item) {
 	echo "<tr><td>$name</td><td>$type</td><td>$detail</td></tr>";
 }
 
+$version = PHALAPI_VERSION;
+
 echo <<<EOT
 
 </table>
@@ -93,6 +95,8 @@ echo <<<EOT
     </div>
     
 </div>
+
+<p>&copy; Powered  By <a href="http://www.phalapi.net/" target="_blank">PhalApi {$version}</a> <p>
 
 </div> <!-- /container -->
 
