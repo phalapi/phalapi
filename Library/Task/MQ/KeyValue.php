@@ -10,11 +10,6 @@
 class Task_MQ_KeyValue implements Task_MQ {
 
     /**
-     * 最大缓存时间，29天，因为MC的过期时间不能超过30天
-     */
-    const MAX_EXPIRE_TIME = 2505600;
-
-    /**
      * @var PhalApi_Cache_Memcached/PhalApi_Cache_Memcache/PhalApi_Cache_File $kvCache 缓存实例
      */
     protected $kvCache;
@@ -31,7 +26,7 @@ class Task_MQ_KeyValue implements Task_MQ {
 
         $list[] = $params;
 
-        $this->kvCache->set($service, $list, self::MAX_EXPIRE_TIME);
+        $this->kvCache->set($service, $list, $this->getExpireTime());
 
         $list = $this->kvCache->get($service);
 
@@ -51,8 +46,15 @@ class Task_MQ_KeyValue implements Task_MQ {
 
         $rs = array_splice($list, 0, $num);
 
-        $this->kvCache->set($service, $list, self::MAX_EXPIRE_TIME);
+        $this->kvCache->set($service, $list, $this->getExpireTime());
 
         return $rs;
+    }
+
+    /**
+     * 最大缓存时间，一年
+     */
+    protected function getExpireTime() {
+        return 31536000;
     }
 }

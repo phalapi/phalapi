@@ -29,4 +29,11 @@ class Task_MQ_Memcached extends Task_MQ_KeyValue {
 
         parent::__construct($mcCache);
     }
+
+    /**
+     * 最大缓存时间，29天，因为MC的过期时间不能超过30天
+     */
+    protected function getExpireTime() {
+        return 2505600;
+    }
 }
