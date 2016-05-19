@@ -308,7 +308,7 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
             }
             //! driver specific extended insert
             $insert = ($data || $this->notORM->driver == "mysql"
-                ? "(" . implode(", ", array_keys($data)) . ") VALUES " . implode(", ", $values) : "DEFAULT VALUES");
+                ? "(`" . implode("`, `", array_keys($data)) . "`) VALUES " . implode(", ", $values) : "DEFAULT VALUES");
         }
         // requires empty $this->parameters
         $return = $this->query("INSERT INTO $this->table $insert", $parameters);
