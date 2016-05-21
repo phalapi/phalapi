@@ -48,11 +48,16 @@ class PhalApi_Request {
         if (function_exists('getallheaders')) {
             return getallheaders();
         }
+
         //对没有getallheaders函数做处理
+        $headers = array();
         foreach ($_SERVER as $name => $value) {
-            if (substr($name, 0, 5) == 'HTTP_') {
-                $headers[str_replace(' ', '-', ucwords(strtolower(str_replace('_', ' ', substr($name, 5)))))] = $value;
+            if (is_array($value) || substr($name, 0, 5) != 'HTTP_') {
+                continue;
             }
+
+            $headerKey = implode('-', array_map('ucwords', explode('_', strtolower(substr($name, 5)))));
+            $headers[$headerKey] = $value;
         }
 
         return $headers;
