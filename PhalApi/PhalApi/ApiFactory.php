@@ -46,7 +46,7 @@ class PhalApi_ApiFactory {
 
 		list ($apiClassName, $action) = $serviceArr;
 	    $apiClassName = 'Api_' . ucfirst($apiClassName);
-        $action = lcfirst($action);
+        // $action = lcfirst($action);
 
         if (!class_exists($apiClassName)) {
             throw new PhalApi_Exception_BadRequest(
