@@ -69,6 +69,8 @@ class PhalApi_Helper_ApiDesc {
             }
 
             $returnCommentArr = explode(' ', substr($comment, $pos + 8));
+            //将数组中的空值过滤掉，同时将需要展示的值返回
+            $returnCommentArr = array_values(array_filter($returnCommentArr));
             if (count($returnCommentArr) < 2) {
                 continue;
             }
