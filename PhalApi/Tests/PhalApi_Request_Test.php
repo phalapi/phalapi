@@ -96,4 +96,23 @@ class PhpUnderControl_PhalApiRequest_Test extends PHPUnit_Framework_TestCase
     {
         $this->coreRequest->getByRule(array('name' => 'requireVal', 'require' => true));
     }
+
+    public function testGetHeader()
+    {
+        $_SERVER['HTTP_ACCEPT'] = 'application/text';
+        $_SERVER['HTTP_ACCEPT_CHARSET'] = 'utf-8';
+        //$_SERVER['PHP_AUTH_DIGEST'] = 'xxx';
+
+        $request = new PhalApi_Request();
+        $this->assertEquals('application/text', $request->getHeader('Accept'));
+        $this->assertEquals('utf-8', $request->getHeader('Accept-Charset'));
+        //$this->assertEquals('xxx', $request->getHeader('AUTHORIZATION'));
+
+        $this->assertEquals('123', $request->getHeader('no-this-key', '123'));
+        $this->assertSame(NULL, $request->getHeader('no-this-key'));
+
+        unset($_SERVER['HTTP_ACCEPT']);
+        unset($_SERVER['HTTP_ACCEPT_CHARSET']);
+        unset($_SERVER['PHP_AUTH_DIGEST']);
+    }
 }
