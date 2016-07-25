@@ -702,11 +702,7 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
      *
      * @return int
      */
-    function count($column = ""){
-        if(!$column){
-            $this->execute();
-            return count($this->data);
-        }
+    function count($column = "*"){
         return $this->aggregation("COUNT($column)");
     }
 
