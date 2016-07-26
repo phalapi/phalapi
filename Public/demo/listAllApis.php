@@ -107,38 +107,37 @@ function listDir($dir) {
 <head>
     <meta charset="utf-8">
     <title><?php echo $apiDirName; ?> - 在线接口列表</title>
-    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://staticfile.qnssl.com/semantic-ui/2.1.6/semantic.min.css">
+    <link rel="stylesheet" href="https://staticfile.qnssl.com/semantic-ui/2.1.6/components/table.min.css">
+    <link rel="stylesheet" href="https://staticfile.qnssl.com/semantic-ui/2.1.6/components/container.min.css">
+    <link rel="stylesheet" href="https://staticfile.qnssl.com/semantic-ui/2.1.6/components/message.min.css">
 </head>
 <body>
 <br />
-<div class="container">
-<div class="jumbotron">
-    <div class="page-header">
-        <h1>接口列表</h1>
+<div class="ui text container" style="max-width: none !important;">
+    <div class="ui floating message">
+        <h1 class="ui header">接口列表</h1>
+        <table class="ui green celled striped table">
+            <thead>
+                <tr>
+                    <th>#</th><th>接口服务</th><th>接口名称</th><th>更多说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $num = 1;
+                $uri = str_ireplace('listAllApis.php', 'checkApiParams.php', $_SERVER['REQUEST_URI']);
+
+                foreach ($allApiS as $key => $item) {
+                    $link = $uri . '?service=' . $item['service'];
+                    $NO = $num++;
+                    echo "<tr><td>{$NO}</td><td><a href=\"$link\" target='_blank'>{$item['service']}</a></td><td>{$item['title']}</td><td>{$item['desc']}</td></tr>";
+                }
+                ?>
+            </tbody>
+        </table>
+        <p>&copy; Powered  By <a href="http://www.phalapi.net/" target="_blank">PhalApi <?php echo PHALAPI_VERSION; ?></a> <p>
     </div>
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th>#</th><th>接口服务</th><th>接口名称</th><th>更多说明</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-        $num = 1;
-        $uri = str_ireplace('listAllApis.php', 'checkApiParams.php', $_SERVER['REQUEST_URI']);
-
-        foreach ($allApiS as $key => $item) {
-            $link = $uri . '?service=' . $item['service'];
-            $NO = $num++;
-            echo "<tr><td>{$NO}</td><td><a href=\"$link\" target='_blank'>{$item['service']}</a></td><td>{$item['title']}</td><td>{$item['desc']}</td></tr>";
-        }
-        ?>
-        </tbody>
-    </table>
 </div>
-
-<p>&copy; Powered  By <a href="http://www.phalapi.net/" target="_blank">PhalApi <?php echo PHALAPI_VERSION; ?></a> <p>
-</div>
-
 </body>
 </html>

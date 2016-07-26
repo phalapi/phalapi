@@ -6,30 +6,38 @@ echo <<<EOT
     <meta charset="utf-8">
     <title>{$service} - 在线接口文档</title>
 
-    <!-- 新 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://staticfile.qnssl.com/semantic-ui/2.1.6/semantic.min.css">
+    <link rel="stylesheet" href="https://staticfile.qnssl.com/semantic-ui/2.1.6/components/table.min.css">
+    <link rel="stylesheet" href="https://staticfile.qnssl.com/semantic-ui/2.1.6/components/container.min.css">
+    <link rel="stylesheet" href="https://staticfile.qnssl.com/semantic-ui/2.1.6/components/message.min.css">
+    <link rel="stylesheet" href="https://staticfile.qnssl.com/semantic-ui/2.1.6/components/label.min.css">
 
-    <!-- Bootstrap -->
-    <!-- <link href="/css/bootstrap.min.css" rel="stylesheet"> -->
 </head>
 
 <body>
 
 <br /> 
 
-<div class="container">
-
-<div class="jumbotron">
+    <div class="ui text container" style="max-width: none !important;">
+        <div class="ui floating message">
 
 EOT;
 
-echo "<h2>接口：$service</h2><br/><p><strong>$description</strong><br/>$descComment</p><br/>";
+echo "<h2 class='ui header'>接口：$service</h2><br/> <span class='ui teal tag label'>$description</span>";
 
 echo <<<EOT
-<h3>接口参数</h3>
-<table class="table table-striped" >
-<thead>
-<tr><th>参数名字</th><th>类型</th><th>是否必须</th><th>默认值</th><th>其他</th><th>说明</th></tr>
+            <div class="ui raised segment">
+                <span class="ui red ribbon label">接口说明</span>
+                <div class="ui message">
+                    <p>{$descComment}</p>
+                </div>
+            </div>
+            <h3>接口参数</h3>
+            <table class="ui red celled striped table" >
+                <thead>
+                    <tr><th>参数名字</th><th>类型</th><th>是否必须</th><th>默认值</th><th>其他</th><th>说明</th></tr>
+                </thead>
+                <tbody>
 EOT;
 
 foreach ($rules as $key => $rule) {
@@ -64,14 +72,14 @@ foreach ($rules as $key => $rule) {
 }
 
 echo <<<EOT
-</table>
-
-<br>
-
-<h3>返回结果</h3>
-<table class="table table-striped" >
-<thead>
-<tr><th>返回字段</th><th>类型</th><th>说明</th></tr>
+                </tbody>
+            </table>
+            <h3>返回结果</h3>
+            <table class="ui green celled striped table" >
+                <thead>
+                    <tr><th>返回字段</th><th>类型</th><th>说明</th></tr>
+                </thead>
+                <tbody>
 EOT;
 
 foreach ($returns as $item) {
@@ -85,21 +93,14 @@ foreach ($returns as $item) {
 $version = PHALAPI_VERSION;
 
 echo <<<EOT
-
-</table>
-
-<br/>
-
-    <div role="alert" class="alert alert-info">
-      <strong>温馨提示：</strong> 此接口参数列表根据后台代码自动生成，可将 ?service= 改成您需要查询的接口/服务
+            </tbody>
+        </table>
+        <div class="ui blue message">
+          <strong>温馨提示：</strong> 此接口参数列表根据后台代码自动生成，可将 ?service= 改成您需要查询的接口/服务
+        </div>
+        <p>&copy; Powered  By <a href="http://www.phalapi.net/" target="_blank">PhalApi {$version}</a> <p>
+        </div>
     </div>
-    
-</div>
-
-<p>&copy; Powered  By <a href="http://www.phalapi.net/" target="_blank">PhalApi {$version}</a> <p>
-
-</div> <!-- /container -->
-
 </body>
 </html>
 EOT;
