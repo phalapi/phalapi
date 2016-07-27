@@ -275,6 +275,11 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */ {
             $this->_pdos[$dbKey] = NULL;
             unset($this->_pdos[$dbKey]);
         }
+
+        foreach ($this->_notorms as $notormKey => $notorm) {
+            $this->_notorms[$notormKey] = NULL;
+            unset($this->_notorms[$notormKey]);
+        }
     }
 
     /**

@@ -272,4 +272,20 @@ class PhpUnderControl_PhalApiDBNotORM_Test extends PHPUnit_Framework_TestCase
         $rs = $this->notorm->user->where('id', 4040404)->fetchAll();
         $this->assertEquals(array(), $rs);
     }
+
+    public function testDisConnect()
+    {
+        // first, none to disconnect
+        $this->notorm->disconnect();
+
+        // second, disconnect after some query
+        $rs = $this->notorm->user->where('id', 4040404)->fetch();
+        $this->notorm->disconnect();
+
+        // again
+        $rs = $this->notorm->user->where('id', 4040404)->fetch();
+        $this->notorm->disconnect();
+
+        $this->notorm->disconnect();
+    }
 }
