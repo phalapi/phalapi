@@ -150,7 +150,10 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
         return $return;
     }
 
-    protected function query($query, $parameters){
+    /**
+     * 放开限制 protected -> public @scott 反馈
+     */
+    public function query($query, $parameters){
         $debugTrace = array();
 
         self::$queryTimes++;
