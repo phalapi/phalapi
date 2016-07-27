@@ -335,6 +335,16 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
         if(!is_array($data)){
             return $return;
         }
+
+        // #56 postgresql无法获取新增数据的主键ID @ clov4r-连友 20160720
+        if ($this->notORM->driver == "pgsql") {
+            if (!isset($data[$this->primary])) {
+                $rs = $this->query("SELECT LASTVAL() AS id", $this->parameters)->fetch();
+                $data[$this->primary] = $rs['id'];
+                $this->sequence = $rs['id'];
+            }
+        }
+
         if(!isset($data[$this->primary]) && ($id = $this->notORM->connection->lastInsertId($this->notORM->structure->getSequence($this->table)))){
             $data[$this->primary] = $id;
         }
