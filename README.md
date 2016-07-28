@@ -95,7 +95,7 @@ http://demo.phalapi.net/demo/checkApiParams.php
 ```
 如：http://demo.phalapi.net/demo/checkApiParams.php ，访问效果如下：
 
- ![mahua](http://7qnay5.com1.z0.glb.clouddn.com/20150613.png)
+ ![mahua](http://7xiz2f.com1.z0.glb.clouddn.com/index20160728224002.jpg)
  因此，接口所需要的参数，对于接口开发人员，也只是简单配置一下参数规则，便可以轻松获取。
  
 #[赞！]接口单元测试
