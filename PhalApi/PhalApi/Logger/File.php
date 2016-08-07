@@ -65,6 +65,8 @@ class PhalApi_Logger_File extends PhalApi_Logger {
     }
 
     public function log($type, $msg, $data) {
+        $this->init();
+
         $msgArr = array();
         $msgArr[] = date($this->dateFormat, time());
         $msgArr[] = strtoupper($type);
