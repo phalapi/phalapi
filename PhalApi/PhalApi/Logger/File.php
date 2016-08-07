@@ -22,16 +22,17 @@
 
 class PhalApi_Logger_File extends PhalApi_Logger {
 
+    /** 外部传参 **/
     protected $logFolder;
     protected $dateFormat;
-    protected $fileDate;
 
+    /** 内部状态 **/
+    protected $fileDate;
     protected $logFile;
 
     public function __construct($logFolder, $level, $dateFormat = 'Y-m-d H:i:s') {
         $this->logFolder = $logFolder;
         $this->dateFormat = $dateFormat;
-        $this->fileDate = date('Ymd', time());
 
         parent::__construct($level);
         
@@ -39,17 +40,24 @@ class PhalApi_Logger_File extends PhalApi_Logger {
     }
 
     protected function init() {
+        // 跨天时新建日记文件
+        $curFileDate = date('Ymd', time());
+        if ($this->fileDate == $curFileDate) {
+            return;
+        }
+        $this->fileDate = $curFileDate;
+
+        // 每月一个目录
         $folder = $this->logFolder
             . DIRECTORY_SEPARATOR . 'log'
-            . DIRECTORY_SEPARATOR . date('Ym', time());
-
+            . DIRECTORY_SEPARATOR . substr($this->fileDate, 0, -2);
         if (!file_exists($folder)) {
             mkdir($folder . '/', 0777, TRUE);
         }
 
+        // 每天一个文件
         $this->logFile = $folder
-            . DIRECTORY_SEPARATOR . date('Ymd', time()) . '.log';
-
+            . DIRECTORY_SEPARATOR . $this->fileDate . '.log';
         if (!file_exists($this->logFile)) {
             touch($this->logFile);
             chmod($this->logFile, 0777);
@@ -57,11 +65,6 @@ class PhalApi_Logger_File extends PhalApi_Logger {
     }
 
     public function log($type, $msg, $data) {
-        //对文件时间进行处理,当时间超过一天重新创建一个log文件
-        if ($this->fileDate != date('Ymd', time())) {
-            $this->init();
-            $this->fileDate = date('Ymd', time());
-        }
         $msgArr = array();
         $msgArr[] = date($this->dateFormat, time());
         $msgArr[] = strtoupper($type);

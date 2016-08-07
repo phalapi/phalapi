@@ -42,6 +42,9 @@ class PhpUnderControl_PhalApiLoggerFile_Test extends PHPUnit_Framework_TestCase
     {
         $this->coreLoggerFile->log('debug', 'debug from log', '');
         $this->coreLoggerFile->log('task', 'something test for task', array('from' => 'phpunit'));
+
+        $this->assertLogExists('debug from log');
+        $this->assertLogExists('something test for task');
     }
 
     public function testDebug()
@@ -51,6 +54,11 @@ class PhpUnderControl_PhalApiLoggerFile_Test extends PHPUnit_Framework_TestCase
         $this->coreLoggerFile->debug("This 
             should not be 
             multi line");
+
+        $this->assertLogExists('something debug here');
+        $this->assertLogExists('This');
+        $this->assertLogExists('should not be \n');
+        $this->assertLogExists('multi');
     }
 
     public function testInfo()
@@ -58,10 +66,29 @@ class PhpUnderControl_PhalApiLoggerFile_Test extends PHPUnit_Framework_TestCase
         $this->coreLoggerFile->info('something info here', 'phpunit');
         $this->coreLoggerFile->info('something info here', 2014);
         $this->coreLoggerFile->info('something info here', true);
+
+        $this->assertLogExists('something info here');
+        $this->assertLogExists('phpunit');
+        $this->assertLogExists('2014');
+        $this->assertLogExists('1');
     }
 
     public function testError()
     {
         $this->coreLoggerFile->error('WTF!');
+
+        $this->assertLogExists('WTF!');
+    }
+
+    protected function assertLogExists($content)
+    {
+        $logFile = implode(DIRECTORY_SEPARATOR, array(
+            dirname(__FILE__) . '/Runtime',
+            'log',
+            date('Ym', time()),
+            date('Ymd', time()) . '.log'
+        ));
+
+        $this->assertContains($content, file_get_contents($logFile));
     }
 }
