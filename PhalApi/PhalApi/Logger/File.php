@@ -29,26 +29,27 @@ class PhalApi_Logger_File extends PhalApi_Logger {
     protected $logFile;
 
     public function __construct($logFolder, $level, $dateFormat = 'Y-m-d H:i:s') {
+        $runTime = time();
         $this->logFolder = $logFolder;
         $this->dateFormat = $dateFormat;
-        $this->fileDate = date('Ymd', time());
+        $this->fileDate = date('Ymd', $runTime);
 
         parent::__construct($level);
         
-        $this->init();
+        $this->init($runTime);
     }
 
-    protected function init() {
+    protected function init($runTime) {
         $folder = $this->logFolder
             . DIRECTORY_SEPARATOR . 'log'
-            . DIRECTORY_SEPARATOR . date('Ym', time());
+            . DIRECTORY_SEPARATOR . date('Ym', $runTime);
 
         if (!file_exists($folder)) {
             mkdir($folder . '/', 0777, TRUE);
         }
 
         $this->logFile = $folder
-            . DIRECTORY_SEPARATOR . date('Ymd', time()) . '.log';
+            . DIRECTORY_SEPARATOR . date('Ymd', $runTime) . '.log';
 
         if (!file_exists($this->logFile)) {
             touch($this->logFile);
@@ -57,13 +58,14 @@ class PhalApi_Logger_File extends PhalApi_Logger {
     }
 
     public function log($type, $msg, $data) {
+        $runTime = time();
         //对文件时间进行处理,当时间超过一天重新创建一个log文件
-        if ($this->fileDate != date('Ymd', time())) {
-            $this->init();
-            $this->fileDate = date('Ymd', time());
+        if ($this->fileDate != date('Ymd', $runTime)) {
+            $this->init($runTime);
+            $this->fileDate = date('Ymd', $runTime);
         }
         $msgArr = array();
-        $msgArr[] = date($this->dateFormat, time());
+        $msgArr[] = date($this->dateFormat, $runTime);
         $msgArr[] = strtoupper($type);
         $msgArr[] = str_replace(PHP_EOL, '\n', $msg);
         if ($data !== NULL) {
