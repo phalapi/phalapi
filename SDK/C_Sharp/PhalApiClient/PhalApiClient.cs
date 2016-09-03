@@ -157,7 +157,7 @@ namespace PhalApiClientSDK
     
 	    protected String doRequest(String requestUrl, Dictionary<String, String> paramsList, int timeoutMs) {
 		    String result = null;
-            Encoding encoding = Encoding.Default;
+            Encoding encoding = Encoding.UTF8;
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(requestUrl);
 
