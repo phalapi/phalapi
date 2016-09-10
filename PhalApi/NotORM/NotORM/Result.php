@@ -339,17 +339,21 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
             return $return;
         }
 
-        // #56 postgresql无法获取新增数据的主键ID @ clov4r-连友 20160720
+        // #56 postgresql无法获取新增数据的主键ID @ clov4r-连友 201608
         if ($this->notORM->driver == "pgsql") {
             if (!isset($data[$this->primary])) {
-                $rs = $this->query("SELECT LASTVAL() AS id", $this->parameters)->fetch();
-                $data[$this->primary] = $rs['id'];
-                $this->sequence = $rs['id'];
+                //获取序列名称
+                $pgss = $this->query("SELECT pg_get_serial_sequence('" . $this->table . "', '" . $this->primary . "') pgss", $this->parameters)->fetch();
+                if (isset($pgss['pgss'])) {
+                    $rs                   = $this->query("select last_value id from " . $pgss['pgss'], $this->parameters)->fetch();
+                    $data[$this->primary] = $rs['id'];
+                    $this->sequence       = $rs['id'];
+                }
             }
-        }
-
-        if(!isset($data[$this->primary]) && ($id = $this->notORM->connection->lastInsertId($this->notORM->structure->getSequence($this->table)))){
-            $data[$this->primary] = $id;
+        } else {
+            if (!isset($data[$this->primary]) && ($id = $this->notORM->connection->lastInsertId($this->notORM->structure->getSequence($this->table)))) {
+                $data[$this->primary] = $id;
+            }
         }
         return new $this->notORM->rowClass($data, $this);
     }
