@@ -63,6 +63,22 @@ http://demo.phalapi.net/?service=Demo.None
     "msg": "非法请求：服务Demo.None不存在"
 }
 ```
+
+##在线接口文档（自动生成）
+按框架指定的格式完成接口代码编写后，PhalApi会自动生成在线接口列表文档和在线接口详情文档，以方便客户端实时查看最新的接口参数。  
+1、在线接口列表文档
+访问对应项目路径下的```listAllApis.php```可查看此项目下全部的接口服务，如访问：  
+```
+http://demo.phalapi.net/listAllApis.php
+```
+![](http://7xiz2f.com1.z0.glb.clouddn.com/QQ20160914230528.jpg)
+2、在线接口详情文档
+访问对应项目路径下的```checkApiParams.php```，并传递```?service=xxx.xxx```参数即可查看具体的接口文档，如访问：
+```
+http://demo.phalapi.net/demo/checkApiParams.php?service=Default.Index
+```
+![mahua](http://7xiz2f.com1.z0.glb.clouddn.com/index20160728224002.jpg)
+
 ##快速开发
 1、编写一个```Hello World!```接口  
 以下代码需要放置到```./Demo/Api/Welcome.php```这个对应的接口类文件中：  
@@ -89,21 +105,6 @@ http://localhost/Public/demo/?service=Welcome.Say
 ```
 4、运行截图  
 ![](http://webtools.qiniudn.com/20150111.jpg)
-
-##在线接口文档（自动生成）
-按框架指定的格式完成接口代码编写后，PhalApi会自动生成在线接口列表文档和在线接口详情文档，以方便客户端实时查看最新的接口参数。  
-1、在线接口列表文档
-访问对应项目路径下的```listAllApis.php```可查看此项目下全部的接口服务，如访问：  
-```
-http://demo.phalapi.net/listAllApis.php
-```
-![](http://7xiz2f.com1.z0.glb.clouddn.com/QQ20160914230528.jpg)
-2、在线接口详情文档
-访问对应项目路径下的```checkApiParams.php```，并传递```?service=xxx.xxx```参数即可查看具体的接口文档，如访问：
-```
-http://demo.phalapi.net/demo/checkApiParams.php?service=Default.Index
-```
-![mahua](http://7xiz2f.com1.z0.glb.clouddn.com/index20160728224002.jpg)
 
 ##接口单元测试
 _不能被测试的代码，不是好代码。_   
@@ -138,27 +139,7 @@ _不能被测试的代码，不是好代码。_
 
 对于框架的核心代码，我们也一直坚持着单元测试，其核心框架代码的单元测试覆盖率可高达96%以上。
   
-##基于接口查询语言（ASL）的SDK包支持
-目前已提供的SDK有：  
- + [JAVA版](http://www.phalapi.net/wikis/%5B6.2%5D-SDK%E5%8C%85%EF%BC%88JAVA%E7%89%88%EF%BC%89.html)
- + [Objective-c版](http://www.phalapi.net/wikis/%5B6.4%5D-SDK%E5%8C%85%EF%BC%88object-c%E7%89%88%EF%BC%89.html)
- + [PHP版](http://www.phalapi.net/wikis/%5B6.3%5D-SDK%E5%8C%85%EF%BC%88PHP%E7%89%88%EF%BC%89.html)
- + C#版
- + JS版
- + Golang版
- + React-Native版
- + [Ruby版](http://www.phalapi.net/wikis/%5B6.6%5D-SDK%E5%8C%85%EF%BC%88Ruby%E7%89%88%EF%BC%89.html)
 
-基于接口查询语言，可用一句话来描述接口请求，如JAVA的请求示例：  
-```
-PhalApiClientResponse response = PhalApiClient.create()
-       .withHost("http://demo.phalapi.net/")
-       .withService("Default.Index")          //接口服务
-       .withParams("username", "dogstar")     //接口参数
-       .withTimeout(3000)                     //接口超时
-       .request();
-```
-  
 ##主要目录结构
 ```
 .
@@ -189,6 +170,27 @@ PhalApiClientResponse response = PhalApiClient.create()
 以下为一示例目录结构图解
 ![](http://7qnay5.com1.z0.glb.clouddn.com/QQ-20151015214456.jpg)   
 
+##基于接口查询语言（ASL）的SDK包支持
+目前已提供的SDK有：  
+ + [JAVA版](http://www.phalapi.net/wikis/%5B6.2%5D-SDK%E5%8C%85%EF%BC%88JAVA%E7%89%88%EF%BC%89.html)
+ + [Objective-c版](http://www.phalapi.net/wikis/%5B6.4%5D-SDK%E5%8C%85%EF%BC%88object-c%E7%89%88%EF%BC%89.html)
+ + [PHP版](http://www.phalapi.net/wikis/%5B6.3%5D-SDK%E5%8C%85%EF%BC%88PHP%E7%89%88%EF%BC%89.html)
+ + C#版
+ + JS版
+ + Golang版
+ + React-Native版
+ + [Ruby版](http://www.phalapi.net/wikis/%5B6.6%5D-SDK%E5%8C%85%EF%BC%88Ruby%E7%89%88%EF%BC%89.html)
+
+基于接口查询语言，可用一句话来描述接口请求，如JAVA的请求示例：  
+```
+PhalApiClientResponse response = PhalApiClient.create()
+       .withHost("http://demo.phalapi.net/")
+       .withService("Default.Index")          //接口服务
+       .withParams("username", "dogstar")     //接口参数
+       .withTimeout(3000)                     //接口超时
+       .request();
+```
+  
 ##PhalApi-Library扩展类库
 PhalApi框架扩展类库，致力于与开源项目一起提供高效便捷的解决方案，更多请查看：[PhalApi-Library](http://git.oschina.net/dogstar/PhalApi-Library)。
 
