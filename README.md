@@ -11,8 +11,10 @@ PhalApi，简称π框架，是一个PHP轻量级开源接口框架，专注于�
  
 ##导读
 本文内容主要分为三部分，即：  
-
-
++ Part1：安装、在线体验与在线接口文档
++ Part2：快速开发、单元测试、目录结构、SDK包和Library扩展类库
++ Part3：背景回顾、贡献者、许可与更新日记
+  
 ##1-1、安装
 + 请从release分支拉取发布版本的代码
 + 推荐在Linux服务器上进行开发
@@ -173,7 +175,7 @@ _不能被测试的代码，不是好代码。_
 以下为一示例目录结构图解
 ![](http://7qnay5.com1.z0.glb.clouddn.com/QQ-20151015214456.jpg)   
 
-##2-3、基于接口查询语言（ASL）的SDK包支持
+##2-4、基于接口查询语言（ASL）的SDK包支持
 目前已提供的SDK有：  
  + [JAVA版](http://www.phalapi.net/wikis/%5B6.2%5D-SDK%E5%8C%85%EF%BC%88JAVA%E7%89%88%EF%BC%89.html)
  + [Objective-c版](http://www.phalapi.net/wikis/%5B6.4%5D-SDK%E5%8C%85%EF%BC%88object-c%E7%89%88%EF%BC%89.html)
@@ -194,7 +196,7 @@ PhalApiClientResponse response = PhalApiClient.create()
        .request();
 ```
   
-##2-4、PhalApi-Library扩展类库
+##2-5、PhalApi-Library扩展类库
 PhalApi框架扩展类库，致力于与开源项目一起提供高效便捷的解决方案，更多请查看：[PhalApi-Library](http://git.oschina.net/dogstar/PhalApi-Library)。
 
 ##3-1、背景回顾
