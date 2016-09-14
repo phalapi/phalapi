@@ -4,6 +4,7 @@
 PhalApi，简称π框架，是一个PHP轻量级开源接口框架，专注于接口开发，致力让接口开发更简单。它：  
 + 致力于快速、稳定、持续交付有价值的接口服务
 + 关注于测试驱动开发、领域驱动设计、极限编程、敏捷开发
++ 有众多的扩展类库，与更多开源项目一起提供企业级的解决方案
 + 支持HTTP、SOAP和RPC协议，可用于快速搭建微服务、RESTful接口或web services
    
 此框架代码开源、产品开源、思想开源，请放心使用。更多内容，请访问[www.phalapi.net](http://www.phalapi.net)。再次感谢**开源中国**、各位贡献者和同学。  
@@ -202,7 +203,28 @@ PhalApiClientResponse response = PhalApiClient.create()
 
 ##加入我们
 显然，这只是一个开始，我们要走的路还很长。这些也不是一个人可以完成的。即使可以，也需要很长一段时间。  
+  
 在一个人还年轻的时候，我觉得，就应该着手致力做一些对社会有意义的事情，一如开源。欢迎&期待你的加入！   
+在加入前，可先查看[致框架贡献者：加入PhalApi开源指南](http://www.phalapi.net/wikis/%5B5.8%5D-%E8%87%B4%E6%A1%86%E6%9E%B6%E8%B4%A1%E7%8C%AE%E8%80%85%EF%BC%9A%E5%8A%A0%E5%85%A5PhalApi%E5%BC%80%E6%BA%90%E6%8C%87%E5%8D%97.html)。  
+  
+感谢以下贡献者（排名不分先后）：  
++ 文振熙（喵了个咪）
++ 火柴
++ George
++ zz.guo（郭了个治浩）
++ 黄苗笋
++ 爱编程的小逗比
++ Aevit
++ Summer
++ 冰霜
++ 大蝉
++ 小艾
++ Scott
++ dogstar
++ ... ...
+  
+##许可
+PhalApi是开源框架，承诺永远免费，使用GPL协议，更多请访问[许可](http://www.phalapi.net/license)。  
 
 ##更新日记
 此 [更新日记](http://www.phalapi.net/wikis/%5B5.6%5D-%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AE%B0.html) ，主要是为了说明，我们一直在努力更新和维护。
