@@ -190,7 +190,7 @@ PhalApiClientResponse response = PhalApiClient.create()
 ![](http://7qnay5.com1.z0.glb.clouddn.com/QQ-20151015214456.jpg)   
 
 ##PhalApi-Library扩展类库
-PhalApi框架扩展类库，致力于与开源项目一起提供企业级的解决方案，更多请查看：[PhalApi-Library](http://git.oschina.net/dogstar/PhalApi-Library)。
+PhalApi框架扩展类库，致力于与开源项目一起提供高效便捷的解决方案，更多请查看：[PhalApi-Library](http://git.oschina.net/dogstar/PhalApi-Library)。
 
 ##背景回顾
 过去十年，是互联网时代；如今的十年，是移动时代。  
