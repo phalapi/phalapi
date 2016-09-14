@@ -140,14 +140,14 @@ _不能被测试的代码，不是好代码。_
   
 ##基于接口查询语言（ASL）的SDK包支持
 目前已提供的SDK有：  
- + JAVA版
- + Objective-c版
- + PHP版
+ + [JAVA版](![输入图片说明](http://git.oschina.net/uploads/images/2016/0914/234534_f8f91ebf_121026.png "在这里输入图片标题"))
+ + [Objective-c版](http://www.phalapi.net/wikis/%5B6.4%5D-SDK%E5%8C%85%EF%BC%88object-c%E7%89%88%EF%BC%89.html)
+ + [PHP版](http://www.phalapi.net/wikis/%5B6.3%5D-SDK%E5%8C%85%EF%BC%88PHP%E7%89%88%EF%BC%89.html)
  + C#版
  + JS版
  + Golang版
  + React-Native版
- + Ruby版
+ + [Ruby版](http://www.phalapi.net/wikis/%5B6.6%5D-SDK%E5%8C%85%EF%BC%88Ruby%E7%89%88%EF%BC%89.html)
 
 基于接口查询语言，可用一句话来描述接口请求，如JAVA的请求示例：  
 ```
@@ -188,6 +188,9 @@ PhalApiClientResponse response = PhalApiClient.create()
 
 以下为一示例目录结构图解
 ![](http://7qnay5.com1.z0.glb.clouddn.com/QQ-20151015214456.jpg)   
+
+##PhalApi-Library扩展类库
+PhalApi框架扩展类库，致力于与开源项目一起提供企业级的解决方案，更多请查看：[PhalApi-Library](http://git.oschina.net/dogstar/PhalApi-Library)。
 
 ##背景回顾
 过去十年，是互联网时代；如今的十年，是移动时代。  
