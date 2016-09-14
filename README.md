@@ -14,7 +14,7 @@ PhalApi，简称π框架，是一个PHP轻量级开源接口框架，专注于�
 + 推荐在Linux服务器上进行开发
 + 建议PHP >= 5.3.3
 
-将代码下载解压到服务器后即可，然后打开浏览器，访问安装向导（推荐使用nginx，并将根目录设置为Public）：  
+将代码下载解压到服务器后即可，然后打开浏览器，访问安装向导（推荐使用nginx，并将根目录设置为```Public```）：  
 ```
 http://localhost/PhalApi/Public/install/
 ```
@@ -64,7 +64,7 @@ http://demo.phalapi.net/?service=Demo.None
 ```
 ##快速开发
 1、编写一个```Hello World!```接口  
-以下代码需要放置到./Demo/Api/Welcome.php这个对应的接口类文件中：  
+以下代码需要放置到```./Demo/Api/Welcome.php```这个对应的接口类文件中：  
 ```
 <?php
 class Api_Welcome extends PhalApi_Api {
@@ -77,7 +77,7 @@ class Api_Welcome extends PhalApi_Api {
 }
 ```
 2、访问接口  
-接口访问的格式为：接口域名 + 入口路径 + ?service=XXX.XXX，此示例中对应的链接为：
+接口访问的格式为：```接口域名 + 入口路径 + ?service=XXX.XXX```，此示例中对应的链接为：
 ```
 http://localhost/Public/demo/?service=Welcome.Say
 ```
