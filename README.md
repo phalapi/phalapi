@@ -1,6 +1,6 @@
 ![apic](http://webtools.qiniudn.com/master-LOGO-20150410_50.jpg)  
 
-##[PhalApi(π框架) - V1.3.5](http://www.phalapi.net)  
+##[PhalApi（π框架） - V1.3.5](http://www.phalapi.net)  
 PhalApi，简称π框架，是一个PHP轻量级开源接口框架，专注于接口开发，致力让接口开发更简单。它：  
 + 致力于快速、稳定、持续交付有价值的接口服务
 + 关注于测试驱动开发、领域驱动设计、极限编程、敏捷开发
