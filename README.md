@@ -218,19 +218,19 @@ PhalApi框架扩展类库，致力于与开源项目一起提供高效便捷的�
 在加入前，可先查看[致框架贡献者：加入PhalApi开源指南](http://www.phalapi.net/wikis/%5B5.8%5D-%E8%87%B4%E6%A1%86%E6%9E%B6%E8%B4%A1%E7%8C%AE%E8%80%85%EF%BC%9A%E5%8A%A0%E5%85%A5PhalApi%E5%BC%80%E6%BA%90%E6%8C%87%E5%8D%97.html)。  
   
 感谢以下贡献者（排名不分先后）：  
-+ 文振熙（喵了个咪）
-+ 火柴
-+ George
-+ zz.guo（郭了个治浩）
-+ 黄苗笋
-+ 爱编程的小逗比
 + Aevit
-+ Summer
-+ 冰霜
-+ 大蝉
-+ 小艾
-+ Scott
 + dogstar
++ George
++ Scott
++ Summer
++ zz.guo（郭了个治浩）
++ 小艾
++ 大蝉
++ 冰霜
++ 火柴
++ 黄苗笋
++ 文振熙（喵了个咪）
++ 爱编程的小逗比
 + ... ...
   
 ##3-3、许可
