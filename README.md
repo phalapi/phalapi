@@ -90,9 +90,17 @@ http://localhost/Public/demo/?service=Welcome.Say
 ![](http://webtools.qiniudn.com/20150111.jpg)
 
 ##在线接口文档（自动生成）
-按框架指定的格式完成接口代码编写后，PhalApi会自动生成在线接口文档，以方便客户端实时查看最新的接口参数。如访问：
+按框架指定的格式完成接口代码编写后，PhalApi会自动生成在线接口列表文档和在线接口详情文档，以方便客户端实时查看最新的接口参数。  
+1、在线接口列表文档
+访问对应项目路径下的```listAllApis.php```可查看此项目下全部的接口服务，如访问：  
 ```
-http://demo.phalapi.net/demo/checkApiParams.php
+http://demo.phalapi.net/listAllApis.php
+```
+![](http://7xiz2f.com1.z0.glb.clouddn.com/QQ20160914230528.jpg)
+2、在线接口详情文档
+访问对应项目路径下的```checkApiParams.php```，并传递```?service=xxx.xxx```参数即可查看具体的接口文档，如访问：
+```
+http://demo.phalapi.net/demo/checkApiParams.php?service=Default.Index
 ```
 ![mahua](http://7xiz2f.com1.z0.glb.clouddn.com/index20160728224002.jpg)
 
