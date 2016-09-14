@@ -10,7 +10,7 @@ PhalApi，简称π框架，是一个PHP轻量级开源接口框架，专注于�
 此框架代码开源、产品开源、思想开源，请放心使用。更多内容，请访问[www.phalapi.net](http://www.phalapi.net)。再次感谢**开源中国**、各位贡献者和同学。  
  
 
-##安装
+##1、安装
 + 请从release分支拉取发布版本的代码
 + 推荐在Linux服务器上进行开发
 + 建议PHP >= 5.3.3
@@ -33,7 +33,7 @@ http://localhost/PhalApi/Public/demo/
 ###框架升级
 我们以最大的努力，保证完美兼容性的升级。当框架有新版本需要升级，只需要简单一步：更新替换```./PhalApi/PhalApi```核心框架目录即可。
 
-##在线体验
+##2、在线体验
 1、默认的接口服务：  
 ```
 http://demo.phalapi.net/
@@ -64,7 +64,7 @@ http://demo.phalapi.net/?service=Demo.None
 }
 ```
 
-##在线接口文档（自动生成）
+##3、在线接口文档（自动生成）
 按框架指定的格式完成接口代码编写后，PhalApi会自动生成在线接口列表文档和在线接口详情文档，以方便客户端实时查看最新的接口参数。  
 1、在线接口列表文档
 访问对应项目路径下的```listAllApis.php```可查看此项目下全部的接口服务，如访问：  
@@ -79,7 +79,7 @@ http://demo.phalapi.net/demo/checkApiParams.php?service=Default.Index
 ```
 ![mahua](http://7xiz2f.com1.z0.glb.clouddn.com/index20160728224002.jpg)
 
-##快速开发
+##4、快速开发
 1、编写一个```Hello World!```接口  
 以下代码需要放置到```./Demo/Api/Welcome.php```这个对应的接口类文件中：  
 ```
@@ -106,7 +106,7 @@ http://localhost/Public/demo/?service=Welcome.Say
 4、运行截图  
 ![](http://webtools.qiniudn.com/20150111.jpg)
 
-##接口单元测试
+##5、接口单元测试
 _不能被测试的代码，不是好代码。_   
   
 在使用此框架进行接口开发时，我们强烈建议使用测试驱动开发，以便于不断积累形成接口测试体系，保证接口向前向后兼容。例如对接口```/?service=User.GetBaseInfo&userId=1```进行单元测试时，按： **构造-操作-检验（BUILD-OPERATE-CHECK）模式** ，即：  
@@ -140,7 +140,7 @@ _不能被测试的代码，不是好代码。_
 对于框架的核心代码，我们也一直坚持着单元测试，其核心框架代码的单元测试覆盖率可高达96%以上。
   
 
-##主要目录结构
+##6、主要目录结构
 ```
 .
 │
@@ -170,7 +170,7 @@ _不能被测试的代码，不是好代码。_
 以下为一示例目录结构图解
 ![](http://7qnay5.com1.z0.glb.clouddn.com/QQ-20151015214456.jpg)   
 
-##基于接口查询语言（ASL）的SDK包支持
+##7、基于接口查询语言（ASL）的SDK包支持
 目前已提供的SDK有：  
  + [JAVA版](http://www.phalapi.net/wikis/%5B6.2%5D-SDK%E5%8C%85%EF%BC%88JAVA%E7%89%88%EF%BC%89.html)
  + [Objective-c版](http://www.phalapi.net/wikis/%5B6.4%5D-SDK%E5%8C%85%EF%BC%88object-c%E7%89%88%EF%BC%89.html)
@@ -191,10 +191,10 @@ PhalApiClientResponse response = PhalApiClient.create()
        .request();
 ```
   
-##PhalApi-Library扩展类库
+##8、PhalApi-Library扩展类库
 PhalApi框架扩展类库，致力于与开源项目一起提供高效便捷的解决方案，更多请查看：[PhalApi-Library](http://git.oschina.net/dogstar/PhalApi-Library)。
 
-##背景回顾
+##9、背景回顾
 过去十年，是互联网时代；如今的十年，是移动时代。  
   
 在iOS、Android、Windows Phone、PC版、Web版等各种终端和各种垂直应用不停更新迭代的大背景下，显然很是需要一组乃至一系列稳定的后台接口支撑。接口，显然是如此重要，正如Jaroslav Tulach在《软件框架设计的艺术》一书中说的：_API就如同恒星，一旦出现，便与我们永恒共存。_    
@@ -206,7 +206,7 @@ PhalApi框架扩展类库，致力于与开源项目一起提供高效便捷的�
   
 如果您有接口项目开发的需要，又刚好需要一个PHP接口框架，欢迎使用！我们也争取致力于将我们的PhalApi维护成像恒星一样：```不断更新，保持生气；为接口负责，为开源负责！```  
 
-##加入我们
+##10、加入我们
 显然，这只是一个开始，我们要走的路还很长。这些也不是一个人可以完成的。即使可以，也需要很长一段时间。  
   
 在一个人还年轻的时候，我觉得，就应该着手致力做一些对社会有意义的事情，一如开源。欢迎&期待你的加入！   
@@ -228,8 +228,8 @@ PhalApi框架扩展类库，致力于与开源项目一起提供高效便捷的�
 + dogstar
 + ... ...
   
-##许可
+##11、许可
 PhalApi是开源框架，承诺永远免费，使用GPL协议，更多请访问[许可](http://www.phalapi.net/license)。  
 
-##更新日记
+##12、更新日记
 此 [更新日记](http://www.phalapi.net/wikis/%5B5.6%5D-%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AE%B0.html) ，主要是为了说明，我们一直在努力更新和维护。
