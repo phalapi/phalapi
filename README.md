@@ -140,7 +140,7 @@ _不能被测试的代码，不是好代码。_
   
 ##基于接口查询语言（ASL）的SDK包支持
 目前已提供的SDK有：  
- + [JAVA版](![输入图片说明](http://git.oschina.net/uploads/images/2016/0914/234534_f8f91ebf_121026.png "在这里输入图片标题"))
+ + [JAVA版](http://www.phalapi.net/wikis/%5B6.2%5D-SDK%E5%8C%85%EF%BC%88JAVA%E7%89%88%EF%BC%89.html)
  + [Objective-c版](http://www.phalapi.net/wikis/%5B6.4%5D-SDK%E5%8C%85%EF%BC%88object-c%E7%89%88%EF%BC%89.html)
  + [PHP版](http://www.phalapi.net/wikis/%5B6.3%5D-SDK%E5%8C%85%EF%BC%88PHP%E7%89%88%EF%BC%89.html)
  + C#版
