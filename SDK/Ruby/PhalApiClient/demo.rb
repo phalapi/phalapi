@@ -1,48 +1,54 @@
+# -*- encoding: utf-8 -*-
+
 require_relative 'phalapi_client'
 
 class MyFilter < PhalApi::ClientFilter
 end
 
-def show_res(response)
-    puts "response: #{response.ret}, #{response.data}, #{response.msg}"
+def break_case
+    puts "---------------------------------------------------"
+    puts "\n"
 end
 
+puts "Here we go ..."
+puts "Here we go ... ..."
+puts "Here we go !!!\n\n"
+
+puts "#case 1: 正常请求\n\n"
 a_client = PhalApi::Client.create.withHost('http://demo.phalapi.net')
 a_response = a_client.withService('Default.Index').withParams('username', 'dogstar').withTimeout(3000).request()
 
-puts a_response.ret, a_response.data, a_response.msg
+puts a_client.to_s + "\n" + a_response.to_s
+break_case
 
-puts "--------------------"
+puts "#case 2: 重置再请求\n\n"
+a_response = a_client.reset.withService('Default.Index').withParams('username', 'Nio').request()
 
-a_client = PhalApi::Client.create
-#a_client = PhalApi::Client.new
+puts a_client.to_s + "\n" + a_response.to_s
+break_case
 
-a_response = a_client.withHost('http://demo.phalapi.net').withService('Default.Index').withParams('username', 'dogstar').withParams('v', '1.3.0').request()
+puts "#case 3: 请求不存在的接口\n\n"
+a_response = a_client.reset.withService('XXXX.noThisMethod').request
 
-puts "--------------------"
+puts a_client.to_s + "\n" + a_response.to_s
+break_case
 
-#puts a_client
-show_res a_response
-
-puts "--------------------"
-
+puts "#case 4: 请求时缺少必要参数\n\n"
 begin
     a_response = a_client.reset.withParams('one').request
 rescue Exception => e  
-    puts e.message  
+    puts a_client.to_s
+    puts ""
+    puts "Exception: " + e.message  
 end
+break_case
 
-puts "--------------------"
-
+puts "#case 5: 自定义过滤器\n\n"
 a_response = a_client.reset.withFilter(MyFilter.new).withService('Default.Index').withParams('username', 'dogstar').request
-show_res a_response
 
-puts "--------------------"
+puts a_client.to_s + "\n" + a_response.to_s
+break_case
 
-a_response = a_client.reset.withService('XXXX.noThisMethod').request
-puts a_response.ret, a_response.data, a_response.msg
-show_res a_response
-
-puts 'we done!'
-puts 'we done!'
-puts 'we done!'
+puts 'We done!'
+puts 'We done!'
+puts 'We done!'

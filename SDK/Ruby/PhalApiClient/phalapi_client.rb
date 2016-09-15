@@ -35,7 +35,7 @@ module PhalApi
         end
 
         def method_missing(name, *args, &block)
-            raise "undefined method `#{name}' for PhalApi::Client" if "with" != name[0,4].downcase
+            raise "Undefined method `#{name}' for PhalApi::Client" if "with" != name[0,4].downcase
 
             param_name = name[4, name.length].downcase
 
@@ -51,7 +51,7 @@ module PhalApi
             when 'timeout'
                 @timeoutMs = args[0].to_i
             else 'params'
-                raise "you forget a value for param: #{args[0]} ?" if args[1] == nil #warm ?
+                raise "Did you forget a value for param: #{args[0]} ?" if args[1] == nil #warm ?
                 @params[args[0]] = args[1] 
             end
 
@@ -100,6 +100,18 @@ module PhalApi
                 return nil
             end
         end
+
+        def to_s
+            "[PhalApi::Client]\n" +
+            "Host:      #{@host}\n" + 
+            "Service:   #{@service}\n" +
+            "Params:    #{@params}\n" + 
+            "Timeout:   #{@timeoutMs} (ms)\n"
+        end
+
+        def to_str
+            to_s
+        end
     end
 
     # 接口返回结果
@@ -122,6 +134,16 @@ module PhalApi
             @msg
         end
 
+        def to_s
+            "[PhalApi::ClientResponse]\n" +
+            "Ret:       #{@ret}\n" +
+            "Data:      #{@data}\n" +
+            "Msg:       #{@msg}\n"
+        end
+
+        def to_str
+            to_s
+        end
     end
 
     # 接口结果解析器
@@ -129,14 +151,13 @@ module PhalApi
     # - 可用于不同接口返回格式的处理
     class ClientParser
         def parse(rs)
-            raise 'hey guys, you should rewrite PhalApi::ClientPaser.parse'
+            raise 'Hey guys, you should rewrite PhalApi::ClientPaser.parse'
         end
     end
 
     # JSON解析
     class ClientParserJson < PhalApi::ClientParser
         def parse(rs)
-            #puts "what we got: #{rs}"
             return PhalApi::ClientResponse.new(408, [], 'Request Timeout') if rs == nil
 
             begin
