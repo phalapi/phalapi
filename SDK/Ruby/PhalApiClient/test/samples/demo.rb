@@ -1,8 +1,9 @@
 # -*- encoding: utf-8 -*-
 
-require_relative 'phalapi_client'
+require 'rubygem'
+require 'phalapi'
 
-class MyFilter < PhalApi::ClientFilter
+class MyFilter < PhalApi::Client::Filter
 end
 
 def break_case

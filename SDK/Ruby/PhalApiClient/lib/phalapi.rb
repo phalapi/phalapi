@@ -2,6 +2,11 @@ require 'open-uri'
 require 'net/http'
 require 'json'
 
+require "phalapi/version"
+require "phalapi/client/response"
+require "phalapi/client/filter"
+require "phalapi/client/parser/json"
+
 # PhalApi 客户端SDK包(Ruby版)
 #
 # - 以接口查询语言（ASQL）的方式来实现接口请求
@@ -63,7 +68,7 @@ module PhalApi
 
             reset
 
-            @parser = PhalApi::ClientParserJson.new
+            @parser = PhalApi::Client::Parser::Json.new
         end
 
         def reset
@@ -84,7 +89,7 @@ module PhalApi
                 rs = do_request url, @params, @timeoutMs
                 return @parser.parse rs
             rescue Exception => e
-                return PhalApi::ClientResponse.new(408, [], e.message)
+                return PhalApi::Client::Response.new(408, [], e.message)
             end
         end
 
@@ -114,66 +119,8 @@ module PhalApi
         end
     end
 
-    # 接口返回结果
-    # 
-    # - 与接口返回的格式对应，即有：ret/data/msg
-    class ClientResponse
-        def initialize(ret, data = nil, msg = nil)
-            @ret, @data, @msg = ret, data, msg
-        end
 
-        def ret
-            @ret
-        end
 
-        def data
-            @data
-        end
-        
-        def msg
-            @msg
-        end
 
-        def to_s
-            "[PhalApi::ClientResponse]\n" +
-            "Ret:       #{@ret}\n" +
-            "Data:      #{@data}\n" +
-            "Msg:       #{@msg}\n"
-        end
-
-        def to_str
-            to_s
-        end
-    end
-
-    # 接口结果解析器
-    # 
-    # - 可用于不同接口返回格式的处理
-    class ClientParser
-        def parse(rs)
-            raise 'Hey guys, you should rewrite PhalApi::ClientPaser.parse'
-        end
-    end
-
-    # JSON解析
-    class ClientParserJson < PhalApi::ClientParser
-        def parse(rs)
-            return PhalApi::ClientResponse.new(408, [], 'Request Timeout') if rs == nil
-
-            begin
-                a_json = JSON.parse(rs)
-                return PhalApi::ClientResponse.new(a_json['ret'], a_json['data'], a_json['msg'])
-            rescue JSON::ParserError => e
-                return PhalApi::ClientResponse.new(500, [], 'Internal Server Error')
-            end
-        end
-    end
-
-    # 接口过滤器
-    class ClientFilter
-        def filter(service, *params)
-            #nothing here ...
-        end
-    end
 
 end
