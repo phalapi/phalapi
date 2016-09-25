@@ -1,11 +1,12 @@
-require 'test_helper'
+require_relative '../phalapi_client'
+require 'test/unit'
 
 # open class
 class PhalApi::Client
     attr_accessor :host, :service, :filter, :parser, :timeoutMs, :params
 end
 
-class PhalapiTest < Minitest::Test
+class ClientTest < Test::Unit::TestCase
     def setup
         @a_client = PhalApi::Client.create
     end
@@ -21,15 +22,15 @@ class PhalapiTest < Minitest::Test
     end
 
     def test_with_filter
-        @a_client.withFilter(PhalApi::Client::Filter.new)
+        @a_client.withFilter(PhalApi::ClientFilter.new)
 
-        assert_instance_of PhalApi::Client::Filter, @a_client.filter
+        assert_instance_of PhalApi::ClientFilter, @a_client.filter
     end
 
     def test_with_parser
-        @a_client.withParser(PhalApi::Client::Parser::Json.new)
+        @a_client.withParser(PhalApi::ClientParserJson.new)
 
-        assert_instance_of PhalApi::Client::Parser::Json, @a_client.parser
+        assert_instance_of PhalApi::ClientParserJson, @a_client.parser
     end
 
     def test_with_service
@@ -55,7 +56,7 @@ class PhalapiTest < Minitest::Test
     end
 
     def test_with_unexpected_params
-        assert_raises (RuntimeError) {
+        assert_raise (RuntimeError) {
             @a_client.withParams('mess')
         }
     end
@@ -78,16 +79,14 @@ class PhalapiTest < Minitest::Test
         a_response = @a_client.withHost('http://demo.phalapi.net').request
 
         assert_equal 200, a_response.ret
-        refute_nil a_response.data
-        #assert_not_nil a_response.data
+        assert_not_nil a_response.data
     end
 
     def test_normal_request
         a_response = @a_client.withHost('http://demo.phalapi.net').withService('Default.Index').withParams('username', 'dogstar').withParams('v', '1.3.0').request
 
         assert_equal 200, a_response.ret
-        refute_nil a_response.data
-        #assert_not_nil a_response.data
+        assert_not_nil a_response.data
     end
 
     def test_wrong_request
@@ -101,12 +100,4 @@ class PhalapiTest < Minitest::Test
 
         assert_equal 408, a_response.ret
     end
-
-  def test_that_it_has_a_version_number
-    refute_nil ::Phalapi::VERSION
-  end
-
-  def test_it_does_something_useful
-    assert true
-  end
 end

@@ -2,11 +2,6 @@ require 'open-uri'
 require 'net/http'
 require 'json'
 
-require "phalapi/version"
-require "phalapi/client/response"
-require "phalapi/client/filter"
-require "phalapi/client/parser/json"
-
 # PhalApi 客户端SDK包(Ruby版)
 #
 # - 以接口查询语言（ASQL）的方式来实现接口请求
@@ -40,7 +35,7 @@ module PhalApi
         end
 
         def method_missing(name, *args, &block)
-            raise "Undefined method `#{name}' for PhalApi::Client" if "with" != name[0,4].downcase
+            raise "undefined method `#{name}' for PhalApi::Client" if "with" != name[0,4].downcase
 
             param_name = name[4, name.length].downcase
 
@@ -56,7 +51,7 @@ module PhalApi
             when 'timeout'
                 @timeoutMs = args[0].to_i
             else 'params'
-                raise "Did you forget a value for param: #{args[0]} ?" if args[1] == nil #warm ?
+                raise "you forget a value for param: #{args[0]} ?" if args[1] == nil #warm ?
                 @params[args[0]] = args[1] 
             end
 
@@ -68,7 +63,7 @@ module PhalApi
 
             reset
 
-            @parser = PhalApi::Client::Parser::Json.new
+            @parser = PhalApi::ClientParserJson.new
         end
 
         def reset
@@ -89,7 +84,7 @@ module PhalApi
                 rs = do_request url, @params, @timeoutMs
                 return @parser.parse rs
             rescue Exception => e
-                return PhalApi::Client::Response.new(408, [], e.message)
+                return PhalApi::ClientResponse.new(408, [], e.message)
             end
         end
 
@@ -105,22 +100,59 @@ module PhalApi
                 return nil
             end
         end
+    end
 
-        def to_s
-            "[PhalApi::Client]\n" +
-            "Host:      #{@host}\n" + 
-            "Service:   #{@service}\n" +
-            "Params:    #{@params}\n" + 
-            "Timeout:   #{@timeoutMs} (ms)\n"
+    # 接口返回结果
+    # 
+    # - 与接口返回的格式对应，即有：ret/data/msg
+    class ClientResponse
+        def initialize(ret, data = nil, msg = nil)
+            @ret, @data, @msg = ret, data, msg
         end
 
-        def to_str
-            to_s
+        def ret
+            @ret
+        end
+
+        def data
+            @data
+        end
+        
+        def msg
+            @msg
+        end
+
+    end
+
+    # 接口结果解析器
+    # 
+    # - 可用于不同接口返回格式的处理
+    class ClientParser
+        def parse(rs)
+            raise 'hey guys, you should rewrite PhalApi::ClientPaser.parse'
         end
     end
 
+    # JSON解析
+    class ClientParserJson < PhalApi::ClientParser
+        def parse(rs)
+            #puts "what we got: #{rs}"
+            return PhalApi::ClientResponse.new(408, [], 'Request Timeout') if rs == nil
 
+            begin
+                a_json = JSON.parse(rs)
+                return PhalApi::ClientResponse.new(a_json['ret'], a_json['data'], a_json['msg'])
+            rescue JSON::ParserError => e
+                return PhalApi::ClientResponse.new(500, [], 'Internal Server Error')
+            end
+        end
+    end
 
-
+    # 接口过滤器
+    class ClientFilter
+        def filter(service, *params)
+            #nothing here ...
+        end
+    end
 
 end

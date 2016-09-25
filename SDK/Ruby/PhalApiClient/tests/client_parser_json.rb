@@ -1,8 +1,9 @@
-require 'test_helper'
+require_relative '../phalapi_client'
+require 'test/unit'
 
-class ClientParserJsonTest < Minitest::Test
+class ClientParserJsonTest < Test::Unit::TestCase
     def setup
-        @parser = PhalApi::Client::Parser::Json.new
+        @parser = PhalApi::ClientParserJson.new
     end
 
     def test_nil
