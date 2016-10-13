@@ -236,8 +236,12 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */ {
                 $this->_pdos[$dbKey] = $this->createPDOBy($dbCfg);
             } catch (PDOException $ex) {
                 //异常时，接口异常返回，并隐藏数据库帐号信息
-                throw new PhalApi_Exception_InternalServerError(
-                    T('can not connect to database:{db}', array('db' => $dbKey)));
+                $errorMsg = T('can not connect to database: {db}', array('db' => $dbKey));
+                if (DI()->debug) {
+                    $errorMsg = T('can not connect to database: {db}, code: {code}, cause: {msg}', 
+                        array('db' => $dbKey, 'code' => $ex->getCode(), 'msg' => $ex->getMessage()));
+                }
+                throw new PhalApi_Exception_InternalServerError($errorMsg);
             }
         }
 
