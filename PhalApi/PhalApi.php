@@ -48,18 +48,22 @@ class PhalApi {
      */
     public function response() {
         $rs = DI()->response;
+        $service = DI()->request->get('service', 'Default.Index');
 
         try {
+            // 接口响应
             $api = PhalApi_ApiFactory::generateService(); 
-
-            $service = DI()->request->get('service', 'Default.Index');
             list($apiClassName, $action) = explode('.', $service);
+            $data = call_user_func(array($api, $action));
 
-            $rs->setData(call_user_func(array($api, $action)));
+            $rs->setData($data);
         } catch (PhalApi_Exception $ex) {
+            // 框架或项目的异常
             $rs->setRet($ex->getCode());
             $rs->setMsg($ex->getMessage());
         } catch (Exception $ex) {
+            // 不可控的异常
+            DI()->logger->error($service, strval($ex));
             throw $ex;
         }
 
