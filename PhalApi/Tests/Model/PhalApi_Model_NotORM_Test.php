@@ -86,6 +86,25 @@ class PhpUnderControl_PhalApiModelNotORM_Test extends PHPUnit_Framework_TestCase
         $rs = $this->phalApiModelNotORM->delete($id);
     }
 
+    /**
+     * @dataProvider provideDefaultTableData
+     */
+    public function testDefaultTable($tableName, $tableClass)
+    {
+        $model = new $tableClass();
+        $this->assertEquals($tableName, $model->getTableName(null));
+    }
+
+    public function provideDefaultTableData()
+    {
+        return array(
+            array('defaulttable', 'Model_DefaultTable'),
+            array('default_table', 'Model_Default_Table'),
+            array('default_table', 'Demo_Model_Default_Table'),
+            array('model_default_table', 'Model_Model_Default_Table'),
+            array('wtf_table', 'WTF_Table'),
+        );
+    }
 }
 
 class PhalApi_Model_NotORM_Tmp extends PhalApi_Model_NotORM {
@@ -94,3 +113,26 @@ class PhalApi_Model_NotORM_Tmp extends PhalApi_Model_NotORM {
         return 'tmp';
     }
 }
+
+class PhalApi_Model_NotORM_Test extends PhalApi_Model_NotORM {
+
+    public function getTableName($id) {
+        return parent::getTableName($id);
+    }
+}
+
+class Model_DefaultTable extends PhalApi_Model_NotORM_Test {
+}
+
+class Model_Default_Table extends PhalApi_Model_NotORM_Test {
+}
+
+class Demo_Model_Default_Table extends PhalApi_Model_NotORM_Test {
+}
+
+class Model_Model_Default_Table extends PhalApi_Model_NotORM_Test {
+}
+
+class WTF_Table extends PhalApi_Model_NotORM_Test {
+}
+
