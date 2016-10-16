@@ -81,7 +81,7 @@ class PhalApi_Model_NotORM implements PhalApi_Model {
      * 在以下场景下，需要重写此方法以指定表名
      * + 1. 自动匹配的表名与实际表名不符
      * + 2. 存在分表 
-     * + 3. Model类名不以Model_开头
+     * + 3. Model类名不含有Model_
      */
     protected function getTableName($id) {
         $className = get_class($this);
