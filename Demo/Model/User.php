@@ -19,7 +19,9 @@ class Model_User extends PhalApi_Model_NotORM {
         return $rs;
     }
 
+    /**
     protected function getTableName($id) {
         return 'user';
     }
+    */
 }
