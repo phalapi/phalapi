@@ -26,7 +26,7 @@ then
     echo ""
 
     echo -e "${WARNING}Demo:${RES}"
-    echo "    phalapi-buildap fun"
+    echo "    $0 fun"
     echo  ""
 
     echo -e "${WARNING}Tips:${RES}"
