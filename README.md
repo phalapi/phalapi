@@ -37,8 +37,13 @@ http://localhost/PhalApi/Public/demo/
 ![](http://webtools.qiniudn.com/20150211_default_index.jpg)  
 更多其他创建项目的方式，请访问[创建一个自己的项目](http://www.phalapi.net/wikis/%5B1.2%5D-%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84%E9%A1%B9%E7%9B%AE.html)。  
 
-###框架升级
-我们会尽最大的努力保证完美兼容性的升级。当框架有新版本需要升级时，只需要简单一步：更新替换```./PhalApi/PhalApi```核心框架目录即可。
+###框架升级与框架共享
+我们会尽最大的努力保证完美兼容性的升级。当框架有新版本需要升级时，只需要简单一步：更新替换```./PhalApi/PhalApi```核心框架目录即可。  
+  
+如果需要多个项目共享使用PhalApi框架，可以把```./PhalApi/PhalApi```移到任何位置，然后对应修改```./PhalApi/Public/init.php```文件中引入路径即可。如：  
+```
+require_once API_ROOT . '/path/to/PhalApi/PhalApi.php';
+```
 
 ##1-2、在线体验
 1、默认的接口服务：  
