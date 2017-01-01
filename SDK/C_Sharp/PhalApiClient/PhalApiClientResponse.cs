@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace PhalApiClientSDK
 {
@@ -12,24 +9,13 @@ namespace PhalApiClientSDK
      */
     public class PhalApiClientResponse
     {
+        public int ret { get; set; }
 
-        public int ret
-        {
-            get {return ret;}
-            set {ret = value;}
-        }
+        public dynamic data { get; set; }
 
-        public String data
-        {
-            get { return data; }
-            set { data = value; }
-        }
+        public String msg { get; set; }
 
-        public String msg
-        {
-            get { return msg; }
-            set { msg = value; }
-        }
+        
 
         /**
          * 完全构造函数
@@ -37,14 +23,14 @@ namespace PhalApiClientSDK
          * @param JSONObject data
          * @param String msg
          */
-        public PhalApiClientResponse(int ret, String data, String msg)
+        public PhalApiClientResponse(int ret, dynamic data, String msg)
         {
             this.ret = ret;
             this.data = data;
             this.msg = msg;
         }
 
-        public PhalApiClientResponse(int ret, String data)
+        public PhalApiClientResponse(int ret, dynamic data)
         {
             this.ret = ret;
             this.data = data;
@@ -56,6 +42,10 @@ namespace PhalApiClientSDK
             this.ret = ret;
             this.data = "";
             this.msg = "";
+        }
+        public PhalApiClientResponse()
+        {
+            
         }
     }
 }

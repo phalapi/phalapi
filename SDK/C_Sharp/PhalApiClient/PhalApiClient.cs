@@ -24,9 +24,9 @@ namespace PhalApiClientSDK
      *   .withTimeout(3000)
      *   .request();
      *
-     * Log.v("response ret", response.getRet() + "");
-     * Log.v("response data", response.getData());
-     * Log.v("response msg", response.getMsg());
+     * Log.v("response ret", response.ret + "");
+     * Log.v("response data", response.data);
+     * Log.v("response msg", response.msg);
     ```
         *
         * @package     PhalApi\Response
@@ -157,7 +157,7 @@ namespace PhalApiClientSDK
     
 	    protected String doRequest(String requestUrl, Dictionary<String, String> paramsList, int timeoutMs) {
 		    String result = null;
-            Encoding encoding = Encoding.UTF8;
+            Encoding encoding = Encoding.Default;
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(requestUrl);
 
@@ -187,7 +187,7 @@ namespace PhalApiClientSDK
                 return reader.ReadToEnd();
             }  
 
-		    return result;
+		   
 	    }
     }
 }
