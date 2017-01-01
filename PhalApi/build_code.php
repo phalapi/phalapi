@@ -24,7 +24,7 @@ if ($argc < 3) {
     echo "\n";
 
     echo colorfulString("Demo:\n", 'WARNING');
-    echo "    php ./build_code.php ./Demo ./User dogstar\n";
+    echo "    $argv[0] ./Demo ./User dogstar\n";
     echo "\n";
 
     echo colorfulString("Tips:\n", 'WARNING');
