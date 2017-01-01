@@ -1,0 +1,98 @@
+#!/bin/bash
+#
+# chmod +x ./phalapi-buildapp
+# ln -s /path/to/phalapi-buildapp /usr/bin/phalapi-buildapp
+#
+# @author dogstar 20150403
+#
+
+## Colors
+WARNING='\E[1;33m'
+NOTE='\E[1;36m'
+SUCCESS='\E[1;32m'
+FAILURE='\E[1;35m'
+RES='\E[0m'
+
+## Usage
+if [ $# -lt 1 ] 
+then
+    echo ""
+    echo -e "${WARNING}Usage:${RES}"
+    echo "    $0 <app>"
+    echo ""
+
+    echo -e "${WARNING}Options:${RES}"
+    echo -e "    ${NOTE}app${RES}               Require. The app name you want to create"
+    echo ""
+
+    echo -e "${WARNING}Demo:${RES}"
+    echo "    phalapi-buildap fun"
+    echo  ""
+
+    echo -e "${WARNING}Tips:${RES}"
+    echo "    After created successfully, you can visit it by http://localhost/path/to/{app}."
+    echo  ""
+
+    exit 1
+fi
+
+## Env
+APP_NAME=$1
+APP_NAME=$(echo "$APP_NAME" | sed 's/\b[a-z]/\u&/g')
+
+BASE_PATH=$(cd `dirname $0`; pwd)
+
+if [ -d "$BASE_PATH/../$APP_NAME" ]
+then
+    echo -e "${FAILURE}Error: $APP_NAME exists!${RES}"
+    echo ""
+    exit 2
+fi
+
+echo "";
+
+## Step 1. Create App
+echo "create ${APP_NAME} ..."
+
+mkdir -p $BASE_PATH/../$APP_NAME
+mkdir -p $BASE_PATH/../$APP_NAME/Api
+mkdir -p $BASE_PATH/../$APP_NAME/Domain
+mkdir -p $BASE_PATH/../$APP_NAME/Model
+mkdir -p $BASE_PATH/../$APP_NAME/Common
+
+cp $BASE_PATH/../Demo/Api/Default.php $BASE_PATH/../$APP_NAME/Api/
+
+## Step 2. Create Tests
+echo "create ${APP_NAME} tests ..."
+mkdir -p $BASE_PATH/../$APP_NAME/Tests
+
+mkdir -p $BASE_PATH/../$APP_NAME/Tests/Api
+mkdir -p $BASE_PATH/../$APP_NAME/Tests/Domain
+mkdir -p $BASE_PATH/../$APP_NAME/Tests/Model
+mkdir -p $BASE_PATH/../$APP_NAME/Tests/Common
+
+cp $BASE_PATH/../Demo/Tests/test_env.php $BASE_PATH/../$APP_NAME/Tests
+cp $BASE_PATH/../Demo/Tests/Api/Api_Default_Test.php $BASE_PATH/../$APP_NAME/Tests/Api/
+cp $BASE_PATH/../Demo/Tests/phpunit.xml $BASE_PATH/../$APP_NAME/Tests/
+
+## Step 3. Create Bootstrap
+echo "create ${APP_NAME} bootstarp ..."
+
+#PUBLIC_APP_NAME=$(echo "$APP_NAME" | sed 's/[A-Z]/\l&/g')
+#bugfixed by 阿董
+PUBLIC_APP_NAME=$(echo "$APP_NAME" | tr '[A-Z]' '[a-z]')
+
+mkdir -p $BASE_PATH/../Public/$PUBLIC_APP_NAME
+
+cp $BASE_PATH/../Public/demo/checkApiParams.php $BASE_PATH/../Public/$PUBLIC_APP_NAME/
+cp $BASE_PATH/../Public/demo/listAllApis.php $BASE_PATH/../Public/$PUBLIC_APP_NAME/
+cp $BASE_PATH/../Public/demo/index.php $BASE_PATH/../Public/$PUBLIC_APP_NAME/
+
+sed "s/Demo/$APP_NAME/g" $BASE_PATH/../Public/$PUBLIC_APP_NAME/*.php -i
+sed "s/Demo/$APP_NAME/g" $BASE_PATH/../$APP_NAME/Tests/*.php -i
+
+echo ""
+echo -e "${SUCCESS}OK! ${APP_NAME} has been created successfully!${RES}"
+echo ""
+
+
