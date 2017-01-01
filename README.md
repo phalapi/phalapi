@@ -40,7 +40,7 @@ http://localhost/PhalApi/Public/demo/
 ###框架升级与框架共享
 我们会尽最大的努力保证完美兼容性的升级。当框架有新版本需要升级时，只需要简单一步：更新替换```./PhalApi/PhalApi```核心框架目录即可。  
   
-如果需要多个项目共享使用PhalApi框架，可以把```./PhalApi/PhalApi```移到任何位置，然后对应修改```./PhalApi/Public/init.php```文件中引入路径即可。如：  
+如果需要多个项目共享使用PhalApi框架，可以把```./PhalApi/PhalApi```移到任何位置，然后对应修改```./PhalApi/Public/init.php```文件中引入路径即可（但会导致部分脚本命令不可用）。如：  
 ```
 require_once API_ROOT . '/path/to/PhalApi/PhalApi.php';
 ```
