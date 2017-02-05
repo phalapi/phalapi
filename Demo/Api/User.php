@@ -51,6 +51,8 @@ class Api_User extends PhalApi_Api {
      * @return string list[].name 用户名字
      * @return string list[].note 用户来源
      * @return string msg 提示信息
+     * @exception 400 参数传递错误
+     * @exception 500 服务器内部错误
      */
     public function getMultiBaseInfo() {
         $rs = array('code' => 0, 'msg' => '', 'list' => array());

@@ -17,6 +17,7 @@ class PhalApi_Helper_ApiDesc {
         $returns = array();
         $description = '';
         $descComment = '//请使用@desc 注释';
+        $exceptions = array();
 
         $typeMaps = array(
             'string' => '字符串',
@@ -59,6 +60,13 @@ class PhalApi_Helper_ApiDesc {
             $pos = stripos($comment, '@desc');
             if ($pos !== false) {
                 $descComment = substr($comment, $pos + 5);
+                continue;
+            }
+
+            //@exception注释
+            $pos = stripos($comment, '@exception');
+            if ($pos !== false) {
+                $exceptions[] = explode(' ', trim(substr($comment, $pos + 10)));
                 continue;
             }
 
