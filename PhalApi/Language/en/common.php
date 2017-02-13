@@ -22,4 +22,5 @@ return array(
     'invalid type: {type} for rule: {name}' => 'invalid type: {type} for rule: {name}',
     'invalid callback for rule: {name}' => 'invalid callback for rule: {name}',
     'redis config key [socket] not found' => 'redis config key [socket] not found',
+	'{name} can not match {regex}'  => '{name} can not match {regex}',
 );
