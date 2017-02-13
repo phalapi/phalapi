@@ -1,13 +1,13 @@
 ![apic](http://webtools.qiniudn.com/master-LOGO-20150410_50.jpg)  
 
 ##[PhalApi（π框架） - V1.3.5](http://www.phalapi.net)  
-PhalApi，简称π框架，是一个PHP轻量级开源接口框架，专注于接口开发，致力让接口开发更简单。它：  
-+ 致力于快速、稳定、持续交付有价值的接口服务
-+ 关注于测试驱动开发、领域驱动设计、极限编程、敏捷开发
-+ 有众多的扩展类库，与更多开源项目一起提供高效便捷的解决方案
-+ 支持HTTP、SOAP和RPC协议，可用于快速搭建微服务、RESTful接口或Web Services
+PhalApi, π Framework for short, is a light-weight framework which focus on how to develop API faster and simpler. It:    
++ foucus on continuous deliver available API services rapidly and stabely.  
++ foucus on TDD, DDD, XP and alige development.  
++ has many libraries, which can use optionaly according your projects need.  
++ supports HTTP, SOAP and RPC protocol, can be used to build micro services, RESTful APIs and WeWeb Services.  
    
-PhalApi代码开源、产品开源、思想开源，请放心使用。更多请访问[www.phalapi.net](http://www.phalapi.net)。再次感谢**开源中国**、各位贡献者和同学。  
+We share our codes, our product and our mind in PhalApi, please feel free to use it. For more information, check [www.phalapi.net](http://www.phalapi.net).    
  
 ###导读
 本文内容主要分为三部分，即：  
