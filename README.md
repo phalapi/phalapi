@@ -2,27 +2,27 @@
 
 ##[PhalApi（π框架） - V1.3.5](http://www.phalapi.net)  
 PhalApi, π Framework for short, is a light-weight framework which focus on how to develop API faster and simpler. It:    
-+ foucus on continuous deliver available API services rapidly and stabely.  
++ aims to continuous deliver available API services rapidly and stabely.  
 + foucus on TDD, DDD, XP and alige development.  
 + has many libraries, which can use optionaly according your projects need.  
 + supports HTTP, SOAP and RPC protocol, can be used to build micro services, RESTful APIs and WeWeb Services.  
    
 We share our codes, our product and our mind in PhalApi, please feel free to use it. For more information, check [www.phalapi.net](http://www.phalapi.net).    
  
-###导读
-本文内容主要分为三部分，即：  
-+ PART 1：安装、在线体验与在线接口文档
-+ PART 2：快速开发、单元测试、目录结构、SDK包和Library扩展类库
-+ PART 3：背景回顾、贡献者、许可与更新日记
+###Tutorial
+This article is composed with three parts as below:  
++ PART 1：Installation, online demo and online API doucements.  
++ PART 2：rapid development, unit tests, framework structure, SDK packages and external librareis.  
++ PART 3：backgroud review, contributors, licience and changelog.  
+  
+Vist [wiki](http://www.phalapi.net/wikis/en) for more details.  
 
-更多请访问[在线文档](http://www.phalapi.net/wikis/)。  
-
-##1-1、安装
-+ 请从release分支拉取发布版本的代码
-+ 推荐部署于Linux服务器
-+ 建议PHP >= 5.3.3
-
-将代码下载解压到服务器后，打开浏览器，访问安装向导（推荐使用nginx，并将根目录设置为```Public```）：  
+##1-1, Installation
++ download the lastest version from release-en  
++ we recommend deploy PhalApi on Linux  
++ PHP >= 5.3.3
+  
+Open a browser and visit Installation Tutorial after download PhalApi and unzip on your server(we recommend nginx, and set the root to ```/path/to/PhalApi/Public```):    
 ```
 http://localhost/PhalApi/Public/install/
 ```
@@ -30,63 +30,64 @@ http://localhost/PhalApi/Public/install/
 ![](http://7xiz2f.com1.z0.glb.clouddn.com/QQ20151024155002.jpg)  
 
 
-访问默认接口服务，验证是否安装成功：  
+And then visit the default API service to varify installation.  
 ```
 http://localhost/PhalApi/Public/demo/
 ```
 ![](http://webtools.qiniudn.com/20150211_default_index.jpg)  
-更多其他创建项目的方式，请访问[创建一个自己的项目](http://www.phalapi.net/wikis/%5B1.2%5D-%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84%E9%A1%B9%E7%9B%AE.html)。  
+More other ways to create your project, please check [Create your project](http://www.phalapi.net/wikis/en/1.1-create-your-project.html).  
 
-###框架升级与框架共享
-我们会尽最大的努力保证完美兼容性的升级。当框架有新版本需要升级时，只需要简单一步：更新替换```./PhalApi/PhalApi```核心框架目录即可。  
+###Upgrade and share
+We will do our best to keep perfect compatibility during version upgrade. When you need to upgrade PhalApi, you just need one simple step: replace ```./PhalApi/PhalApi``` with the lastest core folder. That is it!  
   
-如果需要多个项目共享使用PhalApi框架，可以把```./PhalApi/PhalApi```移到任何位置，然后对应修改```./PhalApi/Public/init.php```文件中引入路径即可（但会导致部分脚本命令不可用）。如：  
+If we need to share PhalApi, we can move ```./PhalApi/PhalApi``` to anywhere, and alter the including path in ```./PhalApi/Public/init.php```(NOTE, it will affects some shells). e.g:  
 ```
+// $ vim ./PhalApi/Public/init.php
 require_once API_ROOT . '/path/to/PhalApi/PhalApi.php';
 ```
 
-##1-2、在线体验
-1、默认的接口服务：  
+##1-2, Online demo
+1, Default API service:  
 ```
 http://demo.phalapi.net/
 ```
-2、带参数的示例接口：
+2, Demo API with params:  
 ```
-http://demo.phalapi.net/?service=Default.Index&username=oschina
+http://demo.phalapi.net/?service=Default.Index&username=github
 
 {
     "ret": 200,
     "data": {
         "title": "Hello World!",
-        "content": "oschina您好，欢迎使用PhalApi！",
+        "content": "Hello github, Welcome to use PhalApi!",
         "version": "1.3.4",
         "time": 1473863280
     },
     "msg": ""
 }
 ```
-3、故意请求一个非法的服务：
+3, Request a service not found:  
 ```
 http://demo.phalapi.net/?service=Demo.None
 
 {
     "ret": 400,
     "data": [],
-    "msg": "非法请求：服务Demo.None不存在"
+    "msg": "no such service as Demo.None"
 }
 ```
 
-##1-3、在线接口文档（自动生成）
-按框架指定的格式完成接口代码编写后，PhalApi会自动生成在线接口列表文档和在线接口详情文档，以方便客户端实时查看最新的接口签名和返回字段。   
-  
-1、在线接口列表文档  
-访问对应项目路径下的```listAllApis.php```可查看此项目下全部的接口服务，如访问：  
+##1-3, Online API documents(auto generated)
+Afster project APIs have been written in PhalApi specified format, PhalApi will auto generate online API list documents and online API detail documents, which can provide client developers with realtime API signature and response structure.  
+   
+1, Online list documents   
+We can list all API services under our project by visiting the ```listAllApis.php``` in the related project, e.g:  
 ```
 http://demo.phalapi.net/listAllApis.php
 ```
 ![](http://7xiz2f.com1.z0.glb.clouddn.com/QQ20160914230528.jpg)
-2、在线接口详情文档  
-访问对应项目路径下的```checkApiParams.php```，并传递```?service=xxx.xxx```参数即可查看具体的接口文档，如访问：
+2, Online API detail documents  
+Furthermore, We can check more detail about an API servcie by visiting the ```checkApiParams.php``` with param ```?service=xxx.xxx```, e.g:  
 ```
 http://demo.phalapi.net/checkApiParams.php?service=Default.Index
 ```

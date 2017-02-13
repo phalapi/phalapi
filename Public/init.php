@@ -30,7 +30,7 @@ DI()->logger = new PhalApi_Logger_File(API_ROOT . '/Runtime', PhalApi_Logger::LO
 DI()->notorm = new PhalApi_DB_NotORM(DI()->config->get('dbs'), !empty($_GET['__sql__']));
 
 //翻译语言包设定
-SL('zh_cn');
+SL('en');
 
 /** ---------------- 定制注册 可选服务组件 ---------------- **/
 
