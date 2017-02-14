@@ -1,6 +1,6 @@
 ![apic](http://webtools.qiniudn.com/master-LOGO-20150410_50.jpg)  
 
-##[PhalApi（π框架） - V1.3.5](http://www.phalapi.net)  
+##[PhalApi - V1.3.5 - English Version](http://www.phalapi.net)  
 PhalApi, π Framework for short, is a light-weight framework which focus on how to develop API faster and simpler. It:    
 + aims to continuous deliver available API services rapidly and stabely.  
 + foucus on TDD, DDD, XP and alige development.  
