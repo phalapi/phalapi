@@ -1,21 +1,21 @@
 <?php
 /**
- * PhalApi接口列表 - 自动生成
+ * PhalApi Online API List Document (auto generated)
  *
- * - 对Api_系列的接口，进行罗列
- * - 按service进行字典排序
- * - 支持多级目录扫描
+ * - list all of APIs from classes which are with prefix Api_
+ * - sort by service name
+ * - support multi folder
  * 
- * <br>使用示例：<br>
+ * <br>Usage:<br>
 ```
  * <?php
  * class Api_Demo extends PhalApi_Api {
  *
  *      /**
- *       * 1.1 可在这里输入接口的服务名称
+ *       * 1.1 TODO: write your service name here
  *       * /
  *      public function index() {
- *          // todo ...    
+ *          // TODO: do something ...    
  *      }
  * }
  *

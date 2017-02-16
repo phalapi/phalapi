@@ -1,14 +1,14 @@
 <?php
 /**
- * Demo 统一入口
+ * Demo entrance
  */
 
 require_once dirname(__FILE__) . '/../init.php';
 
-//装载你的接口
+// load your API folder
 DI()->loader->addDirs('Demo');
 
-/** ---------------- 响应接口请求 ---------------- **/
+/** ---------------- deal with API request ---------------- **/
 
 $api = new PhalApi();
 $rs = $api->response();

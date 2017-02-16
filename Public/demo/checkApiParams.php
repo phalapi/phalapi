@@ -1,11 +1,16 @@
 <?php
 /**
- * 工具 - 查看接口参数规则
+ * PhalApi Online API Detail Document (auto generated)
+ * 
+ * - check API description
+ * - check API params rules
+ * - check API reponse
+ * - check API exception case
  */
 
 require_once dirname(__FILE__) . '/../init.php';
 
-//装载你的接口
+// load your API folder
 DI()->loader->addDirs('Demo');
 
 $apiDesc = new PhalApi_Helper_ApiDesc();

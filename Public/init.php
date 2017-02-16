@@ -1,9 +1,9 @@
 <?php
 /**
- * 统一初始化
+ * PhalApi initialization
  */
  
-/** ---------------- 根目录定义，自动加载 ---------------- **/
+/** ---------------- define API project root folder, and register autoload ---------------- **/
 
 date_default_timezone_set('Asia/Shanghai');
 
@@ -12,42 +12,42 @@ defined('API_ROOT') || define('API_ROOT', dirname(__FILE__) . '/..');
 require_once API_ROOT . '/PhalApi/PhalApi.php';
 $loader = new PhalApi_Loader(API_ROOT, 'Library');
 
-/** ---------------- 注册&初始化 基本服务组件 ---------------- **/
+/** ---------------- register & initialize base service components ---------------- **/
 
-//自动加载
+// autoload
 DI()->loader = $loader;
 
-//配置
+// configuration
 DI()->config = new PhalApi_Config_File(API_ROOT . '/Config');
 
-//调试模式，$_GET['__debug__']可自行改名
+// debug mode, rename $_GET['__debug__'] as you want
 DI()->debug = !empty($_GET['__debug__']) ? true : DI()->config->get('sys.debug');
 
-//日记纪录
+// logs
 DI()->logger = new PhalApi_Logger_File(API_ROOT . '/Runtime', PhalApi_Logger::LOG_LEVEL_DEBUG | PhalApi_Logger::LOG_LEVEL_INFO | PhalApi_Logger::LOG_LEVEL_ERROR);
 
-//数据操作 - 基于NotORM，$_GET['__sql__']可自行改名
+// database operations based on NotORM, rename $_GET['__sql__']as you want
 DI()->notorm = new PhalApi_DB_NotORM(DI()->config->get('dbs'), !empty($_GET['__sql__']));
 
-//翻译语言包设定
+// setting language, default is English
 SL('en');
 
-/** ---------------- 定制注册 可选服务组件 ---------------- **/
+/** ---------------- custom more optional service components ---------------- **/
 
 /**
-//签名验证服务
+// signature verification servcie
 DI()->filter = 'PhalApi_Filter_SimpleMD5';
  */
 
 /**
-//缓存 - Memcache/Memcached
+// cache" Memcache/Memcached
 DI()->cache = function () {
     return new PhalApi_Cache_Memcache(DI()->config->get('sys.mc'));
 };
  */
 
 /**
-//支持JsonP的返回
+// support with JsonP reponse
 if (!empty($_GET['callback'])) {
     DI()->response = new PhalApi_Response_JsonP($_GET['callback']);
 }
