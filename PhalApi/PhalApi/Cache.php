@@ -3,7 +3,7 @@
  * PhalApi_Cache 缓存接口
  *
  * @package     PhalApi\Cache
- * @license     http://www.phalapi.net/license GPL 协议
+ * @license     http://www.phalapi.net/license GPL
  * @link        http://www.phalapi.net/
  * @author      dogstar <chanzonghuang@gmail.com> 2015-02-04
  */

@@ -3,7 +3,7 @@
 /**
  * PhalApi_Request_Formatter_String  格式化字符串
  * @package     PhalApi\Request
- * @license     http://www.phalapi.net/license GPL 协议
+ * @license     http://www.phalapi.net/license GPL
  * @link        http://www.phalapi.net/
  * @author      dogstar <chanzonghuang@gmail.com> 2015-11-07
  */

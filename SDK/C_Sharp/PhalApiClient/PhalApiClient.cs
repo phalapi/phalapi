@@ -30,7 +30,7 @@ namespace PhalApiClientSDK
     ```
         *
         * @package     PhalApi\Response
-        * @license     http://www.phalapi.net/license GPL 协议
+        * @license     http://www.phalapi.net/license GPL
         * @link        http://www.phalapi.net/
         * @author      dogstar <chanzonghuang@gmail.com> 2015-10-16
      */

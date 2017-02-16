@@ -3,7 +3,7 @@
  * PhalApi_Helper_ApiDesc - 在线接口描述查看 - 辅助类
  *
  * @package     PhalApi\Helper
- * @license     http://www.phalapi.net/license GPL 协议
+ * @license     http://www.phalapi.net/license GPL
  * @link        http://www.phalapi.net/
  * @author      dogstar <chanzonghuang@gmail.com> 2015-05-30
  */
