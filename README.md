@@ -8,7 +8,9 @@ PhalApi, π Framework for short, is a light-weight framework which focus on how 
 + supports HTTP, SOAP and RPC protocol, can be used to build micro services, RESTful APIs and WeWeb Services.  
    
 We share our codes, our product and our mind in PhalApi, please feel free to use it. For more information, check [www.phalapi.net](http://www.phalapi.net).    
- 
+  
+_PhalApi中文版请访问[release分支](https://github.com/phalapi/phalapi/tree/release)。_  
+    
 ###Tutorial
 This article is composed with three parts as below:  
 + PART 1：Installation, online demo and online API doucements.  
