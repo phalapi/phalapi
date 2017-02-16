@@ -30,7 +30,7 @@ define("D_S", DIRECTORY_SEPARATOR);
 $root = dirname(__FILE__);
 
 /**
- * 项目的文件夹名 - 如有需要，请更新此值
+ * API project folder name, rename it in need
  */
 $apiDirName = 'Demo';
 
@@ -44,7 +44,7 @@ $allApiS = array();
 foreach ($files as $value) {
     $value = realpath($value);
     $subValue = substr($value, strpos($value, D_S . 'Api' . D_S) + 1);
-    //支持多层嵌套，不限级
+    // support multi folder, unlimited
     $arr       = explode(D_S, $subValue);
 	$subValue  = implode(D_S, $arr);
     $apiServer = str_replace(array(D_S, '.php'), array('_', ''), $subValue);
@@ -61,8 +61,8 @@ foreach ($files as $value) {
             continue;
         }
 
-        $title = '//请检测函数注释';
-        $desc = '//请使用@desc 注释';
+        $title = '// please check method annotation';
+        $desc = '// please use @desc annotation';
         $docComment = $rMethod->getDocComment();
         if ($docComment !== false) {
             $docCommentArr = explode("\n", $docComment);
@@ -106,7 +106,7 @@ function listDir($dir) {
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title><?php echo $apiDirName; ?> - 在线接口列表</title>
+    <title><?php echo $apiDirName; ?> | Online API List Document | PhalApi</title>
     <link rel="stylesheet" href="https://staticfile.qnssl.com/semantic-ui/2.1.6/semantic.min.css">
     <link rel="stylesheet" href="https://staticfile.qnssl.com/semantic-ui/2.1.6/components/table.min.css">
     <link rel="stylesheet" href="https://staticfile.qnssl.com/semantic-ui/2.1.6/components/container.min.css">
@@ -116,11 +116,11 @@ function listDir($dir) {
 <br />
 <div class="ui text container" style="max-width: none !important;">
     <div class="ui floating message">
-        <h1 class="ui header">接口列表</h1>
+        <h1 class="ui header">API &nbsp;&nbsp; LIST</h1>
         <table class="ui green celled striped table">
             <thead>
                 <tr>
-                    <th>#</th><th>接口服务</th><th>接口名称</th><th>更多说明</th>
+                    <th>#</th><th>API Service</th><th>Service Name</th><th>More Details</th>
                 </tr>
             </thead>
             <tbody>

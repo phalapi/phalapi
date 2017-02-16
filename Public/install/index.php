@@ -5,20 +5,23 @@ define('D_S', DIRECTORY_SEPARATOR);
 $step = isset($_GET['step']) ? intval($_GET['step']) : 0;
 
 switch ($step) {
-    //第一步：环境检测
+    /**
+     * Step 1: environment detection
+     */
 case 1:
     if (file_exists('_install.lock')) {
-        $error = '项目已安装，请不要重复安装，并建议手动删除 ./install 此目录以及目录下的全部文件';
+        $error = 'Your project has been installed, please do not install again. Furthermore, we recommend delete the folder ./install manually.';
         include dirname(__FILE__) . D_S . '_error.php';
         exit(0);
     }
-    //-1：必须但不支持 0：可选但不支持 1：完美支持
+    
+    // -1: must support but not, 0: optinal support but not, 1: perfect support
     $checkList = array(
-        'php'       => array('name' => 'PHP 版本', 'status' => -1, 'tip' => '建议使用PHP 5.3.3及以上版本，否则DI无法支持匿名函数'),
-        'pdo'       => array('name' => '数据库模块', 'status' => -1, 'tip' => '建议使用PDO扩展，否则NotORM无法使用PDO进行数据库操作'),
-        'memcache'  => array('name' => 'Memcache扩展', 'status' => 0, 'tip' => '无此扩展时，不能使用Memcache缓存'),
-        'mcrypt'    => array('name' => 'Mcrypt扩展', 'status' => 0, 'tip' => '无此扩展时，不能使用mcrypt进行加密处理'),
-        'runtime'   => array('name' => '目录权限', 'status' => -1, 'tip' => '日志或配置文件目录若缺少写入权限，则不能写入日记和进行文件缓存以及接下配置无法生效'),
+        'php'       => array('name' => 'PHP version', 'status' => -1, 'tip' => 'suggest PHP >= 5.3.3, or DI fail to use anonymous function'),
+        'pdo'       => array('name' => 'database module', 'status' => -1, 'tip' => 'suggest use PDO library, or NotORM can not work'),
+        'memcache'  => array('name' => 'Memcache Library', 'status' => 0, 'tip' => 'no Memcache supported without this library'),
+        'mcrypt'    => array('name' => 'Mcrypt Library', 'status' => 0, 'tip' => 'no mcrypt supported without this library'),
+        'runtime'   => array('name' => 'Runtime Permision', 'status' => -1, 'tip' => 'both logs and cache data can not written into runtime without permision'),
     );
 
     if (version_compare(PHP_VERSION, '5.3.3', '>=')) {
@@ -47,18 +50,22 @@ case 1:
 
     include dirname(__FILE__) . D_S . '_step1.php';
     break;
-    //第2步：系统配置
+    /**
+     * Step 2: system configuration
+     */
 case 2:
     include dirname(__FILE__) . D_S . '_step2.php';
     break;
-    //第3步：接口请求
+    /**
+     * Step 3: ready to create API project
+     */
 case 3:
     if (empty($_POST['doSubmit']) || empty($_POST)) {
         header('Location: ./?step=1');
         exit(0);
     }
 
-    //数据库配置文件
+    // database config file
     $search = array(
         '{project}',
         '{host}',
@@ -85,12 +92,12 @@ case 3:
         $configDbsContent
     );
 
-    //Project
+    // Project
     $project = ucwords($_POST['project']);
     $appPath = dirname(__FILE__) . implode(D_S, array('', '..', '..', $project,));
     $demoPath = dirname(__FILE__) . implode(D_S, array('', '..', '..', 'Demo',));
     if (!file_exists($appPath)) {
-        //项目目录
+        // API project folders
         mkdir($appPath . D_S);
         mkdir($appPath . D_S . 'Api');
         mkdir($appPath . D_S . 'Domain');
@@ -108,7 +115,7 @@ case 3:
         mkdir($appPath . D_S . 'Tests' . D_S . 'Model');
         mkdir($appPath . D_S . 'Tests' . D_S . 'Common');
 
-        //单元测试
+        // unit tests
         copy(
             $demoPath . D_S . 'Tests' . D_S . 'test_env.php',
             $appPath . D_S . 'Tests'  . D_S . 'test_env.php'
@@ -127,7 +134,7 @@ case 3:
             $appPath . D_S . 'Tests' . D_S . 'phpunit.xml'
         );
 
-        //访问入口
+        // API public entrance
         $appPublicPath = dirname(__FILE__) . implode(D_S, array('', '..', strtolower($project), ));
         $demoPublicPath = dirname(__FILE__) . implode(D_S, array('', '..', 'demo',));
 
@@ -146,7 +153,7 @@ case 3:
             $appPublicPath . D_S . 'index.php'
         );
 
-        // 挂载项目
+        // replace Demo with the new project name
         foreach (array('checkApiParams.php', 'listAllApis.php', 'index.php') as $publicFile) {
             file_put_contents(
                 $appPublicPath . D_S . $publicFile,
@@ -157,7 +164,7 @@ case 3:
 
     @touch('_install.lock');
 
-    //请求链接
+    // API request url
     $relatePath = substr($_SERVER['REQUEST_URI'], 0, stripos($_SERVER['REQUEST_URI'], '/install/'));
     $apiUrl = 'http://' . $_SERVER['HTTP_HOST'] . '/' . $relatePath . '/' . strtolower($project);
     include dirname(__FILE__) . D_S . '_step3.php';

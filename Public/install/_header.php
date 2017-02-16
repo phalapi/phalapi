@@ -1,6 +1,6 @@
 <?php defined('PHALAPI_INSTALL') || die('no access'); ?>
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="http://webtools.qiniudn.com/dog_catch.png">
-    <title>快速安装 - PhalApi</title>
+    <title>Installtion Wizard - PhalApi</title>
     <link href="./static/css/pintuer.css" rel="stylesheet">
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->

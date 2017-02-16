@@ -4,11 +4,11 @@
     <div class="window_title t_normal">
         <span class="icon-circle"> </span>
         <span class="icon-circle"></span>
-        <span class="margin-small-left">安装向导</span>
+        <span class="margin-small-left">Installation Wizard</span>
     </div>
     <div class="padding-large text-black">
-        <h1 class="margin-small-bottom" >环境检查</h1>
-        <h5 class="margin-big-bottom ">为了确保框架正常使用, 您的服务器需要满足以下系统需求的运行环境</h5>
+        <h1 class="margin-small-bottom" >Environment Detection</h1>
+        <h5 class="margin-big-bottom ">In order to ensure PhalApi work as expected, your serser need to satisfy the requirements as below.</h5>
         <table class="table table-bordered">
             <tbody>
             <?php $num = 0; ?>
@@ -29,8 +29,8 @@
             </tbody>
         </table>
         <div class="margin-big-top" >
-            <a class="button bg-yellow margin-small-right"  href=".?step=2" role="button">  下一步  </a>
-            <a class="button  margin-small-right"  href=".?step=0" role="button">  上一步  </a>
+            <a class="button bg-yellow margin-small-right"  href=".?step=2" role="button">  Next  </a>
+            <a class="button  margin-small-right"  href=".?step=0" role="button">  Back  </a>
         </div>
     </div>
 </div>

@@ -4,29 +4,29 @@
     <div class="window_title t_normal">
         <span class="icon-circle"> </span>
         <span class="icon-circle"></span>
-        <span class="margin-small-left">安装向导</span>
+        <span class="margin-small-left">Installation Wizard</span>
     </div>
     <div class="padding-large text-black">
-        <h1 class="margin-small-bottom" >欢迎使用，PhalAPI 框架安装向导</h1>
-        <h5 class="margin-big-bottom ">从现在开始，用另一种想法，重新构建你的应用</h5>
+        <h1 class="margin-small-bottom" >Welcome to PhalApi!</h1>
+        <h5 class="margin-big-bottom ">From now on, rebuild your API application with an new flash mind.</h5>
         <div class="input padding bg-white" style="width: 100%;height: 200px; overflow: auto">
-                <h4 class="margin-small-bottom">协议许可的权利</h4>
-                <p>PhalApi官方网站为 <a href="http://www.phalapi.net">http://www.phalapi.net，依法独立拥有</a> PhalApi 及官网发布的PhalApi衍生产品著作权。PhalApi及其衍生产品著作权受到法律和国际公约保护。使用者需仔细阅读本协议，在理解、同意、并遵守本协议的全部条款后，方可开始使用 PhalApi及其衍生 软件。  </p>
-                <p>本授权协议适用于 <a href="http://www.phalapi.net">http://www.phalapi.net</a> 发布的所有应用程序，PhalApi官方网站拥有对本授权协议的最终解释权。  </p>
+                <h4 class="margin-small-bottom">Right Of Agreement</h4>
+                <p>PhalApi, with the official website: <a href="http://www.phalapi.net">http://www.phalapi.net</a>, own PhalApi and official website published PhalApi derivative products copyright  according to the law. PhalApi and its derivative products are protected by laws and international conventions. Users are required to read this Agreement carefully and to use PhalApi and its derivative software after understanding, agreeing and following all the terms of this Agreement.</p>
+                <p>This License Agreement applies to all applications posted by <a href="http://www.phalapi.net"> http://www.phalapi.net </a> and the PhalApi official website has the final interpretation of this License Agreement right.</p>
                 <br>
 
-                <h4 class="margin-small-bottom">协议规定的约束和限制</h4>
-                <p>PhalApi软件及其PhalApi官网发布的PhalApi衍生产品在没有相关说明的情况下默认是免费的，可用于商业用途或者非商业用途。但是无论用途如何，是否经过修改，修改程度如何，未经过许可， 页面上的产品名称以及指向官网的连接还有源代码中关于PhalApi的版权信息及作者信息必须保留，不许修改或删除，除非您获得PhalApi官网的许可。  </p>
-                <p>如果您未能遵守本协议的条款，您的授权将被终止，所被许可的权利将被收回，并承担相应法律责任。  </p>
+                <h4 class="margin-small-bottom">Constraints And Limitations Of The Agreement</h4>
+                <p>The PhalApi derivative products released by PhalApi and its official website are free of charge by default for commercial or non-commercial use without relevant instructions. But no matter what the purpose is, whether modified or not, how to modify,  the information of the product on the page and the link point to the official website in the source code on PhalApi copyright information and author information must be retained if without permission, not allowed to modify or delete, unless you Get permission from PhalApi's official website.</p>
+                <p>If you fail to comply with the terms of this Agreement, your authorization will be terminated and the rights granted will be withdrawn and liable accordingly.  </p>
                 <br>
 
-                <h4 class="margin-small-bottom">有限担保和免责声明</h4>
-                <p>本软件及所附带的文件是作为不提供任何明确的或隐含的赔偿或担保的形式提供的。 用户出于自愿而使用本软件，您必须了解使用本软件的风险，在尚未购买产品技术服务之前，我们不承诺提供任何形式的技术支持、使用担保，也不承担任何因使用本软件而产生问题的相关责任。 PhalApi官网不对使用本软件及官网发布的衍生产品构建的软件中的文章或信息承担责任。  </p>
-                <p>有关 PhalApi 最终用户授权协议、商业授权与技术服务的详细内容，均由 PhalApi 官方网站独家提供。PhalApi官网拥有在不事先通知的情况下，修改授权协议和服务价目表的权力，修改后的协议或价目表对自改变之日起的新授权用户生效。 电子文本形式的授权协议如同双方书面签署的协议一样，具有完全的和等同的法律效力。您一旦开始安装 PhalApi以及官网发布的衍生产品，即被视为完全理解并接受本协议的各项条款，在享有上述条款授予的权力的同时，受到相关的约束和限制。 协议许可范围以外的行为，将直接违反本授权协议并构成侵权，我们有权随时终止授权，责令停止损害，并保留追究相关责任的权力。  </p>
+                <h4 class="margin-small-bottom">Limited Warranty And Disclaimer</h4>
+                <p>The Software and accompanying documentation are provided in a form that does not provide any express or implied warranties or warranties. Users are advised to use the Software voluntarily, and you must understand the risks of using the Software. We do not undertake to provide any form of technical support, warranty, or use of the Software until we have purchased the Product Technical Service The relevant responsibility. PhalApi official website does not take responsibility for the use of the software or articles published in the software published by the official website of the software.</p>
+                <p>Details of the PhalApi End User License Agreement, Commercial Licensing and Technical Services are provided exclusively by PhalApi's official website. The PhalApi website has the power to modify the license agreement and the service price list without prior notice, and the modified agreement or price list is effective for new authorized users from the date of the change. The electronic text form of the license agreement, as signed by both parties, has full and equivalent legal effect. Once you have started installing PhalApi and the derivative products published by the official website, you are deemed to have fully understood and accepted the terms of this Agreement and are subject to the relevant constraints and restrictions while enjoying the powers conferred by the above terms. Any act other than the scope of the agreement will be a direct violation of this License Agreement and constitute infringement, we have the right to terminate the authorization at any time, ordered to stop the damage, and retain the right to pursue the relevant responsibilities.</p>
         </div>
         <div class="margin-big-top" >
-            <a class="button bg-yellow margin-small-right"  href=".?step=1" role="button">  同意安装  </a>
-            <button class="button">取消</button>
+            <a class="button bg-yellow margin-small-right"  href=".?step=1" role="button">  Agree And Install </a>
+            <button class="button">Cancel</button>
         </div>
     </div>
 </div>
