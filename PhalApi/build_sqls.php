@@ -1,4 +1,3 @@
-#!/usr/bin/env php
 <?php
 /**
  * 根据配置自动生成SQL建表语句
@@ -77,7 +76,7 @@ if (empty($tableMap['map'])) {
     exit();
 }
 
-$sqlFilePath = CUR_PATH . '/../Config/sql/' . $tableName . '.sql';
+$sqlFilePath = CUR_PATH . '/../Data/' . $tableName . '.sql';
 if (!file_exists($sqlFilePath)) {
     echo "Error: sql file $sqlFilePath not exists!\n";
     exit();

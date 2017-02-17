@@ -9,6 +9,6 @@
  */
 
 return array(
-	'Hello {name}, Welcome to use PhalApi!' => '{name}您好，欢迎使用PhalApi！',
+	'Hi {name}, welcome to use PhalApi!' => '{name}您好，欢迎使用PhalApi！',
     'user not exists' => '用户不存在',
 );
