@@ -1,6 +1,6 @@
 <?php
 /**
- * 默认接口服务类
+ * Default API class
  *
  * @author: dogstar <chanzonghuang@gmail.com> 2014-10-04
  */
@@ -16,11 +16,11 @@ class Api_Default extends PhalApi_Api {
 	}
 	
 	/**
-	 * 默认接口服务
-	 * @return string title 标题
-	 * @return string content 内容
-	 * @return string version 版本，格式：X.X.X
-	 * @return int time 当前时间戳
+	 * Default API service
+	 * @return string title title
+	 * @return string content content
+	 * @return string version versio with format: X.X.X
+	 * @return int time current timestamp
 	 */
 	public function index() {
         return array(
