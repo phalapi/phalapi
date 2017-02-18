@@ -1,6 +1,6 @@
 <?php
 /**
- * PhalApi_Helper_ApiDesc - 在线接口描述查看 - 辅助类
+ * PhalApi_Helper_ApiDesc - Online API Detail Document - Helper
  *
  * @package     PhalApi\Helper
  * @license     http://www.phalapi.net/license GPL
@@ -16,19 +16,19 @@ class PhalApi_Helper_ApiDesc {
         $rules = array();
         $returns = array();
         $description = '';
-        $descComment = '//请使用@desc 注释';
+        $descComment = '// please use @desc annotation';
         $exceptions = array();
 
         $typeMaps = array(
-            'string' => '字符串',
-            'int' => '整型',
-            'float' => '浮点型',
-            'boolean' => '布尔型',
-            'date' => '日期',
-            'array' => '数组',
-            'fixed' => '固定值',
-            'enum' => '枚举类型',
-            'object' => '对象',
+            'string' => 'string',
+            'int' => 'int',
+            'float' => 'float',
+            'boolean' => 'boolean',
+            'date' => 'date',
+            'array' => 'array',
+            'fixed' => 'fixed',
+            'enum' => 'enum',
+            'object' => 'object',
         );
 
         try {
@@ -50,34 +50,34 @@ class PhalApi_Helper_ApiDesc {
         foreach ($docCommentArr as $comment) {
             $comment = trim($comment);
 
-            //标题描述
+            // Title Desc
             if (empty($description) && strpos($comment, '@') === false && strpos($comment, '/') === false) {
                 $description = substr($comment, strpos($comment, '*') + 1);
                 continue;
             }
 
-            //@desc注释
+            // @desc annotation
             $pos = stripos($comment, '@desc');
             if ($pos !== false) {
                 $descComment = substr($comment, $pos + 5);
                 continue;
             }
 
-            //@exception注释
+            // @exception annotation
             $pos = stripos($comment, '@exception');
             if ($pos !== false) {
                 $exceptions[] = explode(' ', trim(substr($comment, $pos + 10)));
                 continue;
             }
 
-            //@return注释
+            // @return annotation
             $pos = stripos($comment, '@return');
             if ($pos === false) {
                 continue;
             }
 
             $returnCommentArr = explode(' ', substr($comment, $pos + 8));
-            //将数组中的空值过滤掉，同时将需要展示的值返回
+            // filter empty value in the array, and return the value wait to display
             $returnCommentArr = array_values(array_filter($returnCommentArr));
             if (count($returnCommentArr) < 2) {
                 continue;
@@ -85,7 +85,7 @@ class PhalApi_Helper_ApiDesc {
             if (!isset($returnCommentArr[2])) {
                 $returnCommentArr[2] = '';	//可选的字段说明
             } else {
-                //兼容处理有空格的注释
+                // works with much more blank space
                 $returnCommentArr[2] = implode(' ', array_slice($returnCommentArr, 2));
             }
 

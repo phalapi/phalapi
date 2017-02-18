@@ -5,10 +5,10 @@ class Api_User extends PhalApi_Api {
     public function getRules() {
         return array(
             'getBaseInfo' => array(
-                'userId' => array('name' => 'user_id', 'type' => 'int', 'min' => 1, 'require' => true, 'desc' => '用户ID'),
+                'userId' => array('name' => 'user_id', 'type' => 'int', 'min' => 1, 'require' => true, 'desc' => 'user ID'),
             ),
             'getMultiBaseInfo' => array(
-                'userIds' => array('name' => 'user_ids', 'type' => 'array', 'format' => 'explode', 'require' => true, 'desc' => '用户ID，多个以逗号分割'),
+                'userIds' => array('name' => 'user_ids', 'type' => 'array', 'format' => 'explode', 'require' => true, 'desc' => 'user ID, explore with comma '),
             ),
         );
     }
@@ -16,12 +16,12 @@ class Api_User extends PhalApi_Api {
     /**
      * Get user base info
      * @desc You can get single user base info.
-     * @return int code 操作码，0表示成功， 1表示用户不存在
-     * @return object info 用户信息对象
-     * @return int info.id 用户ID
-     * @return string info.name 用户名字
-     * @return string info.note 用户来源
-     * @return string msg 提示信息
+     * @return int code operation code, 0: ok, 1: user not exists
+     * @return object info user information obejct
+     * @return int info.id user ID
+     * @return string info.name username
+     * @return string info.note user note
+     * @return string msg tips
      */
     public function getBaseInfo() {
         $rs = array('code' => 0, 'msg' => '', 'info' => array());
@@ -45,14 +45,14 @@ class Api_User extends PhalApi_Api {
     /**
      * Multi get users base info
      * @desc You can get servaral users base info in one time.
-     * @return int code 操作码，0表示成功
-     * @return array list 用户列表
-     * @return int list[].id 用户ID
-     * @return string list[].name 用户名字
-     * @return string list[].note 用户来源
-     * @return string msg 提示信息
-     * @exception 400 参数传递错误
-     * @exception 500 服务器内部错误
+     * @return int code operation code, 0: ok
+     * @return array list user info list
+     * @return int list[].id user ID
+     * @return string list[].name username
+     * @return string list[].note user note
+     * @return string msg  tips
+     * @exception 400 params error!
+     * @exception 500 inner error!
      */
     public function getMultiBaseInfo() {
         $rs = array('code' => 0, 'msg' => '', 'list' => array());

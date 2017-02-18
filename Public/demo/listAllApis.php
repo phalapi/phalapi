@@ -86,7 +86,7 @@ foreach ($files as $value) {
     }
 }
 
-//字典排列
+// sort
 ksort($allApiS);
 
 function listDir($dir) {

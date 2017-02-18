@@ -29,14 +29,14 @@ Open a browser and visit Installation Tutorial after download PhalApi and unzip 
 http://localhost/PhalApi/Public/install/
 ```
   
-![](http://7xiz2f.com1.z0.glb.clouddn.com/QQ20151024155002.jpg)  
+![](https://camo.githubusercontent.com/d25b1f008aae8e7a2ed3499000b054a1039dd5a3/687474703a2f2f6769742e6f736368696e612e6e65742f75706c6f6164732f696d616765732f323031372f303231382f3233303234365f32303566333264375f3132313032362e706e67)  
 
 
 And then visit the default API service to varify installation.  
 ```
 http://localhost/PhalApi/Public/demo/
 ```
-![](http://webtools.qiniudn.com/20150211_default_index.jpg)  
+![](https://camo.githubusercontent.com/52782ceaf6853a891ce306c3021c492524941d7d/687474703a2f2f6769742e6f736368696e612e6e65742f75706c6f6164732f696d616765732f323031372f303231382f3233303331365f34316139366231335f3132313032362e706e67)  
 More other ways to create your project, please check [Create your project](http://www.phalapi.net/wikis/en/1.1-create-your-project.html).  
 
 ###Upgrade and share
@@ -87,13 +87,13 @@ We can list all API services under our project by visiting the ```listAllApis.ph
 ```
 http://demo.phalapi.net/listAllApis.php
 ```
-![](http://7xiz2f.com1.z0.glb.clouddn.com/QQ20160914230528.jpg)
+![](https://camo.githubusercontent.com/12b12dd88b883fcdd3ebe2e7619003c5bb46c2c9/687474703a2f2f6769742e6f736368696e612e6e65742f75706c6f6164732f696d616765732f323031372f303231382f3233303333305f38623264356564345f3132313032362e706e67)
 2, Online API detail documents  
 Furthermore, We can check more detail about an API servcie by visiting the ```checkApiParams.php``` with param ```?service=xxx.xxx```, e.g:  
 ```
 http://demo.phalapi.net/checkApiParams.php?service=Default.Index
 ```
-![mahua](http://7xiz2f.com1.z0.glb.clouddn.com/index20160728224002.jpg)
+![mahua](https://camo.githubusercontent.com/8829812d88782945976414d60319933ebcefa1d2/687474703a2f2f6769742e6f736368696e612e6e65742f75706c6f6164732f696d616765732f323031372f303231382f3233303334375f37373461663063325f3132313032362e706e67)
 
 ##2-1, Rapid Development
 1, Hello World!
@@ -120,7 +120,7 @@ The API will reponse with json data as :
 {"ret":200,"data":{"title":"Hello World!"},"msg":""}
 ```
 4, Screenshot  
-![](http://webtools.qiniudn.com/20150111.jpg)
+![](https://camo.githubusercontent.com/2e682c31137d5a8602b1317cbf01599a7f3f63c9/687474703a2f2f6769742e6f736368696e612e6e65742f75706c6f6164732f696d616765732f323031372f303231382f3233303131355f37616461343535375f3132313032362e6a706567)
 
 ##2-2, API unit tests
 _The code can't be tested is bad._  
