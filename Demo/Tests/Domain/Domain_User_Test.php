@@ -2,7 +2,7 @@
 /**
  * PhpUnderControl_DomainUser_Test
  *
- * 针对 ./Demo/Domain/User.php Domain_User 类的PHPUnit单元测试
+ * PHPUnit test for Domain_User in ./Demo/Domain/User.php
  *
  * @author: dogstar 20150208
  */

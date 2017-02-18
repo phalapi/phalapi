@@ -2,7 +2,7 @@
 /**
  * PhpUnderControl_ModelUser_Test
  *
- * 针对 ./Demo/Model/User.php Model_User 类的PHPUnit单元测试
+ * PHPUnit test for Model_User in  ./Demo/Model/User.php
  *
  * @author: dogstar 20150208
  */

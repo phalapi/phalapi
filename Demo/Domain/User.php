@@ -10,17 +10,17 @@ class Domain_User {
             return $rs;
         }
 
-		// 版本1：简单的获取
+		// Version 1: Simple retrive
         $model = new Model_User();
         $rs = $model->getByUserId($userId);
 
-		// 版本2：使用单点缓存/多级缓存 (应该移至Model层中)
+		// Version 2: Use single point cache/multi level cache which implements in Model
 		/**
         $model = new Model_User();
         $rs = $model->getByUserIdWithCache($userId);
 		*/
 
-		// 版本3：缓存 + 代理
+		// Version 3: Cache + Proxy
 		/**
 		$query = new PhalApi_ModelQuery();
 		$query->id = $userId;

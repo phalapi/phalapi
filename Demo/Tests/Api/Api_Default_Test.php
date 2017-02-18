@@ -2,7 +2,7 @@
 /**
  * PhpUnderControl_ApiDefault_Test
  *
- * 针对 ../../Api/Default.php Api_Default 类的PHPUnit单元测试
+ * PHPUnit test for class in ../../Api/Default.php Api_Default
  *
  * @author: dogstar 20150201
  */
@@ -41,13 +41,13 @@ class PhpUnderControl_ApiDefault_Test extends PHPUnit_Framework_TestCase
 
     public function testIndex()
     {
-        //Step 1. 构建请求URL
+        //Step 1. Build request URL
         $url = 'service=Default.Index&username=dogstar';
 
-        //Step 2. 执行请求	
+        //Step 2. Exec requests	
         $rs = PhalApi_Helper_TestRunner::go($url);
 
-        //Step 3. 验证
+        //Step 3. Verify
         $this->assertNotEmpty($rs);
         $this->assertArrayHasKey('title', $rs);
         $this->assertArrayHasKey('content', $rs);

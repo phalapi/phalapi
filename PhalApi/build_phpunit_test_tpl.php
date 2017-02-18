@@ -68,7 +68,7 @@ $code = "<?php
 /**
  * PhpUnderControl_" . str_replace('_', '', $className) . "_Test
  *
- * 针对 $filePath $className 类的PHPUnit单元测试
+ * PHPUnit test for class $className in $filePath
  *
  * @author: $author " . date('Ymd') . "
  */
