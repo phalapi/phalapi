@@ -1,9 +1,9 @@
 <?php
 /**
- * 生成接口代码
+ * Generate API Codes
  *
- * - 此脚本可用于生成基本的接口代码，包括Api, Domain, Model
- * - 非必须的，项目可根据自己喜好使用
+ * - build base API codes, including Api, Domain, Model, etc.
+ * - not required, you can use this comman as you like
  *
  * @author dogstar <chanzonghuang@gmail.com> 2016-05-14 
  */
@@ -34,7 +34,7 @@ if ($argc < 3) {
     exit(1);
 }
 
-// 接收参数
+// revieve params
 $appPath    = CUR_PATH . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . trim($argv[1]);
 $apiPath    = str_replace('.php', '', ltrim(ltrim($argv[2], '.'), '/'));
 $author     = isset($argv[3]) ? trim($argv[3]) : '';
@@ -46,11 +46,11 @@ if (!file_exists($appPathRealPath)) {
     exit(1);
 }
 
-// 待生成的代码文件
+// code files wait to be generated
 $apiFilePath    = $appPath . DIRECTORY_SEPARATOR . 'Api' . DIRECTORY_SEPARATOR . $apiPath . '.php';
 $domainFilePath = $appPath . DIRECTORY_SEPARATOR . 'Domain' . DIRECTORY_SEPARATOR . $apiPath . '.php';
 $modelFilePath  = $appPath . DIRECTORY_SEPARATOR . 'Model' . DIRECTORY_SEPARATOR . $apiPath . '.php';
-// 检测是否重复生成
+// check whether generate again
 foreach (array($apiFilePath, $domainFilePath, $modelFilePath) as $file) {
     if (file_exists($file) && !$overwrite) {
         echo colorfulString("$file exists! Stop to create again!\n", 'FAILURE');
@@ -58,7 +58,7 @@ foreach (array($apiFilePath, $domainFilePath, $modelFilePath) as $file) {
     }
 }
 
-// 创建需要的目录
+// create required folders
 foreach (array($apiFilePath, $domainFilePath, $modelFilePath) as $file) {
     $toCreateFile = substr($file, 0, strrpos($file, DIRECTORY_SEPARATOR));
     if (!file_exists($toCreateFile)) {
@@ -67,13 +67,13 @@ foreach (array($apiFilePath, $domainFilePath, $modelFilePath) as $file) {
     }
 }
 
-// 准备模板变量
+// prepare template vars
 $API_NAME       = str_replace(DIRECTORY_SEPARATOR, '_', $apiPath);
 $AUTHOR_NAME    = $author;
 $CREATE_TIME    = date('Y-m-d H:i:s');
 $TABLE_NAME     = strtolower($API_NAME);
 
-// 生成代码
+// generate codes
 $helperFolder = CUR_PATH . DIRECTORY_SEPARATOR . 'PhalApi' . DIRECTORY_SEPARATOR . 'Helper' . DIRECTORY_SEPARATOR;
 
 foreach (array('Api', 'Domain', 'Model') as $type) {
@@ -110,16 +110,4 @@ function colorfulString($text, $type = NULL) {
     }
 
     return "\033[" . $colors[$type] . "m" . $text . "\033[0m";
-}
-
-function genSql($tableName, $tableKey, $sqlContent, $engine, $charset) {
-    return sprintf("
-CREATE TABLE `%s` (
-    `%s` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-    %s
-    `ext_data` text COMMENT 'json data here',
-     PRIMARY KEY (`%s`)
- ) ENGINE=%s DEFAULT CHARSET=%s;
-            
-", $tableName, $tableKey, $sqlContent, $tableKey, $engine, $charset);
 }

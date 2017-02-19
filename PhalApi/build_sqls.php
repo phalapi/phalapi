@@ -1,6 +1,6 @@
 <?php
 /**
- * 根据配置自动生成SQL建表语句
+ * generate SQL sentences by database config and data files
  *
  * @author dogstar <chanzonghuang@gmail.com> 2015-02-04 
  */
@@ -55,12 +55,12 @@ return array(
 
     'servers' => array(
         'db_X' => array(
-            'host'      => 'localhost',             //数据库域名
-            'name'      => 'phalapi',               //数据库名字
-            'user'      => 'root',                  //数据库用户名
-            'password'  => '',	                    //数据库密码
-            'port'      => '3306',                  //数据库端口
-            'charset'   => 'UTF8',                  //数据库字符集
+            'host'      => 'localhost',             // database host
+            'name'      => 'phalapi',               // database name
+            'user'      => 'root',                  // database username
+            'password'  => '',	                    // database password
+            'port'      => '3306',                  // database port
+            'charset'   => 'UTF8',                  // database charset
         ),
     ),
     /**

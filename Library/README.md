@@ -1,7 +1,7 @@
-##扩展类库
+##PhalApi External Library
 
-请查看：
+Please vist:
 
 ```
-http://git.oschina.net/dogstar/PhalApi-Library
+https://github.com/phalapi/phalapi-library
 ```

@@ -1,15 +1,16 @@
 <?php
 /**
- * 单元测试骨架代码自动生成脚本
- * 主要是针对当前项目系列生成相应的单元测试代码，提高开发效率
+ * Generate PHPUnit Tests Codes
+ * 
+ * - aim to generate related PHPUnit tests codes with current project, improving development rate
  *
- * 用法：
- * Usage: php ./build_phpunit_test_tpl.php <file_path> <class_name> [bootstrap] [author = dogstar]
+ * Usage: 
+ * php ./build_phpunit_test_tpl.php <file_path> <class_name> [bootstrap] [author = dogstar]
  *
- * 1、针对全部public的函数进行单元测试
- * 2、可根据@testcase注释自动生成测试用例
+ * 1, generate test cases for each public method in the class
+ * 2, generate base cases according @testcase annotation
  *
- * 备注：另可使用phpunit-skelgen进行骨架代码生成
+ * NOTE: You can also use phpunit-skelgen to generate PHPUnit test codes.
  *
  * @author: dogstar 20150119
  * @version: 4.0.2
@@ -62,7 +63,7 @@ $methods = $reflector->getMethods(ReflectionMethod::IS_PUBLIC);
 date_default_timezone_set('Asia/Shanghai');
 $objName = lcfirst(str_replace('_', '', $className));
 
-/** ------------------- 生成通用的单元测试代码 ------------------ **/
+/** ------------------- generate common PHPUnit tests codes ------------------ **/
 
 $code = "<?php
 /**
@@ -161,7 +162,7 @@ foreach ($methods as $method) {
     }
     $callParamStr = empty($callParamStr) ? $callParamStr : substr($callParamStr, 0, -2);
 
-    /** ------------------- 根据@return对结果类型的简单断言 ------------------ **/
+    /** ------------------- add simple asserts for the type of result according to @return annotation ------------------ **/
     $returnAssert = '';
 
     $docComment = $rMethod->getDocComment();
@@ -201,7 +202,7 @@ foreach ($methods as $method) {
         }
     }
 
-    /** ------------------- 基本的单元测试代码生成 ------------------ **/
+    /** ------------------- generate test case for each method ------------------ **/
     $code .= "
     /**
      * @group test$Fun
@@ -216,7 +217,7 @@ foreach ($methods as $method) {
     }
 ";
 
-    /** ------------------- 根据@testcase 生成测试代码 ------------------ **/
+    /** ------------------- generate test case according to @testcase annotation ------------------ **/
     $caseNum = 0;
     foreach ($docCommentArr as $comment) {
         if (strpos($comment, '@testcase') == false) {
@@ -227,7 +228,7 @@ foreach ($methods as $method) {
         if (count($returnCommentArr) > 1) {
             $expRs = $returnCommentArr[1];
 
-            //去掉@testcase和期望的结果
+            // remove @testcase annotation and expected result
             array_shift($returnCommentArr);
             array_shift($returnCommentArr);
 
