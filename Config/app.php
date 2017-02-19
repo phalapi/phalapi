@@ -1,12 +1,12 @@
 <?php
 /**
- * 请在下面放置任何您需要的应用配置
+ * Please add your config here as you need
  */
 
 return array(
 
     /**
-     * 应用接口层的统一参数
+     * API common param rules
      */
     'apiCommonRules' => array(
         //'sign' => array('name' => 'sign', 'require' => true),

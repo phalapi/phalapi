@@ -1,30 +1,33 @@
 <?php
 /**
- * 分库分表的自定义数据库路由配置
+ * Database Configuration
+ * 
+ * - support multi databases and tables
+ * - support customing table routes
  * 
  * @author: dogstar <chanzonghuang@gmail.com> 2015-02-09
  */
 
 return array(
     /**
-     * DB数据库服务器集群
+     * Database Servers
      */
     'servers' => array(
-        'db_demo' => array(                         //服务器标记
-            'host'      => 'localhost',             //数据库域名
-            'name'      => 'phalapi',               //数据库名字
-            'user'      => 'root',                  //数据库用户名
-            'password'  => '',	                    //数据库密码
-            'port'      => '3306',                  //数据库端口
-            'charset'   => 'UTF8',                  //数据库字符集
+        'db_demo' => array(                         // server ID
+            'host'      => 'localhost',             // database host
+            'name'      => 'phalapi',               // database name
+            'user'      => 'root',                  // database username
+            'password'  => '',	                    // database password
+            'port'      => '3306',                  // database port
+            'charset'   => 'UTF8',                  // database charset
         ),
     ),
 
     /**
-     * 自定义路由表
+     * Customing Table Routes
      */
     'tables' => array(
-        //通用路由
+        // Common Defatult Routes
         '__default__' => array(
             'prefix' => 'tbl_',
             'key' => 'id',
@@ -34,12 +37,12 @@ return array(
         ),
 
         /**
-        'demo' => array(                                                //表名
-            'prefix' => 'tbl_',                                         //表名前缀
-            'key' => 'id',                                              //表主键名
-            'map' => array(                                             //表路由配置
-                array('db' => 'db_demo'),                               //单表配置：array('db' => 服务器标记)
-                array('start' => 0, 'end' => 2, 'db' => 'db_demo'),     //分表配置：array('start' => 开始下标, 'end' => 结束下标, 'db' => 服务器标记)
+        'demo' => array(                                                // table name
+            'prefix' => 'tbl_',                                         // table prefix
+            'key' => 'id',                                              // table primary key
+            'map' => array(                                             // table route map
+                array('db' => 'db_demo'),                               // single table: array('db' => server ID)
+                array('start' => 0, 'end' => 2, 'db' => 'db_demo'),     // multi tables: array('start' => start pos, 'end' => end pos, 'db' => server ID)
             ),
         ),
          */

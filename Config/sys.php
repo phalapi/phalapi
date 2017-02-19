@@ -1,16 +1,16 @@
 <?php 
 /**
- * 以下配置为系统级的配置，通常放置不同环境下的不同配置
+ * System-level configuration, usually placed in different environments under different configurations
  */
 
 return array(
 	/**
-	 * 默认环境配置
+	 * Default Environment Config
 	 */
 	'debug' => false,
 
 	/**
-	 * MC缓存服务器参考配置
+	 * MC Cache Config
 	 */
 	 'mc' => array(
         'host' => '127.0.0.1',
@@ -18,9 +18,9 @@ return array(
 	 ),
 
     /**
-     * 加密
+     * Encryption
      */
     'crypt' => array(
-        'mcrypt_iv' => '12345678',      //8位
+        'mcrypt_iv' => '12345678',      // 8 characters
     ),
 );

@@ -178,29 +178,32 @@ function getConfigDbsTpl() {
     $configDbs = <<<EOT
 <?php
 /**
- * 分库分表的自定义数据库路由配置
+ * Database Configuration
+ *
+ * - support multi databases and tables
+ * - support customing table routes
  */
 
 return array(
     /**
-     * DB数据库服务器集群
+     * Customing Table Routes
      */
     'servers' => array(
-        'db_{project}' => array(                         //服务器标记
-            'host'      => '{host}',             //数据库域名
-            'name'      => '{name}',               //数据库名字
-            'user'      => '{user}',                  //数据库用户名
-            'password'  => '{password}',	                    //数据库密码
-            'port'      => '{port}',                  //数据库端口
-            'charset'   => '{charset}',                  //数据库字符集
+        'db_{project}' => array(                         // server ID
+            'host'      => '{host}',             // database host
+            'name'      => '{name}',               // database name
+            'user'      => '{user}',                  // database username
+            'password'  => '{password}',	                    // database password
+            'port'      => '{port}',                  // database port
+            'charset'   => '{charset}',                  // database charset
         ),
     ),
 
     /**
-     * 自定义路由表
+     * Customing Table Routes
      */
     'tables' => array(
-        //通用路由
+        // Common Defatult Routes
         '__default__' => array(
             'prefix' => '{prefix}',
             'key' => 'id',
@@ -210,12 +213,12 @@ return array(
         ),
 
         /**
-        'demo' => array(                                                //表名
-            'prefix' => '{prefix}',                                         //表名前缀
-            'key' => 'id',                                              //表主键名
-            'map' => array(                                             //表路由配置
-                array('db' => 'db_{project}'),                               //单表配置：array('db' => 服务器标记)
-                array('start' => 0, 'end' => 2, 'db' => 'db_{project}'),     //分表配置：array('start' => 开始下标, 'end' => 结束下标, 'db' => 服务器标记)
+        'demo' => array(                                                // table name
+            'prefix' => '{prefix}',                                         // table prefix
+            'key' => 'id',                                              // table primary key
+            'map' => array(                                             // table route map
+                array('db' => 'db_{project}'),                               // single table: array('db' => server ID)
+                array('start' => 0, 'end' => 2, 'db' => 'db_{project}'),     // multi tables: array('start' => start pos, 'end' => end pos, 'db' => server ID)
             ),
         ),
          */
