@@ -1,5 +1,17 @@
 <?php
 /**
+ * PhalApi
+ *
+ * An open source, light-weight API development framework for PHP.
+ *
+ * This content is released under the GPL(GPL License)
+ *
+ * @copyright   Copyright (c) 2015 - 2017, PhalApi
+ * @license     http://www.phalapi.net/license GPL GPL License
+ * @link        https://codeigniter.com
+ */
+
+/**
  * PhalApi_Tool 工具集合类
  *
  * 只提供通用的工具类操作，目前提供的有：
@@ -8,7 +20,7 @@
  * - 随机字符串生成
  *
  * @package     PhalApi\Tool
- * @license     http://www.phalapi.net/license GPL
+ * @license     http://www.phalapi.net/license GPL GPL License
  * @link        http://www.phalapi.net/
  * @author      dogstar <chanzonghuang@gmail.com> 2015-02-12
  */

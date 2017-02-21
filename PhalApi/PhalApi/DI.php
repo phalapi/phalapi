@@ -1,5 +1,17 @@
 <?php
 /**
+ * PhalApi
+ *
+ * An open source, light-weight API development framework for PHP.
+ *
+ * This content is released under the GPL(GPL License)
+ *
+ * @copyright   Copyright (c) 2015 - 2017, PhalApi
+ * @license     http://www.phalapi.net/license GPL GPL License
+ * @link        https://codeigniter.com
+ */
+
+/**
  * PhalApi_DI 依赖注入类
  *
  *  Dependency Injection 依赖注入容器
@@ -41,7 +53,7 @@
  * 
  * @package     PhalApi\DI
  * @link        http://docs.phalconphp.com/en/latest/reference/di.html 实现统一的资源设置、获取与管理，支持延时加载
- * @license     http://www.phalapi.net/license GPL
+ * @license     http://www.phalapi.net/license GPL GPL License
  * @link        http://www.phalapi.net/
  * @author      dogstar <chanzonghuang@gmail.com> 2014-01-22
  */ 

@@ -1,11 +1,24 @@
 <?php
 /**
- * PhalApi_Api 接口服务基类
+ * PhalApi
+ * 
+ * An open source, light-weight API development framework for PHP. 
+ * 
+ * This content is released under the GPL(GPL License)
+ * 
+ * @copyright   Copyright (c) 2015 - 2017, PhalApi
+ * @license     http://www.phalapi.net/license GPL GPL License 
+ * @link        https://codeigniter.com
+ */
+
+/**
+ * PhalApi Api Class
  *
- * - 实现身份验证、按参数规则解析生成接口参数等操作
- * - 提供给开发人员自宝义的接口服务具体类继承
+ * - 
+ * - including Authentication, creating API params by rules, etc.
+ * - project API should extend this base API class
  *
- * <br>通常地，可以这样继承：<br>
+ * <br>Generally, class can extend PhalApi_Api like:<br>
  *
 ```
  *  class Api_Demo extends PhalApi_Api {
@@ -26,9 +39,9 @@
  *  }
 ```
  *
- * @property    mixed $whatever 接口参数
+ * @property    mixed $whatever API parmas
  * @package     PhalApi\Api
- * @license     http://www.phalapi.net/license GPL GPL
+ * @license     http://www.phalapi.net/license GPL GPL License GPL GPL License License
  * @link        http://www.phalapi.net/
  * @author      dogstar <chanzonghuang@gmail.com> 2014-10-02
  */
@@ -36,19 +49,21 @@
 class PhalApi_Api {
 
     /**
-     * 设置规则解析后的接口参数
-     * @param string $name 接口参数名字
-     * @param mixed $value 接口参数解析后的值
+     * Set API param parsed from request with rules
+     * 
+     * @param 	string 	$name 	API param name
+     * @param 	mixed 	$value 	API param value after parsed
      */
     public function __set($name, $value) {
         $this->$name = $value;
     }
 
     /**
-     * 获取规则解析后的接口参数
-     * @param string $name 接口参数名字
-     * @throws PhalApi_Exception_InternalServerError 获取未设置的接口参数时，返回500
-     * @return mixed
+     * Get API param parsed from request with rules
+     * 
+     * @param 	string 	$name 	API param name
+     * @throws 	PhalApi_Exception_InternalServerError throw 500 when try to get undefined API param
+     * @return 	mixed
      */
     public function __get($name) {
         if(!isset($this->$name) || empty($name)) {
@@ -61,17 +76,17 @@ class PhalApi_Api {
     }
 
     /**
-     * 初始化
+     * Initialization
      *
-     * 主要完成的初始化工作有：
-     * - 1、[必须]按参数规则解析生成接口参数
-     * - 2、[可选]过滤器调用，如：签名验证
-     * - 3、[可选]用户身份验证
+     * Initialization is mainly composed of:
+     * - 1. [Required]parse and generate API params by rules
+     * - 2. [Optional]exec filter, eg: signature verification
+     * - 3. [Optional]user authentication
      * 
-     * @uses PhalApi_Api::createMemberValue()
-     * @uses PhalApi_Api::filterCheck()
-     * @uses PhalApi_Api::userCheck()
-     * @return null
+     * @uses 	PhalApi_Api::createMemberValue()
+     * @uses 	PhalApi_Api::filterCheck()
+     * @uses 	PhalApi_Api::userCheck()
+     * @return 	null
      */
     public function init() {
         $this->createMemberValue();
@@ -82,11 +97,11 @@ class PhalApi_Api {
     }
 
     /**
-     * 按参数规则解析生成接口参数
+     * Parse and generate API params by rules
      *
-     * 根据配置的参数规则，解析过滤，并将接口参数存放于类成员变量
+     * - according the config of params rules, generate API param and save into class member after parse
      * 
-     * @uses PhalApi_Api::getApiRules()
+     * @uses 	PhalApi_Api::getApiRules()
      */
     protected function createMemberValue() {
         foreach ($this->getApiRules() as $key => $rule) {
@@ -95,18 +110,18 @@ class PhalApi_Api {
     }
 
     /**
-     * 取接口参数规则
+     * Get all API rules
      *
-     * 主要包括有：
-     * - 1、[固定]系统级的service参数
-     * - 2、应用级统一接口参数规则，在app.apiCommonRules中配置
-     * - 3、接口级通常参数规则，在子类的*中配置
-     * - 4、接口级当前操作参数规则
+     * mainly composed of:
+     * - 1. [Fixed]the only one system level param, that's `service` param
+     * - 2. application level common API rules in configuration `app.apiCommonRules`
+     * - 3. API level common params rules in the configuration `*` of API class
+     * - 4. API level specified params rules
      *
-     * <b>当规则有冲突时，以后面为准。另外，被请求的函数名和配置的下标都转成小写再进行匹配。</b>
+     * <b>NOTE: The priority of rules: 1 < 2 < 3 < 4. Otherwise both request method name and config indexes will trans into lowercase before being compared with others. </b>
      *
-     * @uses PhalApi_Api::getRules()
-     * @return array
+     * @uses 	PhalApi_Api::getRules()
+     * @return 	array
      */
     public function getApiRules() {
         $rules = array();
@@ -138,24 +153,24 @@ class PhalApi_Api {
     }
 
     /**
-     * 获取参数设置的规则
+     * Get the rules for parmas
      *
-     * 可由开发人员根据需要重载
+     * - developer can override it as needed
      * 
-     * @return array
+     * @return 	array
      */
     public function getRules() {
         return array();
     }
 
     /**
-     * 过滤器调用
+     * Exec filter
      *
-     * 可由开发人员根据需要重载，以实现项目拦截处理，需要：
-     * - 1、实现PhalApi_Filter::check()接口
-     * - 2、注册的过滤器到DI()->filter
+     * - developer can override it as needed, in order to implemnet filter something, you should:
+     * - 1. implemnet interface PhalApi_Filter::check()
+     * - 2. register DI()->filter
      *
-     * <br>以下是一个简单的示例：<br>
+     * <br>This is a simple example as below:<br>
 ```
      * 	class My_Filter implements PhalApi_Filter {
      * 
@@ -165,12 +180,12 @@ class PhalApi_Api {
      * 	}
      * 
      * 
-     *  //在初始化文件 init.php 中注册过滤器
+     *  // register DI()->filter in the file init.php
      *  DI()->filter = 'My_Filter';
 ```
      * 
-     * @see PhalApi_Filter::check()
-     * @throws PhalApi_Exception_BadRequest 当验证失败时，请抛出此异常，以返回400
+     * @see 	PhalApi_Filter::check()
+     * @throws 	PhalApi_Exception_BadRequest throw 400 exception when fail to check
      */
     protected function filterCheck() {
         $filter = DI()->get('filter', 'PhalApi_Filter_None');
@@ -186,11 +201,11 @@ class PhalApi_Api {
     }
 
     /**
-     * 用户身份验证
+     * User authentication
      *
-     * 可由开发人员根据需要重载，此通用操作一般可以使用委托或者放置在应用接口基类
+     * - developer can override it as needed. Generally, this implementation can be delegated or implement in API base class
      * 
-     * @throws PhalApi_Exception_BadRequest 当验证失败时，请抛出此异常，以返回400
+     * @throws 	PhalApi_Exception_BadRequest throw 400 exception when fail to check
      */
     protected function userCheck() {
 

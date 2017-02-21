@@ -1,5 +1,17 @@
 <?php
 /**
+ * PhalApi
+ *
+ * An open source, light-weight API development framework for PHP.
+ *
+ * This content is released under the GPL(GPL License)
+ *
+ * @copyright   Copyright (c) 2015 - 2017, PhalApi
+ * @license     http://www.phalapi.net/license GPL GPL License
+ * @link        https://codeigniter.com
+ */
+
+/**
  * PhalApi_Config_Yaconf Yaconf扩展配置类
  *
  * - 通过Yaconf扩展快速获取配置
@@ -17,7 +29,7 @@
  *
  * @package     PhalApi\Config
  * @see         PhalApi_Config::get()
- * @license     http://www.phalapi.net/license GPL
+ * @license     http://www.phalapi.net/license GPL GPL License
  * @link        http://www.phalapi.net/
  * @link        https://github.com/laruence/yaconf
  * @author      dogstar <chanzonghuang@gmail.com> 2014-10-02

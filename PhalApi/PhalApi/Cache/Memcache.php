@@ -1,5 +1,17 @@
 <?php
 /**
+ * PhalApi
+ *
+ * An open source, light-weight API development framework for PHP.
+ *
+ * This content is released under the GPL(GPL License)
+ *
+ * @copyright   Copyright (c) 2015 - 2017, PhalApi
+ * @license     http://www.phalapi.net/license GPL GPL License
+ * @link        https://codeigniter.com
+ */
+
+/**
  * PhalApi_Cache_Memecahce MC缓存
  *
  * - 使用序列化对需要存储的值进行转换，以提高速度
@@ -7,7 +19,7 @@
  * - 请尽量使用Memcached扩展
  *
  * @package     PhalApi\Cache
- * @license     http://www.phalapi.net/license GPL
+ * @license     http://www.phalapi.net/license GPL GPL License
  * @link        http://www.phalapi.net/
  * @author      PhpStorm George <plzhuangyuan@163.com> 15/5/6 下午8:53
  */

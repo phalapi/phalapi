@@ -1,5 +1,17 @@
 <?php
 /**
+ * PhalApi
+ *
+ * An open source, light-weight API development framework for PHP.
+ *
+ * This content is released under the GPL(GPL License)
+ *
+ * @copyright   Copyright (c) 2015 - 2017, PhalApi
+ * @license     http://www.phalapi.net/license GPL GPL License
+ * @link        https://codeigniter.com
+ */
+
+/**
  * PhalApi_Logger 日记抽象类
  *
  * - 对系统的各种情况进行纪录，具体存储媒介由实现类定义
@@ -29,7 +41,7 @@
  * 
  * @package PhalApi\Logger
  * @link http://www.php-fig.org/psr/psr-3/ Logger Interface
- * @license http://www.phalapi.net/license GPL
+ * @license http://www.phalapi.net/license GPL GPL License
  * @link http://www.phalapi.net/
  * @author dogstar <chanzonghuang@gmail.com> 2014-10-02
  */

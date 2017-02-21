@@ -1,4 +1,16 @@
 <?php
+/**
+ * PhalApi
+ *
+ * An open source, light-weight API development framework for PHP.
+ *
+ * This content is released under the GPL(GPL License)
+ *
+ * @copyright   Copyright (c) 2015 - 2017, PhalApi
+ * @license     http://www.phalapi.net/license GPL GPL License
+ * @link        https://codeigniter.com
+ */
+
 require_once PHALAPI_ROOT . DIRECTORY_SEPARATOR . 'NotORM' . DIRECTORY_SEPARATOR . 'NotORM.php';
 
 /**
@@ -58,7 +70,7 @@ require_once PHALAPI_ROOT . DIRECTORY_SEPARATOR . 'NotORM' . DIRECTORY_SEPARATOR
  *
  * @package     PhalApi\DB
  * @link        http://www.notorm.com/
- * @license     http://www.phalapi.net/license GPL
+ * @license     http://www.phalapi.net/license GPL GPL License
  * @link        http://www.phalapi.net/
  * @author      dogstar <chanzonghuang@gmail.com> 2014-11-22
  */

@@ -1,5 +1,17 @@
 <?php
 /**
+ * PhalApi
+ *
+ * An open source, light-weight API development framework for PHP.
+ *
+ * This content is released under the GPL(GPL License)
+ *
+ * @copyright   Copyright (c) 2015 - 2017, PhalApi
+ * @license     http://www.phalapi.net/license GPL GPL License
+ * @link        https://codeigniter.com
+ */
+
+/**
  * PhalApi_ModelProxy 模型Model代理 - 重量级数据获取的应对方案
  * 
  * - 结合缓存，进行对重量级成本高的数据进行缓冲读取
@@ -34,7 +46,7 @@
 ```
  *
  * @package     PhalApi\Model
- * @license     http://www.phalapi.net/license GPL
+ * @license     http://www.phalapi.net/license GPL GPL License
  * @link        http://www.phalapi.net/
  * @author      dogstar <chanzonghuang@gmail.com> 2015-02-22
  */

@@ -1,12 +1,24 @@
 <?php
 /**
+ * PhalApi
+ *
+ * An open source, light-weight API development framework for PHP.
+ *
+ * This content is released under the GPL(GPL License)
+ *
+ * @copyright   Copyright (c) 2015 - 2017, PhalApi
+ * @license     http://www.phalapi.net/license GPL GPL License
+ * @link        https://codeigniter.com
+ */
+
+/**
  * PhalApi_Cache_Multi 组合模式下的多级缓存
  *
  * - 可以自定义添加多重缓存，注意优先添加高效缓存
  * - 最终将委托给各级缓存进行数据的读写，其中读取为短路读取
  *
  * @package     PhalApi\Cache
- * @license     http://www.phalapi.net/license GPL
+ * @license     http://www.phalapi.net/license GPL GPL License
  * @link        http://www.phalapi.net/
  * @author      dogstar <chanzonghuang@gmail.com> 2015-02-22
  */

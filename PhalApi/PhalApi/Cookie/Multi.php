@@ -1,12 +1,24 @@
 <?php
 /**
+ * PhalApi
+ *
+ * An open source, light-weight API development framework for PHP.
+ *
+ * This content is released under the GPL(GPL License)
+ *
+ * @copyright   Copyright (c) 2015 - 2017, PhalApi
+ * @license     http://www.phalapi.net/license GPL GPL License
+ * @link        https://codeigniter.com
+ */
+
+/**
  * PhalApi_Cookie_Multi 多级COOKIE
  * 
  * - 使用crypt进行加解密
  * - 带记忆功能，即设置后此时能获取
  *
  * @package PhalApi\Cookie
- * @license http://www.phalapi.net/license GPL
+ * @license http://www.phalapi.net/license GPL GPL License
  * @link http://www.phalapi.net/
  * @author dogstar <chanzonghuang@gmail.com> 2015-04-11
  */

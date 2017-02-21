@@ -1,12 +1,24 @@
 <?php
 /**
+ * PhalApi
+ *
+ * An open source, light-weight API development framework for PHP.
+ *
+ * This content is released under the GPL(GPL License)
+ *
+ * @copyright   Copyright (c) 2015 - 2017, PhalApi
+ * @license     http://www.phalapi.net/license GPL GPL License
+ * @link        https://codeigniter.com
+ */
+
+/**
  * PhalApi_Cache_Redis Redis缓存
  *
  * - 使用序列化对需要存储的值进行转换，以提高速度
  * - 提供更多redis的操作，以供扩展类库使用
  *
  * @package     PhalApi\Cache
- * @license     http://www.phalapi.net/license GPL
+ * @license     http://www.phalapi.net/license GPL GPL License
  * @link        http://www.phalapi.net/
  * @author      zzguo   2015-5-11
  * @modify      dogstar <chanzonghuang@gmail.com> 20150516

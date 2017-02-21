@@ -1,11 +1,22 @@
 <?php
+/**
+ * PhalApi
+ *
+ * An open source, light-weight API development framework for PHP.
+ *
+ * This content is released under the GPL(GPL License)
+ *
+ * @copyright   Copyright (c) 2015 - 2017, PhalApi
+ * @license     http://www.phalapi.net/license GPL GPL License
+ * @link        https://codeigniter.com
+ */
 
 /**
  * PhalApi_Request 参数生成类
  * - 负责根据提供的参数规则，进行参数创建工作，并返回错误信息
  * - 需要与参数规则配合使用
  * @package     PhalApi\Request
- * @license     http://www.phalapi.net/license GPL
+ * @license     http://www.phalapi.net/license GPL GPL License
  * @link        http://www.phalapi.net/
  * @author      dogstar <chanzonghuang@gmail.com> 2014-10-02
  */

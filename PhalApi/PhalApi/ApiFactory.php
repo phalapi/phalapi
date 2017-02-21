@@ -1,5 +1,17 @@
 <?php
 /**
+ * PhalApi
+ *
+ * An open source, light-weight API development framework for PHP.
+ *
+ * This content is released under the GPL(GPL License)
+ *
+ * @copyright   Copyright (c) 2015 - 2017, PhalApi
+ * @license     http://www.phalapi.net/license GPL GPL License
+ * @link        https://codeigniter.com
+ */
+
+/**
  * PhalApi_ApiFactory 创建控制器类 工厂方法
  *
  * 将创建与使用分离，简化客户调用，负责控制器复杂的创建过程
@@ -9,7 +21,7 @@
  *      $api = PhalApi_ApiFactory::generateService();
 ```
  * @package     PhalApi\Api
- * @license     http://www.phalapi.net/license GPL GPL
+ * @license     http://www.phalapi.net/license GPL GPL License GPL GPL License
  * @link        http://www.phalapi.net/
  * @author      dogstar <chanzonghuang@gmail.com> 2014-10-02
  */

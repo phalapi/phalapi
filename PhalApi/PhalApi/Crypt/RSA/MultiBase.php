@@ -1,5 +1,17 @@
 <?php
 /**
+ * PhalApi
+ *
+ * An open source, light-weight API development framework for PHP.
+ *
+ * This content is released under the GPL(GPL License)
+ *
+ * @copyright   Copyright (c) 2015 - 2017, PhalApi
+ * @license     http://www.phalapi.net/license GPL GPL License
+ * @link        https://codeigniter.com
+ */
+
+/**
  * PhalApi_Crypt_RSA_MultiBase RSA加密层超类
  * 
  * 基于RSA非对称加密的层超类 - 超长字符串的应对方案
@@ -9,7 +21,7 @@
  * - 只适合字符串的加密，其他类型会强制转成字符串
  *
  * @package     PhalApi\Crypt\RSA
- * @license     http://www.phalapi.net/license GPL
+ * @license     http://www.phalapi.net/license GPL GPL License
  * @link        http://www.phalapi.net/
  * @author      dogstar <chanzonghuang@gmail.com> 2015-03-14
  */

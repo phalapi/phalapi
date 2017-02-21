@@ -1,5 +1,17 @@
 <?php
 /**
+ * PhalApi
+ * 
+ * An open source, light-weight API development framework for PHP. 
+ * 
+ * This content is released under the GPL(GPL License)
+ * 
+ * @copyright   Copyright (c) 2015 - 2017, PhalApi
+ * @license     http://www.phalapi.net/license GPL GPL License 
+ * @link        https://codeigniter.com
+ */
+
+/**
  * 框架版本号
  */
 defined('PHALAPI_VERSION') || define('PHALAPI_VERSION', '1.3.5');
@@ -24,7 +36,7 @@ require_once PHALAPI_ROOT . DIRECTORY_SEPARATOR . 'PhalApi' . DIRECTORY_SEPARATO
 ```
  *
  * @package     PhalApi\Response
- * @license     http://www.phalapi.net/license GPL
+ * @license     http://www.phalapi.net/license GPL GPL License
  * @link        http://www.phalapi.net/
  * @author      dogstar <chanzonghuang@gmail.com> 2014-12-17
  */
