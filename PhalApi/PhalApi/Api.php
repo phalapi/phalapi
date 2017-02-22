@@ -41,7 +41,7 @@
  *
  * @property    mixed $whatever API parmas
  * @package     PhalApi\Api
- * @license     http://www.phalapi.net/license GPL GPL License GPL GPL License License
+ * @license     http://www.phalapi.net/license GPL GPL License
  * @link        http://www.phalapi.net/
  * @author      dogstar <chanzonghuang@gmail.com> 2014-10-02
  */

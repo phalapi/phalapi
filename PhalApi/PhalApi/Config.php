@@ -12,13 +12,13 @@
  */
 
 /**
- * PhalApi_Config 配置接口
+ * Config Interface
  *
- * 获取系统所需要的参数配置
+ * Get all configurations of project.
  * 
- * <br>使用示例：<br>
+ * <br>Usage:<br>
 ```
- * //假设有这样的app.php配置：
+ * // Assume we have the app.php config file as below:
  * return array(
  *  'version' => '1.1.1',
  * 
@@ -27,15 +27,15 @@
  *   );
  * );
  *
- * //我们就可以分别这样根据需要获取配置：
- * //app.php里面的全部配置
+ * // We can get the config like:
+ * // get all configs in app.php
  * DI()->config->get('app');
  * 
- * //app.php里面的单个配置
- * DI()->config->get('app.version');  //返回：1.1.1
+ * // or one config in app.php
+ * DI()->config->get('app.version');  // return: 1.1.1
  * 
- * //app.php里面的多级配置
- * DI()->config->get('app.version.address');  //返回：chanzonghuang@gmail.com
+ * // or multi config in app.php
+ * DI()->config->get('app.version.address');  // return: chanzonghuang@gmail.com
 ```
  *
  * @package PhalApi\Config
@@ -47,11 +47,11 @@
 interface PhalApi_Config {
 
 	/**
-     * 获取配置
+     * Get config
      * 
-     * @param $key string 配置键值
-     * @param mixed $default 缺省值
-     * @return mixed 需要获取的配置值，不存在时统一返回$default
+     * @param 	$key 	string 		config key
+     * @param 	mixed 	$default 	config default value
+     * @return 	mixed 	config value, or return $default when config not exists
      */
 	public function get($key, $default = NULL);
 }

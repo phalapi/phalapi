@@ -12,7 +12,7 @@
  */
 
 /**
- * PhalApi_Cache 缓存接口
+ * Cache Interface
  *
  * @package     PhalApi\Cache
  * @license     http://www.phalapi.net/license GPL GPL License
@@ -23,24 +23,24 @@
 interface PhalApi_Cache {
 
 	/**
-	 * 设置缓存
+	 * Set cache
 	 * 
-	 * @param string $key 缓存key
-	 * @param mixed $value 缓存的内容
-	 * @param int $expire 缓存有效时间，单位秒，非时间戳
+	 * @param 	string 	$key 		cache key
+	 * @param 	mixed 	$value 		cache content data
+	 * @param 	int 	$expire 	cache expire time, unit: seconds, not timestamp
 	 */
     public function set($key, $value, $expire = 600);
 
     /**
-     * 读取缓存
+     * Get cache
      * 
-     * @param string $key 缓存key
-     * @return mixed 失败情况下返回NULL
+     * @param 	string 	$key cache key
+     * @return 	mixed 	return null when fail
      */
     public function get($key);
 
     /**
-     * 删除缓存
+     * Delete cache
      * 
      * @param string $key
      */

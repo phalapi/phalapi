@@ -12,18 +12,18 @@
  */
 
 /**
- * PhalApi_DI 依赖注入类
+ * Dependence Injection Class
  *
- *  Dependency Injection 依赖注入容器
+ *  Dependency Injection Container
  *  
- * - 调用的方式有：set/get函数、魔法方法setX/getX、类变量$fdi->X、数组$fdi['X]
- * - 初始化的途径：直接赋值、类名、匿名函数
+ * - support: setter/getter, magic method like setX/getX, class property like $di->X, array like $di['X']
+ * - ways to initialize: assign directly, or by class name, or by anonymous function
  *
- * <br>使用示例：<br>
+ * <br>Usage:<br>
 ```
  *       $di = new PhalApi_DI();
  *      
- *       // 用的方式有：set/get函数  魔法方法setX/getX、类属性$di->X、数组$di['X']
+ *       // setter/getter, magic method like setX/getX, class property like $di->X, array like $di['X']
  *       $di->key = 'value';
  *       $di['key'] = 'value';
  *       $di->set('key', 'value');
@@ -34,7 +34,7 @@
  *       echo $di->get('key');
  *       echo $di->getKey();
  *      
- *       // 初始化的途径：直接赋值、类名(会回调onInitialize函数)、匿名函数
+ *       // ways to initialize: assign directly, or by class name(will call onInitialize method), or by anonymous function
  *       $di->simpleKey = array('value');
  *       $di->classKey = 'PhalApi_DI';
  *       $di->closureKey = function () {
@@ -42,17 +42,19 @@
  *       };
 ```       
  *      
- * @property PhalApi_Request        $request    请求
- * @property PhalApi_Response_Json  $response   结果响应
- * @property PhalApi_Cache          $cache      缓存
- * @property PhalApi_Crypt          $crypt      加密
- * @property PhalApi_Config         $config     配置
- * @property PhalApi_Logger         $logger     日记
- * @property PhalApi_DB_NotORM      $notorm     数据库
- * @property PhalApi_Loader         $loader     自动加载
+ * Default Services:     
+ *      
+ * @property PhalApi_Request        $request    request
+ * @property PhalApi_Response_Json  $response   reponse
+ * @property PhalApi_Cache          $cache      cache
+ * @property PhalApi_Crypt          $crypt      crypt
+ * @property PhalApi_Config         $config     config
+ * @property PhalApi_Logger         $logger     logger
+ * @property PhalApi_DB_NotORM      $notorm     NotORM
+ * @property PhalApi_Loader         $loader     loader
  * 
  * @package     PhalApi\DI
- * @link        http://docs.phalconphp.com/en/latest/reference/di.html 实现统一的资源设置、获取与管理，支持延时加载
+ * @link        http://docs.phalconphp.com/en/latest/reference/di.html
  * @license     http://www.phalapi.net/license GPL GPL License
  * @link        http://www.phalapi.net/
  * @author      dogstar <chanzonghuang@gmail.com> 2014-01-22
@@ -61,17 +63,17 @@
 class PhalApi_DI implements ArrayAccess {
 
 	/**
-	 * @var PhalApi_DI $instance 单例
+	 * @var 	PhalApi_DI 		$instance 	singleton object
 	 */
     protected static $instance = NULL;
 
     /**
-     * @var array $hitTimes 服务命中的次数
+     * @var 	array 			$hitTimes 	services hit times
      */
     protected $hitTimes = array();
     
     /**
-     * @var array 注册的服务池
+     * @var 	array 			$data		services regsitration pool
      */
     protected $data = array();
 
@@ -80,10 +82,10 @@ class PhalApi_DI implements ArrayAccess {
     }
 
     /**
-     * 获取DI单体实例
+     * Get the singletom of DI
      *
-     * - 1、将进行service级的构造与初始化
-     * - 2、也可以通过new创建，但不能实现service的共享
+     * - 1. construct and initialize default services such as reqeust, response
+     * - 2. you can also create by new, but can not share servcies
      */ 
     public static function one() {
         if (self::$instance == NULL) {
@@ -95,10 +97,10 @@ class PhalApi_DI implements ArrayAccess {
     }
 
     /**
-     * service级的构造函数
+     * Construct on services
      *
-     * - 1、可实现一些自定义业务的操作，如内置默认service
-     * - 2、首次创建时将会调用
+     * - 1. custom specified operations on your logic business, e.g. add default services
+     * - 2. only will triggle at first time
      */ 
     public function onConstruct() {
         $this->request = 'PhalApi_Request';
@@ -109,12 +111,12 @@ class PhalApi_DI implements ArrayAccess {
     }
 
     /**
-     * 统一setter
+     * Setter
      *
-     * - 1、设置保存service的构造原型，延时创建
+     * - 1. save meta constructor, and initilize when in need (lazy initialization)
      *
-     * @param string $key service注册名称，要求唯一，区分大小写
-     * @parms mixed $value service的值，可以是具体的值或实例、类名、匿名函数、数组配置
+     * @param 		string 		$key 		service name, unique, case sensitive
+     * @param 		mixed 		$value 		service value, it could by some value, instance, class name, or anonymous function
      */ 
     public function set($key, $value) {
         $this->resetHit($key);
@@ -125,16 +127,14 @@ class PhalApi_DI implements ArrayAccess {
     }
 
     /**
-     * 统一getter
+     * Getter
      *
-     * - 1、获取指定service的值，并根据其原型分不同情况创建
-     * - 2、首次创建时，如果service级的构造函数可调用，则调用
-     * - 3、每次获取时，如果非共享且service级的初始化函数可调用，则调用
+     * - 1. get the value of service, and initiliaze for different cases
+     * - 2. try to call onConstruct() when first time to create
      *
-     * @param string $key service注册名称，要求唯一，区分大小写
-     * @param mixed $default service不存在时的默认值
-     * @param boolean $isShare 是否获取共享service
-     * @return mixed 没有此服务时返回NULL
+     * @param 		string 		$key 		service name, unique, case sensitive
+     * @param 		mixed 		$default 	service default value
+     * @return 		mixed 					return NULL when service not exists
      */ 
     public function get($key, $default = NULL) {
         if (!isset($this->data[$key])) {
@@ -150,7 +150,7 @@ class PhalApi_DI implements ArrayAccess {
         return $this->data[$key];
     }
 
-    /** ------------------ 魔法方法 ------------------ **/
+    /** ------------------ Magic Methods ------------------ **/
 
     public function __call($name, $arguments) {
         if (substr($name, 0, 3) == 'set') {
@@ -175,7 +175,7 @@ class PhalApi_DI implements ArrayAccess {
         return $this->get($name, NULL);
     }
 
-    /** ------------------ ArrayAccess（数组式访问）接口 ------------------ **/
+    /** ------------------ ArrayAccess Interfaces ------------------ **/
 
     public function offsetSet($offset, $value) {
         $this->set($offset, $value);
@@ -193,7 +193,7 @@ class PhalApi_DI implements ArrayAccess {
         return isset($this->data[$offset]);
     }
 
-    /** ------------------ 内部方法 ------------------ **/
+    /** ------------------ Potected Methods ------------------ **/
 
     protected function initService($config) {
         $rs = NULL;

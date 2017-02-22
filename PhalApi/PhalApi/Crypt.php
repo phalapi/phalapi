@@ -12,7 +12,7 @@
  */
 
 /**
- * PhalApi_Crypt对称加密接口
+ * Crypt Interface
  *
  * @package     PhalApi\Crypt
  * @license     http://www.phalapi.net/license GPL GPL License
@@ -23,21 +23,21 @@
 interface PhalApi_Crypt {
 
 	/**
-	 * 对称加密
+	 * Encrypt data with key
 	 * 
-	 * @param mixed $data 等加密的数据
-	 * @param string $key 加密的key
-	 * @return mixed 加密后的数据
+	 * @param 	mixed 		$data 	the data need to be encrypted
+	 * @param 	string 		$key 	encrypt key
+	 * @return 	mixed 				encrypted data
 	 */
     public function encrypt($data, $key);
     
     /**
-     * 对称解密
+     * Decrypt data with key
      * 
-     * @see PhalApi_Crypt::encrypt()
-     * @param mixed $data 对称加密后的内容
-     * @param string $key 加密的key
-     * @return mixed 解密后的数据
+     * @param 	mixed 		$data 	encrypted data
+     * @param 	string 		$key 	encrypt key
+     * @return 	mixed 				data after decrypt
+     * @see 	PhalApi_Crypt::encrypt()
      */
     public function decrypt($data, $key);
 }

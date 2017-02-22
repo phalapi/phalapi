@@ -12,16 +12,19 @@
  */
 
 /**
- * PhalApi_ApiFactory 创建控制器类 工厂方法
+ * Api Factory Class
+ * 
+ * - factory method to craete controller objects
+ * - separate creation and usage, simplify client development
+ * - only be responsible for complicate creation
  *
- * 将创建与使用分离，简化客户调用，负责控制器复杂的创建过程
- *
+ * <br>Usage:</br>
 ```
- *      //根据请求(?service=XXX.XXX)生成对应的接口服务，并进行初始化
+ *      // create and init service by request(?service=XXX.XXX)
  *      $api = PhalApi_ApiFactory::generateService();
 ```
  * @package     PhalApi\Api
- * @license     http://www.phalapi.net/license GPL GPL License GPL GPL License
+ * @license     http://www.phalapi.net/license GPL GPL License
  * @link        http://www.phalapi.net/
  * @author      dogstar <chanzonghuang@gmail.com> 2014-10-02
  */
@@ -29,21 +32,21 @@
 class PhalApi_ApiFactory {
 
 	/**
-     * 创建服务器
-     * 根据客户端提供的接口服务名称和需要调用的方法进行创建工作，如果创建失败，则抛出相应的自定义异常
+     * Generate service
+     * according the service name and method name request from client; throw related custom exception when fail
      *
-     * 创建过程主要如下：
-     * - 1、 是否缺少控制器名称和需要调用的方法
-     * - 2、 控制器文件是否存在，并且控制器是否存在
-     * - 3、 方法是否可调用
-     * - 4、 控制器是否初始化成功
+     * The main process is as follows:
+     * - 1. check whether miss controller name or method name
+     * - 2. make sure that both controller file and controller class exists
+     * - 3. whether method is callable or not
+     * - 4. whether succeed to intitailze controller
      *
-     * @param boolen $isInitialize 是否在创建后进行初始化
-     * @param string $_REQUEST['service'] 接口服务名称，格式：XXX.XXX
-     * @return PhalApi_Api 自定义的控制器
+     * @param 	boolen 			$isInitialize 			whether try to initialize after creation
+     * @param 	string 			$_REQUEST['service'] 	service name, format: XXX.XXX
+     * @return 	PhalApi_Api 	Api implements
      *
-     * @uses PhalApi_Api::init()
-     * @throws PhalApi_Exception_BadRequest 非法请求下返回400
+     * @uses 	PhalApi_Api::init()
+     * @throws 	PhalApi_Exception_BadRequest 非法请求下返回400
      */
 	static function generateService($isInitialize = TRUE) {
 		$service = DI()->request->get('service', 'Default.Index');

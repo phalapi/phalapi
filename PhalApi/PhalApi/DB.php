@@ -12,9 +12,9 @@
  */
 
 /**
- * PhalApi_DB数据库接口
+ * Database Interface
  * 
- * @TODO 待接口统一
+ * @TODO comming soon ...
  * 
  * @package     PhalApi\DB
  * @license     http://www.phalapi.net/license GPL GPL License

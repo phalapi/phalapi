@@ -12,22 +12,22 @@
  */
 
 /**
- * PhalApi_CUrl CURL请求类
+ * CUrl Request Class
  *
- * 通过curl实现的快捷方便的接口请求类
+ * implement simple class to request API with curl
  * 
- * <br>示例：<br>
+ * <br>Usage:<br>
  * 
 ```
- *  // 失败时再重试2次
+ *  // retry 2 times when fail
  *  $curl = new PhalApi_CUrl(2);
  *
  *  // GET
- *  $rs = $curl->get('http://phalapi.oschina.mopaas.com/Public/demo/?service=Default.Index');
+ *  $rs = $curl->get('http://demo.phalapi.net/?service=Default.Index');
  *
  *  // POST
  *  $data = array('username' => 'dogstar');
- *  $rs = $curl->post('http://phalapi.oschina.mopaas.com/Public/demo/?service=Default.Index', $data);
+ *  $rs = $curl->post('http://demo.phalapi.net/?service=Default.Index', $data);
 ```
  *
  * @package     PhalApi\CUrl
@@ -39,17 +39,17 @@
 class PhalApi_CUrl {
 
     /**
-     * 最大重试次数
+     * Retry no more than 10 times.
      */
     const MAX_RETRY_TIMES = 10;
 
 	/**
-	 * @var int $retryTimes 超时重试次数；注意，此为失败重试的次数，即：总次数 = 1 + 重试次数
+	 * @var 	int 	$retryTimes 	retry times; NOTE, total request times = 1 + retry times
 	 */
     protected $retryTimes;
 
 	/**
-	 * @param int $retryTimes 超时重试次数，默认为1
+	 * @param 	int 	$retryTimes 	retry times, default is 1
 	 */
     public function __construct($retryTimes = 1) {
         $this->retryTimes = $retryTimes < self::MAX_RETRY_TIMES 
@@ -57,32 +57,35 @@ class PhalApi_CUrl {
     }
 
 	/**
-	 * GET方式的请求
-	 * @param string $url 请求的链接
-	 * @param int $timeoutMs 超时设置，单位：毫秒
-	 * @return string 接口返回的内容，超时返回false
+	 * Request by GET
+	 * 
+	 * @param 	string 		$url 		the url wait to request
+	 * @param 	int 		$timeoutMs 	timeout, unit: microsecond
+	 * @return 	string 					response content, return false when time out or fail to connect
 	 */
     public function get($url, $timeoutMs = 3000) {
         return $this->request($url, FALSE, $timeoutMs);
     } 
 
     /**
-     * POST方式的请求
-     * @param string $url 请求的链接
-     * @param array $data POST的数据
-     * @param int $timeoutMs 超时设置，单位：毫秒
-     * @return string 接口返回的内容，超时返回false
+     * Request by POST
+     * 
+     * @param 	string 		$url 		the url wait to request
+     * @param 	array 		$data 		POST data
+     * @param 	int 		$timeoutMs 	timeout, unit: microsecond
+     * @return 	string 					response content, return false when time out or fail to connect
      */
     public function post($url, $data, $timeoutMs = 3000) {
         return $this->request($url, $data, $timeoutMs);
     }
 
     /**
-     * 统一接口请求
-     * @param string $url 请求的链接
-     * @param array $data POST的数据
-     * @param int $timeoutMs 超时设置，单位：毫秒
-	 * @return string 接口返回的内容，超时返回false
+     * Request implementation
+     * 
+     * @param 	string 		$url 		the url wait to request
+     * @param 	array 		$data 		POST data
+     * @param 	int 		$timeoutMs 	timeout, unit: microsecond
+	 * @return 	string 					response content, return false when time out or fail to connect
      */
     protected function request($url, $data, $timeoutMs = 3000) {
         $ch = curl_init();

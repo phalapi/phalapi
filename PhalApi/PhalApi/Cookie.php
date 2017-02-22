@@ -12,23 +12,23 @@
  */
 
 /**
- * PhalApi_Cookie COOKIE操作
+ * Cookie Operation
  * 
- * - 原生态COOKIE操作的简单封装
- * - 注意，设置的COOKIE需要在下一次才能生效
+ * - simple wrapper fo PHP original COOKIE
+ * - NOTE: the new cookie will works in next request time
  *
- * <br>使用示例：<br>
+ * <br>Usage:<br>
 ```
- *  //COOKIE
+ *  // COOKIE
  *  DI()->cookie = 'PhalApi_Cookie';
  *  
- *  //设置COOKIE服务
+ *  // set COOKIE
  *  DI()->cookie->set('name', 'phalapi', $_SERVER['REQUEST_TIME'] + 600);
  *  
- *  //获取
- *  echo DI()->cookie->get('name');  //输出 phalapi
+ *  // get COOKIE
+ *  echo DI()->cookie->get('name');  // output phalapi
  *  
- *  //删除
+ *  // delete COOKIE
  *  DI()->cookie->delete('name');
  *  
 ```
@@ -41,16 +41,16 @@
 class PhalApi_Cookie {
 
 	/**
-	 * COOKIE配置
+	 * COOKIE configuration
 	 */
     protected $config = array();
 
 	/**
-	 * @param string $config['path'] 路径
-	 * @param string $config['domain'] 域名
-	 * @param boolean $config['secure'] 是否加密
-	 * @param boolean $config['httponly'] 是否只HTTP协议
-	 * @link http://php.net/manual/zh/function.setcookie.php
+	 * @param 	string 		$config['path'] 		cookie path
+	 * @param 	string 		$config['domain'] 		cookie domain
+	 * @param 	boolean 	$config['secure'] 		whether secure
+	 * @param 	boolean 	$config['httponly'] 	whether http only
+	 * @link 	http://php.net/manual/zh/function.setcookie.php
 	 */
     public function __construct($config = array()) {
         $this->config['path']       = isset($config['path']) ? $config['path'] : NULL;
@@ -60,10 +60,10 @@ class PhalApi_Cookie {
     }
 
 	/**
-	 * 获取COOKIE
+	 * Get COOKIE
 	 *
-	 * @param string $name 待获取的COOKIE名字
-	 * @return string/NULL/array $name为NULL时返回整个$_COOKIE，存在时返回COOKIE，否则返回NULL
+	 * @param 	string 				$name 	COOKIE name
+	 * @return 	string/NULL/array 	return the whole $_COOKIE when $name is NUL; return cookie value when exists, or NULL when not exists
 	 */
     public function get($name = NULL) {
         if ($name === NULL) {
@@ -74,12 +74,12 @@ class PhalApi_Cookie {
     }
 
 	/**
-	 * 设置COOKIE
+	 * Set COOKIE
 	 *
-	 * @param string $name 待设置的COOKIE名字
-	 * @param string/int $value 建议COOKIE值为一些简单的字符串或数字，不推荐存放敏感数据
-	 * @param int $expire 有效期的timestamp，为NULL时默认存放一个月
-	 * @param boolean
+	 * @param 	string 			$name 		COOKIE name
+	 * @param 	string/int 		$value 		COOKIE value, suggest to be some simple strings or number, not sensitive data
+	 * @param 	int 			$expire 	expire timestamp, expire in one MONTH when $expire is NULL
+	 * @param 	boolean
 	 */
     public function set($name, $value, $expire = NULL) {
         if ($expire === NULL) {
@@ -98,18 +98,18 @@ class PhalApi_Cookie {
     }
 
 	/**
-	 * 删除COOKIE
+	 * Delete COOKIE
 	 *
-	 * @param strint $name 待删除的COOKIE名字
-	 * @param boolean
-	 * @see PhalApi_Cookie::set()
+	 * @param 	strint 		$name 		COOKIE name
+	 * @param 	boolean
+	 * @see 	PhalApi_Cookie::set()
 	 */
     public function delete($name) {
         return $this->set($name, '', 0);
     }
 
 	/**
-	 * 获取COOKIE的配置
+	 * Get COOKIE config
 	 */
     public function getConfig() {
         return $this->config;
