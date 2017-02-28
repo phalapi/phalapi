@@ -30,13 +30,46 @@ define("D_S", DIRECTORY_SEPARATOR);
 $root = dirname(__FILE__);
 
 /**
- * 项目的文件夹名 - 如有需要，请更新此值
+ * 项目的文件夹名
+
+ * TODO: 请根据需要，修改成你的项目名称
  */
 $apiDirName = 'Demo';
 
+/**
+ * 扩展类库
+ *
+ * TODO: 请根据需要，添加需要显示的扩展路径，即./Api目录的父路径
+ */
+$libraryPaths = array(
+    'Library/User/User',    // User扩展
+    'Library/Auth/Auth',    // Auth扩展
+);
+
+// 修正路径
+foreach ($libraryPaths as &$fixPathRef) {
+    $fixPathRef = str_replace('/', D_S, $fixPathRef);
+}
+
+// 初始化
 require_once implode(D_S, array($root, '..', 'init.php'));
+
+// 处理项目
 DI()->loader->addDirs($apiDirName);
 $files = listDir(implode(D_S, array($root, '..', '..', $apiDirName, 'Api')));
+
+// 追加处理扩展类库
+foreach ($libraryPaths as $aPath) {
+    $toAddDir = str_replace('/', D_S, $aPath);
+    DI()->loader->addDirs($toAddDir);
+
+    $toListDir = API_ROOT . D_S . $toAddDir . D_S . 'Api';
+    $aLibFiles = listDir($toListDir);
+
+    $files = array_merge($files, $aLibFiles);
+}
+
+// 待排除的方法
 $allPhalApiApiMethods = get_class_methods('PhalApi_Api');
 
 $allApiS = array();
