@@ -46,11 +46,6 @@ $libraryPaths = array(
     'Library/Auth/Auth',    // Auth扩展
 );
 
-// 修正路径
-foreach ($libraryPaths as &$fixPathRef) {
-    $fixPathRef = str_replace('/', D_S, $fixPathRef);
-}
-
 // 初始化
 require_once implode(D_S, array($root, '..', 'init.php'));
 
