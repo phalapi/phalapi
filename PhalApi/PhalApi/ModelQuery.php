@@ -12,10 +12,10 @@
  */
 
 /**
- * PhalApi_ModelQuery 查询对象(值对象)
+ * Model Query Class
  *
- * - 我们强烈建议应将此继承类的实例当作值对象处理，虽然我们提供了便利的结构化获取
- * - 如需要拷贝值对象，可以结合使用构造函数和toArray()
+ * - we strong recommend treat this class instance as value object, even though you can use public class properties
+ * - if need to copy the object, you can use constructor and ```toArray()```
  * 
  * @package     PhalApi\Model
  * @license     http://www.phalapi.net/license GPL GPL License
@@ -26,22 +26,22 @@
 class PhalApi_ModelQuery {
 
     /**
-     * @var boolean $readCache 是否读取缓存
+     * @var 	boolean 	$readCache 		whether read cache or not
      */
     public $readCache = true;
 
     /**
-     * @var boolean $writeCache 是否写入缓存
+     * @var 	boolean 	$writeCache 	whether write cache or not
      */
     public $writeCache = true;
 
     /**
-     * @var string/int ID
+     * @var 	string/int 	ID
      */
     public $id;
 
     /**
-     * @var int $timestamp 时间戳
+     * @var 	int 		$timestamp 		expire timestamp
      */
     public $timestamp;
 

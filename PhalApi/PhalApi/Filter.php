@@ -12,11 +12,11 @@
  */
 
 /**
- * PhalApi_Filter 拦截器接口
+ * Filter Class
  *  
- * 为应用实现接口请求拦截提供统一处理接口
+ * Union filter for API request
  * 
- * <br>实现和使用示例：</br>
+ * <br>Implementaion and usage：</br>
 ```
  * 	class My_Filter implements PhalApi_Filter {
  * 
@@ -25,8 +25,8 @@
  * 		}
  * 	}
  *
- * //$ vim ./Public/init.php
- * //注册签名验证服务 
+ * // $ vim ./Public/init.php
+ * // registger filter service 
  * DI()->filter = 'Common_SignFilter';
 ```
  *

@@ -11,17 +11,17 @@
  * @link        https://codeigniter.com
  */
 
-//加载快速方法
+// require short functions
 require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'functions.php';
 
 /**
- * PhalApi_Loader 自动加载器
+ * Loader Class
  *
- * - 按类名映射文件路径自动加载类文件
- * - 可以自定义加载指定文件
+ * - Load class file automatically by class name
+ * - Or requrire source file manually by specified path
  *
  * @package     PhalApi\Loader
- * @link        http://docs.phalconphp.com/en/latest/reference/loader.html，实现统一的类加载
+ * @link        http://docs.phalconphp.com/en/latest/reference/loader.html
  * @license     http://www.phalapi.net/license GPL GPL License
  * @link        http://www.phalapi.net/
  * @author      dogstar <chanzonghuang@gmail.com> 2014-01-28
@@ -30,12 +30,12 @@ require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'functions.php';
 class PhalApi_Loader {
 
 	/**
-	 * @var array $dirs 指定需要加载的目录
+	 * @var 	array 	$dirs 		the folders to be required
 	 */
 	protected $dirs = array();
 	
 	/**
-	 * @var string $basePath 根目录
+	 * @var 	string 	$basePath 	the root path
 	 */
     protected $basePath = '';
 
@@ -50,9 +50,10 @@ class PhalApi_Loader {
     }
     
     /**
-     * 添加需要加载的目录
-     * @param string $dirs 待需要加载的目录，绝对路径
-     * @return NULL
+     * Add the folders to by required
+     * 
+     * @param 	string 	$dirs 	the absolute folder paths to by required
+     * @return 	NULL
      */
     public function addDirs($dirs) {
         if(!is_array($dirs)) {
@@ -63,32 +64,34 @@ class PhalApi_Loader {
     }
 
     /**
-     * 设置根目录
-     * @param string $path 根目录
-     * @return NULL
+     * Set the root path
+     * 
+     * @param 	string 	$path 	root path
+     * @return 	NULL
      */
     public function setBasePath($path) {
     	$this->basePath = $path;
     }
     
     /**
-     * 手工加载指定的文件
-     * 可以是相对路径，也可以是绝对路径
-     * @param string $filePath 文件路径
+     * require specified file manually
+     * 
+     * @param 	string 	$filePath 	relative file path, or absolute file path
      */
     public function loadFile($filePath) {
         require_once (substr($filePath, 0, 1) != '/' && substr($filePath, 1, 1) != ':')
             ? $this->basePath . DIRECTORY_SEPARATOR . $filePath : $filePath;
     }
     
-    /** ------------------ 内部实现 ------------------ **/
+    /** ------------------ internal implementation ------------------ **/
 
     /**
-     * 自动加载
+     * Autoload
 	 * 
-	 * 这里，我们之所以在未找到类时没有抛出异常是为了开发人员自动加载或者其他扩展类库有机会进行处理
+	 * Here, the reason why we won't throw exception when class is not found,
+	 * because we hope developers or other library have chance to load it later.
      *
-     * @param string $className 等待加载的类名
+     * @param 	string 	$className 		the class name to be required
      */ 
     public function load($className) {
         if (class_exists($className, FALSE) || interface_exists($className, FALSE)) {

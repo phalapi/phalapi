@@ -12,9 +12,11 @@
  */
 
 /**
- * PhalApi_Request 参数生成类
- * - 负责根据提供的参数规则，进行参数创建工作，并返回错误信息
- * - 需要与参数规则配合使用
+ * Request Class
+ * 
+ * - reponsible for building params by rules and returning error message
+ * - need to be use with API rules together
+ * 
  * @package     PhalApi\Request
  * @license     http://www.phalapi.net/license GPL GPL License
  * @link        http://www.phalapi.net/
@@ -27,7 +29,7 @@ class PhalApi_Request {
     protected $headers = array();
 
     /**
-     * @param array $data 参数来源，可以为：$_GET/$_POST/$_REQUEST/自定义
+     * @param 	array 	$data 	data source, it can be: $_GET/$_POST/$_REQUEST/etc
      */
     public function __construct($data = NULL) {
         $this->data    = $this->genData($data);
@@ -35,11 +37,12 @@ class PhalApi_Request {
     }
 
     /**
-     * 生成请求参数
-     * 此生成过程便于项目根据不同的需要进行定制化参数的限制，如：
-     * 如只允许接受POST数据，或者只接受GET方式的service参数，以及对称加密后的数据包等
+     * Generate request data
+     * 
+     * generate different request data according by different project situations, eg:
+     * only POST data accepted, or only GET data accepted, or decryped data
      *
-     * @param array $data 接口参数包
+     * @param 	array 	$data 	origin data package
      *
      * @return array
      */
@@ -52,15 +55,16 @@ class PhalApi_Request {
     }
 
     /**
-     * 初始化请求Header头信息
-     * @return array|false
+     * Get header infomation
+     * 
+     * @return array/false
      */
     protected function getAllHeaders() {
         if (function_exists('getallheaders')) {
             return getallheaders();
         }
 
-        //对没有getallheaders函数做处理
+        // deal without getallheaders function
         $headers = array();
         foreach ($_SERVER as $name => $value) {
             if (is_array($value) || substr($name, 0, 5) != 'HTTP_') {
@@ -75,22 +79,22 @@ class PhalApi_Request {
     }
 
     /**
-     * 获取请求Header参数
+     * Get specified header parameter
      *
-     * @param string $key     Header-key值
-     * @param mixed  $default 默认值
+     * @param 	string 	$key     	header key
+     * @param 	mixed  	$default 	default value
      *
-     * @return string
+     * @return 	string
      */
     public function getHeader($key, $default = NULL) {
         return isset($this->headers[$key]) ? $this->headers[$key] : $default;
     }
 
     /**
-     * 直接获取接口参数
+     * Get one API parameter by name
      *
-     * @param string $key     接口参数名字
-     * @param mixed  $default 默认值
+     * @param 	string 	$key     	parameter name
+     * @param 	mixed  	$default 	default value
      *
      * @return Ambigous <unknown, multitype:>
      */
@@ -99,12 +103,13 @@ class PhalApi_Request {
     }
 
     /**
-     * 根据规则获取参数
-     * 根据提供的参数规则，进行参数创建工作，并返回错误信息
+     * Get parameter by rule
+     * 
+     * build the pramater with rule, and reutrn error message when fail
      *
-     * @param $rule array('name' => '', 'type' => '', 'defalt' => ...) 参数规则
+     * @param 	array 	$rule 		rule, such as: ```array('name' => '', 'type' => '', 'defalt' => ...)```
      *
-     * @return mixed
+     * @return 	mixed
      */
     public function getByRule($rule) {
         $rs = NULL;
@@ -123,7 +128,8 @@ class PhalApi_Request {
     }
 
     /**
-     * 获取全部接口参数
+     * Get all the params
+     * 
      * @return array
      */
     public function getAll() {

@@ -12,12 +12,12 @@
  */
 
 /**
- * PhalApi_Tool 工具集合类
+ * Tool Class
  *
- * 只提供通用的工具类操作，目前提供的有：
+ * Only provide common tool, currently support:
  *
- * - IP地址获取
- * - 随机字符串生成
+ * - get IP address
+ * - generate random string
  *
  * @package     PhalApi\Tool
  * @license     http://www.phalapi.net/license GPL GPL License
@@ -28,9 +28,9 @@
 class PhalApi_Tool {
 
     /**
-     * IP地址获取
+     * Get IP address
      *
-     * @return string 如：192.168.1.1 失败的情况下，返回空
+     * @return 	string 	such as: 192.168.1.1, return empty string when fail
      */
     public static function getClientIp() {
         $unknown = 'unknown';
@@ -51,10 +51,10 @@ class PhalApi_Tool {
     }
 
     /**
-     * 随机字符串生成
+     * Generate random string
      *
-     * @param int $len 需要随机的长度，不要太长
-     * @return string
+     * @param 	int 	$len 	the length or random string
+     * @return 	string
      */
     public static function createRandStr($len) {
         $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

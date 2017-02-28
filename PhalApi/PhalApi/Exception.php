@@ -12,9 +12,9 @@
  */
 
 /**
- * PhalApi_Exception 自定义异常类
+ * Custom Exception Class
  *
- * - 可以继承此框架异常类，定义项目的业务异常类，以便被框架自动捕捉处理
+ * - you can extend PhalApi_Exception to custom your own exception classes, which will be caugth by PhalApi automatically
  *
  * @package     PhalApi\Exception
  * @license     http://www.phalapi.net/license GPL GPL License

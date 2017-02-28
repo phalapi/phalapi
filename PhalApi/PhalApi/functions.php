@@ -12,7 +12,7 @@
  */
 
 /**
- * 考虑再三，出于人性化关怀，提供要些快速的函数和方法
+ * Consider again and again, PhalApi provide some short functions for fast development
  *
  * @license     http://www.phalapi.net/license GPL GPL License
  * @link        http://www.phalapi.net/
@@ -20,8 +20,10 @@
  */
 
 /**
- * 获取DI
- * 相当于PhalApi_DI::one()
+ * Get DI singleton
+ * 
+ * It is equals to PhalApi_DI::one()
+ * 
  * @return PhalApi_DI
  */
 function DI() {
@@ -29,17 +31,23 @@ function DI() {
 }
 
 /**
- * 设定语言，SL为setLanguage的简写
- * @param string $language 翻译包的目录名
+ * Setting language 
+ * 
+ * SL is short for setLanguage
+ * 
+ * @param 	string 	$language 	the folder name of translation package
  */
 function SL($language) {
 	PhalApi_Translator::setLanguage($language);
 }
 
 /**
- * 快速翻译
- * @param string $msg 待翻译的内容
- * @param array $params 动态参数
+ * Fast Translation
+ * 
+ * It is equals to PhalApi_Translator::get($msg, $params)
+ * 
+ * @param 	string 	$msg 		the content to be translated
+ * @param 	array 	$params 	dynamic params
  */
 function T($msg, $params = array()) {
     return PhalApi_Translator::get($msg, $params);

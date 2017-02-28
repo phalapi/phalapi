@@ -12,59 +12,59 @@
  */
 
 /**
- * PhalApi_Logger 日记抽象类
+ * Logger Class
  *
- * - 对系统的各种情况进行纪录，具体存储媒介由实现类定义
- * - 日志分类型，不分优先级，多种类型可按并组合
+ * - Record various cases of the project, storage depends upon the implementation of sub-class
+ * - There is no priority for logger level, and they can combine with each other
  *
- * <br>接口实现示例：<br>
+ * <br>Implementation and usage:<br>
 ```
  *      class PhalApi_Logger_Mock extends PhalApi_Logger {
  *          public function log($type, $msg, $data) {
- *              //nothing to do here ...
+ *              // nothing to do here ...
  *          }
  *      }
  *
- *      //保存全部类型的日记
+ *      // save all kinds of the logs
  *      $logger = new PhalApi_Logger_Mock(
  *          PhalApi_Logger::LOG_LEVEL_DEBUG | PhalApi_Logger::LOG_LEVEL_INFO | PhalApi_Logger::LOG_LEVEL_ERROR);
  *
- *      //开发调试使用，且带更多信息
+ *      // this is for developers, with more detail
  *      $logger->debug('this is bebug test', array('name' => 'mock', 'ver' => '1.0.0'));
  *
- *      //业务场景使用
+ *      // this is for business
  *      $logger->info('this is info test', 'and more detail here ...');
  *
- *      //一些不该发生的事情
+ *      // something should not happen
  *      $logger->error('this is error test');
 ```
  * 
- * @package PhalApi\Logger
- * @link http://www.php-fig.org/psr/psr-3/ Logger Interface
- * @license http://www.phalapi.net/license GPL GPL License
- * @link http://www.phalapi.net/
- * @author dogstar <chanzonghuang@gmail.com> 2014-10-02
+ * @package 	PhalApi\Logger
+ * @link 		http://www.php-fig.org/psr/psr-3/ Logger Interface
+ * @license 	http://www.phalapi.net/license GPL GPL License
+ * @link 		http://www.phalapi.net/
+ * @author 		dogstar <chanzonghuang@gmail.com> 2014-10-02
  */
 
 abstract class PhalApi_Logger {
 
 	/**
-	 * @var int $logLevel 多个日记级别
+	 * @var 	int 	$logLevel 			log level, can be multi
 	 */
     protected $logLevel = 0;
 
     /**
-     * @var int LOG_LEVEL_DEBUG 调试级别
+     * @var 	int 	LOG_LEVEL_DEBUG 	debug level
      */
     const LOG_LEVEL_DEBUG = 1;
     
     /**
-     * @var int LOG_LEVEL_INFO 产品级别
+     * @var 	int 	LOG_LEVEL_INFO 		prodution level
      */
     const LOG_LEVEL_INFO = 2;
     
     /**
-     * @var int LOG_LEVEL_ERROR 错误级别
+     * @var 	int 	LOG_LEVEL_ERROR 	error level
      */
     const LOG_LEVEL_ERROR = 4;
 
@@ -73,22 +73,23 @@ abstract class PhalApi_Logger {
     }
 
     /**
-     * 日记纪录
+     * Record log
      *
-     * 可根据不同需要，将日记写入不同的媒介
+     * wtite the log into different storage medium according your need
      *
-     * @param string $type 日记类型，如：info/debug/error, etc
-     * @param string $msg 日记关键描述
-     * @param string/array $data 场景上下文信息
-     * @return NULL
+     * @param 	string 			$type 		the type of log, such as info, debug, error, etc.
+     * @param 	string 			$msg 		key description of log
+     * @param 	string/array 	$data 		infomation of the context
+     * @return 	NULL
      */
     abstract public function log($type, $msg, $data);
 
     /**
-     * 应用产品级日记
-     * @param string $msg 日记关键描述
-     * @param string/array $data 场景上下文信息
-     * @return NULL
+     * The logs in production level
+     * 
+     * @param 	string 			$msg 		key description of log
+     * @param 	string/array 	$data 		infomation of the context
+     * @return 	NULL
      */
     public function info($msg, $data = NULL) {
         if (!$this->isAllowToLog(self::LOG_LEVEL_INFO)) {
@@ -99,10 +100,11 @@ abstract class PhalApi_Logger {
     }
 
     /**
-     * 开发调试级日记
-     * @param string $msg 日记关键描述
-     * @param string/array $data 场景上下文信息
-     * @return NULL
+     * The logs in debugger level
+     * 
+     * @param 	string 			$msg 		key description of log
+     * @param 	string/array 	$data 		infomation of the context
+     * @return 	NULL
      */
     public function debug($msg, $data = NULL) {
         if (!$this->isAllowToLog(self::LOG_LEVEL_DEBUG)) {
@@ -113,10 +115,11 @@ abstract class PhalApi_Logger {
     }
 
     /**
-     * 系统错误级日记
-     * @param string $msg 日记关键描述
-     * @param string/array $data 场景上下文信息
-     * @return NULL
+     * The logs in system error level
+     * 
+     * @param 	string 			$msg 		key description of log
+     * @param 	string/array 	$data 		infomation of the context
+     * @return 	NULL
      */
     public function error($msg, $data = NULL) {
         if (!$this->isAllowToLog(self::LOG_LEVEL_ERROR)) {
@@ -127,7 +130,8 @@ abstract class PhalApi_Logger {
     }
 
     /**
-     * 是否允许写入日记，或运算
+     * Is allowed to write into or not, arithmetic or operation
+     * 
      * @param int $logLevel
      * @return boolean
      */

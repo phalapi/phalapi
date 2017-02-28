@@ -12,14 +12,14 @@
  */
 
 /**
- * PhalApi_ModelProxy 模型Model代理 - 重量级数据获取的应对方案
+ * Model Proxy Class, Solution To Deal With Heaviy Data
  * 
- * - 结合缓存，进行对重量级成本高的数据进行缓冲读取
- * - 为了传递获取源数据而需要的参数，引入封装成值对象的PhalApi_ModelQuery查询对象
- * - 具体子类需要实现源数据获取、返回缓存唯一key、和返回有效期
- * - 仅在有需要的情况下，使用此Model代理
+ * - cache heaviy data to save expensive cost
+ * - in order to pass required params, we introduce Value Object, i.e. ```PhalApi_ModelQuery``` query object
+ * - sub-class have to implement how to get source data, returning the unique cache key, and expire time
+ * - use this proxy only when you need
  *
- * <br>实例和使用示例：<br>
+ * <br>Implementation and usage:<br>
 ```
  * class ModelProxy_UserBaseInfo extends PhalApi_ModelProxy {
  *
@@ -38,7 +38,7 @@
  *      }
  * }
  * 
- * //最终的调用
+ * // final call
  * $query = new PhalApi_ModelQuery();
  * $query->id = $userId;
  * $modelProxy = new ModelProxy_UserBaseInfo();
@@ -56,22 +56,22 @@ abstract class PhalApi_ModelProxy {
 	protected $cache;
 
 	/**
-	 * 为代理指定委托的缓存组件，默认情况下使用DI()->cache
+	 * @param 	PhalApi_Cache 	$cache 	specify cache service for the proxy, default is: DI()->cache
 	 */
 	public function __construct(PhalApi_Cache $cache = NULL) {
 		$this->cache = $cache !== NULL ? $cache : DI()->cache;
 
-		//退而求其次
+		// back to default cache
 		if ($this->cache === NULL) {
 			$this->cache = new PhalApi_Cache_None();
 		}
 	}
 
 	/**
-	 * 获取源数据 - 模板方法
+	 * Template Method: Get the source data
 	 *
-	 * @param PhalApi_ModelQuery $query 查询对象
-	 * @return mixed 返回源数据，但在失败的情况下别返回NULL，否则依然会穿透到此
+	 * @param 	PhalApi_ModelQuery 	$query 	query object
+	 * @return 	mixed 				source data, DO NOT return NULL when fail, otherwise still try to get source data again and again
 	 */
 	public function getData(PhalApi_ModelQuery $query = NULL) {
 		$rs = NULL;
@@ -87,7 +87,7 @@ abstract class PhalApi_ModelProxy {
 			}
 		}
 
-		// 这里，将获取耗性能的数据
+		// HERE, try to get expensive data
 		$rs = $this->doGetData($query);
 
 		if ($query->writeCache) {
@@ -98,17 +98,26 @@ abstract class PhalApi_ModelProxy {
 	}
 	
 	/**
-	 * 获取源数据 - 具体实现
+	 * Implementation: Get source data
+	 * 
+	 * @param 	PhalApi_ModelQuery 	$query		query object
+	 * @return	mixed
 	 */
 	abstract protected function doGetData($query);
 
 	/**
-	 * 返回唯一缓存key，这里将$query传入，以便同类数据根据不同的值生成不同的key
+	 * Implementation: Return unique cache key
+	 * 
+	 * @param 	PhalApi_ModelQuery 	$query		query object
+	 * @return	String
 	 */
 	abstract protected function getKey($query);
 
 	/**
-	 * 返回缓存有效时间，单位为：秒
+	 * Implementation: Reture expire time
+	 * 
+	 * @param 	PhalApi_ModelQuery 	$query		query object
+	 * @return	Int		unit: second
 	 */
 	abstract protected function getExpire($query);
 }

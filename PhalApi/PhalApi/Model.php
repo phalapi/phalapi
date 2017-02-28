@@ -12,13 +12,13 @@
  */
 
 /**
- * PhalApi_Model模型接口
+ * Model Class
  *
- * - 提供基于“表数据入口”模式的数据库接口
- * - 提供基于主键(id, etc)的基本操作，其中应对CLOB的ext_data字段的转换
- * - 为了支持数据库分表存储，实现类应该根据数据库配置读取相应的表名
+ * - provides database interface based on "Table Data Entrance"
+ * - provides base operations base on primary key(eg. id), and should translate the CLOB filed ext_data
+ * - in order to support multi tables, implemetation sub-class should use related table name by config
  *
- * <br>使用示例：<br>
+ * <br>Usage:<br>
 ```
  * 	class Model_User extends PhalApi_Model_NotORM {
  * 
@@ -29,16 +29,16 @@
  * 
  * 	$model = new Model_User();
  * 
- * 	// 获取
+ * 	// retrieve
  *  $rs = $model->get($userId);
  *  
- *  // 插入
+ *  // insert
  *  $model->insert(array('name' => 'whatever', 'from' => 'somewhere'));
  *  
- *  // 更新
+ *  // update
  *  $model->update(1, array('name' => 'dogstar huang'));
  *  
- *  // 删除
+ *  // delete
  *  $model->delete(1);
 ```
  * 
@@ -51,35 +51,39 @@
 interface PhalApi_Model {
 	
 	/**
-	 * 根据主键读取纪录
+	 * Retrieve record by primary key
 	 * 
-	 * @param long $id 纪录主键
-	 * @param string/array $fields 需要获取的表字段，可以为字符串(如：name,from)或数组(如：array('name', 'from'))
-	 * @return array 数据库表纪录
+	 * @param 	long 			$id 		primary key
+	 * @param 	string/array 	$fields 	the fileds to be retrieved, such as: ```name,from``` in string, or: ```array('name', 'from')``` in array
+	 * @return 	array 			table record, or return false when not found
 	 */
 	public function get($id, $fields = '*');
 
 	/**
-	 * 插入新纪录
-	 * 这里看起来有点奇怪，但如果我们需要进行分表存储，这里的参考主键是需要的
+	 * Insert new record
 	 * 
-	 * @param array $data 待插入的数据，可以包括ext_data字段
-	 * @param $id 分表参考主键
-	 * @return long 新插入纪录的主键值
+	 * it seems bo be a little strange, but the foreign key $id is required if we want to save data into multi tables
+	 * 
+	 * @param 	array 			$data 		data to be inserted, including the filed ```ext_data```
+	 * @param 	long			$id 		foreign key
+	 * @return 	long 			the id of new record
 	 */
 	public function insert($data, $id = NULL);
 
 	/**
-	 * 根据主键更新纪录
+	 * Update record by primary key
 	 *
-	 * @param long $id 主键
-	 * @param array $data 待更新的数据，可以包括ext_data字段
-	 * @return TRUE/FALSE
+	 * @param 	long 			$id 		primary key
+	 * @param 	array 			$data 		data to be updated, including the filed ```ext_data```
+	 * @return 	TRUE/FALSE
 	 */
 	public function update($id, $data);
 
 	/**
-	 * 根据主键删除纪录
+	 * Delete record by primary key
+	 * 
+	 * @param 	long 			$id 		primary key
+	 * @return 	TRUE/FALSE
 	 */
 	public function delete($id);
 }

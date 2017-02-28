@@ -12,17 +12,17 @@
  */
 
 /**
- * PhalApi_Translator 国际翻译
+ * Translator Class
  *
- * - 根提供的语言包，进行翻译
- * - 优先使用应用级的翻译，其次是框架默认的
+ * - translate by language package
+ * - the priority of translation, project level is higher than system level
  * 
- * <br>使用示例：<br>
+ * <br>Usage:<br>
 ```
- *      //初始化，设置语言
+ *      // initialization, set the langugae
  *      PhalApi_Translator::setLanguage('zh_cn');
  *
- *      //翻译
+ *      // translate
  *      $msg = T('hello {name}', array('name' => 'phper'));
  *      var_dump($msg);
 ```
@@ -36,20 +36,21 @@
 class PhalApi_Translator {
 
 	/**
-	 * @var array $message 翻译的映射
+	 * @var 	array 		$message 		translation map
 	 */
     protected static $message = NULL;
 
 	/**
-	 * @var array $language 语言
+	 * @var 	array 		$language 		language
 	 */
 	protected static $language = 'en';
 
     /**
-     * 获取翻译
-     * @param string $key 翻译的内容
-     * @param array $params 动态参数
-     * @return string
+     * Translate
+     * 
+     * @param 	string 		$key 		content to be translated
+     * @param 	array 		$params 	dynamic params
+     * @return 	string
      */
     public static function get($key, $params = array()) {
         if (self::$message === NULL) {
@@ -69,8 +70,9 @@ class PhalApi_Translator {
     }
 
     /**
-     * 语言设置
-     * @param string $language 翻译包的目录名
+     * Set language
+     * 
+     * @param 	string 		$language 		language package folder name
      */
     public static function setLanguage($language) {
         self::$language = $language;
@@ -85,12 +87,12 @@ class PhalApi_Translator {
     }
 
     /**
-     * 添加更多翻译
+     * Add more translation for different language
      * 
-     * - 为扩展类库或者外部提供更方便的方式追加翻译的内容
+     * - provide more translation for libraries or other external lib
      *
-     * @param string $path 待追加的路径
-     * @return NULL
+     * @param 	string 		$path 		new package folder name to added
+     * @return 	NULL
      */
     public static function addMessage($path) {
         $moreMessagePath = self::getMessageFilePath($path, self::$language);
@@ -106,7 +108,7 @@ class PhalApi_Translator {
     }
 
     /**
-     * 取当前的语言
+     * Get current language
      */
     public static function getLanguage() {
         return self::$language;

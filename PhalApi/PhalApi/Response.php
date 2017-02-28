@@ -12,10 +12,10 @@
  */
 
 /**
- * PhalApi_Response 响应类
+ * Response Class
  *
- * - 拥有各种结果返回状态 ，以及对返回结果 的格式化
- * - 其中：200成功，400非法请求，500服务器错误
+ * - all of the reponse status, and format the result
+ * - 200 stands for success, while 400 stands for illegal request, and 500 stands for server internal error
  *
  * @package     PhalApi\Response
  * @license     http://www.phalapi.net/license GPL GPL License
@@ -26,31 +26,32 @@
 abstract class PhalApi_Response {
 
 	/**
-	 * @var int $ret 返回状态码，其中：200成功，400非法请求，500服务器错误
+	 * @var 	int 	$ret 	reponse return code, 200 stands for success, while 400 stands for illegal request, and 500 stands for server internal error
 	 */
     protected $ret = 200;
     
     /**
-     * @var array 待返回给客户端的数据
+     * @var 	array 	$data	result wait to be send to client
      */
     protected $data = array();
     
     /**
-     * @var string $msg 错误返回信息
+     * @var 	string 	$msg 	error message to return 
      */
     protected $msg = '';
     
     /**
-     * @var array $headers 响应报文头部
+     * @var 	array 	$headers 	reponse headers
      */
     protected $headers = array();
 
     /** ------------------ setter ------------------ **/
 
     /**
-     * 设置返回状态码
-     * @param int $ret 返回状态码，其中：200成功，400非法请求，500服务器错误
-     * @return PhalApi_Response
+     * Set the response status
+     * 
+     * @param 	int 	$ret 	response status, such as: 2xx, 4xx, 5xx
+     * @return 	PhalApi_Response
      */
     public function setRet($ret) {
     	$this->ret = $ret;
@@ -58,9 +59,10 @@ abstract class PhalApi_Response {
     }
     
     /**
-     * 设置返回数据
-     * @param array/string $data 待返回给客户端的数据，建议使用数组，方便扩展升级
-     * @return PhalApi_Response
+     * Set the response data
+     * 
+     * @param 	array/string 	$data 	result data to client, we suggest return array data, not string data
+     * @return 	PhalApi_Response
      */
     public function setData($data) {
     	$this->data = $data;
@@ -68,9 +70,9 @@ abstract class PhalApi_Response {
     }
     
     /**
-     * 设置错误信息
-     * @param string $msg 错误信息
-     * @return PhalApi_Response
+     * Set the error message
+     * @param 	string 			$msg 	error message
+     * @return 	PhalApi_Response
      */
     public function setMsg($msg) {
     	$this->msg = $msg;
@@ -78,18 +80,19 @@ abstract class PhalApi_Response {
     }
     
     /**
-     * 添加报文头部
-     * @param string $key 名称
-     * @param string $content 内容
+     * Add header
+     * 
+     * @param 	string 	$key 		header name
+     * @param 	string 	$content 	header content
      */
     public function addHeaders($key, $content) {
     	$this->headers[$key] = $content;
     }
 
-    /** ------------------ 结果输出 ------------------ **/
+    /** ------------------ output result ------------------ **/
 
     /**
-     * 结果输出
+     * Ouput
      */
     public function output() {
     	$this->handleHeaders($this->headers);
@@ -112,10 +115,10 @@ abstract class PhalApi_Response {
     }
 
 	/**
-	 * 获取头部
+	 * Get Headers
 	 * 
-	 * @param string $key 头部的名称
-	 * @return string/array 对应的内容，不存在时返回NULL，$key为NULL时返回全部
+	 * @param 	string 			$key 	header name
+	 * @return 	string/array 	return NULL when header not exists, and return all headers when ```$key``` is NULL
 	 */
     public function getHeaders($key = NULL) {
         if ($key === NULL) {
@@ -125,7 +128,7 @@ abstract class PhalApi_Response {
         return isset($this->headers[$key]) ? $this->headers[$key] : NULL;
     }
 
-    /** ------------------ 内部方法 ------------------ **/
+    /** ------------------ internal functions ------------------ **/
 
     protected function handleHeaders($headers) {
     	foreach ($headers as $key => $content) {
@@ -134,9 +137,9 @@ abstract class PhalApi_Response {
     }
 
     /**
-     * 格式化需要输出返回的结果
+     * Format result data
      *
-     * @param array $result 待返回的结果数据
+     * @param 	array	 $result 	reponse data to client
      *
      * @see PhalApi_Response::getResult()
      */
