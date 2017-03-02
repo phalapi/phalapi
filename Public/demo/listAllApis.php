@@ -24,7 +24,7 @@
  * @link        http://www.phalapi.net/
  * @author      xiaoxunzhao 2015-10-25
  * @modify      Aevit, dogstar <chanzonghuang@gmail.com> 2014-10-29
- * @modify      shwy,Aevit, dogstar <1179758693@qq.com> 2017-3-2
+ * @modify      shwy, Aevit, dogstar <1179758693@qq.com> 2017-03-02
  */
 
 define("D_S", DIRECTORY_SEPARATOR);
@@ -76,13 +76,15 @@ foreach ($files as $value) {
     //支持多层嵌套，不限级
     $arr = explode(D_S, $subValue);
     $subValue = implode(D_S, $arr);
-    $apiServer = str_replace([D_S, '.php'], ['_', ''], $subValue);
+    $apiServer = str_replace(array(D_S, '.php'), array('_', ''), $subValue);
 
     if (!class_exists($apiServer)) {
         continue;
     }
+
+    //  左菜单的标题
     $ref = new ReflectionClass($apiServer);
-    $title = '//请检测函数注释';
+    $title = '//请检测接口服务注释';
     $desc = '//请使用@desc 注释';
     $docComment = $ref->getDocComment();
     if ($docComment !== false) {
@@ -98,11 +100,12 @@ foreach ($files as $value) {
     }
     $allApiS[substr($apiServer, 4)]['title']=$title;
     $allApiS[substr($apiServer, 4)]['desc']=$desc;
+
     $method = array_diff(get_class_methods($apiServer), $allPhalApiApiMethods);
     sort($method);
     foreach ($method as $mValue) {
         $rMethod = new Reflectionmethod($apiServer, $mValue);
-        if (!$rMethod->isPublic()) {
+        if (!$rMethod->isPublic() || strpos($mValue, '__') === 0) {
             continue;
         }
 
@@ -122,11 +125,11 @@ foreach ($files as $value) {
             }
         }
         $service = substr($apiServer, 4) . '.' . ucfirst($mValue);
-        $allApiS[substr($apiServer, 4)]['methods'][$service]=[
+        $allApiS[substr($apiServer, 4)]['methods'][$service] = array(
             'service' => $service,
             'title'   => $title,
             'desc'    => $desc,
-        ] ;
+        );
     }
 
 }
@@ -136,7 +139,7 @@ ksort($allApiS);
 
 function listDir($dir) {
     $dir .= substr($dir, -1) == D_S ? '' : D_S;
-    $dirInfo = [];
+    $dirInfo = array();
     foreach (glob($dir . '*') as $v) {
         if (is_dir($v)) {
             $dirInfo = array_merge($dirInfo, listDir($v));
@@ -161,7 +164,7 @@ $table_color_arr=explode(" ","red orange yellow olive teal blue violet purple pi
 </head>
 <body>
 <br/>
-<div class="ui grid container">
+<div class="ui grid container" style="max-width: none !important;">
     <div class="four wide column">
         <div class="ui vertical pointing menu">
             <?php
@@ -184,7 +187,7 @@ $table_color_arr=explode(" ","red orange yellow olive teal blue violet purple pi
         foreach ($allApiS as $key => $item) {
             ?>
             <div class="ui  tab <?php if($num2 == 0) { ?>active<?php } ?>"  data-tab="<?=$key;?>">
-                <table class="ui <?php echo $table_color_arr[array_rand($table_color_arr,1)];?> celled striped table">
+                <table class="ui <?php echo $table_color_arr[$num2 % count($table_color_arr)];?> celled striped table">
                     <thead>
                     <tr>
                         <th>#</th><th>接口服务</th><th>接口名称</th><th>更多说明</th>
@@ -208,7 +211,6 @@ $table_color_arr=explode(" ","red orange yellow olive teal blue violet purple pi
             $num2++;
         }
         ?>
-
 
 
     </div>
