@@ -77,6 +77,7 @@ foreach ($files as $value) {
     $arr = explode(D_S, $subValue);
     $subValue = implode(D_S, $arr);
     $apiServer = str_replace(array(D_S, '.php'), array('_', ''), $subValue);
+    $apiServerShortName = substr($apiServer, 4);
 
     if (!class_exists($apiServer)) {
         continue;
@@ -84,7 +85,7 @@ foreach ($files as $value) {
 
     //  左菜单的标题
     $ref = new ReflectionClass($apiServer);
-    $title = '//请检测接口服务注释';
+    $title = "//请检测接口服务注释($apiServer)";
     $desc = '//请使用@desc 注释';
     $docComment = $ref->getDocComment();
     if ($docComment !== false) {
@@ -98,8 +99,8 @@ foreach ($files as $value) {
             }
         }
     }
-    $allApiS[substr($apiServer, 4)]['title']=$title;
-    $allApiS[substr($apiServer, 4)]['desc']=$desc;
+    $allApiS[$apiServerShortName]['title']=$title;
+    $allApiS[$apiServerShortName]['desc']=$desc;
 
     $method = array_diff(get_class_methods($apiServer), $allPhalApiApiMethods);
     sort($method);
@@ -124,8 +125,8 @@ foreach ($files as $value) {
                 }
             }
         }
-        $service = substr($apiServer, 4) . '.' . ucfirst($mValue);
-        $allApiS[substr($apiServer, 4)]['methods'][$service] = array(
+        $service = $apiServerShortName . '.' . ucfirst($mValue);
+        $allApiS[$apiServerShortName]['methods'][$service] = array(
             'service' => $service,
             'title'   => $title,
             'desc'    => $desc,
