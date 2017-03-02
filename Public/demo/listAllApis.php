@@ -24,6 +24,7 @@
  * @link        http://www.phalapi.net/
  * @author      xiaoxunzhao 2015-10-25
  * @modify      Aevit, dogstar <chanzonghuang@gmail.com> 2014-10-29
+ * @modify      shwy,Aevit, dogstar <1179758693@qq.com> 2017-3-2
  */
 
 define("D_S", DIRECTORY_SEPARATOR);
@@ -73,19 +74,35 @@ foreach ($files as $value) {
     $value = realpath($value);
     $subValue = substr($value, strpos($value, D_S . 'Api' . D_S) + 1);
     //支持多层嵌套，不限级
-    $arr       = explode(D_S, $subValue);
-	$subValue  = implode(D_S, $arr);
-    $apiServer = str_replace(array(D_S, '.php'), array('_', ''), $subValue);
+    $arr = explode(D_S, $subValue);
+    $subValue = implode(D_S, $arr);
+    $apiServer = str_replace([D_S, '.php'], ['_', ''], $subValue);
 
     if (!class_exists($apiServer)) {
         continue;
     }
-
+    $ref = new ReflectionClass($apiServer);
+    $title = '//请检测函数注释';
+    $desc = '//请使用@desc 注释';
+    $docComment = $ref->getDocComment();
+    if ($docComment !== false) {
+        $docCommentArr = explode("\n", $docComment);
+        $comment = trim($docCommentArr[1]);
+        $title = trim(substr($comment, strpos($comment, '*') + 1));
+        foreach ($docCommentArr as $comment) {
+            $pos = stripos($comment, '@desc');
+            if ($pos !== false) {
+                $desc = substr($comment, $pos + 5);
+            }
+        }
+    }
+    $allApiS[substr($apiServer, 4)]['title']=$title;
+    $allApiS[substr($apiServer, 4)]['desc']=$desc;
     $method = array_diff(get_class_methods($apiServer), $allPhalApiApiMethods);
-
+    sort($method);
     foreach ($method as $mValue) {
         $rMethod = new Reflectionmethod($apiServer, $mValue);
-        if (!$rMethod->isPublic() || strpos($mValue, '__') === 0) {
+        if (!$rMethod->isPublic()) {
             continue;
         }
 
@@ -104,68 +121,103 @@ foreach ($files as $value) {
                 }
             }
         }
-
         $service = substr($apiServer, 4) . '.' . ucfirst($mValue);
-        $allApiS[$service] = array(
+        $allApiS[substr($apiServer, 4)]['methods'][$service]=[
             'service' => $service,
-            'title' => $title,
-            'desc' => $desc,
-        );
+            'title'   => $title,
+            'desc'    => $desc,
+        ] ;
     }
-}
 
+}
+//echo json_encode($allApiS) ;
 //字典排列
 ksort($allApiS);
 
 function listDir($dir) {
     $dir .= substr($dir, -1) == D_S ? '' : D_S;
-    $dirInfo = array();
-    foreach(glob($dir.'*') as $v) {
+    $dirInfo = [];
+    foreach (glob($dir . '*') as $v) {
         if (is_dir($v)) {
             $dirInfo = array_merge($dirInfo, listDir($v));
         } else {
-            $dirInfo[] = $v; 
+            $dirInfo[] = $v;
         }
     }
     return $dirInfo;
 }
+
+$table_color_arr=explode(" ","red orange yellow olive teal blue violet purple pink grey black");
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title><?php echo $apiDirName; ?> - 在线接口列表</title>
-    <link rel="stylesheet" href="https://staticfile.qnssl.com/semantic-ui/2.1.6/semantic.min.css">
-    <link rel="stylesheet" href="https://staticfile.qnssl.com/semantic-ui/2.1.6/components/table.min.css">
-    <link rel="stylesheet" href="https://staticfile.qnssl.com/semantic-ui/2.1.6/components/container.min.css">
-    <link rel="stylesheet" href="https://staticfile.qnssl.com/semantic-ui/2.1.6/components/message.min.css">
+    <title><?php echo $apiDirName; ?> - 接口列表</title>
+    <link  href="//cdn.bootcss.com/semantic-ui/2.2.2/semantic.min.css" rel="stylesheet">
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/semantic-ui/2.2.2/semantic.min.js"></script>
+    <meta name="robots" content="none"/>
 </head>
 <body>
-<br />
-<div class="ui text container" style="max-width: none !important;">
-    <div class="ui floating message">
-        <h1 class="ui header">接口列表</h1>
-        <table class="ui green celled striped table">
-            <thead>
-                <tr>
-                    <th>#</th><th>接口服务</th><th>接口名称</th><th>更多说明</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $num = 1;
-                $uri = str_ireplace('listAllApis.php', 'checkApiParams.php', $_SERVER['REQUEST_URI']);
-
-                foreach ($allApiS as $key => $item) {
-                    $link = $uri . '?service=' . $item['service'];
-                    $NO = $num++;
-                    echo "<tr><td>{$NO}</td><td><a href=\"$link\" target='_blank'>{$item['service']}</a></td><td>{$item['title']}</td><td>{$item['desc']}</td></tr>";
-                }
+<br/>
+<div class="ui grid container">
+    <div class="four wide column">
+        <div class="ui vertical pointing menu">
+            <?php
+            $num = 0;
+            foreach ($allApiS as $key => $item) {
                 ?>
-            </tbody>
-        </table>
-        <p>&copy; Powered  By <a href="http://www.phalapi.net/" target="_blank">PhalApi <?php echo PHALAPI_VERSION; ?></a> <p>
+                <a class="item <?php if($num==0){echo 'active';} ?>" data-tab="<?php echo $key;?>"><?=$item['title'];?> </a>
+                <?php
+                $num++;
+            }
+            ?>
+            <div class="item">&copy; <a href="http://www.phalapi.net/" target="_blank">PhalApi <?=PHALAPI_VERSION; ?></a> </div>
+        </div>
+    </div>
+    <div class="twelve wide stretched column">
+
+        <?php
+        $uri = str_ireplace('listAllApis.php', 'checkApiParams.php', $_SERVER['REQUEST_URI']);
+        $num2 = 0;
+        foreach ($allApiS as $key => $item) {
+            ?>
+            <div class="ui  tab <?php if($num2 == 0) { ?>active<?php } ?>"  data-tab="<?=$key;?>">
+                <table class="ui <?php echo $table_color_arr[array_rand($table_color_arr,1)];?> celled striped table">
+                    <thead>
+                    <tr>
+                        <th>#</th><th>接口服务</th><th>接口名称</th><th>更多说明</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <?php
+                    $num = 1;
+                    foreach ($item['methods'] as $mKey => $mItem) {
+                        $link = $uri . '?service=' . $mItem['service'];
+                        $NO = $num++;
+                        echo "<tr><td>{$NO}</td><td><a href=\"$link\" target='_blank'>{$mItem['service']}</a></td><td>{$mItem['title']}</td><td>{$mItem['desc']}</td></tr>";
+                    }
+                    ?>
+                    </tbody>
+                </table>
+
+            </div>
+            <?php
+            $num2++;
+        }
+        ?>
+
+
+
     </div>
 </div>
+
+<script type="text/javascript">
+    $('.pointing.menu .item').tab();
+    $('.ui.sticky').sticky();
+</script>
+
 </body>
 </html>
