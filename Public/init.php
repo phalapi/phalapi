@@ -25,7 +25,7 @@ DI()->debug = !empty($_GET['__debug__']) ? true : DI()->config->get('sys.debug')
 
 if (DI()->debug) {
     error_reporting(E_ALL);
-    ini_set('display_errors', '1'); 
+    ini_set('display_errors', 'On'); 
 }
 
 //日记纪录
