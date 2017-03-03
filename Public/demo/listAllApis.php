@@ -172,7 +172,7 @@ $table_color_arr=explode(" ","red orange yellow olive teal blue violet purple pi
             $num = 0;
             foreach ($allApiS as $key => $item) {
                 ?>
-                <a class="item <?php if($num==0){echo 'active';} ?>" data-tab="<?php echo $key;?>"><?=$item['title'];?> </a>
+                <a class="item <?php if($num==0){echo 'active';} ?>" data-tab="<?php echo $key;?>"><?php echo $item['title'];?> </a>
                 <?php
                 $num++;
             }
