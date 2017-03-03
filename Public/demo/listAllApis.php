@@ -177,7 +177,7 @@ $table_color_arr=explode(" ","red orange yellow olive teal blue violet purple pi
                 $num++;
             }
             ?>
-            <div class="item">&copy; <a href="http://www.phalapi.net/" target="_blank">PhalApi <?=PHALAPI_VERSION; ?></a> </div>
+            <div class="item">&copy; <a href="http://www.phalapi.net/" target="_blank">PhalApi <?php echo PHALAPI_VERSION; ?></a> </div>
         </div>
     </div>
     <div class="twelve wide stretched column">
@@ -187,7 +187,7 @@ $table_color_arr=explode(" ","red orange yellow olive teal blue violet purple pi
         $num2 = 0;
         foreach ($allApiS as $key => $item) {
             ?>
-            <div class="ui  tab <?php if($num2 == 0) { ?>active<?php } ?>"  data-tab="<?=$key;?>">
+            <div class="ui  tab <?php if($num2 == 0) { ?>active<?php } ?>"  data-tab="<?php echo $key;?>">
                 <table class="ui <?php echo $table_color_arr[$num2 % count($table_color_arr)];?> celled striped table">
                     <thead>
                     <tr>
