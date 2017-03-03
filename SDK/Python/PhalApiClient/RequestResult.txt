@@ -1,0 +1,43 @@
+以下为终端输出，实际输出以环境及接口改动为准
+
+--------------------
+Request: 1
+head Server: nginx/1.8.0
+Date: Sun, 19 Feb 2017 13:17:36 GMT
+Content-Type: application/json;charset=utf-8
+Transfer-Encoding: chunked
+Connection: close
+X-Powered-By: PHP/5.3.5
+
+state 200
+result {u'msg': u'', u'data': {u'content': u'dogstar\u60a8\u597d\uff0c\u6b22\u8fce\u4f7f\u7528PhalApi\uff01', u'version': u'1.3.5', u'time': 1487510256, u'title': u'Hello World!'}, u'ret': 200}
+--------------------
+Request: 2
+head Server: nginx/1.8.0
+Date: Sun, 19 Feb 2017 13:17:36 GMT
+Content-Type: application/json;charset=utf-8
+Transfer-Encoding: chunked
+Connection: close
+X-Powered-By: PHP/5.3.5
+
+state 200
+result {u'msg': u'\u975e\u6cd5\u8bf7\u6c42\uff1a\u7f3a\u5c11\u5fc5\u8981\u53c2\u6570user_id', u'data': [], u'ret': 400}
+--------------------
+Request: 3
+head Server: nginx/1.8.0
+Date: Sun, 19 Feb 2017 13:17:37 GMT
+Content-Type: application/json;charset=utf-8
+Transfer-Encoding: chunked
+Connection: close
+X-Powered-By: PHP/5.3.5
+
+state 200
+result {u'msg': u'', u'data': {u'content': u'PHPer\u60a8\u597d\uff0c\u6b22\u8fce\u4f7f\u7528PhalApi\uff01', u'version': u'1.3.5', u'time': 1487510257, u'title': u'Hello World!'}, u'ret': 200}
+--------------------
+Request: 4 (illegal request)
+Traceback (most recent call last):
+  File "/Users/gaoyiping/Documents/git.oschina.net/PhalApi/SDK/Python/PhalApiClient/python2.x/demo.py", line 26, in <module>
+    result = PhalApiClient.PhalApiClient(1, 2, 3, 4)
+  File "/Users/gaoyiping/Documents/git.oschina.net/PhalApi/SDK/Python/PhalApiClient/python2.x/PhalApiClient.py", line 6, in PhalApiClient
+    url = host + ('' if service is None else ('?service=' + service))
+TypeError: cannot concatenate 'str' and 'int' objects

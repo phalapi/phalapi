@@ -25,6 +25,9 @@ EOT;
 
 echo "<h2 class='ui header'>接口：$service</h2><br/> <span class='ui teal tag label'>$description</span>";
 
+/**
+ * 接口说明 & 接口参数
+ */
 echo <<<EOT
             <div class="ui raised segment">
                 <span class="ui red ribbon label">接口说明</span>
@@ -71,6 +74,9 @@ foreach ($rules as $key => $rule) {
     echo "<tr><td>$name</td><td>$type</td><td>$require</td><td>$default</td><td>$other</td><td>$desc</td></tr>\n";
 }
 
+/**
+ * 返回结果
+ */
 echo <<<EOT
                 </tbody>
             </table>
@@ -90,11 +96,41 @@ foreach ($returns as $item) {
 	echo "<tr><td>$name</td><td>$type</td><td>$detail</td></tr>";
 }
 
-$version = PHALAPI_VERSION;
-
 echo <<<EOT
             </tbody>
         </table>
+EOT;
+
+/**
+ * 异常情况
+ */
+if (!empty($exceptions)) {
+    echo <<<EOT
+            <h3>异常情况</h3>
+            <table class="ui red celled striped table" >
+                <thead>
+                    <tr><th>错误码</th><th>错误描述信息</th>
+                </thead>
+                <tbody>
+EOT;
+
+    foreach ($exceptions as $exItem) {
+        $exCode = $exItem[0];
+        $exMsg = isset($exItem[1]) ? $exItem[1] : '';
+        echo "<tr><td>$exCode</td><td>$exMsg</td></tr>";
+    }
+
+    echo <<<EOT
+            </tbody>
+        </table>
+EOT;
+}
+
+/**
+ * 底部
+ */
+$version = PHALAPI_VERSION;
+echo <<<EOT
         <div class="ui blue message">
           <strong>温馨提示：</strong> 此接口参数列表根据后台代码自动生成，可将 ?service= 改成您需要查询的接口/服务
         </div>

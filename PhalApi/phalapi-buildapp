@@ -88,8 +88,11 @@ cp $BASE_PATH/../Public/demo/checkApiParams.php $BASE_PATH/../Public/$PUBLIC_APP
 cp $BASE_PATH/../Public/demo/listAllApis.php $BASE_PATH/../Public/$PUBLIC_APP_NAME/
 cp $BASE_PATH/../Public/demo/index.php $BASE_PATH/../Public/$PUBLIC_APP_NAME/
 
-sed "s/Demo/$APP_NAME/g" $BASE_PATH/../Public/$PUBLIC_APP_NAME/*.php -i
-sed "s/Demo/$APP_NAME/g" $BASE_PATH/../$APP_NAME/Tests/*.php -i
+#MacOS support 与GNU SED兼容, bugfixed by x2x4
+sed -i .bk -e "s/Demo/$APP_NAME/g" $BASE_PATH/../Public/$PUBLIC_APP_NAME/*.php
+rm -r $BASE_PATH/../Public/$PUBLIC_APP_NAME/*.bk
+sed -i .bk -e "s/Demo/$APP_NAME/g" $BASE_PATH/../$APP_NAME/Tests/*.php
+rm -r $BASE_PATH/../$APP_NAME/Tests/*.bk
 
 echo ""
 echo -e "${SUCCESS}OK! ${APP_NAME} has been created successfully!${RES}"
