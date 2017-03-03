@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * User API class
+ */
 class Api_User extends PhalApi_Api {
 
     public function getRules() {

@@ -23,6 +23,11 @@ DI()->config = new PhalApi_Config_File(API_ROOT . '/Config');
 // debug mode, rename $_GET['__debug__'] as you want
 DI()->debug = !empty($_GET['__debug__']) ? true : DI()->config->get('sys.debug');
 
+if (DI()->debug) {
+    error_reporting(E_ALL);
+    ini_set('display_errors', 'On'); 
+}
+
 // logs
 DI()->logger = new PhalApi_Logger_File(API_ROOT . '/Runtime', PhalApi_Logger::LOG_LEVEL_DEBUG | PhalApi_Logger::LOG_LEVEL_INFO | PhalApi_Logger::LOG_LEVEL_ERROR);
 

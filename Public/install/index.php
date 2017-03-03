@@ -44,6 +44,10 @@ case 1:
     $configPath = file_exists($configPath) ? realpath($configPath) : $configPath;
     $checkList['runtime']['tip'] = $configPath . '<br>' . $checkList['runtime']['tip'];
 
+    $publicPath = dirname(__FILE__) . implode(D_S, array('', '..', '..', 'Public'));
+    $publicPath = file_exists($publicPath) ? realpath($publicPath) : $publicPath;
+    $checkList['runtime']['tip'] = $publicPath . '<br>' . $checkList['runtime']['tip'];
+
     if (is_writeable($runtimePath) && is_writeable($configPath)) {
         $checkList['runtime']['status'] =  1;
     }
