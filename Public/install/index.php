@@ -18,7 +18,7 @@ case 1:
         'pdo'       => array('name' => '数据库模块', 'status' => -1, 'tip' => '建议使用PDO扩展，否则NotORM无法使用PDO进行数据库操作'),
         'memcache'  => array('name' => 'Memcache扩展', 'status' => 0, 'tip' => '无此扩展时，不能使用Memcache缓存'),
         'mcrypt'    => array('name' => 'Mcrypt扩展', 'status' => 0, 'tip' => '无此扩展时，不能使用mcrypt进行加密处理'),
-        'runtime'   => array('name' => '目录权限', 'status' => -1, 'tip' => '日志或配置文件目录若缺少写入权限，则不能写入日记和进行文件缓存以及接下配置无法生效'),
+        'runtime'   => array('name' => '目录权限', 'status' => -1, 'tip' => '根目录、日志及配置文件目录若缺少写入权限，则不能写入日记和进行文件缓存以及接下配置无法生效'),
     );
 
     if (version_compare(PHP_VERSION, '5.3.3', '>=')) {
@@ -45,7 +45,7 @@ case 1:
     $publicPath = file_exists($publicPath) ? realpath($publicPath) : $publicPath;
     $checkList['runtime']['tip'] = $publicPath . '<br>' . $checkList['runtime']['tip'];
 
-    if (is_writeable($runtimePath) && is_writeable($configPath)) {
+    if (is_writeable($runtimePath) && is_writeable($configPath) && is_writable($publicPath)) {
         $checkList['runtime']['status'] =  1;
     }
 
@@ -183,13 +183,13 @@ return array(
      * DB数据库服务器集群
      */
     'servers' => array(
-        'db_{project}' => array(                         //服务器标记
-            'host'      => '{host}',             //数据库域名
+        'db_{project}' => array(                   //服务器标记
+            'host'      => '{host}',               //数据库域名
             'name'      => '{name}',               //数据库名字
-            'user'      => '{user}',                  //数据库用户名
-            'password'  => '{password}',	                    //数据库密码
-            'port'      => '{port}',                  //数据库端口
-            'charset'   => '{charset}',                  //数据库字符集
+            'user'      => '{user}',               //数据库用户名
+            'password'  => '{password}',           //数据库密码
+            'port'      => '{port}',               //数据库端口
+            'charset'   => '{charset}',            //数据库字符集
         ),
     ),
 
@@ -208,7 +208,7 @@ return array(
 
         /**
         'demo' => array(                                                //表名
-            'prefix' => '{prefix}',                                         //表名前缀
+            'prefix' => '{prefix}',                                     //表名前缀
             'key' => 'id',                                              //表主键名
             'map' => array(                                             //表路由配置
                 array('db' => 'db_{project}'),                               //单表配置：array('db' => 服务器标记)
