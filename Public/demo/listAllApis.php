@@ -39,6 +39,7 @@ $apiDirName = 'Demo';
 $libraryPaths = array(
     'Library/User/User',    // User扩展
     'Library/Auth/Auth',    // Auth扩展
+    'Library/Qiniu/CDN',    // 七牛扩展
 );
 
 // 初始化
