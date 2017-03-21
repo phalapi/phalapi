@@ -20,16 +20,16 @@
  *
  * <br>Usage:<br>
 ```
- * 	class Model_User extends PhalApi_Model_NotORM {
+ *  class Model_User extends PhalApi_Model_NotORM {
  * 
- * 		protected function getTableName($id) {
- * 			return 'user';
- * 		}
- * 	}
+ *      protected function getTableName($id) {
+ *          return 'user';
+ *      }
+ *  }
  * 
- * 	$model = new Model_User();
+ *  $model = new Model_User();
  * 
- * 	// retrieve
+ *  // retrieve
  *  $rs = $model->get($userId);
  *  
  *  // insert
@@ -49,41 +49,41 @@
  */
 
 interface PhalApi_Model {
-	
-	/**
-	 * Retrieve record by primary key
-	 * 
-	 * @param 	long 			$id 		primary key
-	 * @param 	string/array 	$fields 	the fileds to be retrieved, such as: ```name,from``` in string, or: ```array('name', 'from')``` in array
-	 * @return 	array 			table record, or return false when not found
-	 */
-	public function get($id, $fields = '*');
+    
+    /**
+     * Retrieve record by primary key
+     * 
+     * @param   long            $id         primary key
+     * @param   string/array    $fields     the fileds to be retrieved, such as: ```name,from``` in string, or: ```array('name', 'from')``` in array
+     * @return  array           table record, or return false when not found
+     */
+    public function get($id, $fields = '*');
 
-	/**
-	 * Insert new record
-	 * 
-	 * it seems bo be a little strange, but the foreign key $id is required if we want to save data into multi tables
-	 * 
-	 * @param 	array 			$data 		data to be inserted, including the filed ```ext_data```
-	 * @param 	long			$id 		foreign key
-	 * @return 	long 			the id of new record
-	 */
-	public function insert($data, $id = NULL);
+    /**
+     * Insert new record
+     * 
+     * it seems bo be a little strange, but the foreign key $id is required if we want to save data into multi tables
+     * 
+     * @param   array           $data       data to be inserted, including the filed ```ext_data```
+     * @param   long            $id         foreign key
+     * @return  long            the id of new record
+     */
+    public function insert($data, $id = NULL);
 
-	/**
-	 * Update record by primary key
-	 *
-	 * @param 	long 			$id 		primary key
-	 * @param 	array 			$data 		data to be updated, including the filed ```ext_data```
-	 * @return 	TRUE/FALSE
-	 */
-	public function update($id, $data);
+    /**
+     * Update record by primary key
+     *
+     * @param   long            $id         primary key
+     * @param   array           $data       data to be updated, including the filed ```ext_data```
+     * @return  TRUE/FALSE
+     */
+    public function update($id, $data);
 
-	/**
-	 * Delete record by primary key
-	 * 
-	 * @param 	long 			$id 		primary key
-	 * @return 	TRUE/FALSE
-	 */
-	public function delete($id);
+    /**
+     * Delete record by primary key
+     * 
+     * @param   long            $id         primary key
+     * @return  TRUE/FALSE
+     */
+    public function delete($id);
 }

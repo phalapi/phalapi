@@ -51,8 +51,8 @@ class PhalApi_Api {
     /**
      * Set API param parsed from request with rules
      * 
-     * @param 	string 	$name 	API param name
-     * @param 	mixed 	$value 	API param value after parsed
+     * @param   string  $name   API param name
+     * @param   mixed   $value  API param value after parsed
      */
     public function __set($name, $value) {
         $this->$name = $value;
@@ -61,9 +61,9 @@ class PhalApi_Api {
     /**
      * Get API param parsed from request with rules
      * 
-     * @param 	string 	$name 	API param name
-     * @throws 	PhalApi_Exception_InternalServerError throw 500 when try to get undefined API param
-     * @return 	mixed
+     * @param   string  $name   API param name
+     * @throws  PhalApi_Exception_InternalServerError throw 500 when try to get undefined API param
+     * @return  mixed
      */
     public function __get($name) {
         if(!isset($this->$name) || empty($name)) {
@@ -83,10 +83,10 @@ class PhalApi_Api {
      * - 2. [Optional]exec filter, eg: signature verification
      * - 3. [Optional]user authentication
      * 
-     * @uses 	PhalApi_Api::createMemberValue()
-     * @uses 	PhalApi_Api::filterCheck()
-     * @uses 	PhalApi_Api::userCheck()
-     * @return 	null
+     * @uses    PhalApi_Api::createMemberValue()
+     * @uses    PhalApi_Api::filterCheck()
+     * @uses    PhalApi_Api::userCheck()
+     * @return  null
      */
     public function init() {
         $this->createMemberValue();
@@ -101,7 +101,7 @@ class PhalApi_Api {
      *
      * - according the config of params rules, generate API param and save into class member after parse
      * 
-     * @uses 	PhalApi_Api::getApiRules()
+     * @uses    PhalApi_Api::getApiRules()
      */
     protected function createMemberValue() {
         foreach ($this->getApiRules() as $key => $rule) {
@@ -120,8 +120,8 @@ class PhalApi_Api {
      *
      * <b>NOTE: The priority of rules: 1 < 2 < 3 < 4. Otherwise both request method name and config indexes will trans into lowercase before being compared with others. </b>
      *
-     * @uses 	PhalApi_Api::getRules()
-     * @return 	array
+     * @uses    PhalApi_Api::getRules()
+     * @return  array
      */
     public function getApiRules() {
         $rules = array();
@@ -157,7 +157,7 @@ class PhalApi_Api {
      *
      * - developer can override it as needed
      * 
-     * @return 	array
+     * @return  array
      */
     public function getRules() {
         return array();
@@ -172,20 +172,20 @@ class PhalApi_Api {
      *
      * <br>This is a simple example as below:<br>
 ```
-     * 	class My_Filter implements PhalApi_Filter {
+     *  class My_Filter implements PhalApi_Filter {
      * 
-     * 		public function check() {
-     * 			//TODO
-     * 		}
-     * 	}
+     *      public function check() {
+     *          //TODO
+     *      }
+     *  }
      * 
      * 
      *  // register DI()->filter in the file init.php
      *  DI()->filter = 'My_Filter';
 ```
      * 
-     * @see 	PhalApi_Filter::check()
-     * @throws 	PhalApi_Exception_BadRequest throw 400 exception when fail to check
+     * @see     PhalApi_Filter::check()
+     * @throws  PhalApi_Exception_BadRequest throw 400 exception when fail to check
      */
     protected function filterCheck() {
         $filter = DI()->get('filter', 'PhalApi_Filter_None');
@@ -205,7 +205,7 @@ class PhalApi_Api {
      *
      * - developer can override it as needed. Generally, this implementation can be delegated or implement in API base class
      * 
-     * @throws 	PhalApi_Exception_BadRequest throw 400 exception when fail to check
+     * @throws  PhalApi_Exception_BadRequest throw 400 exception when fail to check
      */
     protected function userCheck() {
 

@@ -31,7 +31,7 @@
 
 class PhalApi_ApiFactory {
 
-	/**
+    /**
      * Generate service
      * according the service name and method name request from client; throw related custom exception when fail
      *
@@ -41,26 +41,26 @@ class PhalApi_ApiFactory {
      * - 3. whether method is callable or not
      * - 4. whether succeed to intitailze controller
      *
-     * @param 	boolen 			$isInitialize 			whether try to initialize after creation
-     * @param 	string 			$_REQUEST['service'] 	service name, format: XXX.XXX
-     * @return 	PhalApi_Api 	Api implements
+     * @param   boolen          $isInitialize           whether try to initialize after creation
+     * @param   string          $_REQUEST['service']    service name, format: XXX.XXX
+     * @return  PhalApi_Api     Api implements
      *
-     * @uses 	PhalApi_Api::init()
-     * @throws 	PhalApi_Exception_BadRequest 非法请求下返回400
+     * @uses    PhalApi_Api::init()
+     * @throws  PhalApi_Exception_BadRequest 非法请求下返回400
      */
-	static function generateService($isInitialize = TRUE) {
-		$service = DI()->request->get('service', 'Default.Index');
-		
-		$serviceArr = explode('.', $service);
+    static function generateService($isInitialize = TRUE) {
+        $service = DI()->request->get('service', 'Default.Index');
+        
+        $serviceArr = explode('.', $service);
 
-		if (count($serviceArr) < 2) {
+        if (count($serviceArr) < 2) {
             throw new PhalApi_Exception_BadRequest(
                 T('service ({service}) illegal', array('service' => $service))
             );
         }
 
-		list ($apiClassName, $action) = $serviceArr;
-	    $apiClassName = 'Api_' . ucfirst($apiClassName);
+        list ($apiClassName, $action) = $serviceArr;
+        $apiClassName = 'Api_' . ucfirst($apiClassName);
         // $action = lcfirst($action);
 
         if (!class_exists($apiClassName)) {
@@ -68,26 +68,26 @@ class PhalApi_ApiFactory {
                 T('no such service as {service}', array('service' => $service))
             );
         }
-        		
-    	$api = new $apiClassName();
+                
+        $api = new $apiClassName();
 
         if (!is_subclass_of($api, 'PhalApi_Api')) {
             throw new PhalApi_Exception_InternalServerError(
                 T('{class} should be subclass of PhalApi_Api', array('class' => $apiClassName))
             );
         }
-    			
-    	if (!method_exists($api, $action) || !is_callable(array($api, $action))) {
+                
+        if (!method_exists($api, $action) || !is_callable(array($api, $action))) {
             throw new PhalApi_Exception_BadRequest(
                 T('no such service as {service}', array('service' => $service))
             );
-    	}
+        }
 
         if ($isInitialize) {
             $api->init();
         }
-		
-		return $api;
-	}
-	
+        
+        return $api;
+    }
+    
 }

@@ -29,14 +29,14 @@ require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'functions.php';
 
 class PhalApi_Loader {
 
-	/**
-	 * @var 	array 	$dirs 		the folders to be required
-	 */
-	protected $dirs = array();
-	
-	/**
-	 * @var 	string 	$basePath 	the root path
-	 */
+    /**
+     * @var     array   $dirs       the folders to be required
+     */
+    protected $dirs = array();
+    
+    /**
+     * @var     string  $basePath   the root path
+     */
     protected $basePath = '';
 
     public function __construct($basePath, $dirs = array()) {
@@ -46,14 +46,14 @@ class PhalApi_Loader {
             $this->addDirs($dirs);
         }
 
-    	spl_autoload_register(array($this, 'load'));
+        spl_autoload_register(array($this, 'load'));
     }
     
     /**
      * Add the folders to by required
      * 
-     * @param 	string 	$dirs 	the absolute folder paths to by required
-     * @return 	NULL
+     * @param   string  $dirs   the absolute folder paths to by required
+     * @return  NULL
      */
     public function addDirs($dirs) {
         if(!is_array($dirs)) {
@@ -66,17 +66,17 @@ class PhalApi_Loader {
     /**
      * Set the root path
      * 
-     * @param 	string 	$path 	root path
-     * @return 	NULL
+     * @param   string  $path   root path
+     * @return  NULL
      */
     public function setBasePath($path) {
-    	$this->basePath = $path;
+        $this->basePath = $path;
     }
     
     /**
      * require specified file manually
      * 
-     * @param 	string 	$filePath 	relative file path, or absolute file path
+     * @param   string  $filePath   relative file path, or absolute file path
      */
     public function loadFile($filePath) {
         require_once (substr($filePath, 0, 1) != '/' && substr($filePath, 1, 1) != ':')
@@ -87,11 +87,11 @@ class PhalApi_Loader {
 
     /**
      * Autoload
-	 * 
-	 * Here, the reason why we won't throw exception when class is not found,
-	 * because we hope developers or other library have chance to load it later.
+     * 
+     * Here, the reason why we won't throw exception when class is not found,
+     * because we hope developers or other library have chance to load it later.
      *
-     * @param 	string 	$className 		the class name to be required
+     * @param   string  $className      the class name to be required
      */ 
     public function load($className) {
         if (class_exists($className, FALSE) || interface_exists($className, FALSE)) {
@@ -106,7 +106,7 @@ class PhalApi_Loader {
             if ($this->loadClass($this->basePath . DIRECTORY_SEPARATOR . $dir, $className)) {
                 return;
             }
-    	}
+        }
     }
 
     protected function loadClass($path, $className) {

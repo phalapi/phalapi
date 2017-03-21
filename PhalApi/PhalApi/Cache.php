@@ -22,20 +22,20 @@
 
 interface PhalApi_Cache {
 
-	/**
-	 * Set cache
-	 * 
-	 * @param 	string 	$key 		cache key
-	 * @param 	mixed 	$value 		cache content data
-	 * @param 	int 	$expire 	cache expire time, unit: seconds, not timestamp
-	 */
+    /**
+     * Set cache
+     * 
+     * @param   string  $key        cache key
+     * @param   mixed   $value      cache content data
+     * @param   int     $expire     cache expire time, unit: seconds, not timestamp
+     */
     public function set($key, $value, $expire = 600);
 
     /**
      * Get cache
      * 
-     * @param 	string 	$key cache key
-     * @return 	mixed 	return null when fail
+     * @param   string  $key cache key
+     * @return  mixed   return null when fail
      */
     public function get($key);
 

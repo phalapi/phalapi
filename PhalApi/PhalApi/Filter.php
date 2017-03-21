@@ -18,12 +18,12 @@
  * 
  * <br>Implementaion and usage：</br>
 ```
- * 	class My_Filter implements PhalApi_Filter {
+ *  class My_Filter implements PhalApi_Filter {
  * 
- * 		public function check() {
- * 			//TODO
- * 		}
- * 	}
+ *      public function check() {
+ *          //TODO
+ *      }
+ *  }
  *
  * // $ vim ./Public/init.php
  * // registger filter service 

@@ -22,22 +22,22 @@
 
 interface PhalApi_Crypt {
 
-	/**
-	 * Encrypt data with key
-	 * 
-	 * @param 	mixed 		$data 	the data need to be encrypted
-	 * @param 	string 		$key 	encrypt key
-	 * @return 	mixed 				encrypted data
-	 */
+    /**
+     * Encrypt data with key
+     * 
+     * @param   mixed       $data   the data need to be encrypted
+     * @param   string      $key    encrypt key
+     * @return  mixed               encrypted data
+     */
     public function encrypt($data, $key);
     
     /**
      * Decrypt data with key
      * 
-     * @param 	mixed 		$data 	encrypted data
-     * @param 	string 		$key 	encrypt key
-     * @return 	mixed 				data after decrypt
-     * @see 	PhalApi_Crypt::encrypt()
+     * @param   mixed       $data   encrypted data
+     * @param   string      $key    encrypt key
+     * @return  mixed               data after decrypt
+     * @see     PhalApi_Crypt::encrypt()
      */
     public function decrypt($data, $key);
 }

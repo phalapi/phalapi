@@ -35,10 +35,10 @@ function DI() {
  * 
  * SL is short for setLanguage
  * 
- * @param 	string 	$language 	the folder name of translation package
+ * @param   string  $language   the folder name of translation package
  */
 function SL($language) {
-	PhalApi_Translator::setLanguage($language);
+    PhalApi_Translator::setLanguage($language);
 }
 
 /**
@@ -46,8 +46,8 @@ function SL($language) {
  * 
  * It is equals to PhalApi_Translator::get($msg, $params)
  * 
- * @param 	string 	$msg 		the content to be translated
- * @param 	array 	$params 	dynamic params
+ * @param   string  $msg        the content to be translated
+ * @param   array   $params     dynamic params
  */
 function T($msg, $params = array()) {
     return PhalApi_Translator::get($msg, $params);

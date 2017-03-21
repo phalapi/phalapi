@@ -29,7 +29,7 @@ class PhalApi_Request {
     protected $headers = array();
 
     /**
-     * @param 	array 	$data 	data source, it can be: $_GET/$_POST/$_REQUEST/etc
+     * @param   array   $data   data source, it can be: $_GET/$_POST/$_REQUEST/etc
      */
     public function __construct($data = NULL) {
         $this->data    = $this->genData($data);
@@ -42,7 +42,7 @@ class PhalApi_Request {
      * generate different request data according by different project situations, eg:
      * only POST data accepted, or only GET data accepted, or decryped data
      *
-     * @param 	array 	$data 	origin data package
+     * @param   array   $data   origin data package
      *
      * @return array
      */
@@ -81,10 +81,10 @@ class PhalApi_Request {
     /**
      * Get specified header parameter
      *
-     * @param 	string 	$key     	header key
-     * @param 	mixed  	$default 	default value
+     * @param   string  $key        header key
+     * @param   mixed   $default    default value
      *
-     * @return 	string
+     * @return  string
      */
     public function getHeader($key, $default = NULL) {
         return isset($this->headers[$key]) ? $this->headers[$key] : $default;
@@ -93,8 +93,8 @@ class PhalApi_Request {
     /**
      * Get one API parameter by name
      *
-     * @param 	string 	$key     	parameter name
-     * @param 	mixed  	$default 	default value
+     * @param   string  $key        parameter name
+     * @param   mixed   $default    default value
      *
      * @return Ambigous <unknown, multitype:>
      */
@@ -107,9 +107,9 @@ class PhalApi_Request {
      * 
      * build the pramater with rule, and reutrn error message when fail
      *
-     * @param 	array 	$rule 		rule, such as: ```array('name' => '', 'type' => '', 'defalt' => ...)```
+     * @param   array   $rule       rule, such as: ```array('name' => '', 'type' => '', 'defalt' => ...)```
      *
-     * @return 	mixed
+     * @return  mixed
      */
     public function getByRule($rule) {
         $rs = NULL;

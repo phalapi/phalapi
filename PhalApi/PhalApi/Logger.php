@@ -39,32 +39,32 @@
  *      $logger->error('this is error test');
 ```
  * 
- * @package 	PhalApi\Logger
- * @link 		http://www.php-fig.org/psr/psr-3/ Logger Interface
- * @license 	http://www.phalapi.net/license GPL GPL License
- * @link 		http://www.phalapi.net/
- * @author 		dogstar <chanzonghuang@gmail.com> 2014-10-02
+ * @package     PhalApi\Logger
+ * @link        http://www.php-fig.org/psr/psr-3/ Logger Interface
+ * @license     http://www.phalapi.net/license GPL GPL License
+ * @link        http://www.phalapi.net/
+ * @author      dogstar <chanzonghuang@gmail.com> 2014-10-02
  */
 
 abstract class PhalApi_Logger {
 
-	/**
-	 * @var 	int 	$logLevel 			log level, can be multi
-	 */
+    /**
+     * @var     int     $logLevel           log level, can be multi
+     */
     protected $logLevel = 0;
 
     /**
-     * @var 	int 	LOG_LEVEL_DEBUG 	debug level
+     * @var     int     LOG_LEVEL_DEBUG     debug level
      */
     const LOG_LEVEL_DEBUG = 1;
-    
+
     /**
-     * @var 	int 	LOG_LEVEL_INFO 		prodution level
+     * @var     int     LOG_LEVEL_INFO      prodution level
      */
     const LOG_LEVEL_INFO = 2;
-    
+
     /**
-     * @var 	int 	LOG_LEVEL_ERROR 	error level
+     * @var     int     LOG_LEVEL_ERROR     error level
      */
     const LOG_LEVEL_ERROR = 4;
 
@@ -77,19 +77,19 @@ abstract class PhalApi_Logger {
      *
      * wtite the log into different storage medium according your need
      *
-     * @param 	string 			$type 		the type of log, such as info, debug, error, etc.
-     * @param 	string 			$msg 		key description of log
-     * @param 	string/array 	$data 		infomation of the context
-     * @return 	NULL
+     * @param   string          $type       the type of log, such as info, debug, error, etc.
+     * @param   string          $msg        key description of log
+     * @param   string/array    $data       infomation of the context
+     * @return  NULL
      */
     abstract public function log($type, $msg, $data);
 
     /**
      * The logs in production level
      * 
-     * @param 	string 			$msg 		key description of log
-     * @param 	string/array 	$data 		infomation of the context
-     * @return 	NULL
+     * @param   string          $msg        key description of log
+     * @param   string/array    $data       infomation of the context
+     * @return  NULL
      */
     public function info($msg, $data = NULL) {
         if (!$this->isAllowToLog(self::LOG_LEVEL_INFO)) {
@@ -102,9 +102,9 @@ abstract class PhalApi_Logger {
     /**
      * The logs in debugger level
      * 
-     * @param 	string 			$msg 		key description of log
-     * @param 	string/array 	$data 		infomation of the context
-     * @return 	NULL
+     * @param   string          $msg        key description of log
+     * @param   string/array    $data       infomation of the context
+     * @return  NULL
      */
     public function debug($msg, $data = NULL) {
         if (!$this->isAllowToLog(self::LOG_LEVEL_DEBUG)) {
@@ -117,9 +117,9 @@ abstract class PhalApi_Logger {
     /**
      * The logs in system error level
      * 
-     * @param 	string 			$msg 		key description of log
-     * @param 	string/array 	$data 		infomation of the context
-     * @return 	NULL
+     * @param   string          $msg        key description of log
+     * @param   string/array    $data       infomation of the context
+     * @return  NULL
      */
     public function error($msg, $data = NULL) {
         if (!$this->isAllowToLog(self::LOG_LEVEL_ERROR)) {
@@ -132,8 +132,8 @@ abstract class PhalApi_Logger {
     /**
      * Is allowed to write into or not, arithmetic or operation
      * 
-     * @param int $logLevel
-     * @return boolean
+     * @param       int         $logLevel
+     * @return      boolean
      */
     protected function isAllowToLog($logLevel) {
         return (($this->logLevel & $logLevel) != 0) ? TRUE : FALSE;

@@ -24,17 +24,17 @@
  * class ModelProxy_UserBaseInfo extends PhalApi_ModelProxy {
  *
  *      protected function doGetData($query) {
- *      	$model = new Model_User();
+ *          $model = new Model_User();
  *      
- *      	return $model->getByUserId($query->id);
+ *          return $model->getByUserId($query->id);
  *      }
  *     
  *      protected function getKey($query) {
- *      	return 'userbaseinfo_' . $query->id;
+ *          return 'userbaseinfo_' . $query->id;
  *      }
  *     
  *      protected function getExpire($query) {
- *      	return 600;
+ *          return 600;
  *      }
  * }
  * 
@@ -52,72 +52,72 @@
  */
 
 abstract class PhalApi_ModelProxy {
-	
-	protected $cache;
+    
+    protected $cache;
 
-	/**
-	 * @param 	PhalApi_Cache 	$cache 	specify cache service for the proxy, default is: DI()->cache
-	 */
-	public function __construct(PhalApi_Cache $cache = NULL) {
-		$this->cache = $cache !== NULL ? $cache : DI()->cache;
+    /**
+     * @param   PhalApi_Cache   $cache  specify cache service for the proxy, default is: DI()->cache
+     */
+    public function __construct(PhalApi_Cache $cache = NULL) {
+        $this->cache = $cache !== NULL ? $cache : DI()->cache;
 
-		// back to default cache
-		if ($this->cache === NULL) {
-			$this->cache = new PhalApi_Cache_None();
-		}
-	}
+        // back to default cache
+        if ($this->cache === NULL) {
+            $this->cache = new PhalApi_Cache_None();
+        }
+    }
 
-	/**
-	 * Template Method: Get the source data
-	 *
-	 * @param 	PhalApi_ModelQuery 	$query 	query object
-	 * @return 	mixed 				source data, DO NOT return NULL when fail, otherwise still try to get source data again and again
-	 */
-	public function getData(PhalApi_ModelQuery $query = NULL) {
-		$rs = NULL;
+    /**
+     * Template Method: Get the source data
+     *
+     * @param   PhalApi_ModelQuery  $query  query object
+     * @return  mixed               source data, DO NOT return NULL when fail, otherwise still try to get source data again and again
+     */
+    public function getData(PhalApi_ModelQuery $query = NULL) {
+        $rs = NULL;
 
-		if ($query === NULL) {
-			$query = new PhalApi_ModelQuery();
-		}
+        if ($query === NULL) {
+            $query = new PhalApi_ModelQuery();
+        }
 
-		if ($query->readCache) {
-			$rs = $this->cache->get($this->getkey($query));
-			if ($rs !== NULL) {
-				return $rs;
-			}
-		}
+        if ($query->readCache) {
+            $rs = $this->cache->get($this->getkey($query));
+            if ($rs !== NULL) {
+                return $rs;
+            }
+        }
 
-		// HERE, try to get expensive data
-		$rs = $this->doGetData($query);
+        // HERE, try to get expensive data
+        $rs = $this->doGetData($query);
 
-		if ($query->writeCache) {
-			$this->cache->set($this->getKey($query), $rs, $this->getExpire($query));
-		}
+        if ($query->writeCache) {
+            $this->cache->set($this->getKey($query), $rs, $this->getExpire($query));
+        }
 
-		return $rs;
-	}
-	
-	/**
-	 * Implementation: Get source data
-	 * 
-	 * @param 	PhalApi_ModelQuery 	$query		query object
-	 * @return	mixed
-	 */
-	abstract protected function doGetData($query);
+        return $rs;
+    }
+    
+    /**
+     * Implementation: Get source data
+     * 
+     * @param   PhalApi_ModelQuery  $query      query object
+     * @return  mixed
+     */
+    abstract protected function doGetData($query);
 
-	/**
-	 * Implementation: Return unique cache key
-	 * 
-	 * @param 	PhalApi_ModelQuery 	$query		query object
-	 * @return	String
-	 */
-	abstract protected function getKey($query);
+    /**
+     * Implementation: Return unique cache key
+     * 
+     * @param   PhalApi_ModelQuery  $query      query object
+     * @return  String
+     */
+    abstract protected function getKey($query);
 
-	/**
-	 * Implementation: Reture expire time
-	 * 
-	 * @param 	PhalApi_ModelQuery 	$query		query object
-	 * @return	Int		unit: second
-	 */
-	abstract protected function getExpire($query);
+    /**
+     * Implementation: Reture expire time
+     * 
+     * @param   PhalApi_ModelQuery  $query      query object
+     * @return  Int     unit: second
+     */
+    abstract protected function getExpire($query);
 }

@@ -23,5 +23,5 @@
  */
 
 class PhalApi_Exception extends Exception {
-	
+    
 }

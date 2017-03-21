@@ -43,26 +43,26 @@ class PhalApi_CUrl {
      */
     const MAX_RETRY_TIMES = 10;
 
-	/**
-	 * @var 	int 	$retryTimes 	retry times; NOTE, total request times = 1 + retry times
-	 */
+    /**
+     * @var     int     $retryTimes     retry times; NOTE, total request times = 1 + retry times
+     */
     protected $retryTimes;
 
-	/**
-	 * @param 	int 	$retryTimes 	retry times, default is 1
-	 */
+    /**
+     * @param   int     $retryTimes     retry times, default is 1
+     */
     public function __construct($retryTimes = 1) {
         $this->retryTimes = $retryTimes < self::MAX_RETRY_TIMES 
             ? $retryTimes : self::MAX_RETRY_TIMES;
     }
 
-	/**
-	 * Request by GET
-	 * 
-	 * @param 	string 		$url 		the url wait to request
-	 * @param 	int 		$timeoutMs 	timeout, unit: microsecond
-	 * @return 	string 					response content, return false when time out or fail to connect
-	 */
+    /**
+     * Request by GET
+     * 
+     * @param   string      $url        the url wait to request
+     * @param   int         $timeoutMs  timeout, unit: microsecond
+     * @return  string                  response content, return false when time out or fail to connect
+     */
     public function get($url, $timeoutMs = 3000) {
         return $this->request($url, FALSE, $timeoutMs);
     } 
@@ -70,10 +70,10 @@ class PhalApi_CUrl {
     /**
      * Request by POST
      * 
-     * @param 	string 		$url 		the url wait to request
-     * @param 	array 		$data 		POST data
-     * @param 	int 		$timeoutMs 	timeout, unit: microsecond
-     * @return 	string 					response content, return false when time out or fail to connect
+     * @param   string      $url        the url wait to request
+     * @param   array       $data       POST data
+     * @param   int         $timeoutMs  timeout, unit: microsecond
+     * @return  string                  response content, return false when time out or fail to connect
      */
     public function post($url, $data, $timeoutMs = 3000) {
         return $this->request($url, $data, $timeoutMs);
@@ -82,10 +82,10 @@ class PhalApi_CUrl {
     /**
      * Request implementation
      * 
-     * @param 	string 		$url 		the url wait to request
-     * @param 	array 		$data 		POST data
-     * @param 	int 		$timeoutMs 	timeout, unit: microsecond
-	 * @return 	string 					response content, return false when time out or fail to connect
+     * @param   string      $url        the url wait to request
+     * @param   array       $data       POST data
+     * @param   int         $timeoutMs  timeout, unit: microsecond
+     * @return  string                  response content, return false when time out or fail to connect
      */
     protected function request($url, $data, $timeoutMs = 3000) {
         $ch = curl_init();

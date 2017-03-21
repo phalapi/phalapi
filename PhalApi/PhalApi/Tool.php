@@ -30,7 +30,7 @@ class PhalApi_Tool {
     /**
      * Get IP address
      *
-     * @return 	string 	such as: 192.168.1.1, return empty string when fail
+     * @return  string  such as: 192.168.1.1, return empty string when fail
      */
     public static function getClientIp() {
         $unknown = 'unknown';
@@ -53,8 +53,8 @@ class PhalApi_Tool {
     /**
      * Generate random string
      *
-     * @param 	int 	$len 	the length or random string
-     * @return 	string
+     * @param   int     $len    the length or random string
+     * @return  string
      */
     public static function createRandStr($len) {
         $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

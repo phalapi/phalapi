@@ -26,22 +26,22 @@
 class PhalApi_ModelQuery {
 
     /**
-     * @var 	boolean 	$readCache 		whether read cache or not
+     * @var     boolean     $readCache      whether read cache or not
      */
     public $readCache = true;
 
     /**
-     * @var 	boolean 	$writeCache 	whether write cache or not
+     * @var     boolean     $writeCache     whether write cache or not
      */
     public $writeCache = true;
 
     /**
-     * @var 	string/int 	ID
+     * @var     string/int  ID
      */
     public $id;
 
     /**
-     * @var 	int 		$timestamp 		expire timestamp
+     * @var     int         $timestamp      expire timestamp
      */
     public $timestamp;
 

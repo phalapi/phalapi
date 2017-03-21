@@ -35,22 +35,22 @@
 
 class PhalApi_Translator {
 
-	/**
-	 * @var 	array 		$message 		translation map
-	 */
+    /**
+     * @var     array       $message        translation map
+     */
     protected static $message = NULL;
 
-	/**
-	 * @var 	array 		$language 		language
-	 */
-	protected static $language = 'en';
+    /**
+     * @var     array       $language       language
+     */
+    protected static $language = 'en';
 
     /**
      * Translate
      * 
-     * @param 	string 		$key 		content to be translated
-     * @param 	array 		$params 	dynamic params
-     * @return 	string
+     * @param   string      $key        content to be translated
+     * @param   array       $params     dynamic params
+     * @return  string
      */
     public static function get($key, $params = array()) {
         if (self::$message === NULL) {
@@ -72,7 +72,7 @@ class PhalApi_Translator {
     /**
      * Set language
      * 
-     * @param 	string 		$language 		language package folder name
+     * @param   string      $language       language package folder name
      */
     public static function setLanguage($language) {
         self::$language = $language;
@@ -91,8 +91,8 @@ class PhalApi_Translator {
      * 
      * - provide more translation for libraries or other external lib
      *
-     * @param 	string 		$path 		new package folder name to added
-     * @return 	NULL
+     * @param   string      $path       new package folder name to added
+     * @return  NULL
      */
     public static function addMessage($path) {
         $moreMessagePath = self::getMessageFilePath($path, self::$language);

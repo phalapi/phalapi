@@ -46,12 +46,12 @@
 
 interface PhalApi_Config {
 
-	/**
+    /**
      * Get config
      * 
-     * @param 	$key 	string 		config key
-     * @param 	mixed 	$default 	config default value
-     * @return 	mixed 	config value, or return $default when config not exists
+     * @param   $key    string      config key
+     * @param   mixed   $default    config default value
+     * @return  mixed   config value, or return $default when config not exists
      */
-	public function get($key, $default = NULL);
+    public function get($key, $default = NULL);
 }
