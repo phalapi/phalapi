@@ -111,11 +111,11 @@ class PhalApiClient {
 
     /**
      * 设置超时时间，单位毫秒
-     * @param int $timeoutMS 超时时间，单位毫秒
+     * @param int $timeoutMs 超时时间，单位毫秒
      * @return PhalApiClient
      */
-    public function withTimeout($timeoutMS) {
-        $this->timeoutMS = $timeoutMS;
+    public function withTimeout($timeoutMs) {
+        $this->timeoutMs = $timeoutMs;
         return $this;
     }
 
