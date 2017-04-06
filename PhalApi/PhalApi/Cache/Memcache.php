@@ -19,13 +19,26 @@ class PhalApi_Cache_Memcache implements PhalApi_Cache {
     protected $prefix;
 
     /**
-     * @param string $config['host'] Memcache域名
-     * @param int $config['port'] Memcache端口
-     * @param string $config['prefix'] Memcache key prefix
+     * @param string        $config['host']     Memcache域名，多个用英文逗号分割
+     * @param int/string    $config['port']     Memcache端口，多个用英文逗号分割
+     * @param int/string    $config['weight']   Memcache权重，多个用英文逗号分割
+     * @param string        $config['prefix']   Memcache key prefix
      */
     public function __construct($config) {
         $this->memcache = $this->createMemcache();
-        $this->memcache->addServer($config['host'], $config['port']);
+
+        $hostArr = explode(',', $config['host']);
+        $portArr = explode(',', $config['port']);
+        $weightArr = isset($config['weight']) ? explode(',', $config['weight']) : array();
+
+        foreach ($hostArr as $idx => $host) {
+            $this->memcache->addServer(
+                trim($host),
+                isset($portArr[$idx])   ? intval($portArr[$idx])    : 11211,
+                isset($weightArr[$idx]) ? intval($weightArr[$idx])  : 0
+            );
+        }
+
         $this->prefix = isset($config['prefix']) ? $config['prefix'] : 'phalapi_';
     }
 
