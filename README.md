@@ -48,12 +48,14 @@ If we need to share PhalApi, we can move ```./PhalApi/PhalApi``` to anywhere, an
 require_once API_ROOT . '/path/to/PhalApi/PhalApi.php';
 ```
 
-## 1.2 Online demo
-1, Default API service:  
+## 1.2 Online Demo
+
+ + Default API service:  
 ```
 http://demo.phalapi.net/
 ```
-2, Demo API with params:  
+
+ + Demo API with params:  
 ```
 http://demo.phalapi.net/?service=Default.Index&username=github
 
@@ -68,7 +70,8 @@ http://demo.phalapi.net/?service=Default.Index&username=github
     "msg": ""
 }
 ```
-3, Request a service not found:  
+
+ + Request a service not found:  
 ```
 http://demo.phalapi.net/?service=Demo.None
 
@@ -79,16 +82,17 @@ http://demo.phalapi.net/?service=Demo.None
 }
 ```
 
-## 1.3 Online API documents(auto generated)
+## 1.3 Online API Documents (Auto Generated)
 Afster project APIs have been written in PhalApi specified format, PhalApi will auto generate online API list documents and online API detail documents, which can provide client developers with realtime API signature and response structure.  
    
-1, Online list documents   
+### (1) Online API List Documents   
 We can list all API services under our project by visiting the ```listAllApis.php``` in the related project, e.g:  
 ```
 http://demo.phalapi.net/listAllApis.php
 ```
 ![](https://camo.githubusercontent.com/12b12dd88b883fcdd3ebe2e7619003c5bb46c2c9/687474703a2f2f6769742e6f736368696e612e6e65742f75706c6f6164732f696d616765732f323031372f303231382f3233303333305f38623264356564345f3132313032362e706e67)
-2, Online API detail documents  
+
+### (2) Online API Detail Documents  
 Furthermore, We can check more detail about an API servcie by visiting the ```checkApiParams.php``` with param ```?service=xxx.xxx```, e.g:  
 ```
 http://demo.phalapi.net/checkApiParams.php?service=Default.Index
@@ -122,7 +126,7 @@ The API will reponse with json data as :
 ### (4) Screenshot  
 ![](https://camo.githubusercontent.com/2e682c31137d5a8602b1317cbf01599a7f3f63c9/687474703a2f2f6769742e6f736368696e612e6e65742f75706c6f6164732f696d616765732f323031372f303231382f3233303131355f37616461343535375f3132313032362e6a706567)
 
-## 2.2 API unit tests
+## 2.2 API Unit Tests
 _The code can't be tested is bad._  
   
 When develop API with PhalApi, we strong recommend following TDD, in order to build an auto testing system and keep compatibility.
@@ -156,7 +160,7 @@ Running screenshot:
 
 We have sticked to writting unit tests for the core codes in PhalApi all the time, and out code coverage is high as 96%.  
   
-## 2.3 Main Structure
+## 2.3 Project Structure
 ```
 .
 │
@@ -183,7 +187,7 @@ We have sticked to writting unit tests for the core codes in PhalApi all the tim
 
 ```
 
-## 2.4 Client SDK based on API Structured Query Language(ASQL)
+## 2.4 Client SDK Based on API Structured Query Language (ASQL)
 Currently, we have these SDKs as below:  
  + [JAVA client SDK](http://www.phalapi.net/wikis/%5B6.2%5D-SDK%E5%8C%85%EF%BC%88JAVA%E7%89%88%EF%BC%89.html)
  + [Objective-c client SDK](http://www.phalapi.net/wikis/%5B6.4%5D-SDK%E5%8C%85%EF%BC%88object-c%E7%89%88%EF%BC%89.html)
@@ -204,10 +208,10 @@ PhalApiClientResponse response = PhalApiClient.create()
        .request();
 ```
   
-## 2.5 PhalApi-Library external libraries
+## 2.5 PhalApi-Library External Libraries
 More external libraries are valiable on [PhalApi-Library](https://github.com/phalapi/phalapi-library)  
 
-## 3.1 Background review
+## 3.1 Background Review
 We provide PhalApi because we hope to :  
 + Firstly, support light-weight API projects rapid development;   
 + Secondly, explain how to design, develop and mantain APIs in face of big data;  
