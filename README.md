@@ -1,10 +1,9 @@
 <p align="center"><img src="http://webtools.qiniudn.com/master-LOGO-20150410_50.jpg"></p>
 
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-[![Latest Stable Version](https://poser.pugx.org/phalapi/phalapi/v/stable)](https://packagist.org/packages/phalapi/phalapi)
-[![Total Downloads](https://poser.pugx.org/phalapi/phalapi/downloads)](https://packagist.org/packages/phalapi/phalapi)
-[![License](https://poser.pugx.org/phalapi/phalapi/license)](https://packagist.org/packages/phalapi/phalapi)
+<a href="https://packagist.org/packages/phalapi/phalapi"><img src="https://poser.pugx.org/phalapi/phalapi/v/stable" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/phalapi/phalapi"><img src="https://poser.pugx.org/phalapi/phalapi/downloads" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/phalapi/phalapi"><img src="https://poser.pugx.org/phalapi/phalapi/license" alt="License"></a>
 </p> 
 
 ## [PhalApi - V1.3.6 - English Version](http://www.phalapi.net)  
