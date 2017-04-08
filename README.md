@@ -1,4 +1,11 @@
-![apic](http://webtools.qiniudn.com/master-LOGO-20150410_50.jpg)  
+<p align="center"><img src="http://webtools.qiniudn.com/master-LOGO-20150410_50.jpg"></p>
+
+<p align="center">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+[![Latest Stable Version](https://poser.pugx.org/phalapi/phalapi/v/stable)](https://packagist.org/packages/phalapi/phalapi)
+[![Total Downloads](https://poser.pugx.org/phalapi/phalapi/downloads)](https://packagist.org/packages/phalapi/phalapi)
+[![License](https://poser.pugx.org/phalapi/phalapi/license)](https://packagist.org/packages/phalapi/phalapi)
+</p> 
 
 ## [PhalApi - V1.3.6 - English Version](http://www.phalapi.net)  
 PhalApi, π Framework for short, is a light-weight framework which focus on how to develop API faster and simpler. It:    
