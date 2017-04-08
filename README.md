@@ -95,8 +95,8 @@ http://demo.phalapi.net/checkApiParams.php?service=Default.Index
 ```
 ![mahua](https://camo.githubusercontent.com/8829812d88782945976414d60319933ebcefa1d2/687474703a2f2f6769742e6f736368696e612e6e65742f75706c6f6164732f696d616765732f323031372f303231382f3233303334375f37373461663063325f3132313032362e706e67)
 
-## 2.1 Rapid Development
-1, Hello World!
+## 2.1 Rapid API Development (RAD)
+### (1) Hello World!
 Create an API file ```./Demo/Api/Welcome.php``` with the code as below:  
 ```
 <?php
@@ -109,17 +109,17 @@ class Api_Welcome extends PhalApi_Api {
 	}
 }
 ```
-2, Visit the API  
+### (2) Visit the API  
 We can call an API service by visit the url as : ```host + entrance + ?service=XXX.XXX```. In the case, the url is:  
 ```
 http://localhost/Public/demo/?service=Welcome.Say
 ```
-3, API reponse  
+### (3) API reponse  
 The API will reponse with json data as :  
 ```
 {"ret":200,"data":{"title":"Hello World!"},"msg":""}
 ```
-4, Screenshot  
+### (4) Screenshot  
 ![](https://camo.githubusercontent.com/2e682c31137d5a8602b1317cbf01599a7f3f63c9/687474703a2f2f6769742e6f736368696e612e6e65742f75706c6f6164732f696d616765732f323031372f303231382f3233303131355f37616461343535375f3132313032362e6a706567)
 
 ## 2.2 API unit tests
