@@ -1,6 +1,6 @@
 ![apic](http://webtools.qiniudn.com/master-LOGO-20150410_50.jpg)  
 
-##[PhalApi - V1.3.6 - English Version](http://www.phalapi.net)  
+## [PhalApi - V1.3.6 - English Version](http://www.phalapi.net)  
 PhalApi, π Framework for short, is a light-weight framework which focus on how to develop API faster and simpler. It:    
 + aims to continuous deliver available API services rapidly and stabely.  
 + foucus on TDD, DDD, XP and alige development.  
@@ -11,7 +11,7 @@ We share our codes, our product and our mind in PhalApi, please feel free to use
   
 _PhalApi中文版请访问[release分支](https://github.com/phalapi/phalapi/tree/release)。_  
     
-###Tutorial
+### Tutorial
 This article is composed with three parts as below:  
 + PART 1：Installation, online demo and online API doucements.  
 + PART 2：rapid development, unit tests, framework structure, SDK packages and external librareis.  
@@ -19,7 +19,7 @@ This article is composed with three parts as below:
   
 Vist [wiki](http://www.phalapi.net/wikis/en) for more details.  
 
-##1-1, Installation
+## 1-1, Installation
 + download the lastest version from release-en  
 + we recommend deploy PhalApi on Linux  
 + PHP >= 5.3.3
@@ -39,7 +39,7 @@ http://localhost/PhalApi/Public/demo/
 ![](https://camo.githubusercontent.com/52782ceaf6853a891ce306c3021c492524941d7d/687474703a2f2f6769742e6f736368696e612e6e65742f75706c6f6164732f696d616765732f323031372f303231382f3233303331365f34316139366231335f3132313032362e706e67)  
 More other ways to create your project, please check [Create your project](http://www.phalapi.net/wikis/en/1.1-create-your-project.html).  
 
-###Upgrade and share
+### Upgrade and share
 We will do our best to keep perfect compatibility during version upgrade. When you need to upgrade PhalApi, you just need one simple step: replace ```./PhalApi/PhalApi``` with the lastest core folder. That is it!  
   
 If we need to share PhalApi, we can move ```./PhalApi/PhalApi``` to anywhere, and alter the including path in ```./PhalApi/Public/init.php```(NOTE, it will affects some shells). e.g:  
@@ -48,7 +48,7 @@ If we need to share PhalApi, we can move ```./PhalApi/PhalApi``` to anywhere, an
 require_once API_ROOT . '/path/to/PhalApi/PhalApi.php';
 ```
 
-##1-2, Online demo
+## 1-2, Online demo
 1, Default API service:  
 ```
 http://demo.phalapi.net/
@@ -79,7 +79,7 @@ http://demo.phalapi.net/?service=Demo.None
 }
 ```
 
-##1-3, Online API documents(auto generated)
+## 1-3, Online API documents(auto generated)
 Afster project APIs have been written in PhalApi specified format, PhalApi will auto generate online API list documents and online API detail documents, which can provide client developers with realtime API signature and response structure.  
    
 1, Online list documents   
@@ -95,7 +95,7 @@ http://demo.phalapi.net/checkApiParams.php?service=Default.Index
 ```
 ![mahua](https://camo.githubusercontent.com/8829812d88782945976414d60319933ebcefa1d2/687474703a2f2f6769742e6f736368696e612e6e65742f75706c6f6164732f696d616765732f323031372f303231382f3233303334375f37373461663063325f3132313032362e706e67)
 
-##2-1, Rapid Development
+## 2-1, Rapid Development
 1, Hello World!
 Create an API file ```./Demo/Api/Welcome.php``` with the code as below:  
 ```
@@ -122,7 +122,7 @@ The API will reponse with json data as :
 4, Screenshot  
 ![](https://camo.githubusercontent.com/2e682c31137d5a8602b1317cbf01599a7f3f63c9/687474703a2f2f6769742e6f736368696e612e6e65742f75706c6f6164732f696d616765732f323031372f303231382f3233303131355f37616461343535375f3132313032362e6a706567)
 
-##2-2, API unit tests
+## 2-2, API unit tests
 _The code can't be tested is bad._  
   
 When develop API with PhalApi, we strong recommend following TDD, in order to build an auto testing system and keep compatibility.
@@ -156,7 +156,7 @@ Running screenshot:
 
 We have sticked to writting unit tests for the core codes in PhalApi all the time, and out code coverage is high as 96%.  
   
-##2-3, Main Structure
+## 2-3, Main Structure
 ```
 .
 │
@@ -183,7 +183,7 @@ We have sticked to writting unit tests for the core codes in PhalApi all the tim
 
 ```
 
-##2-4, Client SDK based on API Structured Query Language(ASQL)
+## 2-4, Client SDK based on API Structured Query Language(ASQL)
 Currently, we have these SDKs as below:  
  + [JAVA client SDK](http://www.phalapi.net/wikis/%5B6.2%5D-SDK%E5%8C%85%EF%BC%88JAVA%E7%89%88%EF%BC%89.html)
  + [Objective-c client SDK](http://www.phalapi.net/wikis/%5B6.4%5D-SDK%E5%8C%85%EF%BC%88object-c%E7%89%88%EF%BC%89.html)
@@ -204,10 +204,10 @@ PhalApiClientResponse response = PhalApiClient.create()
        .request();
 ```
   
-##2-5, PhalApi-Library external libraries
+## 2-5, PhalApi-Library external libraries
 More external libraries are valiable on [PhalApi-Library](https://github.com/phalapi/phalapi-library)  
 
-##3-1, Background review
+## 3-1, Background review
 We provide PhalApi because we hope to :  
 + Firstly, support light-weight API projects rapid development;   
 + Secondly, explain how to design, develop and mantain APIs in face of big data;  
@@ -215,7 +215,7 @@ We provide PhalApi because we hope to :
   
 In summery, welcome to use PhalApi! We will keep devoting ourself into PhalApi and keep it full of energy, reponseable for open source framework!  
 
-##3-2, Join Us
+## 3-2, Join Us
 Obviously, this is just the beginning, and there is a long way to go. PhalApi is not our (develop team) framework, but our (all of us) framework. Let's do something meaningful when we are young. Welcome to join us anytime!  
     
 Contributors:  
@@ -234,8 +234,8 @@ Contributors:
 + 爱编程的小逗比
 + ... ...
   
-##3-3, License
+## 3-3, License
 PhalApi is an open source framework, and promises keep free forever. PhalApi is under GPL, more details on [License](http://www.phalapi.net/license).  
 
-##3-4, Change Logs
+## 3-4, Change Logs
 [Change Logs](http://www.phalapi.net/wikis/%5B5.6%5D-%E6%9B%B4%E6%96%B0%E6%97%A5%E8%AE%B0.html).  
