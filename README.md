@@ -17,7 +17,7 @@ This article is composed with three parts as below:
 + PART 2：rapid development, unit tests, framework structure, SDK packages and external librareis.  
 + PART 3：backgroud review, contributors, licience and changelog.  
   
-Vist [wiki](http://www.phalapi.net/wikis/en) for more details.  
+> Vist [wiki](http://www.phalapi.net/wikis/en) for more details.  
 
 ## 1.1 Installation
 + download the lastest version from release-en  
