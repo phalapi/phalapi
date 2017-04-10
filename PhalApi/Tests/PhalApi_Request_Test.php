@@ -115,4 +115,20 @@ class PhpUnderControl_PhalApiRequest_Test extends PHPUnit_Framework_TestCase
         unset($_SERVER['HTTP_ACCEPT_CHARSET']);
         unset($_SERVER['PHP_AUTH_DIGEST']);
     }
+
+    public function testService() {
+        $requests = new PhalApi_Request(array('service' => 'Demo.Go'));
+
+        $this->assertEquals('Demo.Go',  $requests->getService());
+        $this->assertEquals('Demo',     $requests->getServiceApi());
+        $this->assertEquals('Go',       $requests->getServiceAction());
+    }
+
+    public function testServiceDefault() {
+        $requests = new PhalApi_Request();
+
+        $this->assertEquals('Default.Index',    $requests->getService());
+        $this->assertEquals('Default',          $requests->getServiceApi());
+        $this->assertEquals('Index',            $requests->getServiceAction());
+    }
 }

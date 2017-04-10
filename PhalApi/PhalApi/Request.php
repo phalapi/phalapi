@@ -11,9 +11,25 @@
  */
 class PhalApi_Request {
 
+    /**
+     * @var array $data 接口原始参数
+     */
     protected $data = array();
 
+    /**
+     * @var array $headers 请求头部信息
+     */
     protected $headers = array();
+
+    /**
+     * @var string 接口服务类名
+     */
+    protected $apiName;
+
+    /**
+     * @var string 接口服务方法名
+     */
+    protected $actionName;
 
     /**
      * @param array $data 参数来源，可以为：$_GET/$_POST/$_REQUEST/自定义
@@ -21,6 +37,8 @@ class PhalApi_Request {
     public function __construct($data = NULL) {
         $this->data    = $this->genData($data);
         $this->headers = $this->getAllHeaders();
+
+        @list ($this->apiName, $this->actionName) = explode('.', $this->getService());
     }
 
     /**
@@ -117,5 +135,32 @@ class PhalApi_Request {
      */
     public function getAll() {
         return $this->data;
+    }
+
+    /**
+     * 获取接口服务名称
+     *
+     * - 子类可重载此方法指定参数名称，以及默认接口服务
+     *
+     * @return string 接口服务名称，如：Default.Index
+     */
+    public function getService() {
+        return $this->get('service', 'Default.Index');
+    }
+
+    /**
+     * 获取接口服务名称中的接口类名
+     * @return string 接口类名
+     */
+    public function getServiceApi() {
+        return $this->apiName;
+    }
+
+    /**
+     * 获取接口服务名称中的接口方法名
+     * @return string 接口方法名
+     */
+    public function getServiceAction() {
+        return $this->actionName;
     }
 }
