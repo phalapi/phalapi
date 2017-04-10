@@ -11,7 +11,7 @@
 class PhalApi_Helper_ApiDesc {
 
     public function render() {
-        $service = DI()->request->get('service', 'Default.Index');
+        $service = DI()->request->getService();
 
         $rules = array();
         $returns = array();
