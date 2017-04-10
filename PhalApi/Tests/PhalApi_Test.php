@@ -102,6 +102,7 @@ class PhpUnderControl_PhalApi_Test extends PHPUnit_Framework_TestCase
 
     /**
      * @expectedException Exception
+     * @expectedExceptionMessage trouble
      */
     public function testResponseWithException() {
         $data = array(

@@ -115,16 +115,13 @@ class PhalApi_Api {
         if (!is_array($allRules)) {
             $allRules = array();
         }
-
         $allRules = array_change_key_case($allRules, CASE_LOWER);
 
-        $service = DI()->request->get('service', 'Default.Index');
-        list($apiClassName, $action) = explode('.', $service);
-        $action = strtolower($action); 
-
+        $action = strtolower(DI()->request->getServiceAction()); 
         if (isset($allRules[$action]) && is_array($allRules[$action])) {
             $rules = $allRules[$action];
         }
+
         if (isset($allRules['*'])) {
             $rules = array_merge($allRules['*'], $rules);
         }

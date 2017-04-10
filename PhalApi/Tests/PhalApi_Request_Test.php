@@ -131,4 +131,12 @@ class PhpUnderControl_PhalApiRequest_Test extends PHPUnit_Framework_TestCase
         $this->assertEquals('Default',          $requests->getServiceApi());
         $this->assertEquals('Index',            $requests->getServiceAction());
     }
+
+    public function testServiceEmpty() {
+        $requests = new PhalApi_Request(array('service' => ''));
+
+        $this->assertSame('', $requests->getService());
+        $this->assertSame('', $requests->getServiceApi());
+        $this->assertSame(NULL, $requests->getServiceAction());
+    }
 }

@@ -38,7 +38,7 @@ class PhalApi_Request {
         $this->data    = $this->genData($data);
         $this->headers = $this->getAllHeaders();
 
-        @list ($this->apiName, $this->actionName) = explode('.', $this->getService());
+        @list($this->apiName, $this->actionName) = explode('.', $this->getService());
     }
 
     /**

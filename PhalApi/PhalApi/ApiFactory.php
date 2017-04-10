@@ -34,31 +34,28 @@ class PhalApi_ApiFactory {
      * @throws PhalApi_Exception_BadRequest 非法请求下返回400
      */
 	static function generateService($isInitialize = TRUE) {
-		$service = DI()->request->get('service', 'Default.Index');
-		
-		$serviceArr = explode('.', $service);
+        $service    = DI()->request->getService();
+        $api        = DI()->request->getServiceApi();
+        $action     = DI()->request->getServiceAction();
 
-		if (count($serviceArr) < 2) {
+		if (empty($api) || empty($action)) {
             throw new PhalApi_Exception_BadRequest(
                 T('service ({service}) illegal', array('service' => $service))
             );
         }
 
-		list ($apiClassName, $action) = $serviceArr;
-	    $apiClassName = 'Api_' . ucfirst($apiClassName);
-        // $action = lcfirst($action);
-
-        if (!class_exists($apiClassName)) {
+	    $apiClass = 'Api_' . ucfirst($api);
+        if (!class_exists($apiClass)) {
             throw new PhalApi_Exception_BadRequest(
                 T('no such service as {service}', array('service' => $service))
             );
         }
         		
-    	$api = new $apiClassName();
+    	$api = new $apiClass();
 
         if (!is_subclass_of($api, 'PhalApi_Api')) {
             throw new PhalApi_Exception_InternalServerError(
-                T('{class} should be subclass of PhalApi_Api', array('class' => $apiClassName))
+                T('{class} should be subclass of PhalApi_Api', array('class' => $apiClass))
             );
         }
     			
