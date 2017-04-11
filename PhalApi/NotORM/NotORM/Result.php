@@ -220,6 +220,7 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
             }
         }
 
+        $errorMessage = null;
         if(!$return || !$return->execute()){
 
             $errorInfo = $return->errorInfo();
