@@ -7,11 +7,11 @@
         <span class="margin-small-left">安装向导</span>
     </div>
     <div class="padding-large text-black">
-        <h1 class="margin-small-bottom" >欢迎使用，PhalAPI 框架安装向导</h1>
-        <h5 class="margin-big-bottom ">从现在开始，用另一种想法，重新构建你的应用</h5>
+        <h1 class="margin-small-bottom" >欢迎使用，PhalApi 框架安装向导</h1>
+        <h5 class="margin-big-bottom ">接口，从简单开始！</h5>
         <div class="input padding bg-white" style="width: 100%;height: 200px; overflow: auto">
                 <h4 class="margin-small-bottom">协议许可的权利</h4>
-                <p>PhalApi官方网站为 <a href="http://www.phalapi.net">http://www.phalapi.net，依法独立拥有</a> PhalApi 及官网发布的PhalApi衍生产品著作权。PhalApi及其衍生产品著作权受到法律和国际公约保护。使用者需仔细阅读本协议，在理解、同意、并遵守本协议的全部条款后，方可开始使用 PhalApi及其衍生 软件。  </p>
+                <p>PhalApi官方网站为 <a href="http://www.phalapi.net">http://www.phalapi.net</a>，依法独立拥有 PhalApi 及官网发布的PhalApi衍生产品著作权。PhalApi及其衍生产品著作权受到法律和国际公约保护。使用者需仔细阅读本协议，在理解、同意、并遵守本协议的全部条款后，方可开始使用 PhalApi及其衍生 软件。  </p>
                 <p>本授权协议适用于 <a href="http://www.phalapi.net">http://www.phalapi.net</a> 发布的所有应用程序，PhalApi官方网站拥有对本授权协议的最终解释权。  </p>
                 <br>
 
