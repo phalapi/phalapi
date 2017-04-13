@@ -12,7 +12,9 @@ class PhalApi_Cache_APCU {
 
     public function __construct() {
         if (!extension_loaded('apcu')) {
-            throw new PhalApi_Exception_InternalServerError('missing apcu extension');
+            throw new PhalApi_Exception_InternalServerError(
+                T('missing {name} extension', array('name' => 'apcu'))
+            );
         }
     }
 

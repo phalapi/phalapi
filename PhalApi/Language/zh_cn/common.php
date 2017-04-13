@@ -34,4 +34,5 @@ return array(
     'Not the file type {ext}'                                       => '上传失败不是文件类型 {ext}',
     '{name} can not match {regex}'                                  => '{name}无法匹配{regex}',
     'redis config key [socket] not found'                           => 'redis配置键[socket]未设置',
+    'missing {name} extension'                                      => '缺少{name}扩展',
 );
