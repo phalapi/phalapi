@@ -1,23 +1,21 @@
 <?php
+
 /**
  * PhalApi_Tool 工具集合类
- *
  * 只提供通用的工具类操作，目前提供的有：
- *
  * - IP地址获取
  * - 随机字符串生成
- *
  * @package     PhalApi\Tool
  * @license     http://www.phalapi.net/license GPL 协议
  * @link        http://www.phalapi.net/
  * @author      dogstar <chanzonghuang@gmail.com> 2015-02-12
  */
-
 class PhalApi_Tool {
+
+    public static $runTime = 0;
 
     /**
      * IP地址获取
-     *
      * @return string 如：192.168.1.1 失败的情况下，返回空
      */
     public static function getClientIp() {
@@ -42,10 +40,110 @@ class PhalApi_Tool {
      * 随机字符串生成
      *
      * @param int $len 需要随机的长度，不要太长
+     *
      * @return string
      */
     public static function createRandStr($len) {
         $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         return substr(str_shuffle(str_repeat($chars, rand(5, 8))), 0, $len);
     }
+
+    /**
+     * debug调试打印
+     *
+     * @param $obj
+     */
+    public static function debug($obj) {
+        if (DI()->debug) {
+            echo "\n";
+            print_r($obj);
+            echo "\n";
+        }
+    }
+
+    /**
+     * 初始化RunTime
+     */
+    public static function initTime() {
+        PhalApi_Tool::$runTime = PhalApi_Tool::getTime();
+    }
+
+    /**
+     * 获取当前毫秒时间
+     * @return float
+     */
+    private static function getTime() {
+        return round(microtime(true) * 10000);
+    }
+
+    /**
+     * 打印PHP执行时间
+     */
+    public static function printTime() {
+        echo "\n";
+        echo 'elapsed time: '.(PhalApi_Tool::getTime() - PhalApi_Tool::$runTime) / 10 . 'ms';
+        echo "\n";
+    }
+
+    /**
+     * 获取数组value值不存在时返回默认值
+     * 不建议在大循环中使用会有效率问题
+     *
+     * @param array      $arr     数组实例
+     * @param string|int $key     数据key值
+     * @param string     $default 默认值
+     *
+     * @return string
+     */
+    public static function arrIndex($arr, $key, $default = '') {
+
+        return isset($arr[$key]) ? $arr[$key] : $default;
+    }
+
+    /**
+     * 根据路径创建目录或文件
+     *
+     * @param $path string 需要创建目录路径
+     *
+     * @throws PhalApi_Exception_BadRequest
+     */
+    public static function createDir($path) {
+
+        $dir  = explode('/', $path);
+        $path = '';
+        foreach ($dir as $element) {
+            $path .= $element . '/';
+            if (!is_dir($path)) {
+                if (!mkdir($path)) {
+                    throw new PhalApi_Exception_BadRequest(
+                        T('create file path Error: {filePath}', array('filepath' => $path))
+                    );
+                }
+            }
+        }
+    }
+
+    /**
+     * 删除目录以及子目录等所有文件
+     * 请注意不要删除重要目录
+     *
+     * @param $path string
+     */
+    public static function deleteDir($path) {
+
+        $dir = opendir($path);
+        while (false !== ($file = readdir($dir))) {
+            if (($file != '.') && ($file != '..')) {
+                $full = $path . '/' . $file;
+                if (is_dir($full)) {
+                    PhalApi_Tool::deleteDir($full);
+                } else {
+                    unlink($full);
+                }
+            }
+        }
+        closedir($dir);
+        rmdir($path);
+    }
+
 }

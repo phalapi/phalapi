@@ -35,4 +35,5 @@ return array(
     '{name} can not match {regex}'                                  => '{name}无法匹配{regex}',
     'redis config key [socket] not found'                           => 'redis配置键[socket]未设置',
     'missing {name} extension'                                      => '缺少{name}扩展',
+    'create file path Error: {filePath}'                            => '创建文件异常: {filePath}',
 );
