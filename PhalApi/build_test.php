@@ -4,15 +4,15 @@
  * 主要是针对当前项目系列生成相应的单元测试代码，提高开发效率
  *
  * 用法：
- * Usage: php ./build_phpunit_test_tpl.php <file_path> <class_name> [bootstrap] [author = dogstar]
+ * Usage: php ./build_test.php <file_path> <class_name> [bootstrap] [author = dogstar]
  *
  * 1、针对全部public的函数进行单元测试
  * 2、可根据@testcase注释自动生成测试用例
  *
  * 备注：另可使用phpunit-skelgen进行骨架代码生成
  *
- * @author: dogstar 20150119
- * @version: 4.0.2
+ * @author: dogstar 20170415
+ * @version: 4.1.1
  */
 
 if ($argc < 3) {
@@ -29,7 +29,7 @@ if ($argc < 3) {
     echo "\n";
 
     echo colorfulString("Demo:\n", 'WARNING');
-    echo "    php ./build_phpunit_test_tpl.php ./Demo.php Demo > Demo_Test.php\n";
+    echo "    php ./build_test.php ./Demo.php Demo > Demo_Test.php\n";
     echo "\n";
 
     echo colorfulString("Tips:\n", 'WARNING');
