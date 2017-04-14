@@ -68,7 +68,7 @@ class PhpUnderControl_PhalApiTool_Test extends PHPUnit_Framework_TestCase
         PhalApi_Tool::createDir("./test/test2/test3");
 
         $this->assertEquals(true, is_dir("./test/test2/test3"));
-
+        PhalApi_Tool::deleteDir("./test");
     }
 
     public function testDeleteDir()
