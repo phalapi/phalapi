@@ -48,7 +48,8 @@ class PhalApi {
      */
     public function response() {
         $rs = DI()->response;
-
+        // 初始化运行时间
+        PhalApi_Tool::initTime();
         try {
             // 接口调度与响应
             $api    = PhalApi_ApiFactory::generateService(); 
