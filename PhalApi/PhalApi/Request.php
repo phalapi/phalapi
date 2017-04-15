@@ -99,12 +99,12 @@ class PhalApi_Request {
      * @param string $key     接口参数名字
      * @param mixed  $default 默认值
      *
-     * @return Ambigous <unknown, multitype:>
+     * @return mixed
      */
     public function get($key, $default = NULL) {
         return isset($this->data[$key]) ? $this->data[$key] : $default;
     }
-
+    
     /**
      * 根据规则获取参数
      * 根据提供的参数规则，进行参数创建工作，并返回错误信息
@@ -112,6 +112,8 @@ class PhalApi_Request {
      * @param $rule array('name' => '', 'type' => '', 'defalt' => ...) 参数规则
      *
      * @return mixed
+     * @throws PhalApi_Exception_BadRequest
+     * @throws PhalApi_Exception_InternalServerError
      */
     public function getByRule($rule) {
         $rs = NULL;
@@ -119,8 +121,28 @@ class PhalApi_Request {
         if (!isset($rule['name'])) {
             throw new PhalApi_Exception_InternalServerError(T('miss name for rule'));
         }
-
-        $rs = PhalApi_Request_Var::format($rule['name'], $rule, $this->data);
+        
+        if (!empty( $rule['method'])){
+            switch (strtoupper( $rule['method'])){
+                case 'POST' :
+                    $rs = PhalApi_Request_Var::format($rule['name'], $rule, $_POST);
+                    break;
+                case 'GET'  :
+                    $rs = PhalApi_Request_Var::format($rule['name'], $rule, $_GET);
+                    break;
+                case 'COOKIE':
+                    $rs = PhalApi_Request_Var::format($rule['name'], $rule, $_COOKIE);
+                    break;
+                case 'HEADER':
+                    $rs = PhalApi_Request_Var::format($rule['name'], $rule, $this->headers);
+                    break;
+                case 'SERVER':
+                    $rs = PhalApi_Request_Var::format($rule['name'], $rule, $_SERVER);
+                    break;
+            }
+        }else{
+            $rs = PhalApi_Request_Var::format($rule['name'], $rule, $this->data);
+        }
 
         if ($rs === NULL && (isset($rule['require']) && $rule['require'])) {
             throw new PhalApi_Exception_BadRequest(T('{name} require, but miss', array('name' => $rule['name'])));
