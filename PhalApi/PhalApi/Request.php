@@ -121,9 +121,25 @@ class PhalApi_Request {
         if (!isset($rule['name'])) {
             throw new PhalApi_Exception_InternalServerError(T('miss name for rule'));
         }
-    
-        if (isset( $rule['method']) && 'POST' == strtoupper( $rule['method'])){
-            $rs = PhalApi_Request_Var::format($rule['name'], $rule, $_POST);
+        
+        if (!empty( $rule['method'])){
+            switch (strtoupper( $rule['method'])){
+                case 'POST' :
+                    $rs = PhalApi_Request_Var::format($rule['name'], $rule, $_POST);
+                    break;
+                case 'GET'  :
+                    $rs = PhalApi_Request_Var::format($rule['name'], $rule, $_GET);
+                    break;
+                case 'COOKIE':
+                    $rs = PhalApi_Request_Var::format($rule['name'], $rule, $_COOKIE);
+                    break;
+                case 'HEADER':
+                    $rs = PhalApi_Request_Var::format($rule['name'], $rule, $this->headers);
+                    break;
+                case 'SERVER':
+                    $rs = PhalApi_Request_Var::format($rule['name'], $rule, $_SERVER);
+                    break;
+            }
         }else{
             $rs = PhalApi_Request_Var::format($rule['name'], $rule, $this->data);
         }
