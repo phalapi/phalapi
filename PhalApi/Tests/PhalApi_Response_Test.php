@@ -15,13 +15,13 @@ if (!class_exists('PhalApi_Response')) {
 
 class PhpUnderControl_PhalApiResponse_Test extends PHPUnit_Framework_TestCase
 {
-    public $coreResponse;
+    public $phalApiResponse;
 
     protected function setUp()
     {
         parent::setUp();
 
-        $this->coreResponse = new PhalApi_Response_Json_Mock();
+        $this->phalApiResponse = new PhalApi_Response_Json_Mock();
     }
 
     protected function tearDown()
@@ -36,7 +36,7 @@ class PhpUnderControl_PhalApiResponse_Test extends PHPUnit_Framework_TestCase
     {
         $ret = '0';
 
-        $rs = $this->coreResponse->setRet($ret);
+        $rs = $this->phalApiResponse->setRet($ret);
     }
 
     /**
@@ -46,7 +46,7 @@ class PhpUnderControl_PhalApiResponse_Test extends PHPUnit_Framework_TestCase
     {
         $data = array('sth' => 'hi~');
 
-        $rs = $this->coreResponse->setData($data);
+        $rs = $this->phalApiResponse->setData($data);
     }
 
     /**
@@ -56,7 +56,13 @@ class PhpUnderControl_PhalApiResponse_Test extends PHPUnit_Framework_TestCase
     {
         $msg = 'this will shoul as a wrong msg';
 
-        $rs = $this->coreResponse->setMsg($msg);
+        $rs = $this->phalApiResponse->setMsg($msg);
+    }
+
+    public function testSetDebug()
+    {
+        $this->phalApiResponse->setDebug('stack', array('Fight~'));
+        $this->phalApiResponse->setDebug('sqls', array('SELECT', 'DELETE'));
     }
 
     /**
@@ -67,7 +73,7 @@ class PhpUnderControl_PhalApiResponse_Test extends PHPUnit_Framework_TestCase
         $key = 'Content-Type';
         $content = 'text/html;charset=utf-8';
 
-        $rs = $this->coreResponse->addHeaders($key, $content);
+        $rs = $this->phalApiResponse->addHeaders($key, $content);
     }
 
     public function testGetHeaders()
@@ -75,10 +81,10 @@ class PhpUnderControl_PhalApiResponse_Test extends PHPUnit_Framework_TestCase
         $key = 'Version';
         $content = '1.1.2';
 
-        $rs = $this->coreResponse->addHeaders($key, $content);
+        $rs = $this->phalApiResponse->addHeaders($key, $content);
 
-        $this->assertEquals($content, $this->coreResponse->getHeaders($key));
-        $this->assertTrue(is_array($this->coreResponse->getHeaders()));
+        $this->assertEquals($content, $this->phalApiResponse->getHeaders($key));
+        $this->assertTrue(is_array($this->phalApiResponse->getHeaders()));
     }
 
     /**
@@ -86,12 +92,12 @@ class PhpUnderControl_PhalApiResponse_Test extends PHPUnit_Framework_TestCase
      */ 
     public function testOutput()
     {
-        $this->coreResponse->setRet(404);
-        $this->coreResponse->setMsg('not found');
-        $this->coreResponse->setData(array('name' => 'PhalApi'));
+        $this->phalApiResponse->setRet(404);
+        $this->phalApiResponse->setMsg('not found');
+        $this->phalApiResponse->setData(array('name' => 'PhalApi'));
 
-        $rs = $this->coreResponse->output();
-        $this->expectOutputString('{"ret":404,"data":{"name":"PhalApi"},"msg":"not found"}');
+        $rs = $this->phalApiResponse->output();
+        $this->expectOutputRegex('/"ret":404/');
     }
 
 }

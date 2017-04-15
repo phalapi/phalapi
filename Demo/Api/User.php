@@ -63,6 +63,8 @@ class Api_User extends PhalApi_Api {
         $domain = new Domain_User();
         foreach ($this->userIds as $userId) {
             $rs['list'][] = $domain->getBaseInfo($userId);
+
+            DI()->tracer->mark('FINISH_GET_INFO');
         }
 
         return $rs;

@@ -19,11 +19,9 @@ class PhalApi_Helper_Tracer {
     protected $timeline = array();
 
     /**
-     * 初始化
+     * @var array $sqls 所执行的SQL语句
      */
-    public function __construct() {
-        $this->mark();
-    }
+    protected $sqls = array();
 
     /**
      * 打点，纪录当前时间点
@@ -38,15 +36,14 @@ class PhalApi_Helper_Tracer {
         $backTrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
         if (empty($this->timeline)) {
             array_shift($backTrace);
-            array_shift($backTrace);
         }
         // TODO 关于追踪，看下如何追踪更合适
 
         $this->timeline[] = array(
             'tag' => $tag, 
             'time' => $this->getCurMicroTime(),
-            'file' => $backTrace[0]['file'],
-            'line' => $backTrace[0]['line'],
+            'file' => isset($backTrace[0]['file']) ? $backTrace[0]['file'] : '',
+            'line' => isset($backTrace[0]['line']) ? $backTrace[0]['line'] : 0,
         );
     }
 
@@ -83,5 +80,22 @@ class PhalApi_Helper_Tracer {
      */
     protected function getCurMicroTime() {
         return round(microtime(true) * 10000);
+    }
+
+    /**
+     * 纪录SQL语句
+     * @param string $string  SQL语句
+     * @return NULL
+     */
+    public function sql($statement) {
+        $this->sqls[] = $statement;
+    }
+
+    /**
+     * 获取SQL语句
+     * @return array
+     */
+    public function getSqls() {
+        return $this->sqls;
     }
 }

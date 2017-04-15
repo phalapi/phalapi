@@ -48,8 +48,6 @@ class PhalApi {
      */
     public function response() {
         $rs = DI()->response;
-        // 初始化运行时间
-        PhalApi_Tool::initTime();
         try {
             // 接口调度与响应
             $api    = PhalApi_ApiFactory::generateService(); 
@@ -65,6 +63,10 @@ class PhalApi {
             // 不可控的异常
             DI()->logger->error(DI()->request->getService(), strval($ex));
             throw $ex;
+        }
+
+        if (DI()->debug) {
+            $rs->setDebug('stack', DI()->tracer->report());
         }
 
         return $rs;

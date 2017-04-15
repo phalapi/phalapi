@@ -24,6 +24,9 @@ DI()->config = new PhalApi_Config_File(API_ROOT . '/Config');
 DI()->debug = !empty($_GET['__debug__']) ? true : DI()->config->get('sys.debug');
 
 if (DI()->debug) {
+    // 启动追踪器
+    DI()->tracer->mark();
+
     error_reporting(E_ALL);
     ini_set('display_errors', 'On'); 
 }

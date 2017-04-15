@@ -61,7 +61,7 @@ class PhpUnderControl_PhalApiHelperTracer_Test extends PHPUnit_Framework_TestCas
 
         $report = $this->phalApiHelperTracer->report();
         //var_dump($report);
-        $this->assertCount(5, $report);
+        $this->assertCount(4, $report);
     }
 
     public function testNoDebug()
@@ -73,6 +73,14 @@ class PhpUnderControl_PhalApiHelperTracer_Test extends PHPUnit_Framework_TestCas
 
         $report = $tracer->report();
         $this->assertCount(0, $report);
+    }
+
+    public function testSql()
+    {
+        $this->phalApiHelperTracer->sql('SELECT');
+        $this->phalApiHelperTracer->sql('DELETE');
+
+        $this->assertCount(2, $this->phalApiHelperTracer->getSqls());
     }
 }
 

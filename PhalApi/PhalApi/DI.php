@@ -38,6 +38,7 @@
  * @property PhalApi_Logger         $logger     日记
  * @property PhalApi_DB_NotORM      $notorm     数据库
  * @property PhalApi_Loader         $loader     自动加载
+ * @property PhalApi_Helper_Tracer  $tracer     全球追踪器
  * 
  * @package     PhalApi\DI
  * @link        http://docs.phalconphp.com/en/latest/reference/di.html 实现统一的资源设置、获取与管理，支持延时加载
@@ -91,6 +92,7 @@ class PhalApi_DI implements ArrayAccess {
     public function onConstruct() {
         $this->request = 'PhalApi_Request';
         $this->response = 'PhalApi_Response_Json';
+        $this->tracer = 'PhalApi_Helper_Tracer';
     }
 
     public function onInitialize() {
