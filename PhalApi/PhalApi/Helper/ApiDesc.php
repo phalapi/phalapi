@@ -23,7 +23,7 @@
 class PhalApi_Helper_ApiDesc {
 
     public function render() {
-        $service = DI()->request->get('service', 'Default.Index');
+        $service = DI()->request->getService();
 
         $rules = array();
         $returns = array();
@@ -95,7 +95,7 @@ class PhalApi_Helper_ApiDesc {
                 continue;
             }
             if (!isset($returnCommentArr[2])) {
-                $returnCommentArr[2] = '';	//可选的字段说明
+                $returnCommentArr[2] = '';	// optional desc
             } else {
                 // works with much more blank space
                 $returnCommentArr[2] = implode(' ', array_slice($returnCommentArr, 2));

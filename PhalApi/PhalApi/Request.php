@@ -24,16 +24,63 @@
  */
 class PhalApi_Request {
 
+    /**
+     * @var array $data 接口原始参数
+     */
     protected $data = array();
+    
+    protected $get = array();
+    protected $post = array();
+    protected $cookie = array();
 
+    /**
+     * @var array $headers 请求头部信息
+     */
     protected $headers = array();
 
     /**
      * @param   array   $data   data source, it can be: $_GET/$_POST/$_REQUEST/etc
      */
+    protected $apiName;
+
+    /**
+     * @var string 接口服务方法名
+     */
+    protected $actionName;
+
+    /** 
+     * - 如果需要post_raw,则可重载此方法，例
+     *
+```     
+     * class My_Request extend PhalApi_Request{
+     *     public function __construct($data = NULL) {
+     *         parent::__construct($data);
+     *
+     *         // handle json
+     *         $this->post = json_decode(file_get_contents('php://input'), TRUE);    
+     *
+     *         // handle xml
+     *         $this->post = simplexml_load_string (
+     *             file_get_contents('php://input'),
+     *             'SimpleXMLElement',
+     *             LIBXML_NOCDATA
+     *         );
+     *         $this->post = json_decode(json_encode($this->post), TRUE);
+     *     }  
+     * }
+```    
+     * - 其他格式或其他xml可以自行写函数处理
+     * @param array $data 参数来源，可以为：$_GET/$_POST/$_REQUEST/自定义
+     */
     public function __construct($data = NULL) {
-        $this->data    = $this->genData($data);
-        $this->headers = $this->getAllHeaders();
+        $this->data     = $this->genData($data);
+        $this->headers  = $this->getAllHeaders();
+
+        $this->get      = $_GET;
+        $this->post     = $_POST;
+        $this->cookie   = $_COOKIE;
+        
+        @list($this->apiName, $this->actionName) = explode('.', $this->getService());
     }
 
     /**
@@ -96,12 +143,12 @@ class PhalApi_Request {
      * @param   string  $key        parameter name
      * @param   mixed   $default    default value
      *
-     * @return Ambigous <unknown, multitype:>
+     * @return mixed
      */
     public function get($key, $default = NULL) {
         return isset($this->data[$key]) ? $this->data[$key] : $default;
     }
-
+    
     /**
      * Get parameter by rule
      * 
@@ -109,7 +156,9 @@ class PhalApi_Request {
      *
      * @param   array   $rule       rule, such as: ```array('name' => '', 'type' => '', 'defalt' => ...)```
      *
-     * @return  mixed
+     * @return mixed
+     * @throws PhalApi_Exception_BadRequest
+     * @throws PhalApi_Exception_InternalServerError
      */
     public function getByRule($rule) {
         $rs = NULL;
@@ -118,7 +167,9 @@ class PhalApi_Request {
             throw new PhalApi_Exception_InternalServerError(T('miss name for rule'));
         }
 
-        $rs = PhalApi_Request_Var::format($rule['name'], $rule, $this->data);
+        // 获取接口参数级别的数据集
+        $data = !empty($rule['source']) ? $this->getDataBySource($rule['source']) : $this->data;
+        $rs = PhalApi_Request_Var::format($rule['name'], $rule, $data);
 
         if ($rs === NULL && (isset($rule['require']) && $rule['require'])) {
             throw new PhalApi_Exception_BadRequest(T('{name} require, but miss', array('name' => $rule['name'])));
@@ -128,11 +179,77 @@ class PhalApi_Request {
     }
 
     /**
+     * Get data by source
+```     
+     * |----------|---------------------|
+     * | post     | $_POST              |
+     * | get      | $_GET               |
+     * | cookie   | $_COOKIE            |
+     * | server   | $_SERVER            |
+     * | requset  | $_REQUEST           |
+     * | header   | $_SERVER['HTTP_X']  |
+     * |----------|---------------------|
+     *   
+```     
+     * Override this function if you need to get data from other source
+     *
+     * @throws PhalApi_Exception_InternalServerError
+     * @return array 
+     */
+    protected function &getDataBySource($source) {
+        switch (strtoupper($source)) {
+        case 'POST' :
+            return $this->post;
+        case 'GET'  :
+            return $this->get;
+        case 'COOKIE':
+            return $this->cookie;
+        case 'HEADER':
+            return $this->headers;
+        case 'SERVER':
+            return $_SERVER;
+        case 'REQUEST':
+            return $_REQUEST;
+        }
+
+        throw new PhalApi_Exception_InternalServerError
+            (T('unknow source: {source} in rule', array('source' => $source)));
+    }
+
+    /**
      * Get all the params
-     * 
-     * @return array
+     * @return  array
      */
     public function getAll() {
         return $this->data;
+    }
+
+    /**
+     * Get service name
+     *
+     * - override this function if you need to specify param name or default service name
+     * - should return XXX.XXX at last
+     * - should call parent::getService() if can not handle
+     *
+     * @return  string  service name, e.g. Default.Index
+     */
+    public function getService() {
+        return $this->get('service', 'Default.Index');
+    }
+
+    /**
+     * Get the class name of serivce
+     * @return  string  class name of servcie, like: Api_XXX
+     */
+    public function getServiceApi() {
+        return $this->apiName;
+    }
+
+    /**
+     * Get the method name of servcie
+     * @return  string  method name of service
+     */
+    public function getServiceAction() {
+        return $this->actionName;
     }
 }

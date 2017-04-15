@@ -34,4 +34,7 @@ return array(
     'Not the file type {ext}'                                       => '上传失败不是文件类型 {ext}',
     '{name} can not match {regex}'                                  => '{name}无法匹配{regex}',
     'redis config key [socket] not found'                           => 'redis配置键[socket]未设置',
+    'missing {name} extension'                                      => '缺少{name}扩展',
+    'create file path Error: {filePath}'                            => '创建文件异常: {filePath}',
+    'unknow source: {source} in rule'                               => '参数规则中未知的数据源：{source}',
 );

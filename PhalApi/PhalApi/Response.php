@@ -45,6 +45,11 @@ abstract class PhalApi_Response {
      */
     protected $headers = array();
 
+    /**
+     * @var     array   $debug      debug infomation
+     */
+    protected $debug = array();
+
     /** ------------------ setter ------------------ **/
 
     /**
@@ -78,7 +83,20 @@ abstract class PhalApi_Response {
         $this->msg = $msg;
         return $this;
     }
-    
+
+    /**
+     * Set debug infomation
+     * @param   string  $key        debug key
+     * @param   mixed   $value      debug data
+     * @return  PhalApi_Response
+     */
+    public function setDebug($key, $value) {
+        if (DI()->debug) {
+            $this->debug[$key] = $value;
+        }
+        return $this;
+    }
+
     /**
      * Add header
      * 
@@ -106,10 +124,14 @@ abstract class PhalApi_Response {
     
     public function getResult() {
         $rs = array(
-            'ret' => $this->ret,
-            'data' => $this->data,
-            'msg' => $this->msg,
+            'ret'   => $this->ret,
+            'data'  => $this->data,
+            'msg'   => $this->msg,
         );
+
+        if (!empty($this->debug)) {
+            $rs['debug'] = $this->debug;
+        }
 
         return $rs;
     }

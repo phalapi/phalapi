@@ -115,4 +115,74 @@ class PhpUnderControl_PhalApiRequest_Test extends PHPUnit_Framework_TestCase
         unset($_SERVER['HTTP_ACCEPT_CHARSET']);
         unset($_SERVER['PHP_AUTH_DIGEST']);
     }
+
+    public function testService() {
+        $requests = new PhalApi_Request(array('service' => 'Demo.Go'));
+
+        $this->assertEquals('Demo.Go',  $requests->getService());
+        $this->assertEquals('Demo',     $requests->getServiceApi());
+        $this->assertEquals('Go',       $requests->getServiceAction());
+    }
+
+    public function testServiceDefault() {
+        $requests = new PhalApi_Request();
+
+        $this->assertEquals('Default.Index',    $requests->getService());
+        $this->assertEquals('Default',          $requests->getServiceApi());
+        $this->assertEquals('Index',            $requests->getServiceAction());
+    }
+
+    public function testServiceEmpty() {
+        $requests = new PhalApi_Request(array('service' => ''));
+
+        $this->assertSame('', $requests->getService());
+        $this->assertSame('', $requests->getServiceApi());
+        $this->assertSame(NULL, $requests->getServiceAction());
+    }
+
+    public function testSource()
+    {
+        $_POST['pp'] = 'p_data';
+        $_GET['gg'] = 'g_data';
+        $_COOKIE['cc'] = 'c_data';
+        $_SERVER['HTTP_ACCEPT_CHARSET'] = 'utf-8';
+        $_SERVER['ss'] = 's_data';
+        $_REQUEST['rr'] = 'r_data';
+        $data = array('dd' => 'd_data');
+
+        $requests = new PhalApi_Request($data);
+
+        $postRs = $requests->getByRule(array('name' => 'pp', 'source' => 'post'));
+        $this->assertEquals('p_data', $postRs);
+
+        $getRs = $requests->getByRule(array('name' => 'gg', 'source' => 'get'));
+        $this->assertEquals('g_data', $getRs);
+
+        $cookieRs = $requests->getByRule(array('name' => 'cc', 'source' => 'cookie'));
+        $this->assertEquals('c_data', $cookieRs);
+
+        $headerRs = $requests->getByRule(array('name' => 'Accept-Charset', 'source' => 'header'));
+        $this->assertEquals('utf-8', $headerRs);
+
+        $serverRs = $requests->getByRule(array('name' => 'ss', 'source' => 'server'));
+        $this->assertEquals('s_data', $serverRs);
+
+        $requestRs = $requests->getByRule(array('name' => 'rr', 'source' => 'request'));
+        $this->assertEquals('r_data', $requestRs);
+
+        $dataRs = $requests->getByRule(array('name' => 'dd'));
+        $this->assertEquals('d_data', $dataRs);
+
+        unset($_POST['pp'], $_GET['gg'], $_COOKIE['cc'], $_SERVER['HTTP_ACCEPT_CHARSET'], $_SERVER['ss'], $_REQUEST['rr']);
+    }
+
+    /**
+     * @expectedException PhalApi_Exception_InternalServerError
+     * @expectedExceptionMessage no_this_source
+     */
+    public function testUnkonwSource()
+    {
+        $requests = new PhalApi_Request(array());
+        $notFoundRs = $requests->getByRule(array('name' => 'dd', 'source' => 'no_this_source'));
+    }
 }

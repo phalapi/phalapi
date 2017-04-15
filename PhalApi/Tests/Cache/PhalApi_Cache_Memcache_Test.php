@@ -71,4 +71,37 @@ class PhpUnderControl_PhalApiCacheMemcache_Test extends PHPUnit_Framework_TestCa
         $this->assertNull($this->phalApiCacheMemcache->get($key));
     }
 
+    public function testMultiMemcacheInstance()
+    {
+        $config = array(
+            'host' => '127.0.0.1, 127.0.0.1', 
+            'port' => '11211, 11212',
+            'weight' => '20, 80',
+        );
+
+        $memcache = new PhalApi_Cache_Memcache($config);
+
+        $memcache->set('multi-key-1', 'M1', 60);
+        $memcache->set('multi-key-2', 'M2', 60);
+        $memcache->set('multi-key-3', 'M3', 60);
+
+        $this->assertEquals('M1', $memcache->get('multi-key-1'));
+        $this->assertEquals('M2', $memcache->get('multi-key-2'));
+        $this->assertEquals('M3', $memcache->get('multi-key-3'));
+    }
+
+    public function testMultiMemcacheInstanceUnformer()
+    {
+        $config = array(
+            'host' => '127.0.0.1, 127.0.0.1', 
+            'port' => '11211, 11212',   // same as 11211, 11212
+            'weight' => '20',           // same as 20, 0
+        );
+
+        $memcache = new PhalApi_Cache_Memcache($config);
+
+        $memcache->set('multi-key-4', 'M4', 60);
+        $this->assertEquals('M4', $memcache->get('multi-key-4'));
+    }
+
 }

@@ -133,12 +133,24 @@ class PhalApi_Api_Impl extends PhalApi_Api {
     {
         return $this->left + $this->right;
     }
+
+    public function getTime()
+    {
+        return time();
+    }
 }
 
 class PhalApi_Filter_Impl implements PhalApi_Filter {
 
     public function check() {
 
+    }
+}
+
+class PhalApi_Filter_Impl_Exception implements PhalApi_Filter {
+
+    public function check() {
+        throw new PhalApi_Exception_BadRequest('just for test');
     }
 }
 

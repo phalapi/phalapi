@@ -59,16 +59,21 @@ foreach ($rules as $key => $rule) {
         $default = var_export($default, true);
     }
 
-    $other = '';
+    $other = array();
     if (isset($rule['min'])) {
-        $other .= ' Min: ' . $rule['min'];
+        $other[] = ' Min: ' . $rule['min'];
     }
     if (isset($rule['max'])) {
-        $other .= ' Max: ' . $rule['max'];
+        $other[] = ' Max: ' . $rule['max'];
     }
     if (isset($rule['range'])) {
-        $other .= ' Range: ' . implode('/', $rule['range']);
+        $other[] = ' Range: ' . implode('/', $rule['range']);
     }
+    if (isset($rule['source'])) {
+        $other[] = 'Source：' . strtoupper($rule['source']);
+    }
+    $other = implode('；', $other);
+
     $desc = isset($rule['desc']) ? trim($rule['desc']) : '';
 
     echo "<tr><td>$name</td><td>$type</td><td>$require</td><td>$default</td><td>$other</td><td>$desc</td></tr>\n";

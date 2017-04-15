@@ -7,7 +7,7 @@ class Api_User extends PhalApi_Api {
     public function getRules() {
         return array(
             'getBaseInfo' => array(
-                'userId' => array('name' => 'user_id', 'type' => 'int', 'min' => 1, 'require' => true, 'desc' => 'user ID'),
+                'userId' => array('name' => 'user_id', 'type' => 'int', 'min' => 1, 'require' => true, 'desc' => 'user ID', 'source' => 'get'),
             ),
             'getMultiBaseInfo' => array(
                 'userIds' => array('name' => 'user_ids', 'type' => 'array', 'format' => 'explode', 'require' => true, 'desc' => 'user ID, explore with comma '),
@@ -62,6 +62,8 @@ class Api_User extends PhalApi_Api {
         $domain = new Domain_User();
         foreach ($this->userIds as $userId) {
             $rs['list'][] = $domain->getBaseInfo($userId);
+
+            DI()->tracer->mark('FINISH_GET_INFO');
         }
 
         return $rs;

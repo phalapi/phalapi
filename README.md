@@ -6,7 +6,7 @@
 <a href="https://packagist.org/packages/phalapi/phalapi"><img src="https://poser.pugx.org/phalapi/phalapi/license" alt="License"></a>
 </p> 
 
-## [PhalApi - V1.3.6 - English Version](http://www.phalapi.net)  
+## [PhalApi - V1.4.0 - English Version](http://www.phalapi.net)  
 PhalApi, π Framework for short, is a light-weight framework which focus on how to develop API faster and simpler. It:    
 + aims to continuous deliver available API services rapidly and stabely.  
 + foucus on TDD, DDD, XP and alige development.  

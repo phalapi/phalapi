@@ -24,6 +24,9 @@ DI()->config = new PhalApi_Config_File(API_ROOT . '/Config');
 DI()->debug = !empty($_GET['__debug__']) ? true : DI()->config->get('sys.debug');
 
 if (DI()->debug) {
+    // start tracer
+    DI()->tracer->mark();
+
     error_reporting(E_ALL);
     ini_set('display_errors', 'On'); 
 }
@@ -31,8 +34,8 @@ if (DI()->debug) {
 // logs
 DI()->logger = new PhalApi_Logger_File(API_ROOT . '/Runtime', PhalApi_Logger::LOG_LEVEL_DEBUG | PhalApi_Logger::LOG_LEVEL_INFO | PhalApi_Logger::LOG_LEVEL_ERROR);
 
-// database operations based on NotORM, rename $_GET['__sql__']as you want
-DI()->notorm = new PhalApi_DB_NotORM(DI()->config->get('dbs'), !empty($_GET['__sql__']));
+// database operations based on NotORM
+DI()->notorm = new PhalApi_DB_NotORM(DI()->config->get('dbs'), DI()->debug);
 
 // setting language, default is English
 SL('en');

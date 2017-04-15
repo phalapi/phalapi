@@ -5,15 +5,15 @@
  * - aim to generate related PHPUnit tests codes with current project, improving development rate
  *
  * Usage: 
- * php ./build_phpunit_test_tpl.php <file_path> <class_name> [bootstrap] [author = dogstar]
+ * php ./build_test.php <file_path> <class_name> [bootstrap] [author = dogstar]
  *
  * 1, generate test cases for each public method in the class
  * 2, generate base cases according @testcase annotation
  *
  * NOTE: You can also use phpunit-skelgen to generate PHPUnit test codes.
  *
- * @author: dogstar 20150119
- * @version: 4.0.2
+ * @author: dogstar 20170415
+ * @version: 4.1.1
  */
 
 if ($argc < 3) {
@@ -30,7 +30,7 @@ if ($argc < 3) {
     echo "\n";
 
     echo colorfulString("Demo:\n", 'WARNING');
-    echo "    php ./build_phpunit_test_tpl.php ./Demo.php Demo > Demo_Test.php\n";
+    echo "    php ./build_test.php ./Demo.php Demo > Demo_Test.php\n";
     echo "\n";
 
     echo colorfulString("Tips:\n", 'WARNING');

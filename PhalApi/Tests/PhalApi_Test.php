@@ -46,7 +46,7 @@ class PhpUnderControl_PhalApi_Test extends PHPUnit_Framework_TestCase
 
         $rs->output();
 
-        $this->expectOutputString('{"ret":200,"data":"hello wolrd!","msg":""}');
+        $this->expectOutputRegex('/"ret":200/');
     }
 
     /**
@@ -60,7 +60,7 @@ class PhpUnderControl_PhalApi_Test extends PHPUnit_Framework_TestCase
 
         $rs->output();
 
-        $this->expectOutputString('test({"ret":200,"data":"hello wolrd!","msg":""})');
+        $this->expectOutputRegex('/"ret":200/');
     }
 
     /**
@@ -73,14 +73,9 @@ class PhpUnderControl_PhalApi_Test extends PHPUnit_Framework_TestCase
         $rs = $this->phalApi->response();
 
         $rs->output();
+        $res = $rs->getResult();
 
-        $expRs = array (
-            'ret' => 200,
-            'data' => 'hello wolrd!',
-            'msg' => '',
-        );
-
-        $this->assertEquals($expRs, $rs->getResult());
+        $this->assertEquals(200, $res['ret']);
     }
 
     public function testResponseWithBadRequest() {
@@ -102,6 +97,7 @@ class PhpUnderControl_PhalApi_Test extends PHPUnit_Framework_TestCase
 
     /**
      * @expectedException Exception
+     * @expectedExceptionMessage trouble
      */
     public function testResponseWithException() {
         $data = array(

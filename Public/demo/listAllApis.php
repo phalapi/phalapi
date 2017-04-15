@@ -44,6 +44,7 @@ $apiDirName = 'Demo';
 $libraryPaths = array(
     'Library/User/User',    // User Library
     'Library/Auth/Auth',    // Auth Library
+    'Library/Qiniu/CDN',    // Qiniu Library
 );
 
 // init

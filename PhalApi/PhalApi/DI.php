@@ -52,6 +52,7 @@
  * @property PhalApi_Logger         $logger     logger
  * @property PhalApi_DB_NotORM      $notorm     NotORM
  * @property PhalApi_Loader         $loader     loader
+ * @property PhalApi_Helper_Tracer  $tracer     tracer
  * 
  * @package     PhalApi\DI
  * @link        http://docs.phalconphp.com/en/latest/reference/di.html
@@ -105,6 +106,7 @@ class PhalApi_DI implements ArrayAccess {
     public function onConstruct() {
         $this->request = 'PhalApi_Request';
         $this->response = 'PhalApi_Response_Json';
+        $this->tracer = 'PhalApi_Helper_Tracer';
     }
 
     public function onInitialize() {

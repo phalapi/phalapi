@@ -63,4 +63,35 @@ class PhpUnderControl_PhalApiTool_Test extends PHPUnit_Framework_TestCase
         $this->assertEquals($len, strlen($rs));
     }
 
+    public function testCreateDir()
+    {
+        PhalApi_Tool::createDir("./test/test2/test3");
+
+        $this->assertEquals(true, is_dir("./test/test2/test3"));
+        PhalApi_Tool::deleteDir("./test");
+    }
+
+    public function testDeleteDir()
+    {
+        mkdir("./test");
+        mkdir("./test/test2");
+        file_put_contents("./test/test2/test3","test");
+        PhalApi_Tool::deleteDir("./test");
+
+        $this->assertEquals(false, is_dir("./test"));
+    }
+
+    public function testArrIndex()
+    {
+
+        $arr = array(
+            "test" => "test"
+        );
+        ;
+
+        $this->assertEquals("test", PhalApi_Tool::arrIndex($arr,"test"));
+        $this->assertEquals("default", PhalApi_Tool::arrIndex($arr,"test2","default"));
+        $this->assertEquals('', PhalApi_Tool::arrIndex($arr,"test3"));
+    }
+
 }

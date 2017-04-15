@@ -24,6 +24,7 @@ class PhpUnderControl_PhalApiApiFactory_Test extends PHPUnit_Framework_TestCase
 
     protected function tearDown()
     {
+        DI()->filter = NULL;
     }
 
 
@@ -90,6 +91,41 @@ class PhpUnderControl_PhalApiApiFactory_Test extends PHPUnit_Framework_TestCase
         DI()->request = new PhalApi_Request($data);
         $rs = PhalApi_ApiFactory::generateService();
     }
+
+    /**
+     * @expectedException PhalApi_Exception_BadRequest
+     */
+    public function testServiceWhitelistNOTInclude()
+    {
+        DI()->filter = 'PhalApi_Filter_Impl_Exception';
+
+        $data['service'] = 'ServiceWhitelist.GetTime';
+        DI()->request = new PhalApi_Request($data);
+        $rs = PhalApi_ApiFactory::generateService();
+    }
+
+    /**
+     * @dataProvider provideDataForWhilelist
+     */
+    public function testServiceWhitelistInclude($service)
+    {
+        DI()->filter = 'PhalApi_Filter_Impl_Exception';
+
+        $data['service'] = $service;
+        DI()->request = new PhalApi_Request($data);
+        $rs = PhalApi_ApiFactory::generateService();
+
+        $this->assertInstanceOf('PhalApi_Api', $rs);
+    }
+
+    public function provideDataForWhilelist()
+    {
+        return array(
+            array('ServiceWhitelist.Index'),
+            array('ServiceWhitelist.PoPo'),
+            array('Default.Index'),
+        );
+    }
 }
 
 class Api_Default extends PhalApi_Api
@@ -102,6 +138,21 @@ class Api_Default extends PhalApi_Api
 class Api_Crazy
 {
     public function what()
+    {
+    }
+}
+
+class Api_ServiceWhitelist extends PhalApi_Api
+{
+    public function index()
+    {
+    }
+
+    public function getTime()
+    {
+    }
+
+    public function popo()
     {
     }
 }

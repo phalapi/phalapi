@@ -48,7 +48,7 @@ case 1:
     $publicPath = file_exists($publicPath) ? realpath($publicPath) : $publicPath;
     $checkList['runtime']['tip'] = $publicPath . '<br>' . $checkList['runtime']['tip'];
 
-    if (is_writeable($runtimePath) && is_writeable($configPath)) {
+    if (is_writeable($runtimePath) && is_writeable($configPath) && is_writable($publicPath)) {
         $checkList['runtime']['status'] =  1;
     }
 
@@ -194,11 +194,11 @@ return array(
      */
     'servers' => array(
         'db_{project}' => array(                         // server ID
-            'host'      => '{host}',             // database host
-            'name'      => '{name}',               // database name
-            'user'      => '{user}',                  // database username
-            'password'  => '{password}',	                    // database password
-            'port'      => '{port}',                  // database port
+            'host'      => '{host}',                     // database host
+            'name'      => '{name}',                     // database name
+            'user'      => '{user}',                     // database username
+            'password'  => '{password}',	             // database password
+            'port'      => '{port}',                     // database port
             'charset'   => '{charset}',                  // database charset
         ),
     ),
@@ -218,7 +218,7 @@ return array(
 
         /**
         'demo' => array(                                                // table name
-            'prefix' => '{prefix}',                                         // table prefix
+            'prefix' => '{prefix}',                                     // table prefix
             'key' => 'id',                                              // table primary key
             'map' => array(                                             // table route map
                 array('db' => 'db_{project}'),                               // single table: array('db' => server ID)

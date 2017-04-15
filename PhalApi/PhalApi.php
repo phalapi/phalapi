@@ -14,7 +14,7 @@
 /**
  * 框架版本号
  */
-defined('PHALAPI_VERSION') || define('PHALAPI_VERSION', '1.3.6');
+defined('PHALAPI_VERSION') || define('PHALAPI_VERSION', '1.4.0');
  
 /**
  * 项目根目录
@@ -52,32 +52,40 @@ class PhalApi {
      *  其结果包含以下元素：
 ```
      *  array(
-     *      'ret'   => 200,             //服务器响应状态
-     *      'data'  => array(),         //正常并成功响应后，返回给客户端的数据  
-     *      'msg'   => '',              //错误提示信息
+     *      'ret'   => 200,             // return status code
+     *      'data'  => array(),         // 正常并成功响应后，返回给客户端的数据  
+     *      'msg'   => '',              // 错误提示信息
      *  );
 ```
      */
     public function response() {
         $rs = DI()->response;
-        $service = DI()->request->get('service', 'Default.Index');
-
         try {
-            // 接口响应
-            $api = PhalApi_ApiFactory::generateService(); 
-            list($apiClassName, $action) = explode('.', $service);
-            $data = call_user_func(array($api, $action));
+            // invoke service
+            $api    = PhalApi_ApiFactory::generateService(); 
+            $action = DI()->request->getServiceAction();
+            $data   = call_user_func(array($api, $action));
 
             $rs->setData($data);
         } catch (PhalApi_Exception $ex) {
-            // 框架或项目的异常
+            // framework or project exception
             $rs->setRet($ex->getCode());
             $rs->setMsg($ex->getMessage());
         } catch (Exception $ex) {
-            // 不可控的异常
-            DI()->logger->error($service, strval($ex));
-            throw $ex;
+            // unknow exception
+            DI()->logger->error(DI()->request->getService(), strval($ex));
+
+            if (DI()->debug) {
+                $rs->setRet($ex->getCode());
+                $rs->setMsg($ex->getMessage());
+                $rs->setDebug('exception', $ex->getTrace());
+            } else {
+                throw $ex;
+            }
         }
+
+        $rs->setDebug('stack', DI()->tracer->getStack());
+        $rs->setDebug('sqls', DI()->tracer->getSqls());
 
         return $rs;
     }

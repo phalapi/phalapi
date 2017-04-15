@@ -47,6 +47,45 @@ class PhalApi_CUrl {
      * @var     int     $retryTimes     retry times; NOTE, total request times = 1 + retry times
      */
     protected $retryTimes;
+    
+    protected $header = array();
+    
+    protected $option = array();
+    
+    /**
+     * Set curl header
+     *
+     * @param   array   $header     key-value pair like:
+```     
+     * array(
+     *     ['Accept' => 'text/html'],
+     *     ['Connection' => 'keep-alive'],
+     * )
+```     
+     *
+     * @return $this
+     */
+    public function setHeader( $header )
+    {
+        $this->header = array_merge( $this->header, $header);
+        return $this;
+    }
+    
+    /**
+     * Set curl option
+     *
+     * - 1、后设置的会覆盖之前的设置
+     * - 2、开发者设置的会覆盖框架的设置
+     *
+     * @param   array   $option     key-value pair
+     *
+     * @return $this
+     */
+    public function setOption( $option )
+    {
+        $this->option = array_merge( $this->option, $option);
+        return $this;
+    }
 
     /**
      * @param   int     $retryTimes     retry times, default is 1
@@ -64,7 +103,7 @@ class PhalApi_CUrl {
      * @return  string                  response content, return false when time out or fail to connect
      */
     public function get($url, $timeoutMs = 3000) {
-        return $this->request($url, FALSE, $timeoutMs);
+        return $this->request($url, array(), $timeoutMs);
     } 
 
     /**
@@ -78,6 +117,18 @@ class PhalApi_CUrl {
     public function post($url, $data, $timeoutMs = 3000) {
         return $this->request($url, $data, $timeoutMs);
     }
+    
+    /**
+     *
+     * @return array
+     */
+    protected function getHeaders() {
+        $arrHeaders = array();
+        foreach ($this->header as $key => $val) {
+            $arrHeaders[] = $key . ':' . $val;
+        }
+        return $arrHeaders;
+    }
 
     /**
      * Request implementation
@@ -88,18 +139,23 @@ class PhalApi_CUrl {
      * @return  string                  response content, return false when time out or fail to connect
      */
     protected function request($url, $data, $timeoutMs = 3000) {
-        $ch = curl_init();
-
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT_MS, $timeoutMs);
+        $options = array(
+            CURLOPT_URL                 => $url,
+            CURLOPT_RETURNTRANSFER      => TRUE,
+            CURLOPT_HEADER              => 0,
+            CURLOPT_CONNECTTIMEOUT_MS   => $timeoutMs,
+            CURLOPT_HTTPHEADER          => $this->getHeaders(),
+        );
 
         if (!empty($data)) {
-            curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+            $options[CURLOPT_POST]          = 1;
+            $options[CURLOPT_POSTFIELDS]    = $data;
         }
-
+        
+        $options = $this->option + $options;
+        
+        $ch = curl_init();
+        curl_setopt_array( $ch, $options);
         $curRetryTimes = $this->retryTimes;
         do {
             $rs = curl_exec($ch);

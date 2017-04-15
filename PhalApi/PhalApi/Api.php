@@ -130,16 +130,13 @@ class PhalApi_Api {
         if (!is_array($allRules)) {
             $allRules = array();
         }
-
         $allRules = array_change_key_case($allRules, CASE_LOWER);
 
-        $service = DI()->request->get('service', 'Default.Index');
-        list($apiClassName, $action) = explode('.', $service);
-        $action = strtolower($action); 
-
+        $action = strtolower(DI()->request->getServiceAction()); 
         if (isset($allRules[$action]) && is_array($allRules[$action])) {
             $rules = $allRules[$action];
         }
+
         if (isset($allRules['*'])) {
             $rules = array_merge($allRules['*'], $rules);
         }
@@ -188,6 +185,11 @@ class PhalApi_Api {
      * @throws  PhalApi_Exception_BadRequest throw 400 exception when fail to check
      */
     protected function filterCheck() {
+        // 过滤服务白名单
+        if ($this->isServiceWhitelist()) {
+            return;
+        }
+
         $filter = DI()->get('filter', 'PhalApi_Filter_None');
 
         if (isset($filter)) {
@@ -211,4 +213,39 @@ class PhalApi_Api {
 
     }
 
+    /**
+     * Whether service is whitelist or not
+     *
+     * @return boolean
+     */
+    protected function isServiceWhitelist() {
+        $api = DI()->request->getServiceApi();
+        $action = DI()->request->getServiceAction();
+
+        $serviceWhitelist = DI()->config->get('app.service_whitelist', array());
+        foreach ($serviceWhitelist as $item) {
+            $cfgArr = explode('.', $item);
+            if (count($cfgArr) < 2) {
+                continue;
+            }
+
+            // return when match
+            if ($this->equalOrIngore($api, $cfgArr[0]) && $this->equalOrIngore($action, $cfgArr[1])) {
+                return TRUE;
+            }
+        }
+
+        return FALSE;
+    }
+
+    /**
+     * Equal or ingore
+     *
+     * @param   string      $str    string to be compared
+     * @param   string      $cfg    config rule, ```*``` match all
+     * @return  boolean
+     */
+    protected function equalOrIngore($str, $cfg) {
+        return strcasecmp($str, $cfg) == 0 || $cfg == '*';
+    }
 }
