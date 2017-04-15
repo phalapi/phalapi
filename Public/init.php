@@ -34,8 +34,8 @@ if (DI()->debug) {
 //日记纪录
 DI()->logger = new PhalApi_Logger_File(API_ROOT . '/Runtime', PhalApi_Logger::LOG_LEVEL_DEBUG | PhalApi_Logger::LOG_LEVEL_INFO | PhalApi_Logger::LOG_LEVEL_ERROR);
 
-//数据操作 - 基于NotORM，$_GET['__sql__']可自行改名
-DI()->notorm = new PhalApi_DB_NotORM(DI()->config->get('dbs'), !empty($_GET['__sql__']));
+//数据操作 - 基于NotORM
+DI()->notorm = new PhalApi_DB_NotORM(DI()->config->get('dbs'), DI()->debug);
 
 //翻译语言包设定
 SL('zh_cn');

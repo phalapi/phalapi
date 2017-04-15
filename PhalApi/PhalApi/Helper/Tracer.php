@@ -33,7 +33,7 @@ class PhalApi_Helper_Tracer {
             return;
         }
 
-        $backTrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
+        $backTrace = debug_backtrace();
         if (empty($this->timeline)) {
             array_shift($backTrace);
         }
@@ -51,8 +51,8 @@ class PhalApi_Helper_Tracer {
      * 生成报告
      * @return array
      */
-    public function report() {
-        $line = array();
+    public function getStack() {
+        $stack = array();
 
         $preMicroTime = NULL;
         foreach ($this->timeline as $index => $item) {
@@ -62,7 +62,7 @@ class PhalApi_Helper_Tracer {
             $internalTime = $item['time'] - $preMicroTime;
             $internalTime = round($internalTime/10, 1);
 
-            $line[] = sprintf('[#%d - %sms%s]%s(%d)',
+            $stack[] = sprintf('[#%d - %sms%s]%s(%d)',
                 $index, 
                 $internalTime, 
                 $item['tag'] !== NULL ? ' - ' . $item['tag'] : '', 
@@ -71,7 +71,7 @@ class PhalApi_Helper_Tracer {
             );
         }
 
-        return $line;
+        return $stack;
     }
 
     /**

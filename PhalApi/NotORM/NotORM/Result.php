@@ -233,7 +233,11 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
         if($this->notORM->debug){
             $debugTrace['endTime'] = microtime(true);
 
-            $sqlInfo = sprintf("[%s - %ss]%s<br>\n", self::$queryTimes, round($debugTrace['endTime'] - $debugTrace['startTime'], 5), $debugTrace['sql']);
+            $sqlInfo = sprintf("[%s - %sms]%s", 
+                self::$queryTimes, 
+                round(($debugTrace['endTime'] - $debugTrace['startTime']) * 1000, 2), 
+                $debugTrace['sql']
+            );
             DI()->tracer->sql($sqlInfo);
         }
 

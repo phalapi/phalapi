@@ -46,7 +46,7 @@ class PhpUnderControl_PhalApiHelperTracer_Test extends PHPUnit_Framework_TestCas
      */ 
     public function testGetReport()
     {
-        $rs = $this->phalApiHelperTracer->report();
+        $rs = $this->phalApiHelperTracer->getStack();
 
         $this->assertTrue(is_array($rs));
     }
@@ -59,7 +59,7 @@ class PhpUnderControl_PhalApiHelperTracer_Test extends PHPUnit_Framework_TestCas
 
         doSthForTrace($this->phalApiHelperTracer);
 
-        $report = $this->phalApiHelperTracer->report();
+        $report = $this->phalApiHelperTracer->getStack();
         //var_dump($report);
         $this->assertCount(4, $report);
     }
@@ -71,7 +71,7 @@ class PhpUnderControl_PhalApiHelperTracer_Test extends PHPUnit_Framework_TestCas
         $tracer = new PhalApi_Helper_Tracer();
         $tracer->mark('aHa~');
 
-        $report = $tracer->report();
+        $report = $tracer->getStack();
         $this->assertCount(0, $report);
     }
 

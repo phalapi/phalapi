@@ -74,22 +74,10 @@ abstract class PhalApi_Response {
      * 设置调试信息
      * @param   string  $key        键值标识
      * @param   mixed   $value      调试数据
-     * @param   boolean $isAppend   是否追加
      * @return  PhalApi_Response
      */
-    public function setDebug($key, $value, $isAppend = FALSE) {
-        // 先易后难
-        if (!$isAppend) {
-            $this->debug[$key] = $value;
-            return $this;
-        }
-
-        // 此乃追加
-        if (!isset($this->debug[$key])) {
-            $this->debug[$key] = array();
-        }
-        $this->debug[$key][] = $value;
-
+    public function setDebug($key, $value) {
+        $this->debug[$key] = $value;
         return $this;
     }
 
@@ -122,8 +110,11 @@ abstract class PhalApi_Response {
             'ret'   => $this->ret,
             'data'  => $this->data,
             'msg'   => $this->msg,
-            'debug' => $this->debug,
         );
+
+        if (!empty($this->debug)) {
+            $rs['debug'] = $this->debug;
+        }
 
         return $rs;
     }
