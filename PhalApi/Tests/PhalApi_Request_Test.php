@@ -139,4 +139,37 @@ class PhpUnderControl_PhalApiRequest_Test extends PHPUnit_Framework_TestCase
         $this->assertSame('', $requests->getServiceApi());
         $this->assertSame(NULL, $requests->getServiceAction());
     }
+
+    public function testSource() {
+        $_POST['pp'] = 'p_data';
+        $_GET['gg'] = 'g_data';
+        $_COOKIE['cc'] = 'c_data';
+        $_SERVER['HTTP_ACCEPT_CHARSET'] = 'utf-8';
+        $_SERVER['ss'] = 's_data';
+        $data = array('dd' => 'd_data');
+
+        $requests = new PhalApi_Request($data);
+
+        $postRs = $requests->getByRule(array('name' => 'pp', 'source' => 'post'));
+        $this->assertEquals('p_data', $postRs);
+
+        $getRs = $requests->getByRule(array('name' => 'gg', 'source' => 'get'));
+        $this->assertEquals('g_data', $getRs);
+
+        $cookieRs = $requests->getByRule(array('name' => 'cc', 'source' => 'cookie'));
+        $this->assertEquals('c_data', $cookieRs);
+
+        $headerRs = $requests->getByRule(array('name' => 'Accept-Charset', 'source' => 'header'));
+        $this->assertEquals('utf-8', $headerRs);
+
+        $serverRs = $requests->getByRule(array('name' => 'ss', 'source' => 'server'));
+        $this->assertEquals('s_data', $serverRs);
+
+        $dataRs = $requests->getByRule(array('name' => 'dd'));
+        $this->assertEquals('d_data', $dataRs);
+
+        // TODO
+        $notFoundRs = $requests->getByRule(array('name' => 'dd', 'source' => 'no_this_source'));
+        $this->assertEquals(NULL, $notFoundRs);
+    }
 }

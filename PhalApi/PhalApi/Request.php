@@ -122,8 +122,8 @@ class PhalApi_Request {
             throw new PhalApi_Exception_InternalServerError(T('miss name for rule'));
         }
         
-        if (!empty( $rule['method'])){
-            switch (strtoupper( $rule['method'])){
+        if (!empty( $rule['source'])){
+            switch (strtoupper( $rule['source'])){
                 case 'POST' :
                     $rs = PhalApi_Request_Var::format($rule['name'], $rule, $_POST);
                     break;
@@ -149,6 +149,9 @@ class PhalApi_Request {
         }
 
         return $rs;
+    }
+
+    protected function getDataBySource() {
     }
 
     /**
