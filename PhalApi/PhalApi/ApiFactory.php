@@ -38,38 +38,38 @@ class PhalApi_ApiFactory {
         $api        = DI()->request->getServiceApi();
         $action     = DI()->request->getServiceAction();
 
-		if (empty($api) || empty($action)) {
+        if (empty($api) || empty($action)) {
             throw new PhalApi_Exception_BadRequest(
                 T('service ({service}) illegal', array('service' => $service))
             );
         }
 
-	    $apiClass = 'Api_' . ucfirst($api);
+        $apiClass = 'Api_' . ucfirst($api);
         if (!class_exists($apiClass)) {
             throw new PhalApi_Exception_BadRequest(
                 T('no such service as {service}', array('service' => $service))
             );
         }
-        		
-    	$api = new $apiClass();
+
+        $api = new $apiClass();
 
         if (!is_subclass_of($api, 'PhalApi_Api')) {
             throw new PhalApi_Exception_InternalServerError(
                 T('{class} should be subclass of PhalApi_Api', array('class' => $apiClass))
             );
         }
-    			
-    	if (!method_exists($api, $action) || !is_callable(array($api, $action))) {
+
+        if (!method_exists($api, $action) || !is_callable(array($api, $action))) {
             throw new PhalApi_Exception_BadRequest(
                 T('no such service as {service}', array('service' => $service))
             );
-    	}
+        }
 
         if ($isInitialize) {
             $api->init();
         }
-		
-		return $api;
-	}
+
+        return $api;
+    }
 	
 }
