@@ -140,12 +140,14 @@ class PhpUnderControl_PhalApiRequest_Test extends PHPUnit_Framework_TestCase
         $this->assertSame(NULL, $requests->getServiceAction());
     }
 
-    public function testSource() {
+    public function testSource()
+    {
         $_POST['pp'] = 'p_data';
         $_GET['gg'] = 'g_data';
         $_COOKIE['cc'] = 'c_data';
         $_SERVER['HTTP_ACCEPT_CHARSET'] = 'utf-8';
         $_SERVER['ss'] = 's_data';
+        $_REQUEST['rr'] = 'r_data';
         $data = array('dd' => 'd_data');
 
         $requests = new PhalApi_Request($data);
@@ -165,11 +167,22 @@ class PhpUnderControl_PhalApiRequest_Test extends PHPUnit_Framework_TestCase
         $serverRs = $requests->getByRule(array('name' => 'ss', 'source' => 'server'));
         $this->assertEquals('s_data', $serverRs);
 
+        $requestRs = $requests->getByRule(array('name' => 'rr', 'source' => 'request'));
+        $this->assertEquals('r_data', $requestRs);
+
         $dataRs = $requests->getByRule(array('name' => 'dd'));
         $this->assertEquals('d_data', $dataRs);
 
-        // TODO
+        unset($_POST['pp'], $_GET['gg'], $_COOKIE['cc'], $_SERVER['HTTP_ACCEPT_CHARSET'], $_SERVER['ss'], $_REQUEST['rr']);
+    }
+
+    /**
+     * @expectedException PhalApi_Exception_InternalServerError
+     * @expectedExceptionMessage no_this_source
+     */
+    public function testUnkonwSource()
+    {
+        $requests = new PhalApi_Request(array());
         $notFoundRs = $requests->getByRule(array('name' => 'dd', 'source' => 'no_this_source'));
-        $this->assertEquals(NULL, $notFoundRs);
     }
 }

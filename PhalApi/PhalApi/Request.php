@@ -16,12 +16,10 @@ class PhalApi_Request {
      */
     protected $data = array();
     
-    protected $get  = array();
-    
+    protected $get = array();
     protected $post = array();
-    
     protected $cookie = array();
-    
+
     /**
      * @var array $headers 请求头部信息
      */
@@ -37,42 +35,47 @@ class PhalApi_Request {
      */
     protected $actionName;
 
-    /**
-     * 如果需要post_raw,则继承这个类,例
-    class My_Request extend PhalApi_Request{
-        public function __construct($data = NULL) {
-            parent::__construct ();
-            $this->post = json_decode( file_get_contents( ' php://input '), TRUE);
-            //json处理
-            $this->post = json_decode( file_get_contents( ' php://input '));
-            //普通xml处理
-            $this->post = simplexml_load_string(
-            file_get_contents( ' php://input '),
-            'SimpleXMLElement',
-            LIBXML_NOCDATA
-            );
-            $this->post = json_decode( json_encode( $this->post),TRUE);
-        }
-     
-    }
-     * 其他格式或其他xml可以自行写函数处理
+    /** 
+     * - 如果需要post_raw,则可重载此方法，例
      *
+```     
+     * class My_Request extend PhalApi_Request{
+     *     public function __construct($data = NULL) {
+     *         parent::__construct($data);
+
+     *         $this->post = json_decode( file_get_contents( ' php://input '), TRUE);
+
+     *         //json处理
+     *         $this->post = json_decode( file_get_contents( ' php://input '));
+
+     *         //普通xml处理
+     *         $this->post = simplexml_load_string(
+     *             file_get_contents( ' php://input '),
+     *             'SimpleXMLElement',
+     *             LIBXML_NOCDATA
+     *         );
+     *         $this->post = json_decode( json_encode( $this->post),TRUE);
+     *     }  
+     * }
+```    
+     * - 其他格式或其他xml可以自行写函数处理
      * @param array $data 参数来源，可以为：$_GET/$_POST/$_REQUEST/自定义
      */
     public function __construct($data = NULL) {
         $this->data     = $this->genData($data);
+        $this->headers  = $this->getAllHeaders();
+
         $this->get      = $_GET;
         $this->post     = $_POST;
         $this->cookie   = $_COOKIE;
-        $this->headers  = $this->getAllHeaders();
         
         @list($this->apiName, $this->actionName) = explode('.', $this->getService());
     }
 
     /**
      * 生成请求参数
-     * 此生成过程便于项目根据不同的需要进行定制化参数的限制，如：
-     * 如只允许接受POST数据，或者只接受GET方式的service参数，以及对称加密后的数据包等
+     *
+     * - 此生成过程便于项目根据不同的需要进行定制化参数的限制，如：如只允许接受POST数据，或者只接受GET方式的service参数，以及对称加密后的数据包等
      *
      * @param array $data 接口参数包
      *
@@ -149,28 +152,10 @@ class PhalApi_Request {
         if (!isset($rule['name'])) {
             throw new PhalApi_Exception_InternalServerError(T('miss name for rule'));
         }
-        
-        if (!empty( $rule['source'])){
-            switch (strtoupper( $rule['source'])){
-                case 'POST' :
-                    $rs = PhalApi_Request_Var::format($rule['name'], $rule, $this->post);
-                    break;
-                case 'GET'  :
-                    $rs = PhalApi_Request_Var::format($rule['name'], $rule, $this->get);
-                    break;
-                case 'COOKIE':
-                    $rs = PhalApi_Request_Var::format($rule['name'], $rule, $this->cookie);
-                    break;
-                case 'HEADER':
-                    $rs = PhalApi_Request_Var::format($rule['name'], $rule, $this->headers);
-                    break;
-                case 'SERVER':
-                    $rs = PhalApi_Request_Var::format($rule['name'], $rule, $_SERVER);
-                    break;
-            }
-        }else{
-            $rs = PhalApi_Request_Var::format($rule['name'], $rule, $this->data);
-        }
+
+        // 获取接口参数级别的数据集
+        $data = !empty($rule['source']) ? $this->getDataBySource($rule['source']) : $this->data;
+        $rs = PhalApi_Request_Var::format($rule['name'], $rule, $data);
 
         if ($rs === NULL && (isset($rule['require']) && $rule['require'])) {
             throw new PhalApi_Exception_BadRequest(T('{name} require, but miss', array('name' => $rule['name'])));
@@ -179,7 +164,42 @@ class PhalApi_Request {
         return $rs;
     }
 
-    protected function getDataBySource() {
+    /**
+     * 根据来源标识获取数据集
+```     
+     * |----------|---------------------|
+     * | post     | $_POST              |
+     * | get      | $_GET               |
+     * | cookie   | $_COOKIE            |
+     * | server   | $_SERVER            |
+     * | requset  | $_REQUEST           |
+     * | header   | $_SERVER['HTTP_X']  |
+     * |----------|---------------------|
+     *   
+```     
+     * 当需要指定或者扩展其他接口参数来源时，可重载此方法
+     *
+     * @throws PhalApi_Exception_InternalServerError
+     * @return array 
+     */
+    protected function &getDataBySource($source) {
+        switch (strtoupper($source)) {
+        case 'POST' :
+            return $this->post;
+        case 'GET'  :
+            return $this->get;
+        case 'COOKIE':
+            return $this->cookie;
+        case 'HEADER':
+            return $this->headers;
+        case 'SERVER':
+            return $_SERVER;
+        case 'REQUEST':
+            return $_REQUEST;
+        }
+
+        throw new PhalApi_Exception_InternalServerError
+            (T('unknow source: {source} in rule', array('source' => $source)));
     }
 
     /**
