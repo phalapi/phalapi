@@ -62,7 +62,14 @@ class PhalApi {
         } catch (Exception $ex) {
             // 不可控的异常
             DI()->logger->error(DI()->request->getService(), strval($ex));
-            throw $ex;
+
+            if (DI()->debug) {
+                $rs->setRet($ex->getCode());
+                $rs->setMsg($ex->getMessage());
+                $rs->setDebug('exception', $ex->getTrace());
+            } else {
+                throw $ex;
+            }
         }
 
         if (DI()->debug) {
