@@ -37,12 +37,16 @@ class PhalApi_Tool {
     /**
      * 随机字符串生成
      *
-     * @param int $len 需要随机的长度，不要太长
+     * @param int    $len 需要随机的长度，不要太长
+     * @param string $chars 随机生成字符串的范围
      *
      * @return string
      */
-    public static function createRandStr($len) {
-        $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    public static function createRandStr($len, $chars = null) {
+        if (!$chars) {
+            $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        }
+        
         return substr(str_shuffle(str_repeat($chars, rand(5, 8))), 0, $len);
     }
 
