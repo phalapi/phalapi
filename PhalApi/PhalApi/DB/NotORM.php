@@ -123,7 +123,7 @@ class PhalApi_DB_NotORM /** implements PhalApi_DB */ {
     }
 
     public function __set($name, $value) {
-        foreach ($this->_notorms as $key => $notorm) {
+        foreach ($this->_notorms as $notorm) {
             $notorm->$name = $value;
         }
     }

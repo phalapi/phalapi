@@ -21,12 +21,9 @@ class PhalApi_Request_Formatter_File extends PhalApi_Request_Formatter_Base impl
         $default = isset($rule['default']) ? $rule['default'] : NULL;
 
         $index = $rule['name'];
-        // 未上传
-        if (!isset($_FILES[$index])) {
-            // 有默认值 || 非必须
-            if ($default !== NULL || (isset($rule['require']) && !$rule['require'])) {
-                return $default;
-            }
+        // 未上传 && (有默认值 || 非必须)
+        if (!isset($_FILES[$index]) && ($default !== NULL || empty($rule['require']))) {
+            return $default;
         }
 
         if (!isset($_FILES[$index]) || !isset($_FILES[$index]['error']) || !is_array($_FILES[$index])) {

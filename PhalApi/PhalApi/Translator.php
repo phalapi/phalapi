@@ -40,11 +40,11 @@ class PhalApi_Translator {
      * @return string
      */
     public static function get($key, $params = array()) {
-        if (self::$message === NULL) {
-            self::setLanguage('en');
+        if (static::$message === NULL) {
+            static::setLanguage('en');
         }
 
-        $rs = isset(self::$message[$key]) ? self::$message[$key] : $key;
+        $rs = isset(static::$message[$key]) ? static::$message[$key] : $key;
 
         $names = array_keys($params);
         $names = array_map(array('PhalApi_Translator', 'formatVar'), $names);
@@ -61,14 +61,14 @@ class PhalApi_Translator {
      * @param string $language 翻译包的目录名
      */
     public static function setLanguage($language) {
-        self::$language = $language;
+        static::$language = $language;
 
-        self::$message = array();
+        static::$message = array();
 
-        self::addMessage(PHALAPI_ROOT);
+        static::addMessage(PHALAPI_ROOT);
 
         if (defined('API_ROOT')) {
-            self::addMessage(API_ROOT);
+            static::addMessage(API_ROOT);
         }
     }
 
@@ -81,10 +81,10 @@ class PhalApi_Translator {
      * @return NULL
      */
     public static function addMessage($path) {
-        $moreMessagePath = self::getMessageFilePath($path, self::$language);
+        $moreMessagePath = static::getMessageFilePath($path, static::$language);
 
         if (file_exists($moreMessagePath)) {
-            self::$message = array_merge(self::$message, include $moreMessagePath);
+            static::$message = array_merge(static::$message, include $moreMessagePath);
         }
     }
 
@@ -97,7 +97,7 @@ class PhalApi_Translator {
      * 取当前的语言
      */
     public static function getLanguage() {
-        return self::$language;
+        return static::$language;
     }
 }
 

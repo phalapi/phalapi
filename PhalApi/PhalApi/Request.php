@@ -194,6 +194,8 @@ class PhalApi_Request {
             return $_SERVER;
         case 'REQUEST':
             return $_REQUEST;
+        default:
+            break;
         }
 
         throw new PhalApi_Exception_InternalServerError

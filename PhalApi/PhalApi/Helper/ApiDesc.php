@@ -19,18 +19,6 @@ class PhalApi_Helper_ApiDesc {
         $descComment = '//请使用@desc 注释';
         $exceptions = array();
 
-        $typeMaps = array(
-            'string' => '字符串',
-            'int' => '整型',
-            'float' => '浮点型',
-            'boolean' => '布尔型',
-            'date' => '日期',
-            'array' => '数组',
-            'fixed' => '固定值',
-            'enum' => '枚举类型',
-            'object' => '对象',
-        );
-
         try {
             $api = PhalApi_ApiFactory::generateService(false);
             $rules = $api->getApiRules();

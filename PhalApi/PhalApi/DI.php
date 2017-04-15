@@ -75,12 +75,12 @@ class PhalApi_DI implements ArrayAccess {
      * - 2、也可以通过new创建，但不能实现service的共享
      */ 
     public static function one() {
-        if (self::$instance == NULL) {
-            self::$instance = new PhalApi_DI();
-            self::$instance->onConstruct();
+        if (static::$instance == NULL) {
+            static::$instance = new PhalApi_DI();
+            static::$instance->onConstruct();
         }
 
-        return self::$instance;
+        return static::$instance;
     }
 
     /**
@@ -149,7 +149,6 @@ class PhalApi_DI implements ArrayAccess {
         } else if (substr($name, 0, 3) == 'get') {
             $key = lcfirst(substr($name, 3));
             return $this->get($key, isset($arguments[0]) ? $arguments[0] : NULL);
-        } else {
         }
 
         throw new PhalApi_Exception_InternalServerError(

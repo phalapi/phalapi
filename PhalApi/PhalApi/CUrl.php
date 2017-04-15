@@ -77,8 +77,8 @@ class PhalApi_CUrl {
 	 * @param int $retryTimes 超时重试次数，默认为1
 	 */
     public function __construct($retryTimes = 1) {
-        $this->retryTimes = $retryTimes < self::MAX_RETRY_TIMES 
-            ? $retryTimes : self::MAX_RETRY_TIMES;
+        $this->retryTimes = $retryTimes < static::MAX_RETRY_TIMES 
+            ? $retryTimes : static::MAX_RETRY_TIMES;
     }
 
 	/**

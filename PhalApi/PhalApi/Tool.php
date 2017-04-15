@@ -78,12 +78,10 @@ class PhalApi_Tool {
         $path = '';
         foreach ($dir as $element) {
             $path .= $element . '/';
-            if (!is_dir($path)) {
-                if (!mkdir($path)) {
-                    throw new PhalApi_Exception_BadRequest(
-                        T('create file path Error: {filePath}', array('filepath' => $path))
-                    );
-                }
+            if (!is_dir($path) && !mkdir($path)) {
+                throw new PhalApi_Exception_BadRequest(
+                    T('create file path Error: {filePath}', array('filepath' => $path))
+                );
             }
         }
     }

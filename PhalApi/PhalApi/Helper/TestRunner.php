@@ -36,20 +36,14 @@ class PhalApi_Helper_TestRunner {
         $params = array_merge($urlParams, $params);
 
         if (!isset($params['service'])) {
-            throw new Exception('miss service in url');
+            throw new PhalApi_Exception(T('miss service in url'));
         }
         DI()->request = new PhalApi_Request($params);
 
         $apiObj = PhalApi_ApiFactory::generateService(true);
-        list($api, $action) = explode('.', $urlParams['service']);
+        $action = DI()->request->getServiceAction();
 
         $rs = $apiObj->$action();
-
-        /**
-        $this->assertNotEmpty($rs);
-        $this->assertArrayHasKey('code', $rs);
-        $this->assertArrayHasKey('msg', $rs);
-         */
 
         return $rs;
     }

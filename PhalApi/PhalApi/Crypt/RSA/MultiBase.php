@@ -32,7 +32,7 @@ abstract class PhalApi_Crypt_RSA_MultiBase implements PhalApi_Crypt {
     public function __construct($maxSplitLen = 0)
     {
         $this->maxSplitLen = $maxSplitLen > 0 
-            ? min($maxSplitLen, self::ALLOW_MAX_SPLIT_LEN) : self::ALLOW_MAX_SPLIT_LEN;
+            ? min($maxSplitLen, static::ALLOW_MAX_SPLIT_LEN) : static::ALLOW_MAX_SPLIT_LEN;
     }
 
 	/**

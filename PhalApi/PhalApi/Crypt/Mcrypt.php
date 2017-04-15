@@ -46,9 +46,9 @@ class PhalApi_Crypt_Mcrypt implements PhalApi_Crypt {
      * @param string $iv 加密的向量 最大长度不得超过 MAX_IV_SIZE
      */
     public function __construct($iv = '********') {
-        $this->iv = str_pad($iv, self::MAX_IV_SIZE, '*');
-        if (strlen($this->iv) > self::MAX_IV_SIZE) {
-            $this->iv = substr($this->iv, 0, self::MAX_IV_SIZE);
+        $this->iv = str_pad($iv, static::MAX_IV_SIZE, '*');
+        if (strlen($this->iv) > static::MAX_IV_SIZE) {
+            $this->iv = substr($this->iv, 0, static::MAX_IV_SIZE);
         }
     }
 
@@ -121,7 +121,7 @@ class PhalApi_Crypt_Mcrypt implements PhalApi_Crypt {
      * @param string $key 私钥
      */
     protected function formatKey($key) {
-        return strlen($key) > self::MAX_KEY_LENGTH ?  substr($key, 0, self::MAX_KEY_LENGTH) : $key;
+        return strlen($key) > static::MAX_KEY_LENGTH ?  substr($key, 0, static::MAX_KEY_LENGTH) : $key;
     }
 
     /**
