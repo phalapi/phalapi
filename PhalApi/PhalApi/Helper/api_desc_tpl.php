@@ -59,16 +59,21 @@ foreach ($rules as $key => $rule) {
         $default = var_export($default, true);
     }
 
-    $other = '';
+    $other = array();
     if (isset($rule['min'])) {
-        $other .= ' 最小：' . $rule['min'];
+        $other[] = '最小：' . $rule['min'];
     }
     if (isset($rule['max'])) {
-        $other .= ' 最大：' . $rule['max'];
+        $other[] = '最大：' . $rule['max'];
     }
     if (isset($rule['range'])) {
-        $other .= ' 范围：' . implode('/', $rule['range']);
+        $other[] = '范围：' . implode('/', $rule['range']);
     }
+    if (isset($rule['source'])) {
+        $other[] = '数据源：' . strtoupper($rule['source']);
+    }
+    $other = implode('；', $other);
+
     $desc = isset($rule['desc']) ? trim($rule['desc']) : '';
 
     echo "<tr><td>$name</td><td>$type</td><td>$require</td><td>$default</td><td>$other</td><td>$desc</td></tr>\n";

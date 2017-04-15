@@ -43,10 +43,10 @@ class PhalApi_Request {
      *     public function __construct($data = NULL) {
      *         parent::__construct($data);
      *
-     *         //json处理
+     *         // json处理
      *         $this->post = json_decode(file_get_contents('php://input'), TRUE);    
      *
-     *         //普通xml处理
+     *         // 普通xml处理
      *         $this->post = simplexml_load_string (
      *             file_get_contents('php://input'),
      *             'SimpleXMLElement',

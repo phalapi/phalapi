@@ -72,10 +72,8 @@ class PhalApi {
             }
         }
 
-        if (DI()->debug) {
-            $rs->setDebug('stack', DI()->tracer->getStack());
-            $rs->setDebug('sqls', DI()->tracer->getSqls());
-        }
+        $rs->setDebug('stack', DI()->tracer->getStack());
+        $rs->setDebug('sqls', DI()->tracer->getSqls());
 
         return $rs;
     }

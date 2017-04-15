@@ -77,7 +77,9 @@ abstract class PhalApi_Response {
      * @return  PhalApi_Response
      */
     public function setDebug($key, $value) {
-        $this->debug[$key] = $value;
+        if (DI()->debug) {
+            $this->debug[$key] = $value;
+        }
         return $this;
     }
 
