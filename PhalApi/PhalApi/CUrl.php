@@ -35,6 +35,32 @@ class PhalApi_CUrl {
 	 * @var int $retryTimes 超时重试次数；注意，此为失败重试的次数，即：总次数 = 1 + 重试次数
 	 */
     protected $retryTimes;
+    
+    protected $header = array();
+    
+    protected $option = array();
+    
+    /**
+     * @param array $header
+     *
+     * @return $this
+     */
+    public function setHeader( $header )
+    {
+        $this->header = array_merge( $this->header, $header);
+        return $this;
+    }
+    
+    /**
+     * @param array $option
+     *
+     * @return $this
+     */
+    public function setOption( $option )
+    {
+        $this->option = array_merge( $this->option, $option);
+        return $this;
+    }
 
 	/**
 	 * @param int $retryTimes 超时重试次数，默认为1
@@ -51,7 +77,7 @@ class PhalApi_CUrl {
 	 * @return string 接口返回的内容，超时返回false
 	 */
     public function get($url, $timeoutMs = 3000) {
-        return $this->request($url, FALSE, $timeoutMs);
+        return $this->request($url, array(), $timeoutMs);
     } 
 
     /**
@@ -64,6 +90,18 @@ class PhalApi_CUrl {
     public function post($url, $data, $timeoutMs = 3000) {
         return $this->request($url, $data, $timeoutMs);
     }
+    
+    /**
+     *
+     * @return array
+     */
+    protected function getHeaders() {
+        $arrHeaders = array();
+        foreach ($this->header as $key => $val) {
+            $arrHeaders[] = $key . ':' . $val;
+        }
+        return $arrHeaders;
+    }
 
     /**
      * 统一接口请求
@@ -73,18 +111,23 @@ class PhalApi_CUrl {
 	 * @return string 接口返回的内容，超时返回false
      */
     protected function request($url, $data, $timeoutMs = 3000) {
-        $ch = curl_init();
-
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT_MS, $timeoutMs);
+        $options = array(
+            CURLOPT_URL                 => $url,
+            CURLOPT_RETURNTRANSFER      => TRUE,
+            CURLOPT_HEADER              => 0,
+            CURLOPT_CONNECTTIMEOUT_MS   => $timeoutMs,
+            CURLOPT_HTTPHEADER          => $this->getHeaders(),
+        );
 
         if (!empty($data)) {
-            curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+            $options[CURLOPT_POST]          = 1;
+            $options[CURLOPT_POSTFIELDS]    = $data;
         }
-
+        
+        $options = $this->option + $options;//$this->>option优先
+        
+        $ch = curl_init();
+        curl_setopt_array( $ch, $options);
         $curRetryTimes = $this->retryTimes;
         do {
             $rs = curl_exec($ch);

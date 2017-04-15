@@ -15,7 +15,13 @@ class PhalApi_Request {
      * @var array $data 接口原始参数
      */
     protected $data = array();
-
+    
+    protected $get  = array();
+    
+    protected $post = array();
+    
+    protected $cookie = array();
+    
     /**
      * @var array $headers 请求头部信息
      */
@@ -32,12 +38,34 @@ class PhalApi_Request {
     protected $actionName;
 
     /**
+     * 如果需要post_raw,则继承这个类,例
+    class My_Request extend PhalApi_Request{
+        public function __construct($data = NULL) {
+            parent::__construct ();
+            $this->post = json_decode( file_get_contents( ' php://input '), TRUE);
+            //json处理
+            $this->post = json_decode( file_get_contents( ' php://input '));
+            //普通xml处理
+            $this->post = simplexml_load_string(
+            file_get_contents( ' php://input '),
+            'SimpleXMLElement',
+            LIBXML_NOCDATA
+            );
+            $this->post = json_decode( json_encode( $this->post),TRUE);
+        }
+     
+    }
+     * 其他格式或其他xml可以自行写函数处理
+     *
      * @param array $data 参数来源，可以为：$_GET/$_POST/$_REQUEST/自定义
      */
     public function __construct($data = NULL) {
-        $this->data    = $this->genData($data);
-        $this->headers = $this->getAllHeaders();
-
+        $this->data     = $this->genData($data);
+        $this->get      = $_GET;
+        $this->post     = $_POST;
+        $this->cookie   = $_COOKIE;
+        $this->headers  = $this->getAllHeaders();
+        
         @list($this->apiName, $this->actionName) = explode('.', $this->getService());
     }
 
@@ -125,13 +153,13 @@ class PhalApi_Request {
         if (!empty( $rule['source'])){
             switch (strtoupper( $rule['source'])){
                 case 'POST' :
-                    $rs = PhalApi_Request_Var::format($rule['name'], $rule, $_POST);
+                    $rs = PhalApi_Request_Var::format($rule['name'], $rule, $this->post);
                     break;
                 case 'GET'  :
-                    $rs = PhalApi_Request_Var::format($rule['name'], $rule, $_GET);
+                    $rs = PhalApi_Request_Var::format($rule['name'], $rule, $this->get);
                     break;
                 case 'COOKIE':
-                    $rs = PhalApi_Request_Var::format($rule['name'], $rule, $_COOKIE);
+                    $rs = PhalApi_Request_Var::format($rule['name'], $rule, $this->cookie);
                     break;
                 case 'HEADER':
                     $rs = PhalApi_Request_Var::format($rule['name'], $rule, $this->headers);
