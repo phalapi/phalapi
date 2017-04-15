@@ -42,19 +42,17 @@ class PhalApi_Request {
      * class My_Request extend PhalApi_Request{
      *     public function __construct($data = NULL) {
      *         parent::__construct($data);
-
-     *         $this->post = json_decode( file_get_contents( ' php://input '), TRUE);
-
+     *
      *         //json处理
-     *         $this->post = json_decode( file_get_contents( ' php://input '));
-
+     *         $this->post = json_decode(file_get_contents('php://input'), TRUE);    
+     *
      *         //普通xml处理
-     *         $this->post = simplexml_load_string(
-     *             file_get_contents( ' php://input '),
+     *         $this->post = simplexml_load_string (
+     *             file_get_contents('php://input'),
      *             'SimpleXMLElement',
      *             LIBXML_NOCDATA
      *         );
-     *         $this->post = json_decode( json_encode( $this->post),TRUE);
+     *         $this->post = json_decode(json_encode($this->post), TRUE);
      *     }  
      * }
 ```    

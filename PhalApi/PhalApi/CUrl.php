@@ -44,10 +44,12 @@ class PhalApi_CUrl {
      * 设置请求头，后设置的会覆盖之前的设置
      *
      * @param array $header 传入键值对如：
-     *                      array(
-     *                          ['Accept'=>'text/html'],
-     *                          ['Connection'=>'keep-alive'],
-     *                      )
+```     
+     * array(
+     *     ['Accept'=>'text/html'],
+     *     ['Connection'=>'keep-alive'],
+     * )
+```     
      *
      * @return $this
      */
