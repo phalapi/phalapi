@@ -38,23 +38,25 @@ class PhalApi_Request {
     protected $actionName;
 
     /**
-     * 如果需要post_raw,则继承这个类,例
-    class My_Request extend PhalApi_Request{
-        public function __construct($data = NULL) {
-            parent::__construct ();
-            $this->post = json_decode( file_get_contents( ' php://input '), TRUE);
-            //json处理
-            $this->post = json_decode( file_get_contents( ' php://input '));
-            //普通xml处理
-            $this->post = simplexml_load_string(
-            file_get_contents( ' php://input '),
-            'SimpleXMLElement',
-            LIBXML_NOCDATA
-            );
-            $this->post = json_decode( json_encode( $this->post),TRUE);
-        }
-     
-    }
+     * 如果需要post_raw,则继承这个类,
+     * 根据情况自行处理raw数据,
+     * 并将处理完的数据传入$this->post,
+     * 例:
+     * class My_Request extend PhalApi_Request{
+        * public function __construct($data = NULL) {
+            * parent::__construct ();
+            * //json处理
+            * $this->post = json_decode( file_get_contents( ' php://input '), TRUE);
+            * //普通xml处理
+            * $this->post = simplexml_load_string(
+            * file_get_contents( ' php://input '),
+            * 'SimpleXMLElement',
+            * LIBXML_NOCDATA
+            * );
+            * $this->post = json_decode( json_encode( $this->post),TRUE);
+        * }
+ *
+* }
      * 其他格式或其他xml可以自行写函数处理
      *
      * @param array $data 参数来源，可以为：$_GET/$_POST/$_REQUEST/自定义

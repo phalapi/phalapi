@@ -41,7 +41,13 @@ class PhalApi_CUrl {
     protected $option = array();
     
     /**
-     * @param array $header
+     * 设置请求头，后设置的会覆盖之前的设置
+     *
+     * @param array $header 传入键值对如：
+     *                      array(
+     *                          ['Accept'=>'text/html'],
+     *                          ['Connection'=>'keep-alive'],
+     *                      )
      *
      * @return $this
      */
@@ -52,7 +58,10 @@ class PhalApi_CUrl {
     }
     
     /**
-     * @param array $option
+     * 设置curl配置项
+     * 1、后设置的会覆盖之前的设置
+     * 2、开发者设置的会覆盖框架的设置
+     * @param array $option 格式同上
      *
      * @return $this
      */
