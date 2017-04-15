@@ -16,7 +16,7 @@
 
 class PhalApi_ApiFactory {
 
-	/**
+    /**
      * 创建服务器
      * 根据客户端提供的接口服务名称和需要调用的方法进行创建工作，如果创建失败，则抛出相应的自定义异常
      *
@@ -33,7 +33,7 @@ class PhalApi_ApiFactory {
      * @uses PhalApi_Api::init()
      * @throws PhalApi_Exception_BadRequest 非法请求下返回400
      */
-	static function generateService($isInitialize = TRUE) {
+    static function generateService($isInitialize = TRUE) {
         $service    = DI()->request->getService();
         $api        = DI()->request->getServiceApi();
         $action     = DI()->request->getServiceAction();
