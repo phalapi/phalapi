@@ -36,7 +36,7 @@ class PhalApi_Request {
     protected $actionName;
 
     /** 
-     * - 如果需要post_raw,则可重载此方法，例
+     * - 如果需要定制已知的数据源（即已有数据成员），则可重载此方法，例
      *
 ```     
      * class My_Request extend PhalApi_Request{
@@ -57,7 +57,8 @@ class PhalApi_Request {
      * }
 ```    
      * - 其他格式或其他xml可以自行写函数处理
-     * @param array $data 参数来源，可以为：$_GET/$_POST/$_REQUEST/自定义
+     *
+	 * @param array $data 参数来源，可以为：$_GET/$_POST/$_REQUEST/自定义
      */
     public function __construct($data = NULL) {
         $this->data     = $this->genData($data);
@@ -74,7 +75,8 @@ class PhalApi_Request {
      * 生成请求参数
      *
      * - 此生成过程便于项目根据不同的需要进行定制化参数的限制，如：如只允许接受POST数据，或者只接受GET方式的service参数，以及对称加密后的数据包等
-     *
+     * - 如果需要定制默认数据源，则可以重载此方法
+	 *
      * @param array $data 接口参数包
      *
      * @return array
@@ -175,7 +177,7 @@ class PhalApi_Request {
      * |----------|---------------------|
      *   
 ```     
-     * 当需要指定或者扩展其他接口参数来源时，可重载此方法
+     * - 当需要添加扩展其他新的数据源时，可重载此方法
      *
      * @throws PhalApi_Exception_InternalServerError
      * @return array 
