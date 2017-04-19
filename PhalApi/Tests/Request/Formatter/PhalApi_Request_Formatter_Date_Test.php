@@ -43,4 +43,25 @@ class PhpUnderControl_PhalApiRequestFormatterDate_Test extends PHPUnit_Framework
         $this->assertSame(1412136000, $rs);
     }
 
+    public function testParseWithMinAndMax()
+    {
+        $value = '2014-10-01 12:00:00';
+        $rule = array('name' => 'testKey', 'type' => 'date', 'format' => 'timestamp', 'min' => strtotime('2014-10-01 00:00:00'), 'max' => strtotime('2014-10-01 23:59:59'));
+
+        $rs = $this->phalApiRequestFormatterDate->parse($value, $rule);
+
+        $this->assertTrue(is_numeric($rs));
+        $this->assertSame(1412136000, $rs);
+    }
+
+    public function testParseWithMinAndMaxForString()
+    {
+        $value = '2014-10-01 12:00:00';
+        $rule = array('name' => 'testKey', 'type' => 'date', 'format' => 'timestamp', 'min' => '2014-10-01 00:00:00', 'max' => '2014-10-01 23:59:59');
+
+        $rs = $this->phalApiRequestFormatterDate->parse($value, $rule);
+
+        $this->assertTrue(is_numeric($rs));
+        $this->assertSame(1412136000, $rs);
+    }
 }

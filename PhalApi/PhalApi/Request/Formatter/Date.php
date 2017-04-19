@@ -28,6 +28,13 @@ class PhalApi_Request_Formatter_Date extends PhalApi_Request_Formatter_Base impl
             	$rs = 0;
             }
 
+            if (isset($rule['min']) && !is_numeric($rule['min'])) {
+                $rule['min'] = strtotime($rule['min']);
+            }
+            if (isset($rule['max']) && !is_numeric($rule['max'])) {
+                $rule['max'] = strtotime($rule['max']);
+            }
+
             $rs = $this->filterByRange($rs, $rule);
         }
 
