@@ -43,6 +43,18 @@ echo <<<EOT
                 <tbody>
 EOT;
 
+$typeMaps = array(
+    'string' => 'String',
+    'int' => 'Integer',
+    'float' => 'Float',
+    'boolean' => 'Boolean',
+    'date' => 'Date',
+    'array' => 'Array',
+    'fixed' => 'Fixed',
+    'enum' => 'Enum',
+    'object' => 'Object',
+);
+
 foreach ($rules as $key => $rule) {
     $name = $rule['name'];
     if (!isset($rule['type'])) {

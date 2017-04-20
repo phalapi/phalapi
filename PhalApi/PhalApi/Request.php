@@ -49,7 +49,7 @@ class PhalApi_Request {
     protected $actionName;
 
     /** 
-     * - 如果需要post_raw,则可重载此方法，例
+     * - 如果需要定制已知的数据源（即已有数据成员），则可重载此方法，例
      *
 ```     
      * class My_Request extend PhalApi_Request{
@@ -70,7 +70,8 @@ class PhalApi_Request {
      * }
 ```    
      * - 其他格式或其他xml可以自行写函数处理
-     * @param array $data 参数来源，可以为：$_GET/$_POST/$_REQUEST/自定义
+     *
+	 * @param array $data 参数来源，可以为：$_GET/$_POST/$_REQUEST/自定义
      */
     public function __construct($data = NULL) {
         $this->data     = $this->genData($data);
@@ -210,6 +211,8 @@ class PhalApi_Request {
             return $_SERVER;
         case 'REQUEST':
             return $_REQUEST;
+        default:
+            break;
         }
 
         throw new PhalApi_Exception_InternalServerError

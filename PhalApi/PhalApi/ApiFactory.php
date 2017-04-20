@@ -48,7 +48,7 @@ class PhalApi_ApiFactory {
      * @uses    PhalApi_Api::init()
      * @throws  PhalApi_Exception_BadRequest 非法请求下返回400
      */
-	static function generateService($isInitialize = TRUE) {
+    static function generateService($isInitialize = TRUE) {
         $service    = DI()->request->getService();
         $api        = DI()->request->getServiceApi();
         $action     = DI()->request->getServiceAction();
@@ -86,5 +86,4 @@ class PhalApi_ApiFactory {
 
         return $api;
     }
-    
 }

@@ -31,18 +31,6 @@ class PhalApi_Helper_ApiDesc {
         $descComment = '// please use @desc annotation';
         $exceptions = array();
 
-        $typeMaps = array(
-            'string' => 'string',
-            'int' => 'int',
-            'float' => 'float',
-            'boolean' => 'boolean',
-            'date' => 'date',
-            'array' => 'array',
-            'fixed' => 'fixed',
-            'enum' => 'enum',
-            'object' => 'object',
-        );
-
         try {
             $api = PhalApi_ApiFactory::generateService(false);
             $rules = $api->getApiRules();

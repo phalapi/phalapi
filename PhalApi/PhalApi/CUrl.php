@@ -91,8 +91,8 @@ class PhalApi_CUrl {
      * @param   int     $retryTimes     retry times, default is 1
      */
     public function __construct($retryTimes = 1) {
-        $this->retryTimes = $retryTimes < self::MAX_RETRY_TIMES 
-            ? $retryTimes : self::MAX_RETRY_TIMES;
+        $this->retryTimes = $retryTimes < static::MAX_RETRY_TIMES 
+            ? $retryTimes : static::MAX_RETRY_TIMES;
     }
 
     /**

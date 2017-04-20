@@ -92,7 +92,7 @@ abstract class PhalApi_Logger {
      * @return  NULL
      */
     public function info($msg, $data = NULL) {
-        if (!$this->isAllowToLog(self::LOG_LEVEL_INFO)) {
+        if (!$this->isAllowToLog(static::LOG_LEVEL_INFO)) {
             return;
         }
 
@@ -107,7 +107,7 @@ abstract class PhalApi_Logger {
      * @return  NULL
      */
     public function debug($msg, $data = NULL) {
-        if (!$this->isAllowToLog(self::LOG_LEVEL_DEBUG)) {
+        if (!$this->isAllowToLog(static::LOG_LEVEL_DEBUG)) {
             return;
         }
 
@@ -122,7 +122,7 @@ abstract class PhalApi_Logger {
      * @return  NULL
      */
     public function error($msg, $data = NULL) {
-        if (!$this->isAllowToLog(self::LOG_LEVEL_ERROR)) {
+        if (!$this->isAllowToLog(static::LOG_LEVEL_ERROR)) {
             return;
         }
 

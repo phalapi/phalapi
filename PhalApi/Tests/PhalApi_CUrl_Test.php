@@ -35,7 +35,7 @@ class PhpUnderControl_PhalApiCUrl_Test extends PHPUnit_Framework_TestCase
      */ 
     public function testGet()
     {
-        $url = 'http://phalapi.oschina.mopaas.com/Public/demo/';
+        $url = 'http://demo.phalapi.net/';
         $timeoutMs = 1000;
 
         $rs = $this->phalApiCUrl->get($url, $timeoutMs);
@@ -50,7 +50,7 @@ class PhpUnderControl_PhalApiCUrl_Test extends PHPUnit_Framework_TestCase
      */ 
     public function testPost()
     {
-        $url = 'http://phalapi.oschina.mopaas.com/Public/demo/';
+        $url = 'http://demo.phalapi.net/';
         $data = array('username' => 'phalapi');
         $timeoutMs = 1000;
 
