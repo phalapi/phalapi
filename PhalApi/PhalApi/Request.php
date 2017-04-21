@@ -25,16 +25,32 @@
 class PhalApi_Request {
 
     /**
-     * @var array $data 接口原始参数
+     * @var array $data 主数据源，接口原始参数
      */
     protected $data = array();
-    
+
+    /**
+     * ＠var array $get 备用数据源 $_GET
+     */
     protected $get = array();
+
+    /**
+     * ＠var array $post 备用数据源 $_POST
+     */
     protected $post = array();
+
+    /**
+     * ＠var array $request 备用数据源 $_REQUEST
+     */
+    protected $request = array();
+
+    /**
+     * ＠var array $cookie 备用数据源 $_COOKIE
+     */
     protected $cookie = array();
 
     /**
-     * @var array $headers 请求头部信息
+     * @var array $headers 备用数据源 请求头部信息
      */
     protected $headers = array();
 
@@ -74,11 +90,14 @@ class PhalApi_Request {
 	 * @param array $data 参数来源，可以为：$_GET/$_POST/$_REQUEST/自定义
      */
     public function __construct($data = NULL) {
+        // 主数据源
         $this->data     = $this->genData($data);
-        $this->headers  = $this->getAllHeaders();
 
+        // 备用数据源
+        $this->headers  = $this->getAllHeaders();
         $this->get      = $_GET;
         $this->post     = $_POST;
+        $this->request  = $_REQUEST;
         $this->cookie   = $_COOKIE;
         
         @list($this->apiName, $this->actionName) = explode('.', $this->getService());
@@ -187,7 +206,7 @@ class PhalApi_Request {
      * | get      | $_GET               |
      * | cookie   | $_COOKIE            |
      * | server   | $_SERVER            |
-     * | requset  | $_REQUEST           |
+     * | request  | $_REQUEST           |
      * | header   | $_SERVER['HTTP_X']  |
      * |----------|---------------------|
      *   
@@ -210,7 +229,7 @@ class PhalApi_Request {
         case 'SERVER':
             return $_SERVER;
         case 'REQUEST':
-            return $_REQUEST;
+            return $this->request;
         default:
             break;
         }
