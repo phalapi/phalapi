@@ -47,7 +47,7 @@ class PhalApi_ApiFactory {
         $apiClass = 'Api_' . ucfirst($api);
         if (!class_exists($apiClass)) {
             throw new PhalApi_Exception_BadRequest(
-                T('no such service as {service}', array('service' => $service))
+                T('no such service as {service}', array('service' => $service)), 4
             );
         }
 
@@ -61,7 +61,7 @@ class PhalApi_ApiFactory {
 
         if (!method_exists($api, $action) || !is_callable(array($api, $action))) {
             throw new PhalApi_Exception_BadRequest(
-                T('no such service as {service}', array('service' => $service))
+                T('no such service as {service}', array('service' => $service)), 4
             );
         }
 
