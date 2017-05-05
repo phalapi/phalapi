@@ -58,7 +58,7 @@ class PhalApi_Request_Var {
             return $value;
         }
 
-        return self::formatAllType($type, $value, $rule);
+        return static::formatAllType($type, $value, $rule);
     }
 
     /**

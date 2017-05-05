@@ -115,16 +115,13 @@ class PhalApi_Api {
         if (!is_array($allRules)) {
             $allRules = array();
         }
-
         $allRules = array_change_key_case($allRules, CASE_LOWER);
 
-        $service = DI()->request->get('service', 'Default.Index');
-        list($apiClassName, $action) = explode('.', $service);
-        $action = strtolower($action); 
-
+        $action = strtolower(DI()->request->getServiceAction()); 
         if (isset($allRules[$action]) && is_array($allRules[$action])) {
             $rules = $allRules[$action];
         }
+
         if (isset($allRules['*'])) {
             $rules = array_merge($allRules['*'], $rules);
         }
@@ -173,6 +170,11 @@ class PhalApi_Api {
      * @throws PhalApi_Exception_BadRequest 当验证失败时，请抛出此异常，以返回400
      */
     protected function filterCheck() {
+        // 过滤服务白名单
+        if ($this->isServiceWhitelist()) {
+            return;
+        }
+
         $filter = DI()->get('filter', 'PhalApi_Filter_None');
 
         if (isset($filter)) {
@@ -196,4 +198,39 @@ class PhalApi_Api {
 
     }
 
+    /**
+     * 是否为白名单的服务
+     *
+     * @return boolean
+     */
+    protected function isServiceWhitelist() {
+        $api = DI()->request->getServiceApi();
+        $action = DI()->request->getServiceAction();
+
+        $serviceWhitelist = DI()->config->get('app.service_whitelist', array());
+        foreach ($serviceWhitelist as $item) {
+            $cfgArr = explode('.', $item);
+            if (count($cfgArr) < 2) {
+                continue;
+            }
+
+            // 短路返回
+            if ($this->equalOrIngore($api, $cfgArr[0]) && $this->equalOrIngore($action, $cfgArr[1])) {
+                return TRUE;
+            }
+        }
+
+        return FALSE;
+    }
+
+    /**
+     * 相等或忽略
+     *
+     * @param string $str 等判断的字符串
+     * @param string $cfg 规则配置，*号表示通配
+     * @return boolean
+     */
+    protected function equalOrIngore($str, $cfg) {
+        return strcasecmp($str, $cfg) == 0 || $cfg == '*';
+    }
 }

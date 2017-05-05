@@ -16,7 +16,7 @@
 
 class PhalApi_ApiFactory {
 
-	/**
+    /**
      * 创建服务器
      * 根据客户端提供的接口服务名称和需要调用的方法进行创建工作，如果创建失败，则抛出相应的自定义异常
      *
@@ -33,46 +33,43 @@ class PhalApi_ApiFactory {
      * @uses PhalApi_Api::init()
      * @throws PhalApi_Exception_BadRequest 非法请求下返回400
      */
-	static function generateService($isInitialize = TRUE) {
-		$service = DI()->request->get('service', 'Default.Index');
-		
-		$serviceArr = explode('.', $service);
+    static function generateService($isInitialize = TRUE) {
+        $service    = DI()->request->getService();
+        $api        = DI()->request->getServiceApi();
+        $action     = DI()->request->getServiceAction();
 
-		if (count($serviceArr) < 2) {
+        if (empty($api) || empty($action)) {
             throw new PhalApi_Exception_BadRequest(
                 T('service ({service}) illegal', array('service' => $service))
             );
         }
 
-		list ($apiClassName, $action) = $serviceArr;
-	    $apiClassName = 'Api_' . ucfirst($apiClassName);
-        // $action = lcfirst($action);
-
-        if (!class_exists($apiClassName)) {
+        $apiClass = 'Api_' . ucfirst($api);
+        if (!class_exists($apiClass)) {
             throw new PhalApi_Exception_BadRequest(
-                T('no such service as {service}', array('service' => $service))
+                T('no such service as {service}', array('service' => $service)), 4
             );
         }
-        		
-    	$api = new $apiClassName();
+
+        $api = new $apiClass();
 
         if (!is_subclass_of($api, 'PhalApi_Api')) {
             throw new PhalApi_Exception_InternalServerError(
-                T('{class} should be subclass of PhalApi_Api', array('class' => $apiClassName))
+                T('{class} should be subclass of PhalApi_Api', array('class' => $apiClass))
             );
         }
-    			
-    	if (!method_exists($api, $action) || !is_callable(array($api, $action))) {
+
+        if (!method_exists($api, $action) || !is_callable(array($api, $action))) {
             throw new PhalApi_Exception_BadRequest(
-                T('no such service as {service}', array('service' => $service))
+                T('no such service as {service}', array('service' => $service)), 4
             );
-    	}
+        }
 
         if ($isInitialize) {
             $api->init();
         }
-		
-		return $api;
-	}
+
+        return $api;
+    }
 	
 }

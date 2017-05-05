@@ -33,6 +33,11 @@ abstract class PhalApi_Response {
      */
     protected $headers = array();
 
+    /**
+     * @var array $debug 调试信息
+     */
+    protected $debug = array();
+
     /** ------------------ setter ------------------ **/
 
     /**
@@ -64,7 +69,20 @@ abstract class PhalApi_Response {
     	$this->msg = $msg;
     	return $this;
     }
-    
+
+    /**
+     * 设置调试信息
+     * @param   string  $key        键值标识
+     * @param   mixed   $value      调试数据
+     * @return  PhalApi_Response
+     */
+    public function setDebug($key, $value) {
+        if (DI()->debug) {
+            $this->debug[$key] = $value;
+        }
+        return $this;
+    }
+
     /**
      * 添加报文头部
      * @param string $key 名称
@@ -91,10 +109,14 @@ abstract class PhalApi_Response {
     
     public function getResult() {
         $rs = array(
-            'ret' => $this->ret,
-            'data' => $this->data,
-            'msg' => $this->msg,
+            'ret'   => $this->ret,
+            'data'  => $this->data,
+            'msg'   => $this->msg,
         );
+
+        if (!empty($this->debug)) {
+            $rs['debug'] = $this->debug;
+        }
 
         return $rs;
     }

@@ -102,11 +102,11 @@ class PhalApi_Model_NotORM implements PhalApi_Model {
      * @return string 主键名
      */
     protected function getTableKey($table) {
-        if (empty(self::$tableKeys)) {
+        if (empty(static::$tableKeys)) {
             $this->loadTableKeys();
         }
 
-        return isset(self::$tableKeys[$table]) ? self::$tableKeys[$table] : self::$tableKeys['__default__'];
+        return isset(static::$tableKeys[$table]) ? static::$tableKeys[$table] : static::$tableKeys['__default__'];
     }
 
     /**
@@ -128,10 +128,10 @@ class PhalApi_Model_NotORM implements PhalApi_Model {
         foreach ($tables as $tableName => $tableConfig) {
             if (isset($tableConfig['start']) && isset($tableConfig['end'])) {
                 for ($i = $tableConfig['start']; $i <= $tableConfig['end']; $i ++) {
-                    self::$tableKeys[$tableName . '_' . $i] = $tableConfig['key'];
+                    static::$tableKeys[$tableName . '_' . $i] = $tableConfig['key'];
                 }
             } else {
-                self::$tableKeys[$tableName] = $tableConfig['key'];
+                static::$tableKeys[$tableName] = $tableConfig['key'];
             }
         }
     }

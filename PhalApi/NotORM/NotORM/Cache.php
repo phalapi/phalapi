@@ -173,6 +173,7 @@ class NotORM_Cache_Memcache implements NotORM_Cache {
 class NotORM_Cache_APC implements NotORM_Cache {
 	
 	function load($key) {
+		$success = false;
 		$return = apc_fetch("NotORM.$key", $success);
 		if (!$success) {
 			return null;

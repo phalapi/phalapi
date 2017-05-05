@@ -18,6 +18,7 @@ DI()->loader->addDirs('Demo');
 $libraryPaths = array(
     'Library/User/User',    // User扩展
     'Library/Auth/Auth',    // Auth扩展
+    'Library/Qiniu/CDN',    // 七牛扩展
 );
 
 foreach ($libraryPaths as $aPath) {

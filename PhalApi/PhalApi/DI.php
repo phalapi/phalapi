@@ -38,6 +38,7 @@
  * @property PhalApi_Logger         $logger     日记
  * @property PhalApi_DB_NotORM      $notorm     数据库
  * @property PhalApi_Loader         $loader     自动加载
+ * @property PhalApi_Helper_Tracer  $tracer     全球追踪器
  * 
  * @package     PhalApi\DI
  * @link        http://docs.phalconphp.com/en/latest/reference/di.html 实现统一的资源设置、获取与管理，支持延时加载
@@ -74,12 +75,12 @@ class PhalApi_DI implements ArrayAccess {
      * - 2、也可以通过new创建，但不能实现service的共享
      */ 
     public static function one() {
-        if (self::$instance == NULL) {
-            self::$instance = new PhalApi_DI();
-            self::$instance->onConstruct();
+        if (static::$instance == NULL) {
+            static::$instance = new PhalApi_DI();
+            static::$instance->onConstruct();
         }
 
-        return self::$instance;
+        return static::$instance;
     }
 
     /**
@@ -91,6 +92,7 @@ class PhalApi_DI implements ArrayAccess {
     public function onConstruct() {
         $this->request = 'PhalApi_Request';
         $this->response = 'PhalApi_Response_Json';
+        $this->tracer = 'PhalApi_Helper_Tracer';
     }
 
     public function onInitialize() {
@@ -147,7 +149,6 @@ class PhalApi_DI implements ArrayAccess {
         } else if (substr($name, 0, 3) == 'get') {
             $key = lcfirst(substr($name, 3));
             return $this->get($key, isset($arguments[0]) ? $arguments[0] : NULL);
-        } else {
         }
 
         throw new PhalApi_Exception_InternalServerError(
