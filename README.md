@@ -50,11 +50,13 @@ require_once API_ROOT . '/path/to/PhalApi/PhalApi.php';
 ## 1-2、在线体验
 
  + 默认的接口服务：  
+
 ```
 http://demo.phalapi.net/
 ```
 
  + 带参数的示例接口：
+
 ```
 http://demo.phalapi.net/?service=Default.Index&username=oschina
 
@@ -71,6 +73,7 @@ http://demo.phalapi.net/?service=Default.Index&username=oschina
 ```
 
  + 故意请求一个非法的服务：
+
 ```
 http://demo.phalapi.net/?service=Demo.None
 
