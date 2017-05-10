@@ -173,7 +173,10 @@ class PhalApi_Request {
         }
 
         // 获取接口参数级别的数据集
-        $data = !empty($rule['source']) ? $this->getDataBySource($rule['source']) : $this->data;
+        $data = !empty($rule['source']) && substr(php_sapi_name(), 0, 3) != 'cli' 
+            ? $this->getDataBySource($rule['source']) 
+            : $this->data;
+
         $rs = PhalApi_Request_Var::format($rule['name'], $rule, $data);
 
         if ($rs === NULL && (isset($rule['require']) && $rule['require'])) {

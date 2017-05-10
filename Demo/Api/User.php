@@ -8,7 +8,7 @@ class Api_User extends PhalApi_Api {
     public function getRules() {
         return array(
             'getBaseInfo' => array(
-                'userId' => array('name' => 'user_id', 'type' => 'int', 'min' => 1, 'require' => true, 'desc' => '用户ID', 'source' => 'get'),
+                'userId' => array('name' => 'user_id', 'type' => 'int', 'min' => 1, 'require' => true, 'desc' => '用户ID'),
             ),
             'getMultiBaseInfo' => array(
                 'userIds' => array('name' => 'user_ids', 'type' => 'array', 'format' => 'explode', 'require' => true, 'desc' => '用户ID，多个以逗号分割'),
