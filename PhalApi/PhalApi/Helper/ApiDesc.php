@@ -72,7 +72,8 @@ class PhalApi_Helper_ApiDesc {
             //@exception注释
             $pos = stripos($comment, '@exception');
             if ($pos !== FALSE) {
-                $exceptions[] = explode(' ', trim(substr($comment, $pos + 10)));
+                $exArr = explode(' ', trim(substr($comment, $pos + 10)));
+                $exceptions[$exArr[0]] = $exArr;
                 continue;
             }
 
