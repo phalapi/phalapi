@@ -45,7 +45,7 @@ class PhalApi_Helper_ApiDesc {
         foreach (explode("\n", $classDocComment) as $comment) {
             if (stripos($comment, '@exception') !== FALSE 
                 || stripos($comment, '@return') !== FALSE) {
-                $needClassDocComment = $comment . "\n" . $needClassDocComment;
+                $needClassDocComment .=  "\n" . $comment;
             }
         }
 
