@@ -53,7 +53,7 @@ $modelFilePath  = $appPath . DIRECTORY_SEPARATOR . 'Model' . DIRECTORY_SEPARATOR
 // 检测是否重复生成
 foreach (array($apiFilePath, $domainFilePath, $modelFilePath) as $file) {
     if (file_exists($file) && !$overwrite) {
-        echo colorfulString("$file exists! Stop to create again!\n", 'FAILURE');
+        echo colorfulString("$file exists! Stop creating again!\n", 'FAILURE');
         exit(1);
     }
 }
