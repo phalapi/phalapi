@@ -95,7 +95,8 @@ class PhalApi_Helper_ApiDesc {
                 $returnCommentArr[2] = implode(' ', array_slice($returnCommentArr, 2));
             }
 
-            $returns[] = $returnCommentArr; 
+            //以返回字段为key，保证覆盖
+            $returns[$returnCommentArr[1]] = $returnCommentArr; 
         }
 
         include dirname(__FILE__) . '/api_desc_tpl.php';
