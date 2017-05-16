@@ -152,7 +152,7 @@ function saveHtml($name, $string){
     if (!is_dir ( $dir)){
         mkdir ( $dir);
     }
-    $handle = fopen ( $dir . DIRECTORY_SEPARATOR . $name . '.html', 'w');
+    $handle = fopen ( $dir . DIRECTORY_SEPARATOR . $name . '.html', 'wb');
     fwrite ( $handle, $string);
     fclose ( $handle);
 }
