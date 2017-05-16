@@ -25,6 +25,7 @@
 
 define("D_S", DIRECTORY_SEPARATOR);
 $root = dirname(__FILE__);
+$env = (PHP_SAPI == 'cli') ? TRUE : FALSE;
 
 /**
  * 项目的文件夹名
@@ -146,6 +147,16 @@ function listDir($dir) {
     return $dirInfo;
 }
 
+function saveHtml($name, $string){
+    if (!is_dir ( 'doc')){
+        mkdir ( 'doc');
+    }
+    $handle = fopen ( 'doc' . DIRECTORY_SEPARATOR . $name . '.html', 'w');
+    fwrite ( $handle, $string);
+    fclose ( $handle);
+}
+
+$env && ob_start ();
 $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple pink grey black");
 ?>
 <!DOCTYPE html>
@@ -153,9 +164,9 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
 <head>
     <meta charset="utf-8">
     <title><?php echo $apiDirName; ?> - 接口列表</title>
-    <link href="//cdn.bootcss.com/semantic-ui/2.2.2/semantic.min.css" rel="stylesheet">
-    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-    <script src="//cdn.bootcss.com/semantic-ui/2.2.2/semantic.min.js"></script>
+    <link href="https://cdn.bootcss.com/semantic-ui/2.2.2/semantic.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/semantic-ui/2.2.2/semantic.min.js"></script>
     <meta name="robots" content="none"/>
 </head>
 <body>
@@ -185,7 +196,7 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
             <div class="twelve wide stretched column">
 
                 <?php
-                $uri  = str_ireplace('listAllApis.php', 'checkApiParams.php', $_SERVER['REQUEST_URI']);
+                $uri  = $env ? '' : str_ireplace('listAllApis.php', 'checkApiParams.php', $_SERVER['REQUEST_URI']);
                 $num2 = 0;
                 foreach ($allApiS as $key => $item) {
                     ?>
@@ -205,7 +216,16 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
                             <?php
                             $num = 1;
                             foreach ($item['methods'] as $mKey => $mItem) {
-                                $link = $uri . '?service=' . $mItem['service'];
+                                if ($env){
+                                    ob_start ();
+                                    $_REQUEST['service'] = $mItem['service'];
+                                    include('checkApiParams.php');
+                                    $string = ob_get_clean ();
+                                    saveHtml ( $mItem['service'], $string);
+                                    $link = $mItem['service'] . '.html';
+                                }else{
+                                    $link = $uri . '?service=' . $mItem['service'];
+                                }
                                 $NO   = $num++;
                                 echo "<tr><td>{$NO}</td><td><a href=\"$link\" target='_blank'>{$mItem['service']}</a></td><td>{$mItem['title']}</td><td>{$mItem['desc']}</td></tr>";
                             }
@@ -236,3 +256,9 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
 
 </body>
 </html>
+<?php
+if ($env){
+    $string = ob_get_clean ();
+    saveHtml ( 'index', $string);
+}
+?>
