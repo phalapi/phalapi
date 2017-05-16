@@ -261,7 +261,7 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
 if ($env){
     $string = ob_get_clean ();
     saveHtml ( 'index', $string);
-    $str = "脚本执行完毕！文档保存路径为：";
+    $str = "脚本执行完毕！离线文档保存路径为：";
     if (strtoupper ( substr ( PHP_OS, 0,3)) == 'WIN'){
         $str = iconv ( 'utf-8', 'gbk', $str);
     }

@@ -21,3 +21,6 @@ Demo/Api/DogstarTest.php
 *.DS_Store
 
 .idea
+
+Public/*/doc/
+
