@@ -148,10 +148,11 @@ function listDir($dir) {
 }
 
 function saveHtml($name, $string){
-    if (!is_dir ( 'doc')){
-        mkdir ( 'doc');
+    $dir = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'doc';
+    if (!is_dir ( $dir)){
+        mkdir ( $dir);
     }
-    $handle = fopen ( 'doc' . DIRECTORY_SEPARATOR . $name . '.html', 'w');
+    $handle = fopen ( $dir . DIRECTORY_SEPARATOR . $name . '.html', 'w');
     fwrite ( $handle, $string);
     fclose ( $handle);
 }
