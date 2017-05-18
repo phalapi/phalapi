@@ -17,10 +17,10 @@
     </php>
 
     <testsuites>
-        <testsuite name="common">
+        <testsuite name="Common">
             <directory suffix="Test.php">./Common</directory>
         </testsuite>
-        <testsuite name="api">
+        <testsuite name="Api">
             <directory suffix="Test.php">./Api</directory>
         </testsuite>
         <testsuite name="Domain">
