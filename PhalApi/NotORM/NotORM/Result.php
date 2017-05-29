@@ -381,7 +381,7 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
         $parameters = array();
         foreach($data as $key => $val){
             // doesn't use binding because $this->parameters can be filled by ? or :name
-            $values[] = "$key = " . $this->quote($val);
+            $values[] = "`$key` = " . $this->quote($val);
             if($val instanceof NotORM_Literal && $val->parameters){
                 $parameters = array_merge($parameters, $val->parameters);
             }
@@ -418,7 +418,7 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
                 $update = $unique;
             }
             foreach($update as $key => $val){
-                $set[] = "$key = " . $this->quote($val);
+                $set[] = "`$key` = " . $this->quote($val);
                 //! parameters
             }
             return $this->insert("$values ON DUPLICATE KEY UPDATE " . implode(", ", $set));
