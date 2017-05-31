@@ -179,7 +179,13 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
         <div class="ui grid container" style="max-width: none !important;">
             <div class="four wide column">
                 <div class="ui vertical pointing menu">
-                    <div class="item"><h4>服务列表</h4></div>
+                    <?php
+                    $methodTotal = 0;
+                    foreach ($allApiS as $item) {
+                        $methodTotal += count($item['methods']);
+                    }
+                    ?>
+                    <div class="item"><h4>接口服务列表&nbsp;(<?php echo $methodTotal; ?> )</h4></div>
                     <?php
                     $num = 0;
                     foreach ($allApiS as $key => $item) {
