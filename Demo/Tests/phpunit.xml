@@ -30,5 +30,14 @@
             <directory suffix="Test.php">./Model</directory>
         </testsuite>
     </testsuites>
+
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">../</directory>
+            <exclude>
+                <directory suffix=".php">../Tests</directory>
+            </exclude>
+        </whitelist>
+    </filter>
 </phpunit>
 
