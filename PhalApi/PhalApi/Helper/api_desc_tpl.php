@@ -151,15 +151,11 @@ echo <<<EOT
 </table>
 <h3>
     请求模拟 &nbsp;&nbsp;
-    <select name="request_type"><option value="POST">POST</option><option value="GET">GET</option></select>
+</h3>
 EOT;
 
-$url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']) ? 'https://' : 'http://';
-$url = $url . $_SERVER['HTTP_HOST'];
-echo '&nbsp;<input name="request_url" value="' . $url . '" style="width:500px; height:24px; line-height:18px; font-size:13px;position:relative;top:-2px; padding-left:5px;" />';
+
 echo <<<EOT
-    <input type="submit" name="submit" value="send" id="submit" />
-</h3>
 <table class="ui green celled striped table" >
     <thead>
         <tr><th>参数</th><th>是否必填</th><th>值</th></tr>
@@ -174,17 +170,31 @@ EOT;
 foreach ($rules as $key => $rule){
     $name = $rule['name'];
     $require = isset($rule['require']) && $rule['require'] ? '<font color="red">必须</font>' : '可选';
+    $default = isset($rule['default']) ? $rule['default'] : '';
+    $desc = isset($rule['desc']) ? trim($rule['desc']) : '';
     echo <<<EOT
         <tr>
             <td>{$name}</td>
             <td>{$require}</td>
-            <td><input name="{$name}" value="" style="width:100%;" class="C_input" /></td>
+            <td><input name="{$name}" value="{$default}" placeholder="{$desc}" style="width:100%;" class="C_input" /></td>
         </tr>
 EOT;
 }
 echo <<<EOT
     </tbody>
 </table>
+<div style="display: flex;align-items:center;">
+    <select name="request_type" style="font-size: 14px; padding: 2px;">
+        <option value="POST">POST</option>
+        <option value="GET">GET</option>
+    </select>
+EOT;
+$url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']) ? 'https://' : 'http://';
+$url = $url . $_SERVER['HTTP_HOST'];
+echo <<<EOT
+&nbsp;<input name="request_url" value="{$url}" style="width:500px; height:24px; line-height:18px; font-size:13px;position:relative; padding-left:5px;margin-left: 10px"/>
+    <input type="submit" name="submit" value="发送" id="submit" style="font-size:14px;line-height: 20px;margin-left: 10px "/>
+</div>
 EOT;
 
 /**
