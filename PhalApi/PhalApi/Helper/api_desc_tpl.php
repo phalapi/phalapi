@@ -11,7 +11,7 @@ echo <<<EOT
     <link rel="stylesheet" href="https://staticfile.qnssl.com/semantic-ui/2.1.6/components/container.min.css">
     <link rel="stylesheet" href="https://staticfile.qnssl.com/semantic-ui/2.1.6/components/message.min.css">
     <link rel="stylesheet" href="https://staticfile.qnssl.com/semantic-ui/2.1.6/components/label.min.css">
-
+    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
 </head>
 
 <body>
@@ -144,6 +144,58 @@ EOT;
 }
 
 /**
+ * 返回结果
+ */
+echo <<<EOT
+  </tbody>
+</table>
+<h3>
+    请求模拟 &nbsp;&nbsp;
+    <select name="request_type"><option value="POST">POST</option><option value="GET">GET</option></select>
+EOT;
+
+$url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']) ? 'https://' : 'http://';
+$url = $url . $_SERVER['HTTP_HOST'];
+echo '&nbsp;<input name="request_url" value="' . $url . '" style="width:500px; height:24px; line-height:18px; font-size:13px;position:relative;top:-2px; padding-left:5px;" />';
+echo <<<EOT
+    <input type="submit" name="submit" value="send" id="submit" />
+</h3>
+<table class="ui green celled striped table" >
+    <thead>
+        <tr><th>参数</th><th>是否必填</th><th>值</th></tr>
+    </thead>
+    <tbody id="params">
+        <tr>
+            <td>service</td>
+            <td><font color="red">必须</font></td>
+            <td><input name="service" value="{$service}" style="width:100%;" class="C_input" /></td>
+        </tr>
+EOT;
+foreach ($rules as $key => $rule){
+    $name = $rule['name'];
+    $require = isset($rule['require']) && $rule['require'] ? '<font color="red">必须</font>' : '可选';
+    echo <<<EOT
+        <tr>
+            <td>{$name}</td>
+            <td>{$require}</td>
+            <td><input name="{$name}" value="" style="width:100%;" class="C_input" /></td>
+        </tr>
+EOT;
+}
+echo <<<EOT
+    </tbody>
+</table>
+EOT;
+
+/**
+ * JSON结果
+ */
+echo <<<EOT
+<div class="ui blue message" id="json_output">
+</div>
+EOT;
+
+/**
  * 底部
  */
 $version = PHALAPI_VERSION;
@@ -154,6 +206,39 @@ echo <<<EOT
         <p>&copy; Powered  By <a href="http://www.phalapi.net/" target="_blank">PhalApi {$version}</a> <p>
         </div>
     </div>
+    <script type="text/javascript">
+        function getData() {
+            var data={};
+            $("td input").each(function(index,e) {
+                if ($.trim(e.value)){
+                    data[e.name] = e.value;
+                }
+            });
+            return data;
+        }
+        
+        $(function(){
+            $("#json_output").hide();
+            $("#submit").on("click",function(){
+                $.ajax({
+                    url:$("input[name=request_url]").val(),
+                    type:$("select").val(),
+                    data:getData(),
+                    success:function(res,status,xhr){
+                        console.log(xhr);
+                        var statu = xhr.status + ' ' + xhr.statusText;
+                        var header = xhr.getAllResponseHeaders();
+                        var json_text = JSON.stringify(res, null, 4);    // 缩进4个空格
+                        $("#json_output").html('<pre>' + statu + '<br/>' + header + '<br/>' + json_text + '</pre>');
+                        $("#json_output").show();
+                    },
+                    error:function(error){
+                        console.log(error)
+                    }
+                })
+            })
+        })
+    </script>
 </body>
 </html>
 EOT;

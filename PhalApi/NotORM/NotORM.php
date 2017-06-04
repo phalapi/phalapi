@@ -42,18 +42,23 @@ abstract class NotORM_Abstract {
 
 
 /** Database representation
-* @property-write mixed $debug = false Enable debugging queries, true for error_log($query), callback($query, $parameters) otherwise
-* @property-write bool $freeze = false Disable persistence
-* @property-write string $rowClass = 'NotORM_Row' Class used for created objects
-* @property-write bool $jsonAsArray = false Use array instead of object in Result JSON serialization
-* @property-write string $transaction Assign 'BEGIN', 'COMMIT' or 'ROLLBACK' to start or stop transaction
+ *
+ * @property bool|callable $debug = false Enable debugging queries, true for error_log($query), callback($query, $parameters) otherwise
+ * @property bool $freeze = false Disable persistence
+ * @property string $rowClass = 'NotORM_Row' Class used for created objects
+ * @property bool $jsonAsArray = false Use array instead of object in Result JSON serialization
+ * @property string $transaction Assign 'BEGIN', 'COMMIT' or 'ROLLBACK' to start or stop transaction
+ * @property PDO                connection
+ * @property NotORM_Structure   structure
+ * @property NotORM_Cache       cache
+ *
 */
 class NotORM extends NotORM_Abstract {
 	
 	/** Create database representation
 	* @param PDO
-	* @param NotORM_Structure or null for new NotORM_Structure_Convention
-	* @param NotORM_Cache or null for no cache
+	* @param NotORM_Structure|null for new NotORM_Structure_Convention
+	* @param NotORM_Cache|null for no cache
 	*/
 	function __construct(PDO $connection, NotORM_Structure $structure = null, NotORM_Cache $cache = null) {
 		$this->connection = $connection;
@@ -72,10 +77,14 @@ class NotORM extends NotORM_Abstract {
 	function __get($table) {
 		return new NotORM_Result($this->structure->getReferencingTable($table, ''), $this, true);
 	}
-	
-	/** Set write-only properties
-	* @return null
-	*/
+    
+    /** Set write-only properties
+     *
+     * @param $name
+     * @param $value
+     *
+     * @return bool
+     */
 	function __set($name, $value) {
 		if ($name == "debug" || $name == "debugTimer" || $name == "freeze" || $name == "rowClass" || $name == "jsonAsArray" || $name == 'isKeepPrimaryKeyIndex') {
 			$this->$name = $value;
@@ -87,6 +96,7 @@ class NotORM extends NotORM_Abstract {
 				case "ROLLBACK": return $this->connection->rollback();
 			}
 		}
+		return FALSE;
 	}
 	
 	/** Get table data
