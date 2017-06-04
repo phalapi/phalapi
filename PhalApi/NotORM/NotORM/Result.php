@@ -729,7 +729,9 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
             $query .= " WHERE " . implode($this->where);
         }
 
-        return $this->query($query, $this->parameters)->fetch()[0];
+        foreach($this->query($query, $this->parameters)->fetch() as $return){
+            return $return;
+        }
     }
 
     /** Count number of rows
