@@ -79,6 +79,10 @@ foreach ($files as $value) {
         continue;
     }
 
+    if (ucfirst($apiServer) != $apiServer) {
+        continue;
+    }
+
     //  左菜单的标题
     $ref        = new ReflectionClass($apiServer);
     $title      = "//请检测接口服务注释($apiServer)";
