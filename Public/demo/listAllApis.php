@@ -65,6 +65,7 @@ foreach ($libraryPaths as $aPath) {
 $allPhalApiApiMethods = get_class_methods('PhalApi_Api');
 
 $allApiS = array();
+$errorMessage = '';
 
 foreach ($files as $value) {
     $value    = realpath($value);
@@ -79,8 +80,9 @@ foreach ($files as $value) {
         continue;
     }
 
-    if (ucfirst($apiServer) != $apiServer) {
-        continue;
+    // 检测文件路径的合法性
+    if (ucfirst(substr($apiServer, 4)) != substr($apiServer, 4)) {
+        $errorMessage .= $value . ' 文件首字母必须大写！<br/>';
     }
 
     //  左菜单的标题
@@ -180,6 +182,14 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
 
 <div class="ui text container" style="max-width: none !important; width: 1200px">
     <div class="ui floating message">
+        <?php
+        if (!empty($errorMessage)) {
+        echo  '<div class="ui error message">
+            <strong>错误：' . $errorMessage . '</strong> 
+            </div>';
+        }
+        ?>
+
         <div class="ui grid container" style="max-width: none !important;">
             <div class="four wide column">
                 <div class="ui vertical pointing menu">
