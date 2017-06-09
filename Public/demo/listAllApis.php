@@ -180,7 +180,7 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
 <br/>
 
 
-<div class="ui text container" style="max-width: none !important; width: 1200px">
+<div class="ui text container" style="max-width: none !important; width: 1200px" id="menu_top">
     <div class="ui floating message">
         <?php
         if (!empty($errorMessage)) {
@@ -211,7 +211,11 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
                         $num++;
                     }
                     ?>
-
+                    <?php
+                    if ($num > 12) {
+                        echo '<a class="item" href="#menu_top">返回顶部↑↑↑</a>';
+                    }
+                    ?>
                 </div>
             </div>
             <div class="twelve wide stretched column">
