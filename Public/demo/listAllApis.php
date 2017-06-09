@@ -82,7 +82,7 @@ foreach ($files as $value) {
 
     // 检测文件路径的合法性
     if (ucfirst(substr($apiServer, 4)) != substr($apiServer, 4)) {
-        $errorMessage .= $value . ' 文件首字母必须大写！<br/>';
+        $errorMessage .= $apiServer . ' 类文件首字母必须大写！<br/>';
     }
 
     //  左菜单的标题
