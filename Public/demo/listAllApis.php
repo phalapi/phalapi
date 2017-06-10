@@ -43,6 +43,15 @@ $libraryPaths = array(
     'Library/Qiniu/CDN',    // 七牛扩展
 );
 
+// 主题风格，fold = 折叠，expand = 展开
+$theme = isset($_GET['type']) ? $_GET['type'] : 'fold';
+if ($env) {
+    $theme = isset($argv[1]) ? $argv[1] : 'fold';
+}
+if (!in_array($theme, array('fold', 'expand'))) {
+    $theme = 'fold';
+}
+
 // 初始化
 require_once implode(D_S, array($root, '..', 'init.php'));
 
@@ -191,6 +200,9 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
         ?>
 
         <div class="ui grid container" style="max-width: none !important;">
+            <?php
+            if ($theme == 'fold') {
+            ?>
             <div class="four wide column">
                 <div class="ui vertical pointing menu">
                     <?php
@@ -218,7 +230,24 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
                     ?>
                 </div>
             </div>
+            <?php } ?> <!-- 折叠时的菜单 -->
+
+            <!-- 折叠时与展开时的布局差异 -->
+            <?php if ($theme == 'fold') { ?>
             <div class="twelve wide stretched column">
+            <?php } else { ?>
+            <div class="wide stretched column">
+            <?php 
+                    // 展开时，将全部的接口服务，转到第一组
+                    $mergeAllApiS = array('all' => array('methods' => array()));
+                    foreach ($allApiS as $key => $item) {
+                        foreach ($item['methods'] as $mKey => $mItem) {
+                            $mergeAllApiS['all']['methods'][$mKey] = $mItem;
+                        }
+                    }
+                    $allApiS = $mergeAllApiS;
+            } 
+            ?>
 
                 <?php
                 $uri  = $env ? '' : str_ireplace('listAllApis.php', 'checkApiParams.php', $_SERVER['REQUEST_URI']);
@@ -258,6 +287,18 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
                             </tbody>
                         </table>
 
+                    <!-- 主题切换，仅当在线时才支持 -->
+                    <?php
+                            if (!$env) {
+                                $curUrl = $_SERVER['SCRIPT_NAME'];
+                                if ($theme == 'fold') {
+                                    echo '<div style="float: right"><a href="' . $curUrl . '?type=expand">切换回展开版</a></div>';
+                                } else {
+                                    echo '<div style="float: right"><a href="' . $curUrl . '?type=fold">切换回折叠版</a></div>';
+                                }
+                            }
+                    ?>
+
                     </div>
                     <?php
                     $num2++;
@@ -277,6 +318,14 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
 <script type="text/javascript">
     $('.pointing.menu .item').tab();
     $('.ui.sticky').sticky();
+	//当点击跳转链接后，回到页面顶部位置
+    $(".pointing.menu .item").click(function() {
+        $('body,html').animate({
+                scrollTop: 0
+            },
+            500);
+        return false;
+    });
 </script>
 
 </body>
@@ -285,11 +334,17 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
 if ($env){
     $string = ob_get_clean ();
     saveHtml ( 'index', $string);
-    $str = "脚本执行完毕！离线文档保存路径为：";
+    $str = "
+Usage:
+
+生成展开版：  php {$argv[0]} expand
+生成折叠版：  php {$argv[0]} fold
+
+脚本执行完毕！离线文档保存路径为：";
     if (strtoupper ( substr ( PHP_OS, 0,3)) == 'WIN'){
         $str = iconv ( 'utf-8', 'gbk', $str);
     }
     $str .= $root . DIRECTORY_SEPARATOR . 'doc' ;
-    echo $str, PHP_EOL;
+    echo $str, PHP_EOL, PHP_EOL;
     exit(0);
 }
