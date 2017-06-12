@@ -1,6 +1,6 @@
 <?php
 /**
- * 数据库CURD基本操作
+ * 数据库CURD基本操作示例
  * @author dogstar 20170612
  */
 
