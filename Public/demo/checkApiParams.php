@@ -19,6 +19,7 @@ $libraryPaths = array(
     'Library/User/User',    // User扩展
     'Library/Auth/Auth',    // Auth扩展
     'Library/Qiniu/CDN',    // 七牛扩展
+    'Library/WechatMini/WechatMini', // 微信小程序扩展
 );
 
 foreach ($libraryPaths as $aPath) {
