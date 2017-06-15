@@ -279,7 +279,8 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
                                     saveHtml ( $mItem['service'], $string);
                                     $link = $mItem['service'] . '.html';
                                 }else{
-                                    $link = $uri . '?service=' . $mItem['service'];
+                                    $concator = strpos($uri, '?') ? '&' : '?';
+                                    $link = $uri . $concator . 'service=' . $mItem['service'];
                                 }
                                 $NO   = $num++;
                                 echo "<tr><td>{$NO}</td><td><a href=\"$link\" target='_blank'>{$mItem['service']}</a></td><td>{$mItem['title']}</td><td>{$mItem['desc']}</td></tr>";
