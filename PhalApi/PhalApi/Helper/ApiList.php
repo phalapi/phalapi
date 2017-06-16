@@ -45,42 +45,15 @@ class PhalApi_Helper_ApiList {
             }
 
 
-        }
-        //  左菜单的标题
-        $ref        = new ReflectionClass($apiServer);
-        $title      = "//请检测接口服务注释($apiServer)";
-        $desc       = '//请使用@desc 注释';
-        $docComment = $ref->getDocComment();
-        if ($docComment !== false) {
-            $docCommentArr = explode("\n", $docComment);
-            $comment       = trim($docCommentArr[1]);
-            $title         = trim(substr($comment, strpos($comment, '*') + 1));
-            foreach ($docCommentArr as $comment) {
-                $pos = stripos($comment, '@desc');
-                if ($pos !== false) {
-                    $desc = substr($comment, $pos + 5);
-                }
-            }
-        }
-        $allApiS[$apiServerShortName]['title'] = $title;
-        $allApiS[$apiServerShortName]['desc']  = $desc;
-
-        $method = array_diff(get_class_methods($apiServer), $allPhalApiApiMethods);
-        sort($method);
-        foreach ($method as $mValue) {
-            $rMethod = new Reflectionmethod($apiServer, $mValue);
-            if (!$rMethod->isPublic() || strpos($mValue, '__') === 0) {
-                continue;
-            }
-
-            $title      = '//请检测函数注释';
+            //  左菜单的标题
+            $ref        = new ReflectionClass($apiServer);
+            $title      = "//请检测接口服务注释($apiServer)";
             $desc       = '//请使用@desc 注释';
-            $docComment = $rMethod->getDocComment();
+            $docComment = $ref->getDocComment();
             if ($docComment !== false) {
                 $docCommentArr = explode("\n", $docComment);
                 $comment       = trim($docCommentArr[1]);
                 $title         = trim(substr($comment, strpos($comment, '*') + 1));
-
                 foreach ($docCommentArr as $comment) {
                     $pos = stripos($comment, '@desc');
                     if ($pos !== false) {
@@ -88,12 +61,39 @@ class PhalApi_Helper_ApiList {
                     }
                 }
             }
-            $service                                           = $apiServerShortName . '.' . ucfirst($mValue);
-            $allApiS[$apiServerShortName]['methods'][$service] = array(
-                'service' => $service,
-                'title'   => $title,
-                'desc'    => $desc,
-            );
+            $allApiS[$apiServerShortName]['title'] = $title;
+            $allApiS[$apiServerShortName]['desc']  = $desc;
+
+            $method = array_diff(get_class_methods($apiServer), $allPhalApiApiMethods);
+            sort($method);
+            foreach ($method as $mValue) {
+                $rMethod = new Reflectionmethod($apiServer, $mValue);
+                if (!$rMethod->isPublic() || strpos($mValue, '__') === 0) {
+                    continue;
+                }
+
+                $title      = '//请检测函数注释';
+                $desc       = '//请使用@desc 注释';
+                $docComment = $rMethod->getDocComment();
+                if ($docComment !== false) {
+                    $docCommentArr = explode("\n", $docComment);
+                    $comment       = trim($docCommentArr[1]);
+                    $title         = trim(substr($comment, strpos($comment, '*') + 1));
+
+                    foreach ($docCommentArr as $comment) {
+                        $pos = stripos($comment, '@desc');
+                        if ($pos !== false) {
+                            $desc = substr($comment, $pos + 5);
+                        }
+                    }
+                }
+                $service                                           = $apiServerShortName . '.' . ucfirst($mValue);
+                $allApiS[$apiServerShortName]['methods'][$service] = array(
+                    'service' => $service,
+                    'title'   => $title,
+                    'desc'    => $desc,
+                );
+            }
         }
 
         // 运行模式
