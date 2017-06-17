@@ -169,17 +169,15 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
                     if (!res.ret || res.ret != 200) {
                         return;
                     }
-                    var cur_version = parseInt(version.split('.').join(''));
-                    var lastest_version = parseInt(res.data.version.split('.').join(''));
-                    if (cur_version >= lastest_version) {
+                    if (res.data.need_upgrade >= 0) {
                         return;
                     }          
 
                     $('#version_update').html('&nbsp; | &nbsp; <a target="_blank" href=" ' + res.data.url + ' "><strong>免费升级到 PhalApi ' + res.data.version + '</strong></a>');              
                 },
-                    error:function(error){
-                        console.log(error)
-                    }
+                error:function(error){
+                    console.log(error)
+                }
         })
 
     }

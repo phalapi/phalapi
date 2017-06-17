@@ -258,13 +258,10 @@ echo <<<EOT
                     type:'get',
                     data:{version : '$version'},
                     success:function(res,status,xhr){
-                        console.log(res);
                         if (!res.ret || res.ret != 200) {
                             return;
                         }
-                        var cur_version = parseInt('$version'.split('.').join(''));
-                        var lastest_version = parseInt(res.data.version.split('.').join(''));
-                        if (cur_version >= lastest_version) {
+                        if (res.data.need_upgrade >= 0) {
                             return;
                         }          
 
