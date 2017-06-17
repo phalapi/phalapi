@@ -147,8 +147,6 @@ EOT;
  * 返回结果
  */
 echo <<<EOT
-  </tbody>
-</table>
 <h3>
     请求模拟 &nbsp;&nbsp;
 </h3>
@@ -215,7 +213,7 @@ echo <<<EOT
         <div class="ui blue message">
           <strong>温馨提示：</strong> 此接口参数列表根据后台代码自动生成，可将 ?service= 改成您需要查询的接口/服务
         </div>
-        <p>&copy; Powered  By <a href="http://www.phalapi.net/" target="_blank">PhalApi {$version}</a> <p>
+        <p>&copy; Powered  By <a href="http://www.phalapi.net/" target="_blank">PhalApi {$version}</a><span id="version_update"></span></p>
         </div>
     </div>
     <script type="text/javascript">
@@ -249,7 +247,35 @@ echo <<<EOT
                     }
                 })
             })
+
+            checkLastestVersion();
         })
+
+        // 检测最新版本
+        function checkLastestVersion() {
+                $.ajax({
+                    url:'https://www.phalapi.net/check_lastest_version.php',
+                    type:'get',
+                    data:{version : '$version'},
+                    success:function(res,status,xhr){
+                        console.log(res);
+                        if (!res.ret || res.ret != 200) {
+                            return;
+                        }
+                        var cur_version = parseInt('$version'.split('.').join(''));
+                        var lastest_version = parseInt(res.data.version.split('.').join(''));
+                        if (cur_version >= lastest_version) {
+                            return;
+                        }          
+
+                        $('#version_update').html('&nbsp; | &nbsp; <a target="_blank" href=" ' + res.data.url + ' "><strong>免费升级到 PhalApi ' + res.data.version + '</strong></a>');              
+                    },
+                    error:function(error){
+                        console.log(error)
+                    }
+                })
+
+        }
     </script>
 </body>
 </html>

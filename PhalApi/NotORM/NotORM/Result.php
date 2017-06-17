@@ -391,9 +391,10 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
         }
         $values     = array();
         $parameters = array();
+        $quoteChar  = $this->getQuoteChar();
         foreach($data as $key => $val){
             // doesn't use binding because $this->parameters can be filled by ? or :name
-            $values[] = "`$key` = " . $this->quote($val);
+            $values[] = "{$quoteChar}{$key}{$quoteChar} = " . $this->quote($val);
             if($val instanceof NotORM_Literal && $val->parameters){
                 $parameters = array_merge($parameters, $val->parameters);
             }
@@ -407,6 +408,15 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
             return false;
         }
         return $return->rowCount();
+    }
+
+    /**
+     * 获取数据库字段的引号
+     * @author dogstar 20170617
+     */
+    protected function getQuoteChar() {
+        $allowDBs = array('mysql');
+        return in_array($this->notORM->driver, $allowDBs) ? '`' : '';
     }
 
     /** Insert row or update if it already exists
@@ -429,8 +439,10 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
             if(!$update){
                 $update = $unique;
             }
+            $quoteChar  = $this->getQuoteChar();
+
             foreach($update as $key => $val){
-                $set[] = "`$key` = " . $this->quote($val);
+                $set[] = "{$quoteChar}{$key}{$quoteChar} = " . $this->quote($val);
                 //! parameters
             }
             return $this->insert("$values ON DUPLICATE KEY UPDATE " . implode(", ", $set));

@@ -115,6 +115,11 @@ class PhpUnderControl_" . str_replace('_', '', $className) . "_Test extends PHPU
 
     protected function tearDown()
     {
+        // 输出本次单元测试所执行的SQL语句
+        // var_dump(DI()->tracer->getSqls());
+
+        // 输出本次单元测试所涉及的追踪埋点
+        // var_dump(DI()->tracer->getSqls());
     }
 
 ";
