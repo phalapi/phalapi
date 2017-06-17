@@ -4,7 +4,7 @@ echo <<<EOT
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>{$service} - 在线接口文档</title>
+    <title>{$service} - 在线接口文档 - {$projectName}</title>
 
     <link rel="stylesheet" href="https://staticfile.qnssl.com/semantic-ui/2.1.6/semantic.min.css">
     <link rel="stylesheet" href="https://staticfile.qnssl.com/semantic-ui/2.1.6/components/table.min.css">

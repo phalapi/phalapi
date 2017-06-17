@@ -1,7 +1,7 @@
 <?php
 defined('D_S') || define('D_S', DIRECTORY_SEPARATOR);
 
-class PhalApi_Helper_ApiList {
+class PhalApi_Helper_ApiList extends PhalApi_Helper_ApiOnline {
 
     public function render($apiDirName, $libraryPaths) {
         // 处理项目
@@ -118,6 +118,8 @@ class PhalApi_Helper_ApiList {
         //echo json_encode($allApiS) ;
         //字典排列
         ksort($allApiS);
+
+        $projectName = $this->projectName;
 
         include dirname(__FILE__) . '/api_list_tpl.php';
     }
