@@ -60,7 +60,7 @@ $reflector = new ReflectionClass($className);
 $methods = $reflector->getMethods(ReflectionMethod::IS_PUBLIC);
 
 date_default_timezone_set('Asia/Shanghai');
-$objName = lcfirst(str_replace('_', '', $className));
+$objName = lcfirst(str_replace(array('_', '\\'), array('', ''), $className));
 
 /** ------------------- 生成通用的单元测试代码 ------------------ **/
 
@@ -98,11 +98,11 @@ if (method_exists($className, '__construct')) {
 }
 
 $code .= "
-if (!class_exists('$className')) {
+if (!class_exists('" . (strpos($className, '\\') !== false ? str_replace('\\', '\\\\', $className) : $className) . "')) {
     require dirname(__FILE__) . '/$filePath';
 }
 
-class PhpUnderControl_" . str_replace('_', '', $className) . "_Test extends PHPUnit_Framework_TestCase
+class PhpUnderControl_" . str_replace(array('_', '\\'), array('', ''), $className) . "_Test extends PHPUnit_Framework_TestCase
 {
     public \$$objName;
 
