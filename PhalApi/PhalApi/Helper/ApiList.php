@@ -107,6 +107,7 @@ class PhalApi_Helper_ApiList {
 
         // 主题风格，fold = 折叠，expand = 展开
         $theme = isset($_GET['type']) ? $_GET['type'] : 'fold';
+        global $argv;
         if ($env) {
             $theme = isset($argv[1]) ? $argv[1] : 'fold';
         }

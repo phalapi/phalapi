@@ -7,11 +7,11 @@
 #
 
 ## Colors
-WARNING='\E[1;33m'
-NOTE='\E[1;36m'
-SUCCESS='\E[1;32m'
-FAILURE='\E[1;35m'
-RES='\E[0m'
+WARNING='\033[1;33m'
+NOTE='\033[1;36m'
+SUCCESS='\033[1;32m'
+FAILURE='\033[1;35m'
+RES='\033[0m'
 
 ## Usage
 if [ $# -lt 1 ] 

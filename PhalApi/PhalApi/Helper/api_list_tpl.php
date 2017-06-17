@@ -100,9 +100,9 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
                                 if ($env){
                                     ob_start ();
                                     $_REQUEST['service'] = $mItem['service'];
-                                    include('checkApiParams.php');
+                                    include($webRoot . D_S . 'checkApiParams.php');
                                     $string = ob_get_clean ();
-                                    saveHtml ( $mItem['service'], $string);
+                                    saveHtml ($webRoot, $mItem['service'], $string);
                                     $link = $mItem['service'] . '.html';
                                 }else{
                                     $concator = strpos($uri, '?') ? '&' : '?';
@@ -172,7 +172,7 @@ Usage:
     if (strtoupper ( substr ( PHP_OS, 0,3)) == 'WIN'){
         $str = iconv ( 'utf-8', 'gbk', $str);
     }
-    $str .= $root . DIRECTORY_SEPARATOR . 'doc' ;
+    $str .= $webRoot . D_S . 'doc' ;
     echo $str, PHP_EOL, PHP_EOL;
     exit(0);
 }
