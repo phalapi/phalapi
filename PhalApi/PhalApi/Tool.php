@@ -110,4 +110,57 @@ class PhalApi_Tool {
         rmdir($path);
     }
 
+    /**
+     * 数组转XML格式
+     * 
+     * @param array $arr 数组
+     * @param string $root 根节点名称
+     * @param int $num 回调次数
+     * 
+     * @return string xml
+     */
+    public function arrayToXml($arr, $root='xml', $num=0){
+        $xml = '';
+        if(!$num){
+            $num += 1;
+            $xml .= '<?xml version="1.0" encoding="utf-8"?>';
+        }
+        $xml .= "<$root>";
+        foreach ($arr as $key=>$val){
+            if(is_array($val)){
+                $xml.=self::arrayToXml($val,"$key",$num);
+            } else {
+                $xml.="<".$key.">".$val."</".$key.">";
+            }
+        }
+        $xml .="</$root>";
+        return $xml;
+    }
+    /**
+     * XML格式转数组
+     *
+     * @param  string $xml
+     *
+     * @return mixed|array
+     */
+    public function xmlToArray($xml){
+        //禁止引用外部xml实体
+        libxml_disable_entity_loader(true);
+        $xmlstring = simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA);
+        $arr = json_decode(json_encode($xmlstring),true);
+        return $arr;
+    }
+    /**
+     * 去除字符串空格和回车
+     *
+     * @param  string $str 待处理字符串
+     *
+     * @return string
+     */
+    public function trimSpaceInStr($str)
+    {
+        $pat = array(" ", "　", "\t", "\n", "\r");
+        $string = array("", "", "", "", "", );
+        return str_replace($pat, $string, $str);
+    }
 }
