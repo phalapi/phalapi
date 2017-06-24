@@ -23,11 +23,15 @@ class Api_Default extends PhalApi_Api {
 	 * @return int time 当前时间戳
 	 */
 	public function index() {
-        return array(
-            'title' => 'Hello World!',
-            'content' => T('Hi {name}, welcome to use PhalApi!', array('name' => $this->username)),
-            'version' => PHALAPI_VERSION,
-            'time' => $_SERVER['REQUEST_TIME'],
-        );
+	    $test = axios\tpr\service\EnvService::all();
+//        $test = get_client_ip();
+//        $test = get_declared_classes();
+	    return $test;
+//        return array(
+//            'title' => 'Hello World!',
+//            'content' => T('Hi {name}, welcome to use PhalApi!', array('name' => $this->username)),
+//            'version' => PHALAPI_VERSION,
+//            'time' => $_SERVER['REQUEST_TIME'],
+//        );
 	}
 }
