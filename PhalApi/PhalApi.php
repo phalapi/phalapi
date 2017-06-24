@@ -30,7 +30,15 @@ require_once PHALAPI_ROOT . DIRECTORY_SEPARATOR . 'PhalApi' . DIRECTORY_SEPARATO
  */
 
 class PhalApi {
-    
+    public function __construct()
+    {
+        if (is_dir(VENDOR_PATH . 'composer')) {
+            if (is_file(VENDOR_PATH . 'autoload.php')) {
+                require VENDOR_PATH . 'autoload.php';
+            }
+        }
+    }
+
     /**
      * 响应操作
      *
