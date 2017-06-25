@@ -27,3 +27,5 @@ Public/*/doc/
 # 上传的文件
 Public/upload
 
+vendor
+composer.lock
