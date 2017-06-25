@@ -17,22 +17,22 @@ class PhalApi_Request {
     protected $data = array();
 
     /**
-     * ＠var array $get 备用数据源 $_GET
+     * @var array $get 备用数据源 $_GET
      */
     protected $get = array();
 
     /**
-     * ＠var array $post 备用数据源 $_POST
+     * @var array $post 备用数据源 $_POST
      */
     protected $post = array();
 
     /**
-     * ＠var array $request 备用数据源 $_REQUEST
+     * @var array $request 备用数据源 $_REQUEST
      */
     protected $request = array();
 
     /**
-     * ＠var array $cookie 备用数据源 $_COOKIE
+     * @var array $cookie 备用数据源 $_COOKIE
      */
     protected $cookie = array();
 
