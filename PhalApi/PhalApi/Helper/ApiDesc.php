@@ -8,7 +8,7 @@
  * @author      dogstar <chanzonghuang@gmail.com> 2015-05-30
  */
 
-class PhalApi_Helper_ApiDesc {
+class PhalApi_Helper_ApiDesc extends PhalApi_Helper_ApiOnline {
 
     public function render() {
         $service = DI()->request->getService();
@@ -99,6 +99,8 @@ class PhalApi_Helper_ApiDesc {
             //以返回字段为key，保证覆盖
             $returns[$returnCommentArr[1]] = $returnCommentArr; 
         }
+
+        $projectName = $this->projectName;
 
         include dirname(__FILE__) . '/api_desc_tpl.php';
     }

@@ -4,14 +4,14 @@ echo <<<EOT
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>{$service} - 在线接口文档</title>
+    <title>{$service} - 在线接口文档 - {$projectName}</title>
 
     <link rel="stylesheet" href="https://staticfile.qnssl.com/semantic-ui/2.1.6/semantic.min.css">
     <link rel="stylesheet" href="https://staticfile.qnssl.com/semantic-ui/2.1.6/components/table.min.css">
     <link rel="stylesheet" href="https://staticfile.qnssl.com/semantic-ui/2.1.6/components/container.min.css">
     <link rel="stylesheet" href="https://staticfile.qnssl.com/semantic-ui/2.1.6/components/message.min.css">
     <link rel="stylesheet" href="https://staticfile.qnssl.com/semantic-ui/2.1.6/components/label.min.css">
-
+    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
 </head>
 
 <body>
@@ -144,6 +144,68 @@ EOT;
 }
 
 /**
+ * 返回结果
+ */
+echo <<<EOT
+<h3>
+    请求模拟 &nbsp;&nbsp;
+</h3>
+EOT;
+
+
+echo <<<EOT
+<table class="ui green celled striped table" >
+    <thead>
+        <tr><th>参数</th><th>是否必填</th><th>值</th></tr>
+    </thead>
+    <tbody id="params">
+        <tr>
+            <td>service</td>
+            <td><font color="red">必须</font></td>
+            <td><input name="service" value="{$service}" style="width:100%;" class="C_input" /></td>
+        </tr>
+EOT;
+foreach ($rules as $key => $rule){
+    $name = $rule['name'];
+    $require = isset($rule['require']) && $rule['require'] ? '<font color="red">必须</font>' : '可选';
+    $default = isset($rule['default']) ? $rule['default'] : '';
+    $desc = isset($rule['desc']) ? trim($rule['desc']) : '';
+    $inputType = (isset($rule['type']) && $rule['type']) == 'file' ? 'file' : 'text';
+    echo <<<EOT
+        <tr>
+            <td>{$name}</td>
+            <td>{$require}</td>
+            <td><input name="{$name}" value="{$default}" placeholder="{$desc}" style="width:100%;" class="C_input" type="$inputType"/></td>
+        </tr>
+EOT;
+}
+echo <<<EOT
+    </tbody>
+</table>
+<div style="display: flex;align-items:center;">
+    <select name="request_type" style="font-size: 14px; padding: 2px;">
+        <option value="POST">POST</option>
+        <option value="GET">GET</option>
+    </select>
+EOT;
+$url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']) ? 'https://' : 'http://';
+$url = $url . (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost');
+$url .= substr($_SERVER['SCRIPT_NAME'], 0, strrpos($_SERVER['SCRIPT_NAME'], '/') + 1);
+echo <<<EOT
+&nbsp;<input name="request_url" value="{$url}" style="width:500px; height:24px; line-height:18px; font-size:13px;position:relative; padding-left:5px;margin-left: 10px"/>
+    <input type="submit" name="submit" value="发送" id="submit" style="font-size:14px;line-height: 20px;margin-left: 10px "/>
+</div>
+EOT;
+
+/**
+ * JSON结果
+ */
+echo <<<EOT
+<div class="ui blue message" id="json_output">
+</div>
+EOT;
+
+/**
  * 底部
  */
 $version = PHALAPI_VERSION;
@@ -151,9 +213,67 @@ echo <<<EOT
         <div class="ui blue message">
           <strong>温馨提示：</strong> 此接口参数列表根据后台代码自动生成，可将 ?service= 改成您需要查询的接口/服务
         </div>
-        <p>&copy; Powered  By <a href="http://www.phalapi.net/" target="_blank">PhalApi {$version}</a> <p>
+        <p>&copy; Powered  By <a href="http://www.phalapi.net/" target="_blank">PhalApi {$version}</a><span id="version_update"></span></p>
         </div>
     </div>
+    <script type="text/javascript">
+        function getData() {
+            var data={};
+            $("td input").each(function(index,e) {
+                if ($.trim(e.value)){
+                    data[e.name] = e.value;
+                }
+            });
+            return data;
+        }
+        
+        $(function(){
+            $("#json_output").hide();
+            $("#submit").on("click",function(){
+                $.ajax({
+                    url:$("input[name=request_url]").val(),
+                    type:$("select").val(),
+                    data:getData(),
+                    success:function(res,status,xhr){
+                        console.log(xhr);
+                        var statu = xhr.status + ' ' + xhr.statusText;
+                        var header = xhr.getAllResponseHeaders();
+                        var json_text = JSON.stringify(res, null, 4);    // 缩进4个空格
+                        $("#json_output").html('<pre>' + statu + '<br/>' + header + '<br/>' + json_text + '</pre>');
+                        $("#json_output").show();
+                    },
+                    error:function(error){
+                        console.log(error)
+                    }
+                })
+            })
+
+            checkLastestVersion();
+        })
+
+        // 检测最新版本
+        function checkLastestVersion() {
+                $.ajax({
+                    url:'https://www.phalapi.net/check_lastest_version.php',
+                    type:'get',
+                    data:{version : '$version'},
+                    success:function(res,status,xhr){
+                        if (!res.ret || res.ret != 200) {
+                            return;
+                        }
+                        if (res.data.need_upgrade >= 0) {
+                            return;
+                        }          
+
+                        $('#version_update').html('&nbsp; | &nbsp; <a target="_blank" href=" ' + res.data.url + ' "><strong>免费升级到 PhalApi ' + res.data.version + '</strong></a>');              
+                    },
+                    error:function(error){
+                        console.log(error)
+                    }
+                })
+
+        }
+    </script>
 </body>
 </html>
 EOT;

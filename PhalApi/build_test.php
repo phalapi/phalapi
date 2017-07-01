@@ -60,7 +60,7 @@ $reflector = new ReflectionClass($className);
 $methods = $reflector->getMethods(ReflectionMethod::IS_PUBLIC);
 
 date_default_timezone_set('Asia/Shanghai');
-$objName = lcfirst(str_replace('_', '', $className));
+$objName = lcfirst(str_replace(array('_', '\\'), array('', ''), $className));
 
 /** ------------------- 生成通用的单元测试代码 ------------------ **/
 
@@ -98,11 +98,11 @@ if (method_exists($className, '__construct')) {
 }
 
 $code .= "
-if (!class_exists('$className')) {
+if (!class_exists('" . (strpos($className, '\\') !== false ? str_replace('\\', '\\\\', $className) : $className) . "')) {
     require dirname(__FILE__) . '/$filePath';
 }
 
-class PhpUnderControl_" . str_replace('_', '', $className) . "_Test extends PHPUnit_Framework_TestCase
+class PhpUnderControl_" . str_replace(array('_', '\\'), array('', ''), $className) . "_Test extends PHPUnit_Framework_TestCase
 {
     public \$$objName;
 
@@ -115,6 +115,11 @@ class PhpUnderControl_" . str_replace('_', '', $className) . "_Test extends PHPU
 
     protected function tearDown()
     {
+        // 输出本次单元测试所执行的SQL语句
+        // var_dump(DI()->tracer->getSqls());
+
+        // 输出本次单元测试所涉及的追踪埋点
+        // var_dump(DI()->tracer->getSqls());
     }
 
 ";

@@ -12,6 +12,10 @@ defined('API_ROOT') || define('API_ROOT', dirname(__FILE__) . '/..');
 require_once API_ROOT . '/PhalApi/PhalApi.php';
 $loader = new PhalApi_Loader(API_ROOT, 'Library');
 
+if (file_exists(API_ROOT . '/vendor/autoload.php')) {
+    require_once API_ROOT . '/vendor/autoload.php';
+}
+
 /** ---------------- 注册&初始化 基本服务组件 ---------------- **/
 
 // 自动加载

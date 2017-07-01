@@ -1,23 +1,31 @@
 
+# 排除IDE项目文件
 .settings
 .settings/*
 .buildpath
 .project
 
+# 日记文件
 *.log
 
-./Demo/Api/DogstarTest.php
-Demo/Api/DogstarTest.php
-
+# 临时文件
 *.bak
+*.swp
 
 *.dat
 *.zip
 *.tar
 
-*.swp
-
 .DS_Store
 *.DS_Store
 
 .idea
+
+# 离线文档
+Public/*/doc/
+
+# 上传的文件
+Public/upload
+
+vendor
+composer.lock

@@ -22,6 +22,7 @@ return array(
     'PhalApi_Api::${name} undefined'                                => 'PhalApi_Api::${name} 未定义',
     'Bad Request: {message}'                                        => '非法请求：{message}',
     'Interal Server Error: {message}'                               => '服务器运行错误: {message}',
+    'Redirect: {message}'                                           => '重定向：{message}',
     "{name}'s enum range can not be empty"                          => '{name}枚举规则中的range不能为空',
     'no such db:{db} in servers'                                    => '在servers中缺少{db}的配置',
     'can not connect to database: {db}'                             => '数据库{db}连接失败',
