@@ -19,33 +19,68 @@ class PhalApi_Request_Formatter_File extends PhalApi_Request_Formatter_Base impl
     public function parse($value, $rule) {
 
         $default = isset($rule['default']) ? $rule['default'] : NULL;
-
         $index = $rule['name'];
+        $fileList = array();
+
         // 未上传 && (有默认值 || 非必须)
         if (!isset($_FILES[$index]) && ($default !== NULL || empty($rule['require']))) {
             return $default;
         }
 
-        if (!isset($_FILES[$index]) || !isset($_FILES[$index]['error']) || !is_array($_FILES[$index])) {
+        if (is_array($_FILES[$index]['tmp_name'])) {
+            $count = sizeof($_FILES[$index]['tmp_name']);
+
+            for ($i = 0; $i < $count; $i++) {
+                $file = array(
+                    'name' => $_FILES[$index]['name'][$i],
+                    'type' => $_FILES[$index]['type'][$i],
+                    'tmp_name' => $_FILES[$index]['tmp_name'][$i],
+                    'error' => $_FILES[$index]['error'][$i],
+                    'size' => $_FILES[$index]['size'][$i]
+                );
+
+                $fileList[] = $this->parseOne($file, $rule);
+            }
+        } else {
+            $file = array(
+                'name' => $_FILES[$index]['name'],
+                'type' => $_FILES[$index]['type'],
+                'tmp_name' => $_FILES[$index]['tmp_name'],
+                'error' => $_FILES[$index]['error'],
+                'size' => $_FILES[$index]['size']
+            );
+            // 单个文件直接返回文件信息数组
+            return $this->parseOne($file, $rule);
+        }
+
+        // 返回文件信息二维数组
+        return $fileList;
+    }
+
+    protected function parseOne($file, $rule)
+    {
+        $index = $rule['name'];
+
+        if (!isset($file) || !isset($file['error']) || !is_array($file)) {
             throw new PhalApi_Exception_BadRequest(T('miss upload file: {file}', array('file' => $index)));
         }
 
-        if ($_FILES[$index]['error'] != UPLOAD_ERR_OK) {
-            throw new PhalApi_Exception_BadRequest(T('fail to upload file with error = {error}', array('error' => $_FILES[$index]['error'])));
+        if ($file['error'] != UPLOAD_ERR_OK) {
+            throw new PhalApi_Exception_BadRequest(T('fail to upload file with error = {error}', array('error' => $file['error'])));
         }
 
         $sizeRule         = $rule;
         $sizeRule['name'] = $sizeRule['name'] . '.size';
-        $this->filterByRange($_FILES[$index]['size'], $sizeRule);
+        $this->filterByRange($file['size'], $sizeRule);
 
         if (!empty($rule['range']) && is_array($rule['range'])) {
             $rule['range'] = array_map('strtolower', $rule['range']);
-            $this->formatEnumValue(strtolower($_FILES[$index]['type']), $rule);
+            $this->formatEnumValue(strtolower($file['type']), $rule);
         }
 
         //对于文件后缀进行验证
         if (!empty($rule['ext'])) {
-            $ext = trim(strrchr($_FILES[$index]['name'], '.'), '.');
+            $ext = trim(strrchr($file['name'], '.'), '.');
             if (is_string($rule['ext'])) {
                 $rule['ext'] = explode(',', $rule['ext']);
             }
@@ -61,6 +96,6 @@ class PhalApi_Request_Formatter_File extends PhalApi_Request_Formatter_Base impl
             }
         }
 
-        return $_FILES[$index];
+        return $file;
     }
 }
