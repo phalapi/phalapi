@@ -69,7 +69,7 @@ class PhalApi_CUrl {
      */
     public function setOption( $option )
     {
-        $this->option = array_merge( $this->option, $option);
+        $this->option = $option + $this->option;
         return $this;
     }
 
