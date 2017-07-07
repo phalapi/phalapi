@@ -170,24 +170,14 @@ foreach ($rules as $key => $rule){
     $require = isset($rule['require']) && $rule['require'] ? '<font color="red">必须</font>' : '可选';
     $default = isset($rule['default']) ? $rule['default'] : '';
     $desc = isset($rule['desc']) ? trim($rule['desc']) : '';
-    $inputType = (isset($rule['type']) && $rule['type'] == 'file') ? 'file' : 'text';
-    if ($inputType != 'file') {
-        echo <<<EOT
-        <tr>
-            <td>{$name}</td>
-            <td>{$require}</td>
-            <td><input name="{$name}" value="{$default}" placeholder="{$desc}" style="width:100%;" class="C_input" type="$inputType"/></td>
-        </tr>
+    $inputType = (isset($rule['type']) && $rule['type'] == 'file') ? 'file' : 'text';、
+    echo <<<EOT
+    <tr>
+        <td>{$name}</td>
+        <td>{$require}</td>
+        <td><input name="{$name}" value="{$default}" placeholder="{$desc}" style="width:100%;" class="C_input" type="$inputType" multiple="multiple"/></td>
+    </tr>
 EOT;
-    } else {
-        echo <<<EOT
-        <tr>
-            <td>{$name}</td>
-            <td>{$require}</td>
-            <td><input name="{$name}" value="{$default}" placeholder="{$desc}" style="width:100%;" class="C_input" type="$inputType" multiple="multiple"/></td>
-        </tr>
-EOT;
-    }
 
 }
 echo <<<EOT
