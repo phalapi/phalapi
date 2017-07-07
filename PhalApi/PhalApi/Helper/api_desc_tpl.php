@@ -170,14 +170,15 @@ foreach ($rules as $key => $rule){
     $require = isset($rule['require']) && $rule['require'] ? '<font color="red">必须</font>' : '可选';
     $default = isset($rule['default']) ? $rule['default'] : '';
     $desc = isset($rule['desc']) ? trim($rule['desc']) : '';
-    $inputType = (isset($rule['type']) && $rule['type'] == 'file') ? 'file' : 'text';
+    $inputType = (isset($rule['type']) && $rule['type'] == 'file') ? 'file' : 'text';、
     echo <<<EOT
-        <tr>
-            <td>{$name}</td>
-            <td>{$require}</td>
-            <td><input name="{$name}" value="{$default}" placeholder="{$desc}" style="width:100%;" class="C_input" type="$inputType"/></td>
-        </tr>
+    <tr>
+        <td>{$name}</td>
+        <td>{$require}</td>
+        <td><input name="{$name}" value="{$default}" placeholder="{$desc}" style="width:100%;" class="C_input" type="$inputType" multiple="multiple"/></td>
+    </tr>
 EOT;
+
 }
 echo <<<EOT
     </tbody>
@@ -218,10 +219,21 @@ echo <<<EOT
     </div>
     <script type="text/javascript">
         function getData() {
-            var data={};
+            var data = new FormData();
             $("td input").each(function(index,e) {
                 if ($.trim(e.value)){
-                    data[e.name] = e.value;
+                    if (e.type != 'file'){
+                        data.append(e.name, e.value);
+                    } else{
+                        let files = e.files;
+                        if (files.length == 1){
+                            data.append(e.name, files[0]);
+                        } else{
+                            for (let i = 0; i < files.length; i++) {
+                                data.append(e.name + '[]', files[i]);
+                            }
+                        }
+                    }
                 }
             });
             return data;
@@ -234,6 +246,9 @@ echo <<<EOT
                     url:$("input[name=request_url]").val(),
                     type:$("select").val(),
                     data:getData(),
+                    cache: false,
+                    processData: false,
+                    contentType: false,
                     success:function(res,status,xhr){
                         console.log(xhr);
                         var statu = xhr.status + ' ' + xhr.statusText;
