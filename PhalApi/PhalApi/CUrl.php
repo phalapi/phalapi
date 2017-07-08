@@ -18,6 +18,14 @@
  *  $rs = $curl->post('http://phalapi.oschina.mopaas.com/Public/demo/?service=Default.Index', $data);
 ```
  *
+ * 如果需要获取cookie并多次使用,每次调用前都需要调用withCookies()方法
+```
+ *
+ *  $curl = new PhalApi_CUrl(1);
+ *  $rs = $curl->setHeader($header)->withCookies()->get($url);
+ *  $rs = $curl->setHeader($header)->withCookies()->post($url,$post);
+```
+ *
  * @package     PhalApi\CUrl
  * @license     http://www.phalapi.net/license GPL 协议
  * @link        http://www.phalapi.net/
@@ -39,6 +47,10 @@ class PhalApi_CUrl {
     protected $header = array();
     
     protected $option = array();
+    
+    protected $hascookie = FALSE;
+    
+    protected $cookie = array();
     
     /**
      * 设置请求头，后设置的会覆盖之前的设置
@@ -102,6 +114,31 @@ class PhalApi_CUrl {
         return $this->request($url, $data, $timeoutMs);
     }
     
+    public function withCookies(){
+        $this->hascookie = TRUE;
+        if(!empty($this->cookie)){
+            $this->setHeader ( ['Cookie' => $this->getCookieString()]);
+        }
+        $this->setOption ( [CURLOPT_COOKIEFILE => '']);
+        return $this;
+    }
+    
+    /**
+     * @param array $cookie
+     */
+    public function setCookie( $cookie )
+    {
+        $this->cookie = $cookie;
+    }
+    
+    /**
+     * @return array
+     */
+    public function getCookie()
+    {
+        return $this->cookie;
+    }
+    
     /**
      *
      * @return array
@@ -120,6 +157,7 @@ class PhalApi_CUrl {
      * @param array $data POST的数据
      * @param int $timeoutMs 超时设置，单位：毫秒
 	 * @return string 接口返回的内容，超时返回false
+     * @throws Exception
      */
     protected function request($url, $data, $timeoutMs = 3000) {
         $options = array(
@@ -148,8 +186,33 @@ class PhalApi_CUrl {
         if ($errno) {
             throw new Exception(sprintf("%s::%s(%d)\n", $url, curl_error($ch), $errno));
         }
+        //update cookie
+        if($this->hascookie){
+            $cookie = $this->getRetCookie(curl_getinfo($ch, CURLINFO_COOKIELIST));
+            !empty( $cookie) && $this->cookie = $cookie + $this->cookie;
+            $this->hascookie = FALSE;
+            unset( $this->header['Cookie']);
+            unset( $this->option[CURLOPT_COOKIEFILE]);
+        }
         curl_close($ch);
 
         return $rs;
+    }
+    
+    protected function getRetCookie(array $cookies){
+        $ret = [];
+        foreach($cookies as $cookie){
+            $arr = explode("\t",$cookie);
+            $ret[$arr[5]] = $arr[6];
+        }
+        return $ret;
+    }
+    
+    protected function getCookieString(){
+        $ret = '';
+        foreach($this->getCookie() as $key => $val){
+            $ret .= $key . '=' . $val . ';';
+        }
+        return trim($ret,';');
     }
 }
