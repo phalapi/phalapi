@@ -46,8 +46,8 @@ class PhalApi_CUrl {
      * @param array $header 传入键值对如：
 ```     
      * array(
-     *     ['Accept'=>'text/html'],
-     *     ['Connection'=>'keep-alive'],
+     *     'Accept'=>'text/html',
+     *     'Connection'=>'keep-alive',
      * )
 ```     
      *
@@ -109,7 +109,7 @@ class PhalApi_CUrl {
     protected function getHeaders() {
         $arrHeaders = array();
         foreach ($this->header as $key => $val) {
-            $arrHeaders[] = $key . ':' . $val;
+            $arrHeaders[] = $key . ': ' . $val;
         }
         return $arrHeaders;
     }
@@ -144,7 +144,10 @@ class PhalApi_CUrl {
             $rs = curl_exec($ch);
             $curRetryTimes--;
         } while($rs === FALSE && $curRetryTimes >= 0);
-
+        $errno = curl_errno($ch);
+        if ($errno) {
+            throw new Exception(sprintf("%s::%s(%d)\n", $url, curl_error($ch), $errno));
+        }
         curl_close($ch);
 
         return $rs;
