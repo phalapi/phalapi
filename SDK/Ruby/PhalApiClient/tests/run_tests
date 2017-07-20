@@ -1,7 +1,0 @@
-#!/bin/bash
-
-ruby ./client_response.rb
-
-ruby ./client_parser_json.rb
-
-ruby ./client.rb
