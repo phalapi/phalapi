@@ -1,9 +1,11 @@
 {
-    "name": "phalapi/phalapi",
-    "description": "A light-weight framework focus on how to develop API faster and simple.",
+    "name": "phalapi/phalapi2",
+    "description": "PhalApi v2.x，一个PHP轻量级开源接口框架，致力于快速开发接口服务。",
+    "type": "project",
     "keywords": ["api"],
     "homepage": "http://www.phalapi.net",
-    "license" : "GPL",
+    "license" : "GPL-3.0+",
+    "minimum-stability": "dev",
     "authors": [
         {
             "name": "Dogstar Huang",
@@ -14,6 +16,16 @@
     ],
     "require": {
         "php": ">=5.3.3",
-        "axios/tpr":"dev-master"
+        "phalapi/kernal": "2.0.*",
+        "phalapi/task": "dev-master"
+    },
+    "autoload": {
+        "files": [
+            "src/app/functions.php"
+            ],
+        "psr-4": {
+            "App\\": "src/app"
+        }
     }
+
 }
