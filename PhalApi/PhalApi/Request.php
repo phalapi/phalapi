@@ -240,11 +240,12 @@ class PhalApi_Request {
      * - 子类可重载此方法指定参数名称，以及默认接口服务
      * - 需要转换为原始的接口服务格式，即：XXX.XXX
      * - 为保持兼容性，子类需兼容父类的实现
+     * - 参数名为：service，支持短参数名：s，并优先完全参数名
      *
      * @return string 接口服务名称，如：Default.Index
      */
     public function getService() {
-        return $this->get('service', 'Default.Index');
+        return $this->get('service', $this->get('s', 'Default.Index'));
     }
 
     /**

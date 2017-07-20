@@ -140,6 +140,18 @@ class PhpUnderControl_PhalApiRequest_Test extends PHPUnit_Framework_TestCase
         $this->assertSame(NULL, $requests->getServiceAction());
     }
 
+    public function testServiceWithShortName() {
+        $requests = new PhalApi_Request(array('s' => 'Demo.Go'));
+
+        $this->assertEquals('Demo.Go',    $requests->getService());
+    }
+
+    public function testServiceWithFullNameFirst() {
+        $requests = new PhalApi_Request(array('s' => 'DemoShort.GoShort', 'service' => 'Demo.Go'));
+
+        $this->assertEquals('Demo.Go',    $requests->getService());
+    }
+
     public function testSource()
     {
         $_POST['pp'] = 'p_data';
