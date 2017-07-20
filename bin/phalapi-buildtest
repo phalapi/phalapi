@@ -1,0 +1,9 @@
+#!/usr/bin/env php
+<?php
+/**
+ * chmod +x ./phalapi-buildtest
+ * ln -s /path/to/phalapi-buildtest /usr/bin/phalapi-buildtest
+ */
+
+require_once dirname(__FILE__) . '/build_test.php';
+

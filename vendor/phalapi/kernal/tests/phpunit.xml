@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         colors="true"
+         bootstrap="./bootstrap.php"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false"
+         syntaxCheck="false"
+>
+    <php>
+        <ini name="intl.default_locale" value="en"/>
+        <ini name="intl.error_level" value="0"/>
+        <ini name="memory_limit" value="-1"/>
+    </php>
+
+    <testsuites>
+        <testsuite name="Test Suite">
+            <directory>./src</directory>
+        </testsuite>
+    </testsuites>
+
+
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">../src</directory>
+            <exclude>
+                <file>../src/Helper/api_list_tpl.php</file>
+                <file>../src/Helper/api_desc_tpl.php</file>
+                <file>../src/Helper/ApiList.php</file>
+                <file>../src/Helper/ApiDesc.php</file>
+                <file>../src/Loader.php</file>
+            </exclude>
+        </whitelist>
+    </filter>
+</phpunit>

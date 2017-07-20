@@ -1,0 +1,10 @@
+composer.lock
+
+runtime/*
+
+public/docs
+
+public/uploads
+
+.idea/
+.env
