@@ -67,7 +67,7 @@ class Translator {
 
         static::$message = array();
 
-        $kernalLanguageFolder = dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..';
+        $kernalLanguageFolder = dirname(__FILE__) . DIRECTORY_SEPARATOR . '..';
         static::addMessage($kernalLanguageFolder);
 
         if (defined('API_ROOT')) {
