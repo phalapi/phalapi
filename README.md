@@ -47,7 +47,7 @@ http://localhsot/path/to/phalapi/public/
 
 > 温馨提示：推荐将访问根路径指向/path/to/phalapi/public。
 
-更多请见：[PhalApi 2.x 开发文档](https://github.com/phalapi/phalapi/wiki)  
+更多请见：[PhalApi 2.x 开发文档](http://docs.phalapi.net/#/v2.0/)  
 
 ## 发现问题，怎么办？  
 
