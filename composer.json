@@ -13,7 +13,6 @@
         }
     ],
     "require": {
-        "php": ">=5.3.3",
-        "axios/tpr":"dev-master"
+        "php": ">=5.3.3"
     }
 }
