@@ -29,7 +29,7 @@ $ composer update
 
 随后，可通过以下链接，访问默认接口服务。  
 ```
-http://localhsot/path/to/phalapi/public/
+http://localhost/path/to/phalapi/public/
 ```
 可以看到类似这样的输出：  
 ```
