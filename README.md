@@ -36,14 +36,18 @@ http://localhsot/path/to/phalapi/public/
 {
     "ret": 200,
     "data": {
-        "title": "Hello World!",
-        "content": "PHPer您好，欢迎使用PhalApi！",
-        "version": "2.0.0",
-        "time": 1499477583
+        "title": "Hello PhalApi",
+        "version": "2.0.1",
+        "time": 1501079142
     },
     "msg": ""
 }
 ```
+
+运行效果，截图如下：  
+
+![](http://7xiz2f.com1.z0.glb.clouddn.com/20170726223129_eecf3d78826c5841020364c852c35156)
+
 
 > 温馨提示：推荐将访问根路径指向/path/to/phalapi/public。
 
