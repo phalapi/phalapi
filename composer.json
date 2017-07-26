@@ -1,5 +1,5 @@
 {
-    "name": "phalapi/phalapi2",
+    "name": "phalapi/phalapi",
     "description": "PhalApi v2.x，一个PHP轻量级开源接口框架，致力于快速开发接口服务。",
     "type": "project",
     "keywords": ["api"],
