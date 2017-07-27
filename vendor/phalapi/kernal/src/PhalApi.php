@@ -67,6 +67,7 @@ class PhalApi {
 
         $rs->setDebug('stack', DI()->tracer->getStack());
         $rs->setDebug('sqls', DI()->tracer->getSqls());
+        $rs->setDebug('version', PHALAPI_VERSION);
 
         return $rs;
     }
