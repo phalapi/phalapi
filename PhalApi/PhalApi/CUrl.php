@@ -117,9 +117,9 @@ class PhalApi_CUrl {
     public function withCookies(){
         $this->hascookie = TRUE;
         if(!empty($this->cookie)){
-            $this->setHeader ( ['Cookie' => $this->getCookieString()]);
+            $this->setHeader (array('Cookie' => $this->getCookieString()));
         }
-        $this->setOption ( [CURLOPT_COOKIEFILE => '']);
+        $this->setOption (array(CURLOPT_COOKIEFILE => ''));
         return $this;
     }
     
@@ -200,7 +200,7 @@ class PhalApi_CUrl {
     }
     
     protected function getRetCookie(array $cookies){
-        $ret = [];
+        $ret = array();
         foreach($cookies as $cookie){
             $arr = explode("\t",$cookie);
             $ret[$arr[5]] = $arr[6];

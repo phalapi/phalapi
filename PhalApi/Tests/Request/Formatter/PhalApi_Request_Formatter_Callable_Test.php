@@ -8,6 +8,8 @@
  */
 
 require_once dirname(__FILE__) . '/../../test_env.php';
+require_once dirname(__FILE__) . '/Classes/FormatterCallbackMyClass.php';
+require_once dirname(__FILE__) . '/Classes/FormatterCallbackMyClass2.php';
 
 if (!class_exists('PhalApi_Request_Formatter_Callable')) {
     require dirname(__FILE__) . '/../../../PhalApi/Request/Formatter/Callable.php';
