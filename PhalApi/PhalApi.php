@@ -10,6 +10,7 @@ defined('PHALAPI_VERSION') || define('PHALAPI_VERSION', '1.4.1');
 defined('PHALAPI_ROOT') || define('PHALAPI_ROOT', dirname(__FILE__));
 
 require_once PHALAPI_ROOT . DIRECTORY_SEPARATOR . 'PhalApi' . DIRECTORY_SEPARATOR . 'Loader.php';
+require_once PHALAPI_ROOT . DIRECTORY_SEPARATOR . 'PhalApi' . DIRECTORY_SEPARATOR . 'bootstrap.php';
 
 /**
  * PhalApi 应用类
