@@ -1,4 +1,3 @@
-#!/usr/bin/env php
 <?php
 /**
  * PhpUnderControl_PhalApiCUrl_Test
@@ -58,6 +57,26 @@ class PhpUnderControl_PhalApiCUrl_Test extends PHPUnit_Framework_TestCase
 
         $this->assertTrue(is_string($rs));
 
+    }
+
+    public function testSetHeader()
+    {
+        $this->phalApiCUrl->setHeader(array('Content-Type' => 'UTF-8'));
+    }
+
+    public function testSetOption()
+    {
+        $this->phalApiCUrl->setOption(array(1 => 300));
+    }
+
+    public function testCookie()
+    {
+        $this->phalApiCUrl->setCookie(array('pgv_pvi' => 9739177984, 'username' => 'dogstar'));
+        $this->assertNotNull($this->phalApiCUrl->getCookie());
+
+        $this->phalApiCUrl->withCookies();
+
+        $rs = $this->phalApiCUrl->get('http://demo.phalapi.net/', 1000);
     }
 
 }

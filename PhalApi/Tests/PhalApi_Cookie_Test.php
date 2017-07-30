@@ -1,4 +1,3 @@
-#!/usr/bin/env php
 <?php
 /**
  * PhpUnderControl_PhalApiCookie_Test

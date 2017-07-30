@@ -44,6 +44,19 @@ class PhpUnderControl_PhalApiCacheFile_Test extends PHPUnit_Framework_TestCase
         $rs = $this->phalApiCacheFile->set($key, $value, $expire);
     }
 
+    public function testSetKeyNull()
+    {
+        $rs = $this->phalApiCacheFile->set(NULL, 'whatever', 10);
+    }
+
+    /**
+     * @expectedException PhalApi_Exception_InternalServerError
+     */
+    public function testSetExpireTooLong()
+    {
+        $this->phalApiCacheFile->set('aLongKey', 'whatever', 99999999999);
+    }
+
     /**
      * @group testGet
      * @depends testSet
@@ -70,6 +83,11 @@ class PhpUnderControl_PhalApiCacheFile_Test extends PHPUnit_Framework_TestCase
         $rs = $this->phalApiCacheFile->get($key);
 
         $this->assertSame(NULL, $rs);
+    }
+
+    public function testDeleteKeyNull()
+    {
+        $this->phalApiCacheFile->delete('');
     }
 
     public function testGetAfterSet()

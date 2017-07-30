@@ -1,4 +1,3 @@
-#!/usr/bin/env php
 <?php
 /**
  * PhpUnderControl_PhalApiCookieMulti_Test
@@ -76,6 +75,20 @@ class PhpUnderControl_PhalApiCookieMulti_Test extends PHPUnit_Framework_TestCase
 
         $this->assertNull($this->phalApiCookieMulti->get($name));
     }
+
+    public function testReset()
+    {
+        $multi = new PhalApi_Cookie_Multi(array('crypt' => 'WRONG'));
+
+        //$multi->set('a_array', array('name' => 'phalapi'));
+
+        $_COOKIE['a_array'] = array('name' => 'phalapi');
+
+        $rs = $multi->get('a_array');
+
+        $this->assertEquals(array('name' => 'phalapi'), $rs);
+    }
+
 
 }
 

@@ -21,4 +21,16 @@
             <directory>./</directory>
         </testsuite>
     </testsuites>
+
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">../PhalApi</directory>
+            <exclude>
+                <file>../PhalApi/Helper/api_list_tpl.php</file>
+                <file>../PhalApi/Helper/api_desc_tpl.php</file>
+                <file>../PhalApi/Helper/ApiList.php</file>
+                <file>../PhalApi/Helper/ApiDesc.php</file>
+            </exclude>
+        </whitelist>
+    </filter>
 </phpunit>

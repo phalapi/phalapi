@@ -175,4 +175,20 @@ class PhpUnderControl_PhalApiRedis_Test extends PHPUnit_Framework_TestCase
         $this->assertEquals('phalapi', $this->phalApiRedis->lPop($key));
         $this->assertEquals('net', $this->phalApiRedis->lPop($key));
     }
+
+    public function testCreateFail()
+    {
+        try {
+            $cache = new PhalApi_Cache_Redis(array('type' => 'unix'));
+        } catch (PhalApi_Exception_InternalServerError $ex) {
+        }
+    }
+
+    public function testAuth()
+    {
+        $config = array('host' => '127.0.0.1', 'port' => 6379, 'auth' => 'xx');
+        $redis = new PhalApi_Cache_Redis($config);
+
+    }
+
 }

@@ -68,6 +68,17 @@ class PhpUnderControl_PhalApiCacheMulti_Test extends PHPUnit_Framework_TestCase
         $this->assertSame('haha~', $rs);
     }
 
+    public function testGetNull()
+    {
+        $phalApiCacheMulti = new PhalApi_Cache_Multi();
+        $cache = new PhalApi_Cache_None();
+        $phalApiCacheMulti->addCache($cache);
+
+        $rs = $phalApiCacheMulti->get('whatever');
+
+        $this->assertNull($rs);
+    }
+
     /**
      * @group testDelete
      */ 
