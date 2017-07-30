@@ -86,6 +86,14 @@ class PhpUnderControl_PhalApiCUrl_Test extends PHPUnit_Framework_TestCase
         $rs = $mock->getRetCookie($cookies);
         $this->assertEquals(array('f' => 'g'), $rs);
     }
+
+    /**
+     * @expectedException PhalApi_Exception_InternalServerError
+     */
+    public function testGetFail()
+    {
+        $this->phalApiCUrl->get('http_wrong', 100);
+    }
 }
 
 class PhalApi_CUrl_InnerMock extends PhalApi_CUrl {

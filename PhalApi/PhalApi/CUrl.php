@@ -168,7 +168,7 @@ class PhalApi_CUrl {
         $options = $this->option + $options; //$this->>option优先
         
         $ch = curl_init();
-        curl_setopt_array( $ch, $options);
+        curl_setopt_array($ch, $options);
         $curRetryTimes = $this->retryTimes;
         do {
             $rs = curl_exec($ch);
@@ -176,7 +176,7 @@ class PhalApi_CUrl {
         } while ($rs === FALSE && $curRetryTimes >= 0);
         $errno = curl_errno($ch);
         if ($errno) {
-            throw new Exception(sprintf("%s::%s(%d)\n", $url, curl_error($ch), $errno));
+            throw new PhalApi_Exception_InternalServerError(sprintf("%s::%s(%d)\n", $url, curl_error($ch), $errno));
         }
 
         //update cookie
