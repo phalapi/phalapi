@@ -18,28 +18,32 @@ if (file_exists(API_ROOT . '/vendor/autoload.php')) {
 
 /** ---------------- 注册&初始化 基本服务组件 ---------------- **/
 
+$di = DI();
+
 // 自动加载
-DI()->loader = $loader;
+$di->loader = $loader;
 
 // 配置
-DI()->config = new PhalApi_Config_File(API_ROOT . '/Config');
+$di->config = new PhalApi_Config_File(API_ROOT . '/Config');
 
 // 调试模式，$_GET['__debug__']可自行改名
-DI()->debug = !empty($_GET['__debug__']) ? true : DI()->config->get('sys.debug');
+$di->debug = !empty($_GET['__debug__']) ? true : $di->config->get('sys.debug');
 
-if (DI()->debug) {
+if ($di->debug) {
     // 启动追踪器
-    DI()->tracer->mark();
+    $di->tracer->mark();
 
     error_reporting(E_ALL);
     ini_set('display_errors', 'On'); 
 }
 
 // 日记纪录
-DI()->logger = new PhalApi_Logger_File(API_ROOT . '/Runtime', PhalApi_Logger::LOG_LEVEL_DEBUG | PhalApi_Logger::LOG_LEVEL_INFO | PhalApi_Logger::LOG_LEVEL_ERROR);
+$di->logger = new PhalApi_Logger_File(API_ROOT . '/Runtime', PhalApi_Logger::LOG_LEVEL_DEBUG | PhalApi_Logger::LOG_LEVEL_INFO | PhalApi_Logger::LOG_LEVEL_ERROR);
 
 // 数据操作 - 基于NotORM
-DI()->notorm = new PhalApi_DB_NotORM(DI()->config->get('dbs'), DI()->debug);
+$di->notorm = function () {
+    return new PhalApi_DB_NotORM(DI()->config->get('dbs'), DI()->debug);
+};
 
 // 翻译语言包设定
 SL('zh_cn');
@@ -48,12 +52,12 @@ SL('zh_cn');
 
 /**
 // 签名验证服务
-DI()->filter = 'PhalApi_Filter_SimpleMD5';
+$di->filter = 'PhalApi_Filter_SimpleMD5';
  */
 
 /**
 // 缓存 - Memcache/Memcached
-DI()->cache = function () {
+$di->cache = function () {
     return new PhalApi_Cache_Memcache(DI()->config->get('sys.mc'));
 };
  */
@@ -61,6 +65,6 @@ DI()->cache = function () {
 /**
 // 支持JsonP的返回
 if (!empty($_GET['callback'])) {
-    DI()->response = new PhalApi_Response_JsonP($_GET['callback']);
+    $di->response = new PhalApi_Response_JsonP($_GET['callback']);
 }
  */
