@@ -51,39 +51,6 @@ class PhalApi_CUrl {
     protected $hascookie = FALSE;
     
     protected $cookie = array();
-    
-    /**
-     * 设置请求头，后设置的会覆盖之前的设置
-     *
-     * @param array $header 传入键值对如：
-```     
-     * array(
-     *     'Accept'=>'text/html',
-     *     'Connection'=>'keep-alive',
-     * )
-```     
-     *
-     * @return $this
-     */
-    public function setHeader( $header )
-    {
-        $this->header = array_merge( $this->header, $header);
-        return $this;
-    }
-    
-    /**
-     * 设置curl配置项
-     * 1、后设置的会覆盖之前的设置
-     * 2、开发者设置的会覆盖框架的设置
-     * @param array $option 格式同上
-     *
-     * @return $this
-     */
-    public function setOption( $option )
-    {
-        $this->option = $option + $this->option;
-        return $this;
-    }
 
 	/**
 	 * @param int $retryTimes 超时重试次数，默认为1
@@ -92,6 +59,8 @@ class PhalApi_CUrl {
         $this->retryTimes = $retryTimes < static::MAX_RETRY_TIMES 
             ? $retryTimes : static::MAX_RETRY_TIMES;
     }
+
+    /** ------------------ 核心使用方法 ------------------ **/
 
 	/**
 	 * GET方式的请求
@@ -113,43 +82,66 @@ class PhalApi_CUrl {
     public function post($url, $data, $timeoutMs = 3000) {
         return $this->request($url, $data, $timeoutMs);
     }
+
+    /** ------------------ 前置方法 ------------------ **/
     
-    public function withCookies(){
-        $this->hascookie = TRUE;
-        if(!empty($this->cookie)){
-            $this->setHeader (array('Cookie' => $this->getCookieString()));
-        }
-        $this->setOption (array(CURLOPT_COOKIEFILE => ''));
+    /**
+     * 设置请求头，后设置的会覆盖之前的设置
+     *
+     * @param array $header 传入键值对如：
+```     
+     * array(
+     *     'Accept' => 'text/html',
+     *     'Connection' => 'keep-alive',
+     * )
+```     
+     *
+     * @return $this
+     */
+    public function setHeader($header) {
+        $this->header = array_merge($this->header, $header);
+        return $this;
+    }
+    
+    /**
+     * 设置curl配置项
+     * - 1、后设置的会覆盖之前的设置
+     * - 2、开发者设置的会覆盖框架的设置
+     *
+     * @param array $option 格式同上
+     *
+     * @return $this
+     */
+    public function setOption($option) {
+        $this->option = $option + $this->option;
         return $this;
     }
     
     /**
      * @param array $cookie
      */
-    public function setCookie( $cookie )
-    {
+    public function setCookie($cookie) {
         $this->cookie = $cookie;
+        return $this;
     }
     
     /**
      * @return array
      */
-    public function getCookie()
-    {
+    public function getCookie() {
         return $this->cookie;
     }
     
-    /**
-     *
-     * @return array
-     */
-    protected function getHeaders() {
-        $arrHeaders = array();
-        foreach ($this->header as $key => $val) {
-            $arrHeaders[] = $key . ': ' . $val;
+    public function withCookies() {
+        $this->hascookie = TRUE;
+        if (!empty($this->cookie)) {
+            $this->setHeader(array('Cookie' => $this->getCookieString()));
         }
-        return $arrHeaders;
+        $this->setOption(array(CURLOPT_COOKIEFILE => ''));
+        return $this;
     }
+
+    /** ------------------ 辅助方法 ------------------ **/
 
     /**
      * 统一接口请求
@@ -173,7 +165,7 @@ class PhalApi_CUrl {
             $options[CURLOPT_POSTFIELDS]    = $data;
         }
         
-        $options = $this->option + $options;//$this->>option优先
+        $options = $this->option + $options; //$this->>option优先
         
         $ch = curl_init();
         curl_setopt_array( $ch, $options);
@@ -181,38 +173,54 @@ class PhalApi_CUrl {
         do {
             $rs = curl_exec($ch);
             $curRetryTimes--;
-        } while($rs === FALSE && $curRetryTimes >= 0);
+        } while ($rs === FALSE && $curRetryTimes >= 0);
         $errno = curl_errno($ch);
         if ($errno) {
             throw new Exception(sprintf("%s::%s(%d)\n", $url, curl_error($ch), $errno));
         }
+
         //update cookie
-        if($this->hascookie){
+        if ($this->hascookie) {
             $cookie = $this->getRetCookie(curl_getinfo($ch, CURLINFO_COOKIELIST));
-            !empty( $cookie) && $this->cookie = $cookie + $this->cookie;
+            !empty($cookie) && $this->cookie = $cookie + $this->cookie;
             $this->hascookie = FALSE;
-            unset( $this->header['Cookie']);
-            unset( $this->option[CURLOPT_COOKIEFILE]);
+            unset($this->header['Cookie']);
+            unset($this->option[CURLOPT_COOKIEFILE]);
         }
         curl_close($ch);
 
         return $rs;
     }
     
-    protected function getRetCookie(array $cookies){
+    /**
+     *
+     * @return array
+     */
+    protected function getHeaders() {
+        $arrHeaders = array();
+        foreach ($this->header as $key => $val) {
+            $arrHeaders[] = $key . ': ' . $val;
+        }
+        return $arrHeaders;
+    }
+    
+    protected function getRetCookie(array $cookies) {
         $ret = array();
-        foreach($cookies as $cookie){
-            $arr = explode("\t",$cookie);
+        foreach ($cookies as $cookie) {
+            $arr = explode("\t", $cookie);
+            if (!isset($arr[6])) {
+                continue;
+            }
             $ret[$arr[5]] = $arr[6];
         }
         return $ret;
     }
     
-    protected function getCookieString(){
+    protected function getCookieString() {
         $ret = '';
-        foreach($this->getCookie() as $key => $val){
+        foreach ($this->getCookie() as $key => $val) {
             $ret .= $key . '=' . $val . ';';
         }
-        return trim($ret,';');
+        return trim($ret, ';');
     }
 }
