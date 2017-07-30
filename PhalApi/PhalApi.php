@@ -48,11 +48,12 @@ class PhalApi {
 ```
      */
     public function response() {
-        $rs = DI()->response;
+        $di = DI();
+        $rs = $di->response;
         try {
             // 接口调度与响应
             $api    = PhalApi_ApiFactory::generateService(); 
-            $action = DI()->request->getServiceAction();
+            $action = $di->request->getServiceAction();
             $data   = call_user_func(array($api, $action));
 
             $rs->setData($data);
@@ -62,9 +63,9 @@ class PhalApi {
             $rs->setMsg($ex->getMessage());
         } catch (Exception $ex) {
             // 不可控的异常
-            DI()->logger->error(DI()->request->getService(), strval($ex));
+            $di->logger->error($di->request->getService(), strval($ex));
 
-            if (DI()->debug) {
+            if ($di->debug) {
                 $rs->setRet($ex->getCode());
                 $rs->setMsg($ex->getMessage());
                 $rs->setDebug('exception', $ex->getTrace());
@@ -73,8 +74,8 @@ class PhalApi {
             }
         }
 
-        $rs->setDebug('stack', DI()->tracer->getStack());
-        $rs->setDebug('sqls', DI()->tracer->getSqls());
+        $rs->setDebug('stack', $di->tracer->getStack());
+        $rs->setDebug('sqls', $di->tracer->getSqls());
         $rs->setDebug('version', PHALAPI_VERSION);
 
         return $rs;
