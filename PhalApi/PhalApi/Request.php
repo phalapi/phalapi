@@ -39,7 +39,7 @@ class PhalApi_Request {
     /**
      * @var array $headers 备用数据源 请求头部信息
      */
-    protected $headers = array();
+    protected $headers;
 
     /**
      * @var string 接口服务类名
@@ -81,7 +81,6 @@ class PhalApi_Request {
         $this->data     = $this->genData($data);
 
         // 备用数据源
-        $this->headers  = $this->getAllHeaders();
         $this->get      = $_GET;
         $this->post     = $_POST;
         $this->request  = $_REQUEST;
@@ -140,6 +139,11 @@ class PhalApi_Request {
      * @return string
      */
     public function getHeader($key, $default = NULL) {
+        // 延时加载，提升性能
+        if ($this->headers === NULL) {
+            $this->headers  = $this->getAllHeaders();
+        }
+
         return isset($this->headers[$key]) ? $this->headers[$key] : $default;
     }
 
