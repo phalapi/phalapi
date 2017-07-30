@@ -79,4 +79,18 @@ class PhpUnderControl_PhalApiCUrl_Test extends PHPUnit_Framework_TestCase
         $rs = $this->phalApiCUrl->get('http://demo.phalapi.net/', 1000);
     }
 
+    public function testGetRetCookie()
+    {
+        $cookies = array("a\tb\tc\td\te\tf\tg");
+        $mock = new PhalApi_CUrl_InnerMock();
+        $rs = $mock->getRetCookie($cookies);
+        $this->assertEquals(array('f' => 'g'), $rs);
+    }
+}
+
+class PhalApi_CUrl_InnerMock extends PhalApi_CUrl {
+
+    public function getRetCookie(array $cookies){
+        return parent::getRetCookie($cookies);
+    }
 }

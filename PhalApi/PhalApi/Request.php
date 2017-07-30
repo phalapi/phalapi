@@ -141,7 +141,7 @@ class PhalApi_Request {
     public function getHeader($key, $default = NULL) {
         // 延时加载，提升性能
         if ($this->headers === NULL) {
-            $this->headers  = $this->getAllHeaders();
+            $this->headers = $this->getAllHeaders();
         }
 
         return isset($this->headers[$key]) ? $this->headers[$key] : $default;
@@ -217,6 +217,9 @@ class PhalApi_Request {
         case 'COOKIE':
             return $this->cookie;
         case 'HEADER':
+            if ($this->headers === NULL) {
+                $this->headers = $this->getAllHeaders();
+            }
             return $this->headers;
         case 'SERVER':
             return $_SERVER;

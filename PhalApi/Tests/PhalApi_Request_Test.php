@@ -197,4 +197,22 @@ class PhpUnderControl_PhalApiRequest_Test extends PHPUnit_Framework_TestCase
         $requests = new PhalApi_Request(array());
         $notFoundRs = $requests->getByRule(array('name' => 'dd', 'source' => 'no_this_source'));
     }
+
+
+    public function testGetSource()
+    {
+        $requests = new PhalApi_Request_TestMock(array());
+        foreach (array('post', 'cookie', 'get', 'request', 'server', 'header') as $source) {
+            $rs = $requests->getDataBySource($source);
+
+            $this->assertTrue(is_array($rs));
+        }
+    }
 }
+
+class PhalApi_Request_TestMock extends PhalApi_Request {
+    public function &getDataBySource($source) {
+        return parent::getDataBySource($source);
+    }
+}
+
