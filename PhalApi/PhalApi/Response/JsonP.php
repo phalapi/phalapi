@@ -12,11 +12,14 @@ class PhalApi_Response_JsonP extends PhalApi_Response {
 
     protected $callback = '';
 
+    protected $options;
+
     /**
      * @param string $callback JS回调函数名
      */
-    public function __construct($callback) {
+    public function __construct($callback, $options = 0) {
         $this->callback = $this->clearXss($callback);
+        $this->options = $options;
 
         $this->addHeaders('Content-Type', 'text/javascript; charset=utf-8');
     }
@@ -31,6 +34,6 @@ class PhalApi_Response_JsonP extends PhalApi_Response {
     }
 
     protected function formatResult($result) {
-        echo $this->callback . '(' . json_encode($result) . ')';
+        echo $this->callback . '(' . json_encode($result, $this->options) . ')';
     }
 }
