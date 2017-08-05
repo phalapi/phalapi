@@ -10,12 +10,16 @@
 
 class PhalApi_Response_Json extends PhalApi_Response {
 
-    public function __construct() {
+    protected $options;
+
+    public function __construct($options = 0) {
+        $this->options = $options;
+
     	$this->addHeaders('Content-Type', 'application/json;charset=utf-8');
     }
     
     protected function formatResult($result) {
-        return json_encode($result);
+        return json_encode($result, $this->options);
     }
     
 }
