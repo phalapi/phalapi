@@ -221,4 +221,20 @@ class PhpUnderControl_PhalApiRequestFormatterFile_Test extends PHPUnit_Framework
         $rs = $this->phalApiRequestFormatterFile->parse($value, $rule);
         $this->assertNotNull($rs);
     }
+
+    /**
+     * @expectedException PhalApi_Exception_BadRequest
+     */
+    public function testUploadNothing()
+    {
+        $_FILES = array();
+        $value = array();
+
+        $rule = array(
+            'name' => 'maybeFile', 
+            'require' => true, 
+            'type' => 'file',
+        );
+        $rs = $this->phalApiRequestFormatterFile->parse($value, $rule);
+    }
 }

@@ -27,6 +27,10 @@ class PhalApi_Request_Formatter_File extends PhalApi_Request_Formatter_Base impl
             return $default;
         }
 
+        if (!isset($_FILES[$index]) || !is_array($_FILES[$index])) {
+            throw new PhalApi_Exception_BadRequest(T('miss upload file: {file}', array('file' => $index)));
+        }
+
         if (is_array($_FILES[$index]['tmp_name'])) {
             $count = sizeof($_FILES[$index]['tmp_name']);
 
