@@ -69,6 +69,9 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
                     // 展开时，将全部的接口服务，转到第一组
                     $mergeAllApiS = array('all' => array('methods' => array()));
                     foreach ($allApiS as $key => $item) {
+                        if (!isset($item['methods']) || !is_array($item['methods'])) {
+                            continue;
+                        }
                         foreach ($item['methods'] as $mKey => $mItem) {
                             $mergeAllApiS['all']['methods'][$mKey] = $mItem;
                         }
