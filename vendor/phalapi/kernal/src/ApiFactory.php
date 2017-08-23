@@ -39,10 +39,11 @@ class ApiFactory {
      * @throws BadRequestException 非法请求下返回400
      */
     static function generateService($isInitialize = TRUE) {
-        $service    = DI()->request->getService();
-        $namespace  = DI()->request->getNamespace();
-        $api        = DI()->request->getServiceApi();
-        $action     = DI()->request->getServiceAction();
+        $di         = DI();
+        $service    = $di->request->getService();
+        $namespace  = $di->request->getNamespace();
+        $api        = $di->request->getServiceApi();
+        $action     = $di->request->getServiceAction();
 
         if (empty($api) || empty($action)) {
             throw new BadRequestException(

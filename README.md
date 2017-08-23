@@ -56,4 +56,3 @@ http://localhost/path/to/phalapi/public/
 ## 发现问题，怎么办？  
 
 如发现问题，或者任何问题，欢迎提交Issue到[这里](https://github.com/phalapi/phalapi/issues)。
-

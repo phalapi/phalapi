@@ -32,6 +32,10 @@ class FileFormatter extends BaseFormatter implements Formatter {
             return $default;
         }
 
+        if (!isset($_FILES[$index]) || !is_array($_FILES[$index])) {
+            throw new BadRequestException(\PhalApi\T('miss upload file: {file}', array('file' => $index)));
+        }
+
         if (is_array($_FILES[$index]['tmp_name'])) {
             $count = sizeof($_FILES[$index]['tmp_name']);
 

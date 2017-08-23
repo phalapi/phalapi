@@ -23,6 +23,10 @@ class PhpUnderControl_PhalApiResponseJsonResponse_Test extends \PHPUnit_Framewor
         parent::setUp();
 
         $this->phalApiResponseJsonResponse = new PhalApi\Response\JsonResponse();
+
+        if (version_compare(PHP_VERSION, '5.4', '>=')) {
+            $this->phalApiResponseJsonResponse = new PhalApi\Response\JsonResponse(JSON_UNESCAPED_UNICODE);
+        }
     }
 
     protected function tearDown()
@@ -36,6 +40,7 @@ class PhpUnderControl_PhalApiResponseJsonResponse_Test extends \PHPUnit_Framewor
 
     public function testOutput()
     {
+        $this->phalApiResponseJsonResponse->setData(array('我爱中国'));
         $this->phalApiResponseJsonResponse->output();
         $this->expectOutputRegex('/200/');
     } 

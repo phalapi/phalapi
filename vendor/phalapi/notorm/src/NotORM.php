@@ -111,5 +111,12 @@ class NotORM extends NotORM_Abstract {
 		}
 		return $return;
 	}
-	
+
+    /**
+     * 增加一个setter方法，为了优化性能
+     * @author dogstar 20170805
+     */
+    function setStructure(NotORM_Structure $structure) {
+        $this->structure = $structure;
+    }
 }

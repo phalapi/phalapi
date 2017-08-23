@@ -1,29 +1,73 @@
 [
     {
-        "name": "phalapi/notorm",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
+        "name": "phalapi/task",
+        "version": "v2.0.0",
+        "version_normalized": "2.0.0.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/phalapi/notorm.git",
-            "reference": "73fe52aaf0d35288081615c7ee6fc5fb026e42ea"
+            "url": "https://github.com/phalapi/task.git",
+            "reference": "274d075ac6a578a87f2e1fcceca657d3bfa6d9e3"
         },
         "dist": {
             "type": "zip",
-            "url": "https://files.phpcomposer.com/files/phalapi/notorm/73fe52aaf0d35288081615c7ee6fc5fb026e42ea.zip",
-            "reference": "73fe52aaf0d35288081615c7ee6fc5fb026e42ea",
+            "url": "https://files.phpcomposer.com/files/phalapi/task/274d075ac6a578a87f2e1fcceca657d3bfa6d9e3.zip",
+            "reference": "274d075ac6a578a87f2e1fcceca657d3bfa6d9e3",
+            "shasum": ""
+        },
+        "require": {
+            "phalapi/kernal": "2.0.*",
+            "php": ">=5.3.3"
+        },
+        "time": "2017-07-21T14:12:08+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "PhalApi\\Task\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-3.0+"
+        ],
+        "authors": [
+            {
+                "name": "dogstar huang",
+                "email": "chanzonghuang@gmail.com",
+                "homepage": "http://my.oschina.net/dogstar",
+                "role": "Developer"
+            }
+        ],
+        "description": "PhalApi 2.x 扩展类库 - Task计划任务，以接口服务形式实现的新型计划任务。",
+        "homepage": "https://www.phalapi.net/",
+        "keywords": [
+            "phalapi",
+            "phalapi-task",
+            "task"
+        ]
+    },
+    {
+        "name": "phalapi/notorm",
+        "version": "v2.0.1",
+        "version_normalized": "2.0.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/phalapi/notorm.git",
+            "reference": "e1f984b30f6bec5a244f343db1a8fc060ae6291c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://files.phpcomposer.com/files/phalapi/notorm/e1f984b30f6bec5a244f343db1a8fc060ae6291c.zip",
+            "reference": "e1f984b30f6bec5a244f343db1a8fc060ae6291c",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.3"
         },
-        "time": "2017-07-05T00:05:28+00:00",
+        "time": "2017-08-05T09:01:43+00:00",
         "type": "library",
-        "installation-source": "dist",
+        "installation-source": "source",
         "autoload": {
-            "files": [
-                "src/NotORM.php"
-            ],
             "psr-4": {
                 "PhalApi\\NotORM\\": "src"
             }
@@ -44,29 +88,30 @@
         "homepage": "http://www.phalapi.net",
         "keywords": [
             "api",
-            "notorm"
+            "notorm",
+            "phalapi"
         ]
     },
     {
         "name": "phalapi/kernal",
-        "version": "2.0.0",
-        "version_normalized": "2.0.0.0",
+        "version": "2.0.1",
+        "version_normalized": "2.0.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/phalapi/kernal.git",
-            "reference": "586b120ff36e806e24ab4913a2e5ddedc16ae528"
+            "reference": "fe94416cddf1a30f8e2ef50b6630acab42d6dcfa"
         },
         "dist": {
             "type": "zip",
-            "url": "https://files.phpcomposer.com/files/phalapi/kernal/586b120ff36e806e24ab4913a2e5ddedc16ae528.zip",
-            "reference": "586b120ff36e806e24ab4913a2e5ddedc16ae528",
+            "url": "https://files.phpcomposer.com/files/phalapi/kernal/fe94416cddf1a30f8e2ef50b6630acab42d6dcfa.zip",
+            "reference": "fe94416cddf1a30f8e2ef50b6630acab42d6dcfa",
             "shasum": ""
         },
         "require": {
-            "phalapi/notorm": "dev-master",
+            "phalapi/notorm": "2.0.1",
             "php": ">=5.3.3"
         },
-        "time": "2017-07-17T13:37:51+00:00",
+        "time": "2017-08-05T09:33:06+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

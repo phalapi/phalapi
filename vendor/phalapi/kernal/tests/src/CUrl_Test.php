@@ -64,4 +64,37 @@ class PhpUnderControl_PhalApiCUrl_Test extends \PHPUnit_Framework_TestCase
         $this->curl->setOption(array('1' => 'a'));
     }
 
+    public function testCookie()
+    {
+        $this->curl->setCookie(array('pgv_pvi' => 9739177984, 'username' => 'dogstar'));
+        $this->assertNotNull($this->curl->getCookie());
+
+        $this->curl->withCookies();
+
+        $rs = $this->curl->get('http://demo.phalapi.net/', 1000);
+    }
+
+    public function testGetRetCookie()
+    {
+        $cookies = array("a\tb\tc\td\te\tf\tg");
+        $mock = new CUrlInnerMock();
+        $rs = $mock->getRetCookie($cookies);
+        $this->assertEquals(array('f' => 'g'), $rs);
+    }
+
+    /**
+     * @expectedException PhalApi\Exception\InternalServerErrorException
+     */
+    public function testGetFail()
+    {
+        $this->curl->get('http_wrong', 100);
+    }
 }
+
+class CUrlInnerMock extends CUrl {
+
+    public function getRetCookie(array $cookies){
+        return parent::getRetCookie($cookies);
+    }
+}
+

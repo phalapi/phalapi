@@ -113,7 +113,7 @@ class DependenceInjection implements ArrayAccess {
      * @parms mixed $value service的值，可以是具体的值或实例、类名、匿名函数、数组配置
      */ 
     public function set($key, $value) {
-        $this->resetHit($key);
+        $this->hitTimes[$key] = 0;
 
         $this->data[$key] = $value;
 
@@ -137,9 +137,13 @@ class DependenceInjection implements ArrayAccess {
             $this->data[$key] = $default;
         }
 
-        $this->recordHitTimes($key);
+        // 内联操作，减少函数调用，提升性能
+        if (!isset($this->hitTimes[$key])) {
+            $this->hitTimes[$key] = 0;
+        }
+        $this->hitTimes[$key] ++;
 
-        if ($this->isFirstHit($key)) {
+        if ($this->hitTimes[$key] == 1) {
             $this->data[$key] = $this->initService($this->data[$key]);
         }
 
@@ -205,22 +209,6 @@ class DependenceInjection implements ArrayAccess {
         }
 
         return $rs;
-    }
-
-    protected function resetHit($key) {
-        $this->hitTimes[$key] = 0;
-    }
-
-    protected function isFirstHit($key) {
-        return $this->hitTimes[$key] == 1;
-    }
-
-    protected function recordHitTimes($key) {
-        if (!isset($this->hitTimes[$key])) {
-            $this->hitTimes[$key] = 0;
-        }
-
-        $this->hitTimes[$key] ++;
     }
 }
 

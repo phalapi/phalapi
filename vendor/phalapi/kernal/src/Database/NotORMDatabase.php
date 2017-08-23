@@ -5,6 +5,7 @@ use PDO;
 use PDOException;
 use PhalApi\Database;
 use PhalApi\Exception\InternalServerErrorException;
+use PhalApi\NotORM\Lite as NotORMLite;
 
 /**
  * PhalApi\Database\NotORM 分布式的DB存储
@@ -112,9 +113,10 @@ class NotORMDatabase /** implements Database */ {
             list($tableName, $suffix) = $this->parseName($name);
             $router = $this->getDBRouter($tableName, $suffix);
 
+            $this->_notorms[$notormKey] = new NotORMLite($router['pdo']);
             $structure = new \NotORM_Structure_Convention(
                 $router['key'], '%s_id', '%s', $router['prefix']);
-            $this->_notorms[$notormKey] = new \NotORM($router['pdo'], $structure);
+            $this->_notorms[$notormKey]->setStructure($structure);
 
             // 调试模式与回调函数
             $this->_notorms[$notormKey]->debug = $this->debug;
