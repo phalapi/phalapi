@@ -49,10 +49,5 @@ class PhpUnderControl_ApiSite_Test extends \PHPUnit_Framework_TestCase
         //Step 3. 验证
         $this->assertNotEmpty($rs);
         $this->assertArrayHasKey('title', $rs);
-        $this->assertArrayHasKey('content', $rs);
-        $this->assertArrayHasKey('version', $rs);
-        $this->assertArrayHasKey('time', $rs);
-
-        $this->assertEquals('dogstar您好，欢迎使用PhalApi！', $rs['content']);
     }
 }
