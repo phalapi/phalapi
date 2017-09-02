@@ -42,6 +42,7 @@ class ApiList extends ApiOnline {
                 $ref        = new \ReflectionClass($apiClassName);
                 $title      = "//请检测接口服务注释($apiClassName)";
                 $desc       = '//请使用@desc 注释';
+                $isClassIgnore = false; // 是否屏蔽此接口类
                 $docComment = $ref->getDocComment();
                 if ($docComment !== false) {
                     $docCommentArr = explode("\n", $docComment);
@@ -52,10 +53,20 @@ class ApiList extends ApiOnline {
                         if ($pos !== false) {
                             $desc = substr($comment, $pos + 5);
                         }
+
+                        if (stripos($comment, '@ignore') !== false) {
+                            $isClassIgnore = true;
+                        }
                     }
                 }
+
+                if ($isClassIgnore) {
+                    continue;
+                }
+
                 $allApiS[$apiClassShortName]['title'] = $title;
                 $allApiS[$apiClassShortName]['desc']  = $desc;
+                $allApiS[$apiClassShortName]['methods'] = array();
 
                 $method = array_diff(get_class_methods($apiClassName), $allPhalApiApiMethods);
                 sort($method);
@@ -67,6 +78,7 @@ class ApiList extends ApiOnline {
 
                     $title      = '//请检测函数注释';
                     $desc       = '//请使用@desc 注释';
+                    $isMethodIgnore = false;
                     $docComment = $rMethod->getDocComment();
                     if ($docComment !== false) {
                         $docCommentArr = explode("\n", $docComment);
@@ -78,8 +90,17 @@ class ApiList extends ApiOnline {
                             if ($pos !== false) {
                                 $desc = substr($comment, $pos + 5);
                             }
+
+                            if (stripos($comment, '@ignore') !== false) {
+                                $isMethodIgnore = true;
+                            }
                         }
                     }
+
+                    if ($isMethodIgnore) {
+                        continue;
+                    }
+
                     $service                                           = trim($namespace, '\\') . '.' . $apiClassShortName . '.' . ucfirst($mValue);
                     $allApiS[$apiClassShortName]['methods'][$service] = array(
                         'service' => $service,
