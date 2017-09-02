@@ -126,12 +126,17 @@ class PhalApi_Model_NotORM implements PhalApi_Model {
         }
 
         foreach ($tables as $tableName => $tableConfig) {
-            if (isset($tableConfig['start']) && isset($tableConfig['end'])) {
-                for ($i = $tableConfig['start']; $i <= $tableConfig['end']; $i ++) {
+            static::$tableKeys[$tableName] = $tableConfig['key'];
+
+            // 分表的主键
+            foreach ($tableConfig['map'] as $mapItem) {
+                if (!isset($mapItem['start']) || !isset($mapItem['end'])) {
+                    continue;
+                }
+
+                for ($i = $mapItem['start']; $i <= $mapItem['end']; $i ++) {
                     static::$tableKeys[$tableName . '_' . $i] = $tableConfig['key'];
                 }
-            } else {
-                static::$tableKeys[$tableName] = $tableConfig['key'];
             }
         }
     }

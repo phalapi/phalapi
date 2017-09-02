@@ -119,7 +119,7 @@ class PhalApi_Tool {
      * 
      * @return string xml
      */
-    public function arrayToXml($arr, $root='xml', $num=0){
+    public static function arrayToXml($arr, $root='xml', $num=0){
         $xml = '';
         if(!$num){
             $num += 1;
@@ -130,7 +130,7 @@ class PhalApi_Tool {
             if(is_array($val)){
                 $xml.=self::arrayToXml($val,"$key",$num);
             } else {
-                $xml.="<".$key.">".$val."</".$key.">";
+                $xml.="<".$key."><![CDATA[".$val."]]></".$key.">";
             }
         }
         $xml .="</$root>";
@@ -143,7 +143,7 @@ class PhalApi_Tool {
      *
      * @return mixed|array
      */
-    public function xmlToArray($xml){
+    public static function xmlToArray($xml){
         //禁止引用外部xml实体
         libxml_disable_entity_loader(true);
         $xmlstring = simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA);
@@ -157,7 +157,7 @@ class PhalApi_Tool {
      *
      * @return string
      */
-    public function trimSpaceInStr($str)
+    public static function trimSpaceInStr($str)
     {
         $pat = array(" ", "　", "\t", "\n", "\r");
         $string = array("", "", "", "", "", );

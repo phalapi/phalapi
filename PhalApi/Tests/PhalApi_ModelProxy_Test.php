@@ -17,15 +17,20 @@ class PhpUnderControl_PhalApiModelProxy_Test extends PHPUnit_Framework_TestCase
 {
     public $phalApiModelProxy;
 
+    protected $diCache;
+
     protected function setUp()
     {
         parent::setUp();
 
         $this->phalApiModelProxy = new PhalApi_ModelProxy_Mock();
+
+        $this->diCache = DI()->cache;
     }
 
     protected function tearDown()
     {
+        DI()->cache = $this->diCache;
     }
 
 
@@ -49,6 +54,28 @@ class PhpUnderControl_PhalApiModelProxy_Test extends PHPUnit_Framework_TestCase
 
         $rs = $this->phalApiModelProxy->getData($query);
     }
+
+    public function testGetDataWithCache()
+    {
+        $query = new PhalApi_ModelQuery();
+        $query->id = 1;
+        $query->readCache = true;
+        $query->writeCache = true;
+
+        $rs = $this->phalApiModelProxy->getData($query);
+        $this->assertEquals('heavy data', $rs);
+
+        $rs = $this->phalApiModelProxy->getData($query);
+        $this->assertEquals('heavy data', $rs);
+    }
+
+    public function testNewWithNull()
+    {
+        DI()->cache = NULL;
+        $proxy = new PhalApi_ModelProxy_Mock(NULL);
+        $proxy->getData();
+    }
+
 }
 
 class PhalApi_ModelProxy_Mock extends PhalApi_ModelProxy {

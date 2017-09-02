@@ -35,7 +35,7 @@ class PhalApi_Helper_TestRunner {
         parse_str($url, $urlParams);
         $params = array_merge($urlParams, $params);
 
-        if (!isset($params['service'])) {
+        if (!isset($params['service']) && !isset($params['s'])) {
             throw new PhalApi_Exception(T('miss service in url'));
         }
         DI()->request = new PhalApi_Request($params);

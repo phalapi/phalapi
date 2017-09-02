@@ -204,10 +204,11 @@ class PhalApi_Api {
      * @return boolean
      */
     protected function isServiceWhitelist() {
-        $api = DI()->request->getServiceApi();
-        $action = DI()->request->getServiceAction();
+        $di = DI();
+        $api = $di->request->getServiceApi();
+        $action = $di->request->getServiceAction();
 
-        $serviceWhitelist = DI()->config->get('app.service_whitelist', array());
+        $serviceWhitelist = $di->config->get('app.service_whitelist', array());
         foreach ($serviceWhitelist as $item) {
             $cfgArr = explode('.', $item);
             if (count($cfgArr) < 2) {

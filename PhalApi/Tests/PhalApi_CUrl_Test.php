@@ -1,4 +1,3 @@
-#!/usr/bin/env php
 <?php
 /**
  * PhpUnderControl_PhalApiCUrl_Test
@@ -60,4 +59,46 @@ class PhpUnderControl_PhalApiCUrl_Test extends PHPUnit_Framework_TestCase
 
     }
 
+    public function testSetHeader()
+    {
+        $this->phalApiCUrl->setHeader(array('Content-Type' => 'UTF-8'));
+    }
+
+    public function testSetOption()
+    {
+        $this->phalApiCUrl->setOption(array(1 => 300));
+    }
+
+    public function testCookie()
+    {
+        $this->phalApiCUrl->setCookie(array('pgv_pvi' => 9739177984, 'username' => 'dogstar'));
+        $this->assertNotNull($this->phalApiCUrl->getCookie());
+
+        $this->phalApiCUrl->withCookies();
+
+        $rs = $this->phalApiCUrl->get('http://demo.phalapi.net/', 1000);
+    }
+
+    public function testGetRetCookie()
+    {
+        $cookies = array("a\tb\tc\td\te\tf\tg");
+        $mock = new PhalApi_CUrl_InnerMock();
+        $rs = $mock->getRetCookie($cookies);
+        $this->assertEquals(array('f' => 'g'), $rs);
+    }
+
+    /**
+     * @expectedException PhalApi_Exception_InternalServerError
+     */
+    public function testGetFail()
+    {
+        $this->phalApiCUrl->get('http_wrong', 100);
+    }
+}
+
+class PhalApi_CUrl_InnerMock extends PhalApi_CUrl {
+
+    public function getRetCookie(array $cookies){
+        return parent::getRetCookie($cookies);
+    }
 }

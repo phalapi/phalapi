@@ -71,6 +71,17 @@ class PhpUnderControl_PhalApiTool_Test extends PHPUnit_Framework_TestCase
         PhalApi_Tool::deleteDir("./test");
     }
 
+    /**
+     * @expectedException PhalApi_Exception_BadRequest
+     */
+    public function testCreateDirFail()
+    {
+        error_reporting(E_ERROR);
+        PhalApi_Tool::createDir('/phalapi');
+
+        error_reporting(E_ALL);
+    }
+
     public function testDeleteDir()
     {
         mkdir("./test");
@@ -92,6 +103,29 @@ class PhpUnderControl_PhalApiTool_Test extends PHPUnit_Framework_TestCase
         $this->assertEquals("test", PhalApi_Tool::arrIndex($arr,"test"));
         $this->assertEquals("default", PhalApi_Tool::arrIndex($arr,"test2","default"));
         $this->assertEquals('', PhalApi_Tool::arrIndex($arr,"test3"));
+    }
+
+    public function testArrayToXml()
+    {
+        $arr = array('name' => 'phalapi');
+
+        $rs = PhalApi_Tool::arrayToXml($arr);
+
+        $this->assertContains('phalapi', $rs);
+    }
+
+    public function testXmlToArray()
+    {
+        $arr = array('name' => 'phalapi');
+
+        $rs = PhalApi_Tool::xmlToArray(PhalApi_Tool::arrayToXml($arr));
+
+        $this->assertEquals($arr, $rs);
+    }
+
+    public function testTrimSpaceInStr()
+    {
+        $this->assertEquals('abc', PhalApi_Tool::trimSpaceInStr('a b c'));
     }
 
 }

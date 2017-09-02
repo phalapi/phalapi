@@ -451,6 +451,20 @@ class PhpUnderControl_PhalApiRequestVar_Test extends PHPUnit_Framework_TestCase
             array('testKey' => 1)
         );
     }
+
+    /**
+     * @expectedException PhalApi_Exception_InternalServerError
+     */
+    public function testWrongFormat()
+    {
+        $rs = PhalApi_Request_Var::format(
+            'testKey',
+            array('name' => 'testKey', 'type' => 'wrong_type'),
+            array('testKey' => 1)
+        );
+
+    }
+
 }
 
 class PhalApi_Request_Var_MyCallback {

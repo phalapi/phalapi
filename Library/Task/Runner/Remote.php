@@ -44,8 +44,8 @@ class Task_Runner_Remote extends Task_Runner {
         $rs = $this->contector->request($service, $params, $this->timeoutMS);
 
         if ($this->contector->getRet() == 404) {
-            throw PhalApi_Exception_InternalServerError('task request api time out',
-                array('url' => $this->contector->getUrl()));
+            throw new PhalApi_Exception_InternalServerError(T('task request api time out',
+                array('url' => $this->contector->getUrl())));
         }
 
         $isOk = $this->contector->getRet() == 200 ? TRUE : FALSE;

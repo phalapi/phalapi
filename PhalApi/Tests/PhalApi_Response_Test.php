@@ -100,4 +100,8 @@ class PhpUnderControl_PhalApiResponse_Test extends PHPUnit_Framework_TestCase
         $this->expectOutputRegex('/"ret":404/');
     }
 
+    public function testAdustHttpStatus()
+    {
+        $this->phalApiResponse->adjustHttpStatus();
+    }
 }

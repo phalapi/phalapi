@@ -34,9 +34,10 @@ class PhalApi_ApiFactory {
      * @throws PhalApi_Exception_BadRequest 非法请求下返回400
      */
     static function generateService($isInitialize = TRUE) {
-        $service    = DI()->request->getService();
-        $api        = DI()->request->getServiceApi();
-        $action     = DI()->request->getServiceAction();
+        $di = DI();
+        $service    = $di->request->getService();
+        $api        = $di->request->getServiceApi();
+        $action     = $di->request->getServiceAction();
 
         if (empty($api) || empty($action)) {
             throw new PhalApi_Exception_BadRequest(

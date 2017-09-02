@@ -33,6 +33,7 @@ class PhpUnderControl_PhalApi_Test extends PHPUnit_Framework_TestCase
     protected function tearDown()
     {
         DI()->response = 'PhalApi_Response_Json';
+        SL('zh_cn');
     }
 
     /**
@@ -40,6 +41,8 @@ class PhpUnderControl_PhalApi_Test extends PHPUnit_Framework_TestCase
      */ 
     public function testResponseWithJsonMock()
     {
+        SL('en');
+
         DI()->response = 'PhalApi_Response_Json_Mock';
 
         $rs = $this->phalApi->response();

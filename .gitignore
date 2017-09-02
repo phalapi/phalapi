@@ -23,9 +23,13 @@
 
 # 离线文档
 Public/*/doc/
+public/docs
 
 # 上传的文件
 Public/upload
+public/uploads
 
 vendor
 composer.lock
+
+gitc
