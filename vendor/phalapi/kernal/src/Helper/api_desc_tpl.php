@@ -12,6 +12,7 @@ echo <<<EOT
     <link rel="stylesheet" href="https://staticfile.qnssl.com/semantic-ui/2.1.6/components/message.min.css">
     <link rel="stylesheet" href="https://staticfile.qnssl.com/semantic-ui/2.1.6/components/label.min.css">
     <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/jquery.cookie/1.4.1/jquery.cookie.min.js"></script>
 </head>
 
 <body>
@@ -223,6 +224,8 @@ echo <<<EOT
                 if ($.trim(e.value)){
                     data[e.name] = e.value;
                 }
+
+                $.cookie(e.name, e.value, {expires: 30});
             });
             return data;
         }
@@ -248,8 +251,20 @@ echo <<<EOT
                 })
             })
 
+            fillHistoryData();
+
             checkLastestVersion();
         })
+
+        // 填充历史数据
+        function fillHistoryData() {
+            $("td input").each(function(index,e) {
+                var cookie_value = $.cookie(e.name);
+                if (e.name != "service" && cookie_value != "" && cookie_value !== undefined) {
+                    e.value = cookie_value;
+                }
+            });
+        }
 
         // 检测最新版本
         function checkLastestVersion() {

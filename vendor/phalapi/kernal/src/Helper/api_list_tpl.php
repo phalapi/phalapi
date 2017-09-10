@@ -31,31 +31,42 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
             if ($theme == 'fold') {
             ?>
             <div class="four wide column">
-                <div class="ui vertical pointing menu">
-                    <?php
+                <div class="ui vertical accordion menu">
+                <?php 
+                    // 总接口数量
                     $methodTotal = 0;
-                    foreach ($allApiS as $item) {
-                        $methodTotal += count($item['methods']);
+                    foreach ($allApiS as $namespace => $subAllApiS) { 
+                        foreach ($subAllApiS as $item) {
+                            $methodTotal += count($item['methods']);
+                        }
                     }
-                    ?>
-                    <div class="item"><h4>接口服务列表&nbsp;(<?php echo $methodTotal; ?> )</h4></div>
-                    <?php
+                ?>
+                    <div class="item"><h4>接口服务列表&nbsp;(<?php echo $methodTotal; ?>)</h4></div>
+
+                <?php 
                     $num = 0;
-                    foreach ($allApiS as $key => $item) {
-                        ?>
-                        <a class="item <?php if ($num == 0) {
-                            echo 'active';
-                        } ?>" data-tab="<?php echo $key; ?>"><?php echo $item['title']; ?> </a>
-                        <?php
-                        $num++;
-                    }
+                    foreach ($allApiS as $namespace => $subAllApiS) {
+                        echo '<div class="item">';
+                        $subMethodTotal = 0;
+                        foreach ($subAllApiS as $item) {
+                            $subMethodTotal += count($item['methods']);
+                        }
+                        echo sprintf('<h4 class="title active" style="font-size:16px;margin:0px;"><i class="dropdown icon"></i>%s (%d)</h4>', $namespace, $subMethodTotal);
+                        echo sprintf('<div class="content %s" style="margin-left:-16px;margin-right:-16px;margin-bottom:-13px;">', $num == 0 ? 'active' : '');
+                        // 每个命名空间下的接口类
+                        foreach ($subAllApiS as $key => $item) {
+                            echo sprintf('<a class="item %s" data-tab="%s">%s</a>', $num == 0 ? 'active' : '', $key, $item['title']);
+                            $num++;
+                        }
+                        echo '</div></div><!-- END OF NAMESPACE -->';
+                    } // 每个命名空间下的接口
 
                     ?>
-                    <?php
-                    if ($num > 12) {
-                        echo '<a class="item" href="#menu_top">返回顶部↑↑↑</a>';
-                    }
-                    ?>
+                    <div class="item">
+                        <div class="content" style="margin:-13px -16px;">
+                            <a class="item" href="#menu_top">返回顶部↑↑↑</a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <?php } ?> <!-- 折叠时的菜单 -->
@@ -68,18 +79,24 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
             <?php 
                     // 展开时，将全部的接口服务，转到第一组
                     $mergeAllApiS = array('all' => array('methods' => array()));
-                    foreach ($allApiS as $key => $item) {
-                        foreach ($item['methods'] as $mKey => $mItem) {
-                            $mergeAllApiS['all']['methods'][$mKey] = $mItem;
+                    foreach ($allApiS as $namespace => $subAllApiS) {
+                        foreach ($subAllApiS as $key => $item) {
+                            if (!isset($item['methods']) || !is_array($item['methods'])) {
+                                continue;
+                            }
+                            foreach ($item['methods'] as $mKey => $mItem) {
+                                $mergeAllApiS['all']['methods'][$mKey] = $mItem;
+                            }
                         }
                     }
-                    $allApiS = $mergeAllApiS;
+                    $allApiS = array('ALL' => $mergeAllApiS);
             } 
             ?>
                 <?php
                 $uri  = !$env ? substr($_SERVER['REQUEST_URI'], 0, strpos($_SERVER['REQUEST_URI'], '?')) : '';
                 $num2 = 0;
-                foreach ($allApiS as $key => $item) {
+                foreach ($allApiS as $namespace => $subAllApiS) {
+                foreach ($subAllApiS as $key => $item) {
                     ?>
                     <div class="ui  tab <?php if ($num2 == 0) { ?>active<?php } ?>" data-tab="<?php echo $key; ?>">
                         <table
@@ -131,7 +148,8 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
                     </div>
                     <?php
                     $num2++;
-                }
+                } // 单个命名空间的循环
+                } // 遍历全部命名空间
                 ?>
 
 
@@ -145,16 +163,18 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
     </div>
 </div>
 <script type="text/javascript">
-    $('.pointing.menu .item').tab();
+    $('.accordion.menu a.item').tab({'deactivate':'all'});
     $('.ui.sticky').sticky();
 	//当点击跳转链接后，回到页面顶部位置
-    $(".pointing.menu .item").click(function() {
+    $(".accordion.menu a.item").click(function() {
         $('body,html').animate({
                 scrollTop: 0
             },
             500);
         return false;
     });
+
+    $('.ui.accordion').accordion({'exclusive':false});
 
     checkLastestVersion();
 

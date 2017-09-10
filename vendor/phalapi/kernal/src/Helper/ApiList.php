@@ -25,6 +25,8 @@ class ApiList extends ApiOnline {
                 continue;
             }
 
+            $allApiS[$namespace] = array();
+
             $files = listDir(API_ROOT . D_S . $srcPath . D_S . 'Api');
             $filePrefix = rtrim($srcPath, D_S) . D_S .'Api' . D_S;
 
@@ -64,9 +66,9 @@ class ApiList extends ApiOnline {
                     continue;
                 }
 
-                $allApiS[$apiClassShortName]['title'] = $title;
-                $allApiS[$apiClassShortName]['desc']  = $desc;
-                $allApiS[$apiClassShortName]['methods'] = array();
+                $allApiS[$namespace][$apiClassShortName]['title'] = $title;
+                $allApiS[$namespace][$apiClassShortName]['desc']  = $desc;
+                $allApiS[$namespace][$apiClassShortName]['methods'] = array();
 
                 $method = array_diff(get_class_methods($apiClassName), $allPhalApiApiMethods);
                 sort($method);
@@ -102,7 +104,7 @@ class ApiList extends ApiOnline {
                     }
 
                     $service                                           = trim($namespace, '\\') . '.' . $apiClassShortName . '.' . ucfirst($mValue);
-                    $allApiS[$apiClassShortName]['methods'][$service] = array(
+                    $allApiS[$namespace][$apiClassShortName]['methods'][$service] = array(
                         'service' => $service,
                         'title'   => $title,
                         'desc'    => $desc,
@@ -131,8 +133,14 @@ class ApiList extends ApiOnline {
         }
 
         //echo json_encode($allApiS) ;
-        //字典排列
-        ksort($allApiS);
+        // 字典排列与过滤
+        foreach ($allApiS as $namespace => &$subAllApiS) {
+            ksort($subAllApiS);
+            if (empty($subAllApiS)) {
+                unset($allApiS[$namespace]);
+            }
+        }
+        unset($subAllApiS);
 
         $projectName = $this->projectName;
 
