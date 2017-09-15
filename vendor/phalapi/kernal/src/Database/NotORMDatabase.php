@@ -272,6 +272,15 @@ class NotORMDatabase /** implements Database */ {
         );
         $charset = isset($dbCfg['charset']) ? $dbCfg['charset'] : 'UTF8';
 
+        // 支持sql server
+        if (!empty($dbCfg['type']) && strtolower($dbCfg['type']) == 'sqlserver') {
+            $dsn = sprintf('sqlsrv:Server=%s,%d;Database=%s',
+                isset($dbCfg['host']) ? $dbCfg['host'] : 'localhost', 
+                isset($dbCfg['port']) ? $dbCfg['port'] : 1433, 
+                $dbCfg['name']
+            );
+        }
+
         $pdo = new PDO(
             $dsn,
             $dbCfg['user'],
