@@ -219,13 +219,24 @@ echo <<<EOT
     </div>
     <script type="text/javascript">
         function getData() {
-            var data={};
+            var data = new FormData();
             $("td input").each(function(index,e) {
                 if ($.trim(e.value)){
-                    data[e.name] = e.value;
-                }
+                    if (e.type != 'file'){
+                        data.append(e.name, e.value);
 
-                $.cookie(e.name, e.value, {expires: 30});
+                        $.cookie(e.name, e.value, {expires: 30});
+                    } else{
+                        var files = e.files;
+                        if (files.length == 1){
+                            data.append(e.name, files[0]);
+                        } else{
+                            for (var i = 0; i < files.length; i++) {
+                                data.append(e.name + '[]', files[i]);
+                            }
+                        }
+                    }
+                }
             });
             return data;
         }
@@ -237,6 +248,9 @@ echo <<<EOT
                     url:$("input[name=request_url]").val(),
                     type:$("select").val(),
                     data:getData(),
+                    cache: false,
+                    processData: false,
+                    contentType: false,
                     success:function(res,status,xhr){
                         console.log(xhr);
                         var statu = xhr.status + ' ' + xhr.statusText;
