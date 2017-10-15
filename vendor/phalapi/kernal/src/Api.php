@@ -40,6 +40,11 @@ use PhalApi\Exception\InternalServerErrorException;
 class Api {
 
     /**
+     * @var boolean $__apiIsServiceWhitelist 是否为白名单服务
+     */
+    private $__apiIsServiceWhitelist;
+
+    /**
      * 设置规则解析后的接口参数
      * @param string $name 接口参数名字
      * @param mixed $value 接口参数解析后的值
@@ -132,6 +137,13 @@ class Api {
 
         $apiCommonRules = DI()->config->get('app.apiCommonRules', array());
         if (!empty($apiCommonRules) && is_array($apiCommonRules)) {
+            // fixed issue #22
+            if ($this->isServiceWhitelist()) {
+                foreach ($apiCommonRules as &$ruleRef) {
+                    $ruleRef['require'] = false;
+                }
+            }
+
             $rules = array_merge($apiCommonRules, $rules);
         }
 
@@ -208,24 +220,37 @@ class Api {
      * @return boolean
      */
     protected function isServiceWhitelist() {
+        // 缓存返回，避免重复计算
+        if ($this->__apiIsServiceWhitelist !== NULL) {
+            return $this->__apiIsServiceWhitelist;
+        }
+
+        $this->__apiIsServiceWhitelist = FALSE;
+
         $di = DI();
         $api = $di->request->getServiceApi();
         $action = $di->request->getServiceAction();
+        $namespace = $di->request->getNamespace();
 
-        $serviceWhitelist = $di->config->get('app.service_whitelist', array());
+        // 优先命名空间的单独白名单配置，再到公共白名单配置
+        $serviceWhitelist = $di->config->get('app.service_whitelist.' . $namespace);
+        $serviceWhitelist = $serviceWhitelist !== NULL 
+            ? $serviceWhitelist : $di->config->get('app.service_whitelist', array());
+
         foreach ($serviceWhitelist as $item) {
-            $cfgArr = explode('.', $item);
+            $cfgArr = is_string($item) ? explode('.', $item) : array();
             if (count($cfgArr) < 2) {
                 continue;
             }
 
             // 短路返回
             if ($this->equalOrIngore($api, $cfgArr[0]) && $this->equalOrIngore($action, $cfgArr[1])) {
-                return TRUE;
+                $this->__apiIsServiceWhitelist = TRUE;
+                break;
             }
         }
 
-        return FALSE;
+        return $this->__apiIsServiceWhitelist;
     }
 
     /**
@@ -235,7 +260,7 @@ class Api {
      * @param string $cfg 规则配置，*号表示通配
      * @return boolean
      */
-    protected function equalOrIngore($str, $cfg) {
+    private function equalOrIngore($str, $cfg) {
         return strcasecmp($str, $cfg) == 0 || $cfg == '*';
     }
 }

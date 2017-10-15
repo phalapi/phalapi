@@ -11,6 +11,8 @@ echo <<<EOT
     <link rel="stylesheet" href="https://staticfile.qnssl.com/semantic-ui/2.1.6/components/container.min.css">
     <link rel="stylesheet" href="https://staticfile.qnssl.com/semantic-ui/2.1.6/components/message.min.css">
     <link rel="stylesheet" href="https://staticfile.qnssl.com/semantic-ui/2.1.6/components/label.min.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
     <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://apps.bdimg.com/libs/jquery.cookie/1.4.1/jquery.cookie.min.js"></script>
 </head>
@@ -170,7 +172,7 @@ foreach ($rules as $key => $rule){
     $name = $rule['name'];
     $require = isset($rule['require']) && $rule['require'] ? '<font color="red">必须</font>' : '可选';
     $default = isset($rule['default']) ? $rule['default'] : '';
-    $desc = isset($rule['desc']) ? trim($rule['desc']) : '';
+    $desc = isset($rule['desc']) ? htmlspecialchars(trim($rule['desc'])) : '';
     $inputType = (isset($rule['type']) && $rule['type'] == 'file') ? 'file' : 'text';
     echo <<<EOT
         <tr>
