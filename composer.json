@@ -16,8 +16,8 @@
     ],
     "require": {
         "php": ">=5.3.3",
-        "phalapi/kernal": "2.0.*",
-        "phalapi/task": "2.0.*"
+        "phalapi/kernal": "2.1.*",
+        "phalapi/task": "dev-master"
     },
     "autoload": {
         "files": [
