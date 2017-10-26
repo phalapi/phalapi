@@ -1,6 +1,6 @@
 {
   "name": "phalapi/kernal",
-  "description": "PhalApi 2.0 框架核心部分。",
+  "description": "PhalApi 2.x 框架核心部分。",
   "keywords": [
     "api", "phalapi", "framework"
   ],

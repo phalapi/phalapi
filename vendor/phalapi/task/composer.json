@@ -17,8 +17,7 @@
         }
     ],
     "require": {
-        "php": ">=5.3.3",
-        "phalapi/kernal": "2.0.*"
+        "php": ">=5.3.3"
     },
     "autoload": {
         "psr-4": {
