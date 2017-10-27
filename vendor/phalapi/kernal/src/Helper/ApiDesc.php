@@ -17,6 +17,8 @@ use PhalApi\Exception;
 class ApiDesc extends ApiOnline {
 
     public function render() {
+        parent::render();
+
         $service    = \PhalApi\DI()->request->getService();
         $namespace  = \PhalApi\DI()->request->getNamespace();
         $api        = \PhalApi\DI()->request->getServiceApi();
