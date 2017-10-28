@@ -46,62 +46,6 @@
         ]
     },
     {
-        "name": "phalapi/kernal",
-        "version": "2.1.0",
-        "version_normalized": "2.1.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/phalapi/kernal.git",
-            "reference": "004c4a9a1e141a2c81b0f7bb14d4f4b6dcb4d389"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://files.phpcomposer.com/files/phalapi/kernal/004c4a9a1e141a2c81b0f7bb14d4f4b6dcb4d389.zip",
-            "reference": "004c4a9a1e141a2c81b0f7bb14d4f4b6dcb4d389",
-            "shasum": ""
-        },
-        "require": {
-            "phalapi/notorm": "2.0.1",
-            "php": ">=5.3.3"
-        },
-        "time": "2017-10-22T02:21:58+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "files": [
-                "src/bootstrap.php",
-                "src/functions.php"
-            ],
-            "psr-4": {
-                "PhalApi\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "GPL-3.0+"
-        ],
-        "authors": [
-            {
-                "name": "Dogstar Huang",
-                "email": "chanzonghuang@gmail.com",
-                "homepage": "http://my.oschina.net/dogstar",
-                "role": "Developer"
-            },
-            {
-                "name": "kwan",
-                "email": "303198069@qq.com",
-                "role": "Developer"
-            }
-        ],
-        "description": "PhalApi 2.x 框架核心部分。",
-        "homepage": "https://www.phalapi.net/",
-        "keywords": [
-            "api",
-            "framework",
-            "phalapi"
-        ]
-    },
-    {
         "name": "phalapi/task",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -145,6 +89,62 @@
             "phalapi",
             "phalapi-task",
             "task"
+        ]
+    },
+    {
+        "name": "phalapi/kernal",
+        "version": "2.1.1",
+        "version_normalized": "2.1.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/phalapi/kernal.git",
+            "reference": "a05a43e0f9efbd175cb6afb18f14d853679a84fd"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://files.phpcomposer.com/files/phalapi/kernal/a05a43e0f9efbd175cb6afb18f14d853679a84fd.zip",
+            "reference": "a05a43e0f9efbd175cb6afb18f14d853679a84fd",
+            "shasum": ""
+        },
+        "require": {
+            "phalapi/notorm": "2.0.1",
+            "php": ">=5.3.3"
+        },
+        "time": "2017-10-27T13:57:54+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "src/bootstrap.php",
+                "src/functions.php"
+            ],
+            "psr-4": {
+                "PhalApi\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-3.0+"
+        ],
+        "authors": [
+            {
+                "name": "Dogstar Huang",
+                "email": "chanzonghuang@gmail.com",
+                "homepage": "http://my.oschina.net/dogstar",
+                "role": "Developer"
+            },
+            {
+                "name": "kwan",
+                "email": "303198069@qq.com",
+                "role": "Developer"
+            }
+        ],
+        "description": "PhalApi 2.x 框架核心部分。",
+        "homepage": "https://www.phalapi.net/",
+        "keywords": [
+            "api",
+            "framework",
+            "phalapi"
         ]
     }
 ]
