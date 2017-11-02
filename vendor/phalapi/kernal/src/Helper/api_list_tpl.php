@@ -118,9 +118,15 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
                             foreach ($item['methods'] as $mKey => $mItem) {
                                 if ($env){
                                     ob_start ();
-                                    $_REQUEST['service'] = $mItem['service'];
-                                    $_GET['detail'] = 1;
-                                    include($webRoot . D_S . 'docs.php');
+                                    // $_REQUEST['service'] = $mItem['service'];
+                                    // $_GET['detail'] = 1;
+                                    // include($webRoot . D_S . 'docs.php');
+
+                                    // 换一种更优雅的方式
+                                    \PhalApi\DI()->request = new \PhalApi\Request(array('service' => $mItem['service']));
+                                    $apiDesc = new \PhalApi\Helper\ApiDesc($projectName);
+                                    $apiDesc->render();
+
                                     $string = ob_get_clean ();
                                     \PhalApi\Helper\saveHtml ($webRoot, $mItem['service'], $string);
                                     $link = $mItem['service'] . '.html';
