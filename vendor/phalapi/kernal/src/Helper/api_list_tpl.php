@@ -57,7 +57,7 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
                         echo sprintf('<div class="content %s" style="margin-left:-16px;margin-right:-16px;margin-bottom:-13px;">', $num == 0 ? 'active' : '');
                         // 每个命名空间下的接口类
                         foreach ($subAllApiS as $key => $item) {
-                            echo sprintf('<a class="item %s" data-tab="%s">%s</a>', $num == 0 ? 'active' : '', $key, $item['title']);
+                            echo sprintf('<a class="item %s" data-tab="%s">%s</a>', $num == 0 ? 'active' : '', str_replace('\\', '_', $namespace) . $key, $item['title']);
                             $num++;
                         }
                         echo '</div></div><!-- END OF NAMESPACE -->';
@@ -100,7 +100,7 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
                 foreach ($allApiS as $namespace => $subAllApiS) {
                 foreach ($subAllApiS as $key => $item) {
                     ?>
-                    <div class="ui  tab <?php if ($num2 == 0) { ?>active<?php } ?>" data-tab="<?php echo $key; ?>">
+                    <div class="ui  tab <?php if ($num2 == 0) { ?>active<?php } ?>" data-tab="<?php echo str_replace('\\', '_', $namespace) . $key; ?>">
                         <table
                             class="ui red celled striped table <?php echo $table_color_arr[$num2 % count($table_color_arr)]; ?> celled striped table">
                             <thead>
