@@ -5,10 +5,19 @@ use PhalApi\Helper\ApiOnline;
 
 defined('D_S') || define('D_S', DIRECTORY_SEPARATOR);
 
+/**
+ * ApiList - 在线接口列表文档 - 辅助类
+ *
+ * @package     PhalApi\Helper
+ * @license     http://www.phalapi.net/license GPL 协议
+ * @link        http://www.phalapi.net/
+ * @author      dogstar <chanzonghuang@gmail.com> 2017-11-22
+ */
+
 class ApiList extends ApiOnline {
 
-    public function render() {
-        parent::render();
+    public function render($tplPath = NULL) {
+        parent::render($tplPath);
 
         $composerJson = file_get_contents(API_ROOT . D_S . 'composer.json');
         $composerArr = json_decode($composerJson, TRUE);
@@ -146,7 +155,8 @@ class ApiList extends ApiOnline {
 
         $projectName = $this->projectName;
 
-        include dirname(__FILE__) . '/api_list_tpl.php';
+        $tplPath = !empty($tplPath) ? $tplPath : dirname(__FILE__) . '/api_list_tpl.php';
+        include $tplPath;
     }
 }
 

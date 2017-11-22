@@ -4,7 +4,7 @@ namespace App\Examples\Api;
 use PhalApi\Api;
 
 /**
- * 生成二维码 (免签名)
+ * 生成二维码
  */
 class QrCode extends Api {
 
