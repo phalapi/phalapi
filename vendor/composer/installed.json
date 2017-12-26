@@ -92,25 +92,69 @@
         ]
     },
     {
-        "name": "phalapi/kernal",
-        "version": "2.1.2",
-        "version_normalized": "2.1.2.0",
+        "name": "phalapi/qrcode",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
-            "url": "https://github.com/phalapi/kernal.git",
-            "reference": "d54d969dae9b91d15a87bf899c1d6b3d1622afc1"
+            "url": "https://github.com/phalapi/qrcode.git",
+            "reference": "f8d0f68cdbe87811beed54fb5041e7ab5bb756c0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://files.phpcomposer.com/files/phalapi/kernal/d54d969dae9b91d15a87bf899c1d6b3d1622afc1.zip",
-            "reference": "d54d969dae9b91d15a87bf899c1d6b3d1622afc1",
+            "url": "https://files.phpcomposer.com/files/phalapi/qrcode/f8d0f68cdbe87811beed54fb5041e7ab5bb756c0.zip",
+            "reference": "f8d0f68cdbe87811beed54fb5041e7ab5bb756c0",
+            "shasum": ""
+        },
+        "time": "2017-11-21T15:02:13+00:00",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "PhalApi\\QrCode\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-3.0+"
+        ],
+        "authors": [
+            {
+                "name": "dogstar huang",
+                "email": "chanzonghuang@gmail.com",
+                "homepage": "http://my.oschina.net/dogstar",
+                "role": "Developer"
+            }
+        ],
+        "description": "PhalApi 2.x 扩展类库：基于QRCode实现的二维码扩展",
+        "homepage": "https://www.phalapi.net/",
+        "keywords": [
+            "phalapi",
+            "phalapi-qrcode",
+            "qrcode",
+            "二维码"
+        ]
+    },
+    {
+        "name": "phalapi/kernal",
+        "version": "2.2.0",
+        "version_normalized": "2.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/phalapi/kernal.git",
+            "reference": "908ceaf63311ab5c0337d9d4d6ba303fc970196a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://files.phpcomposer.com/files/phalapi/kernal/908ceaf63311ab5c0337d9d4d6ba303fc970196a.zip",
+            "reference": "908ceaf63311ab5c0337d9d4d6ba303fc970196a",
             "shasum": ""
         },
         "require": {
             "phalapi/notorm": "2.0.1",
             "php": ">=5.3.3"
         },
-        "time": "2017-11-02T15:18:17+00:00",
+        "time": "2017-12-25T13:50:27+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

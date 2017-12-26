@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'PhalApi\\Task\\' => array($vendorDir . '/phalapi/task/src'),
+    'PhalApi\\QrCode\\' => array($vendorDir . '/phalapi/qrcode/src'),
     'PhalApi\\NotORM\\' => array($vendorDir . '/phalapi/notorm/src'),
     'PhalApi\\' => array($vendorDir . '/phalapi/kernal/src'),
     'App\\' => array($baseDir . '/src/app'),
