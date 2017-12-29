@@ -44,3 +44,6 @@ $di->notorm = new NotORMDatabase($di->config->get('dbs'), $di->debug);
 //     $di->response = new \PhalApi\Response\JsonpResponse($_GET['callback']);
 // }
 
+$di->qrcode = function() {
+    return new \PhalApi\QrCode\Lite();
+};

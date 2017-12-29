@@ -1,5 +1,5 @@
 <?php
-namespace App\Examples\Api;
+namespace App\Api\Examples;
 
 use PhalApi\Api;
 
