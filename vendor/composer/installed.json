@@ -92,50 +92,6 @@
         ]
     },
     {
-        "name": "phalapi/qrcode",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/phalapi/qrcode.git",
-            "reference": "f8d0f68cdbe87811beed54fb5041e7ab5bb756c0"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://files.phpcomposer.com/files/phalapi/qrcode/f8d0f68cdbe87811beed54fb5041e7ab5bb756c0.zip",
-            "reference": "f8d0f68cdbe87811beed54fb5041e7ab5bb756c0",
-            "shasum": ""
-        },
-        "time": "2017-11-21T15:02:13+00:00",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-4": {
-                "PhalApi\\QrCode\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "GPL-3.0+"
-        ],
-        "authors": [
-            {
-                "name": "dogstar huang",
-                "email": "chanzonghuang@gmail.com",
-                "homepage": "http://my.oschina.net/dogstar",
-                "role": "Developer"
-            }
-        ],
-        "description": "PhalApi 2.x 扩展类库：基于QRCode实现的二维码扩展",
-        "homepage": "https://www.phalapi.net/",
-        "keywords": [
-            "phalapi",
-            "phalapi-qrcode",
-            "qrcode",
-            "二维码"
-        ]
-    },
-    {
         "name": "phalapi/kernal",
         "version": "2.2.0",
         "version_normalized": "2.2.0.0",
@@ -189,6 +145,50 @@
             "api",
             "framework",
             "phalapi"
+        ]
+    },
+    {
+        "name": "phalapi/qrcode",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/phalapi/qrcode.git",
+            "reference": "cbb3c5f3f95a7902b0a72786a77495ada0c006b7"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://files.phpcomposer.com/files/phalapi/qrcode/cbb3c5f3f95a7902b0a72786a77495ada0c006b7.zip",
+            "reference": "cbb3c5f3f95a7902b0a72786a77495ada0c006b7",
+            "shasum": ""
+        },
+        "time": "2017-12-29T12:03:03+00:00",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "PhalApi\\QrCode\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-3.0+"
+        ],
+        "authors": [
+            {
+                "name": "dogstar huang",
+                "email": "chanzonghuang@gmail.com",
+                "homepage": "http://my.oschina.net/dogstar",
+                "role": "Developer"
+            }
+        ],
+        "description": "PhalApi 2.x 扩展类库：基于QRCode实现的二维码扩展",
+        "homepage": "https://www.phalapi.net/",
+        "keywords": [
+            "phalapi",
+            "phalapi-qrcode",
+            "qrcode",
+            "二维码"
         ]
     }
 ]
