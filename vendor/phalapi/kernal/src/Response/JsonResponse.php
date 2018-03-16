@@ -1,7 +1,6 @@
 <?php
 namespace PhalApi\Response;
 
-
 use PhalApi\Response;
 
 /**

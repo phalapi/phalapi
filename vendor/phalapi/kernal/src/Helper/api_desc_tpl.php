@@ -19,7 +19,21 @@ echo <<<EOT
 
 <body>
 
-<br /> 
+  <div class="ui fixed inverted menu">
+    <div class="ui container">
+      <a href="/docs.php" class="header item">
+        <img class="logo" src="http://7xiz2f.com1.z0.glb.clouddn.com/20180316214150_f6f390e686d0397f1f1d6a66320864d6">
+        {$projectName}
+      </a>
+      <a href="https://www.phalapi.net/" class="item">PhalApi</a>
+      <a href="http://docs.phalapi.net/#/v2.0/" class="item">文档</a>
+      <a href="http://qa.phalapi.net/" class="item">社区</a>
+    </div>
+  </div>
+
+<div class="row"></div>
+<br />
+<br />
 
     <div class="ui text container" style="max-width: none !important;">
         <div class="ui floating message">
@@ -171,7 +185,10 @@ EOT;
 foreach ($rules as $key => $rule){
     $name = $rule['name'];
     $require = isset($rule['require']) && $rule['require'] ? '<font color="red">必须</font>' : '可选';
-    $default = isset($rule['default']) ? $rule['default'] : '';
+    $default = isset($rule['default'])
+        ? (is_array($rule['default']) ? json_encode($rule['default']) : $rule['default'])  
+        : '';
+    $default = htmlspecialchars($default);
     $desc = isset($rule['desc']) ? htmlspecialchars(trim($rule['desc'])) : '';
     $inputType = (isset($rule['type']) && $rule['type'] == 'file') ? 'file' : 'text';
     echo <<<EOT

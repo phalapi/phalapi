@@ -8,11 +8,28 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
     <meta charset="utf-8">
     <title><?php echo $projectName; ?> - 在线接口列表</title>
     <link href="https://cdn.bootcss.com/semantic-ui/2.2.2/semantic.min.css" rel="stylesheet">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
     <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/semantic-ui/2.2.2/semantic.min.js"></script>
     <meta name="robots" content="none"/>
 </head>
 <body>
+
+  <div class="ui fixed inverted menu">
+    <div class="ui container">
+      <a href="/docs.php" class="header item">
+        <img class="logo" src="http://7xiz2f.com1.z0.glb.clouddn.com/20180316214150_f6f390e686d0397f1f1d6a66320864d6">
+        <?php echo $projectName; ?>
+      </a>
+      <a href="https://www.phalapi.net/" class="item">PhalApi</a>
+      <a href="http://docs.phalapi.net/#/v2.0/" class="item">文档</a>
+      <a href="http://qa.phalapi.net/" class="item">社区</a>
+    </div>
+  </div>
+
+<div class="row"></div>
+<br />
 <br/>
 
 
@@ -55,7 +72,7 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
                         echo sprintf('<div class="content %s" style="margin-left:-16px;margin-right:-16px;margin-bottom:-13px;">', $num == 0 ? 'active' : '');
                         // 每个命名空间下的接口类
                         foreach ($subAllApiS as $key => $item) {
-                            echo sprintf('<a class="item %s" data-tab="%s">%s</a>', $num == 0 ? 'active' : '', $key, $item['title']);
+                            echo sprintf('<a class="item %s" data-tab="%s">%s</a>', $num == 0 ? 'active' : '', str_replace('\\', '_', $namespace) . $key, $item['title']);
                             $num++;
                         }
                         echo '</div></div><!-- END OF NAMESPACE -->';
@@ -98,7 +115,7 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
                 foreach ($allApiS as $namespace => $subAllApiS) {
                 foreach ($subAllApiS as $key => $item) {
                     ?>
-                    <div class="ui  tab <?php if ($num2 == 0) { ?>active<?php } ?>" data-tab="<?php echo $key; ?>">
+                    <div class="ui  tab <?php if ($num2 == 0) { ?>active<?php } ?>" data-tab="<?php echo str_replace('\\', '_', $namespace) . $key; ?>">
                         <table
                             class="ui red celled striped table <?php echo $table_color_arr[$num2 % count($table_color_arr)]; ?> celled striped table">
                             <thead>
@@ -116,9 +133,15 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
                             foreach ($item['methods'] as $mKey => $mItem) {
                                 if ($env){
                                     ob_start ();
-                                    $_REQUEST['service'] = $mItem['service'];
-                                    $_GET['detail'] = 1;
-                                    include($webRoot . D_S . 'docs.php');
+                                    // $_REQUEST['service'] = $mItem['service'];
+                                    // $_GET['detail'] = 1;
+                                    // include($webRoot . D_S . 'docs.php');
+
+                                    // 换一种更优雅的方式
+                                    \PhalApi\DI()->request = new \PhalApi\Request(array('service' => $mItem['service']));
+                                    $apiDesc = new \PhalApi\Helper\ApiDesc($projectName);
+                                    $apiDesc->render();
+
                                     $string = ob_get_clean ();
                                     \PhalApi\Helper\saveHtml ($webRoot, $mItem['service'], $string);
                                     $link = $mItem['service'] . '.html';

@@ -3,6 +3,7 @@ namespace PhalApi\Request\Formatter;
 
 use PhalApi\Request\Formatter;
 use PhalApi\Request\Formatter\BaseFormatter;
+use PhalApi\Exception\BadRequestException;
 
 /**
  * Formatter_Array 格式化数组
@@ -31,6 +32,10 @@ class ArrayFormatter extends BaseFormatter implements Formatter {
                 $rs = explode(isset($rule['separator']) ? $rule['separator'] : ',', $rs);
             } else if ($ruleFormat == 'json') {
                 $rs = json_decode($rs, TRUE);
+
+                if (!empty($value) && $rs === NULL) {
+                    throw new BadRequestException(\PhalApi\T('{name} illegal json data', array('name' => $rule['name'])));
+                }
             } else {
                 $rs = array($rs);
             }
