@@ -1,52 +1,5 @@
 [
     {
-        "name": "phalapi/task",
-        "version": "v2.0.0",
-        "version_normalized": "2.0.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/phalapi/task.git",
-            "reference": "274d075ac6a578a87f2e1fcceca657d3bfa6d9e3"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://files.phpcomposer.com/files/phalapi/task/274d075ac6a578a87f2e1fcceca657d3bfa6d9e3.zip",
-            "reference": "274d075ac6a578a87f2e1fcceca657d3bfa6d9e3",
-            "shasum": ""
-        },
-        "require": {
-            "phalapi/kernal": "2.0.*",
-            "php": ">=5.3.3"
-        },
-        "time": "2017-07-21T14:12:08+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "PhalApi\\Task\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "GPL-3.0+"
-        ],
-        "authors": [
-            {
-                "name": "dogstar huang",
-                "email": "chanzonghuang@gmail.com",
-                "homepage": "http://my.oschina.net/dogstar",
-                "role": "Developer"
-            }
-        ],
-        "description": "PhalApi 2.x 扩展类库 - Task计划任务，以接口服务形式实现的新型计划任务。",
-        "homepage": "https://www.phalapi.net/",
-        "keywords": [
-            "phalapi",
-            "phalapi-task",
-            "task"
-        ]
-    },
-    {
         "name": "phalapi/notorm",
         "version": "v2.0.1",
         "version_normalized": "2.0.1.0",
@@ -93,25 +46,71 @@
         ]
     },
     {
-        "name": "phalapi/kernal",
-        "version": "2.0.1",
-        "version_normalized": "2.0.1.0",
+        "name": "phalapi/task",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
-            "url": "https://github.com/phalapi/kernal.git",
-            "reference": "fe94416cddf1a30f8e2ef50b6630acab42d6dcfa"
+            "url": "https://github.com/phalapi/task.git",
+            "reference": "88527bb4f92f32c2a266d9201408512e834e7021"
         },
         "dist": {
             "type": "zip",
-            "url": "https://files.phpcomposer.com/files/phalapi/kernal/fe94416cddf1a30f8e2ef50b6630acab42d6dcfa.zip",
-            "reference": "fe94416cddf1a30f8e2ef50b6630acab42d6dcfa",
+            "url": "https://files.phpcomposer.com/files/phalapi/task/88527bb4f92f32c2a266d9201408512e834e7021.zip",
+            "reference": "88527bb4f92f32c2a266d9201408512e834e7021",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "time": "2017-09-03T03:11:52+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "PhalApi\\Task\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-3.0+"
+        ],
+        "authors": [
+            {
+                "name": "dogstar huang",
+                "email": "chanzonghuang@gmail.com",
+                "homepage": "http://my.oschina.net/dogstar",
+                "role": "Developer"
+            }
+        ],
+        "description": "PhalApi 2.x 扩展类库 - Task计划任务，以接口服务形式实现的新型计划任务。",
+        "homepage": "https://www.phalapi.net/",
+        "keywords": [
+            "phalapi",
+            "phalapi-task",
+            "task"
+        ]
+    },
+    {
+        "name": "phalapi/kernal",
+        "version": "2.2.0",
+        "version_normalized": "2.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/phalapi/kernal.git",
+            "reference": "908ceaf63311ab5c0337d9d4d6ba303fc970196a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://files.phpcomposer.com/files/phalapi/kernal/908ceaf63311ab5c0337d9d4d6ba303fc970196a.zip",
+            "reference": "908ceaf63311ab5c0337d9d4d6ba303fc970196a",
             "shasum": ""
         },
         "require": {
             "phalapi/notorm": "2.0.1",
             "php": ">=5.3.3"
         },
-        "time": "2017-08-05T09:33:06+00:00",
+        "time": "2017-12-25T13:50:27+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -140,12 +139,56 @@
                 "role": "Developer"
             }
         ],
-        "description": "PhalApi 2.0 框架核心部分。",
+        "description": "PhalApi 2.x 框架核心部分。",
         "homepage": "https://www.phalapi.net/",
         "keywords": [
             "api",
             "framework",
             "phalapi"
+        ]
+    },
+    {
+        "name": "phalapi/qrcode",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/phalapi/qrcode.git",
+            "reference": "cbb3c5f3f95a7902b0a72786a77495ada0c006b7"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://files.phpcomposer.com/files/phalapi/qrcode/cbb3c5f3f95a7902b0a72786a77495ada0c006b7.zip",
+            "reference": "cbb3c5f3f95a7902b0a72786a77495ada0c006b7",
+            "shasum": ""
+        },
+        "time": "2017-12-29T12:03:03+00:00",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "PhalApi\\QrCode\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-3.0+"
+        ],
+        "authors": [
+            {
+                "name": "dogstar huang",
+                "email": "chanzonghuang@gmail.com",
+                "homepage": "http://my.oschina.net/dogstar",
+                "role": "Developer"
+            }
+        ],
+        "description": "PhalApi 2.x 扩展类库：基于QRCode实现的二维码扩展",
+        "homepage": "https://www.phalapi.net/",
+        "keywords": [
+            "phalapi",
+            "phalapi-qrcode",
+            "qrcode",
+            "二维码"
         ]
     }
 ]

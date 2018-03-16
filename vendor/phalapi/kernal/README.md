@@ -6,4 +6,4 @@
 [![License](https://poser.pugx.org/phalapi/kernal/license)](https://packagist.org/packages/phalapi/kernal)
 
 
-PhalApi 2.0 框架核心部分，基于composer。
+PhalApi 2.x 框架核心部分，基于composer。
