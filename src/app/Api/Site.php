@@ -14,7 +14,7 @@ class Site extends Api {
 	public function getRules() {
         return array(
             'index' => array(
-                'username' 	=> array('name' => 'username', 'default' => 'PhalApi'),
+                'username' 	=> array('name' => 'username', 'default' => 'PhalApi', 'desc' => '用户名'),
             ),
         );
 	}
@@ -26,6 +26,7 @@ class Site extends Api {
 	 * @return string content 内容
 	 * @return string version 版本，格式：X.X.X
 	 * @return int time 当前时间戳
+     * @exception 400 非法请求，参数传递错误
 	 */
 	public function index() {
         return array(
