@@ -262,7 +262,7 @@ echo <<<EOT
                             data.append(e.name, e.value);
                         }
 
-                        $.cookie(e.name, e.value, {expires: 30});
+                        if (e.name != "service") $.cookie(e.name, e.value, {expires: 30});
                     } else{
                         var files = e.files;
                         if (files.length == 1){

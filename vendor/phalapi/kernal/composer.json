@@ -21,7 +21,7 @@
   ],
   "require": {
     "php": ">=5.3.3",
-    "phalapi/notorm": "2.0.1"
+    "phalapi/notorm": "2.2.1"
   },
   "autoload": {
     "files": [

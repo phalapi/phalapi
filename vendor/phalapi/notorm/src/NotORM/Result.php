@@ -234,10 +234,13 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
 
         $errorMessage = null;
         if(!$return || !$return->execute()){
-
-            $errorInfo = $return->errorInfo();
-
-            $errorMessage = isset($errorInfo[2]) ? $errorInfo[2] : $errorMessage;
+            // fixed non-object bug @dogstar 20180326
+            if ($return) {
+                $errorInfo = $return->errorInfo();
+                $errorMessage = isset($errorInfo[2]) ? $errorInfo[2] : $errorMessage;
+            } else {
+                $errorMessage = 'the database server cannot successfully prepare the statement';
+            }
 
             $return = false;
         }

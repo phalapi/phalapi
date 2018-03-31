@@ -39,4 +39,5 @@ return array(
     'missing {name} extension'                                      => '缺少{name}扩展',
     'create file path Error: {filePath}'                            => '创建文件异常: {filePath}',
     'unknow source: {source} in rule'                               => '参数规则中未知的数据源：{source}',
+    '{name} illegal json data'                                      => '参数{name}的JSON数据格式错误',
 );

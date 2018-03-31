@@ -41,4 +41,24 @@ class PhpUnderControl_PhalApiRequestFormatterArray_Test extends \PHPUnit_Framewo
         $this->assertEquals(array(1, 2, 3, 4, 5), $rs);
     }
 
+    public function testParseJson()
+    {
+        $value = array('a' => 1);
+        $rule = array('name' => 'testKey', 'type' => 'array', 'format' => 'json');
+
+        $rs = $this->arrayFormatter->parse(json_encode($value), $rule);
+
+        $this->assertTrue(is_array($rs));
+        $this->assertEquals($value, $rs);
+    }
+
+    /**
+     * @expectedException PhalApi\Exception\BadRequestException
+     */
+    public function testParseWrongJson()
+    {
+        $rule = array('name' => 'testKey', 'type' => 'array', 'format' => 'json');
+
+        $rs = $this->arrayFormatter->parse('{"a":1', $rule);
+    }
 }
