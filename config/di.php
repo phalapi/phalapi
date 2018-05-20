@@ -36,7 +36,7 @@ $di->notorm = new NotORMDatabase($di->config->get('dbs'), $di->debug);
 
 // 缓存 - Memcache/Memcached
 // $di->cache = function () {
-//     return new \PhalApi\Cache\MemcacheCache(DI()->config->get('sys.mc'));
+//     return new \PhalApi\Cache\MemcacheCache(\PhalApi\DI()->config->get('sys.mc'));
 // };
 
 // 支持JsonP的返回
