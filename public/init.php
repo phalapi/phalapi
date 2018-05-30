@@ -18,7 +18,7 @@ include API_ROOT . '/config/di.php';
 // 调试模式
 if (\PhalApi\DI()->debug) {
     // 启动追踪器
-    \PhalApi\DI()->tracer->mark();
+    \PhalApi\DI()->tracer->mark('PHALAPI_INIT');
 
     error_reporting(E_ALL);
     ini_set('display_errors', 'On'); 
