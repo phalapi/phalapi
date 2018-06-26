@@ -80,7 +80,7 @@ class FileLogger extends Logger {
         $msgArr[] = strtoupper($type);
         $msgArr[] = str_replace(PHP_EOL, '\n', $msg);
         if ($data !== NULL) {
-            $msgArr[] = is_array($data) ? json_encode($data) : $data;
+            $msgArr[] = is_array($data) ? json_encode($data, JSON_UNESCAPED_UNICODE) : $data;
         }
 
         $content = implode('|', $msgArr) . PHP_EOL;
