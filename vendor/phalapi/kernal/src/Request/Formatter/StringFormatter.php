@@ -49,6 +49,11 @@ class StringFormatter extends BaseFormatter implements Formatter {
             return;
         }
 
+        // 非必须，且没有传递任何参数时，不作检测 #pr 58
+        if (empty($rule['require']) && ($value === NULL || $value === '')) {
+            return;
+        }
+
         // 为安全起见，仅在调试模式下，才显示正则表达式
         if (preg_match($rule['regex'], $value) <= 0) {
             throw new BadRequestException(\PhalApi\T('{name} can not match {regex}', 

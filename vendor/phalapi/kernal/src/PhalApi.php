@@ -41,6 +41,10 @@ class PhalApi {
      */
     public function response() {
         $di = DI();
+
+        // 开始响应接口请求
+        $di->tracer->mark('PHALAPI_RESPONSE');
+
         $rs = $di->response;
         try {
             // 接口调度与响应
@@ -65,6 +69,9 @@ class PhalApi {
                 throw $ex;
             }
         }
+
+        // 结束接口调度
+        $di->tracer->mark('PHALAPI_FINISH');
 
         $rs->setDebug('stack', $di->tracer->getStack());
         $rs->setDebug('sqls', $di->tracer->getSqls());

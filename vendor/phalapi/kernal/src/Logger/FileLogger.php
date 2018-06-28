@@ -80,7 +80,10 @@ class FileLogger extends Logger {
         $msgArr[] = strtoupper($type);
         $msgArr[] = str_replace(PHP_EOL, '\n', $msg);
         if ($data !== NULL) {
-            $msgArr[] = is_array($data) ? json_encode($data) : $data;
+            $isGreaterThan540 = version_compare(PHP_VERSION, '5.4.0' , '>=');
+            $msgArr[] = is_array($data) 
+                ? ($isGreaterThan540 ? json_encode($data, JSON_UNESCAPED_UNICODE) : json_encode($data))
+                : $data;
         }
 
         $content = implode('|', $msgArr) . PHP_EOL;

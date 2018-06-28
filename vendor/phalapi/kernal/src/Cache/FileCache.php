@@ -86,7 +86,11 @@ class FileCache implements Cache {
             mkdir($cacheFolder, 0777, TRUE);
         }
 
-        return $cacheFolder . DIRECTORY_SEPARATOR . md5($key) . '.dat';
+        // 避免撞key，增强唯一性
+        $filename = sprintf('%s_%s_%s_%s.dat', 
+            md5($this->prefix), strlen($this->prefix), md5($key), strlen($key));
+
+        return $cacheFolder . DIRECTORY_SEPARATOR . $filename;
     }
 
     protected function createCacheFileFolder() {

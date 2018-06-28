@@ -15,7 +15,7 @@ class CommonTrigger implements Trigger {
         $paramsArr = explode('&', $params);
 
         $service = !empty($paramsArr[0]) ? trim($paramsArr[0]) : '';
-        $mqClass = !empty($paramsArr[1]) ? trim($paramsArr[1]) : 'PhalApi\Task\MQ\RedisMQ';
+        $mqClass = !empty($paramsArr[1]) ? trim($paramsArr[1]) : 'PhalApi\Task\MQ\FileMQ';
         $runnerClass = !empty($paramsArr[2]) ? trim($paramsArr[2]) : 'PhalApi\Task\Runner\LocalRunner';
 
         $mq = new $mqClass();

@@ -22,6 +22,7 @@ class PhpUnderControl_PhalApiCacheFile_Test extends \PHPUnit_Framework_TestCase
         @unlink(dirname(__FILE__) . '/cache');
 
         $config['path'] = dirname(__FILE__);
+        $config['prefix'] = 'test';
         $this->phalApiCacheFile = new FileCache($config);
     }
 

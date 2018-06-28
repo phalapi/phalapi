@@ -10,10 +10,12 @@ return array(
     'Task' => array(
         //MQ队列设置，可根据使用需要配置
         'mq' => array(
+            // 默认使用文件MQ
             'file' => array(
                 'path' => API_ROOT . '/runtime',
                 'prefix' => 'phalapi_task',
             ),
+            // 也可以根据需要，切换使用Redis MQ
             'redis' => array(
                 'host' => '127.0.0.1',
             	'port' => 6379,

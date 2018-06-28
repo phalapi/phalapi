@@ -60,7 +60,7 @@ class Progress {
                 continue;
             }
 
-            $class = $item['trigger_class'];
+            $class = !empty($item['trigger_class']) ? $item['trigger_class'] : 'PhalApi\Task\Progress\Trigger\CommonTrigger';
             $params = $item['fire_params'];
 
             if (empty($class) || !class_exists($class)) {

@@ -1,51 +1,5 @@
 [
     {
-        "name": "phalapi/task",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/phalapi/task.git",
-            "reference": "88527bb4f92f32c2a266d9201408512e834e7021"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://files.phpcomposer.com/files/phalapi/task/88527bb4f92f32c2a266d9201408512e834e7021.zip",
-            "reference": "88527bb4f92f32c2a266d9201408512e834e7021",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.3"
-        },
-        "time": "2017-09-03T03:11:52+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "PhalApi\\Task\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "GPL-3.0+"
-        ],
-        "authors": [
-            {
-                "name": "dogstar huang",
-                "email": "chanzonghuang@gmail.com",
-                "homepage": "http://my.oschina.net/dogstar",
-                "role": "Developer"
-            }
-        ],
-        "description": "PhalApi 2.x 扩展类库 - Task计划任务，以接口服务形式实现的新型计划任务。",
-        "homepage": "https://www.phalapi.net/",
-        "keywords": [
-            "phalapi",
-            "phalapi-task",
-            "task"
-        ]
-    },
-    {
         "name": "phalapi/qrcode",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -136,25 +90,71 @@
         ]
     },
     {
-        "name": "phalapi/kernal",
-        "version": "2.2.2",
-        "version_normalized": "2.2.2.0",
+        "name": "phalapi/task",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
-            "url": "https://github.com/phalapi/kernal.git",
-            "reference": "de29249cf956fdd685f0fa982615fe31011e0270"
+            "url": "https://github.com/phalapi/task.git",
+            "reference": "552421219a3097a81c576fc2607d96894d489def"
         },
         "dist": {
             "type": "zip",
-            "url": "https://files.phpcomposer.com/files/phalapi/kernal/de29249cf956fdd685f0fa982615fe31011e0270.zip",
-            "reference": "de29249cf956fdd685f0fa982615fe31011e0270",
+            "url": "https://files.phpcomposer.com/files/phalapi/task/552421219a3097a81c576fc2607d96894d489def.zip",
+            "reference": "552421219a3097a81c576fc2607d96894d489def",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "time": "2018-04-24T14:25:40+00:00",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "PhalApi\\Task\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-3.0+"
+        ],
+        "authors": [
+            {
+                "name": "Dogstar Huang",
+                "email": "chanzonghuang@gmail.com",
+                "homepage": "http://my.oschina.net/dogstar",
+                "role": "Developer"
+            }
+        ],
+        "description": "PhalApi 2.x 扩展类库 - Task计划任务，以接口服务形式实现的新型计划任务。",
+        "homepage": "https://www.phalapi.net/",
+        "keywords": [
+            "phalapi",
+            "phalapi-task",
+            "task"
+        ]
+    },
+    {
+        "name": "phalapi/kernal",
+        "version": "2.2.3",
+        "version_normalized": "2.2.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/phalapi/kernal.git",
+            "reference": "91566bb177c43c4430b5c6e96f5a3ca349185896"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://files.phpcomposer.com/files/phalapi/kernal/91566bb177c43c4430b5c6e96f5a3ca349185896.zip",
+            "reference": "91566bb177c43c4430b5c6e96f5a3ca349185896",
             "shasum": ""
         },
         "require": {
             "phalapi/notorm": "2.2.1",
             "php": ">=5.3.3"
         },
-        "time": "2018-03-30T15:55:58+00:00",
+        "time": "2018-06-27T13:09:21+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
