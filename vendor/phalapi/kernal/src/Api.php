@@ -43,6 +43,9 @@ class Api {
      * @var boolean $__apiIsServiceWhitelist 是否为白名单服务
      */
     private $__apiIsServiceWhitelist;
+    
+    //定义全局常量，__set,__get由此处获取
+    protected $__data = [];
 
     /**
      * 设置规则解析后的接口参数
@@ -50,7 +53,7 @@ class Api {
      * @param mixed $value 接口参数解析后的值
      */
     public function __set($name, $value) {
-        $this->$name = $value;
+        $this->__data[$name] = $value;
     }
 
     /**
@@ -60,13 +63,13 @@ class Api {
      * @return mixed
      */
     public function __get($name) {
-        if(!isset($this->$name) || empty($name)) {
+        if(!isset($this->__data[$name]) || empty($this->__data[$name])) {
             throw new InternalServerErrorException(
                 T('Api::${name} undefined', array('name' => $name))
             );
         }
 
-        return $this->$name;
+        return $this->__data[$name];
     }
 
     /**
