@@ -29,6 +29,9 @@ $di->logger = new FileLogger(API_ROOT . '/runtime', Logger::LOG_LEVEL_DEBUG | Lo
 // 数据操作 - 基于NotORM
 $di->notorm = new NotORMDatabase($di->config->get('dbs'), $di->debug);
 
+// JSON中文输出
+// $di->response = new \PhalApi\Response\JsonResponse(JSON_UNESCAPED_UNICODE);
+
 /** ---------------- 定制注册 可选服务组件 ---------------- **/
 
 // 签名验证服务
