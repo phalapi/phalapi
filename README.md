@@ -55,7 +55,8 @@ http://localhost/path/to/phalapi/public/
 更多请查看：[PhalApi 2.x 开发文档](http://docs.phalapi.net/#/v2.0/)。  
 
 ## PhalApi官方创新项目
-[小白接口](https://www.okayapi.com/?f=github)。
+
+ + [小白接口](https://www.okayapi.com/?f=github)
 
 ## 发现问题，怎么办？  
 
