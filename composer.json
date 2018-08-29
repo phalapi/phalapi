@@ -18,6 +18,7 @@
         "php": ">=5.3.3",
         "phalapi/kernal": "2.2.*",
         "phalapi/qrcode": "dev-master",
+        "phalapi/cli": "dev-master",
         "phalapi/task": "dev-master"
     },
     "autoload": {

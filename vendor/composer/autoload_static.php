@@ -18,6 +18,7 @@ class ComposerStaticInit6835957bc29912b8a4cd2dd758af2e80
             'PhalApi\\Task\\' => 13,
             'PhalApi\\QrCode\\' => 15,
             'PhalApi\\NotORM\\' => 15,
+            'PhalApi\\CLI\\' => 12,
             'PhalApi\\' => 8,
         ),
         'A' => 
@@ -38,6 +39,10 @@ class ComposerStaticInit6835957bc29912b8a4cd2dd758af2e80
         'PhalApi\\NotORM\\' => 
         array (
             0 => __DIR__ . '/..' . '/phalapi/notorm/src',
+        ),
+        'PhalApi\\CLI\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phalapi/cli/src',
         ),
         'PhalApi\\' => 
         array (

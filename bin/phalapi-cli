@@ -1,0 +1,6 @@
+#!/usr/bin/env php
+<?php
+require_once dirname(__FILE__) . '/../public/init.php';
+
+$cli = new PhalApi\CLI\Lite();
+$cli->response();
