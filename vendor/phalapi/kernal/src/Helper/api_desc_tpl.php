@@ -183,6 +183,11 @@ echo <<<EOT
         </tr>
 EOT;
 foreach ($rules as $key => $rule){
+    $source = isset($rule['source']) ? $rule['source'] : '';
+    //数据源为server和header时该参数不需要提供
+    if ($source == 'server' || $source == 'header') {
+        continue;
+    }
     $name = $rule['name'];
     $require = isset($rule['require']) && $rule['require'] ? '<font color="red">必须</font>' : '可选';
     $default = isset($rule['default'])
@@ -191,7 +196,7 @@ foreach ($rules as $key => $rule){
     $default = htmlspecialchars($default);
     $desc = isset($rule['desc']) ? htmlspecialchars(trim($rule['desc'])) : '';
     $inputType = (isset($rule['type']) && $rule['type'] == 'file') ? 'file' : 'text';
-    $source = isset($rule['source']) ? $rule['source'] : '';
+
     $multiple = '';
     if ($inputType == 'file') {
         $multiple = 'multiple="multiple"';

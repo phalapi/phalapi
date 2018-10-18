@@ -96,6 +96,19 @@ class PhpUnderControl_PhalApiResponse_Test extends \PHPUnit_Framework_TestCase
         $this->expectOutputRegex('/"ret":404/');
     }
 
+    public function testOutputEmptyArray()
+    {
+        $this->response->output();
+        $this->expectOutputRegex('/,"data":\{\},/');
+    }
+
+    public function testOutputDataZero()
+    {
+        $this->response->setData(0);
+        $this->response->output();
+        $this->expectOutputRegex('/,"data":0,/');
+    }
+
     public function testAdustHttpStatus()
     {
         $this->response->adjustHttpStatus();

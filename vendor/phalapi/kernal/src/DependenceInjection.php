@@ -42,10 +42,10 @@ use PhalApi\Exception\InternalServerErrorException;
  * @property \PhalApi\Crypt          $crypt      加密
  * @property \PhalApi\Config         $config     配置
  * @property \PhalApi\Logger         $logger     日记
- * @property \PhalApi\DB\NotORM      $notorm     数据库
+ * @property \PhalApi\Database\NotORMDatabase      $notorm     数据库
  * @property \PhalApi\Loader         $loader     自动加载
  * @property \PhalApi\Helper\Tracer  $tracer     全球追踪器
- * 
+ * @property \PhalApi\Cache\RedisCache $redis    redis
  * @package     PhalApi\DependenceInjection
  * @link        http://docs.phalconphp.com/en/latest/reference/di.html 实现统一的资源设置、获取与管理，支持延时加载
  * @license     http://www.phalapi.net/license GPL 协议

@@ -174,6 +174,13 @@ class NotORMDatabase /** implements Database */ {
     protected function getDBRouter($tableName, $suffix) {
         $rs = array('prefix' => '', 'key' => '', 'pdo' => NULL, 'isNoSuffix' => FALSE);
 
+        if (preg_match('/^(\S+)\.(\S+)$/', $tableName, $match)) {
+            $server = $match[1];
+            if (!isset($this->_configs['tables'][$tableName])) {
+                $this->_configs['tables'][$tableName] = array('map' => array(array('db' => $server)));
+            }
+        }
+
         $defaultMap = !empty($this->_configs['tables']['__default__']) 
             ? $this->_configs['tables']['__default__'] : array();
         $tableMap = !empty($this->_configs['tables'][$tableName]) 

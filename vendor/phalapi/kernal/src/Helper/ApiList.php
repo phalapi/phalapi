@@ -23,6 +23,18 @@ class ApiList extends ApiOnline {
         $composerArr = json_decode($composerJson, TRUE);
 
         $psr4 = isset($composerArr['autoload']['psr-4']) ? $composerArr['autoload']['psr-4'] : array();
+        //检测通用项目API
+        $root = @$psr4[''];
+        if (!empty($root)) {//其它通用项目检测
+            unset($psr4['']);
+            if (is_string($root)) $root = [$root];
+            foreach ($root as $path) {
+                foreach (glob(API_ROOT . D_S . $path . D_S . "*", GLOB_ONLYDIR) as $dirName) {
+                    $name = pathinfo($dirName, PATHINFO_FILENAME);
+                    $psr4[ucfirst($name).'\\'] = $path . $name;
+                }
+            }
+        }
 
         // 待排除的方法
         $allPhalApiApiMethods = get_class_methods('\\PhalApi\\Api');

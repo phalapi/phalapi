@@ -45,7 +45,7 @@ class StringFormatter extends BaseFormatter implements Formatter {
      * 进行正则匹配
      */
     protected function filterByRegex($value, $rule) {
-        if (!isset($rule['regex']) || empty($rule['regex']) || empty($value)) {
+        if (!isset($rule['regex']) || empty($rule['regex'])) {
             return;
         }
 

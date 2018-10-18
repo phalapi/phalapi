@@ -165,7 +165,7 @@ abstract class Response {
     public function getResult() {
         $rs = array(
             'ret'   => $this->ret,
-            'data'  => $this->data,
+            'data'  => is_array($this->data) && empty($this->data) ? (object)$this->data : $this->data, // # 67 优化
             'msg'   => $this->msg,
         );
 

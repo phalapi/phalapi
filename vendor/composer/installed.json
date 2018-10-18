@@ -12,7 +12,13 @@
             "type": "zip",
             "url": "https://api.github.com/repos/phalapi/qrcode/zipball/cbb3c5f3f95a7902b0a72786a77495ada0c006b7",
             "reference": "cbb3c5f3f95a7902b0a72786a77495ada0c006b7",
-            "shasum": ""
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
         },
         "time": "2017-12-29T12:03:03+00:00",
         "type": "library",
@@ -56,7 +62,13 @@
             "type": "zip",
             "url": "https://api.github.com/repos/phalapi/notorm/zipball/85cce24174e5b4fa0bdf18fb4c9d2b4d7ec6a2a3",
             "reference": "85cce24174e5b4fa0bdf18fb4c9d2b4d7ec6a2a3",
-            "shasum": ""
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
         },
         "require": {
             "php": ">=5.3.3"
@@ -102,7 +114,13 @@
             "type": "zip",
             "url": "https://api.github.com/repos/phalapi/task/zipball/552421219a3097a81c576fc2607d96894d489def",
             "reference": "552421219a3097a81c576fc2607d96894d489def",
-            "shasum": ""
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
         },
         "require": {
             "php": ">=5.3.3"
@@ -136,25 +154,83 @@
         ]
     },
     {
-        "name": "phalapi/kernal",
-        "version": "2.2.3",
-        "version_normalized": "2.2.3.0",
+        "name": "phalapi/cli",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
-            "url": "https://github.com/phalapi/kernal.git",
-            "reference": "91566bb177c43c4430b5c6e96f5a3ca349185896"
+            "url": "https://github.com/phalapi/cli.git",
+            "reference": "8aedab4231a7089672d02f7b9e59447b3dc787ea"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/phalapi/kernal/zipball/91566bb177c43c4430b5c6e96f5a3ca349185896",
-            "reference": "91566bb177c43c4430b5c6e96f5a3ca349185896",
-            "shasum": ""
+            "url": "https://api.github.com/repos/phalapi/cli/zipball/8aedab4231a7089672d02f7b9e59447b3dc787ea",
+            "reference": "8aedab4231a7089672d02f7b9e59447b3dc787ea",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "time": "2017-10-25T13:50:45+00:00",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "PhalApi\\CLI\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-3.0+"
+        ],
+        "authors": [
+            {
+                "name": "Dogstar Huang",
+                "email": "chanzonghuang@gmail.com",
+                "homepage": "http://my.oschina.net/dogstar",
+                "role": "Developer"
+            }
+        ],
+        "description": "PhalApi 2.x 扩展类库 - CLI命令行，可用于开发命令行应用，基于GetOpt，主要作用是将命令参数进行解析和处理。",
+        "homepage": "https://www.phalapi.net/",
+        "keywords": [
+            "cli",
+            "phalapi",
+            "phalapi-cli"
+        ]
+    },
+    {
+        "name": "phalapi/kernal",
+        "version": "2.3.0",
+        "version_normalized": "2.3.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/phalapi/kernal.git",
+            "reference": "9437a039305a9baa9c4cbe3b57324d467699c825"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/phalapi/kernal/zipball/9437a039305a9baa9c4cbe3b57324d467699c825",
+            "reference": "9437a039305a9baa9c4cbe3b57324d467699c825",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
         },
         "require": {
             "phalapi/notorm": "2.2.1",
             "php": ">=5.3.3"
         },
-        "time": "2018-06-27T13:09:21+00:00",
+        "time": "2018-08-29T13:22:17+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -189,52 +265,6 @@
             "api",
             "framework",
             "phalapi"
-        ]
-    },
-    {
-        "name": "phalapi/cli",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/phalapi/cli.git",
-            "reference": "8aedab4231a7089672d02f7b9e59447b3dc787ea"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/phalapi/cli/zipball/8aedab4231a7089672d02f7b9e59447b3dc787ea",
-            "reference": "8aedab4231a7089672d02f7b9e59447b3dc787ea",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.3"
-        },
-        "time": "2017-10-25T13:50:45+00:00",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-4": {
-                "PhalApi\\CLI\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "GPL-3.0+"
-        ],
-        "authors": [
-            {
-                "name": "Dogstar Huang",
-                "email": "chanzonghuang@gmail.com",
-                "homepage": "http://my.oschina.net/dogstar",
-                "role": "Developer"
-            }
-        ],
-        "description": "PhalApi 2.x 扩展类库 - CLI命令行，可用于开发命令行应用，基于GetOpt，主要作用是将命令参数进行解析和处理。",
-        "homepage": "https://www.phalapi.net/",
-        "keywords": [
-            "cli",
-            "phalapi",
-            "phalapi-cli"
         ]
     }
 ]
