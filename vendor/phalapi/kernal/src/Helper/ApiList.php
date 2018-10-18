@@ -27,7 +27,7 @@ class ApiList extends ApiOnline {
         $root = @$psr4[''];
         if (!empty($root)) {//其它通用项目检测
             unset($psr4['']);
-            if (is_string($root)) $root = [$root];
+            if (is_string($root)) $root = array($root);
             foreach ($root as $path) {
                 foreach (glob(API_ROOT . D_S . $path . D_S . "*", GLOB_ONLYDIR) as $dirName) {
                     $name = pathinfo($dirName, PATHINFO_FILENAME);
