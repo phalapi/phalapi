@@ -37,7 +37,7 @@ class PhpUnderControl_PhalApiHelperApiDesc_Test extends \PHPUnit_Framework_TestC
     public function testRenderDefault()
     {
         \PhalApi\DI()->request = new Request(array());
-        $rs = $this->apiDesc->render();
+        $rs = @$this->apiDesc->render();
 
         $this->expectOutputRegex("/Site.Index/");
     }
@@ -45,7 +45,7 @@ class PhpUnderControl_PhalApiHelperApiDesc_Test extends \PHPUnit_Framework_TestC
     public function testRenderError()
     {
         \PhalApi\DI()->request = new Request(array('service' => 'NoThisClass.NoThisMethod'));
-        $rs = $this->apiDesc->render();
+        $rs = @$this->apiDesc->render();
 
         $this->expectOutputRegex("/NoThisClass.NoThisMethod/");
     }
@@ -53,7 +53,7 @@ class PhpUnderControl_PhalApiHelperApiDesc_Test extends \PHPUnit_Framework_TestC
     public function testRenderNormal()
     {
         \PhalApi\DI()->request = new Request(array('service' => 'UserMock.GetBaseInfo'));
-        $rs = $this->apiDesc->render();
+        $rs = @$this->apiDesc->render();
 
         $this->expectOutputRegex("/UserMock.GetBaseInfo/");
     }
@@ -61,7 +61,7 @@ class PhpUnderControl_PhalApiHelperApiDesc_Test extends \PHPUnit_Framework_TestC
     public function testRenderSite()
     {
         \PhalApi\DI()->request = new Request(array('service' => 'Site.Index'));
-        $rs = $this->apiDesc->render();
+        $rs = @$this->apiDesc->render();
 
         $this->expectOutputRegex("/Site.Index/");
     }

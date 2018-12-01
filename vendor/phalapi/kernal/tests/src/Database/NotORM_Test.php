@@ -54,6 +54,22 @@ class PhpUnderControl_PhalApiDBNotORM_Test extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * 缓存下缺省表名修正 @dogstar 20181201
+     * 不应该出现：PDOException: Table 'phalapi_test.tbl_demo_404' doesn't exist
+     */
+    public function testGetDefaultTableAgainAndAgain()
+    {
+        $demo = $this->notorm->demo_404;
+        $this->assertNotNull($demo);
+        $rs = $demo->fetchAll();
+
+        // 再取一次，有缓存
+        $demo = $this->notorm->demo_404;
+        $this->assertNotNull($demo);
+        $rs = $demo->fetchAll();
+    }
+
+    /**
      * @expectedException \PhalApi\Exception
      */
     public function testNoMap()
