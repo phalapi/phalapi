@@ -154,6 +154,10 @@ class ApiList extends ApiOnline {
         if (!in_array($theme, array('fold', 'expand'))) {
             $theme = 'fold';
         }
+        // 搜索时，强制采用展开主题
+        if (!empty($_GET['keyword'])) {
+            $theme = 'expand';
+        }
 
         //echo json_encode($allApiS) ;
         // 字典排列与过滤

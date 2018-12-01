@@ -1,4 +1,8 @@
 <?php
+
+// 搜索关键字
+$keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
+
 echo <<<EOT
 <!DOCTYPE html>
 <html lang="en">
@@ -28,12 +32,20 @@ echo <<<EOT
       <a href="https://www.phalapi.net/" class="item">PhalApi</a>
       <a href="http://docs.phalapi.net/#/v2.0/" class="item">文档</a>
       <a href="http://qa.phalapi.net/" class="item">社区</a>
+
+     <div class="right menu">
+         <div class="item">
+             <div class="ui icon input">
+             <form action="/docs.php?search=k" method="get">
+                 <input type="text" name="keyword" placeholder="搜索接口" value="{$keyword}">
+             </form>
+             </div>
+         </div>
+      </div>
     </div>
   </div>
 
-<div class="row"></div>
-<br />
-<br />
+<div class="row" style="margin-top: 60px;" ></div>
 
     <div class="ui text container" style="max-width: none !important;">
         <div class="ui floating message">
@@ -251,9 +263,28 @@ echo <<<EOT
         <div class="ui blue message">
           <strong>温馨提示：</strong> 此接口参数列表根据后台代码自动生成，可将 ?service= 改成您需要查询的接口/服务
         </div>
-        <p>&copy; Powered  By <a href="http://www.phalapi.net/" target="_blank">PhalApi {$version}</a><span id="version_update"></span></p>
         </div>
+
     </div>
+
+  <div class="ui inverted vertical footer segment" style="margin-top:30px; background: #1B1C1D none repeat scroll 0% 0%;" >
+    <div class="ui container">
+      <div class="ui stackable inverted divided equal height stackable grid">
+        <div class="eight wide column centered">
+            <div class="column" align="center" >
+                <img src="https://www.phalapi.net/images/icon_logo.png" alt="PhalApi">
+            </div>
+            <div class="column">
+                <p>
+                    <strong>接口，从简单开始！</strong>
+                    &copy; 2015-2018 Powered  By <a href="http://www.phalapi.net/" target="">PhalApi {$version} </a> All Rights Reserved. <span id="version_update"></span>
+                </p>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
     <script type="text/javascript">
         function getData() {
             var data = new FormData();

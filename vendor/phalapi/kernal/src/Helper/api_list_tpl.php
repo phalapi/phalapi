@@ -26,13 +26,20 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
       <a href="https://www.phalapi.net/" class="item">PhalApi</a>
       <a href="http://docs.phalapi.net/#/v2.0/" class="item">文档</a>
       <a href="http://qa.phalapi.net/" class="item">社区</a>
+
+     <div class="right menu">
+         <div class="item">
+             <div class="ui icon input">
+             <form action="/docs.php?search=k" method="get">
+                 <input type="text" name="keyword" placeholder="搜索接口" value="<?php echo isset($_GET['keyword']) ? $_GET['keyword'] : ''; ?>">
+             </form>
+             </div>
+         </div>
+      </div>
     </div>
   </div>
 
-<div class="row"></div>
-<br />
-<br/>
-
+<div class="row" style="margin-top: 60px;" ></div>
 
 <div class="ui text container" style="max-width: none !important; width: 1200px" id="menu_top">
     <div class="ui floating message">
@@ -103,6 +110,25 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
                                 continue;
                             }
                             foreach ($item['methods'] as $mKey => $mItem) {
+
+                                // 根据搜索关键字，匹配接口名称、功能说明、具体描述 - START
+                                if (!empty($_GET['keyword'])) {
+                                    $keyword = $_GET['keyword'];
+                                    $isMatchByKeyword = false;
+                                    if (stripos($mItem['service'], $keyword) !== false) {
+                                        $isMatchByKeyword = true;
+                                    } else if (stripos($mItem['title'], $keyword) !== false) {
+                                        $isMatchByKeyword = true;
+                                    } else if (stripos($mItem['desc'], $keyword) !== false) {
+                                        $isMatchByKeyword = true;
+                                    }
+                                    // 未匹配，则跳过
+                                    if (!$isMatchByKeyword) {
+                                        continue;
+                                    }
+                                }
+                                // 根据搜索关键字，匹配接口名称、功能说明、具体描述 - END
+
                                 $mergeAllApiS['all']['methods'][$mKey] = $mItem;
                             }
                         }
@@ -162,9 +188,9 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
                             if (!$env) {
                                 $curUrl = $_SERVER['SCRIPT_NAME'];
                                 if ($theme == 'fold') {
-                                    echo '<div style="float: right"><a href="' . $curUrl . '?type=expand">切换回展开版</a></div>';
+                                    echo '<div style="float: right"><a href="' . $curUrl . '?type=expand">切换到展开版</a></div>';
                                 } else {
-                                    echo '<div style="float: right"><a href="' . $curUrl . '?type=fold">切换回折叠版</a></div>';
+                                    echo '<div style="float: right"><a href="' . $curUrl . '?type=fold">切换到折叠版</a></div>';
                                 }
                             }
                     ?>
@@ -182,10 +208,27 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
         <div class="ui blue message">
             <strong>温馨提示：</strong> 此接口服务列表根据后台代码自动生成，可在接口类的文件注释的第一行修改左侧菜单标题。
         </div>
-        <p>&copy; Powered  By <a href="http://www.phalapi.net/" target="_blank">PhalApi <?php echo PHALAPI_VERSION; ?></a> <span id="version_update"></span> <p>
-    </div>
     </div>
 </div>
+
+  <div class="ui inverted vertical footer segment" style="margin-top:30px; background: #1B1C1D none repeat scroll 0% 0%;" >
+    <div class="ui container">
+      <div class="ui stackable inverted divided equal height stackable grid">
+        <div class="eight wide column centered">
+            <div class="column" align="center" >
+                <img src="https://www.phalapi.net/images/icon_logo.png" alt="PhalApi">
+            </div>
+            <div class="column">
+                <p>
+                    <strong>接口，从简单开始！</strong>
+                    &copy; 2015-2018 Powered  By <a href="http://www.phalapi.net/" target="">PhalApi <?php echo PHALAPI_VERSION; ?> </a> All Rights Reserved. <span id="version_update"></span>
+                </p>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <script type="text/javascript">
     $('.accordion.menu a.item').tab({'deactivate':'all'});
     $('.ui.sticky').sticky();
