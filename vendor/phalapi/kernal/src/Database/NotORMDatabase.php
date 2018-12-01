@@ -97,6 +97,11 @@ class NotORMDatabase /** implements Database */ {
     protected $isKeepPrimaryKeyIndex = FALSE;
 
     /**
+    * @var array $tablenameAliasMap 表名的别名映射关系，主要用于分表回退时的缺省表名修正，避免因类缓存而导致bug，[原来的完全表名 => 修正的新表名]
+    */
+    protected $tablenameAliasMap = array();
+
+    /**
      * @param array $configs 数据库配置 
      * @param boolean $debug 是否开启调试模式
      */
@@ -126,8 +131,11 @@ class NotORMDatabase /** implements Database */ {
             $this->_notorms[$notormKey]->isKeepPrimaryKeyIndex = $this->isKeepPrimaryKeyIndex;
 
             if ($router['isNoSuffix']) {
+                $this->tablenameAliasMap[$name] = $tableName; // 纪录修正的映射关系，来源于小白接口发现的bug
                 $name = $tableName;
             }
+        } else {
+            $name = isset($this->tablenameAliasMap[$name]) ? $this->tablenameAliasMap[$name] : $name; // 缓存下的修正
         }
 
         return $this->_notorms[$notormKey]->$name;
@@ -216,7 +224,7 @@ class NotORMDatabase /** implements Database */ {
                 break;
             }
         }
-        //try to use default map if no perfect match
+        //try to usdbKeye default map if no perfect match
         if ($dbKey === NULL) {
             $dbKey = $dbDefaultKey;
             $rs['isNoSuffix'] = TRUE;
