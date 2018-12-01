@@ -218,10 +218,12 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
             <div class="column" align="center" >
                 <img src="https://www.phalapi.net/images/icon_logo.png" alt="PhalApi">
             </div>
-            <div class="column">
+            <div class="column" align="center">
                 <p>
                     <strong>接口，从简单开始！</strong>
-                    &copy; 2015-2018 Powered  By <a href="http://www.phalapi.net/" target="">PhalApi <?php echo PHALAPI_VERSION; ?> </a> All Rights Reserved. <span id="version_update"></span>
+                    © 2015-2018 Powered  By <a href="http://www.phalapi.net/" target="">PhalApi 2.3.1 </a> All Rights Reserved. <span id="version_update"></span>
+                    <br />
+                    此版本由<a href="https://www.phalapi.net/ad.html">点击成为独家赞助</a>独家赞助
                 </p>
             </div>
         </div>
