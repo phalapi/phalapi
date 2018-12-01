@@ -8,7 +8,6 @@
 [![License](https://poser.pugx.org/phalapi/phalapi/license)](https://packagist.org/packages/phalapi/phalapi)
 
 ## 独家赞助商
-![](http://webtools.qiniudn.com/master-LOGO-20150410_50.jpg)  
 此版本由[（点击成为独家赞助）](https://www.phalapi.net/ad.html)独家赞助。  
 
 ## 快速安装
