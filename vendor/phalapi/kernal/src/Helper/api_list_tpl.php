@@ -8,7 +8,8 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
     <meta charset="utf-8">
     <title><?php echo $projectName; ?> - 在线接口列表</title>
 
-    <link href="https://lib.baomitu.com/semantic-ui/2.3.3/semantic.min.css" rel="stylesheet">
+    <!-- <link href="https://lib.baomitu.com/semantic-ui/2.3.3/semantic.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://staticfile.qnssl.com/semantic-ui/2.1.6/semantic.min.css">
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 
     <script src="https://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
@@ -221,9 +222,9 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
             <div class="column" align="center">
                 <p>
                     <strong>接口，从简单开始！</strong>
-                    © 2015-2018 Powered  By <a href="http://www.phalapi.net/" target="">PhalApi 2.3.1 </a> All Rights Reserved. <span id="version_update"></span>
+                    © 2015-<?php echo date('Y'); ?> Powered  By <a href="http://www.phalapi.net/" target="">PhalApi <?php echo PHALAPI_VERSION; ?> </a> All Rights Reserved. <span id="version_update"></span>
                     <br />
-                    此版本由<a href="https://www.phalapi.net/ad.html">点击成为独家赞助</a>独家赞助
+                    此版本由<a href="https://www.phalapi.net/ad.html">点击成为</a>独家赞助
                 </p>
             </div>
         </div>

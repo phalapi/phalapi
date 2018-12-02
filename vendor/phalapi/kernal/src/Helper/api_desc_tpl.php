@@ -259,6 +259,7 @@ EOT;
  * 底部
  */
 $version = PHALAPI_VERSION;
+$thisYear = date('Y');
 echo <<<EOT
         <div class="ui blue message">
           <strong>温馨提示：</strong> 此接口参数列表根据后台代码自动生成，可将 ?service= 改成您需要查询的接口/服务
@@ -277,9 +278,9 @@ echo <<<EOT
             <div class="column" align="center">
                 <p>
                     <strong>接口，从简单开始！</strong>
-                    © 2015-2018 Powered  By <a href="http://www.phalapi.net/" target="">PhalApi 2.3.1 </a> All Rights Reserved. <span id="version_update"></span>
+                    © 2015-{$thisYear} Powered  By <a href="http://www.phalapi.net/" target="">PhalApi {$version} </a> All Rights Reserved. <span id="version_update"></span>
                     <br />
-                    此版本由<a href="https://www.phalapi.net/ad.html">点击成为独家赞助</a>独家赞助
+                    此版本由<a href="https://www.phalapi.net/ad.html">点击成为</a>独家赞助
                 </p>
             </div>
         </div>
