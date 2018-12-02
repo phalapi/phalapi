@@ -1,6 +1,6 @@
 ![apic](http://webtools.qiniudn.com/master-LOGO-20150410_50.jpg)  
 
-# [PhalApi 2.4.0 - 接口，从简单开始！](https://www.phalapi.net/) 
+# [PhalApi 2.4.2 - 接口，从简单开始！](https://www.phalapi.net/) 
 
 [![Latest Stable Version](https://poser.pugx.org/phalapi/phalapi/v/stable)](https://packagist.org/packages/phalapi/phalapi)
 [![Total Downloads](https://poser.pugx.org/phalapi/phalapi/downloads)](https://packagist.org/packages/phalapi/phalapi)
@@ -8,7 +8,7 @@
 [![License](https://poser.pugx.org/phalapi/phalapi/license)](https://packagist.org/packages/phalapi/phalapi)
 
 ## 独家赞助商
-此版本由[（点击成为独家赞助）](https://www.phalapi.net/ad.html)独家赞助。  
+此版本由[（点击成为）](https://www.phalapi.net/ad.html)独家赞助。  
 
 ## 快速安装
 
@@ -40,7 +40,7 @@ http://localhost/path/to/phalapi/public/
     "ret": 200,
     "data": {
         "title": "Hello PhalApi",
-        "version": "2.0.1",
+        "version": "2.4.2",
         "time": 1501079142
     },
     "msg": ""
