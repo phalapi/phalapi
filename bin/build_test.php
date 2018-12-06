@@ -9,10 +9,10 @@
  * 1、针对全部public的函数进行单元测试
  * 2、可根据@testcase注释自动生成测试用例
  *
- * 备注：另可使用phpunit-skelgen进行骨架代码生成
+ * 备注：亦可使用phpunit-skelgen进行骨架代码生成
  *
- * @author: dogstar 20170708
- * @version: 5.1.1
+ * @author: dogstar 20181206
+ * @version: 6.1.1
  */
 
 if ($argc < 3) {
@@ -79,46 +79,52 @@ $objName = lcfirst(str_replace(array('_', '\\'), array('', ''), $className));
 
 /** ------------------- 生成通用的单元测试代码 ------------------ **/
 
-$code = "<?php
+$code = "<?php";
 
-";
+// 已经将启动文件配置在phpunit.xml，不需要再手动引入
+// if (file_exists(dirname(__FILE__) . '/test_env.php')) {
+//     $code .= "require_once dirname(__FILE__) . '/bootstrap.php';
+// ";
+// } else {
+//     $code .= "//require_once dirname(__FILE__) . '/bootstrap.php';
+// ";
+// }
 
-if (file_exists(dirname(__FILE__) . '/test_env.php')) {
-    $code .= "require_once dirname(__FILE__) . '/bootstrap.php';
-";
-} else {
-    $code .= "//require_once dirname(__FILE__) . '/bootstrap.php';
-";
-}
-
-$initWay = "new $className()";
+$initWay = "new \\$className()";
 if (method_exists($className, '__construct')) {
     $constructMethod = new ReflectionMethod($className, '__construct');
     if (!$constructMethod->isPublic()) {
         if (is_callable(array($className, 'getInstance'))) {
-            $initWay = "$className::getInstance()";
+            $initWay = "\\$className::getInstance()";
         } else if(is_callable(array($className, 'newInstance'))) {
-            $initWay = "$className::newInstance()";
+            $initWay = "\\$className::newInstance()";
         } else {
             $initWay = 'NULL';
         }
     }
 }
 
-$code .= "
-if (!class_exists('" . (strpos($className, '\\') !== false ? str_replace('\\', '\\\\', $className) : $className) . "')) {
-    require dirname(__FILE__) . '/$filePath';
-}
+// 不同版本下的PHPUnit
+$phpunitBaseClass = class_exists('PHPUnit_Framework_TestCase') ? '\PHPUnit_Framework_TestCase' : '\PHPUnit\Framework\TestCase';
 
+$code .= "
 /**
- * PhpUnderControl_" . str_replace('_', '', $className) . "_Test
+ * PhalApi_" . str_replace('_', '', $className) . "_Test
  *
  * 针对 $filePath $className 类的PHPUnit单元测试
  *
  * @author: $author " . date('Ymd') . "
  */
 
-class PhpUnderControl_" . str_replace(array('_', '\\'), array('', ''), $className) . "_Test extends \PHPUnit_Framework_TestCase
+";
+
+$code .= "namespace tests\\" . substr($className, 0, strrpos($className, '\\')) . ";";
+$code .= "
+use $className;
+";
+
+$code .="
+class PhpUnderControl_" . str_replace(array('_', '\\'), array('', ''), $className) . "_Test extends $phpunitBaseClass
 {
     public \$$objName;
 
@@ -231,7 +237,7 @@ foreach ($methods as $method) {
     {"
     . (empty($initParamStr) ? '' : "$initParamStr\n") 
     . "\n        "
-    . ($isStatic ? "\$rs = $className::$fun($callParamStr);" : "\$rs = \$this->$objName->$fun($callParamStr);") 
+    . ($isStatic ? "\$rs = \\$className::$fun($callParamStr);" : "\$rs = \$this->$objName->$fun($callParamStr);") 
     . (empty($returnAssert) ? '' : "\n\n        " . $returnAssert . "\n") 
     . "
     }
