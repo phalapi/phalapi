@@ -191,13 +191,13 @@ EOT;
 echo <<<EOT
 <table class="ui green celled striped table" >
     <thead>
-        <tr><th>参数</th><th>是否必填</th><th>值</th></tr>
+        <tr><th width="25%">参数</th><th width="10%">是否必填</th><th width="65%">值</th></tr>
     </thead>
     <tbody id="params">
         <tr>
             <td>service</td>
             <td><font color="red">必须</font></td>
-            <td><input name="service" data-source="get" value="{$service}" style="width:100%;" class="C_input" /></td>
+            <td><div class="ui fluid input disabled"><input name="service" data-source="get" value="{$service}" style="width:100%;" class="C_input" /></div></td>
         </tr>
 EOT;
 foreach ($rules as $key => $rule){
@@ -228,7 +228,7 @@ foreach ($rules as $key => $rule){
         <tr>
             <td>{$name}</td>
             <td>{$require}</td>
-            <td><input name="{$name}" value="{$default}" data-source="{$source}" placeholder="{$desc}" style="width:100%;" class="C_input" type="$inputType" $multiple/></td>
+            <td><div class="ui fluid input"><input name="{$name}" value="{$default}" data-source="{$source}" placeholder="{$desc}" style="width:100%;" class="C_input" type="$inputType" $multiple/></div></td>
         </tr>
 EOT;
 }
