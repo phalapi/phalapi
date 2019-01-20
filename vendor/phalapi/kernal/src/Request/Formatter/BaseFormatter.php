@@ -35,7 +35,7 @@ class BaseFormatter {
     protected function filterRangeMinLessThanOrEqualsMax($rule) {
         if (isset($rule['min']) && isset($rule['max']) && $rule['min'] > $rule['max']) {
             throw new InternalServerErrorException(
-                \PhalApi\T('min should <= max, but now {name} min = {min} and max = {max}', 
+                \PhalApi\T('min should <= max, but now {name} min = {min} and max = {max}',
                     array('name' => $rule['name'], 'min' => $rule['min'], 'max' => $rule['max']))
             );
         }
@@ -43,19 +43,21 @@ class BaseFormatter {
 
     protected function filterRangeCheckMin($value, $rule) {
         if (isset($rule['min']) && $value < $rule['min']) {
-            throw new BadRequestException(
-                \PhalApi\T('{name} should >= {min}, but now {name} = {value}', 
-                    array('name' => $rule['name'], 'min' => $rule['min'], 'value' => $value))
-            );
+            $message = isset($rule['message'])
+                ? \PhalApi\T($rule['message'])
+                : \PhalApi\T('{name} should >= {min}, but now {name} = {value}', 
+                    array('name' => $rule['name'], 'min' => $rule['min'], 'value' => $value));
+            throw new BadRequestException($message);
         }
     }
 
     protected function filterRangeCheckMax($value, $rule) {
         if (isset($rule['max']) && $value > $rule['max']) {
-            throw new BadRequestException(
-                \PhalApi\T('{name} should <= {max}, but now {name} = {value}', 
-                array('name' => $rule['name'], 'max' => $rule['max'], 'value' => $value))
-            );
+            $message = isset($rule['message'])
+                ? \PhalApi\T($rule['message'])
+                : \PhalApi\T('{name} should <= {max}, but now {name} = {value}',
+                    array('name' => $rule['name'], 'max' => $rule['max'], 'value' => $value));
+            throw new BadRequestException($message);
         }
     }
 
@@ -67,10 +69,11 @@ class BaseFormatter {
      */
     protected function formatEnumValue($value, $rule) {
         if (!in_array($value, $rule['range'])) {
-            throw new BadRequestException(
-                \PhalApi\T('{name} should be in {range}, but now {name} = {value}', 
-                    array('name' => $rule['name'], 'range' => implode('/', $rule['range']), 'value' => $value))
-            );
+            $message = isset($rule['message'])
+                ? \PhalApi\T($rule['message'])
+                : \PhalApi\T('{name} should be in {range}, but now {name} = {value}', 
+                    array('name' => $rule['name'], 'range' => implode('/', $rule['range']), 'value' => $value));
+            throw new BadRequestException($message);
         }
     }
 }

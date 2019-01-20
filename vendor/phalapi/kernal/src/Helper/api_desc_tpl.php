@@ -95,7 +95,13 @@ foreach ($rules as $key => $rule) {
     if ($default === NULL) {
         $default = 'NULL';
     } else if (is_array($default)) {
-        $default = json_encode($default);
+        // @dogstar 20190120 默认值，反序列
+        $ruleFormat = !empty($rule['format']) ? strtolower($rule['format']) : '';
+        if ($ruleFormat == 'explode') {
+            $default = implode(isset($rule['separator']) ? $rule['separator'] : ',', $default);
+        } else {
+            $default = json_encode($default);
+        }
     } else if (!is_string($default)) {
         $default = var_export($default, true);
     }
@@ -202,8 +208,13 @@ foreach ($rules as $key => $rule){
     }
     $name = $rule['name'];
     $require = isset($rule['require']) && $rule['require'] ? '<font color="red">必须</font>' : '可选';
+    // 提供给表单的默认值
     $default = isset($rule['default'])
-        ? (is_array($rule['default']) ? json_encode($rule['default']) : $rule['default'])
+        ? (is_array($rule['default']) // 针对数组，进行反序列化
+            ? (!empty($rule['format']) && $rule['format'] == 'explode' 
+                ? implode(isset($rule['separator']) ? $rule['separator'] : ',', $rule['default']) 
+                : json_encode($rule['default'])) 
+            : $rule['default'])
         : '';
     $default = htmlspecialchars($default);
     $desc = isset($rule['desc']) ? htmlspecialchars(trim($rule['desc'])) : '';

@@ -56,9 +56,12 @@ class StringFormatter extends BaseFormatter implements Formatter {
 
         // 为安全起见，仅在调试模式下，才显示正则表达式
         if (preg_match($rule['regex'], $value) <= 0) {
-            throw new BadRequestException(\PhalApi\T('{name} can not match {regex}', 
-                array('name'  => $rule['name'], 'regex' => \PhalApi\DI()->debug ? $rule['regex'] : '#regex'))
-            );
+            $message = isset($rule['message'])
+                ? \PhalApi\T($rule['message'])
+                : \PhalApi\T('{name} can not match {regex}', 
+                    array('name'  => $rule['name'], 'regex' => \PhalApi\DI()->debug ? $rule['regex'] : '#regex'));
+
+            throw new BadRequestException($message);
         }
     }
 
