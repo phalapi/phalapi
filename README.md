@@ -99,7 +99,7 @@ class Site extends Api {
 
 运行效果，截图如下：  
 
-![20170726223129_eecf3d78826c5841020364c852c35156](https://user-images.githubusercontent.com/12585518/52100580-09133a80-2613-11e9-9854-e11c7e789646.jpg)
+![_20190201151943](https://user-images.githubusercontent.com/12585518/52108414-e98d0980-2634-11e9-9e68-9c3fae304a46.png)
 
 ### 查看在线接口文档
 
