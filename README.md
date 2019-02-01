@@ -6,12 +6,6 @@
 [![Total Downloads](https://poser.pugx.org/phalapi/phalapi/downloads)](https://packagist.org/packages/phalapi/phalapi)
 [![Latest Unstable Version](https://poser.pugx.org/phalapi/phalapi/v/unstable)](https://packagist.org/packages/phalapi/phalapi)
 [![License](https://poser.pugx.org/phalapi/phalapi/license)](https://packagist.org/packages/phalapi/phalapi)
-
-## 独家赞助商
-此版本由[（点击成为）](https://www.phalapi.net/ad.html)独家赞助。  
-
-## PhalApi官方创新项目
-[小白接口](https://www.okayapi.com/?f=github)，是免费、免开发、直接可用的的云端API。
  
 ## 开发文档
 对于PHP后端开发人员，请查看：[PhalApi 2.x 开发文档](http://docs.phalapi.net/#/v2.0/)。  
@@ -20,6 +14,7 @@
  + 默认接口服务：[http://demo.phalapi.net/?s=App.Site.Index](http://demo.phalapi.net/?s=App.Site.Index)
  + 在线接口文档：[http://demo.phalapi.net/docs.php](http://demo.phalapi.net/docs.php)
  + 接口详情文档（以默认接口为例）：[http://demo.phalapi.net/docs.php?service=App.Site.Index&detail=1&type=fold](http://demo.phalapi.net/docs.php?service=App.Site.Index&detail=1&type=fold)
+ + PhalApi创新项目-小白接口（免费、免开发、直接可用的的云端API）：[https://www.okayapi.com/](https://www.okayapi.com/?f=github)
  
 ## 快速安装
 
@@ -113,6 +108,9 @@ PhalApi会根据你编写的接口的参数配置和代码注释，自动实时�
 浏览效果类似如下：  
 
 ![_20190201113515](https://user-images.githubusercontent.com/12585518/52101206-8fc91700-2615-11e9-8c4d-20e30cc264c4.png)
+
+## 独家赞助商
+此版本由[（点击成为）](https://www.phalapi.net/ad.html)独家赞助。  
 
 ## 还有问题，怎么办？  
 
