@@ -43,16 +43,16 @@ namespace App\Api;
 use PhalApi\Api;
 
 class Site extends Api {
-	/**
-	 * 默认接口服务
-	 */
-	public function index() {
+    /**
+     * 默认接口服务
+     */
+    public function index() {
         return array(
             'title' => 'Hello ' . $this->username,
             'version' => PHALAPI_VERSION,
             'time' => $_SERVER['REQUEST_TIME'],
         );
-	}
+    }
 }
 ```
 
