@@ -7,16 +7,16 @@
 [![Latest Unstable Version](https://poser.pugx.org/phalapi/phalapi/v/unstable)](https://packagist.org/packages/phalapi/phalapi)
 [![License](https://poser.pugx.org/phalapi/phalapi/license)](https://packagist.org/packages/phalapi/phalapi)
  
-## 开发文档
+## 1、开发文档
 专为PHPer准备的优雅而详细的开发文档，请看：[PhalApi 2.x 开发文档](http://docs.phalapi.net/#/v2.0/)。  
 
-## 在线示例
+## 2、在线示例
  + 默认接口服务：[http://demo.phalapi.net/?s=App.Site.Index](http://demo.phalapi.net/?s=App.Site.Index)
  + 在线接口文档：[http://demo.phalapi.net/docs.php](http://demo.phalapi.net/docs.php)
  + 接口详情文档（以默认接口为例）：[http://demo.phalapi.net/docs.php?service=App.Site.Index&detail=1&type=fold](http://demo.phalapi.net/docs.php?service=App.Site.Index&detail=1&type=fold)
  + **PhalApi创新项目-小白接口**（免费、免开发、直接可用的的云端API）：[https://www.okayapi.com/](https://www.okayapi.com/?f=github)
  
-## 快速安装
+## 3、快速安装
 
 ### composer一键安装
 
@@ -34,7 +34,7 @@ $ composer create-project phalapi/phalapi
 $ composer update
 ```
 
-## 使用
+## 4、使用
 
 ### 调用接口
 
@@ -109,10 +109,10 @@ PhalApi会根据你编写的接口的参数配置和代码注释，自动实时�
 
 ![_20190201113515](https://user-images.githubusercontent.com/12585518/52101206-8fc91700-2615-11e9-8c4d-20e30cc264c4.png)
 
-## 独家赞助商
+## 5、独家赞助商
 此版本由[（点击成为）](https://www.phalapi.net/ad.html)独家赞助。  
 
-## 还有问题，怎么办？  
+## 6、还有问题，怎么办？  
 
 如发现问题，或者任何问题，欢迎提交Issue到[这里](https://github.com/phalapi/phalapi/issues)，或进入[PhalApi开源社区](http://qa.phalapi.net/?f=github)。  
-如觉得好用或喜欢，请帮忙在Github给个Star，也可以对PhalApi进行[捐赠](https://www.phalapi.net/donate.html)哦 ^_^
+如觉得好用或喜欢，请帮忙在Github给个Star，也可以对PhalApi进行[捐赠](https://www.phalapi.net/donate.html)哦 ^_^。
