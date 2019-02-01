@@ -28,12 +28,14 @@ $ composer create-project phalapi/phalapi
 $ composer update
 ```
 
-## 调用接口
+## 使用
 
-随后，可通过以下链接，访问默认接口服务，即：```s=App.Site.Index```。  
-```
-http://localhost/path/to/phalapi/public/
-```
+### 调用接口
+
+在PhalApi，你可以通过service参数（短名字是s参数）指定需要调用的接口服务。例如，访问默认接口服务。  
+
+ + 默认接口：[http://localhost/phalapi/public/?s=App.Site.Index](http://localhost/phalapi/public/?s=App.Site.Index)
+
 > 温馨提示：推荐将访问根路径指向/path/to/phalapi/public。
 
 对应执行的PHP代码在./src/app/Api/Site.php文件，源码片段如下：  
@@ -42,9 +44,27 @@ http://localhost/path/to/phalapi/public/
 namespace App\Api;
 use PhalApi\Api;
 
+/**
+ * 默认接口服务类
+ * @author: dogstar <chanzonghuang@gmail.com> 2014-10-04
+ */
 class Site extends Api {
+    public function getRules() {
+        return array(
+            'index' => array(
+                'username'  => array('name' => 'username', 'default' => 'PhalApi', 'desc' => '用户名'),
+            ),
+        );
+    }
+
     /**
      * 默认接口服务
+     * @desc 默认接口服务，当未指定接口服务时执行此接口服务
+     * @return string title 标题
+     * @return string content 内容
+     * @return string version 版本，格式：X.X.X
+     * @return int time 当前时间戳
+     * @exception 400 非法请求，参数传递错误
      */
     public function index() {
         return array(
@@ -72,6 +92,16 @@ class Site extends Api {
 运行效果，截图如下：  
 
 ![20170726223129_eecf3d78826c5841020364c852c35156](https://user-images.githubusercontent.com/12585518/52100580-09133a80-2613-11e9-9854-e11c7e789646.jpg)
+
+### 查看在线接口文档
+
+PhalApi会根据你编写的接口的参数配置和代码注释，自动实时生成在线接口文档。在线接口文档链接为：  
+ 
+ + 在线接口文档：[http://localhost/phalapi/public/docs.php](http://localhost/phalapi/public/docs.php)
+
+浏览效果类似如下：  
+
+![_20190201113515](https://user-images.githubusercontent.com/12585518/52101206-8fc91700-2615-11e9-8c4d-20e30cc264c4.png)
 
 ## 文档
 更多请查看：[PhalApi 2.x 开发文档](http://docs.phalapi.net/#/v2.0/)。  
