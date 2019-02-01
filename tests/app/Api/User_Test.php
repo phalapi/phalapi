@@ -28,7 +28,7 @@ class PhpUnderControl_AppApiUser_Test extends \PHPUnit_Framework_TestCase
         // var_dump(\PhalApi\DI()->tracer->getSqls());
 
         // 输出本次单元测试所涉及的追踪埋点
-        // var_dump(\PhalApi\DI()->tracer->getSqls());
+        // var_dump(\PhalApi\DI()->tracer->getStack());
     }
 
 
