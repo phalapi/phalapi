@@ -30,11 +30,33 @@ $ composer update
 
 ### 访问接口服务
 
-随后，可通过以下链接，访问默认接口服务。  
+随后，可通过以下链接，访问默认接口服务，即：```s=App.Site.Index```。  
 ```
 http://localhost/path/to/phalapi/public/
 ```
-可以看到类似这样的输出：  
+> 温馨提示：推荐将访问根路径指向/path/to/phalapi/public。
+
+对应执行的PHP代码在./src/app/Api/Site.php文件，源码片段如下：  
+```
+<?php
+namespace App\Api;
+use PhalApi\Api;
+
+class Site extends Api {
+	/**
+	 * 默认接口服务
+	 */
+	public function index() {
+        return array(
+            'title' => 'Hello ' . $this->username,
+            'version' => PHALAPI_VERSION,
+            'time' => $_SERVER['REQUEST_TIME'],
+        );
+	}
+}
+```
+
+接口请求后结果输出类似如下：  
 ```
 {
     "ret": 200,
@@ -50,9 +72,6 @@ http://localhost/path/to/phalapi/public/
 运行效果，截图如下：  
 
 ![20170726223129_eecf3d78826c5841020364c852c35156](https://user-images.githubusercontent.com/12585518/52100580-09133a80-2613-11e9-9854-e11c7e789646.jpg)
-
-
-> 温馨提示：推荐将访问根路径指向/path/to/phalapi/public。
 
 ## 文档
 更多请查看：[PhalApi 2.x 开发文档](http://docs.phalapi.net/#/v2.0/)。  
