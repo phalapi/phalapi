@@ -8,7 +8,7 @@
 [![License](https://poser.pugx.org/phalapi/phalapi/license)](https://packagist.org/packages/phalapi/phalapi)
  
 ## 开发文档
-对于PHP后端开发人员，请查看：[PhalApi 2.x 开发文档](http://docs.phalapi.net/#/v2.0/)。  
+专为PHPer准备的优雅而详细的开发文档，请看：[PhalApi 2.x 开发文档](http://docs.phalapi.net/#/v2.0/)。  
 
 ## 在线示例
  + 默认接口服务：[http://demo.phalapi.net/?s=App.Site.Index](http://demo.phalapi.net/?s=App.Site.Index)
