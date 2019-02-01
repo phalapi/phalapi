@@ -28,7 +28,7 @@ $ composer create-project phalapi/phalapi
 $ composer update
 ```
 
-### 访问接口服务
+## 调用接口
 
 随后，可通过以下链接，访问默认接口服务，即：```s=App.Site.Index```。  
 ```
@@ -37,7 +37,7 @@ http://localhost/path/to/phalapi/public/
 > 温馨提示：推荐将访问根路径指向/path/to/phalapi/public。
 
 对应执行的PHP代码在./src/app/Api/Site.php文件，源码片段如下：  
-```
+```php
 <?php
 namespace App\Api;
 use PhalApi\Api;
@@ -80,6 +80,6 @@ class Site extends Api {
 
  + [小白接口](https://www.okayapi.com/?f=github)
 
-## 发现问题，怎么办？  
+## 有问题，怎么办？  
 
-如发现问题，或者任何问题，欢迎提交Issue到[这里](https://github.com/phalapi/phalapi/issues)。
+如发现问题，或者任何问题，欢迎提交Issue到[这里](https://github.com/phalapi/phalapi/issues)，或进入[PhalApi开源社区](http://qa.phalapi.net/?f=github)。
