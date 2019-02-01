@@ -14,7 +14,7 @@
  + 默认接口服务：[http://demo.phalapi.net/?s=App.Site.Index](http://demo.phalapi.net/?s=App.Site.Index)
  + 在线接口文档：[http://demo.phalapi.net/docs.php](http://demo.phalapi.net/docs.php)
  + 接口详情文档（以默认接口为例）：[http://demo.phalapi.net/docs.php?service=App.Site.Index&detail=1&type=fold](http://demo.phalapi.net/docs.php?service=App.Site.Index&detail=1&type=fold)
- + PhalApi创新项目-小白接口（免费、免开发、直接可用的的云端API）：[https://www.okayapi.com/](https://www.okayapi.com/?f=github)
+ + **PhalApi创新项目-小白接口**（免费、免开发、直接可用的的云端API）：[https://www.okayapi.com/](https://www.okayapi.com/?f=github)
  
 ## 快速安装
 
