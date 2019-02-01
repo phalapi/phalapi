@@ -49,7 +49,7 @@ http://localhost/path/to/phalapi/public/
 
 运行效果，截图如下：  
 
-![](http://7xiz2f.com1.z0.glb.clouddn.com/20170726223129_eecf3d78826c5841020364c852c35156)
+![20170726223129_eecf3d78826c5841020364c852c35156](https://user-images.githubusercontent.com/12585518/52100580-09133a80-2613-11e9-9854-e11c7e789646.jpg)
 
 
 > 温馨提示：推荐将访问根路径指向/path/to/phalapi/public。
