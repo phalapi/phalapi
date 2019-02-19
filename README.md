@@ -111,10 +111,7 @@ PhalApi会根据你编写的接口的参数配置和代码注释，自动实时�
 
 ![_20190201113515](https://user-images.githubusercontent.com/12585518/52101206-8fc91700-2615-11e9-8c4d-20e30cc264c4.png)
 
-## 5、独家赞助商
-此版本由[（点击成为）](https://www.phalapi.net/ad.html)独家赞助。  
-
-## 6、还有问题，怎么办？  
+## 5、还有问题，怎么办？  
 
 如发现问题，或者任何问题，欢迎提交Issue到[这里](https://github.com/phalapi/phalapi/issues)，或进入[PhalApi开源社区](http://qa.phalapi.net/?f=github)。  
 如果喜欢，请帮忙在[Github](https://github.com/phalapi/phalapi)或[码云](https://gitee.com/dogstar/PhalApi)给个Star，也可以对PhalApi进行[捐赠](https://www.phalapi.net/donate.html)哦 ^_^。
