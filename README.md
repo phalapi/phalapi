@@ -36,6 +36,8 @@ $ composer create-project phalapi/phalapi
 $ composer update
 ```
 
+![phalapi-install](https://user-images.githubusercontent.com/12585518/52995681-4ae71200-3456-11e9-8d00-065a42cf4382.gif)
+
 ## 4、使用
 
 ### 调用接口
