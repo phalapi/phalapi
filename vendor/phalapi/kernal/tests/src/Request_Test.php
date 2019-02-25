@@ -66,6 +66,19 @@ class PhpUnderControl_PhalApiRequest_Test extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @expectedException \PhalApi\Exception\BadRequestException
+     * @expectedExceptionMessage 我需要一个正经的整数
+     */
+    public function testGetByComplexRuleWithMessage()
+    {
+        $rule = array('name' => 'year', 'type' => 'int', 'min' => '2000', 'max' => '2013', 'message' => '我需要一个正经的整数');
+
+        $rs = $this->request->getByRule($rule);
+
+        $this->assertSame(2013, $rs);
+    }
+
+    /**
      * @group testGetAll
      */ 
     public function testGetAll()
@@ -93,6 +106,15 @@ class PhpUnderControl_PhalApiRequest_Test extends \PHPUnit_Framework_TestCase
     public function testGetRequireVal()
     {
         $this->request->getByRule(array('name' => 'requireVal', 'require' => true));
+    }
+
+    /**
+     * @expectedException \PhalApi\Exception\BadRequestException
+     * @expectedExceptionMessage 必须
+     */
+    public function testGetRequireValWithMessage()
+    {
+        $this->request->getByRule(array('name' => 'requireVal', 'require' => true, 'message' => '必须哦'));
     }
 
     public function testGetHeader()

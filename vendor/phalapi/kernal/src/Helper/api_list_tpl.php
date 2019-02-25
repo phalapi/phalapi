@@ -1,5 +1,4 @@
 <?php
-$env && ob_start ();
 $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple pink grey black");
 ?>
 <!DOCTYPE html>
@@ -58,10 +57,10 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
             ?>
             <div class="four wide column">
                 <div class="ui vertical accordion menu">
-                <?php 
+                <?php
                     // 总接口数量
                     $methodTotal = 0;
-                    foreach ($allApiS as $namespace => $subAllApiS) { 
+                    foreach ($allApiS as $namespace => $subAllApiS) {
                         foreach ($subAllApiS as $item) {
                             $methodTotal += count($item['methods']);
                         }
@@ -69,7 +68,7 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
                 ?>
                     <div class="item"><h4>接口服务列表&nbsp;(<?php echo $methodTotal; ?>)</h4></div>
 
-                <?php 
+                <?php
                     $num = 0;
                     foreach ($allApiS as $namespace => $subAllApiS) {
                         echo '<div class="item">';
@@ -102,7 +101,7 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
             <div class="twelve wide stretched column">
             <?php } else { ?>
             <div class="wide stretched column">
-            <?php 
+            <?php
                     // 展开时，将全部的接口服务，转到第一组
                     $mergeAllApiS = array('all' => array('methods' => array()));
                     foreach ($allApiS as $namespace => $subAllApiS) {
@@ -135,10 +134,9 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
                         }
                     }
                     $allApiS = array('ALL' => $mergeAllApiS);
-            } 
+            }
             ?>
                 <?php
-                $uri  = !$env ? substr($_SERVER['REQUEST_URI'], 0, strpos($_SERVER['REQUEST_URI'], '?')) : '';
                 $num2 = 0;
                 foreach ($allApiS as $namespace => $subAllApiS) {
                 foreach ($subAllApiS as $key => $item) {
@@ -159,24 +157,7 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
                             <?php
                             $num = 1;
                             foreach ($item['methods'] as $mKey => $mItem) {
-                                if ($env){
-                                    ob_start ();
-                                    // $_REQUEST['service'] = $mItem['service'];
-                                    // $_GET['detail'] = 1;
-                                    // include($webRoot . D_S . 'docs.php');
-
-                                    // 换一种更优雅的方式
-                                    \PhalApi\DI()->request = new \PhalApi\Request(array('service' => $mItem['service']));
-                                    $apiDesc = new \PhalApi\Helper\ApiDesc($projectName);
-                                    $apiDesc->render();
-
-                                    $string = ob_get_clean ();
-                                    \PhalApi\Helper\saveHtml ($webRoot, $mItem['service'], $string);
-                                    $link = $mItem['service'] . '.html';
-                                }else{
-                                    $concator = strpos($uri, '?') ? '&' : '?';
-                                    $link = $uri . $concator . 'service=' . $mItem['service'] . '&detail=1' . '&type=' . $theme;
-                                }
+                                $link = $this->makeApiServiceLink($mItem['service'],$theme);
                                 $NO   = $num++;
                                 echo "<tr><td>{$NO}</td><td><a href=\"$link\" target='_blank'>{$mItem['service']}</a></td><td>{$mItem['title']}</td><td>{$mItem['desc']}</td></tr>";
                             }
@@ -186,14 +167,7 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
 
                     <!-- 主题切换，仅当在线时才支持 -->
                     <?php
-                            if (!$env) {
-                                $curUrl = $_SERVER['SCRIPT_NAME'];
-                                if ($theme == 'fold') {
-                                    echo '<div style="float: right"><a href="' . $curUrl . '?type=expand">切换到展开版</a></div>';
-                                } else {
-                                    echo '<div style="float: right"><a href="' . $curUrl . '?type=fold">切换到折叠版</a></div>';
-                                }
-                            }
+                    $this->makeThemeButton($theme);
                     ?>
 
                     </div>
@@ -223,8 +197,6 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
                 <p>
                     <strong>接口，从简单开始！</strong>
                     © 2015-<?php echo date('Y'); ?> Powered  By <a href="http://www.phalapi.net/" target="">PhalApi <?php echo PHALAPI_VERSION; ?> </a> All Rights Reserved. <span id="version_update"></span>
-                    <br />
-                    此版本由<a href="https://www.phalapi.net/ad.html">点击成为</a>独家赞助
                 </p>
             </div>
         </div>
@@ -262,9 +234,9 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
                     }
                     if (res.data.need_upgrade >= 0) {
                         return;
-                    }          
+                    }
 
-                    $('#version_update').html('&nbsp; | &nbsp; <a target="_blank" href=" ' + res.data.url + ' "><strong>免费升级到 PhalApi ' + res.data.version + '</strong></a>');              
+                    $('#version_update').html('&nbsp; | &nbsp; <a target="_blank" href=" ' + res.data.url + ' "><strong>免费升级到 PhalApi ' + res.data.version + '</strong></a>');
                 },
                 error:function(error){
                     console.log(error)
@@ -276,22 +248,4 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
 
 </body>
 </html>
-<?php
-if ($env){
-    $string = ob_get_clean ();
-    \PhalApi\Helper\saveHtml ($webRoot, 'index', $string);
-    $str = "
-Usage:
-
-生成展开版：  php {$argv[0]} expand
-生成折叠版：  php {$argv[0]} fold
-
-脚本执行完毕！离线文档保存路径为：";
-    if (strtoupper ( substr ( PHP_OS, 0,3)) == 'WIN'){
-        $str = iconv ( 'utf-8', 'gbk', $str);
-    }
-    $str .= $webRoot . D_S . 'docs' ;
-    echo $str, PHP_EOL, PHP_EOL;
-    exit(0);
-}
 

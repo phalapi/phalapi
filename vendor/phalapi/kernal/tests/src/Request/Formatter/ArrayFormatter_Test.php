@@ -61,4 +61,15 @@ class PhpUnderControl_PhalApiRequestFormatterArray_Test extends \PHPUnit_Framewo
 
         $rs = $this->arrayFormatter->parse('{"a":1', $rule);
     }
+
+    /**
+     * @expectedException PhalApi\Exception\BadRequestException
+     * @expectedExceptionMessage 显示指定的错误信息
+     */
+    public function testParseWrongJsonWithMessage()
+    {
+        $rule = array('name' => 'testKey', 'type' => 'array', 'format' => 'json', 'message' => '显示指定的错误信息');
+
+        $rs = $this->arrayFormatter->parse('{"a":1', $rule);
+    }
 }

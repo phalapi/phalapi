@@ -144,6 +144,34 @@ class PhpUnderControl_PhalApiRequestFormatterFile_Test extends \PHPUnit_Framewor
     }
 
     /**
+     * @expectedException PhalApi\Exception\BadRequestException
+     * @expectedExceptionMessage 兼容特别的bug时的错误提示
+     */
+    public function testSuffixForSpecialBugWithMessage()
+    {
+        // no ext
+        $aFile = array(
+            'name' => '2016', 
+            'type' => 'application/text', 
+            'size' => 100, 
+            'tmp_name' => '/tmp/123456', 
+            'error' => 0
+        );
+        $_FILES['aFile'] = $aFile;
+        $value = array();
+
+        $rule = array(
+            'name' => 'aFile', 
+            'require' => true, 
+            'default' => array(), 
+            'ext' => 'txt, DAT, baK,', //小心最后的逗号
+            'type' => 'file',
+            'message' => '兼容特别的bug时的错误提示',
+        );
+        $rs = $this->fileFormatter->parse($value, $rule);
+    }
+
+    /**
      * @dataProvider provideFileForSuffix
      * @expectedException PhalApi\Exception\BadRequestException
      */
@@ -158,6 +186,27 @@ class PhpUnderControl_PhalApiRequestFormatterFile_Test extends \PHPUnit_Framewor
             'default' => array(), 
             'ext' => array('XML', 'HTML'),
             'type' => 'file',
+        );
+        $rs = $this->fileFormatter->parse($value, $rule);
+    }
+
+    /**
+     * @dataProvider provideFileForSuffix
+     * @expectedException PhalApi\Exception\BadRequestException
+     * @expectedExceptionMessage 数组格式的扩展名错误提示
+     */
+    public function testSuffixMultiInArrayAndExcpetionWithMessage($fileIndex, $fileData)
+    {
+        $_FILES[$fileIndex] = $fileData;
+        $value = array();
+
+        $rule = array(
+            'name' => $fileIndex, 
+            'require' => true, 
+            'default' => array(), 
+            'ext' => array('XML', 'HTML'),
+            'type' => 'file',
+            'message' => '数组格式的扩展名错误提示',
         );
         $rs = $this->fileFormatter->parse($value, $rule);
     }
@@ -232,6 +281,24 @@ class PhpUnderControl_PhalApiRequestFormatterFile_Test extends \PHPUnit_Framewor
             'name' => 'maybeFile', 
             'require' => true, 
             'type' => 'file',
+        );
+        $rs = $this->fileFormatter->parse($value, $rule);
+    }
+
+    /**
+     * @expectedException PhalApi\Exception\BadRequestException
+     * @expectedExceptionMessage 缺少上传文件
+     */
+    public function testUploadNothingWithMessage()
+    {
+        $_FILES = array();
+        $value = array();
+
+        $rule = array(
+            'name' => 'maybeFile', 
+            'require' => true, 
+            'type' => 'file',
+            'message' => '缺少上传文件',
         );
         $rs = $this->fileFormatter->parse($value, $rule);
     }

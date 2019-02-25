@@ -39,6 +39,7 @@ class PhpUnderControl_PhalApiModelNotORM_Test extends \PHPUnit_Framework_TestCas
 
     protected function tearDown()
     {
+        // var_dump(\PhalApi\DI()->tracer->getSqls());
     }
 
 
@@ -71,6 +72,36 @@ class PhpUnderControl_PhalApiModelNotORM_Test extends \PHPUnit_Framework_TestCas
 
         $this->assertEquals('phpunit', $rs['content']);
         $this->assertEquals(array('year' => 2015), $rs['ext_data']);
+    }
+
+    public function testMultiInsert()
+    {
+        $data = array(
+            array('content' => 'phpunit_insert_1', 'ext_data' => array('year' => 2015)),
+            array('content' => 'phpunit_insert_2', 'ext_data' => array('year' => 2018))
+        );
+
+        $rs = \PhalApi\DI()->notorm->notormtest->insert_multi($data);
+
+        // 插入成功，返回的条目数量
+        $this->assertEquals(2, $rs);
+    }
+
+    /**
+     * PhalApi 2.5.0 新特性
+     */
+    public function testMultiInsertAndIgnore()
+    {
+        $data = array(
+            array('content' => 'phpunit_insert_ignore_1', 'ext_data' => array('year' => 2015)),
+            array('content' => 'phpunit_insert_ignore_2', 'ext_data' => array('year' => 2018))
+        );
+        $isIgnore = true;
+
+        $rs = \PhalApi\DI()->notorm->notormtest->insert_multi($data, $isIgnore);
+
+        // 插入成功，返回的条目数量
+        $this->assertEquals(2, $rs);
     }
 
     /**

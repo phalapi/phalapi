@@ -50,58 +50,6 @@
         ]
     },
     {
-        "name": "phalapi/notorm",
-        "version": "2.2.1",
-        "version_normalized": "2.2.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/phalapi/notorm.git",
-            "reference": "85cce24174e5b4fa0bdf18fb4c9d2b4d7ec6a2a3"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/phalapi/notorm/zipball/85cce24174e5b4fa0bdf18fb4c9d2b4d7ec6a2a3",
-            "reference": "85cce24174e5b4fa0bdf18fb4c9d2b4d7ec6a2a3",
-            "shasum": "",
-            "mirrors": [
-                {
-                    "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
-                    "preferred": true
-                }
-            ]
-        },
-        "require": {
-            "php": ">=5.3.3"
-        },
-        "time": "2018-03-26T13:22:34+00:00",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-4": {
-                "PhalApi\\NotORM\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "GPL-3.0+"
-        ],
-        "authors": [
-            {
-                "name": "Dogstar Huang",
-                "email": "chanzonghuang@gmail.com",
-                "homepage": "http://my.oschina.net/dogstar",
-                "role": "Developer"
-            }
-        ],
-        "description": "基于NotORM类库的优化版本，专门用于PhalApi 2.x 开源接口框架。",
-        "homepage": "http://www.phalapi.net",
-        "keywords": [
-            "api",
-            "notorm",
-            "phalapi"
-        ]
-    },
-    {
         "name": "phalapi/task",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -206,18 +154,18 @@
         ]
     },
     {
-        "name": "phalapi/kernal",
-        "version": "2.4.2",
-        "version_normalized": "2.4.2.0",
+        "name": "phalapi/notorm",
+        "version": "2.3.0",
+        "version_normalized": "2.3.0.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/phalapi/kernal.git",
-            "reference": "cc1bc1f06e99400c94a363713d73ef2057094fdc"
+            "url": "https://github.com/phalapi/notorm.git",
+            "reference": "a35e6ce3557b1c4559fefc1de366f28d866f2776"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/phalapi/kernal/zipball/cc1bc1f06e99400c94a363713d73ef2057094fdc",
-            "reference": "cc1bc1f06e99400c94a363713d73ef2057094fdc",
+            "url": "https://api.github.com/repos/phalapi/notorm/zipball/a35e6ce3557b1c4559fefc1de366f28d866f2776",
+            "reference": "a35e6ce3557b1c4559fefc1de366f28d866f2776",
             "shasum": "",
             "mirrors": [
                 {
@@ -227,10 +175,62 @@
             ]
         },
         "require": {
-            "phalapi/notorm": "2.2.1",
             "php": ">=5.3.3"
         },
-        "time": "2018-12-02T01:33:36+00:00",
+        "time": "2018-12-09T07:58:36+00:00",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "PhalApi\\NotORM\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-3.0+"
+        ],
+        "authors": [
+            {
+                "name": "Dogstar Huang",
+                "email": "chanzonghuang@gmail.com",
+                "homepage": "http://my.oschina.net/dogstar",
+                "role": "Developer"
+            }
+        ],
+        "description": "基于NotORM类库的优化版本，专门用于PhalApi 2.x 开源接口框架。",
+        "homepage": "http://www.phalapi.net",
+        "keywords": [
+            "api",
+            "notorm",
+            "phalapi"
+        ]
+    },
+    {
+        "name": "phalapi/kernal",
+        "version": "2.5.0",
+        "version_normalized": "2.5.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/phalapi/kernal.git",
+            "reference": "75f10dd95930721d7959d5f058ba1c8d2f4d1c14"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/phalapi/kernal/zipball/75f10dd95930721d7959d5f058ba1c8d2f4d1c14",
+            "reference": "75f10dd95930721d7959d5f058ba1c8d2f4d1c14",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "phalapi/notorm": "2.3.0",
+            "php": ">=5.3.3"
+        },
+        "time": "2019-02-19T06:51:42+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

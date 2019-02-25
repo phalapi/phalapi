@@ -290,8 +290,6 @@ echo <<<EOT
                 <p>
                     <strong>接口，从简单开始！</strong>
                     © 2015-{$thisYear} Powered  By <a href="http://www.phalapi.net/" target="">PhalApi {$version} </a> All Rights Reserved. <span id="version_update"></span>
-                    <br />
-                    此版本由<a href="https://www.phalapi.net/ad.html">点击成为</a>独家赞助
                 </p>
             </div>
         </div>

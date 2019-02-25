@@ -24,7 +24,7 @@ class NotORM_MultiResult extends NotORM_Result {
 		return $this;
 	}
 	
-	function insert_multi(array $rows) {
+	function insert_multi(array $rows, $isIgnore = false) {
 		$args = array();
 		foreach ($rows as $data) {
 			if ($data instanceof Traversable && !$data instanceof NotORM_Result) {
@@ -35,7 +35,7 @@ class NotORM_MultiResult extends NotORM_Result {
 			}
 			$args[] = $data;
 		}
-		return parent::insert_multi($args);
+		return parent::insert_multi($args, $isIgnore);
 	}
 	
 	function insert_update(array $unique, array $insert, array $update = array()) {

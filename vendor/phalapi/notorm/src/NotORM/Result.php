@@ -296,11 +296,12 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
 
     /** Shortcut for call_user_func_array(array($this, 'insert'), $rows)
      *
-     * @param array
+     * @param array $rows 待批量添加的数据
+     * @param boolean $isIgnore 是否在插入时使用IGNORE
      *
      * @return int number of affected rows or false in case of an error
      */
-    function insert_multi(array $rows){
+    function insert_multi(array $rows, $isIgnore = false){
         if($this->notORM->freeze){
             return false;
         }
@@ -337,8 +338,12 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
                 ? "({$quoteChar}" . implode("{$quoteChar}, {$quoteChar}", array_keys($data)) . "{$quoteChar}) VALUES " . implode(", ", $values) 
                 : "DEFAULT VALUES";
         }
+
+        // @dogstar 20181208
+        $ignoreSql = $isIgnore ? 'IGNORE' : '';
+
         // requires empty $this->parameters
-        $return = $this->query("INSERT INTO $this->table $insert", $parameters);
+        $return = $this->query("INSERT $ignoreSql INTO $this->table $insert", $parameters);
         if(!$return){
             return false;
         }
@@ -1112,4 +1117,53 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
         }
     }
 
+    /**
+     * 获取当前PDO连接
+     * @return \PDO
+     */
+    function getConn()
+    {
+        return $this->notORM->connection;
+    }
+
+    /**
+     * Execute an SQL statement and return the number of affected rows
+     * @param string $query
+     * @return int|false
+     */
+    function exec($query)
+    {
+        $conn = $this->getConn();
+        $sql = $conn->quote($query);
+        return $conn->exec($sql);
+    }
+
+    /** ------------------ 事务操作 ------------------ **/
+
+    /**
+     * 开启数据库事务
+     * @return bool
+     */
+    public function beginTransaction()
+    {
+        return $this->getConn()->beginTransaction();
+    }
+
+    /**
+     * 提交数据库事务
+     * @return bool
+     */
+    public function commit()
+    {
+        return $this->getConn()->commit();
+    }
+
+    /**
+     * 回滚数据库事务
+     * @return bool
+     */
+    public function rollBack()
+    {
+        return $this->getConn()->rollBack();
+    }    
 }
