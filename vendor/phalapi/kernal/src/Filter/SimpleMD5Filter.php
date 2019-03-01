@@ -1,8 +1,8 @@
 <?php
 namespace PhalApi\Filter;
 
-use PhalApi\Filter;
 use PhalApi\Exception\BadRequestException;
+use PhalApi\Filter;
 
 /**
  * SimpleMD5Filter 简单的MD5拦截器
@@ -22,15 +22,20 @@ use PhalApi\Exception\BadRequestException;
  * @author      dogstar <chanzonghuang@gmail.com> 2015-10-23
  */
 
-class SimpleMD5Filter implements Filter {
+class SimpleMD5Filter implements Filter
+{
 
     protected $signName;
+    protected $divider;
 
-    public function __construct($signName = 'sign') {
+    public function __construct($signName = 'sign', $divider = '=')
+    {
         $this->signName = $signName;
+        $this->divider = $divider;
     }
 
-    public function check() {
+    public function check()
+    {
         $allParams = \PhalApi\DI()->request->getAll();
         if (empty($allParams)) {
             return;
@@ -47,12 +52,16 @@ class SimpleMD5Filter implements Filter {
         }
     }
 
-    protected function encryptAppKey($params) {
+    protected function encryptAppKey($params)
+    {
         ksort($params);
 
         $paramsStrExceptSign = '';
-        foreach ($params as $val) {
-            $paramsStrExceptSign .= $val;
+
+        foreach ($params as $index => $val) {
+            if (isset($val) && $val) {
+                $paramsStrExceptSign .= $index . $this->divider . $val;
+            }
         }
 
         return md5($paramsStrExceptSign);
