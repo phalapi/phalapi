@@ -133,8 +133,8 @@ class Request {
                 continue;
             }
 
-            $headerKey = implode('-', array_map('ucwords', explode('_', strtolower(substr($name, 5)))));
-            $headers[$headerKey] = $value;
+            $key = $this->formatHeaderKey($name);
+            $headers[$key] = $value;
         }
 
         return $headers;
@@ -143,7 +143,7 @@ class Request {
     /**
      * 获取请求Header参数
      *
-     * @param string $key     Header-key值
+     * @param string $key     Header-key值，例如：USER_AGENT，或：User-Agent
      * @param mixed  $default 默认值
      *
      * @return string
@@ -154,7 +154,20 @@ class Request {
             $this->headers = $this->getAllHeaders();
         }
 
+        // 保持一致性，兼容多种格式的KEY输入，提高友好性 @dogstar 2019032
+        if (stripos($key, 'HTTP_') !== FALSE) {
+            $key = $this->formatHeaderKey($key);
+        }
+
         return isset($this->headers[$key]) ? $this->headers[$key] : $default;
+    }
+
+    /**
+     * 格式化HTTP头部KEY
+     * 例如，将HTTP_USER_AGENT转为User-Agent，更贴合浏览器查看的格式
+     */
+    protected function formatHeaderKey($key) {
+        return implode('-', array_map('ucwords', explode('_', strtolower(substr($key, 5)))));
     }
 
     /**

@@ -31,7 +31,7 @@ require_once dirname(__FILE__) . '/init.php';
 
 $projectName = 'PhalApi开源接口框架';
 
-if (substr(PHP_SAPI, 0, 3) == 'cgi') {
+if (substr(PHP_SAPI, 0, 3) == 'cli') {
     // 生成离线文档
     $apiHtml = new \PhalApi\Helper\ApiStaticCreate($projectName);
     $apiHtml->render();

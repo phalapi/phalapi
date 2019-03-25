@@ -1,5 +1,153 @@
 [
     {
+        "name": "phalapi/cli",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/phalapi/cli.git",
+            "reference": "8aedab4231a7089672d02f7b9e59447b3dc787ea"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/phalapi/cli/zipball/8aedab4231a7089672d02f7b9e59447b3dc787ea",
+            "reference": "8aedab4231a7089672d02f7b9e59447b3dc787ea",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "time": "2017-10-25T13:50:45+00:00",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "PhalApi\\CLI\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-3.0+"
+        ],
+        "authors": [
+            {
+                "name": "dogstar huang",
+                "email": "chanzonghuang@gmail.com",
+                "homepage": "http://my.oschina.net/dogstar",
+                "role": "Developer"
+            }
+        ],
+        "description": "PhalApi 2.x 扩展类库 - CLI命令行，可用于开发命令行应用，基于GetOpt，主要作用是将命令参数进行解析和处理。",
+        "homepage": "https://www.phalapi.net/",
+        "keywords": [
+            "cli",
+            "phalapi",
+            "phalapi-cli"
+        ]
+    },
+    {
+        "name": "phalapi/kernal",
+        "version": "2.5.0",
+        "version_normalized": "2.5.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/phalapi/kernal.git",
+            "reference": "75f10dd95930721d7959d5f058ba1c8d2f4d1c14"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/phalapi/kernal/zipball/75f10dd95930721d7959d5f058ba1c8d2f4d1c14",
+            "reference": "75f10dd95930721d7959d5f058ba1c8d2f4d1c14",
+            "shasum": ""
+        },
+        "require": {
+            "phalapi/notorm": "2.3.0",
+            "php": ">=5.3.3"
+        },
+        "time": "2019-02-19T06:51:42+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "src/bootstrap.php",
+                "src/functions.php"
+            ],
+            "psr-4": {
+                "PhalApi\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-3.0+"
+        ],
+        "authors": [
+            {
+                "name": "Dogstar Huang",
+                "email": "chanzonghuang@gmail.com",
+                "homepage": "http://my.oschina.net/dogstar",
+                "role": "Developer"
+            },
+            {
+                "name": "kwan",
+                "email": "303198069@qq.com",
+                "role": "Developer"
+            }
+        ],
+        "description": "PhalApi 2.x 框架核心部分。",
+        "homepage": "https://www.phalapi.net/",
+        "keywords": [
+            "api",
+            "framework",
+            "phalapi"
+        ]
+    },
+    {
+        "name": "phalapi/notorm",
+        "version": "2.3.0",
+        "version_normalized": "2.3.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/phalapi/notorm.git",
+            "reference": "a35e6ce3557b1c4559fefc1de366f28d866f2776"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/phalapi/notorm/zipball/a35e6ce3557b1c4559fefc1de366f28d866f2776",
+            "reference": "a35e6ce3557b1c4559fefc1de366f28d866f2776",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "time": "2018-12-09T07:58:36+00:00",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "PhalApi\\NotORM\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-3.0+"
+        ],
+        "authors": [
+            {
+                "name": "Dogstar Huang",
+                "email": "chanzonghuang@gmail.com",
+                "homepage": "http://my.oschina.net/dogstar",
+                "role": "Developer"
+            }
+        ],
+        "description": "基于NotORM类库的优化版本，专门用于PhalApi 2.x 开源接口框架。",
+        "homepage": "http://www.phalapi.net",
+        "keywords": [
+            "api",
+            "notorm",
+            "phalapi"
+        ]
+    },
+    {
         "name": "phalapi/qrcode",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -12,13 +160,7 @@
             "type": "zip",
             "url": "https://api.github.com/repos/phalapi/qrcode/zipball/cbb3c5f3f95a7902b0a72786a77495ada0c006b7",
             "reference": "cbb3c5f3f95a7902b0a72786a77495ada0c006b7",
-            "shasum": "",
-            "mirrors": [
-                {
-                    "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
-                    "preferred": true
-                }
-            ]
+            "shasum": ""
         },
         "time": "2017-12-29T12:03:03+00:00",
         "type": "library",
@@ -62,13 +204,7 @@
             "type": "zip",
             "url": "https://api.github.com/repos/phalapi/task/zipball/552421219a3097a81c576fc2607d96894d489def",
             "reference": "552421219a3097a81c576fc2607d96894d489def",
-            "shasum": "",
-            "mirrors": [
-                {
-                    "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
-                    "preferred": true
-                }
-            ]
+            "shasum": ""
         },
         "require": {
             "php": ">=5.3.3"
@@ -99,172 +235,6 @@
             "phalapi",
             "phalapi-task",
             "task"
-        ]
-    },
-    {
-        "name": "phalapi/cli",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/phalapi/cli.git",
-            "reference": "8aedab4231a7089672d02f7b9e59447b3dc787ea"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/phalapi/cli/zipball/8aedab4231a7089672d02f7b9e59447b3dc787ea",
-            "reference": "8aedab4231a7089672d02f7b9e59447b3dc787ea",
-            "shasum": "",
-            "mirrors": [
-                {
-                    "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
-                    "preferred": true
-                }
-            ]
-        },
-        "require": {
-            "php": ">=5.3.3"
-        },
-        "time": "2017-10-25T13:50:45+00:00",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-4": {
-                "PhalApi\\CLI\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "GPL-3.0+"
-        ],
-        "authors": [
-            {
-                "name": "Dogstar Huang",
-                "email": "chanzonghuang@gmail.com",
-                "homepage": "http://my.oschina.net/dogstar",
-                "role": "Developer"
-            }
-        ],
-        "description": "PhalApi 2.x 扩展类库 - CLI命令行，可用于开发命令行应用，基于GetOpt，主要作用是将命令参数进行解析和处理。",
-        "homepage": "https://www.phalapi.net/",
-        "keywords": [
-            "cli",
-            "phalapi",
-            "phalapi-cli"
-        ]
-    },
-    {
-        "name": "phalapi/notorm",
-        "version": "2.3.0",
-        "version_normalized": "2.3.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/phalapi/notorm.git",
-            "reference": "a35e6ce3557b1c4559fefc1de366f28d866f2776"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/phalapi/notorm/zipball/a35e6ce3557b1c4559fefc1de366f28d866f2776",
-            "reference": "a35e6ce3557b1c4559fefc1de366f28d866f2776",
-            "shasum": "",
-            "mirrors": [
-                {
-                    "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
-                    "preferred": true
-                }
-            ]
-        },
-        "require": {
-            "php": ">=5.3.3"
-        },
-        "time": "2018-12-09T07:58:36+00:00",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-4": {
-                "PhalApi\\NotORM\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "GPL-3.0+"
-        ],
-        "authors": [
-            {
-                "name": "Dogstar Huang",
-                "email": "chanzonghuang@gmail.com",
-                "homepage": "http://my.oschina.net/dogstar",
-                "role": "Developer"
-            }
-        ],
-        "description": "基于NotORM类库的优化版本，专门用于PhalApi 2.x 开源接口框架。",
-        "homepage": "http://www.phalapi.net",
-        "keywords": [
-            "api",
-            "notorm",
-            "phalapi"
-        ]
-    },
-    {
-        "name": "phalapi/kernal",
-        "version": "2.5.0",
-        "version_normalized": "2.5.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/phalapi/kernal.git",
-            "reference": "75f10dd95930721d7959d5f058ba1c8d2f4d1c14"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/phalapi/kernal/zipball/75f10dd95930721d7959d5f058ba1c8d2f4d1c14",
-            "reference": "75f10dd95930721d7959d5f058ba1c8d2f4d1c14",
-            "shasum": "",
-            "mirrors": [
-                {
-                    "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
-                    "preferred": true
-                }
-            ]
-        },
-        "require": {
-            "phalapi/notorm": "2.3.0",
-            "php": ">=5.3.3"
-        },
-        "time": "2019-02-19T06:51:42+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "files": [
-                "src/bootstrap.php",
-                "src/functions.php"
-            ],
-            "psr-4": {
-                "PhalApi\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "GPL-3.0+"
-        ],
-        "authors": [
-            {
-                "name": "Dogstar Huang",
-                "email": "chanzonghuang@gmail.com",
-                "homepage": "http://my.oschina.net/dogstar",
-                "role": "Developer"
-            },
-            {
-                "name": "kwan",
-                "email": "303198069@qq.com",
-                "role": "Developer"
-            }
-        ],
-        "description": "PhalApi 2.x 框架核心部分。",
-        "homepage": "https://www.phalapi.net/",
-        "keywords": [
-            "api",
-            "framework",
-            "phalapi"
         ]
     }
 ]

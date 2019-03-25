@@ -25,9 +25,11 @@ use PhalApi\Exception\BadRequestException;
 class SimpleMD5Filter implements Filter {
 
     protected $signName;
+    protected $separator;
 
-    public function __construct($signName = 'sign') {
+    public function __construct($signName = 'sign', $separator = false) {
         $this->signName = $signName;
+        $this->separator = $separator;
     }
 
     public function check() {
@@ -51,8 +53,14 @@ class SimpleMD5Filter implements Filter {
         ksort($params);
 
         $paramsStrExceptSign = '';
-        foreach ($params as $val) {
-            $paramsStrExceptSign .= $val;
+        foreach ($params as $index => $val) {
+            if($this->separator){
+                if(isset($val) && $val){
+                    $paramsStrExceptSign .= ($index . $this->separator . $val);
+                }
+            }else{
+                $paramsStrExceptSign .= $val;
+            }
         }
 
         return md5($paramsStrExceptSign);
