@@ -172,3 +172,6 @@ class ImplExceptionFilter implements Filter {
         throw new BadRequestException('just for test');
     }
 }
+
+require_once dirname(__FILE__) . '/phpunit_helper.php';
+

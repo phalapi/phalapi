@@ -15,7 +15,7 @@ include_once dirname(__FILE__) . '/../app.php';
  *
  * @author: dogstar 20150530
  */
-class PhpUnderControl_PhalApiHelperApiDesc_Test extends PHPUnit_Framework_TestCase
+class PhpUnderControl_PhalApiHelperApiDesc_Test extends \PHPUnit_Framework_TestCase
 {
     public $apiDesc;
 

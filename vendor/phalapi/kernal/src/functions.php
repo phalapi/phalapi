@@ -7,7 +7,7 @@ use PhalApi\Translator;
 /**
  * 框架版本号
  */
-defined('PHALAPI_VERSION') || define('PHALAPI_VERSION', '2.5.0');
+defined('PHALAPI_VERSION') || define('PHALAPI_VERSION', '2.5.2');
 
 /**
  * 考虑再三，出于人性化关怀，提供要些快速的函数和方法

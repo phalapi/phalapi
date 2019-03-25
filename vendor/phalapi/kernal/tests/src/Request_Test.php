@@ -90,6 +90,8 @@ class PhpUnderControl_PhalApiRequest_Test extends \PHPUnit_Framework_TestCase
     public function testConstructWithREQUEST()
     {
         $request = new Request();
+
+        $this->assertTrue(true);
     }
 
     /**
@@ -134,6 +136,18 @@ class PhpUnderControl_PhalApiRequest_Test extends \PHPUnit_Framework_TestCase
         unset($_SERVER['HTTP_ACCEPT']);
         unset($_SERVER['HTTP_ACCEPT_CHARSET']);
         unset($_SERVER['PHP_AUTH_DIGEST']);
+    }
+
+    // 兼容多种拼写方式
+    public function testGetHeaderMoreKindly()
+    {
+        $_SERVER['HTTP_USER_AGENT'] = 'PHPUnit';
+
+        $request = new Request();
+        $this->assertEquals('PHPUnit', $request->getHeader('HTTP_USER_AGENT'));
+        $this->assertEquals('PHPUnit', $request->getHeader('User-Agent'));
+
+        unset($_SERVER['HTTP_USER_AGENG']);
     }
 
     public function testService() {
