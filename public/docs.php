@@ -31,10 +31,16 @@ require_once dirname(__FILE__) . '/init.php';
 
 $projectName = 'PhalApi开源接口框架';
 
-if (!empty($_GET['detail'])) {
+if (substr(PHP_SAPI, 0, 3) == 'cgi') {
+    // 生成离线文档
+    $apiHtml = new \PhalApi\Helper\ApiStaticCreate($projectName);
+    $apiHtml->render();
+} else if (!empty($_GET['detail'])) {
+    // 接口详情页
     $apiDesc = new \PhalApi\Helper\ApiDesc($projectName);
     $apiDesc->render();
 } else {
+    // 接口列表页
     $apiList = new \PhalApi\Helper\ApiList($projectName);
     $apiList->render();
 }
