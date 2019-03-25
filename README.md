@@ -1,6 +1,6 @@
 ![apic](http://webtools.qiniudn.com/master-LOGO-20150410_50.jpg)  
 
-# [PhalApi 2.5.0 - 接口，从简单开始！](https://www.phalapi.net/) 
+# [PhalApi 2.5.2 - 接口，从简单开始！](https://www.phalapi.net/) 
 
 [![Latest Stable Version](https://poser.pugx.org/phalapi/phalapi/v/stable)](https://packagist.org/packages/phalapi/phalapi)
 [![Total Downloads](https://poser.pugx.org/phalapi/phalapi/downloads)](https://packagist.org/packages/phalapi/phalapi)
