@@ -294,6 +294,22 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
         return $this->notORM->connection->quote($val);
     }
 
+    /**
+     * 执行带结果的原生sql，可用于插入、更新、删除等执行性的语句 @dogstar 20190329
+     *
+     * @param $sql        string
+     * @param $parameters   array
+     *
+     * @return int number of affected rows or false in case of an error
+     */
+    function excuteSql($sql, $parameters = array()) {
+        $return = $this->query($sql, $parameters);
+        if(!$return){
+            return false;
+        }
+        return $return->rowCount();
+    }
+
     /** Shortcut for call_user_func_array(array($this, 'insert'), $rows)
      *
      * @param array $rows 待批量添加的数据
@@ -419,6 +435,42 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
             return false;
         }
         return $return->rowCount();
+    }
+
+    /**
+     * 更新单个计数器，更友好的+1或-1或更新计数器的操作
+     *
+     * @param string $column
+     * @param int/float $number
+     *
+     @ return int number of affected rows or false in case of an error 
+     */
+    function updateCounter($column, $number = 1) {
+        return $this->update(array($column => $this->createLiteral($column, $number)));
+    }
+
+    /**
+     * 更新多个计数器
+     *
+     * @param array $data
+     *
+     @ return int number of affected rows or false in case of an error 
+     */
+    function updateMultiCounters(array $data) {
+        $updateData = array();
+
+        // 转换
+        foreach ($data as $column => $number) {
+            $updateData[$column] = $this->createLiteral($column, $number); 
+        }
+
+        return $this->update($updateData);
+    }
+
+    protected function createLiteral($column, $number) {
+        return new NotORM_Literal(
+            sprintf('%s %s %s', $column, $number >= 0 ? '+' : '-', abs($number))
+        );
     }
 
     /**
