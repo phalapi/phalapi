@@ -302,7 +302,7 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
      *
      * @return int number of affected rows or false in case of an error
      */
-    function excuteSql($sql, $parameters = array()) {
+    function executeSql($sql, $parameters = array()) {
         $return = $this->query($sql, $parameters);
         if(!$return){
             return false;
