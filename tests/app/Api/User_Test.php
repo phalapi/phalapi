@@ -38,6 +38,7 @@ class PhpUnderControl_AppApiUser_Test extends \PHPUnit_Framework_TestCase
     public function testGetRules()
     {
         $rs = $this->appApiUser->getRules();
+        $this->assertTrue(is_array($rs));
     }
 
     /**
