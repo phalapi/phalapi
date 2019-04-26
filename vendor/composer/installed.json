@@ -6,18 +6,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/phalapi/cli.git",
-            "reference": "8aedab4231a7089672d02f7b9e59447b3dc787ea"
+            "reference": "c5df41e5fa483ad5990296421cde808a0d29f36f"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/phalapi/cli/zipball/8aedab4231a7089672d02f7b9e59447b3dc787ea",
-            "reference": "8aedab4231a7089672d02f7b9e59447b3dc787ea",
+            "url": "https://api.github.com/repos/phalapi/cli/zipball/c5df41e5fa483ad5990296421cde808a0d29f36f",
+            "reference": "c5df41e5fa483ad5990296421cde808a0d29f36f",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.3"
         },
-        "time": "2017-10-25T13:50:45+00:00",
+        "time": "2019-03-30T15:41:41+00:00",
         "type": "library",
         "installation-source": "source",
         "autoload": {
@@ -31,7 +31,7 @@
         ],
         "authors": [
             {
-                "name": "dogstar huang",
+                "name": "Dogstar Huang",
                 "email": "chanzonghuang@gmail.com",
                 "homepage": "http://my.oschina.net/dogstar",
                 "role": "Developer"
