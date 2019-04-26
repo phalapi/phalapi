@@ -1,0 +1,26 @@
+{
+    "name": "phalapi/cli",
+    "description": "PhalApi 2.x 扩展类库 - CLI命令行，可用于开发命令行应用，基于GetOpt，主要作用是将命令参数进行解析和处理。",
+    "keywords": [
+        "phalapi", "phalapi-cli", "cli"
+    ],
+    "license": "GPL-3.0+",
+    "homepage": "https://www.phalapi.net/",
+    "type": "library",
+    "authors": [
+        {
+            "name": "dogstar huang",
+            "email": "chanzonghuang@gmail.com",
+            "homepage": "http://my.oschina.net/dogstar",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "PhalApi\\CLI\\": "src"
+        }
+    } 
+}

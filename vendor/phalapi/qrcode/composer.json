@@ -1,0 +1,24 @@
+{
+    "name": "phalapi/qrcode",
+    "description": "PhalApi 2.x 扩展类库：基于QRCode实现的二维码扩展",
+    "type": "library",
+    "keywords": [
+        "phalapi", "phalapi-qrcode", "qrcode", "二维码"
+    ],
+    "license": "GPL-3.0+",
+    "minimum-stability": "dev",
+    "homepage": "https://www.phalapi.net/",
+    "authors": [
+        {
+            "name": "dogstar huang",
+            "email": "chanzonghuang@gmail.com",
+            "homepage": "http://my.oschina.net/dogstar",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "PhalApi\\QrCode\\": "src"
+        }
+    } 
+}
