@@ -303,4 +303,26 @@ class PhpUnderControl_PhalApiDBNotORM_Test extends \PHPUnit_Framework_TestCase
 
         $this->notorm->disconnect();
     }
+
+    /**
+     *  CREATE TABLE weather (
+     *      city            varchar(80),
+     *      temp_lo         int,           -- low temperature
+     *      temp_hi         int,           -- high temperature
+     *      prcp            real,          -- precipitation
+     *      date            date
+     *  );
+     *
+     * INSERT INTO weather VALUES ('San Francisco', 46, 50, 0.25, '1994-11-27');
+     */
+
+    public function testPostgreConnection()
+    {
+        $cfg = include(dirname(__FILE__) . '/../../config/dbs_pg.php');
+        $notorm_pg = new NotORMDatabase($cfg);
+
+        $total = $notorm_pg->weather->count();
+
+        $this->assertTrue(true);
+    }
 }

@@ -47,24 +47,24 @@
     },
     {
         "name": "phalapi/kernal",
-        "version": "2.5.2",
-        "version_normalized": "2.5.2.0",
+        "version": "2.6.1",
+        "version_normalized": "2.6.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/phalapi/kernal.git",
-            "reference": "62889f158e9fb7964c0d80613ece1d7214fd97e8"
+            "reference": "a087d0f0f7fac5a85e8c8341fc5dbe49d439dade"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/phalapi/kernal/zipball/62889f158e9fb7964c0d80613ece1d7214fd97e8",
-            "reference": "62889f158e9fb7964c0d80613ece1d7214fd97e8",
+            "url": "https://api.github.com/repos/phalapi/kernal/zipball/a087d0f0f7fac5a85e8c8341fc5dbe49d439dade",
+            "reference": "a087d0f0f7fac5a85e8c8341fc5dbe49d439dade",
             "shasum": ""
         },
         "require": {
-            "phalapi/notorm": "2.3.0",
+            "phalapi/notorm": "2.*.*",
             "php": ">=5.3.3"
         },
-        "time": "2019-03-25T09:19:32+00:00",
+        "time": "2019-04-26T11:04:13+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -103,23 +103,23 @@
     },
     {
         "name": "phalapi/notorm",
-        "version": "2.3.0",
-        "version_normalized": "2.3.0.0",
+        "version": "2.6.1",
+        "version_normalized": "2.6.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/phalapi/notorm.git",
-            "reference": "a35e6ce3557b1c4559fefc1de366f28d866f2776"
+            "reference": "3937c0557ffa2988e0a515be664366aaec356073"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/phalapi/notorm/zipball/a35e6ce3557b1c4559fefc1de366f28d866f2776",
-            "reference": "a35e6ce3557b1c4559fefc1de366f28d866f2776",
+            "url": "https://api.github.com/repos/phalapi/notorm/zipball/3937c0557ffa2988e0a515be664366aaec356073",
+            "reference": "3937c0557ffa2988e0a515be664366aaec356073",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.3"
         },
-        "time": "2018-12-09T07:58:36+00:00",
+        "time": "2019-03-29T06:42:38+00:00",
         "type": "library",
         "installation-source": "source",
         "autoload": {

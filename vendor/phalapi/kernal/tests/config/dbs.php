@@ -13,14 +13,14 @@ return array(
         'DB_A' => array(
             'host'      => '127.0.0.1',           //数据库域名
             'name'      => 'phalapi_test',                  //数据库名字
-            'user'      => 'root',                  //数据库用户名
+            'user'      => 'dogstar',                  //数据库用户名
             'password'  => '123',                //数据库密码
             'port'      => '3306',                  //数据库端口
         ),
         'DB_DEMO' => array(
             'host'      => '127.0.0.1',           //数据库域名
             'name'      => 'phalapi_test',                  //数据库名字
-            'user'      => 'root',                  //数据库用户名
+            'user'      => 'dogstar',                  //数据库用户名
             'password'  => '123',                //数据库密码
             'port'      => '3306',                  //数据库端口
         ),
