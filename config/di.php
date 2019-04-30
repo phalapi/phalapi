@@ -51,3 +51,8 @@ $di->notorm = new NotORMDatabase($di->config->get('dbs'), $di->debug);
 // $di->qrcode = function() {
 //     return new \PhalApi\QrCode\Lite();
 // };
+
+// 注册扩展的追踪器，将SQL写入日志文件
+// $di->tracer = function() {
+//     return new \App\Common\Tracer();
+// };
