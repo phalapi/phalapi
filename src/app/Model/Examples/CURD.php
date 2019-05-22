@@ -19,7 +19,7 @@ CREATE TABLE `phalapi_curd` (
 class CURD extends NotORM {
 
     protected function getTableName($id) {
-        return 'curd';
+        return 'phalapi_curd';
     }
 
     public function getListItems($state, $page, $perpage) {
