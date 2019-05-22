@@ -10,3 +10,5 @@ gitc
 
 .idea/
 .env
+
+.DS_Store

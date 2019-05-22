@@ -38,10 +38,10 @@ if (substr(PHP_SAPI, 0, 3) == 'cli') {
 } else if (!empty($_GET['detail'])) {
     // 接口详情页
     $apiDesc = new \PhalApi\Helper\ApiDesc($projectName);
-    $apiDesc->render();
+    $apiDesc->render(API_ROOT . '/src/view/docs/api_desc_tpl.php');
 } else {
     // 接口列表页
     $apiList = new \PhalApi\Helper\ApiList($projectName);
-    $apiList->render();
+    $apiList->render(API_ROOT . '/src/view/docs/api_list_tpl.php');
 }
 

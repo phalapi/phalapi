@@ -1,0 +1,9 @@
+{
+    "ret": 200,
+    "data": {
+        "title": "Hello PhalApi",
+        "version": "2.7.0",
+        "time": 1558489902
+    },
+    "msg": ""
+}
