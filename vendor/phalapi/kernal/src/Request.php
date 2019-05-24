@@ -280,7 +280,18 @@ class Request {
      * @return string 接口服务名称，如：Default.Index
      */
     public function getService() {
-        $service = $this->get('service', $this->get('s', 'App.Site.Index'));
+        $service = $this->get('service', $this->get('s'));
+
+        // 尝试根据REQUEST_URI进行路由解析
+        if ($service === NULL) {
+            $service = 'App.Site.Index';
+            if (isset($_SERVER['REQUEST_URI']) && \PhalApi\DI()->config->get('sys.enable_uri_match')) {
+                $uri = $_SERVER['REQUEST_URI'];
+                $uri = strstr($uri, '?') ? substr($uri, 1, strpos($uri, '?') - 1) : substr($uri, 1, strlen($uri) - 1);
+
+                $service = str_replace('/', '.', rtrim($uri, '/'));
+            }
+        }
 
         if (count(explode('.', $service)) == 2) {
             $service = 'App.' . $service;
