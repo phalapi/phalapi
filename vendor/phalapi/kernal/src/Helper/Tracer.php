@@ -65,7 +65,7 @@ class Tracer {
             $internalTime = round($internalTime/10, 1);
 
             $stack[] = sprintf('[#%d - %sms%s]%s(%d)',
-                $index, 
+                $index + 1, 
                 $internalTime, 
                 $item['tag'] !== NULL ? ' - ' . $item['tag'] : '', 
                 $item['file'], 
@@ -91,6 +91,12 @@ class Tracer {
      */
     public function sql($statement) {
         $this->sqls[] = $statement;
+
+        // 保存到日志
+        $di = \PhalApi\DI();
+        if ($di->config->get('sys.enable_sql_log')) {
+            $di->logger->log('SQL', $statement, array('request' => $di->request->getAll()));
+        }
     }
 
     /**

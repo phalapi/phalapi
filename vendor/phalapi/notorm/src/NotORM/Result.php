@@ -187,17 +187,32 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
                 if($parameters){
                     $debug .= " -- " . implode(", ", array_map(array($this, 'quote'), $parameters));
                 }
-                $pattern = '(^' . preg_quote(dirname(__FILE__)) . '(\\.php$|[/\\\\]))'; // can be static
+                $preBacktrace = [];
+                $findBacktrace = [];
                 foreach(debug_backtrace() as $backtrace){
-                    if(isset($backtrace["file"]) && !preg_match($pattern, $backtrace["file"])){ // stop on first file outside NotORM source codes
+                    // 排除框架本身的
+                    if (isset($backtrace['class']) && !in_array($backtrace['class'], array('NotORM_Result', 'PhalApi\Model\NotORMModel'))) {
+                        $findBacktrace = $backtrace;
                         break;
                     }
+                    $preBacktrace = $backtrace;
                 }
                 /** @var array $backtrace */
                 //error_log("{$backtrace['file']}:{$backtrace['line']}:$debug\n", 0);
                 //if ($this->notORM->debug) echo "$debug<br />\n";    //@dogstar 2014-10-31
 
+                // @dogstar 20190523 更细致的SQL上下文信息
                 $debugTrace['sql'] = $debug;
+                if (!empty($findBacktrace)) {
+                    $debugTrace['sql'] = sprintf('%s(%s):    %s%s    %s    %s',
+                        isset($findBacktrace['file'])       ? $findBacktrace['file']            : (isset($preBacktrace['file']) ? $preBacktrace['file'] : '__index.php'),   // 在哪个文件
+                        isset($findBacktrace['line'])       ? $findBacktrace['line']            : (isset($preBacktrace['line']) ? $preBacktrace['line'] : 0),               // 在哪一行
+                        isset($findBacktrace['class'])      ? $findBacktrace['class'] . '::'    : '',              // 在哪个类
+                        isset($findBacktrace['function'])   ? $findBacktrace['function'] . '()' : '__main()',      // 在哪个方法
+                        $this->table,                                                                              // 针对哪个表
+                        $debug                                                                                     // 执行了什么SQL
+                    );
+                }
             }elseif(call_user_func($this->notORM->debug, $query, $parameters) === false){
                 return false;
             }
@@ -248,7 +263,7 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
         if($this->notORM->debug){
             $debugTrace['endTime'] = microtime(true);
 
-            $sqlInfo = sprintf("[%s - %sms]%s", 
+            $sqlInfo = sprintf("[#%s - %sms - SQL]%s", 
                 self::$queryTimes, 
                 round(($debugTrace['endTime'] - $debugTrace['startTime']) * 1000, 2), 
                 $debugTrace['sql']

@@ -132,4 +132,35 @@ class CURD extends Api {
 
         return $rs;
     }
+
+    /**
+     * 演示如何进行SQL调试和相关的使用
+     * @desc 除此接口外，其他示例也可进行在线调试。本示例将便详细说明如何调试。
+     */
+    public function sqlDebug() {
+        $rs = array();
+
+        // 当需要进行sql调试时，请先开启sys.debug和sys.notorm_debug，设置为true
+
+        // 以下是操作数据库部分
+        // 第一种，你可以直接在API层或任何地方使用全局方式操作数据库（但不推荐！）
+        $rs['row_1'] = \PhalApi\DI()->notorm->phalapi_curd->where('id', 1)->fetchOne();
+
+        // 第二种，基本的CURD可以使用Model类直接完成（推荐！）
+        $model = new \App\Model\Examples\CURD();
+        $rs['row_2'] = $model->get(2);
+
+        // 第三种，通过Domain领域层统一封装（强烈推荐！！）
+        $domain = new DomainCURD();
+        $rs['row_3'] = $domain->getList(3, 1, 5);
+
+        // 到这一步，你可以访问当前接口（手动/通过配置开启调试模式）
+        // 浏览器访问：http://localhost/phalapi/public/?s=App.Examples_CURD.SqlDebug&__debug__=1
+        // 将会在debug返回字段看到SQL调试信息
+
+        // 最后，当sys.notorm_debug和sys.enable_sql_log均开启时，将能在日志文件中纪录sql
+        // 如命令：$ tail -f ./runtime/log/201905/20190523.log
+
+        return $rs;
+    }
 }

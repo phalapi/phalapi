@@ -9,9 +9,19 @@
 
 return array(
     /**
-     * 默认环境配置
+     * @var boolean 是否开启接口调试模式，开启后在客户端可以直接看到更多调试信息
      */
     'debug' => false,
+
+    /**
+     * @var boolean 是否开启NotORM调试模式，开启后仅针对NotORM服务开启调试模式
+     */
+    'notorm_debug' => true,
+
+    /**
+     * @var boolean 是否纪录SQL到日志，需要同时开启notorm_debug方可写入日志
+     */
+    'enable_sql_log' => true,
 
     /**
      * MC缓存服务器参考配置

@@ -27,7 +27,7 @@ $di->debug = !empty($_GET['__debug__']) ? true : $di->config->get('sys.debug');
 $di->logger = new FileLogger(API_ROOT . '/runtime', Logger::LOG_LEVEL_DEBUG | Logger::LOG_LEVEL_INFO | Logger::LOG_LEVEL_ERROR);
 
 // 数据操作 - 基于NotORM
-$di->notorm = new NotORMDatabase($di->config->get('dbs'), $di->debug);
+$di->notorm = new NotORMDatabase($di->config->get('dbs'), $di->config->get('sys.notorm_debug'));
 
 // JSON中文输出
 // $di->response = new \PhalApi\Response\JsonResponse(JSON_UNESCAPED_UNICODE);
