@@ -286,10 +286,14 @@ class Request {
         if ($service === NULL) {
             $service = 'App.Site.Index';
             if (isset($_SERVER['REQUEST_URI']) && \PhalApi\DI()->config->get('sys.enable_uri_match')) {
-                $uri = $_SERVER['REQUEST_URI'];
-                $uri = strstr($uri, '?') ? substr($uri, 1, strpos($uri, '?') - 1) : substr($uri, 1, strlen($uri) - 1);
+                // 截取index.php和问号之间的路径
+                $uri        = $_SERVER['REQUEST_URI'];
+                $startPos   = strpos($uri, 'index.php');
+                $startPos   = $startPos !== FALSE ? $startPos + strlen('index.php') : 0;
+                $endPos     = strpos($uri, '?');
+                $uri        = $endPos != FALSE ? substr($uri, $startPos, $endPos - $startPos) : substr($uri, $startPos);
 
-                $service = str_replace('/', '.', rtrim($uri, '/'));
+                $service = str_replace('/', '.', trim($uri, '/'));
             }
         }
 
