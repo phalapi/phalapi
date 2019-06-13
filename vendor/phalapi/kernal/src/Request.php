@@ -96,6 +96,8 @@ class Request {
         $this->request  = $_REQUEST;
         $this->cookie   = $_COOKIE;
         
+        $_REQUEST['unique'] = date("is").substr(microtime(), 2, 6); //追加微秒时间数参数到request(用于定义唯一值)
+        DI()->logger->log('parameter', null, ' '.json_encode($this->request,JSON_UNESCAPED_UNICODE));  //记录所有请求参数日志
         @list($this->namespace, $this->apiName, $this->actionName) = explode('.', $this->getService());
     }
 
