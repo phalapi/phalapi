@@ -299,7 +299,7 @@ class NotORMDatabase /** implements Database */ {
             $dsn = sprintf('pgsql:dbname=%s;host=%s;port=%d',
                 $dbCfg['name'],
                 isset($dbCfg['host']) ? $dbCfg['host'] : 'localhost',
-                isset($dbCfg['port']) ? $dbCfg['port'] : 5432
+                isset($dbCfg['port']) ? $dbCfg['port'] : 3306
             );
         }
 
