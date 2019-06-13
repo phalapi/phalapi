@@ -61,16 +61,16 @@ class Request {
      */
     protected $actionName;
 
-    /** 
+    /**
      * - 如果需要定制已知的数据源（即已有数据成员），则可重载此方法，例
      *
-```     
+```
      * class MyRequest extend Request{
      *     public function __construct($data = NULL) {
      *         parent::__construct($data);
      *
      *         // json处理
-     *         $this->post = json_decode(file_get_contents('php://input'), TRUE);    
+     *         $this->post = json_decode(file_get_contents('php://input'), TRUE);
      *
      *         // 普通xml处理
      *         $this->post = simplexml_load_string (
@@ -79,9 +79,9 @@ class Request {
      *             LIBXML_NOCDATA
      *         );
      *         $this->post = json_decode(json_encode($this->post), TRUE);
-     *     }  
+     *     }
      * }
-```    
+```
      * - 其他格式或其他xml可以自行写函数处理
      *
 	 * @param array $data 参数来源，可以为：$_GET/$_POST/$_REQUEST/自定义
@@ -95,7 +95,9 @@ class Request {
         $this->post     = $_POST;
         $this->request  = $_REQUEST;
         $this->cookie   = $_COOKIE;
-        
+
+        $_REQUEST['unique'] = date("is").substr(microtime(), 2, 6); //追加微秒时间数参数到request(用于定义唯一值)
+        DI()->logger->log('parameter', null, ' '.json_encode($this->request,JSON_UNESCAPED_UNICODE));  //记录所有请求参数日志
         @list($this->namespace, $this->apiName, $this->actionName) = explode('.', $this->getService());
     }
 
@@ -181,7 +183,7 @@ class Request {
     public function get($key, $default = NULL) {
         return isset($this->data[$key]) ? $this->data[$key] : $default;
     }
-    
+
     /**
      * 根据规则获取参数
      * 根据提供的参数规则，进行参数创建工作，并返回错误信息
@@ -200,8 +202,8 @@ class Request {
         }
 
         // 获取接口参数级别的数据集
-        $data = !empty($rule['source']) && substr(php_sapi_name(), 0, 3) != 'cli' 
-            ? $this->getDataBySource($rule['source']) 
+        $data = !empty($rule['source']) && substr(php_sapi_name(), 0, 3) != 'cli'
+            ? $this->getDataBySource($rule['source'])
             : $this->data;
 
         $rs = Parser::format($rule['name'], $rule, $data);
@@ -219,7 +221,7 @@ class Request {
 
     /**
      * 根据来源标识获取数据集
-```     
+```
      * |----------|---------------------|
      * | post     | $_POST              |
      * | get      | $_GET               |
@@ -228,12 +230,12 @@ class Request {
      * | request  | $_REQUEST           |
      * | header   | $_SERVER['HTTP_X']  |
      * |----------|---------------------|
-     *   
-```     
+     *
+```
      * - 当需要添加扩展其他新的数据源时，可重载此方法
      *
      * @throws InternalServerErrorException
-     * @return array 
+     * @return array
      */
     protected function &getDataBySource($source) {
         switch (strtoupper($source)) {
