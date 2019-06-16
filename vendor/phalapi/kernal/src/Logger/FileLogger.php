@@ -76,12 +76,9 @@ class FileLogger extends Logger {
         $this->init();
 
         $msgArr = array();
-        $msgArr[] = \PhalApi_Tool::getClientIp(); //客户端IP
         $msgArr[] = date($this->dateFormat, time());
         $msgArr[] = strtoupper($type);
-        if (!empty($msg)) $msgArr[] = str_replace(PHP_EOL, '\n', $msg);
-        $msgArr[] = $_REQUEST['service'];
-        $msgArr[] = $_REQUEST['unique'];
+        $msgArr[] = str_replace(PHP_EOL, '\n', $msg);
         if ($data !== NULL) {
             $isGreaterThan540 = version_compare(PHP_VERSION, '5.4.0' , '>=');
             $msgArr[] = is_array($data) 
