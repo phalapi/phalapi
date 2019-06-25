@@ -295,11 +295,17 @@ class NotORMDatabase /** implements Database */ {
                 isset($dbCfg['port']) ? $dbCfg['port'] : 1433, 
                 $dbCfg['name']
             );
+        } else if ($type == 'dblib_sqlserver') {  // 支持sql server(通过dblib驱动)
+            $dsn = sprintf('dblib:host=%s:%d;dbname=%s',
+                isset($dbCfg['host']) ? $dbCfg['host'] : 'localhost', 
+                isset($dbCfg['port']) ? $dbCfg['port'] : 1433, 
+                $dbCfg['name']
+            );
         } else if ($type == 'pgsql') {  // 支持postgreSQL
             $dsn = sprintf('pgsql:dbname=%s;host=%s;port=%d',
                 $dbCfg['name'],
                 isset($dbCfg['host']) ? $dbCfg['host'] : 'localhost',
-                isset($dbCfg['port']) ? $dbCfg['port'] : 5432
+                isset($dbCfg['port']) ? $dbCfg['port'] : 3306
             );
         }
 

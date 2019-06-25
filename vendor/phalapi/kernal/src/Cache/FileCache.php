@@ -15,9 +15,20 @@ use PhalApi\Exception\InternalServerErrorException;
 
 class FileCache implements Cache {
 
+    /**
+     * @var string $folder 文件缓存保存的目录
+     */
     protected $folder;
 
+    /**
+     * @var string $prefix 文件缓存的key前缀
+     */
     protected $prefix;
+
+    /**
+     * @var boolean $enableFileNameFormat 是否格式化文件名
+     */
+    protected $enableFileNameFormat = TRUE;
 
     public function __construct($config) {
         $this->folder = rtrim($config['path'], '/');
@@ -29,6 +40,7 @@ class FileCache implements Cache {
         }
 
         $this->prefix = isset($config['prefix']) ? $config['prefix'] : 'phapapi';
+        $this->enableFileNameFormat = isset($config['enable_file_name_format']) ? (boolean)$config['enable_file_name_format'] : $this->enableFileNameFormat;
     }
 
     public function set($key, $value, $expire = 600) {
@@ -87,8 +99,9 @@ class FileCache implements Cache {
         }
 
         // 避免撞key，增强唯一性
-        $filename = sprintf('%s_%s_%s_%s.dat', 
-            md5($this->prefix), strlen($this->prefix), md5($key), strlen($key));
+        $filename = $this->enableFileNameFormat ? 
+            sprintf('%s_%s_%s_%s.dat', md5($this->prefix), strlen($this->prefix), md5($key), strlen($key))
+            : $this->prefix . $key;
 
         return $cacheFolder . DIRECTORY_SEPARATOR . $filename;
     }

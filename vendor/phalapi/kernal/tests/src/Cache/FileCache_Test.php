@@ -97,4 +97,14 @@ class PhpUnderControl_PhalApiCacheFile_Test extends \PHPUnit_Framework_TestCase
         $this->assertSame(NULL, $this->phalApiCacheFile->get($key));
     }
 
+    public function testEnableFileNameFormatNOT()
+    {
+        $config = array();
+        $config['path'] = dirname(__FILE__);
+        $config['prefix'] = 'test_format';
+        $config['enable_file_name_format'] = false;
+        $phalApiCacheFile = new FileCache($config);
+
+        $phalApiCacheFile->set('orinal_cache_key', 2019);
+    }
 }
