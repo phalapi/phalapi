@@ -1,4 +1,4 @@
-![apic](http://webtools.qiniudn.com/master-LOGO-20150410_50.jpg)  
+![apic](http://cdn7.okayapi.com/yesyesapi_20190709223344_8aadbcfdbfa297a193012c0dada32a58.jpeg)  
 
 # [PhalApi 2.7.0 - 接口，从简单开始！](https://www.phalapi.net/) 
 
