@@ -7,7 +7,8 @@
 [![Latest Unstable Version](https://poser.pugx.org/phalapi/phalapi/v/unstable)](https://packagist.org/packages/phalapi/phalapi)
 [![License](https://poser.pugx.org/phalapi/phalapi/license)](https://packagist.org/packages/phalapi/phalapi)
 
-> 为了更好的接口开发体验，2019年，重新出发！当前版本由[小白开放平台](https://www.yesapi.cn/?f=github)独家赞助。
+> 不止是接口，更是免费、免开发、直接可用的开放平台！  
+> 当前版本由[小白开放平台](https://www.yesapi.cn/?f=github)独家赞助。
 
 ## 1、开发文档
 专为PHPer准备的优雅而详细的开发文档，请看：[PhalApi 2.x 开发文档](http://docs.phalapi.net/#/v2.0/)。  
