@@ -49,7 +49,7 @@ class Rule extends Api {
                 'datas' => array('name' => 'datas', 'type' => 'array', 'format' => 'json', 'default' => array(), 'desc' => 'JSON格式的数组参数，例如：datas={"name":"PhalApi"}'),
             ),
             'explodeArray' => array(
-                'datas' => array('name' => 'datas', 'type' => 'array', 'format' => 'explode', 'separator' => ',', 'min' => 1, 'max' => 10, 'desc' => '以英文逗号分割的数组，数组个数最少1个，最多10个，例如：datas=1,2,3'),
+                'datas' => array('name' => 'datas', 'type' => 'array', 'format' => 'explode', 'default' => array(1, 2, 3), 'separator' => ',', 'min' => 1, 'max' => 10, 'desc' => '以英文逗号分割的数组，数组个数最少1个，最多10个，例如：datas=1,2,3'),
             ),
 
             // 枚举

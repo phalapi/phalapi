@@ -278,7 +278,7 @@ $codeFile = API_ROOT . '/src/view/docs/demos/' . $service . '.json';
 if (file_exists($codeFile)) {
     $demoCodes = htmlspecialchars(file_get_contents($codeFile));
 } else {
-    $demoCodes = '暂时无返回示例，可添加示例文件：' . (\PhalApi\DI()->debug ? $codeFile : $service . '.json');
+    $demoCodes = '// 暂时无返回示例，可添加示例文件：' . (\PhalApi\DI()->debug ? $codeFile : $service . '.json');
 }
 
 echo <<<EOT
@@ -299,7 +299,7 @@ $version = PHALAPI_VERSION;
 $thisYear = date('Y');
 echo <<<EOT
         <div class="ui blue message">
-          <strong>温馨提示：</strong> 此接口文档是根据接口代码和注释实时自动生成，帮助文档请见<a href="http://docs.phalapi.net/#/v2.0/api-docs" target="_blank">PhalApi 2.x 开发文档</a>。
+          <strong>温馨提示：</strong> 此接口文档根据接口代码和注释实时自动生成，帮助文档请见<a href="http://docs.phalapi.net/#/v2.0/api-docs" target="_blank">PhalApi 2.x 开发文档</a>。
         </div>
         </div>
 
@@ -315,6 +315,7 @@ echo <<<EOT
             <div class="column" align="center">
                 <p>
                     <strong>接口，从简单开始！</strong>
+                    当前版本由<a href="https://www.yesapi.cn/" target="_blank">小白开放平台</a>独家赞助。<br/>
                     © 2015-{$thisYear} Powered  By <a href="http://www.phalapi.net/" target="">PhalApi {$version} </a> All Rights Reserved. <span id="version_update"></span>
                 </p>
             </div>

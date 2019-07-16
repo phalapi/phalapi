@@ -181,7 +181,7 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
             </div>
         </div>
         <div class="ui blue message">
-            <strong>温馨提示：</strong> 此接口服务列表根据后台代码自动生成，可在接口类的文件注释的第一行修改左侧菜单标题。
+            <strong>温馨提示：</strong> 此接口文档根据接口代码和注释实时自动生成，可在接口类的文件注释的第一行修改左侧菜单标题。
         </div>
     </div>
 </div>
@@ -196,6 +196,7 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
             <div class="column" align="center">
                 <p>
                     <strong>接口，从简单开始！</strong>
+                    当前版本由<a href="https://www.yesapi.cn/" target="_blank">小白开放平台</a>独家赞助。<br/>
                     © 2015-<?php echo date('Y'); ?> Powered  By <a href="http://www.phalapi.net/" target="">PhalApi <?php echo PHALAPI_VERSION; ?> </a> All Rights Reserved. <span id="version_update"></span>
                 </p>
             </div>
