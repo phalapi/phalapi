@@ -57,6 +57,11 @@ $di->notorm = function() {
     return $notorm;
 };
 
+$di->notorm_other = function() {
+    $notorm = new NotORMDatabase(\PhalApi\DI()->config->get('dbs_other'), true);
+    return $notorm;
+};
+
 $di->cache = function() {
     //$mc = new PhalApi_Cache_Memcached(\PhalApi\DI()->config->get('sys.mc'));
     $mc = new MemcachedMock();

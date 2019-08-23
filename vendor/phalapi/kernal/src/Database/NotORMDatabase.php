@@ -347,6 +347,12 @@ class NotORMDatabase /** implements Database */ {
         return $this;
     }
 
+    /** ------------------ 配置相关 ------------------ **/
+
+    public function getConfigs() {
+        return $this->_configs;
+    }
+
     /** ------------------ 事务操作 ------------------ **/
 
     /**

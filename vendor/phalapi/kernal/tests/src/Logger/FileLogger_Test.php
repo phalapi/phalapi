@@ -90,4 +90,36 @@ class PhpUnderControl_PhalApiLoggerFile_Test extends \PHPUnit_Framework_TestCase
 
         $this->assertContains($content, file_get_contents($logFile));
     }
+
+    /**
+     * @expectedException PhalApi\Exception\InternalServerErrorException
+     */
+    public function testPermissionDenied()
+    {
+        $coreLoggerFile = new FileLogger('/var/never_this',
+            Logger::LOG_LEVEL_DEBUG | Logger::LOG_LEVEL_INFO | Logger::LOG_LEVEL_ERROR);
+    }
+
+    /**
+     * @expectedException PhalApi\Exception\InternalServerErrorException
+     */
+    public function testPermissionDeniedWhenLog()
+    {
+        $coreLoggerFile = new FileLogger('/var/never_this',
+            Logger::LOG_LEVEL_DEBUG | Logger::LOG_LEVEL_INFO | Logger::LOG_LEVEL_ERROR);
+        $coreLoggerFile->info('here we go to fail');
+    }
+
+    public function testPermissionDeniedSlice()
+    {
+        $coreLoggerFile = new FileLogger('/var/never_this',
+            Logger::LOG_LEVEL_DEBUG | Logger::LOG_LEVEL_INFO | Logger::LOG_LEVEL_ERROR, 'Y-m-d', false);
+    }
+
+    public function testPermissionDeniedWhenLogSlice()
+    {
+        $coreLoggerFile = new FileLogger('/var/never_this',
+            Logger::LOG_LEVEL_DEBUG | Logger::LOG_LEVEL_INFO | Logger::LOG_LEVEL_ERROR, 'Y-m-d', false);
+        $coreLoggerFile->info('here we go to fail');
+    }
 }

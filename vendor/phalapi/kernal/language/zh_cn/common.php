@@ -40,4 +40,6 @@ return array(
     'create file path Error: {filePath}'                            => '创建文件异常: {filePath}',
     'unknow source: {source} in rule'                               => '参数规则中未知的数据源：{source}',
     '{name} illegal json data'                                      => '参数{name}的JSON数据格式错误',
+    'Failed to log into file, because permission denied: {path}'    => '文件日记写入失败，权限不足：{path}',
+    'Config file not found: {path}'                                 => '配置文件不存在：{path}',
 );

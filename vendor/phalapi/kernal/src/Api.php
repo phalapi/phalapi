@@ -7,7 +7,7 @@ use PhalApi\Exception\InternalServerErrorException;
  * Api 接口服务基类
  *
  * - 实现身份验证、按参数规则解析生成接口参数等操作
- * - 提供给开发人员自宝义的接口服务具体类继承
+ * - 提供给开发人员自定义的接口服务具体类继承
  *
  * <br>通常地，可以这样继承：<br>
  *

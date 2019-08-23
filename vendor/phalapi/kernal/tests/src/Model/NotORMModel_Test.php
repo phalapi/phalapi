@@ -39,7 +39,7 @@ class PhpUnderControl_PhalApiModelNotORM_Test extends \PHPUnit_Framework_TestCas
 
     protected function tearDown()
     {
-        // var_dump(\PhalApi\DI()->tracer->getSqls());
+         // var_dump(\PhalApi\DI()->tracer->getSqls());
     }
 
 
@@ -221,5 +221,32 @@ class PhpUnderControl_PhalApiModelNotORM_Test extends \PHPUnit_Framework_TestCas
         $newData = \PhalApi\DI()->notorm->notormtest->where('id', 1)->fetchPairs('id', 'year');
 
         $this->assertEquals($newData[1], $oldData[1]);
+    }
+
+    // pgsql会有问题？
+    public function testWhereMixConstantAndVariable()
+    {
+        $id = 2;
+        $rs = \PhalApi\DI()->notorm->notormtest
+            ->where('content', 'phpunit_insert_1')
+            ->where('id', 1)
+            ->where('id > ?', $id)
+            ->where('id IS NOT ?', NULL)
+            ->count('*');
+
+        $this->assertGreaterThan(-1, $rs);
+    }
+
+    public function testInStringArray()
+    {
+        $rs = \PhalApi\DI()->notorm->notormtest->where('content', array('phpunit_insert_1', 'phpunit_insert_2'))->fetchOne();
+        $this->assertNotEmpty($rs);
+    }
+
+    public function testInIntArray()
+    {
+        $rs = \PhalApi\DI()->notorm->notormtest->where('id', array(1, 2, 3))->fetchOne();
+        $this->assertNotEmpty($rs);
+        $this->assertNotEmpty($rs);
     }
 }

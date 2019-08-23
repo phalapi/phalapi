@@ -91,6 +91,25 @@ class Tool {
     }
 
     /**
+     * 获取绝对路径，即便不存在的路径也可以转换，而realpath()函数不支持
+     * @link https://www.php.net/manual/zh/function.realpath.php
+     */
+    public static function getAbsolutePath($path) {
+        $path = str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, $path);
+        $parts = array_filter(explode(DIRECTORY_SEPARATOR, $path), 'strlen');
+        $absolutes = array();
+        foreach ($parts as $part) {
+            if ('.' == $part) continue;
+            if ('..' == $part) {
+                array_pop($absolutes);
+            } else {
+                $absolutes[] = $part;
+            }
+        }
+        return implode(DIRECTORY_SEPARATOR, $absolutes);
+    }
+
+    /**
      * 删除目录以及子目录等所有文件
      *
      * - 请注意不要删除重要目录！

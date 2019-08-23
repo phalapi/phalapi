@@ -187,8 +187,8 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
                 if($parameters){
                     $debug .= " -- " . implode(", ", array_map(array($this, 'quote'), $parameters));
                 }
-                $preBacktrace = [];
-                $findBacktrace = [];
+                $preBacktrace = array();
+                $findBacktrace = array();
                 foreach(debug_backtrace() as $backtrace){
                     // 排除框架本身的
                     if (isset($backtrace['class']) && !in_array($backtrace['class'], array('NotORM_Result', 'PhalApi\Model\NotORMModel'))) {
@@ -766,6 +766,15 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
             $this->offset = +$offset;
         }
         return $this;
+    }
+
+    /**
+     * 分页
+     * @param int $page 第几页
+     * @param int $perpage 每页多少条
+     */
+    function page($page = 1, $perpage = 100) {
+        return $this->limit(($page - 1) * $perpage, $perpage);
     }
 
     /** Set group clause, more calls rewrite old values

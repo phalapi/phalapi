@@ -2,6 +2,8 @@
 namespace PhalApi\Config;
 
 use PhalApi\Config;
+use PhalApi\Tool;
+use PhalApi\Exception\InternalServerErrorException;
 
 /**
  * FileConfig 文件配置类
@@ -28,14 +30,17 @@ class FileConfig implements Config {
 	 * @var string $path 配置文件的目录位置
 	 */
 	private $path = '';
+
+    protected $debug = FALSE;
 	
 	/**
 	 * @var array $map 配置文件的映射表，避免重复加载 
 	 */
 	private $map = array();
 	
-	public function __construct($configPath) {
+	public function __construct($configPath, $debug = NULL) {
 		$this->path = $configPath;
+        $this->debug = $debug !== NULL ? $debug : \PhalApi\DI()->debug;
 	}
 	
 	/**
@@ -75,7 +80,13 @@ class FileConfig implements Config {
      * @return array 配置文件对应的内容
      */
 	private function loadConfig($fileName) {
-		$config = include($this->path . DIRECTORY_SEPARATOR . $fileName . '.php');
+        $configFile = $this->path . DIRECTORY_SEPARATOR . $fileName . '.php';
+
+        if ($this->debug && !file_exists($configFile)) {
+            throw new InternalServerErrorException(\PhalAPi\T('Config file not found: {path}', array('path' => Tool::getAbsolutePath($configFile))));
+        }
+
+		$config = @include($configFile);
 		
 		$this->map[$fileName] = $config;
 	}

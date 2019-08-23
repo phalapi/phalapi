@@ -285,7 +285,7 @@ class Request {
         // 尝试根据REQUEST_URI进行路由解析
         if ($service === NULL) {
             $service = 'App.Site.Index';
-            if (isset($_SERVER['REQUEST_URI']) && \PhalApi\DI()->config->get('sys.enable_uri_match')) {
+            if (isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] !== '/' && \PhalApi\DI()->config->get('sys.enable_uri_match')) {
                 // 截取index.php和问号之间的路径
                 $uri        = $_SERVER['REQUEST_URI'];
                 $startPos   = strpos($uri, 'index.php');

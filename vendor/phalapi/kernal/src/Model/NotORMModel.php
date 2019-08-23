@@ -123,7 +123,7 @@ class NotORMModel implements Model {
      */
     protected function getORM($id = NULL) {
         $table = $this->getTableName($id);
-        return \PhalApi\DI()->notorm->$table;
+        return $this->table($table);
     }
 
     /**
@@ -131,13 +131,21 @@ class NotORMModel implements Model {
      * @param string $table 表名可指定服务器,比如demo2.user
      * @return \NotORM_Result
      */
-    protected function table($table)
-    {
-        return \PhalApi\DI()->notorm->$table;
+    protected function table($table) {
+        return $this->getNotORM()->$table;
+    }
+
+    /**
+     * 获取当前Model所依赖的数据库实例，尤其当需要同时使用多个数据库时，可重载此方法
+     * @return \PhalApi\Database\NotORMDatabase
+     */
+    protected function getNotORM() {
+        return \PhalApi\DI()->notorm;
     }
 
     protected function loadTableKeys() {
-        $tables = \PhalApi\DI()->config->get('dbs.tables');
+        $configs = $this->getNotORM()->getConfigs();
+        $tables = isset($configs['tables']) ? $configs['tables'] : array();
         if (empty($tables)) {
             throw new InternalServerErrorException(\PhalApi\T('dbs.tables should not be empty'));
         }

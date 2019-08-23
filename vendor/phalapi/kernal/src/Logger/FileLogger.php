@@ -2,6 +2,8 @@
 namespace PhalApi\Logger;
 
 use PhalApi\Logger;
+use PhalApi\Tool;
+use PhalApi\Exception\InternalServerErrorException;
 
 /**
  * FileLogger 文件日记纪录类
@@ -33,10 +35,12 @@ class FileLogger extends Logger {
     /** 内部状态 **/
     protected $fileDate;
     protected $logFile;
+    protected $debug = FALSE;
 
-    public function __construct($logFolder, $level, $dateFormat = 'Y-m-d H:i:s') {
+    public function __construct($logFolder, $level, $dateFormat = 'Y-m-d H:i:s', $debug = NULL) {
         $this->logFolder = $logFolder;
         $this->dateFormat = $dateFormat;
+        $this->debug = $debug !== NULL ? $debug : \PhalApi\DI()->debug;
 
         parent::__construct($level);
         
@@ -56,7 +60,16 @@ class FileLogger extends Logger {
             . DIRECTORY_SEPARATOR . 'log'
             . DIRECTORY_SEPARATOR . substr($this->fileDate, 0, -2);
         if (!file_exists($folder)) {
-            mkdir($folder . '/', 0777, TRUE);
+            if ($this->debug) {
+                // 调试时，显示创建，更友好的提示
+                if (!is_writeable($folder)) {
+                    throw new InternalServerErrorException(\PhalAPi\T('Failed to log into file, because permission denied: {path}', array('path' => Tool::getAbsolutePath($folder))));
+                }
+                mkdir($folder . '/', 0777, TRUE);
+            } else {
+                // 静默创建
+                @mkdir($folder . '/', 0777, TRUE);
+            }
         }
 
         // 每天一个文件
@@ -88,6 +101,15 @@ class FileLogger extends Logger {
 
         $content = implode('|', $msgArr) . PHP_EOL;
 
-        file_put_contents($this->logFile, $content, FILE_APPEND);
+        if ($this->debug) {
+            // 调试时，显示创建，更友好的提示
+            if (!is_writeable($this->logFile)) {
+                throw new InternalServerErrorException(\PhalAPi\T('Failed to log into file, because permission denied: {path}', array('path' => Tool::getAbsolutePath($this->logFile))));
+            }
+            file_put_contents($this->logFile, $content, FILE_APPEND);
+        } else {
+            // 静默写入
+            @file_put_contents($this->logFile, $content, FILE_APPEND);
+        }
     }
 }

@@ -156,10 +156,10 @@ class PhpUnderControl_PhalApiDBNotORM_Test extends \PHPUnit_Framework_TestCase
         //var_dump($rs);
         $this->assertTrue(is_numeric($rs));
 
-        $rs = $this->notorm->demo->where('id > 10')->min('id');
+        $rs = $this->notorm->demo->where('id > 1')->min('id');
         $this->assertTrue(is_numeric($rs));
 
-        $rs = $this->notorm->demo->where('id > 10')->max('id');
+        $rs = $this->notorm->demo->where('id > 1')->max('id');
         //var_dump($rs);
         $this->assertTrue(is_numeric($rs));
 
@@ -264,6 +264,13 @@ class PhpUnderControl_PhalApiDBNotORM_Test extends \PHPUnit_Framework_TestCase
         $this->assertGreaterThan($keys[0], $keys[1]);
         $this->assertEquals(0, $keys[0]);
         $this->assertEquals(1, $keys[1]);
+    }
+
+    public function testPage()
+    {
+        $notorm = new NotORMDatabase(\PhalApi\DI()->config->get('dbs')/** , true **/);
+        $rs = $notorm->demo->order('id DESC')->page(1, 5)->fetchAll();
+        $this->assertNotEmpty($rs);
     }
 
     public function testInsertMulti()
