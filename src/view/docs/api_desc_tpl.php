@@ -315,7 +315,7 @@ echo <<<EOT
             <div class="column" align="center">
                 <p>
                     <strong>接口，从简单开始！</strong>
-                    当前版本由<a href="https://www.yesapi.cn/" target="_blank">小白开放平台</a>独家赞助。<br/>
+                    当前版本由<a href="https://www.yesapi.cn/?f=github" target="_blank">广州 • 果创云 • 小白都喜欢的后端云服务</a>独家赞助。<br/>
                     © 2015-{$thisYear} Powered  By <a href="http://www.phalapi.net/" target="">PhalApi {$version} </a> All Rights Reserved. <span id="version_update"></span>
                 </p>
             </div>
