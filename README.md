@@ -8,7 +8,7 @@
 [![License](https://poser.pugx.org/phalapi/phalapi/license)](https://packagist.org/packages/phalapi/phalapi)
 
 > 让项目开发更简单！  
-> 当前版本由[广州·果创云](https://www.yesapi.cn/?f=github)独家赞助。
+> 当前版本由[广州 • 果创云 • 小白都喜欢的后端云服务](https://www.yesapi.cn/?f=github)独家赞助。
 
 ## 1、开发文档
 专为PHPer准备的优雅而详细的开发文档，请看：[PhalApi 2.x 开发文档](http://docs.phalapi.net/#/v2.0/)。  
