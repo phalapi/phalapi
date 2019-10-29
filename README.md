@@ -7,7 +7,7 @@
 [![Latest Unstable Version](https://poser.pugx.org/phalapi/phalapi/v/unstable)](https://packagist.org/packages/phalapi/phalapi)
 [![License](https://poser.pugx.org/phalapi/phalapi/license)](https://packagist.org/packages/phalapi/phalapi)
 
-> 让价值创造更轻松。做项目，用小白，易学好用有保障！
+> 让项目开发更简单！  
 > 当前版本由[广州·果创云](https://www.yesapi.cn/?f=github)独家赞助。
 
 ## 1、开发文档
