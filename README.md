@@ -1,6 +1,6 @@
 ![apic](http://cdn7.okayapi.com/yesyesapi_20190709223344_8aadbcfdbfa297a193012c0dada32a58.jpeg)  
 
-# [PhalApi 2.8.1 - 接口，从简单开始！](https://www.phalapi.net/) 
+# [PhalApi 2.9.0 - 接口，从简单开始！](https://www.phalapi.net/) 
 
 [![Latest Stable Version](https://poser.pugx.org/phalapi/phalapi/v/stable)](https://packagist.org/packages/phalapi/phalapi)
 [![Total Downloads](https://poser.pugx.org/phalapi/phalapi/downloads)](https://packagist.org/packages/phalapi/phalapi)
@@ -8,7 +8,7 @@
 [![License](https://poser.pugx.org/phalapi/phalapi/license)](https://packagist.org/packages/phalapi/phalapi)
 
 > 让价值创造更轻松。做项目，用小白，易学好用有保障！
-> 当前版本由[小白开放平台](https://www.yesapi.cn/?f=github)独家赞助。
+> 当前版本由[广州·果创云](https://www.yesapi.cn/?f=github)独家赞助。
 
 ## 1、开发文档
 专为PHPer准备的优雅而详细的开发文档，请看：[PhalApi 2.x 开发文档](http://docs.phalapi.net/#/v2.0/)。  
