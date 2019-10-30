@@ -61,10 +61,7 @@ class FileLogger extends Logger {
             . DIRECTORY_SEPARATOR . substr($this->fileDate, 0, -2);
         if (!file_exists($folder)) {
             if ($this->debug) {
-                // 调试时，显示创建，更友好的提示
-                if (!is_writeable($this->logFolder)) {
-                    throw new InternalServerErrorException(\PhalAPi\T('Failed to log into file, because permission denied: {path}', array('path' => Tool::getAbsolutePath($folder))));
-                }
+                // 调试时，显示warning提示
                 mkdir($folder . '/', 0777, TRUE);
             } else {
                 // 静默创建
