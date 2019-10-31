@@ -220,6 +220,11 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
 
         $return = $this->notORM->connection->prepare($query);
 
+        // @dogstar 20190917 失败时，抛出异常
+        if ($return === FALSE) {
+            throw new \PDOException('PDO failed to prepare: ' . $query);
+        }
+
         //对于替换参数进行处理   @喵了个咪 2015-12-25
         $sum = 1;
         foreach($parameters as $key => $val){

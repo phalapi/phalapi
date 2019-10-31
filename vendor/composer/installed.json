@@ -103,23 +103,23 @@
     },
     {
         "name": "phalapi/notorm",
-        "version": "2.8.0",
-        "version_normalized": "2.8.0.0",
+        "version": "2.9.0",
+        "version_normalized": "2.9.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/phalapi/notorm.git",
-            "reference": "f9f37e35cd094826343cf03cf46c31661eb4f945"
+            "reference": "974d507e2cd9e1fd6c46c31c2a730fd9416a5308"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/phalapi/notorm/zipball/f9f37e35cd094826343cf03cf46c31661eb4f945",
-            "reference": "f9f37e35cd094826343cf03cf46c31661eb4f945",
+            "url": "https://api.github.com/repos/phalapi/notorm/zipball/974d507e2cd9e1fd6c46c31c2a730fd9416a5308",
+            "reference": "974d507e2cd9e1fd6c46c31c2a730fd9416a5308",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.3"
         },
-        "time": "2019-08-13T04:46:19+00:00",
+        "time": "2019-09-17T13:00:49+00:00",
         "type": "library",
         "installation-source": "source",
         "autoload": {
@@ -134,9 +134,9 @@
         "authors": [
             {
                 "name": "Dogstar Huang",
-                "role": "Developer",
                 "email": "chanzonghuang@gmail.com",
-                "homepage": "http://my.oschina.net/dogstar"
+                "homepage": "http://my.oschina.net/dogstar",
+                "role": "Developer"
             }
         ],
         "description": "基于NotORM类库的优化版本，专门用于PhalApi 2.x 开源接口框架。",
