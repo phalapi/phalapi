@@ -312,6 +312,12 @@ class NotORMDatabase /** implements Database */ {
         // 创建PDO连接
         $pdo = new PDO($dsn, $dbCfg['user'], $dbCfg['password']);
 
+        // 取消将数值转换为字符串
+        if (empty($dbCfg['pdo_attr_string'])) {
+            $pdo->setAttribute(\PDO::ATTR_STRINGIFY_FETCHES, false);
+            $pdo->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
+        }
+
         // 设置编码
         $charset = isset($dbCfg['charset']) ? $dbCfg['charset'] : 'UTF8';
         $pdo->exec("SET NAMES '{$charset}'");

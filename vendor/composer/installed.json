@@ -47,24 +47,24 @@
     },
     {
         "name": "phalapi/kernal",
-        "version": "2.8.1",
-        "version_normalized": "2.8.1.0",
+        "version": "2.9.1",
+        "version_normalized": "2.9.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/phalapi/kernal.git",
-            "reference": "ec49e703d2fc10c39c7e86e9c3e587cea1582cfa"
+            "reference": "1e9c93773673a6fffc86eb0aae0607bc6465b24f"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/phalapi/kernal/zipball/ec49e703d2fc10c39c7e86e9c3e587cea1582cfa",
-            "reference": "ec49e703d2fc10c39c7e86e9c3e587cea1582cfa",
+            "url": "https://api.github.com/repos/phalapi/kernal/zipball/1e9c93773673a6fffc86eb0aae0607bc6465b24f",
+            "reference": "1e9c93773673a6fffc86eb0aae0607bc6465b24f",
             "shasum": ""
         },
         "require": {
             "phalapi/notorm": "2.*.*",
             "php": ">=5.3.3"
         },
-        "time": "2019-08-28T13:11:49+00:00",
+        "time": "2019-10-30T02:35:45+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -83,14 +83,14 @@
         "authors": [
             {
                 "name": "Dogstar Huang",
-                "role": "Developer",
                 "email": "chanzonghuang@gmail.com",
-                "homepage": "http://my.oschina.net/dogstar"
+                "homepage": "http://my.oschina.net/dogstar",
+                "role": "Developer"
             },
             {
                 "name": "kwan",
-                "role": "Developer",
-                "email": "303198069@qq.com"
+                "email": "303198069@qq.com",
+                "role": "Developer"
             }
         ],
         "description": "PhalApi 2.x 框架核心部分。",

@@ -29,7 +29,8 @@ class ArrayFormatter extends BaseFormatter implements Formatter {
         if (!is_array($rs)) {
             $ruleFormat = !empty($rule['format']) ? strtolower($rule['format']) : '';
             if ($ruleFormat == 'explode') {
-                $rs = explode(isset($rule['separator']) ? $rule['separator'] : ',', $rs);
+                // @dogstar 20191020 当传递参数为空字符串时，解析为空数组array()，而不是包含一个空字符串的数组array('')
+                $rs = $rs !== '' ? explode(isset($rule['separator']) ? $rule['separator'] : ',', $rs) : array();
             } else if ($ruleFormat == 'json') {
                 $rs = json_decode($rs, TRUE);
 

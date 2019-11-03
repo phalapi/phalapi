@@ -85,6 +85,36 @@ class Parser {
             );
         }
 
-        return $formatter->parse($value, $rule);
+        $rs = $formatter->parse($value, $rule);
+
+        // 根据配置，执行钩子回调函数 @dogstar 20191020
+        if (!empty($rule['on_after_parse'])) {
+            $rs = static::onAfterParse($rule['on_after_parse'], $rs);
+        }
+
+        return $rs;
+    }
+
+    /**
+     * 参数解析后的钩子回调函数
+     * @param mixed $onAfterParse 待执行的钩子回调函数，可以是字符串配置，多个函数名用竖线分割；或者是可执行的匿名函数。回调函数签名是：<T> func(<T>)，其中T类型是当前对应的参数类型
+     * @param mixed $value 参数值
+     * @return mixed 返回经过钩子回调函数处理后的结果
+     */
+    protected static function onAfterParse($onAfterParse, $value) {
+        if (is_string($onAfterParse)) {
+            $onAfterParseList = explode('|', $onAfterParse);
+            foreach ($onAfterParseList as $func) {
+                $func = trim($func);
+                if (empty($func) || !is_callable($func)) {
+                    continue;
+                }
+                $value = call_user_func($func, $value);
+            }
+        } else if (is_callable($onAfterParse)) {
+            $value = call_user_func($onAfterParse, $value);
+        }
+
+        return $value;
     }
 }

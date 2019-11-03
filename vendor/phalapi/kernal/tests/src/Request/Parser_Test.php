@@ -63,6 +63,28 @@ class PhpUnderControl_PhalApiRequestVar_Test extends \PHPUnit_Framework_TestCase
         $this->assertSame('PhalApi测试', $rs);
     }
 
+    /**
+     * @group testFormatString
+     */
+    public function testFormatStringAfterParse()
+    {
+        $rs = Parser::format(
+            'testKey', array('name' => 'testKey', 'on_after_parse' => 'strtolower|trim'), array('testKey' => 'PhalApi测试 '));
+
+        $this->assertSame('phalapi测试', $rs);
+    }
+
+    /**
+     * @group testFormatString
+     */
+    public function testFormatStringAfterParseCallback()
+    {
+        $rs = Parser::format(
+            'testKey', array('name' => 'testKey', 'on_after_parse' => function ($value) { return strtolower(trim($value)); }), array('testKey' => 'PhalApi测试 '));
+
+        $this->assertSame('phalapi测试', $rs);
+    }
+
 
     /**
      * @group testFormatStringMinMax
@@ -509,6 +531,16 @@ class PhpUnderControl_PhalApiRequestVar_Test extends \PHPUnit_Framework_TestCase
             array('testKey' => 1)
         );
 
+    }
+
+    public function testParseOnAfterParse()
+    {
+        $rule = array('name' => 'testKey', 'type' => 'array', 'format' => 'explode', 'on_after_parse' => 'array_unique');
+
+        $rs = Parser::format('testKey', $rule, array('testKey' => 'A,A,A,B,B,C'));
+
+        $this->assertCount(3, $rs);
+        $this->assertCount(3, array_intersect($rs, array('A', 'B', 'C')));
     }
 }
 

@@ -85,4 +85,17 @@ class PhpUnderControl_PhalApiRequestFormatterArray_Test extends \PHPUnit_Framewo
 
         $rs = $this->arrayFormatter->parse('{"a":1', $rule);
     }
+
+    /**
+     * 空字符串转为空数组
+     */
+    public function testParseEmptyStringToArray()
+    {
+        $rule = array('name' => 'testKey', 'type' => 'array', 'format' => 'explode', 'message' => '显示指定的错误信息');
+
+        $rs = $this->arrayFormatter->parse('', $rule);
+
+        $this->assertEmpty($rs);
+        $this->assertSame(array(), $rs);
+    }
 }

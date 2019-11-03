@@ -115,4 +115,11 @@ class RedisCache implements Cache {
     protected function unformatValue($value) {
         return @unserialize($value);
     }
+
+    /**
+     * 获取Redis实例，当封装的方法未能满足时，可调用此接口获取Reids实例进行操作
+     */
+    public function getRedis() {
+        return $this->redis;
+    }
 }
