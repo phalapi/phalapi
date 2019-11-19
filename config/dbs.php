@@ -22,7 +22,7 @@ return array(
             'charset'   => 'UTF8',                  // 数据库字符集
             'pdo_attr_string'   => false,           // 数据库查询结果统一使用字符串，true是，false否
             'driver_options' => array(              // PDO初始化时的连接选项配置
-                \PDO::ATTR_TIMEOUT => 3,            // 超时设置，3秒
+                // 若需要更多配置，请参考官方文档：https://www.php.net/manual/zh/pdo.constants.php
             ),
         ),
     ),
