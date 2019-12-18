@@ -78,7 +78,7 @@ $typeMaps = array(
     'float' => '浮点型',
     'boolean' => '布尔型',
     'date' => '日期',
-    'array' => '数组',
+    'array' => '字符串', // 转换成客户端看到的参数类型
     'fixed' => '固定值',
     'enum' => '枚举类型',
     'object' => '对象',
@@ -104,6 +104,16 @@ foreach ($rules as $key => $rule) {
         }
     } else if (!is_string($default)) {
         $default = var_export($default, true);
+    }
+
+    // 数组类型的格式说明
+    if ($rule['type'] == 'array' && in_array($rule['format'], array('json', 'explode'))) {
+        $type .= sprintf(
+            '<span class="ui label blue small">%s</span>',
+            $rule['format'] == 'json'
+            ? 'JSON格式'
+            : sprintf('用%s分割', isset($rule['separator']) ? $rule['separator'] : ',')
+        );
     }
 
     $other = array();
