@@ -216,6 +216,11 @@ echo <<<EOT
         </tr>
 EOT;
 foreach ($rules as $key => $rule){
+    // 接口文档不显示
+    if (!empty($rule['is_doc_hide'])) {
+        continue;
+    }
+
     $source = isset($rule['source']) ? $rule['source'] : '';
     //数据源为server和header时该参数不需要提供
     if ($source == 'server' || $source == 'header') {

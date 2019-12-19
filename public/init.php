@@ -4,7 +4,7 @@
  */
 
 // 定义项目路径
-defined('API_ROOT') || define('API_ROOT', dirname(__FILE__) . '/..');
+defined('API_ROOT') || define('API_ROOT', dirname(__FILE__) . DIRECTORY_SEPARATOR . '..');
 
 // 引入composer
 require_once API_ROOT . '/vendor/autoload.php';
