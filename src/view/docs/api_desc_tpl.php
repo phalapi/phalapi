@@ -85,6 +85,11 @@ $typeMaps = array(
 );
 
 foreach ($rules as $key => $rule) {
+    // 接口文档不显示
+    if (!empty($rule['is_doc_hide'])) {
+        continue;
+    }
+
     $name = $rule['name'];
     if (!isset($rule['type'])) {
         $rule['type'] = 'string';

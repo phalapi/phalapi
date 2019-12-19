@@ -17,6 +17,8 @@ class Rule extends Api {
             ),
             'defaultStr' => array(
                 'str' => array('name' => 'str', 'type' => 'string', 'require' => true, 'default' => 'PhalApi', 'desc' => '默认字符串参数，且参数必须'),
+                'strHide' => array('name' => 'str_hide', 'type' => 'string', 'require' => true, 'default' => 'PhalApi', 'desc' => '默认字符串参数，且参数必须', 'is_doc_hide' => true), // 接口文档隐藏参数，但实际仍然可使用
+                'strRemove' => null, // 移除接口参数，在PHP后端代码中不可用，且不会在接口文档显示
             ),
             'regexStr' => array(
                 'str' => array('name' => 'str', 'regex' => "/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/", 'desc' => '指定正则的字符串参数'),
