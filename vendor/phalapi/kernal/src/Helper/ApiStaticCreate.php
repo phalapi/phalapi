@@ -14,10 +14,14 @@ class ApiStaticCreate extends ApiList
 
     protected $webRoot = '';
     protected $theme = '';
+    protected $detailTplPath = NULL;
 
-    public function __construct($projectName, $theme = 'fold') {
+    public function __construct($projectName, $theme = 'fold', $detailTplPath = NULL) {
         parent::__construct($projectName);
         $this->theme = $theme;
+        if (!empty($detailTplPath)) {
+            $this->detailTplPath = $detailTplPath;
+        }
     }
 
 
@@ -44,7 +48,7 @@ class ApiStaticCreate extends ApiList
         // 换一种更优雅的方式
         \PhalApi\DI()->request = new \PhalApi\Request(array('service' => $service));
         $apiDesc = new \PhalApi\Helper\ApiDesc($this->projectName);
-        $apiDesc->render();
+        $apiDesc->render($this->detailTplPath);
 
         $string = ob_get_clean();
         \PhalApi\Helper\saveHtml($this->webRoot, $service, $string);

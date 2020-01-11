@@ -76,7 +76,7 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
                         foreach ($subAllApiS as $item) {
                             $subMethodTotal += count($item['methods']);
                         }
-                        echo sprintf('<h4 class="title active" style="font-size:16px;margin:0px;"><i class="dropdown icon"></i>%s (%d)</h4>', $namespace, $subMethodTotal);
+                        echo sprintf('<h4 class="title active" style="font-size:16px;margin:0px;"><i class="dropdown icon"></i>%s (%d)</h4>', \PhalApi\T($namespace), $subMethodTotal);
                         echo sprintf('<div class="content %s" style="margin-left:-16px;margin-right:-16px;margin-bottom:-13px;">', $num == 0 ? 'active' : '');
                         // 每个命名空间下的接口类
                         foreach ($subAllApiS as $key => $item) {
