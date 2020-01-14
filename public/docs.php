@@ -31,17 +31,20 @@ require_once dirname(__FILE__) . '/init.php';
 
 $projectName = 'PhalApi开源接口框架';
 
+$detailTpl = API_ROOT . '/src/view/docs/api_desc_tpl.php';
+$listTpl = API_ROOT . '/src/view/docs/api_list_tpl.php';
+
 if (substr(PHP_SAPI, 0, 3) == 'cli') {
     // 生成离线文档
-    $apiHtml = new \PhalApi\Helper\ApiStaticCreate($projectName);
-    $apiHtml->render();
+    $apiHtml = new \PhalApi\Helper\ApiStaticCreate($projectName, 'fold', $detailTpl);
+    $apiHtml->render($listTpl);
 } else if (!empty($_GET['detail'])) {
     // 接口详情页
     $apiDesc = new \PhalApi\Helper\ApiDesc($projectName);
-    $apiDesc->render(API_ROOT . '/src/view/docs/api_desc_tpl.php');
+    $apiDesc->render($detailTpl);
 } else {
     // 接口列表页
     $apiList = new \PhalApi\Helper\ApiList($projectName);
-    $apiList->render(API_ROOT . '/src/view/docs/api_list_tpl.php');
+    $apiList->render($listTpl);
 }
 
