@@ -76,7 +76,8 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
                         foreach ($subAllApiS as $item) {
                             $subMethodTotal += count($item['methods']);
                         }
-                        echo sprintf('<h4 class="title active" style="font-size:16px;margin:0px;"><i class="dropdown icon"></i>%s (%d)</h4>', \PhalApi\T($namespace), $subMethodTotal);
+                        $namespaceService = str_replace('\\', '_', trim($namespace, '\\'));
+                        echo sprintf('<h4 class="title active" style="font-size:16px;margin:0px;"><i class="dropdown icon"></i>%s (%d)</h4>', \PhalApi\T($namespaceService), $subMethodTotal);
                         echo sprintf('<div class="content %s" style="margin-left:-16px;margin-right:-16px;margin-bottom:-13px;">', $num == 0 ? 'active' : '');
                         // 每个命名空间下的接口类
                         foreach ($subAllApiS as $key => $item) {
@@ -157,9 +158,10 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
                             <?php
                             $num = 1;
                             foreach ($item['methods'] as $mKey => $mItem) {
-                                $link = $this->makeApiServiceLink($mItem['service'],$theme);
+                                $s = str_replace('\\', '_', $mItem['service']);
+                                $link = $this->makeApiServiceLink($s,$theme);
                                 $NO   = $num++;
-                                echo "<tr><td>{$NO}</td><td><a href=\"$link\" target='_blank'>{$mItem['service']}</a></td><td>{$mItem['title']}</td><td>{$mItem['desc']}</td></tr>";
+                                echo "<tr><td>{$NO}</td><td><a href=\"$link\" target='_blank'>{$s}</a></td><td>{$mItem['title']}</td><td>{$mItem['desc']}</td></tr>";
                             }
                             ?>
                             </tbody>
