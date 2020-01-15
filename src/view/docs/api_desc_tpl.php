@@ -52,6 +52,16 @@ echo <<<EOT
     <div class="ui text container" style="max-width: none !important;">
         <div class="ui floating message">
 
+    <h2 class="ui header">
+      <i class="settings icon"></i>
+      <div class="content">
+        {$service}
+        <div class="sub header">{$description}</div>
+      </div>
+    </h2>
+
+            <h4><i class="linkify in alternate icon"></i>接口地址：{$url}?s={$service}</h4>
+
 EOT;
 
 /**
@@ -60,14 +70,11 @@ EOT;
 echo <<<EOT
             <div class="ui raised segment">
                 <span class="ui red ribbon label">接口文档</span>
-                <h2 class="ui header">{$service} <div class="sub header">{$description}</div></h2>
-                <br />
-                <h4 class="ui header dividing">接口说明</h4>
+                <div class="ui message">
                 <p>{$descComment}</p>
-                <br />
-                <h4 class="ui header dividing">接口地址</h4>
-                <p>{$url}?s={$service}</p>
+                </div>
             </div>
+
             <h3><i class="sign in alternate icon"></i>接口参数</h3>
             <table class="ui red celled striped table" >
                 <thead>
