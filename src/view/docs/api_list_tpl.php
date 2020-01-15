@@ -24,8 +24,7 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
         <?php echo $projectName; ?>
       </a>
       <a href="https://www.phalapi.net/" class="item">PhalApi</a>
-      <a href="http://docs.phalapi.net/#/v2.0/" class="item">文档</a>
-      <a href="http://qa.phalapi.net/" class="item">社区</a>
+      <a href="http://docs.phalapi.net/#/v2.0/" class="item">开发文档</a>
 
      <div class="right menu">
          <div class="item">
@@ -199,7 +198,10 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
                 <p>
                     <strong>接口，从简单开始！</strong>
                     <br />
-                    © 2015-<?php echo date('Y'); ?> Powered  By <a href="http://www.phalapi.net/" target="">开源接口框架 PhalApi <?php echo PHALAPI_VERSION; ?> </a> All Rights Reserved. <span id="version_update"></span>
+                    © 2015-<?php echo date('Y'); ?> Powered  By 
+                    <a href="http://www.phalapi.net/" target="">开源接口框架 PhalApi <?php echo PHALAPI_VERSION; ?> </a> <span id="version_update"></span>
+                    &nbsp;&nbsp;
+                    <a target="_blank" href="http://pro.phalapi.net/" class="orange"><span class="ui tiny label orange"><i class="icon arrow alternate circle up"></i>专业版<span></a>
                 </p>
             </div>
         </div>

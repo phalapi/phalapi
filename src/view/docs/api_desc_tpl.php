@@ -33,8 +33,7 @@ echo <<<EOT
         {$projectName}
       </a>
       <a href="https://www.phalapi.net/" class="item">PhalApi</a>
-      <a href="http://docs.phalapi.net/#/v2.0/" class="item">文档</a>
-      <a href="http://qa.phalapi.net/" class="item">社区</a>
+      <a href="http://docs.phalapi.net/#/v2.0/" class="item">开发文档</a>
 
      <div class="right menu">
          <div class="item">
@@ -309,7 +308,7 @@ echo <<<EOT
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <div class="ui text">
-    <pre><code>{$demoCodes}<code></pre>
+    <pre><code>{$demoCodes}</code></pre>
 </div>
 EOT;
 
@@ -338,7 +337,9 @@ echo <<<EOT
                 <p>
                     <strong>接口，从简单开始！</strong>
                     <br />
-                    © 2015-{$thisYear} Powered  By <a href="http://www.phalapi.net/" target="">开源接口框架 PhalApi {$version} </a> All Rights Reserved. <span id="version_update"></span>
+                    © 2015-{$thisYear} Powered  By <a href="http://www.phalapi.net/" target="">开源接口框架 PhalApi {$version} </a> <span id="version_update"></span>
+                    &nbsp;&nbsp;
+                    <a target="_blank" href="http://pro.phalapi.net/" class="orange"><span class="ui tiny label orange"><i class="icon arrow alternate circle up"></i>专业版<span></a>
                 </p>
             </div>
         </div>
