@@ -2,6 +2,9 @@
 
 // 搜索关键字
 $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
+$url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']) ? 'https://' : 'http://';
+$url = $url . (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost');
+$url .= trim(substr($_SERVER['SCRIPT_NAME'], 0, strrpos($_SERVER['SCRIPT_NAME'], '/') + 1), '.');
 
 echo <<<EOT
 <!DOCTYPE html>
@@ -52,17 +55,19 @@ echo <<<EOT
 
 EOT;
 
-echo "<h2 class='ui header'>接口：$service</h2><br/> <span class='ui teal tag label'>$description</span>";
-
 /**
  * 接口说明 & 接口参数
  */
 echo <<<EOT
             <div class="ui raised segment">
-                <span class="ui red ribbon label">接口说明</span>
-                <div class="ui message">
-                    <p>{$descComment}</p>
-                </div>
+                <span class="ui red ribbon label">接口文档</span>
+                <h2 class="ui header">{$service} <div class="sub header">{$description}</div></h2>
+                <br />
+                <h4 class="ui header dividing">接口说明</h4>
+                <p>{$descComment}</p>
+                <br />
+                <h4 class="ui header dividing">接口地址</h4>
+                <p>{$url}?s={$service}</p>
             </div>
             <h3><i class="sign in alternate icon"></i>接口参数</h3>
             <table class="ui red celled striped table" >
@@ -261,9 +266,6 @@ echo <<<EOT
         <option value="GET">GET</option>
     </select>-->
 EOT;
-$url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']) ? 'https://' : 'http://';
-$url = $url . (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost');
-$url .= trim(substr($_SERVER['SCRIPT_NAME'], 0, strrpos($_SERVER['SCRIPT_NAME'], '/') + 1), '.');
 echo <<<EOT
 <!--
 接口链接：&nbsp;<input name="request_url" value="{$url}" style="width:500px; height:24px; line-height:18px; font-size:13px;position:relative; padding-left:5px;margin-left: 10px"/>
@@ -328,15 +330,15 @@ echo <<<EOT
   <div class="ui inverted vertical footer segment" style="margin-top:30px; background: #1B1C1D none repeat scroll 0% 0%;" >
     <div class="ui container">
       <div class="ui stackable inverted divided equal height stackable grid">
-        <div class="eight wide column centered">
+        <div class="ten wide column centered">
             <div class="column" align="center" >
                 <img src="https://www.phalapi.net/images/icon_logo.png" alt="PhalApi">
             </div>
             <div class="column" align="center">
                 <p>
                     <strong>接口，从简单开始！</strong>
-                    当前版本由<a href="https://www.yesapi.cn/?f=github" target="_blank">广州 • 果创云 • 小白都喜欢的后端云服务</a>独家赞助。<br/>
-                    © 2015-{$thisYear} Powered  By <a href="http://www.phalapi.net/" target="">PhalApi {$version} </a> All Rights Reserved. <span id="version_update"></span>
+                    <br />
+                    © 2015-{$thisYear} Powered  By <a href="http://www.phalapi.net/" target="">开源接口框架 PhalApi {$version} </a> All Rights Reserved. <span id="version_update"></span>
                 </p>
             </div>
         </div>

@@ -191,15 +191,15 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
   <div class="ui inverted vertical footer segment" style="margin-top:30px; background: #1B1C1D none repeat scroll 0% 0%;" >
     <div class="ui container">
       <div class="ui stackable inverted divided equal height stackable grid">
-        <div class="eight wide column centered">
+        <div class="ten wide column centered">
             <div class="column" align="center" >
                 <img src="https://www.phalapi.net/images/icon_logo.png" alt="PhalApi">
             </div>
             <div class="column" align="center">
                 <p>
                     <strong>接口，从简单开始！</strong>
-                    当前版本由<a href="https://www.yesapi.cn/?f=github" target="_blank">广州 • 果创云 • 小白都喜欢的后端云服务</a>独家赞助。<br/>
-                    © 2015-<?php echo date('Y'); ?> Powered  By <a href="http://www.phalapi.net/" target="">PhalApi <?php echo PHALAPI_VERSION; ?> </a> All Rights Reserved. <span id="version_update"></span>
+                    <br />
+                    © 2015-<?php echo date('Y'); ?> Powered  By <a href="http://www.phalapi.net/" target="">开源接口框架 PhalApi <?php echo PHALAPI_VERSION; ?> </a> All Rights Reserved. <span id="version_update"></span>
                 </p>
             </div>
         </div>
