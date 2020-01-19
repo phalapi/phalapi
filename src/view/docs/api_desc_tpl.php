@@ -387,6 +387,9 @@ echo <<<EOT
         $(function(){
             $("#json_output").hide();
             $("#submit").on("click",function(){
+                $("#json_output").html('<div class="ui active inverted dimmer"><div class="ui text loader">接口请求中……</div></div>');
+                $("#json_output").show();
+
                 var data = getData();
                 var url_arr = $("input[name=request_url]").val().split('?');
                 var url = url_arr.shift();
@@ -409,7 +412,7 @@ echo <<<EOT
                         $("#json_output").show();
                     },
                     error:function(error){
-                        console.log(error)
+                        $("#json_output").html('接口请求失败：' + error);
                     }
                 })
             })
