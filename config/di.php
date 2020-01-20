@@ -7,7 +7,6 @@
  * @author      dogstar <chanzonghuang@gmail.com> 2017-07-13
  */
 
-use PhalApi\Loader;
 use PhalApi\Config\FileConfig;
 use PhalApi\Logger;
 use PhalApi\Logger\FileLogger;
