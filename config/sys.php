@@ -62,4 +62,16 @@ return array(
         'file_prefix' => '',                    // 文件名前缀，必须为有效的文件名组成部分，自动使用下划线连接系统文件
         'separator' => "|",                     // 日记内容分隔符，如：\t，注意使用双引号保持转义
     ),
+
+    /**
+     * 返回结果
+     */
+    'response' => array(
+        'structure_map' => array( // 返回结构字段映射配置
+            'ret'   => 'ret',
+            'data'  => 'data',
+            'msg'   => 'msg',
+            'debug' => 'debug',
+        ),
+    ),
 );
