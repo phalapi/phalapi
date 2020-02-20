@@ -50,4 +50,15 @@ return array(
     'crypt' => array(
         'mcrypt_iv' => '12345678', //8位
     ),
+
+    /**
+     * 文件日记
+     */
+    'file_logger' => array(
+        'log_folder' => API_ROOT . '/runtime',  // 日记目录，需要使用已存在且有写入权限的绝对目录路径
+        'level' => 7,                           // 需要纪录的日记级别，默认：Logger::LOG_LEVEL_DEBUG(1) | Logger::LOG_LEVEL_INFO(2) | Logger::LOG_LEVEL_ERROR(4)
+        'date_format' => 'Y-m-d H:i:s',         // 时间日期格式
+        'file_prefix' => '',                    // 文件名前缀，必须为有效的文件名组成部分，自动使用下划线连接系统文件
+        'separator' => "|",                     // 日记内容分隔符，如：\t
+    ),
 );
