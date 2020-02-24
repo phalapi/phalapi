@@ -5,6 +5,8 @@ $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
 $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']) ? 'https://' : 'http://';
 $url = $url . (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost');
 $url .= trim(substr($_SERVER['SCRIPT_NAME'], 0, strrpos($_SERVER['SCRIPT_NAME'], '/') + 1), '.');
+$semanticPath = 'https://cdn.bootcss.com/semantic-ui/2.2.2/'; // CDN
+$semanticPath = '/'; // 本地
 
 echo <<<EOT
 <!DOCTYPE html>
@@ -13,11 +15,11 @@ echo <<<EOT
     <meta charset="utf-8">
     <title>{$description} - {$service} - {$projectName} - 在线接口文档</title>
 
-    <link rel="stylesheet" href="https://cdn.bootcss.com/semantic-ui/2.2.2/semantic.min.css">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/semantic-ui/2.2.2/components/table.min.css">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/semantic-ui/2.2.2/components/container.min.css">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/semantic-ui/2.2.2/components/message.min.css">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/semantic-ui/2.2.2/components/label.min.css">
+    <link rel="stylesheet" href="{$semanticPath}semantic.min.css">
+    <link rel="stylesheet" href="{$semanticPath}components/table.min.css">
+    <link rel="stylesheet" href="{$semanticPath}components/container.min.css">
+    <link rel="stylesheet" href="{$semanticPath}components/message.min.css">
+    <link rel="stylesheet" href="{$semanticPath}components/label.min.css">
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 
     <script src="https://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>

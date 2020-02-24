@@ -1,5 +1,7 @@
 <?php
 $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple pink grey black");
+$semanticPath = 'https://cdn.bootcss.com/semantic-ui/2.2.2/';
+$semanticPath = '/'; // 本地路径
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,11 +10,11 @@ $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple
     <title><?php echo $projectName; ?> - 在线接口列表</title>
 
     <!-- <link href="https://lib.baomitu.com/semantic-ui/2.3.3/semantic.min.css" rel="stylesheet"> -->
-    <link rel="stylesheet" href="https://cdn.bootcss.com/semantic-ui/2.2.2/semantic.min.css">
+    <link rel="stylesheet" href="<?php echo $semanticPath; ?>semantic.min.css">
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 
     <script src="https://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/semantic-ui/2.2.2/semantic.min.js"></script>
+<script src="<?php echo $semanticPath; ?>semantic.min.js"></script>
     <meta name="robots" content="none"/>
 </head>
 <body>
