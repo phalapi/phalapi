@@ -1,7 +1,7 @@
 <?php
 $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple pink grey black");
 $semanticPath = 'https://cdn.bootcss.com/semantic-ui/2.2.2/';
-$semanticPath = '/'; // 本地路径
+$semanticPath = '/semantic/'; // 本地
 ?>
 <!DOCTYPE html>
 <html lang="en">
