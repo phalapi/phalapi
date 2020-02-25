@@ -23,6 +23,8 @@ class ApiDesc extends ApiOnline {
         $namespace  = \PhalApi\DI()->request->getNamespace();
         $api        = \PhalApi\DI()->request->getServiceApi();
         $action     = \PhalApi\DI()->request->getServiceAction();
+
+        $namespace  = str_replace('_', '\\', $namespace); // 支持多级命名空间，扩展类库接口需要用到 @dogstar 20200114
         $className  = '\\' . $namespace . '\\Api\\' . str_replace('_', '\\', ucfirst($api));
 
         $rules = array();

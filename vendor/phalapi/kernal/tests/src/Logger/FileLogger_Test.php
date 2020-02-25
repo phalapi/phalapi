@@ -65,11 +65,13 @@ class PhpUnderControl_PhalApiLoggerFile_Test extends \PHPUnit_Framework_TestCase
         $this->coreLoggerFile->info('something info here', 'phpunit');
         $this->coreLoggerFile->info('something info here', 2014);
         $this->coreLoggerFile->info('something info here', true);
+        $this->coreLoggerFile->info('这是一段中文');
 
         $this->assertLogExists('something info here');
         $this->assertLogExists('phpunit');
         $this->assertLogExists('2014');
         $this->assertLogExists('1');
+        $this->assertLogExists('这是一段中文');
     }
 
     public function testError()
@@ -92,21 +94,21 @@ class PhpUnderControl_PhalApiLoggerFile_Test extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException PhalApi\Exception\InternalServerErrorException
+     * @  expectedException PhalApi\Exception\InternalServerErrorException
      */
     public function testPermissionDenied()
     {
         $coreLoggerFile = new FileLogger('/var/never_this',
-            Logger::LOG_LEVEL_DEBUG | Logger::LOG_LEVEL_INFO | Logger::LOG_LEVEL_ERROR);
+            Logger::LOG_LEVEL_DEBUG | Logger::LOG_LEVEL_INFO | Logger::LOG_LEVEL_ERROR, 'Y-m-d H:i:s', false);
     }
 
     /**
-     * @expectedException PhalApi\Exception\InternalServerErrorException
+     * @  expectedException PhalApi\Exception\InternalServerErrorException
      */
     public function testPermissionDeniedWhenLog()
     {
         $coreLoggerFile = new FileLogger('/var/never_this',
-            Logger::LOG_LEVEL_DEBUG | Logger::LOG_LEVEL_INFO | Logger::LOG_LEVEL_ERROR);
+            Logger::LOG_LEVEL_DEBUG | Logger::LOG_LEVEL_INFO | Logger::LOG_LEVEL_ERROR, 'Y-m-d H:i:s', false);
         $coreLoggerFile->info('here we go to fail');
     }
 
@@ -121,5 +123,29 @@ class PhpUnderControl_PhalApiLoggerFile_Test extends \PHPUnit_Framework_TestCase
         $coreLoggerFile = new FileLogger('/var/never_this',
             Logger::LOG_LEVEL_DEBUG | Logger::LOG_LEVEL_INFO | Logger::LOG_LEVEL_ERROR, 'Y-m-d', false);
         $coreLoggerFile->info('here we go to fail');
+    }
+
+    public function testLogFilePrefixx()
+    {
+        $coreLoggerFile = new FileLogger(dirname(__FILE__) . '/runtime',
+            Logger::LOG_LEVEL_DEBUG | Logger::LOG_LEVEL_INFO | Logger::LOG_LEVEL_ERROR, 'Y-m-d', false, 'phpunit');
+        $coreLoggerFile->info('here we go to at phpunit_* log file');
+    }
+
+    public function testSwithLogFilePrefixx()
+    {
+        $coreLoggerFile = new FileLogger(dirname(__FILE__) . '/runtime',
+            Logger::LOG_LEVEL_DEBUG | Logger::LOG_LEVEL_INFO | Logger::LOG_LEVEL_ERROR, 'Y-m-d', false, 'phpunit');
+        $coreLoggerFile->info('here we go to at phpunit_* log file');
+
+        $coreLoggerFile->switchFilePrefix('dogstar')->info('这将会保存在dogstar前缀的日记文件中');
+
+        $coreLoggerFile->info('还是在dogstar前缀的日记文件');
+    }
+
+    public function testCreate() {
+        $coreLoggerFile = FileLogger::create(array('log_folder' => dirname(__FILE__) . '/runtime'));
+        $coreLoggerFile->info('here we go from 创建函数');
+        $this->assertLogExists('创建函数');
     }
 }

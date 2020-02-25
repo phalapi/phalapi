@@ -75,9 +75,9 @@ class Parser {
      */
     protected static function formatAllType($type, $value, $rule) {
         $diKey = '_formatter' . ucfirst($type);
-        $diDefautl = '\\PhalApi\\Request\\Formatter\\' . ucfirst($type) . 'Formatter';
+        $diDefault = '\\PhalApi\\Request\\Formatter\\' . ucfirst($type) . 'Formatter';
 
-        $formatter = \PhalApi\DI()->get($diKey, $diDefautl);
+        $formatter = \PhalApi\DI()->get($diKey, $diDefault);
 
         if (!($formatter instanceof Formatter)) {
             throw new InternalServerErrorException(
