@@ -36,7 +36,65 @@ $ composer create-project phalapi/phalapi
 $ composer update
 ```
 
-## 4、使用
+## 4、部署
+
+### Nginx配置
+如果使用的是Nginx，可参考以下配置。  
+```
+server {
+    listen 80;
+    server_name dev.phalapi.net;
+    # 将根目录设置到public目录
+    root /path/to/phalapi/public;
+    charset utf-8;
+
+    location / {
+        index index.php;
+    }
+
+    location ~ \.php$ {
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        # 根据当前环境，选择合适的通讯方式
+        # fastcgi_pass unix:/var/run/php-fpm/php-fpm.sock;
+        fastcgi_pass 127.0.0.1:9000;
+        fastcgi_index index.php;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    }
+}
+```
+重启nginx。
+
+### 数据库配置
+如何使用的是MySQL数据库，参考修改```./config/dbs.php```数据库配置。
+```php
+return array(
+    /**
+     * DB数据库服务器集群
+     */
+    'servers' => array(
+        'db_master' => array(                       // 服务器标记
+            'type'      => 'mysql',                 // 数据库类型，暂时只支持：mysql, sqlserver
+            'host'      => '127.0.0.1',             // 数据库域名
+            'name'      => 'phalapi',               // 数据库名字
+            'user'      => 'root',                  // 数据库用户名
+            'password'  => '',	                    // 数据库密码
+            'port'      => 3306,                    // 数据库端口
+            'charset'   => 'UTF8',                  // 数据库字符集
+            'pdo_attr_string'   => false,           // 数据库查询结果统一使用字符串，true是，false否
+            'driver_options' => array(              // PDO初始化时的连接选项配置
+                // 若需要更多配置，请参考官方文档：https://www.php.net/manual/zh/pdo.constants.php
+            ),
+        ),
+    ),
+
+    // 更多代码省略……
+);
+```
+
+最后，需要给runtime目录添加写入权限。更多安装说明请参考文档[下载与安装](http://docs.phalapi.net/#/v2.0/download-and-setup)。
+
+## 5、使用
 
 ### 调用接口
 
@@ -111,14 +169,14 @@ PhalApi会根据你编写的接口的参数配置和代码注释，自动实时�
 
 ![_20190201113515](https://user-images.githubusercontent.com/12585518/52101206-8fc91700-2615-11e9-8c4d-20e30cc264c4.png)
 
-## 5、一张图告诉你如何使用PhalApi 2.x
+## 6、一张图告诉你如何使用PhalApi 2.x
 ![phalapi-install](https://user-images.githubusercontent.com/12585518/52995681-4ae71200-3456-11e9-8d00-065a42cf4382.gif)
 
-## 6、子项目
+## 7、子项目
  + [phalapi/kernal](https://github.com/phalapi/kernal)
  + [phalapi/notorm](https://github.com/phalapi/notorm)
 
-## 7、还有问题，怎么办？  
+## 8、还有问题，怎么办？  
 
 如发现问题，或者任何问题，欢迎提交Issue到[这里](https://github.com/phalapi/phalapi/issues)，或进入[PhalApi开源社区](http://talk.phalapi.net/?f=github)。  
 如果喜欢，请帮忙在[Github](https://github.com/phalapi/phalapi)或[码云](https://gitee.com/dogstar/PhalApi)给个Star，也可以对PhalApi进行[捐赠](https://www.phalapi.net/donate.html)哦 ^_^。
