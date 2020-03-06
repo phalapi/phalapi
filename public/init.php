@@ -6,6 +6,9 @@
 // 定义项目路径
 defined('API_ROOT') || define('API_ROOT', dirname(__FILE__) . DIRECTORY_SEPARATOR . '..');
 
+// 运行模式，可以是：dev, test, prod
+defined('API_MODE') || define('API_MODE', 'prod');
+
 // 引入composer
 require_once API_ROOT . '/vendor/autoload.php';
 
