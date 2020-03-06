@@ -35,6 +35,7 @@ return array(
         '__default__' => array(                     // 固定的系统标志，不能修改！
             'prefix' => '',                         // 数据库统一表名前缀，无前缀保留空
             'key' => 'id',                          // 数据库统一表主键名，通常为id
+            'keep_suffix_if_no_map' => true,        // 当分表未匹配时依然保留数字作为表后缀
             'map' => array(                         // 数据库统一默认存储路由
                 array('db' => 'db_master'),         // db_master对应前面servers.db_master配置，须对应！
             ),
@@ -46,6 +47,7 @@ return array(
         'demo' => array(                            // 表名，不带表前缀，不带分表后缀
             'prefix' => '',                         // 当前的表名前缀
             'key' => 'id',                          // 当前的表主键名
+            'keep_suffix_if_no_map' => true,        // 当分表未匹配时依然保留数字作为表后缀
             'map' => array(                         // 当前的分表存储路由配置
                 array('db' => 'db_master'),         // 单表配置：array('db' => 服务器标记)
                 array('start' => 0, 'end' => 2, 'db' => 'db_master'),     // 三张分表的配置：array('start' => 开始下标, 'end' => 结束下标, 'db' => 服务器标记)
