@@ -31,6 +31,9 @@ $di->notorm = new NotORMDatabase($di->config->get('dbs'), $di->config->get('sys.
 // JSON中文输出
 // $di->response = new \PhalApi\Response\JsonResponse(JSON_UNESCAPED_UNICODE);
 
+// 管理员
+$di->admin = new Admin\Common\Admin();
+
 /** ---------------- 定制注册 可选服务组件 ---------------- **/
 
 // 签名验证服务

@@ -27,6 +27,7 @@ $semanticPath = '/semantic/'; // 本地
       </a>
       <a href="https://www.phalapi.net/" class="item">PhalApi</a>
       <a href="http://docs.phalapi.net/#/v2.0/" class="item">开发文档</a>
+      <a target="_blank" href="/admin" class="item">管理后台</a>
 
      <div class="right menu">
          <div class="item">

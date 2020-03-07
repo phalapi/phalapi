@@ -12,4 +12,5 @@ return array(
     'PhalApi\\CLI\\' => array($vendorDir . '/phalapi/cli/src'),
     'PhalApi\\' => array($vendorDir . '/phalapi/kernal/src'),
     'App\\' => array($baseDir . '/src/app'),
+    'Admin\\' => array($baseDir . '/src/admin'),
 );

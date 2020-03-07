@@ -12,3 +12,4 @@ gitc
 .env
 
 .DS_Store
+.project
