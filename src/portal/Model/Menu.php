@@ -14,5 +14,12 @@ class Menu extends NotORMModel {
             ->order('sort_num')
             ->fetchAll();
     }    
+    
+    public function listAllMenus() {
+        return $this->getORM()
+        ->select('id, id as authorityId, title as authorityName, sort_num as orderNumber, parent_id as parentId, icon as menuIcon, href as menuUrl')
+        ->order('parent_id, sort_num')
+        ->fetchAll();
+    }
 }
 

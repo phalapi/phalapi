@@ -44,4 +44,17 @@ class Menu {
 
         return $needMenus;
     }
+    
+    public function listAllMenus() {
+        $model = new MenuModel();
+        $menus = $model->listAllMenus();
+        foreach ($menus as &$itRef) {
+            $itRef['isMenu'] = 0;
+            $itRef['checked'] = 1;
+            $itRef['authority'] = $itRef['id'];
+            $itRef['createTime'] = '';
+            $itRef['updateTime'] = '';
+        }
+        return $menus;
+    }
 }

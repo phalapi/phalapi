@@ -16,10 +16,12 @@
 <body>
 <div class="layuimini-container">
     <div class="layuimini-main">
+        <!--
         <blockquote class="layui-elem-quote">
             Layui的树形表格treeTable，支持异步加载(懒加载)、复选框联动、折叠状态记忆。<br>
             <a href="https://gitee.com/whvse/treetable-lay" target="_blank" class="layui-btn layui-btn-danger">treetable-lay</a>
         </blockquote>
+        -->
         <div>
             <div class="layui-btn-group">
                 <button class="layui-btn" id="btn-expand">全部展开</button>
@@ -47,27 +49,32 @@
         layer.load(2);
         treetable.render({
             treeColIndex: 1,
-            treeSpid: -1,
+            treeSpid: 0,
             treeIdName: 'authorityId',
             treePidName: 'parentId',
             elem: '#munu-table',
-            url: '../api/menus.json',
+            url: '/?s=Portal.Page.Menu',
             page: false,
+            parseData: function(res){ //res 即为原始返回的数据
+                return {
+                    "code": res.ret == 200 ? 0 : res.ret, //解析接口状态
+                    "msg": res.msg, //解析提示文本
+                    "count": res.data.total, //解析数据长度
+                    "data": res.data.menus //解析数据列表
+                };
+            },
             cols: [[
                 {type: 'numbers'},
-                {field: 'authorityName', minWidth: 200, title: '权限名称'},
+                {field: 'authorityName', minWidth: 60, title: '菜单标题'},
                 {field: 'authority', title: '权限标识'},
                 {field: 'menuUrl', title: '菜单url'},
-                {field: 'orderNumber', width: 80, align: 'center', title: '排序号'},
+                {field: 'orderNumber', width: 80, align: 'center', title: '排序(小在前)'},
                 {
                     field: 'isMenu', width: 80, align: 'center', templet: function (d) {
-                        if (d.isMenu == 1) {
-                            return '<span class="layui-badge layui-bg-gray">按钮</span>';
-                        }
-                        if (d.parentId == -1) {
-                            return '<span class="layui-badge layui-bg-blue">目录</span>';
+                        if (d.parentId == 0) {
+                            return '<span class="layui-badge layui-bg-blue">顶级菜单</span>';
                         } else {
-                            return '<span class="layui-badge-rim">菜单</span>';
+                            return '<span class="layui-badge-rim">左侧菜单</span>';
                         }
                     }, title: '类型'
                 },
@@ -92,9 +99,9 @@
             var layEvent = obj.event;
 
             if (layEvent === 'del') {
-                layer.msg('删除' + data.id);
+                layer.msg('TODO 删除' + data.id);
             } else if (layEvent === 'edit') {
-                layer.msg('修改' + data.id);
+                layer.msg('TODO 修改' + data.id);
             }
         });
     });

@@ -36,4 +36,17 @@ class Page extends Api {
 
         return array('homeInfo' => $homeInfo, 'logoInfo' => $logoInfo, 'menuInfo' => $menuInfo, 'admin' => $admin);
     }
+    
+    public function menu() {
+        $menuDomain = new MenuDomain();
+        $menus = $menuDomain->listAllMenus();
+        $total = count($menus);
+        
+        header('content-type:application/json;charset=utf-8');
+        $finalRs = array('code' => 0, 'msg' => '', 'count' => $total, 'data' => $menus);
+        echo json_encode($finalRs);
+        die();
+        
+        return array('menus' => $menus, 'total' => $total);
+    }
 }
