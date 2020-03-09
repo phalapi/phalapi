@@ -28,7 +28,7 @@
 		],
 		"psr-4" : {
 			"App\\" : "src/app",
-			"Admin\\" : "src/admin"
+			"Portal\\" : "src/portal"
 		}
 	}
 }

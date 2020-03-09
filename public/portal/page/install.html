@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>运营平台-登录</title>
+    <title>运营平台-安装</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -37,7 +37,8 @@
         <div class="layui-form login-form">
             <form class="layui-form" action="">
                 <div class="layui-form-item logo-title">
-                    <h1>PhalApi运营平台</h1>
+                    <h1>安装PhalApi运营平台</h1>
+                    <p>首次使用，请先安装</p>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-icon layui-icon-username" for="username"></label>
@@ -47,6 +48,10 @@
                     <label class="layui-icon layui-icon-password" for="password"></label>
                     <input type="password" name="password" lay-verify="required|password" placeholder="密码" autocomplete="off" class="layui-input" value="">
                 </div>
+                <div class="layui-form-item">
+                    <label class="layui-icon layui-icon-password" for="password"></label>
+                    <input type="password" name="password2" lay-verify="required|password" placeholder="确认密码" autocomplete="off" class="layui-input" value="">
+                </div>
                 <!--
                 <div class="layui-form-item">
                     <label class="layui-icon layui-icon-vercode" for="captcha"></label>
@@ -55,12 +60,12 @@
                         <img id="captchaPic" src="../images/captcha.jpg">
                     </div>
                 </div>
-                -->
                 <div class="layui-form-item">
                     <input type="checkbox" name="rememberMe" value="true" lay-skin="primary" title="记住密码">
                 </div>
+                -->
                 <div class="layui-form-item">
-                    <button class="layui-btn layui-btn-fluid" lay-submit="" lay-filter="login">登 录</button>
+                    <button class="layui-btn layui-btn-fluid" lay-submit="" lay-filter="login">立即安装</button>
                 </div>
             </form>
         </div>
@@ -86,9 +91,9 @@
 
             $.getJSON('/?s=Portal.Admin.CheckLogin', function (data) {
                 if (data && data.ret == 200) {
-                    if (data.data.is_install === false) {
-                        layer.msg('请先安装运营平台！即将进入安装页面……', function () {
-                            window.location = './install.html';
+                    if (data.data.is_install === true) {
+                        layer.msg('您已安装！即将返回登录页面……', function () {
+                            window.location = './login-1.html';
                         });
                     } else if (data.data.is_login === true) {
                         layer.msg('您已登录，正在为您进入运营平台……', function () {
@@ -110,13 +115,17 @@
                 layer.msg('密码不能为空');
                 return false;
             }
+            if (data.password != data.password2) {
+                layer.msg('确认密码不一致');
+                return false;
+            }
             //if (data.captcha == '') {
             //    layer.msg('验证码不能为空');
             //    return false;
             //}
 
             $.ajax({
-                url: '/?s=Portal.Admin.Login',
+                url: '/?s=Portal.Admin.Install',
                 type:'post',
                 data: data,
                 success:function(data){
@@ -125,11 +134,9 @@
                         return;
                     }
 
-                    if (data.data.is_login) {
-                        window.location = '../index.html';
-                    } else {
-                        layer.msg('账号或密码错误');
-                    }
+                    layer.msg('恭喜，安装成功！请登录……', function () {
+                        window.location = './login-1.html';
+                    });
                 },
                 complete: function () {
                 }

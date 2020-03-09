@@ -1,5 +1,5 @@
 <?php
-namespace Admin\Common;
+namespace Portal\Common;
 
 /**
  * 管理后台接口基类

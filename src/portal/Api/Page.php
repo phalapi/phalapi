@@ -1,8 +1,8 @@
 <?php
-namespace Admin\Api;
+namespace Portal\Api;
 
-use Admin\Common\Api;
-use Admin\Domain\Menu as MenuDomain;
+use Portal\Common\Api;
+use Portal\Domain\Menu as MenuDomain;
 
 /**
  * 后台页面接口
@@ -24,12 +24,16 @@ class Page extends Api {
         $logoInfo = array(
             'title' => 'PhalApi管理后台',
             'image' => 'images/logo.png',
-            'href' => '/admin/',
+            'href' => '/Portal/',
         );
 
         $menuDomain = new MenuDomain();
-        $menuInfo = $menuDomain->getMenuInfo();;
+        $menuInfo = $menuDomain->getMenuInfo();
+        
+        $admin = array(
+            'username' => \PhalApi\DI()->admin->username,
+        );
 
-        return array('homeInfo' => $homeInfo, 'logoInfo' => $logoInfo, 'menuInfo' => $menuInfo);
+        return array('homeInfo' => $homeInfo, 'logoInfo' => $logoInfo, 'menuInfo' => $menuInfo, 'admin' => $admin);
     }
 }

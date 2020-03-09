@@ -1,12 +1,12 @@
 <?php
-namespace Admin\Model;
+namespace Portal\Model;
 
 use PhalApi\Model\NotORMModel;
 
 class Menu extends NotORMModel {
 
     public function getTableName($id) {
-        return 'phalapi_admin_menu';
+        return 'phalapi_portal_menu';
     }
 
     public function getAllMenus() {

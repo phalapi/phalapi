@@ -1,5 +1,5 @@
 <?php
-namespace Admin\Common;
+namespace Portal\Common;
 
 use PhalApi\Exception\BadRequestException;
 
@@ -18,7 +18,7 @@ class Admin {
     // 管理员角色
     protected $role;
 
-    const SESSION_KEY = 'phalapi_admin';
+    const SESSION_KEY = 'phalapi_Portal';
 
     public function __construct() {
         session_start();

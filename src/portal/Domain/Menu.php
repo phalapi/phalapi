@@ -1,7 +1,7 @@
 <?php
-namespace Admin\Domain;
+namespace Portal\Domain;
 
-use Admin\Model\Menu as MenuModel;
+use Portal\Model\Menu as MenuModel;
 
 class Menu {
 

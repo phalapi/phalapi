@@ -1,12 +1,12 @@
 <?php
-namespace Admin\Model;
+namespace Portal\Model;
 
 use PhalApi\Model\NotORMModel;
 
 class Admin extends NotORMModel {
 
     public function getTableName($id) {
-        return 'phalapi_admin_admin';
+        return 'phalapi_portal_admin';
     }
 
     public function getByUsername($username) {

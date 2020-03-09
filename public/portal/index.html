@@ -59,7 +59,7 @@
                     <a href="javascript:;" data-check-screen="full"><i class="fa fa-arrows-alt"></i></a>
                 </li>
                 <li class="layui-nav-item layuimini-setting">
-                    <a href="javascript:;">admin</a>
+                    <a href="javascript:;" id="admin_username_id">欢迎</a>
                     <dl class="layui-nav-child">
                         <dd>
                             <a href="javascript:;" layuimini-content-href="page/user-password.html" data-title="修改密码" data-icon="fa fa-gears">修改密码</a>
@@ -127,14 +127,15 @@
 <script src="lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <script src="js/lay-config.js?v=2.0.0" charset="utf-8"></script>
 <script>
-    layui.use(['jquery', 'layer', 'miniAdmin', 'miniTongji'], function () {
+    layui.use(['jquery', 'layer', 'miniAdmin', 'miniTongji', 'laytpl'], function () {
         var $ = layui.jquery,
             layer = layui.layer,
             miniAdmin = layui.miniAdmin,
+            laytpl = layui.laytpl,
             miniTongji = layui.miniTongji;
 
         var options = {
-            iniUrl: "/?s=Admin.Page.StartUp",    // 初始化接口
+            iniUrl: "/?s=Portal.Page.StartUp",    // 初始化接口
             clearUrl: "api/clear.json", // 缓存清理接口
             urlHashLocation: true,      // 是否打开hash定位
             bgColorDefault: 0,          // 主题默认配置
@@ -147,9 +148,9 @@
         miniAdmin.render(options);
 
         $('.login-out').on("click", function () {
-            $.getJSON('/?s=Admin.Admin.Logout', function (data) {
+            $.getJSON('/?s=Portal.Admin.Logout', function (data) {
                 layer.msg('退出登录成功', function () {
-                    window.location = '/admin/page/login-1.html';
+                    window.location = './page/login-1.html';
                 });
             });
         });

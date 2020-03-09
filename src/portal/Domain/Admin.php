@@ -1,7 +1,7 @@
 <?php
-namespace Admin\Domain;
+namespace Portal\Domain;
 
-use Admin\Model\Admin as AdminModel;
+use Portal\Model\Admin as AdminModel;
 
 class Admin {
 

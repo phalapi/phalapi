@@ -44,11 +44,13 @@ layui.define(["jquery", "miniMenu", "miniTab", "miniTheme"], function (exports) 
                 if (data == null || data.ret != 200) {
                     miniAdmin.error(data.msg)
                     if (data.ret == 406) {
-                        window.location = '/admin/page/login-1.html';
+                        window.location = '/portal/page/login-1.html';
                     }
                 } else {
                     data = data.data
 
+                    $("#admin_username_id").html(data.admin.username);
+                    
                     miniAdmin.renderLogo(data.logoInfo);
                     miniAdmin.renderHome(data.homeInfo);
                     miniAdmin.renderAnim(options.pageAnim);

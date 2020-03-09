@@ -13,4 +13,5 @@ return array(
     'user not exists' => '用户不存在',
     'App' => '我的应用',
     'Admin' => '管理后台',
+    'Portal' => '运营平台',
 );
