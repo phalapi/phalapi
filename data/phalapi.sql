@@ -11,3 +11,49 @@ CREATE TABLE `phalapi_curd` (
 
 INSERT INTO `phalapi_curd` VALUES ('1', 'PhalApi', '欢迎使用PhalApi 2.x 版本!', '0', '2017-07-08 12:09:43');
 INSERT INTO `phalapi_curd` VALUES ('2', '版本更新', '主要改用composer和命名空间，并遵循psr-4规范。', '1', '2017-07-08 12:10:58');
+
+
+CREATE TABLE `phalapi_portal_admin` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(20) NOT NULL DEFAULT '' COMMENT '管理员账号',
+  `password` varchar(100) NOT NULL DEFAULT '' COMMENT '密码',
+  `salt` varchar(64) NOT NULL DEFAULT '' COMMENT '盐值',
+  `role` varchar(20) NOT NULL DEFAULT 'admin' COMMENT '管理员角色，admin普通管理员，super超级管理员',
+  `state` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态，1可用0禁止',
+  `created_at` datetime DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE `phalapi_portal_menu` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) DEFAULT NULL,
+  `icon` varchar(50) DEFAULT NULL,
+  `href` varchar(255) DEFAULT NULL,
+  `target` varchar(10) DEFAULT '_self',
+  `sort_num` int(11) DEFAULT '0',
+  `parent_id` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+insert into `phalapi_test`.`phalapi_portal_menu` ( `target`, `id`, `title`, `href`, `sort_num`, `parent_id`, `icon`) values ( '_self', '1', '运营后台', null, '1', '0', 'fa fa-address-book');
+insert into `phalapi_test`.`phalapi_portal_menu` ( `target`, `id`, `title`, `href`, `sort_num`, `parent_id`, `icon`) values ( '_self', '2', '首页', 'page/welcome-1.html', '1', '1', 'fa fa-home');
+insert into `phalapi_test`.`phalapi_portal_menu` ( `target`, `id`, `title`, `href`, `sort_num`, `parent_id`, `icon`) values ( '_self', '3', '页面示例', null, '2', '0', 'fa fa-address-book');
+insert into `phalapi_test`.`phalapi_portal_menu` ( `target`, `id`, `title`, `href`, `sort_num`, `parent_id`, `icon`) values ( '_self', '4', '系统设置', 'page/setting.html', '0', '3', 'fa fa-gears');
+insert into `phalapi_test`.`phalapi_portal_menu` ( `target`, `id`, `title`, `href`, `sort_num`, `parent_id`, `icon`) values ( '_self', '5', '表格示例', 'page/table.html', '0', '3', 'fa fa-file-text');
+insert into `phalapi_test`.`phalapi_portal_menu` ( `target`, `id`, `title`, `href`, `sort_num`, `parent_id`, `icon`) values ( '_self', '6', '表单示例', null, '0', '3', 'fa fa-calendar');
+insert into `phalapi_test`.`phalapi_portal_menu` ( `target`, `id`, `title`, `href`, `sort_num`, `parent_id`, `icon`) values ( '_self', '7', '普通表单', 'page/form.html', '0', '6', 'fa fa-list-alt');
+insert into `phalapi_test`.`phalapi_portal_menu` ( `target`, `id`, `title`, `href`, `sort_num`, `parent_id`, `icon`) values ( '_self', '8', '分步表单', 'page/form-step.html', '0', '6', 'fa fa-navicon');
+insert into `phalapi_test`.`phalapi_portal_menu` ( `target`, `id`, `title`, `href`, `sort_num`, `parent_id`, `icon`) values ( '_self', '9', '其它界面', null, '0', '3', 'fa fa-snowflake-o');
+insert into `phalapi_test`.`phalapi_portal_menu` ( `target`, `id`, `title`, `href`, `sort_num`, `parent_id`, `icon`) values ( '_self', '10', '按钮示例', 'page/button.html', '0', '3', 'fa fa-snowflake-o');
+insert into `phalapi_test`.`phalapi_portal_menu` ( `target`, `id`, `title`, `href`, `sort_num`, `parent_id`, `icon`) values ( '_self', '11', '弹出层', 'page/layer.html', '0', '3', 'fa fa-shield');
+insert into `phalapi_test`.`phalapi_portal_menu` ( `target`, `id`, `title`, `href`, `sort_num`, `parent_id`, `icon`) values ( '_self', '12', '组件', null, '0', '3', 'fa fa-lemon-o');
+insert into `phalapi_test`.`phalapi_portal_menu` ( `target`, `id`, `title`, `href`, `sort_num`, `parent_id`, `icon`) values ( '_self', '13', '图标列表', 'page/icon.html', '0', '12', 'fa fa-dot-circle-o');
+insert into `phalapi_test`.`phalapi_portal_menu` ( `target`, `id`, `title`, `href`, `sort_num`, `parent_id`, `icon`) values ( '_self', '14', '文件上传', 'page/upload.html', '0', '12', 'fa fa-arrow-up');
+insert into `phalapi_test`.`phalapi_portal_menu` ( `target`, `id`, `title`, `href`, `sort_num`, `parent_id`, `icon`) values ( '_self', '15', '富文本编辑器', 'page/editor.html', '0', '12', 'fa fa-edit');
+insert into `phalapi_test`.`phalapi_portal_menu` ( `target`, `id`, `title`, `href`, `sort_num`, `parent_id`, `icon`) values ( '_self', '16', '省市县区选择器', 'page/area.html', '0', '12', 'fa fa-rocket');
+insert into `phalapi_test`.`phalapi_portal_menu` ( `target`, `id`, `title`, `href`, `sort_num`, `parent_id`, `icon`) values ( '_self', '20', '应用市场', 'http://www.phalapi.net', '3', '0', 'fa fa-rocket');
+insert into `phalapi_test`.`phalapi_portal_menu` ( `target`, `id`, `title`, `href`, `sort_num`, `parent_id`, `icon`) values ( '_self', '21', '应用市场', 'page/phalapi-plugins.html', '1', '20', 'fa fa-rocket');
+insert into `phalapi_test`.`phalapi_portal_menu` ( `target`, `id`, `title`, `href`, `sort_num`, `parent_id`, `icon`) values ( '_self', '22', '我的应用', 'page/phalapi-my-plugins.html', '2', '20', 'fa fa-rocket');
+insert into `phalapi_test`.`phalapi_portal_menu` ( `target`, `id`, `title`, `href`, `sort_num`, `parent_id`, `icon`) values ( '_self', '23', '菜单管理', 'page/menu.html', '2', '1', 'fa fa-window-maximize');

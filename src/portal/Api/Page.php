@@ -22,7 +22,7 @@ class Page extends Api {
             'href' => 'page/welcome-1.html?t=1',
         );
         $logoInfo = array(
-            'title' => 'PhalApi管理后台',
+            'title' => 'PhalApi运营后台',
             'image' => 'images/logo.png',
             'href' => '/Portal/',
         );
