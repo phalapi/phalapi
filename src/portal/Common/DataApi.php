@@ -80,7 +80,7 @@ class DataApi extends Api {
     
     /**
      * 创建新数据
-     * @exception 400 缺少必传字段，或数据为空
+     * @desc 创建一条新数据
      * @return int id 新纪录的ID
      */
     public function createData() {
@@ -140,6 +140,11 @@ class DataApi extends Api {
         return array('deleted_num' => $rows);
     }
     
+    /**
+     * 获取一条数据
+     * @desc 根据ID获取一条数据
+     * @return object|null 数据
+     */
     public function getData() {
         $model = $this->getDataModel();
         $data = $model->get($this->id, $this->getDataSelect());
