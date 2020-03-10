@@ -11,10 +11,10 @@ $username = $argv[1];
 $password = $argv[2];
 $role = isset($argv[3]) ? $argv[3] : '';
 
-$domain = new Admin\Domain\Admin();
+$domain = new Portal\Domain\Admin();
 if ($domain->createAdmin($username, $password, $role)) {
-    echo "管理员账号创建成功！\n";
+    echo "运营平台管理员账号创建成功！\n";
 } else {
-    echo "管理员账号已存在，不能重复创建！\n";
+    echo "运营平台管理员账号已存在，不能重复创建！\n";
 }
 

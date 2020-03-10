@@ -26,6 +26,8 @@ layui.define(["jquery"], function (exports) {
          * 监听统计代码
          */
         listen: function () {
+        	return;
+        	
             var _hmt = _hmt || [];
             (function () {
                 var hm = document.createElement("script");

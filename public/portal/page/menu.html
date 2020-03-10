@@ -31,10 +31,12 @@
         </div>
     </div>
 </div>
+        
 <!-- 操作列 -->
 <script type="text/html" id="auth-state">
     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    <a class="layui-btn layui-btn-xs" lay-event="add"> 添加 </a>
 </script>
 
 <script src="../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
@@ -68,7 +70,7 @@
                 {field: 'authorityName', minWidth: 60, title: '菜单标题'},
                 {field: 'authority', title: '权限标识'},
                 {field: 'menuUrl', title: '菜单url'},
-                {field: 'orderNumber', width: 80, align: 'center', title: '排序(小在前)'},
+                {field: 'orderNumber', width: 80, align: 'center', title: '排序'},
                 {
                     field: 'isMenu', width: 80, align: 'center', templet: function (d) {
                         if (d.parentId == 0) {
@@ -78,7 +80,7 @@
                         }
                     }, title: '类型'
                 },
-                {templet: '#auth-state', width: 120, align: 'center', title: '操作'}
+                {templet: '#auth-state', minWidth: 120, align: 'center', title: '操作'}
             ]],
             done: function () {
                 layer.closeAll('loading');
@@ -100,8 +102,57 @@
 
             if (layEvent === 'del') {
                 layer.msg('TODO 删除' + data.id);
+                layer.confirm("是否确认要删除此菜单？\n\n" + data.authorityName, function (index) {
+
+                    $.ajax({
+                        url: '/?s=Portal.Page.DeleteMenu',
+                        type:'post',
+                        data: {id: obj.data.id},
+                        success:function(data){
+                            if (data.ret != 200) {
+                                layer.msg(data.msg);
+                                return;
+                            }
+
+                            layer.msg('删除成功', function () {
+                            });
+                            obj.del();
+                            layer.close(index);
+                        },
+                        complete: function () {
+                        }
+                    });
+                });
             } else if (layEvent === 'edit') {
-                layer.msg('TODO 修改' + data.id);
+                sessionStorage.setItem('edit_id', data.id); // HACK
+                
+                var index = layer.open({
+                    title: '修改菜单',
+                    type: 2,
+                    shade: 0.2,
+                    maxmin:true,
+                    shadeClose: true,
+                    area: ['100%', '100%'],
+                    content: './phalapi-menu/edit.html',
+                });
+                $(window).on("resize", function () {
+                    layer.full(index);
+                });
+            } else if (layEvent === 'add') {
+                sessionStorage.setItem('add_parent_id', obj.data.id); // HACK
+                
+                var index = layer.open({
+                    title: '添加菜单',
+                    type: 2,
+                    shade: 0.2,
+                    maxmin:true,
+                    shadeClose: true,
+                    area: ['100%', '100%'],
+                    content: './phalapi-menu/add.html',
+                });
+                $(window).on("resize", function () {
+                    layer.full(index);
+                });
             }
         });
     });

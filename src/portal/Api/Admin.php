@@ -67,7 +67,7 @@ class Admin extends Api {
     public function install() {
         // 创建数据库表
         $sql = file_get_contents(API_ROOT . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'phalapi.sql');
-        $sqlArr = explode(";\n\n", $sql);
+        $sqlArr = explode(";\n", $sql);
         foreach ($sqlArr as $sqlOne) {
             $sqlOne = trim($sqlOne);
             if (empty($sqlOne)) {

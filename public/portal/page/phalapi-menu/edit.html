@@ -20,34 +20,33 @@
 </div>
     <script id="form_tpl_id" type="text/html">
         <input type="hidden" name="id" value="{{d.id}}" />
-
     <div class="layui-form-item">
-        <label class="layui-form-label required">标题</label>
+        <label class="layui-form-label required">菜单标题</label>
         <div class="layui-input-block">
-            <input type="text" name="title" lay-verify="required" lay-reqtext="标题不能为空" placeholder="请输入标题" value="{{=d.title}}" class="layui-input">
+            <input type="text" name="title" lay-verify="required" lay-reqtext="菜单标题不能为空" placeholder="请输入菜单标题" value="{{d.title}}" class="layui-input">
             <tip>填写标题。</tip>
         </div>
     </div>
-    <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">内容</label>
+    
+    <div class="layui-form-item">
+        <label class="layui-form-label ">菜单链接</label>
         <div class="layui-input-block">
-            <textarea name="content" class="layui-textarea" placeholder="请输入内容">{{=d.content}}</textarea>
+            <input type="text" name="href" placeholder="请输入菜单页面链接" value="{{d.href}}" class="layui-input">
+            <tip>推荐使用相对portal目录的路径，例如：page/upload.html</tip>
         </div>
     </div>
+
     <div class="layui-form-item">
-        <label class="layui-form-label required">状态</label>
+        <label class="layui-form-label ">排序值</label>
         <div class="layui-input-block">
-            <input type="text" name="state" value="{{=d.state}}" class="layui-input" >
-            <!--
-            <input type="radio" name="state" value="1" title="开启" {{# if (d.state == 1) }} checked="" {{# }}>
-            <input type="radio" name="state" value="0" title="关闭" {{# if (d.state == 0) }} checked="" {{# }}>
-            -->
+            <input type="text" name="sort_num" placeholder="请输入排序值，整数" value="{{d.sort_num}}" class="layui-input">
+            <tip>值越小越在前面</tip>
         </div>
     </div>
 
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" lay-submit lay-filter="saveBtn">确认保存</button>
+            <button class="layui-btn" lay-submit lay-filter="saveBtn">修改菜单</button>
         </div>
     </div>
     </script>
@@ -61,15 +60,15 @@
             $ = layui.$;
 
         var id = sessionStorage.getItem('edit_id'); // router.search.id
-        $.getJSON('/?s=Portal.CURD.GetData&id=' + id, function (data) {
-            if (data.ret != 200 || !data.data.data) {
-                layer.msg(data.msg || '数据不存在或已经删除');
+        $.getJSON('/?s=Portal.Page.GetMenu&id=' + id, function (data) {
+            if (data.ret != 200 || !data.data.menu) {
+                layer.msg(data.msg || '菜单不存在或已经删除');
             }
 
             var getTpl = form_tpl_id.innerHTML,
                 view = document.getElementById('form_view_id');
 
-            laytpl(getTpl).render(data.data.data, function(html){
+            laytpl(getTpl).render(data.data.menu, function(html){
                   view.innerHTML = html;
             });
         });
@@ -77,16 +76,16 @@
         //监听提交
         form.on('submit(saveBtn)', function (data) {
             $.ajax({
-                url: '/?s=Portal.CURD.UpdateData',
+                url: '/?s=Portal.Page.UpdateMenu',
                 type:'post',
-                data: {data: JSON.stringify(data.field), id: data.field.id},
+                data: data.field,
                 success:function(data){
                     if (data.ret != 200) {
                         layer.msg(data.msg);
                         return;
                     }
 
-                    var index = layer.alert('更新成功，请刷新', function () {
+                    var index = layer.alert('菜单修改成功，请刷新', function () {
                         // 关闭弹出层
                         layer.close(index);
 

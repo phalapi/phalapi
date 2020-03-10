@@ -2,7 +2,7 @@
 namespace Portal\Common;
 
 /**
- * 管理后台接口基类
+ * 运营平台接口基类
  * @exception 406 管理员未登录
  * @author dogstar 20200307
  */
