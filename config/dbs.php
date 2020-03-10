@@ -15,9 +15,9 @@ return array(
         'db_master' => array(                       // 服务器标记
             'type'      => 'mysql',                 // 数据库类型，暂时只支持：mysql, sqlserver
             'host'      => '127.0.0.1',             // 数据库域名
-            'name'      => 'phalapi_test',               // 数据库名字
-            'user'      => 'dogstar',                  // 数据库用户名
-            'password'  => '123',	                    // 数据库密码
+            'name'      => 'phalapi',               // 数据库名字
+            'user'      => '',                      // 数据库用户名
+            'password'  => '',	                    // 数据库密码
             'port'      => 3306,                    // 数据库端口
             'charset'   => 'UTF8',                  // 数据库字符集
             'pdo_attr_string'   => false,           // 数据库查询结果统一使用字符串，true是，false否
