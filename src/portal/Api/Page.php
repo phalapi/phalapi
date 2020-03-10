@@ -97,7 +97,7 @@ class Page extends Api {
     
     /**
      * 获取菜单
-     * @根据ID获取菜单
+     * @desc 根据ID获取菜单
      */
     public function getMenu() {
         $domain = new MenuDomain();
