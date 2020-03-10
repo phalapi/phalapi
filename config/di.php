@@ -12,12 +12,12 @@ use PhalApi\Logger;
 use PhalApi\Logger\FileLogger;
 use PhalApi\Database\NotORMDatabase;
 
-/** ---------------- 基本注册 必要服务组件 ---------------- **/
+/** ---------------- PhalApi 基本注册 必要服务组件 ---------------- **/
 
 $di = \PhalApi\DI();
 
 // 配置
-$di->config = new FileConfig(API_ROOT . '/config');
+$di->config = new FileConfig(API_ROOT . DIRECTORY_SEPARATOR . 'config');
 
 // 调试模式，$_GET['__debug__']可自行改名
 $di->debug = !empty($_GET['__debug__']) ? true : $di->config->get('sys.debug');
@@ -34,7 +34,14 @@ $di->notorm = new NotORMDatabase($di->config->get('dbs'), $di->config->get('sys.
 // portal后台管理员
 $di->admin = new Portal\Common\Admin();
 
-/** ---------------- 定制注册 可选服务组件 ---------------- **/
+/** ---------------- 第三应用 服务注册 ---------------- **/
+
+// 加载plugins目录下的第三方应用初始化文件
+foreach (glob(API_ROOT . DIRECTORY_SEPARATOR . 'plugins' . DIRECTORY_SEPARATOR . '*.php') as $pluginFile) {
+    include_once $pluginFile;
+}
+
+/** ---------------- 当前项目 定制注册 可选服务组件 ---------------- **/
 
 // 签名验证服务
 // $di->filter = new \PhalApi\Filter\SimpleMD5Filter();
