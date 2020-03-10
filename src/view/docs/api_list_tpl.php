@@ -147,7 +147,7 @@ $semanticPath = '/semantic/'; // 本地
                     ?>
                     <div class="ui  tab <?php if ($num2 == 0) { ?>active<?php } ?>" data-tab="<?php echo str_replace('\\', '_', $namespace) . $key; ?>">
                         <table
-                            class="ui red celled striped table <?php echo $table_color_arr[$num2 % count($table_color_arr)]; ?> celled striped table">
+                            class="ui red celled striped table celled striped table">
                             <thead>
                             <tr>
                                 <th>#</th>

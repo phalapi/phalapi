@@ -165,7 +165,7 @@ echo <<<EOT
                 </tbody>
             </table>
             <h3><i class="sign out alternate icon"></i>返回结果</h3>
-            <table class="ui green celled striped table" >
+            <table class="ui red celled striped table" >
                 <thead>
                     <tr><th>返回字段</th><th>类型</th><th>说明</th></tr>
                 </thead>
@@ -221,7 +221,7 @@ EOT;
 
 
 echo <<<EOT
-<table class="ui green celled striped table" >
+<table class="ui red celled striped table" >
     <thead>
         <tr><th width="25%">参数</th><th width="10%">是否必填</th><th width="65%">值</th></tr>
     </thead>
@@ -288,7 +288,7 @@ echo <<<EOT
 
 <div class="ui fluid action input">
       <input placeholder="请求的接口链接" type="text" name="request_url" value="{$url}" >
-      <button class="ui button green" id="submit" >请求当前接口</button>
+      <button class="ui button blue" id="submit" >请求当前接口</button>
 </div>
 EOT;
 
