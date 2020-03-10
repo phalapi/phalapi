@@ -25,9 +25,9 @@ $semanticPath = '/semantic/'; // 本地
         <img class="logo" src="http://cdn7.phalapi.net/20180316214150_f6f390e686d0397f1f1d6a66320864d6">
         <?php echo $projectName; ?>
       </a>
-      <a href="https://www.phalapi.net/" class="item"><i class="home icon"></i> PhalApi</a>
+      <a href="/docs.php" class="item"><i class="home icon"></i> 首页</a>
+      <a href="https://www.phalapi.net/" class="item"><i class="globe icon"></i> PhalApi</a>
       <a href="http://docs.phalapi.net/#/v2.0/" class="item"><i class="file alternate outline icon"></i> 开发文档</a>
-      <a target="_blank" href="portal" class="item"><i class="globe icon"></i> 运营平台</a>
 
      <div class="right menu">
          <div class="item">
@@ -37,6 +37,7 @@ $semanticPath = '/semantic/'; // 本地
              </form>
              </div>
          </div>
+         <a target="_blank" href="/portal" class="item"><i class="user icon"></i> <?php echo \PhalApi\DI()->admin->check(false) ? \PhalApi\DI()->admin->username: '登录'; ?></a>
       </div>
     </div>
   </div>
@@ -92,7 +93,7 @@ $semanticPath = '/semantic/'; // 本地
                     ?>
                     <div class="item">
                         <div class="content" style="margin:-13px -16px;">
-                            <a class="item" href="#menu_top">返回顶部↑↑↑</a>
+                            <a class="item" href="#menu_top">返回顶部 <i class="icon angle double up"></i></a>
                         </div>
                     </div>
                 </div>

@@ -8,6 +8,8 @@ $url .= trim(substr($_SERVER['SCRIPT_NAME'], 0, strrpos($_SERVER['SCRIPT_NAME'],
 $semanticPath = 'https://cdn.bootcss.com/semantic-ui/2.2.2/'; // CDN
 $semanticPath = '/semantic/'; // 本地
 
+$whoami = \PhalApi\DI()->admin->check(false) ? \PhalApi\DI()->admin->username : '登录';
+
 echo <<<EOT
 <!DOCTYPE html>
 <html lang="en">
@@ -34,18 +36,19 @@ echo <<<EOT
         <img class="logo" src="http://cdn7.phalapi.net/20180316214150_f6f390e686d0397f1f1d6a66320864d6">
         {$projectName}
       </a>
-      <a href="https://www.phalapi.net/" class="item"><i class="home icon"></i> PhalApi</a>
+      <a href="/docs.php" class="item"><i class="home icon"></i> 首页</a>
+      <a href="https://www.phalapi.net/" class="item"><i class="globe icon"></i> PhalApi</a>
       <a href="http://docs.phalapi.net/#/v2.0/" class="item"><i class="file alternate outline icon"></i> 开发文档</a>
-      <a target="_blank" href="portal" class="item"><i class="globe icon"></i> 运营平台</a>
 
      <div class="right menu">
          <div class="item">
              <div class="ui form">
              <form action="/docs.php?search=k" method="get">
-                 <input type="text" name="keyword" placeholder="搜索接口" value="{$keyword}">
+                <input type="text" name="keyword" placeholder="搜索接口" value="{$keyword}">
              </form>
              </div>
          </div>
+         <a target="_blank" href="/portal" class="item"><i class="user icon"></i> {$whoami}</a>
       </div>
     </div>
   </div>
