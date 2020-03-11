@@ -16,7 +16,7 @@
  + 默认接口服务：[http://demo.phalapi.net/?s=App.Site.Index](http://demo.phalapi.net/?s=App.Site.Index)
  + 在线接口文档：[http://demo.phalapi.net/docs.php](http://demo.phalapi.net/docs.php)
  + 接口详情文档（以默认接口为例）：[http://demo.phalapi.net/docs.php?service=App.Site.Index&detail=1&type=fold](http://demo.phalapi.net/docs.php?service=App.Site.Index&detail=1&type=fold)
- + **PhalApi创新项目-小白接口**（免费、免开发、直接可用的的云端API）：[https://www.okayapi.com/](https://www.okayapi.com/?f=github)
+ + **PhalApi创新项目-小白接口**（免费、免开发、直接可用的的云端API）：[https://www.yesapi.cn/](https://www.yesapi.cn/?f=github)
  
 ## 3、快速安装
 
@@ -63,7 +63,9 @@ server {
     }
 }
 ```
-重启nginx。
+配置时需要将网站根目录设置到public目录，配置保存后重启nginx。
+
+> 温馨提示：推荐将访问根路径指向/path/to/phalapi/public。
 
 ### 数据库配置
 如何使用的是MySQL数据库，参考修改```./config/dbs.php```数据库配置。
@@ -100,9 +102,9 @@ return array(
 
 在PhalApi，你可以通过service参数（短名字是s参数）指定需要调用的接口服务。例如，访问默认接口服务。  
 
- + 默认接口：[http://localhost/phalapi/public/?s=App.Site.Index](http://localhost/phalapi/public/?s=App.Site.Index)
+ + 默认接口：[http://dev.phalapi.net/?s=App.Site.Index](http://dev.phalapi.net/?s=App.Site.Index)
 
-> 温馨提示：推荐将访问根路径指向/path/to/phalapi/public。
+
 
 对应执行的PHP代码在./src/app/Api/Site.php文件，源码片段如下：  
 ```php
@@ -163,11 +165,16 @@ class Site extends Api {
 
 PhalApi会根据你编写的接口的参数配置和代码注释，自动实时生成在线接口文档。在线接口文档链接为：  
  
- + 在线接口文档：[http://localhost/phalapi/public/docs.php](http://localhost/phalapi/public/docs.php)
+ + 在线接口文档：[http://dev.phalapi.net/docs.php](http://dev.phalapi.net/docs.php)
 
 浏览效果类似如下：  
 
-![_20190201113515](https://user-images.githubusercontent.com/12585518/52101206-8fc91700-2615-11e9-8c4d-20e30cc264c4.png)
+![](http://cdn7.okayapi.com/yesyesapi_20200310225952_d319cc197a31f8f3522a82643bf31d60.png)
+
+### 进入运营平台
+PhalApi采用了当前流行且优秀的layuimin开发全新的管理后台，专门提供给非技术的运营人员使用（技术人员也可使用）。
+
+![](http://cdn7.okayapi.com/yesyesapi_20200309172737_a4b73f5763b4d8758f367a2a34230830.png)
 
 ## 6、一张图告诉你如何使用PhalApi 2.x
 ![phalapi-install](https://user-images.githubusercontent.com/12585518/52995681-4ae71200-3456-11e9-8d00-065a42cf4382.gif)
