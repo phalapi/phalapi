@@ -103,23 +103,23 @@
     },
     {
         "name": "phalapi/notorm",
-        "version": "2.9.0",
-        "version_normalized": "2.9.0.0",
+        "version": "2.10.0",
+        "version_normalized": "2.10.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/phalapi/notorm.git",
-            "reference": "974d507e2cd9e1fd6c46c31c2a730fd9416a5308"
+            "reference": "337cac09d3563a325d574298b87c6a7a5f8f759f"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/phalapi/notorm/zipball/974d507e2cd9e1fd6c46c31c2a730fd9416a5308",
-            "reference": "974d507e2cd9e1fd6c46c31c2a730fd9416a5308",
+            "url": "https://api.github.com/repos/phalapi/notorm/zipball/337cac09d3563a325d574298b87c6a7a5f8f759f",
+            "reference": "337cac09d3563a325d574298b87c6a7a5f8f759f",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.3"
         },
-        "time": "2019-09-17T13:00:49+00:00",
+        "time": "2020-03-10T11:52:02+00:00",
         "type": "library",
         "installation-source": "source",
         "autoload": {

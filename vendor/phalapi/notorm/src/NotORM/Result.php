@@ -13,6 +13,16 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
 
     public static $queryTimes = 0;
 
+    /**
+     * @var string $aliasTableName 数据库表别名
+     */
+    protected $aliasTableName;
+
+    /**
+     * @var array $leftJoins 关联查询设置，每组格式对应一条LEFT JOIN语句，例如：LEFT JOIN table AS B ON A.id = B.a_id
+     */
+    protected $leftJoins = array();
+
     /** Create table result
      *
      * @param string $table
@@ -100,6 +110,11 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
     }
 
     protected function createJoins($val){
+        // @dogstar 20200226 优先使用手工指定的关联查询
+        if (!empty($this->leftJoins)) {
+            return empty($this->aliasTableName) ? $this->leftJoins : array_merge(array(" AS {$this->aliasTableName}"), $this->leftJoins);
+        }
+
         $return = array();
         preg_match_all('~\\b([a-z_][a-z0-9_.:]*[.:])[a-z_*]~i', $val, $matches);
         foreach($matches[1] as $names){
@@ -1247,4 +1262,35 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
     {
         return $this->getConn()->rollBack();
     }    
+
+    /** ------------------ 关联查询 @dogstar 20200226 ------------------ **/
+
+    /**
+     * 当前表的别名，当进行关联查询时需要提前设置
+     * @param $aliasTableName 当前表的别名
+     */
+    public function alias($aliasTableName) {
+        $this->aliasTableName = $aliasTableName;
+        return $this;
+    }
+
+    /**
+     * 关联查询，支持关联多张表
+     * @param string $joinTableName 需要关联的表名
+     * @param string $aliasJoinTableName 关联表名的别名
+     * @param string $onWhere 关联ON条件
+     */
+    public function leftJoin($joinTableName, $aliasJoinTableName, $onWhere) {
+        $return = array();
+
+        // 自动添加表前缀
+        $parent = $this->table;
+        $table = $this->notORM->structure->getReferencedTable($joinTableName, $parent);
+        $leftJoinSql = " LEFT JOIN $table " . (!empty($aliasJoinTableName) ? "AS $aliasJoinTableName" : "") . " ON $onWhere";
+
+        // 追加关联查询
+        $this->leftJoins[] = $leftJoinSql;
+
+        return $this;
+    }
 }
