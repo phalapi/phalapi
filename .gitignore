@@ -13,3 +13,6 @@ gitc
 
 .DS_Store
 .project
+
+config/*_dev.php
+config/*_test.php
