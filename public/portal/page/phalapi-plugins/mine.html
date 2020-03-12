@@ -87,16 +87,16 @@
                             }
 
                             layer.open({
-                            	  title: data.data.install_result ? '插件安装完成' : '插件安装异常'
+                            	  title: plugin_key + (data.data.install_result ? '插件安装完成' : '插件安装失败')
                             	  ,content: data.data.detail
                             });     
                             	  
                         },
                         complete: function () {
-                        	layer.open({
+                      /*   	layer.open({
                           	  title: '插件似乎安装不了？'
                           	  ,content: '如果缺少权限，会导致安装失败，可以使用命令直接安装：<br/>php ./bin/phalapi-install-plugin.php ' + obj.data.plugin_key 
-                          }); 
+                          });  */
                         }
                     });
             	}
