@@ -43,13 +43,9 @@ class Plugins extends Api {
         $domain = new PluginDomain();
         $detail = [];
 
-        ob_start();
-
         $installRs = $domain->install($this->pluginKey, $detail);
 
-        $errinfo = ob_get_contents();
-
-        return array('install_result' => $installRs,  'detail' => '<font color="red">' . $errinfo . '</font><br/>' . implode('<br />', $detail));
+        return array('install_result' => $installRs,  'detail' => implode('<br />', $detail));
     }
     
     public function marketTopContent() {
