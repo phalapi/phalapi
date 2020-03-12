@@ -8,7 +8,7 @@ require_once dirname(__FILE__) . '/../public/init.php';
 
 if ($argc < 2) {
     echo "Usage: {$argv[0]} <plugin_key>\n";
-    echo "请输入你的插件名称，字母数字和下划线组合。\n";
+    echo "请输入你的插件编号，字母数字和下划线组合。\n";
     echo "例如：{$argv[0]} plugin_demo\n";
     echo "\n";
     exit;
@@ -16,7 +16,7 @@ if ($argc < 2) {
 
 $pluginKey = trim($argv[1]);
 if (!preg_match('/^[0-9A-Za-z_]{1,}$/', $pluginKey)) {
-    echo "插件标识格式不对，应该使用字母数字和下划线组合。\n";
+    echo "插件编号格式不对，应该使用字母数字和下划线组合。\n";
     echo "\n";
     exit;
 }
