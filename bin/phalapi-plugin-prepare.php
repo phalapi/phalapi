@@ -23,5 +23,5 @@ foreach ($folder as $it) {
 }
 
 
-echo "done\n";
+echo "插件安装环境已预热完毕！\n";
 
