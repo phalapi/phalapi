@@ -22,6 +22,8 @@ use PhalApi\Database\NotORMDatabase;
 
 defined('API_ROOT') || define('API_ROOT', dirname(__FILE__));
 
+defined('API_MODE') || define('API_MODE', 'test'); 
+
 require API_ROOT . '/../vendor/autoload.php';
 
 $loader = new Loader(API_ROOT);

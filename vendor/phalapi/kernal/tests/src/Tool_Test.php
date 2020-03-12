@@ -114,4 +114,21 @@ class PhpUnderControl_PhalApiTool_Test extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals('abc', Tool::trimSpaceInStr('a b c'));
     }
+
+    public function testExcludeArrayKeys() {
+        $arr = array('a' => 'aa', 'b' => 'bb');
+        $newArr = Tool::arrayExcludeKeys($arr, array('a', 'c'));
+        $this->assertEquals(array('b' => 'bb'), $newArr);
+
+        $newArr = Tool::arrayExcludeKeys($arr, 'a,c,d');
+        $this->assertEquals(array('b' => 'bb'), $newArr);
+
+        $arrMore = array($arr, $arr);
+        $newArr = Tool::arrayExcludeKeys($arrMore, array('a', 'c'));
+        $this->assertEquals(array(array('b' => 'bb'), array('b' => 'bb')), $newArr);
+
+        $arrMore = 'abc';
+        $newArr = Tool::arrayExcludeKeys($arrMore, array('a', 'c'));
+        $this->assertEquals($arrMore, $newArr);
+    }
 }

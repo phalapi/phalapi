@@ -200,6 +200,12 @@ class NotORMDatabase /** implements Database */ {
             );
         }
 
+        // 是否依然保留分表后缀，即便分表策略不存在时
+        // 旧版本是不保留，PhalApi 2.12.0 版本起支持配置成依然保留
+        $keepSuffixIfNoMap = isset($tableMap['keep_suffix_if_no_map']) 
+            ? $tableMap['keep_suffix_if_no_map'] 
+            : (isset($defaultMap['keep_suffix_if_no_map']) ? $defaultMap['keep_suffix_if_no_map'] : FALSE);
+
         $dbKey = NULL;
         $dbDefaultKey = NULL;
         if (!isset($tableMap['map'])) {
@@ -224,10 +230,10 @@ class NotORMDatabase /** implements Database */ {
                 break;
             }
         }
-        //try to usdbKeye default map if no perfect match
+        // 未匹配时，使用默认路由
         if ($dbKey === NULL) {
             $dbKey = $dbDefaultKey;
-            $rs['isNoSuffix'] = TRUE;
+            $rs['isNoSuffix'] = !$keepSuffixIfNoMap;
         }
 
         if ($dbKey === NULL) {
@@ -327,10 +333,19 @@ class NotORMDatabase /** implements Database */ {
         }
 
         // 设置编码
-        $charset = isset($dbCfg['charset']) ? $dbCfg['charset'] : 'UTF8';
-        $pdo->exec("SET NAMES '{$charset}'");
+        $this->setDatabaseCharset($type, $dbCfg, $pdo);
 
         return $pdo;
+    }
+
+    protected function setDatabaseCharset($type, $dbCfg, $pdo) {
+        $charset = isset($dbCfg['charset']) ? $dbCfg['charset'] : 'UTF8';
+        if ($type == 'sqlserver' || $type == 'sqlsrv') {
+            // fixed: 'NAMES' is not a recognized SET option.
+            ini_set('mssql.charset', $charset);
+        } else {
+            $pdo->exec("SET NAMES '{$charset}'");
+        }
     }
 
     /**

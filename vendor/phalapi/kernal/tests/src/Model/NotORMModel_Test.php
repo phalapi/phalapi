@@ -56,6 +56,9 @@ class PhpUnderControl_PhalApiModelNotORM_Test extends \PHPUnit_Framework_TestCas
         $this->assertNotEmpty($rs);
 
         $this->assertEquals('welcome here', $rs['content']);
+
+        $rs = $this->phalApiModelNotORM->get(4040404);
+        $this->assertSame(FALSE, $rs);
     }
 
     /**
@@ -265,5 +268,61 @@ class PhpUnderControl_PhalApiModelNotORM_Test extends \PHPUnit_Framework_TestCas
         $rs = \PhalApi\DI()->notorm->notormtest->where('id', array(1, 2, 3))->fetchOne();
         $this->assertNotEmpty($rs);
         $this->assertNotEmpty($rs);
+    }
+
+    public function testJoinOneTable() {
+        $rs = \PhalApi\DI()->notorm->notormtest
+            ->select('A.id AS id, B.title')
+            ->alias('A')
+            ->leftJoin('joindata', 'B', 'A.id = B.parent_id')
+            ->where('A.id', array(1, 2, 3))
+            ->fetchAll();
+
+        $this->assertNotEmpty($rs);
+        foreach ($rs as $it) {
+            $this->assertArrayHasKey('id', $it);
+            $this->assertArrayHasKey('title', $it);
+        }
+    }
+
+    public function testJoinOneTableNotAlias() {
+        $rs = \PhalApi\DI()->notorm->notormtest
+            ->select('title')
+            //->alias('A')
+            ->leftJoin('joindata', '', 'tbl_notormtest.id = tbl_joindata.parent_id')
+            ->where('tbl_joindata.id', array(1, 2, 3))
+            ->fetchAll();
+
+        $this->assertNotEmpty($rs);
+        foreach ($rs as $it) {
+            $this->assertArrayHasKey('title', $it);
+        }
+    }
+
+    public function testJoinOneTableCount() {
+        $rs = \PhalApi\DI()->notorm->notormtest
+            ->alias('A')
+            ->leftJoin('joindata', 'B', 'A.id = B.parent_id')
+            ->where('A.id', array(1, 2, 3))
+            ->count();
+
+        $this->assertNotEmpty($rs);
+    }
+
+    public function testJoinTowTable() {
+        $rs = \PhalApi\DI()->notorm->notormtest
+            ->select('A.id AS id, B.title, C.title AS c_title')
+            ->alias('A')
+            ->leftJoin('joindata', 'B', 'A.id = B.parent_id')
+            ->leftJoin('joindata_copy', 'C', 'A.id = C.parent_id')
+            ->where('A.id', array(1, 2, 3))
+            ->fetchAll();
+
+        $this->assertNotEmpty($rs);
+        foreach ($rs as $it) {
+            $this->assertArrayHasKey('id', $it);
+            $this->assertArrayHasKey('title', $it);
+            $this->assertArrayHasKey('c_title', $it);
+        }
     }
 }

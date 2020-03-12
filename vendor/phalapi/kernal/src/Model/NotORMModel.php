@@ -22,6 +22,8 @@ class NotORMModel implements Model {
 
     protected static $tableKeys = array();
 
+    /** ---------------- CURD基本操作 ---------------- **/
+
     public function get($id, $fields = '*') {
         $needFields = is_array($fields) ? implode(',', $fields) : $fields;
         $notorm = $this->getORM($id);

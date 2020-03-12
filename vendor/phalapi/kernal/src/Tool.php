@@ -134,6 +134,33 @@ class Tool {
     }
 
     /**
+     * 排除数组中不需要的键
+     * @param array $array 待处理的数组，可以是一维数组或二维数组
+     * @param string|array $excludeKeys 待排除的键，字符串时使用英文逗号分割
+     * @return array 排除key后的新数组
+     */
+    public static function arrayExcludeKeys($array, $excludeKeys) {
+        if (!is_array($array)) {
+            return $array;
+        }
+
+        $excludeKeys = is_array($excludeKeys) ? $excludeKeys : explode(',', $excludeKeys);
+        foreach ($array as $key => $value) {
+            if (is_array($value)) {
+                foreach ($array[$key] as $subKey => $subValue) {
+                    if (in_array($subKey, $excludeKeys, TRUE)) {
+                        unset($array[$key][$subKey]);
+                    }
+                }
+            } else if (in_array($key, $excludeKeys, TRUE)) {
+                unset($array[$key]);
+            }
+        }
+
+        return $array;
+    }
+
+    /**
      * 数组转XML格式
      * 
      * @param array $arr 数组

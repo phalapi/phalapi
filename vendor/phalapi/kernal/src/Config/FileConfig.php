@@ -87,6 +87,14 @@ class FileConfig implements Config {
         }
 
 		$config = @include($configFile);
+
+        // 加载当前环境的配置
+        if (defined('API_MODE') && API_MODE != 'prod') {
+            $localConfigFile = $this->path . DIRECTORY_SEPARATOR . $fileName . '_' . API_MODE . '.php';
+            if (file_exists($localConfigFile)) {
+                $config = include($localConfigFile);
+            }
+        }
 		
 		$this->map[$fileName] = $config;
 	}

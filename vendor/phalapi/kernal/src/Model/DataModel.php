@@ -16,6 +16,25 @@ use PhalApi\Exception\InternalServerErrorException;
  */
 class DataModel extends NotORMModel {
 
+    /** ---------------- 获取实例 ---------------- **/
+
+    /**
+     * 创建并获取当前Model实例
+     * @return \PhalApi\Model\DataModel 当前Model子类，继承于DataModel
+     */
+    public static function model() {
+        return new static();
+    }
+
+    /**
+     * 创建并获取当前Model对应的NotORM实例
+     * @return NotORM_Result NotORM实例
+     */
+    public static function notorm() {
+        $model = self::model();
+        return $model->getORM();
+    }
+
     /** ---------------- 更多数据库基本操作 ---------------- **/
 
     /** ---------------- 聚合操作 ---------------- **/
@@ -36,6 +55,26 @@ class DataModel extends NotORMModel {
 
         $total = $orm->count($countBy);
         return intval($total);
+    }
+
+    /**
+     * 取最小值
+     * @param string|array|NULL $where 统计条件
+     * @param string $minBy 需要获取的字段
+     * @return mixed
+     */
+    public function min($where, $minBy) {
+        return $this->getORM()->where($where)->min($minBy);
+    }
+
+    /**
+     * 取最大值
+     * @param string|array|NULL $where 统计条件
+     * @param string $maxBy 需要获取的字段
+     * @return mixed
+     */
+    public function max($where, $maxBy) {
+        return $this->getORM()->where($where)->max($maxBy);
     }
 
     /**
@@ -229,6 +268,11 @@ class DataModel extends NotORMModel {
 
     /** ---------------- 插入操作 ---------------- **/
 
+    public function insert($data, $id = NULL) {
+        $id = parent::insert($data, $id);
+        return $id !== FALSE ? intval($id) : $id;
+    }
+
     /**
      * 批量插入
      * @param array $datas 二维数组
@@ -238,4 +282,29 @@ class DataModel extends NotORMModel {
     public function insertMore($datas, $isIgnore = FALSE) {
         return $this->getORM()->insert_multi($datas, $isIgnore);
     }
+
+    /** ---------------- SQL原生操作 ---------------- **/
+
+    /**
+     * 执行SQL查询语句，支持参数绑定
+     * @param string $sql 完整的查询语句，例如：select * from user where id = :id，或：select * from user where id = ？
+     * @param array $parmas 需要动态绑定的参数，例如：array(':id' => 1)，或：array(1)
+     * @return array 查询的结果集
+     * @throws PDOException
+     */
+    public function queryAll($sql, $parmas = array()) {
+        return $this->getORM()->queryAll($sql, $parmas);
+    }
+
+    /**
+     * 执行SQL变更语句，支持参数绑定
+     * @param string $sql 完整的变更语句
+     * @param array $params 需要动态绑定的参数，例如：array(':id' => 1)，或：array(1)
+     * @return int|boolean 返回影响的行数
+     * @throws PDOException
+     */
+    public function executeSql($sql, $params = array()) {
+        return $this->getORM()->executeSql($sql, $params);
+    }
+
 }

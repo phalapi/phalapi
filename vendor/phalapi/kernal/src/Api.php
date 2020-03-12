@@ -204,7 +204,7 @@ class Api {
 ```
      * 
      * @see Filter::check()
-     * @throws Exception_BadRequest 当验证失败时，请抛出此异常，以返回400
+     * @throws PhalApi\Exception\BadRequestException 当验证失败时，请抛出此异常，以返回400
      */
     protected function filterCheck() {
         // 过滤服务白名单
@@ -229,7 +229,7 @@ class Api {
      *
      * 可由开发人员根据需要重载，此通用操作一般可以使用委托或者放置在应用接口基类
      * 
-     * @throws Exception_BadRequest 当验证失败时，请抛出此异常，以返回400
+     * @throws PhalApi\Exception\BadRequestException 当验证失败时，请抛出此异常，以返回400
      */
     protected function userCheck() {
 

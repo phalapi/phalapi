@@ -26,7 +26,7 @@ class PhpUnderControl_PhalApiDBNotORM_Test extends \PHPUnit_Framework_TestCase
 
     protected function tearDown()
     {
-        //var_dump(\PhalApi\DI()->tracer->getSqls());
+        // var_dump(\PhalApi\DI()->tracer->getSqls());
     }
 
     /**
@@ -325,11 +325,41 @@ class PhpUnderControl_PhalApiDBNotORM_Test extends \PHPUnit_Framework_TestCase
 
     public function testPostgreConnection()
     {
+        $this->assertTrue(true);
+        return;
+
         $cfg = include(dirname(__FILE__) . '/../../config/dbs_pg.php');
         $notorm_pg = new NotORMDatabase($cfg);
 
         $total = $notorm_pg->weather->count();
 
         $this->assertTrue(true);
+    }
+
+    public function testDemoWithSuffixAgainAndAgain() {
+        $notorm = new NotORMDatabase(\PhalApi\DI()->config->get('dbs'), true);
+        $rs = $notorm->demo_99999->order('id DESC')->limit(1, 2)->fetchAll();
+        $rs = $notorm->demo_99999->order('id DESC')->limit(1, 2)->fetchAll();
+        $rs = $notorm->demo_99999->order('id DESC')->limit(1, 2)->fetchAll();
+
+        $this->assertTrue(true);
+    }
+
+    public function testDemoWithSuffixAgainAndAgainKeepSuffix() {
+        $notorm = new NotORMDatabase(\PhalApi\DI()->config->get('dbs_keep_suffix'), true);
+        $rs = $notorm->demo_888->order('id DESC')->limit(1, 2)->fetchAll();
+        $rs = $notorm->demo_888->order('id DESC')->limit(1, 2)->fetchAll();
+        $rs = $notorm->demo_888->order('id DESC')->limit(1, 2)->fetchAll();
+
+        $this->assertTrue(true);
+    }
+
+    /**
+     * @expectedException PDOException
+     */
+    public function testDemoWithSuffixAgainAndAgainKeepSuffixButNoTable() {
+        $notorm = new NotORMDatabase(\PhalApi\DI()->config->get('dbs_keep_suffix'), true);
+        $rs = $notorm->demo_99999->order('id DESC')->limit(1, 2)->fetchAll();
+
     }
 }
