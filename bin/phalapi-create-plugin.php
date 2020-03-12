@@ -20,7 +20,7 @@ if (!preg_match('/^[0-9A-Za-z_]{1,}$/', $pluginKey)) {
     exit;
 }
 
-$pluginKeyClass = ucfirst(str_replace('_', $pluginKey));
+$pluginKeyClass = ucfirst(str_replace('_', '', $pluginKey));
 
 // 生成插件json配置文件
 echo "开始生成插件json配置文件……\n";
@@ -31,6 +31,7 @@ $jsonConfig = array(
     'plugin_author' => '作者名称',
     'plugin_desc' => '插件描述',
     'plugin_version' => '1.0',
+    'plugin_encrypt' => 0, // 加密模式，0无加密，1有加密，2半加密
     'plugin_depends' => array(
         'PHP' => '5.6',
         'MySQL' => '5.3',
@@ -39,6 +40,10 @@ $jsonConfig = array(
         'composer' => array(
             // 参考示例，格式是包名 => 版本号
             // 'phalapi/kernal' => '2.12.0',
+        ),
+        'extension' => array(
+            // PHP扩展名
+            // 'pdo_mysql',
         ),
     ),
     // 插件的文件
@@ -51,14 +56,16 @@ $jsonConfig = array(
         'data' => 'data/' . $pluginKey . '.sql',
         // portal后台及对外访问的文件
         'public' => array(
-            'public/portal/' . $pluginKey,
-            'public/portal/' . $pluginKey . '/index.html',
+            'public/portal/page/' . $pluginKey,
+            'public/portal/page/' . $pluginKey,
         ),
         // PHP源代码
         'src' => array(
-            'src/Api/' . $pluginKeyClass . '.php',
-            'src/Domain/' . $pluginKeyClass . '.php',
-            'src/Model/' . $pluginKeyClass . '.php',
+            'src/app/Api/' . $pluginKeyClass,
+            'src/app/Domain/' . $pluginKeyClass,
+            'src/app/Model/' . $pluginKeyClass,
+            'src/app/Common/' . $pluginKeyClass,
+            'src/portal/Api/' . $pluginKeyClass,
         ),
     ),
 );
@@ -68,38 +75,60 @@ if (file_exists($jsonFile)) {
     echo "\n";
     exit;
 }
-file_put_contents($jsonFile, json_encode($jsonConfig, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+file_put_contents($jsonFile, json_encode($jsonConfig, version_compare(PHP_VERSION, '5.4.0', '>=') ? JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT : JSON_PRETTY_PRINT));
 
 echo realpath($jsonFile), " json配置文件生成 ok \n\n";
 
 // 开始创建插件文件和目录
 echo "开始创建插件文件和目录……\n";
 
-file_put_contents("<?php
+// config配置
+$file = API_ROOT . '/' . $jsonConfig['plugin_files']['config'];
+echo $file, "... \n";
+file_put_contents($file, "<?php
 // $pluginKey 插件配置
 return array(
 );
-", API_ROOT . '/' . $jsonConfig['plugin_files']['config']);
+");
 
-file_put_contents("<?php
+// json配置
+$file = API_ROOT . '/' . $jsonConfig['plugin_files']['plugins'];
+echo $file, "... \n";
+file_put_contents($file, "<?php
 // $pluginKey 插件初始化
 
-", API_ROOT . '/' . $jsonConfig['plugin_files']['plugins']);
+");
 
-file_put_contents("
-", API_ROOT . '/' . $jsonConfig['plugin_files']['data']);
+// 添加菜单
+$menuId = rand(100001, 999999999);
+$menuSql = array();
+$menuSql[] = "delete from `phalapi_portal_menu` where id = {$menuId};";
+$menuSql[] = "insert into `phalapi_portal_menu` ( `target`, `id`, `title`, `href`, `sort_num`, `parent_id`, `icon`) values ( '_self', '{$menuId}', '{$pluginKey}插件', 'page/{$pluginKey}/index.html', '9999', '1', 'fa fa-list-alt');";
 
-mkdir(API_ROOT . '/public/portal/' . $pluginKey);
-file_put_contents("$pluginKey Html模板", API_ROOT . '/public/portal/' . $pluginKey . '/index.html');
+$file = API_ROOT . '/' . $jsonConfig['plugin_files']['data'];
+echo $file, "... \n";
+file_put_contents($file, implode("\n", $menuSql) . "\n");
 
-file_put_contents("<?php
-namespace App\\Api;
+// 运营平台
+$file = API_ROOT . '/public/portal/' . $pluginKey;
+echo $file, "... \n";
+mkdir(API_ROOT . '/public/portal/page/' . $pluginKey, 0755, TRUE);
+$file = API_ROOT . '/public/portal/page/' . $pluginKey . '/index.html';
+echo $file, "... \n";
+file_put_contents($file, "$pluginKey Html模板");
+
+// src源代码
+mkdir(API_ROOT . '/src/app/Api/' . $pluginKeyClass, 0755, TRUE);
+$file = API_ROOT . '/src/app/Api/' . $pluginKeyClass . '/Main.php';
+echo $file, "... \n";
+file_put_contents($file, "<?php
+namespace App\\Api\\{$pluginKeyClass};
 use PhalApi\\Api;
 
 /**
- * $pluginKey插件
+ * {$pluginKey} 插件
  */
-class {$pluginKeyClass} extends Api {
+class Main extends Api {
 
     /**
      * 插件接口
@@ -109,24 +138,60 @@ class {$pluginKeyClass} extends Api {
     }
 }
 
-", API_ROOT . '/src/Api/' . $pluginKeyClass . '.php');
+");
 
-file_put_contents("<?php
-namespace App\Domain;
+mkdir(API_ROOT . '/src/app/Domain/' . $pluginKeyClass, 0755, TRUE);
+$file = API_ROOT . '/src/app/Domain/' . $pluginKeyClass . '/Main.php';
+echo $file, "... \n";
+file_put_contents($file, "<?php
+namespace App\\Domain\\{$pluginKeyClass};
 
 class {$pluginKeyClass} {
 }
-", API_ROOT . '/src/Domain/' . $pluginKeyClass . '.php');
+");
 
-file_put_contents("<?php
-namespace App\Model;
-use PhalApi\Model\DataModel;
+mkdir(API_ROOT . '/src/app/Model/' . $pluginKeyClass, 0755, TRUE);
+$file = API_ROOT . '/src/app/Model/' . $pluginKeyClass . '/Main.php';
+echo $file, "... \n";
+file_put_contents($file, "<?php
+namespace App\\Model\\{$pluginKeyClass};
+use PhalApi\\Model\\DataModel;
 
-class {$pluginKeyClass} extends DataModel {
+class Main extends DataModel {
 }
-", API_ROOT . '/src/Model/' . $pluginKeyClass . '.php');
+");
+
+mkdir(API_ROOT . '/src/app/Common/' . $pluginKeyClass, 0755, TRUE);
+
+// portal
+mkdir(API_ROOT . '/src/portal/Api/' . $pluginKeyClass, 0755, TRUE);
+
+$file = API_ROOT . '/src/portal/Api/' . $pluginKeyClass . '/Main.php';
+echo $file, "... \n";
+file_put_contents($file, "<?php
+namespace Portal\\Api\\{$pluginKeyClass};
+use Portal\\Common\\DataApi as Api;
+
+/**
+ * {$pluginKey} 插件
+ */
+class Main extends Api {
+
+    protected function getDataModel() {
+        return new \\App\\Model\\{$pluginKeyClass}\\Main();
+    }
+}
+");
 
 echo "插件文件和目录生成 ok \n\n";
+
+echo "开始添加运营平台菜单……\n";
+
+foreach ($menuSql as $sql) {
+    \PhalApi\DI()->notorm->demo->executeSql($sql);
+}
+
+echo "{$pluginKey}插件菜单添加 ok \n\n";
 
 echo "恭喜，插件创建成功，可以开始开发啦！\n";
 
