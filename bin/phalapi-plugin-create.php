@@ -116,7 +116,7 @@ echo $file, "... \n";
 mkdir(API_ROOT . '/public/portal/page/' . $pluginKey, 0755, TRUE);
 $file = API_ROOT . '/public/portal/page/' . $pluginKey . '/index.html';
 echo $file, "... \n";
-file_put_contents($file, "$pluginKey Html模板");
+file_put_contents($file, file_get_contents(API_ROOT . '/public/portal/page/phalapi-plugins/_index_tpl.html'));
 
 // src源代码
 mkdir(API_ROOT . '/src/app/Api/' . $pluginKeyClass, 0755, TRUE);
