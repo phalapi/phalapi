@@ -87,7 +87,7 @@
                             }
 
                             layer.open({
-                            	  title: plugin_key + (data.data.install_result ? '插件安装完成' : '插件安装失败')
+                            	  title: (data.data.install_result ? '插件安装完成' : '插件安装失败')
                             	  ,content: data.data.detail
                             });     
                             	  
@@ -105,7 +105,7 @@
             		layer.msg('插件已安装，不需要重复安装~');
             		//return false;
 
-                    layer.confirm("插件已安装，是否需要重新安装？\n\n重装安装可能会删除当前插件应用的旧数据，并且覆盖原来插件的代码。", function (index) {
+                    layer.confirm("插件已安装，是否需要重新安装？<br/><br/>重装安装可能会删除当前插件应用的旧数据，并且覆盖原来插件的代码。", function (index) {
                     	doInstallFun(obj.data.plugin_key);
                         layer.close(index);
                     });
