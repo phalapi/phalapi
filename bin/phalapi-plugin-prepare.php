@@ -19,7 +19,7 @@ $folder = array(
 );
 
 foreach ($folder as $it) {
-    chmod(API_ROOT . '/' . $it, 0755);
+    chmod(API_ROOT . '/' . $it, 0777);
 }
 
 

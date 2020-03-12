@@ -127,7 +127,7 @@ class Plugin {
             return true;
         }
 
-        $sqlArr = explode("\n", file_get_contents($sqlFile));
+        $sqlArr = explode(";\n", file_get_contents($sqlFile));
         foreach ($sqlArr as $sql) {
             $sql = trim($sql);
             if (empty($sql)) {
@@ -137,7 +137,7 @@ class Plugin {
                 \PhalApi\DI()->notorm->demo->executeSql($sql);
                 // $detail[] = $sql;
             } catch (\PDOException $ex) {
-                $detail[] = '数据库执行失败：' . $sql;
+                $detail[] = '数据库执行失败：' . $sql . '。失败原因：' . $ex->getMessage();
             }
         }
 
