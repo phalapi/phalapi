@@ -9,6 +9,7 @@ require_once dirname(__FILE__) . '/../public/init.php';
 if ($argc < 2) {
     echo "Usage: {$argv[0]} <plugin_key>\n";
     echo "请输入你的插件名称，字母数字和下划线组合。\n";
+    echo "例如：{$argv[0]} plugin_demo\n";
     echo "\n";
     exit;
 }
