@@ -27,7 +27,7 @@ $jsonFile = dirname(__FILE__) . '/../plugins/' . $pluginKey . '.json';
 
 if (!file_exists($jsonFile)) {
     echo "插件json配置文件不存在，", $jsonFile, " \n";
-    echo "可以先使用 php ./bin/phalapi-create-plugin.php 脚本命令创建一个新的插件。\n";
+    echo "可以先使用 php ./bin/phalapi-plugin-create.php 脚本命令创建一个新的插件。\n";
     echo "\n";
     exit;
 }

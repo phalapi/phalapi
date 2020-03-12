@@ -149,7 +149,8 @@ class Plugin {
     }
 
     public function getMarketPlugins($page = 1, $perpage = 20, $searchParams = array()) {
-        $url = 'http://demo.phalapi.net/plugins.php?' . http_build_query(array('page' => $page, 'perpage' => $perpage, 'searchParams' => json_encode($searchParams)));
+        $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
+        $url = 'http://demo.phalapi.net/plugins.php?' . http_build_query(array('page' => $page, 'perpage' => $perpage, 'searchParams' => json_encode($searchParams), 'host' => $host, 'version' => PHALAPI_VERSION));
         $curl = new \PhalApi\CUrl();
         $result = $curl->get($url, 10000);
         $result = json_decode($result, true);
@@ -177,9 +178,11 @@ class Plugin {
         }
 
         foreach ($items as &$itRef) {
+            // 已安装
             if (in_array($itRef['plugin_key'], $mineKeys)) {
                 $itRef['plugin_status'] = 1;
             }
+            // 已下载，未安装
             if ($itRef['plugin_status'] != 1 && in_array($itRef['plugin_key'], $downKeys)) {
                 $itRef['plugin_status'] = 2;
             }

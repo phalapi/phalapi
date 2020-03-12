@@ -12,9 +12,9 @@
 <body>
 <div class="layuimini-container">
     <div class="layuimini-main">
+    	<div id="market_top_id"></div>
 		
-		<blockquote class="layui-elem-quote">精彩即将呈现！</blockquote>
-
+        <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
 
     </div>
 </div>
@@ -27,7 +27,7 @@
 
         table.render({
             elem: '#currentTableId',
-            url: '/?s=Portal.Plugins.GetList', // 换成相应的运营平台接口
+            url: '/?s=Portal.Plugins.GetMarketPlugins', // 换成相应的运营平台接口
             toolbar: '#toolbarDemo',
             defaultToolbar: ['filter', 'exports', 'print', {
                 title: '提示',
@@ -43,12 +43,34 @@
                 };
             },
             cols: [[
-                {type: "checkbox", width: 50, fixed: "left"},
-                {title: '操作', minWidth: 50, templet: '#currentTableBar', fixed: "right", align: "center"}
+                //{type: "checkbox", width: 50, fixed: "left"},
+                {field: 'plugin_key', minWidth: 50, title: '插件编号', sort: true},
+                {field: 'plugin_name', minWidth: 50, title: '插件名称'},
+                {field: 'plugin_author', minWidth: 50, title: '开发者'},
+                {field: 'plugin_price', minWidth: 50, title: '插件价格'},
+                {
+                    field: 'plugin_status', minWidth: 50, align: 'center', templet: function (d) {
+                        if (d.plugin_status == 1) {
+                            return '<span class="layui-badge layui-bg-green">已安装</span>';
+                        } else if (d.plugin_status == 2) {
+                            return '<span class="layui-badge-rim layui-bg-red">已下载，待安装</span>';
+                        } else {
+                        	return '<span class="layui-badge layui-bg">未安装</span>';
+                        }
+                    }, title: '插件状态', sort: true
+                },
+                {field: 'plugin_op', minWidth: 50, title: '操作'}
+                //{title: '操作', minWidth: 50, templet: '#currentTableBar', fixed: "right", align: "center"}
             ]],
             limits: [10, 15, 20, 25, 50, 100],
             limit: 15,
             page: true
+        });
+        
+        $.getJSON('/?s=Portal.Plugins.MarketTopContent', function (data) {
+        	if (data.ret == 200 && data.data.content) {
+        		$("#market_top_id").html(data.data.content);
+        	}
         });
 
     });

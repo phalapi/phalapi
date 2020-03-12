@@ -12,9 +12,15 @@
 <body>
 <div class="layuimini-container">
     <div class="layuimini-main">
+    	<blockquote class="layui-elem-quote">如果插件应用安装不了，请试下使用命令安装：<code>php ./bin/phalapi-plugin-install.php</code>，或<a href="https://www.phalapi.net/">联系我们PhalApi</a>。</blockquote>
 		
-		<blockquote class="layui-elem-quote">精彩即将呈现！</blockquote>
-
+        <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+        
+    	<blockquote class="layui-elem-quote">如果你想开发自己的插件和应用，请参考官方开发文档：<a href="http://docs.phalapi.net/#/v2.0/how-to-dev-plugin">第三方应用插件开发教程</a>。</blockquote>
+    	
+        <script type="text/html" id="currentTableBar">
+            <a class="layui-btn layui-btn-danger layui-btn-xs data-count-edit" lay-event="edit">安装</a>
+        </script>
 
     </div>
 </div>
@@ -27,8 +33,8 @@
 
         table.render({
             elem: '#currentTableId',
-            url: '/?s=Portal.Plugins.GetList', // 换成相应的运营平台接口
-            toolbar: '#toolbarDemo',
+            url: '/?s=Portal.Plugins.GetMinePlugins', // 换成相应的运营平台接口
+            //toolbar: '#toolbarDemo',
             defaultToolbar: ['filter', 'exports', 'print', {
                 title: '提示',
                 layEvent: 'LAYTABLE_TIPS',
@@ -44,13 +50,70 @@
             },
             cols: [[
                 {type: "checkbox", width: 50, fixed: "left"},
+                {field: 'plugin_key', minWidth: 50, title: '插件编号', sort: true},
+                {field: 'plugin_name', minWidth: 50, title: '插件名称'},
+                {field: 'plugin_author', minWidth: 50, title: '开发者'},
+                {
+                    field: 'plugin_status', minWidth: 50, align: 'center', templet: function (d) {
+                        if (d.plugin_status == 1) {
+                            return '<span class="layui-badge layui-bg-green">已安装</span>';
+                        } else {
+                            return '<span class="layui-badge-rim layui-bg-red">待安装</span>';
+                        }
+                    }, title: '插件状态', sort: true
+                },
                 {title: '操作', minWidth: 50, templet: '#currentTableBar', fixed: "right", align: "center"}
             ]],
             limits: [10, 15, 20, 25, 50, 100],
             limit: 15,
             page: true
         });
+        
 
+        /**
+         * toolbar监听事件
+         */
+        table.on('tool(currentTableFilter)', function (obj) {
+            if (obj.event === 'edit') {  // 监听添加操作
+            	var doInstallFun = function(plugin_key) {
+                    $.ajax({
+                        url: '/?s=Portal.Plugins.Install',
+                        type:'post',
+                        data: {plugin_key: plugin_key},
+                        success:function(data){
+                            if (data.ret != 200) {
+                                layer.msg(data.msg);
+                                return;
+                            }
+
+                            layer.open({
+                            	  title: data.data.install_result ? '插件安装完成' : '插件安装异常'
+                            	  ,content: data.data.detail
+                            });     
+                            	  
+                        },
+                        complete: function () {
+                        	layer.open({
+                          	  title: '插件似乎安装不了？'
+                          	  ,content: '如果缺少权限，会导致安装失败，可以使用命令直接安装：<br/>php ./bin/phalapi-install-plugin.php ' + obj.data.plugin_key 
+                          }); 
+                        }
+                    });
+            	}
+            
+            	if (obj.data.plugin_status == 1) {
+            		layer.msg('插件已安装，不需要重复安装~');
+            		//return false;
+
+                    layer.confirm("插件已安装，是否需要重新安装？\n\n重装安装可能会删除当前插件应用的旧数据，并且覆盖原来插件的代码。", function (index) {
+                    	doInstallFun(obj.data.plugin_key);
+                        layer.close(index);
+                    });
+            	} else {
+            		doInstallFun(obj.data.plugin_key);
+            	}
+            }
+        });
     });
 </script>
 <script>

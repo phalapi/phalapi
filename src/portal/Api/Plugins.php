@@ -51,4 +51,12 @@ class Plugins extends Api {
 
         return array('install_result' => $installRs,  'detail' => '<font color="red">' . $errinfo . '</font><br/>' . implode('<br />', $detail));
     }
+    
+    public function marketTopContent() {
+        $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
+        $content = sprintf('<blockquote class="layui-elem-quote">当前网站域名是：%s，PhalApi版本是：v%s。
+            更多精品插件和优质应用，尽在<a href="%s" target="_blank"  class="layui-btn layui-btn-normal layui-btn-sm ">PhalApi应用市场</a>。</blockquote>', 
+            $host, PHALAPI_VERSION, 'http://www.yesx2.com?from_portal=' . $host);
+        return array('content' => $content);
+    }
 }
