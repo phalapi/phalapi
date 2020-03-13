@@ -67,6 +67,20 @@ class Admin extends Api {
     public function install() {
         // 创建数据库表
         $sql = file_get_contents(API_ROOT . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'phalapi.sql');
+        // 兼容windows的换行
+        $sql = str_replace(";\r\n", ";\n", $sql);
+
+        // 原来的表名
+        $fromTableNames = array('phalapi_portal_admin', 'phalapi_portal_menu', 'phalapi_curd');
+        // 待进行替换的表名，以便加上当前表前缀
+        $tablePrefix = \PhalApi\DI()->config->get('dbs.tables.__default__.prefix');
+        $toTableNames = array();
+        foreach ($fromTableNames as $name) {
+            $toTableNames[] = $tablePrefix . $name;
+        }
+
+        // 表前缀
+        $tablePrefix = \PhalApi\DI()->config->get('dbs.tables.__default__.prefix');
         $sqlArr = explode(";\n", $sql);
         foreach ($sqlArr as $sqlOne) {
             $sqlOne = trim($sqlOne);
@@ -75,12 +89,14 @@ class Admin extends Api {
             }
             //var_dump($sqlOne);
             try {
+                // 表前缀的处理
+                $sqlOne = str_replace($fromTableNames, $toTableNames, $sqlOne);
                 \PhalApi\DI()->notorm->portal->executeSql($sqlOne);
             } catch (\PDOException $ex) {
                 if (stripos($ex->getMessage(), 'already exists')) {
                     continue;
                 }
-                throw new InternalServerErrorException($ex->getMessage());
+                // throw new InternalServerErrorException($ex->getMessage());
             }
         }
         

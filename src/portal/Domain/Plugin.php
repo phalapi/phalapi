@@ -127,15 +127,24 @@ class Plugin {
             return true;
         }
 
-        $sqlArr = explode(";\n", file_get_contents($sqlFile));
+        // 兼容windows的换行
+        $sqlContent = str_replace(";\r\n", ";\n", file_get_contents($sqlFile));
+        $sqlArr = explode(";\n", $sqlContent);
+
+        // 待进行替换的表名，以便加上当前表前缀
+        $tablePrefix = \PhalApi\DI()->config->get('dbs.tables.__default__.prefix');
+
         foreach ($sqlArr as $sql) {
             $sql = trim($sql);
             if (empty($sql)) {
                 continue;
             }
             try {
+                // 表前缀的处理
+                $sql = str_replace($pluginKey, $tablePrefix . $pluginKey, $sql);
+
                 \PhalApi\DI()->notorm->demo->executeSql($sql);
-                // $detail[] = $sql;
+                $detail[] = $sql;
             } catch (\PDOException $ex) {
                 $detail[] = '数据库执行失败：' . $sql . '。失败原因：' . $ex->getMessage();
             }
