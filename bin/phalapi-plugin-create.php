@@ -40,7 +40,7 @@ $jsonConfig = array(
         // composer 依赖的包，无则不写
         'composer' => array(
             // 参考示例，格式是包名 => 版本号
-            // 'phalapi/kernal' => '2.12.0',
+            'phalapi/kernal' => '>=2.12.2',
         ),
         'extension' => array(
             // PHP扩展名
