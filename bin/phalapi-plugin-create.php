@@ -147,7 +147,7 @@ echo $file, "... \n";
 file_put_contents($file, "<?php
 namespace App\\Domain\\{$pluginKeyClass};
 
-class {$pluginKeyClass} {
+class Main {
 }
 ");
 
