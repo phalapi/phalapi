@@ -296,7 +296,7 @@ EOT;
  * JSON结果
  */
 echo <<<EOT
-<div class="ui blue message" id="json_output">
+<div class="ui blue message" id="json_output" style="overflow: auto;">
 </div>
 EOT;
 
