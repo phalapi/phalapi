@@ -37,11 +37,11 @@
     <div class="layui-form-item">
         <label class="layui-form-label required">状态</label>
         <div class="layui-input-block">
+<!--
             <input type="text" name="state" value="{{=d.state}}" class="layui-input" >
-            <!--
+-->
             <input type="radio" name="state" value="1" title="开启" {{# if (d.state == 1) }} checked="" {{# }}>
             <input type="radio" name="state" value="0" title="关闭" {{# if (d.state == 0) }} checked="" {{# }}>
-            -->
         </div>
     </div>
 
@@ -70,7 +70,8 @@
                 view = document.getElementById('form_view_id');
 
             laytpl(getTpl).render(data.data.data, function(html){
-                  view.innerHTML = html;
+                view.innerHTML = html;
+              	form.render('radio');
             });
         });
 

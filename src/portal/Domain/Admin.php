@@ -2,6 +2,7 @@
 namespace Portal\Domain;
 
 use Portal\Model\Admin as AdminModel;
+use Portal\Model\AdminRole as AdminRoleModel;
 
 class Admin {
 
@@ -79,5 +80,10 @@ class Admin {
         $model->insert($newAdmin);
 
         return true;
+    }
+    
+    public function getAdminRoles() {
+        $model = new AdminRoleModel();
+        return $model->getList();
     }
 }

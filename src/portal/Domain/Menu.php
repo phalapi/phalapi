@@ -62,12 +62,17 @@ class Menu {
     public function listAllMenus() {
         $model = new MenuModel();
         $menus = $model->listAllMenus();
+        
+        $menus = $this->filterUnassignMenus($menus);
+        
         foreach ($menus as &$itRef) {
             $itRef['isMenu'] = 0;
             $itRef['checked'] = 1;
             $itRef['authority'] = $itRef['id'];
             $itRef['createTime'] = '';
             $itRef['updateTime'] = '';
+            
+            unset($itRef['assign_admin_roles'], $itRef['assgin_admin_usernames']);
         }
         return $menus;
     }
@@ -102,11 +107,53 @@ class Menu {
     
     public function getMenu($id) {
         $model = new MenuModel();
-        return $model->get($id);
+        $menu = $model->get($id);
+        
+        if ($menu) {
+            $menu['assgin_admin_usernames'] = strval($menu['assgin_admin_usernames']);
+            
+            // 
+            $assignRoles = explode('|', $menu['assign_admin_roles']);
+            $domainAdmin = new Admin();
+            $roles = $domainAdmin->getAdminRoles();
+            foreach ($roles as &$itRef) {
+                $itRef['on'] = $itRef['role'] == 'super' || in_array($itRef['role'], $assignRoles) ? true : false;
+            }
+            
+            $menu['assign_admin_roles'] = $roles;
+        }
+        
+        return $menu;
     }
     
-    public function updateMenu($id, $title, $href, $sort_num) {
+    public function updateMenu($id, $title, $href, $sort_num, $assign_admin_roles = array(), $assgin_admin_usernames = '') {
         $model = new MenuModel();
-        return $model->update($id, array('title' => $title, 'href' => $href, 'sort_num' => $sort_num));
+        $updateData = array(
+            'title' => $title, 
+            'href' => $href, 
+            'sort_num' => $sort_num, 
+            'assign_admin_roles' => implode('|', $assign_admin_roles),
+            'assgin_admin_usernames' => trim($assgin_admin_usernames),
+        );
+        return $model->update($id, $updateData);
+    }
+    
+    // 过滤未授权的菜单
+    protected function filterUnassignMenus($menus) {
+        $role = \PhalApi\DI()->admin->role;
+        $username = \PhalApi\DI()->admin->username;
+        if ($role == 'super') {
+            return $menus;
+        }
+        
+        foreach ($menus as $key => $it) {
+            $it['assign_admin_roles'] = explode('|', $it['assign_admin_roles']);
+            $it['assgin_admin_usernames'] = explode('|', $it['assgin_admin_usernames']);
+            if (!in_array($role, $it['assign_admin_roles']) && !in_array($username, $it['assgin_admin_usernames'])) {
+                unset($menus[$key]);
+            }
+        }
+        
+        return $menus;
     }
 }

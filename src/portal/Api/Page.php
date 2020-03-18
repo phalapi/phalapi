@@ -3,6 +3,7 @@ namespace Portal\Api;
 
 use Portal\Common\Api;
 use Portal\Domain\Menu as MenuDomain;
+use Portal\Domain\Admin as AdminDomain;
 
 /**
  * 运营平台接口
@@ -30,6 +31,8 @@ class Page extends Api {
                 'id' => array('name' => 'id', 'require' => true, 'type' => 'int', 'min' => 0, 'desc' => '菜单ID'),
                 'href' => array('name' => 'href', 'default' => '', 'desc' => '菜单ID'),
                 'sort_num' => array('name' => 'sort_num', 'type' => 'int', 'desc' => '排序'),
+                'assign_admin_roles' => array('name' => 'assign_admin_roles', 'type' => 'array', 'default' => array(), 'desc' => '授权角色'),
+                'assgin_admin_usernames' => array('name' => 'assgin_admin_usernames', 'desc' => '需要单独分配权限的管理员账号'),
             ),
         );
     }
@@ -110,6 +113,6 @@ class Page extends Api {
      */
     public function updateMenu() {
         $domain = new MenuDomain();
-        return array('is_updated' => $domain->updateMenu($this->id, $this->title, $this->href, $this->sort_num));
+        return array('is_updated' => $domain->updateMenu($this->id, $this->title, $this->href, $this->sort_num, array_keys($this->assign_admin_roles), $this->assgin_admin_usernames));
     }
 }

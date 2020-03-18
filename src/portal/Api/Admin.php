@@ -130,4 +130,9 @@ class Admin extends Api {
         \PhalApi\DI()->admin->logout();
         return array('is_logout' => true);
     }
+    
+    public function adminRoles() {
+        $domain = new AdminDomain();
+        return array('admin_roles' => $domain->getAdminRoles());
+    }
 }
