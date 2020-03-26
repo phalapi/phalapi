@@ -8,13 +8,88 @@ namespace Portal\Domain;
 
 class Plugin {
 
+    public function uninstall($pluginKey, &$detail = array()) {
+        $detail[] = '正在卸载 '. $pluginKey;
+
+        if (!$this->installCheckInstalled($pluginKey, $detail)) {
+            $detail[] = '插件未安装，无须卸载';
+            return false;
+        }
+
+        // 读取插件信息
+        $detail[] = '开始卸载插件……';
+        $jsonFile = $this->getJsonFile($pluginKey);
+        $jsonArr = json_decode(file_get_contents($jsonFile), true);
+        $detail[] = sprintf('插件：%s（%s），开发者：%s，版本号：%s', $jsonArr['plugin_key'], $jsonArr['plugin_name'], $jsonArr['plugin_author'], $jsonArr['plugin_version']);
+
+        $plugin_files = $jsonArr['plugin_files'];
+        foreach (array($plugin_files['config'], $plugin_files['plugins'], $plugin_files['data']) as $f) {
+            $af = API_ROOT . '/' . $f;
+            if (file_exists($af) && unlink($af)) {
+                $detail[] = '已删除：' . $f;
+            } else {
+                $detail[] = '删除失败：' . $f;
+            }
+        }
+
+        $detail[] = '开始删除src源代码……';
+        $this->removeSource($plugin_files['src']);
+
+        $detail[] = '开始删除public源代码……';
+        $this->removeSource($plugin_files['public']);
+
+        $detail[] = '删除插件json配置……';
+        unlink($jsonFile);
+
+        return true;
+    }
+
+    protected function removeSource($paths, &$detail = array()) {
+        if (is_array($paths)) {
+            foreach ($paths as $f) {
+                $detail[] = '开始删除：' . $f;
+                $af = API_ROOT . '/' . $f;
+                if (is_dir($af)) {
+                    $this->recursiveDelete($af);
+                } else {
+                    unlink($af);
+                }
+            }
+        }
+    }
+
+    protected function recursiveDelete($dir) {    
+        // 打开指定目录
+        if ($handle = @opendir($dir))
+        {
+            while (($file = readdir($handle)) !== false)
+            {
+                if (($file == ".") || ($file == ".."))
+                {
+                    continue;
+                }
+                if (is_dir($dir . '/' . $file))
+                {
+                    // 递归
+                    recursiveDelete($dir . '/' . $file);
+                }
+                else
+                {
+                    unlink($dir . '/' . $file); // 删除文件
+                }
+            }
+            @closedir($handle);
+            rmdir ($dir); 
+        }
+    }
+
     /**
      * 安装应用插件
      * @param string $pluginKey 插件应用的名称
      * @param string $detail 安装信息收集
      * @return boolean 安装成功与否
      */
-    public function install($pluginKey, &$detail = [], $isReinstall = true) {
+    public function install($pluginKey, &$detail = array(), $isReinstall = true) {
         $detail[] = '正在安装 '. $pluginKey;
 
         // 检测插件应用是否存在
