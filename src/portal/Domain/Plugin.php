@@ -187,16 +187,16 @@ class Plugin {
         }
 
         foreach ($items as &$itRef) {
-            // 已安装
             if (isset($mineKeys[$itRef['plugin_key']])) {
+                // 已安装
                 $itRef['plugin_status'] = 1;
                 if (version_compare($itRef['plugin_version'], $mineKeys[$itRef['plugin_key']], '>')) {
+                    // 待升级
                     $itRef['plugin_status'] = 3;
                     $itRef['plugin_version'] = $itRef['plugin_version'] . '(当前:' . $mineKeys[$itRef['plugin_key']] . ')';
                 }
-            }
-            // 已下载，未安装
-            if ($itRef['plugin_status'] != 1 && in_array($itRef['plugin_key'], $downKeys)) {
+            } else if ($itRef['plugin_status'] != 1 && in_array($itRef['plugin_key'], $downKeys)) {
+                // 已下载，未安装
                 $itRef['plugin_status'] = 2;
             }
         }
