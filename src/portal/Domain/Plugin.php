@@ -189,7 +189,11 @@ class Plugin {
         foreach ($items as &$itRef) {
             // 已安装
             if (isset($mineKeys[$itRef['plugin_key']])) {
-                $itRef['plugin_status'] = version_compare($itRef['plugin_verion'], $mineKeys[$itRef['plugin_key']], '>') ? 3 : 1;
+                $itRef['plugin_status'] = 1;
+                if (version_compare($itRef['plugin_version'], $mineKeys[$itRef['plugin_key']], '>')) {
+                    $itRef['plugin_status'] = 3;
+                    $itRef['plugin_version'] = '最新:' . $itRef['plugin_version'] . ',本地:' . $mineKeys[$itRef['plugin_key']];
+                }
             }
             // 已下载，未安装
             if ($itRef['plugin_status'] != 1 && in_array($itRef['plugin_key'], $downKeys)) {
@@ -211,7 +215,7 @@ class Plugin {
                 'plugin_key' => $jsonArr['plugin_key'],
                 'plugin_name' => $jsonArr['plugin_name'],
                 'plugin_author' => $jsonArr['plugin_author'],
-                'plugin_verion' => $jsonArr['plugin_version'],
+                'plugin_version' => $jsonArr['plugin_version'],
                 'plugin_status' => 1,
             );
         }
