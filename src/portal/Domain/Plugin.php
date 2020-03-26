@@ -192,7 +192,7 @@ class Plugin {
                 $itRef['plugin_status'] = 1;
                 if (version_compare($itRef['plugin_version'], $mineKeys[$itRef['plugin_key']], '>')) {
                     $itRef['plugin_status'] = 3;
-                    $itRef['plugin_version'] = '最新:' . $itRef['plugin_version'] . ',本地:' . $mineKeys[$itRef['plugin_key']];
+                    $itRef['plugin_version'] = $itRef['plugin_version'] . '(当前:' . $mineKeys[$itRef['plugin_key']] . ')';
                 }
             }
             // 已下载，未安装
