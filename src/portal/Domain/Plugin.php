@@ -8,13 +8,90 @@ namespace Portal\Domain;
 
 class Plugin {
 
+    public function uninstall($pluginKey, &$detail = array()) {
+        $detail[] = '正在卸载 '. $pluginKey;
+
+        if (!$this->installCheckInstalled($pluginKey, $detail)) {
+            $detail[] = '插件未安装，无须卸载';
+            return false;
+        }
+
+        // 读取插件信息
+        $detail[] = '开始卸载插件……';
+        $jsonFile = $this->getJsonFile($pluginKey);
+        $jsonArr = json_decode(file_get_contents($jsonFile), true);
+        $detail[] = sprintf('插件：%s（%s），开发者：%s，版本号：%s', $jsonArr['plugin_key'], $jsonArr['plugin_name'], $jsonArr['plugin_author'], $jsonArr['plugin_version']);
+
+        $plugin_files = $jsonArr['plugin_files'];
+        foreach (array($plugin_files['config'], $plugin_files['plugins'], $plugin_files['data']) as $f) {
+            $af = API_ROOT . '/' . $f;
+            if (file_exists($af) && unlink($af)) {
+                $detail[] = '已删除：' . $f;
+            } else {
+                $detail[] = '删除失败：' . $f;
+            }
+        }
+
+        $detail[] = '开始删除src源代码……';
+        $this->removeSource($plugin_files['src']);
+
+        $detail[] = '开始删除public源代码……';
+        $this->removeSource($plugin_files['public']);
+
+        $detail[] = '删除插件json配置……';
+        unlink($jsonFile);
+
+        $detail[] = '卸载完毕！';
+
+        return true;
+    }
+
+    protected function removeSource($paths, &$detail = array()) {
+        if (is_array($paths)) {
+            foreach ($paths as $f) {
+                $detail[] = '开始删除：' . $f;
+                $af = API_ROOT . '/' . $f;
+                if (is_dir($af)) {
+                    $this->recursiveDelete($af);
+                } else {
+                    unlink($af);
+                }
+            }
+        }
+    }
+
+    protected function recursiveDelete($dir) {    
+        // 打开指定目录
+        if ($handle = @opendir($dir))
+        {
+            while (($file = readdir($handle)) !== false)
+            {
+                if (($file == ".") || ($file == ".."))
+                {
+                    continue;
+                }
+                if (is_dir($dir . '/' . $file))
+                {
+                    // 递归
+                    recursiveDelete($dir . '/' . $file);
+                }
+                else
+                {
+                    unlink($dir . '/' . $file); // 删除文件
+                }
+            }
+            @closedir($handle);
+            rmdir ($dir); 
+        }
+    }
+
     /**
      * 安装应用插件
      * @param string $pluginKey 插件应用的名称
      * @param string $detail 安装信息收集
      * @return boolean 安装成功与否
      */
-    public function install($pluginKey, &$detail = [], $isReinstall = true) {
+    public function install($pluginKey, &$detail = array(), $isReinstall = true) {
         $detail[] = '正在安装 '. $pluginKey;
 
         // 检测插件应用是否存在
@@ -168,14 +245,14 @@ class Plugin {
         $items = isset($result['plugins']) ? $result['plugins'] : array();
 
         // 加载已安装插件
-        $mineKeys = [];
+        $mineKeys = array();
         foreach (glob(API_ROOT . '/plugins/*.json') as $file) {
             $jsonArr = json_decode(file_get_contents($file), true);
-            $mineKeys[] = $jsonArr['plugin_key'];
+            $mineKeys[$jsonArr['plugin_key']] = $jsonArr['plugin_version'];
         }
 
         // 加载未安装的
-        $downKeys = [];
+        $downKeys = array();
         foreach (glob(API_ROOT . '/plugins/*.zip') as $file) {
             $fileArr = explode('plugins', $file);
             $fileArr = explode('.zip', $fileArr[1]);
@@ -187,12 +264,16 @@ class Plugin {
         }
 
         foreach ($items as &$itRef) {
-            // 已安装
-            if (in_array($itRef['plugin_key'], $mineKeys)) {
+            if (isset($mineKeys[$itRef['plugin_key']])) {
+                // 已安装
                 $itRef['plugin_status'] = 1;
-            }
-            // 已下载，未安装
-            if ($itRef['plugin_status'] != 1 && in_array($itRef['plugin_key'], $downKeys)) {
+                if (version_compare($itRef['plugin_version'], $mineKeys[$itRef['plugin_key']], '>')) {
+                    // 待升级
+                    $itRef['plugin_status'] = 3;
+                    $itRef['plugin_version'] = $itRef['plugin_version'] . '(当前:' . $mineKeys[$itRef['plugin_key']] . ')';
+                }
+            } else if ($itRef['plugin_status'] != 1 && in_array($itRef['plugin_key'], $downKeys)) {
+                // 已下载，未安装
                 $itRef['plugin_status'] = 2;
             }
         }
@@ -211,6 +292,7 @@ class Plugin {
                 'plugin_key' => $jsonArr['plugin_key'],
                 'plugin_name' => $jsonArr['plugin_name'],
                 'plugin_author' => $jsonArr['plugin_author'],
+                'plugin_version' => $jsonArr['plugin_version'],
                 'plugin_status' => 1,
             );
         }

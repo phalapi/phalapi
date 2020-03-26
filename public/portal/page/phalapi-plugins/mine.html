@@ -20,6 +20,7 @@
     	
         <script type="text/html" id="currentTableBar">
             <a class="layui-btn layui-btn-danger layui-btn-xs data-count-edit" lay-event="edit">安装</a>
+            <a class="layui-btn layui-btn-danger layui-btn-xs data-count-edit" lay-event="uninstall"><i class="layui-icon"></i> 卸载</a>
         </script>
 
     </div>
@@ -53,6 +54,7 @@
                 {field: 'plugin_key', minWidth: 50, title: '插件编号', sort: true},
                 {field: 'plugin_name', minWidth: 50, title: '插件名称'},
                 {field: 'plugin_author', minWidth: 50, title: '开发者'},
+                {field: 'plugin_version', minWidth: 50, title: '版本'},
                 {
                     field: 'plugin_status', minWidth: 50, align: 'center', templet: function (d) {
                         if (d.plugin_status == 1) {
@@ -113,6 +115,27 @@
             	} else {
             		doInstallFun(obj.data.plugin_key);
             	}
+            } else if (obj.event == 'uninstall') {
+                layer.confirm(obj.data.plugin_name + "<br/>插件已安装，是否需要狠心卸载？<br/><br/>卸载后会删除安装的插件代码，保留数据库数据及安装包，如有需要可重新安装。", function (index) {
+                    $.ajax({
+                        url: '/?s=Portal.Plugins.Uninstall',
+                        type:'post',
+                        data: {plugin_key: obj.data.plugin_key},
+                        success:function(data){
+                            if (data.ret != 200) {
+                                layer.msg(data.msg);
+                                return;
+                            }
+
+                            layer.open({
+                            	  title: (data.data.uninstall_result ? '插件卸载完成' : '插件卸载失败')
+                                  , area: ['600px', '500px']
+                            	  ,content: data.data.detail
+                            });     
+                            	  
+                        }
+                    });
+                })
             }
         });
     });

@@ -23,6 +23,9 @@ class Plugins extends Api {
             'install' => array(
                 'pluginKey' => array('name' => 'plugin_key', 'require' => true, 'regex' => '/^[0-9A-Za-z_]{1,}$/'),
             ),
+            'uninstall' => array(
+                'pluginKey' => array('name' => 'plugin_key', 'require' => true, 'regex' => '/^[0-9A-Za-z_]{1,}$/'),
+            ),
         );
     }
 
@@ -41,11 +44,22 @@ class Plugins extends Api {
         set_time_limit(0);
 
         $domain = new PluginDomain();
-        $detail = [];
+        $detail = array();
 
         $installRs = $domain->install($this->pluginKey, $detail);
 
         return array('install_result' => $installRs,  'detail' => implode('<br />', $detail));
+    }
+
+    public function uninstall() {
+        set_time_limit(0);
+
+        $domain = new PluginDomain();
+        $detail = array();
+
+        $uninstallRs = $domain->uninstall($this->pluginKey, $detail);
+
+        return array('uninstall_result' => $uninstallRs,  'detail' => implode('<br />', $detail));
     }
     
     public function marketTopContent() {
