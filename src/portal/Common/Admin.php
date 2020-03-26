@@ -56,6 +56,22 @@ class Admin {
 
         return FALSE; 
     }
+    
+    /**
+     * 是否为超级管理员
+     * @return boolean
+     */
+    public function isSuperAdmin() {
+        return $this->role == 'super';
+    }
+    
+    /**
+     * 是否为游客
+     * @return boolean
+     */
+    public function isGuest() {
+        return $this->check(FALSE);
+    }
 
     public function __get($name) {
         return isset($_SESSION[self::SESSION_KEY][$name]) ? $_SESSION[self::SESSION_KEY][$name] : NULL;

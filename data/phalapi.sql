@@ -58,3 +58,17 @@ insert into `phalapi_portal_menu` ( `target`, `id`, `title`, `href`, `sort_num`,
 insert into `phalapi_portal_menu` ( `target`, `id`, `title`, `href`, `sort_num`, `parent_id`, `icon`) values ( '_self', '2006', '文件上传', 'page/upload.html', '0', '205', 'fa fa-arrow-up');
 insert into `phalapi_portal_menu` ( `target`, `id`, `title`, `href`, `sort_num`, `parent_id`, `icon`) values ( '_self', '2007', '富文本编辑器', 'page/editor.html', '0', '205', 'fa fa-edit');
 insert into `phalapi_portal_menu` ( `target`, `id`, `title`, `href`, `sort_num`, `parent_id`, `icon`) values ( '_self', '2008', '省市县区选择器', 'page/area.html', '0', '205', 'fa fa-rocket');
+
+
+ALTER  TABLE `phalapi_portal_menu` ADD `assign_admin_roles` varchar(1000) DEFAULT '' COMMENT '管理员角色分配，多个用竖线分割';
+ALTER  TABLE `phalapi_portal_menu` ADD `assgin_admin_usernames` text COMMENT '分配的管理员ID，多个用竖线分割';
+
+CREATE TABLE `phalapi_portal_admin_role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `role` varchar(20) NOT NULL DEFAULT '' COMMENT '管理员角色',
+  `role_name` varchar(255) NOT NULL DEFAULT '' COMMENT '管理员角色名称',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `phalapi_portal_admin_role` VALUES ('1', 'super', '超级管理员'), ('2', 'admin', '普通管理员');
+
