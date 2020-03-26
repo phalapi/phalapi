@@ -41,6 +41,8 @@ class Plugin {
         $detail[] = '删除插件json配置……';
         unlink($jsonFile);
 
+        $detail[] = '卸载完毕！';
+
         return true;
     }
 

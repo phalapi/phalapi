@@ -116,11 +116,11 @@
             		doInstallFun(obj.data.plugin_key);
             	}
             } else if (obj.event == 'uninstall') {
-                layer.confirm("插件已安装，是否需要狠心卸载？<br/><br/>卸载后会删除安装的插件代码，如有需要可重新安装。", function (index) {
+                layer.confirm("插件已安装，是否需要狠心卸载？<br/><br/>卸载后会删除安装的插件代码，保留数据库数据及安装包，如有需要可重新安装。", function (index) {
                     $.ajax({
                         url: '/?s=Portal.Plugins.Uninstall',
                         type:'post',
-                        data: {plugin_key: plugin_key},
+                        data: {plugin_key: obj.data.plugin_key},
                         success:function(data){
                             if (data.ret != 200) {
                                 layer.msg(data.msg);
