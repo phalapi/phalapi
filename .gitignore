@@ -16,3 +16,6 @@ gitc
 
 config/*_dev.php
 config/*_test.php
+
+plugins/*.zip
+
