@@ -168,14 +168,14 @@ class Plugin {
         $items = isset($result['plugins']) ? $result['plugins'] : array();
 
         // 加载已安装插件
-        $mineKeys = [];
+        $mineKeys = array();
         foreach (glob(API_ROOT . '/plugins/*.json') as $file) {
             $jsonArr = json_decode(file_get_contents($file), true);
-            $mineKeys[] = $jsonArr['plugin_key'];
+            $mineKeys[$jsonArr['plugin_key']] = $jsonArr['plugin_version'];
         }
 
         // 加载未安装的
-        $downKeys = [];
+        $downKeys = array();
         foreach (glob(API_ROOT . '/plugins/*.zip') as $file) {
             $fileArr = explode('plugins', $file);
             $fileArr = explode('.zip', $fileArr[1]);
@@ -188,8 +188,8 @@ class Plugin {
 
         foreach ($items as &$itRef) {
             // 已安装
-            if (in_array($itRef['plugin_key'], $mineKeys)) {
-                $itRef['plugin_status'] = 1;
+            if (isset($mineKeys[$itRef['plugin_key']])) {
+                $itRef['plugin_status'] = version_compare($itRef['plugin_verion'], $mineKeys[$itRef['plugin_key']], '>') ? 3 : 1;
             }
             // 已下载，未安装
             if ($itRef['plugin_status'] != 1 && in_array($itRef['plugin_key'], $downKeys)) {
@@ -211,6 +211,7 @@ class Plugin {
                 'plugin_key' => $jsonArr['plugin_key'],
                 'plugin_name' => $jsonArr['plugin_name'],
                 'plugin_author' => $jsonArr['plugin_author'],
+                'plugin_verion' => $jsonArr['plugin_version'],
                 'plugin_status' => 1,
             );
         }
