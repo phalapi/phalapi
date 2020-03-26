@@ -11,6 +11,7 @@ use PhalApi\Config\FileConfig;
 use PhalApi\Logger;
 use PhalApi\Logger\FileLogger;
 use PhalApi\Database\NotORMDatabase;
+use PhalApi\Error\ApiError;
 
 /** ---------------- PhalApi 基本注册 必要服务组件 ---------------- **/
 
@@ -30,6 +31,9 @@ $di->notorm = new NotORMDatabase($di->config->get('dbs'), $di->config->get('sys.
 
 // JSON中文输出
 // $di->response = new \PhalApi\Response\JsonResponse(JSON_UNESCAPED_UNICODE);
+
+// 错误处理
+$di->error = new ApiError();
 
 // portal后台管理员
 $di->admin = new Portal\Common\Admin();
