@@ -44,10 +44,10 @@
             },
             cols: [[
                 //{type: "checkbox", width: 50, fixed: "left"},
-                {field: 'plugin_key', minWidth: 50, title: '插件编号', sort: true},
-                {field: 'plugin_name', minWidth: 50, title: '插件名称'},
-                {field: 'plugin_author', minWidth: 50, title: '开发者'},
-                {field: 'plugin_price', minWidth: 50, title: '插件价格'},
+                {field: 'plugin_key', width: 150, title: '插件编号', sort: true},
+                {field: 'plugin_name', minWidth: 300, title: '插件名称'},
+                {field: 'plugin_author', width: 150, title: '开发者'},
+                {field: 'plugin_price', width: 120, title: '插件价格', sort: true},
                 {
                     field: 'plugin_status', minWidth: 50, align: 'center', templet: function (d) {
                         if (d.plugin_status == 1) {
