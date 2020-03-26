@@ -57,9 +57,9 @@ class Plugins extends Api {
         $domain = new PluginDomain();
         $detail = array();
 
-        $installRs = $domain->uninstall($this->pluginKey, $detail);
+        $uninstallRs = $domain->uninstall($this->pluginKey, $detail);
 
-        return array('install_result' => $installRs,  'detail' => implode('<br />', $detail));
+        return array('uninstall_result' => $uninstallRs,  'detail' => implode('<br />', $detail));
     }
     
     public function marketTopContent() {
