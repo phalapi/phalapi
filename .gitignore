@@ -19,3 +19,6 @@ config/*_test.php
 
 plugins/*.zip
 
+node_modules
+package-lock.json
+

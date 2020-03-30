@@ -1,4 +1,7 @@
 ![apic](http://cdn7.okayapi.com/yesyesapi_20190709223344_8aadbcfdbfa297a193012c0dada32a58.jpeg)  
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # [PhalApi 2.13.1 - 接口，从简单开始！](https://www.phalapi.net/) 
 
@@ -191,3 +194,15 @@ PhalApi采用了当前流行且优秀的layuimin开发全新的管理后台，�
 
 如发现问题，或者任何问题，欢迎提交Issue到[这里](https://github.com/phalapi/phalapi/issues)，或进入[PhalApi开源社区](http://talk.phalapi.net/?f=github)。  
 如果喜欢，请帮忙在[Github](https://github.com/phalapi/phalapi)或[码云](https://gitee.com/dogstar/PhalApi)给个Star，也可以对PhalApi进行[捐赠](https://www.phalapi.net/donate.html)哦 ^_^。
+
+## 9、贡献者 ✨
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+## 10、LICENSE
+GPL-2.0
+
