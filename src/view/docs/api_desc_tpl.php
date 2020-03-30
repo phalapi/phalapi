@@ -300,34 +300,13 @@ echo <<<EOT
 </div>
 EOT;
 
-/**
- * 动态生成客户端代码示例
- */
-echo <<<EOT
-<h3><i class="code icon"></i>接口返回示例</h3>
-EOT;
-
-$demoCodes = '';
-$codeFile = API_ROOT . '/src/view/docs/demos/' . $service . '.json';
-if (file_exists($codeFile)) {
-    $demoCodes = htmlspecialchars(file_get_contents($codeFile));
-} else {
-    $demoCodes = '// 暂时无返回示例，可添加示例文件：' . (\PhalApi\DI()->debug ? $codeFile : $service . '.json');
-}
-
-echo <<<EOT
-<!-- 代码高亮 -->
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css">
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-<div class="ui text">
-    <pre><code>{$demoCodes}</code></pre>
-</div>
-EOT;
 
 /**
  * 动态生成客户端代码示例
  */
+echo <<<EOT
+<h3><i class="code icon"></i>客户端请求示例</h3>
+EOT;
 
 $demoCodes = array();
 $demoPath = dirname(__FILE__) . '/demos';
@@ -389,6 +368,12 @@ if (!empty($demoCodes)) {
 
     {$segmentHtml}
 </div>
+
+<!-- 代码高亮 -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 EOT;
 }
 
