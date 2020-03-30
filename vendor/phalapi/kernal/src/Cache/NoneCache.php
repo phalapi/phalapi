@@ -23,4 +23,8 @@ class NoneCache implements Cache {
 
     public function delete($key) {
 	}
+
+    public function pull($key) {
+        return NULL;
+    }
 }

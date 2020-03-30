@@ -325,6 +325,74 @@ echo <<<EOT
 </div>
 EOT;
 
+/**
+ * 动态生成客户端代码示例
+ */
+
+$demoCodes = array();
+$demoPath = dirname(__FILE__) . '/demos';
+foreach (array(
+    'json', 'curl', 'js', 'php', 'py', 'java', 'cs', 'go', 'oc',
+) as $whatCode) {
+    // 公共前缀部分
+    $prefixCode = '';
+    $prefixFile = $demoPath . '/_prefix.' . $whatCode;
+    if (file_exists($prefixFile)) {
+        $prefixCode = htmlspecialchars(file_get_contents($prefixFile));
+    }
+
+    $codeFile = $demoPath . '/' . $service . '.' . $whatCode;
+    if (file_exists($codeFile)) {
+        $demoCodes[$whatCode] = $prefixCode . htmlspecialchars(file_get_contents($codeFile));
+        
+        // 公共后缀部分
+        $suffixCode = '';
+        $suffixFile = $demoPath . '/_suffix.' . $whatCode;
+        if (file_exists($suffixFile)) {
+            $suffixCode = htmlspecialchars(file_get_contents($suffixFile));
+            $demoCodes[$whatCode] .= $suffixCode;
+        }
+        
+        $demoCodes[$whatCode] = str_replace(array('{url}', '{s}'), array($url, $service), $demoCodes[$whatCode]);
+    }
+}
+$codeName = array(
+    'json' => 'HTTP通用示例',
+    'js' => 'Javascript示例',
+    'oc' => 'Object-C示例',
+    'java' => 'Java示例',
+    'curl' => 'CURL示例',
+    'php' => 'PHP示例',
+    'py' => 'Python示例',
+    'go' => 'Golang示例',
+    'cs' => 'C#示例',
+);
+
+if (!empty($demoCodes)) {
+    $allKeys = array_keys($demoCodes);
+    $firstLan = $allKeys[0]; // 第一个标签的语言
+
+    $itemHtml = '';
+    $segmentHtml = '';
+
+    foreach ($demoCodes as $code => $codeStr) {
+        $itemHtml .= sprintf('<a class="%s item" data-tab="%s">%s</a>', ($firstLan == $code ? 'active ' : ''), 'datatab' . $code, $codeName[$code]);
+        $segmentHtml .= sprintf('<div class="ui bottom attached %s tab segment" data-tab="%s"><pre><code>%s</code></pre></div>', ($firstLan == $code ? 'active ' : ''), 'datatab' . $code, $codeStr);
+    }
+
+    echo <<<EOT
+
+<div class="ui tab segment active" data-tab="{$firstLan}">
+    <div class="ui top attached tabular menu">
+        {$itemHtml}
+    </div>
+
+    {$segmentHtml}
+</div>
+EOT;
+}
+
+
 
 /**
  * 底部
@@ -359,6 +427,10 @@ echo <<<EOT
       </div>
     </div>
   </div>
+
+<!-- tag -->
+<script src="{$semanticPath}semantic.min.js" ></script>
+<script src="{$semanticPath}components/tab.js"></script>
 
     <script type="text/javascript">
         function getData() {
@@ -426,6 +498,9 @@ echo <<<EOT
             fillHistoryData();
 
             checkLastestVersion();
+
+            // 选项卡
+            $('.tabular.menu .item').tab();
         })
 
         // 填充历史数据

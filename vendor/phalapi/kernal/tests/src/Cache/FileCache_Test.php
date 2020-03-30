@@ -107,4 +107,20 @@ class PhpUnderControl_PhalApiCacheFile_Test extends \PHPUnit_Framework_TestCase
 
         $phalApiCacheFile->set('orinal_cache_key', 2019);
     }
+
+    public function testPull() {
+        $key = 'pullKeyCache';
+
+        $value = array('name' => 'dogstar');
+
+        $this->phalApiCacheFile->set($key, $value);
+
+        $rs = $this->phalApiCacheFile->pull($key);
+
+        $this->assertEquals('dogstar', $rs['name']);
+
+        $rs = $this->phalApiCacheFile->get($key);
+
+        $this->assertSame(NULL, $rs);
+    }
 }

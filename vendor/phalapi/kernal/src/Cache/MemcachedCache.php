@@ -30,4 +30,14 @@ class MemcachedCache extends MemcacheCache {
     protected function createMemcache() {
         return new \Memcached();
     }
+
+    /**
+     * 拉取缓存，拉取后同时删除缓存
+     * @return minxed|NULL 缓存不存在时返回NULL
+     */
+    public function pull($key) {
+        $value = $this->get($key);
+        $this->delete($key);
+        return $value;
+    }
 }

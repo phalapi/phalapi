@@ -45,4 +45,16 @@ class MultiCache implements Cache {
 			$cache->delete($key);
 		}
     }
+
+    /**
+     * 拉取缓存，拉取后同时删除缓存
+     * @return minxed|NULL 缓存不存在时返回NULL
+     */
+    public function pull($key) {
+        foreach ($this->caches as $cache) {
+            if (is_callable(array($cache, 'pull'))) {
+                $cache->pull($key);
+            }
+        }
+    }
 }

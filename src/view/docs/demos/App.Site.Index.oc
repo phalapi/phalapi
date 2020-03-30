@@ -1,0 +1,15 @@
+// 待POST的参数
+NSDictionary *params = @{@"demo_key_1": @"your_key", @"demo_key_2": @"1.0"};
+
+// 使用AFNPhalApiClient
+[[[[[AFNPhalApiClient sharedClient] withHost:@"{url}"] withService:@"{s}"] withParams:params] requestWithFormDataBlock:^(id formData) {
+	// 如需上传文件（图片等），请参照如下格式
+    [formData appendPartWithFileData:UIImageJPEGRepresentation([UIImage imageNamed:@"head.JPG"], 1) name:@"file" fileName:@"image.jpg" mimeType:@"image/jpeg"];
+} completeBlock:^(id resultObject) {
+    PALog(@"resultObject: %@", resultObject);
+} failureBlock:^(NSError *error) {
+    PALog(@"error: %@", error);
+}];
+
+// 打印url查看
+PALog(@"total url: %@", [[AFNPhalApiClient sharedClient] printTotalUrlStr]);

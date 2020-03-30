@@ -1,0 +1,3 @@
+curl {url}?s={s}&username=PhalApi
+{"ret":200,"data":{"title":"Hello PhalApi","version":"2.13.1","time":1585536376},"msg":""}
+

@@ -45,6 +45,9 @@ class DataApi extends Api {
             'createData' => array(
                 'newData' => array('name' => 'newData', 'type' => 'array', 'format' => 'json', 'require' => true, 'desc' => \PhalApi\T('post data')),
             ),
+            'deleteData' => array(
+                'id' => array('name' => 'id', 'require' => true, 'type' => 'int', 'min' => 1, 'desc' => '待删除的ID'),
+            ),
             'deleteDataIDs' => array(
                 'ids' => array('name' => 'ids', 'type' => 'array', 'format' => 'explode', 'seperator' => ',', 'require' => true, 'desc' => \PhalApi\T('ids to delete'))
             ),
@@ -71,8 +74,12 @@ class DataApi extends Api {
                 $searchParams[$key] = $val;
             }
         }
+
+        // 条件
         $where = !empty($searchParams) ? $searchParams : NULL;
         $whereParams = array();
+        $where = $this->getTableListWhere($where);
+
         $select = $this->getTableListSelect();
         $order = $this->getTableListOrder();
         $page = $this->page;
@@ -82,7 +89,7 @@ class DataApi extends Api {
         $items = $total > 0 ? $model->getList($where, $whereParams, $select, $order, $page, $perpage) : array();
         $items = $this->afterTableList($items);
 
-        return array('total' => $total, 'items' => $items);
+        return $this->returnDataResult(array('total' => $total, 'items' => $items));
     }
 
     // 列表返回的字段
@@ -93,6 +100,11 @@ class DataApi extends Api {
     // 列表的默认排序
     protected function getTableListOrder() {
         return 'id DESC';
+    }
+
+    // 查询条件
+    protected function getTableListWhere($where) {
+        return $where;
     }
     
     // 取到列表数据后的加工处理
@@ -121,7 +133,7 @@ class DataApi extends Api {
         }
         
         // 更多初始化的字段数据
-        $newData = $this->createDataMoreData($newData);
+        $newData = $this->beforeCreateData($newData);
         
         if (empty($newData)) {
             throw new BadRequestException(\PhalApi\T('miss post data'));
@@ -134,7 +146,7 @@ class DataApi extends Api {
             throw new BadRequestException(\PhalApi\DI()->debug ? $ex->getMessage() : \PhalApi\T('system error, please contact engeneer'));
         }
         
-        return array('id' => intval($id));
+        return $this->returnDataResult(array('id' => intval($id)));
     }
     
     // 必须提供的字段
@@ -148,8 +160,26 @@ class DataApi extends Api {
     }
     
     // 创建时更多初始化的数据
-    protected function createDataMoreData($newData) {
+    protected function beforeCreateData($newData) {
         return $newData;
+    }
+
+    /**
+     * 根据ID删除数据
+     * @desc 根据单个ID删除数据，也可以调整成根据自定义的条件删除数据
+     */
+    public function deleteData() {
+        $where = array('id' => $this->id);
+
+        $model = $this->getDataModel();
+        $rows = !empty($where) ? $model->deleteAll($where) : 0;
+
+        return $this->returnDataResult(array('deleted_num' => $rows));
+    }
+
+    // 删除数据的条件加工
+    protected function getDeleteDataWhere($where) {
+        return $where;
     }
     
     /**
@@ -159,7 +189,7 @@ class DataApi extends Api {
     public function deleteDataIDs() {
         $model = $this->getDataModel();
         $rows = $this->ids ? $model->deleteIds($this->ids) : 0;
-        return array('deleted_num' => $rows);
+        return $this->returnDataResult(array('deleted_num' => $rows));
     }
     
     /**
@@ -168,12 +198,19 @@ class DataApi extends Api {
      * @return object|null 数据
      */
     public function getData() {
+        $where = array('id' => $this->id);
+        $whereParams = array();
+        $select = $this->getDataSelect();
+
+        // 前置条件加工
+        $where = $this->getGetDataWhere($where);
+
         $model = $this->getDataModel();
-        $data = $model->get($this->id, $this->getDataSelect());
+        $data = $model->getData($where, $whereParams, $select);
         
         $data = $this->afterGetData($data);
         
-        return array('data' => $data ? $data : null);
+        return $this->returnDataResult(array('data' => $data ? $data : null));
     }
     
     // 获取单个数据时需要返回的字段
@@ -181,6 +218,11 @@ class DataApi extends Api {
         return '*';
     }
     
+    // 前置条件加工
+    protected function getGetDataWhere($where) {
+        return $where;
+    }
+
     // 取到数据后的加工处理
     protected function afterGetData($data) {
         return $data;
@@ -211,9 +253,14 @@ class DataApi extends Api {
             throw new BadRequestException(\PhalApi\T('miss update data'));
         }
         
+        $updateData = $this->beforeUpdateData($updateData);
+
         try {
-            $rows = $model->update($this->id, $updateData);
-            return array('updated_num' => $rows);
+            $where = array('id' => $this->id);
+            $where = $this->getUpdateDataWhere($where);
+
+            $rows = $model->update($where, $updateData);
+            return $this->returnDataResult(array('updated_num' => $rows));
         } catch (\PDOException $ex) {
             throw new BadRequestException(\PhalApi\DI()->debug ? $ex->getMessage() : \PhalApi\T('system error, please contact engeneer'));
         }
@@ -228,8 +275,24 @@ class DataApi extends Api {
     protected function updateDataExcludeKeys() {
         return array();
     }
+
+    // 获取更新数据的条件
+    protected function getUpdateDataWhere($where) {
+        return $where;
+    }
     
+    // 在更新数据前的处理
     protected function beforeUpdateData($updateData) {
         return $updateData;
+    }
+
+    /**
+     * 返回数据结果
+     * - 方便统一进行加工再处理
+     * @param array|mixed $result 等返回的数据结果
+     * @return array|mixed 加工后的数据结果
+     */
+    protected function returnDataResult($result) {
+        return $result;
     }
 }

@@ -60,6 +60,16 @@ class MemcacheCache implements Cache {
     }
 
     /**
+     * 拉取缓存，拉取后同时删除缓存
+     * @return minxed|NULL 缓存不存在时返回NULL
+     */
+    public function pull($key) {
+        $value = $this->get($key);
+        $this->delete($key);
+        return $value;
+    }
+
+    /**
      * 获取MC实例，以便提供桩入口
 	 * @return Memcache
      */

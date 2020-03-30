@@ -88,6 +88,16 @@ class FileCache implements Cache {
         @unlink($filePath);
     }
 
+    /**
+     * 拉取缓存，拉取后同时删除缓存
+     * @return minxed|NULL 缓存不存在时返回NULL
+     */
+    public function pull($key) {
+        $value = $this->get($key);
+        $this->delete($key);
+        return $value;
+    }
+
 	/**
 	 * 考虑到Linux同一目录下的文件个数限制，这里拆分成1000个文件缓存目录
 	 */
