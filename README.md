@@ -175,8 +175,8 @@ PhalApi会根据你编写的接口的参数配置和代码注释，自动实时�
 
 ![](http://cdn7.okayapi.com/yesyesapi_20200330114340_6e22156e2b9a248ddd81c77db7cf4210.png)
 
-### 进入运营平台
-PhalApi采用了当前流行且优秀的layuimin开发全新的管理后台，专门提供给非技术的运营人员使用（技术人员也可使用）。
+### 进入Portal运营平台
+PhalApi采用了当前流行且优秀的layuimin开发全新的管理后台，专门提供给非技术的运营人员使用（技术人员也可使用）。安装Portal前请先配置好数据库连接。  
 
 ![](http://cdn7.okayapi.com/yesyesapi_20200309172737_a4b73f5763b4d8758f367a2a34230830.png)
 
