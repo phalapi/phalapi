@@ -184,8 +184,8 @@ PhalApi采用了当前流行且优秀的layuimin开发全新的管理后台，�
 ![phalapi-install](https://user-images.githubusercontent.com/12585518/52995681-4ae71200-3456-11e9-8d00-065a42cf4382.gif)
 
 ## 7、子项目
- + [phalapi/kernal](https://github.com/phalapi/kernal)
- + [phalapi/notorm](https://github.com/phalapi/notorm)
+ + [phalapi/kernal](https://github.com/phalapi/kernal)框架内核
+ + [phalapi/notorm](https://github.com/phalapi/notorm)数据库包
 
 ## 8、还有问题，怎么办？  
 
