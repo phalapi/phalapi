@@ -14,4 +14,6 @@ return array(
     'App' => '我的应用',
     'Admin' => '管理后台',
     'Portal' => '运营平台',
+    'user not exists' => '用户不存在',
+    'can not get user info' => '找不到此用户的信息',
 );

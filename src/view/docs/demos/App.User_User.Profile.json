@@ -1,0 +1,16 @@
+{
+    "ret": 200,
+    "data": {
+        "profile": {
+            "id": 1,
+            "username": "dogstar",
+            "nickname": "",
+            "reg_time": 1585624262,
+            "avatar": "",
+            "mobile": "",
+            "sex": 0,
+            "email": ""
+        }
+    },
+    "msg": ""
+}

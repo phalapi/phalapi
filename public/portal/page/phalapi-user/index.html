@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>用户</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../css/public.css" media="all">
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+
+        <fieldset class="table-search-fieldset">
+            <legend>搜索信息</legend>
+            <div style="margin: 10px 10px 10px 10px">
+                <form class="layui-form layui-form-pane" action="">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">用户ID</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="id" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">账号</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="username" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <button type="submit" class="layui-btn layui-btn-primary" lay-submit  lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </fieldset>
+
+        <script type="text/html" id="toolbarDemo">
+            <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete"> 删除数据 </button>
+            </div>
+        </script>
+
+        <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+
+        <script type="text/html" id="currentTableBar">
+            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
+        </script>
+
+    </div>
+</div>
+<script src="../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script>
+    layui.use(['form', 'table'], function () {
+        var $ = layui.jquery,
+            form = layui.form,
+            table = layui.table;
+
+        table.render({
+            elem: '#currentTableId',
+            url: '/?s=Portal.User_User.TableList', // 换成相应的运营平台接口
+            toolbar: '#toolbarDemo',
+            defaultToolbar: ['filter', 'exports', 'print', {
+                title: '提示',
+                layEvent: 'LAYTABLE_TIPS',
+                icon: 'layui-icon-tips'
+            }],
+            parseData: function(res){ //res 即为原始返回的数据
+                return {
+                    "code": res.ret == 200 ? 0 : res.ret, //解析接口状态
+                    "msg": res.msg, //解析提示文本
+                    "count": res.data.total, //解析数据长度
+                    "data": res.data.items //解析数据列表
+                };
+            },
+            cols: [[
+                {type: "checkbox", width: 50, fixed: "left"},
+                {field: 'id', width: 80, title: 'ID', sort: true},
+                {field: 'username', minWidth: 50, title: '账号'},
+                {field: 'nickname', minWidth: 50, title: '昵称'},
+                {field: 'mobile', minWidth: 50, title: '手机号'},
+                {field: 'email', minWidth: 50, title: '邮箱'},
+                {field: 'reg_time', minWidth: 80, title: '注册时间', sort: true},
+                {
+                    field: 'sex', minWidth: 50, align: 'center', templet: function (d) {
+                        if (d.sex == 1) {
+                            return '男';
+                        } else if (d.sex == 2) {
+                            return '女';
+                        } else {
+                            return '未知';
+                        }
+                    }, title: '性别', sort: true
+                },
+                {title: '操作', minWidth: 50, templet: '#currentTableBar', fixed: "right", align: "center"}
+            ]],
+            limits: [10, 15, 20, 25, 50, 100],
+            limit: 15,
+            page: true
+        });
+
+        // 监听搜索操作
+        form.on('submit(data-search-btn)', function (data) {
+            var result = JSON.stringify(data.field);
+
+            //执行搜索重载
+            table.reload('currentTableId', {
+                page: {
+                    curr: 1
+                }
+                , where: {
+                    searchParams: result
+                }
+            }, 'data');
+
+            return false;
+        });
+
+        /**
+         * toolbar监听事件
+         */
+        table.on('toolbar(currentTableFilter)', function (obj) {
+            if (obj.event === 'add') {  // 监听添加操作
+                var index = layer.open({
+                    title: '添加数据',
+                    type: 2,
+                    shade: 0.2,
+                    maxmin:true,
+                    shadeClose: true,
+                    area: ['100%', '100%'],
+                    content: './add.html',
+                });
+                $(window).on("resize", function () {
+                    layer.full(index);
+                });
+            } else if (obj.event === 'delete') {  // 监听删除操作
+                var checkStatus = table.checkStatus('currentTableId')
+                    , data = checkStatus.data;
+
+                var ids = [];
+                $.each(data, function (index, el) {
+                    ids.push(el.id);
+                });
+
+                $.ajax({
+                    url: '/?s=Portal.User_User.DeleteDataIDs',
+                    type:'post',
+                    data: {ids: ids.join(',')},
+                    success:function(data){
+                        if (data.ret != 200) {
+                            layer.msg(data.msg);
+                            return;
+                        }
+
+                        layer.msg('删除成功，即将刷新', function () {
+                            window.location.reload();
+                        });
+                    },
+                    complete: function () {
+                    }
+                });
+            }
+        });
+
+        //监听表格复选框选择
+        table.on('checkbox(currentTableFilter)', function (obj) {
+            // console.log(obj)
+        });
+
+        table.on('tool(currentTableFilter)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'edit') {
+
+                sessionStorage.setItem('edit_id', obj.data.id); // HACK
+
+                var index = layer.open({
+                    title: '编辑数据',
+                    type: 2,
+                    shade: 0.2,
+                    maxmin:true,
+                    shadeClose: true,
+                    area: ['100%', '100%'],
+                    content: './edit.html?id=' + obj.data.id,
+                });
+                $(window).on("resize", function () {
+                    layer.full(index);
+                });
+                return false;
+            } else if (obj.event === 'delete') {
+                layer.confirm('是否确认要删除？', function (index) {
+
+                    $.ajax({
+                        url: '/?s=Portal.User_User.DeleteDataIDs',
+                        type:'post',
+                        data: {ids: obj.data.id},
+                        success:function(data){
+                            if (data.ret != 200) {
+                                layer.msg(data.msg);
+                                return;
+                            }
+
+                            layer.msg('删除成功', function () {
+                            });
+                            obj.del();
+                            layer.close(index);
+                        },
+                        complete: function () {
+                        }
+                    });
+                });
+            }
+        });
+
+    });
+</script>
+<script>
+
+</script>
+
+</body>
+</html>

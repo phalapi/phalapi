@@ -1,0 +1,31 @@
+{
+    "plugin_key": "phalapi_user",
+    "plugin_name": "PhalApi用户插件",
+    "plugin_author": "dogstar",
+    "plugin_desc": "PhalApi 2.x User用户插件",
+    "plugin_version": "1.0",
+    "plugin_encrypt": 0,
+    "plugin_depends": {
+        "PHP": "5.6",
+        "MySQL": "5.3",
+        "PhalApi": "2.12.0",
+        "composer": [],
+        "extension": []
+    },
+    "plugin_files": {
+    	"config": "config\/phalapi_user.php",
+    	"plugins": "plugins\/phalapi_user.php",
+        "data": "data\/phalapi_user.sql",
+        "public": [
+            "public\/portal\/page\/phalapi-user"
+        ],
+        "src": [
+            "src\/app\/Common\/User",
+            "src\/app\/Api\/User",
+            "src\/app\/Domain\/User",
+            "src\/app\/Model\/User",
+            "src\/Portal\/Api\/User",
+            "src\/Portal\/Model\/User"
+        ]
+    }
+}

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>首页二</title>
+    <title>首页</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -54,8 +54,22 @@
                                                         <h5>用户统计</h5>
                                                     </div>
                                                     <div class="panel-content">
-                                                        <h1 class="no-margins">1234</h1>
-                                                        <small>当前分类总记录数</small>
+                                                        <h1 class="no-margins" id="user_total_id">0</h1>
+                                                        <small>当前用户人数</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="layui-col-xs6">
+                                            <div class="panel layui-bg-number">
+                                                <div class="panel-body">
+                                                    <div class="panel-title">
+                                                        <span class="label pull-right layui-bg-blue">实时</span>
+                                                        <h5>管理员统计</h5>
+                                                    </div>
+                                                    <div class="panel-content">
+                                                        <h1 class="no-margins" id="admin_total_id">0</h1>
+                                                        <small>当前管理员人数</small>
                                                     </div>
                                                 </div>
                                             </div>
@@ -65,39 +79,11 @@
                                                 <div class="panel-body">
                                                     <div class="panel-title">
                                                         <span class="label pull-right layui-bg-cyan">实时</span>
-                                                        <h5>商品统计</h5>
+                                                        <h5>应用统计</h5>
                                                     </div>
                                                     <div class="panel-content">
-                                                        <h1 class="no-margins">1234</h1>
-                                                        <small>当前分类总记录数</small>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="layui-col-xs6">
-                                            <div class="panel layui-bg-number">
-                                                <div class="panel-body">
-                                                    <div class="panel-title">
-                                                        <span class="label pull-right layui-bg-orange">实时</span>
-                                                        <h5>浏览统计</h5>
-                                                    </div>
-                                                    <div class="panel-content">
-                                                        <h1 class="no-margins">1234</h1>
-                                                        <small>当前分类总记录数</small>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="layui-col-xs6">
-                                            <div class="panel layui-bg-number">
-                                                <div class="panel-body">
-                                                    <div class="panel-title">
-                                                        <span class="label pull-right layui-bg-green">实时</span>
-                                                        <h5>订单统计</h5>
-                                                    </div>
-                                                    <div class="panel-content">
-                                                        <h1 class="no-margins">1234</h1>
-                                                        <small>当前分类总记录数</small>
+                                                        <h1 class="no-margins" id="plugin_total_id">0</h1>
+                                                        <small>当前我安装的应用</small>
                                                     </div>
                                                 </div>
                                             </div>
@@ -120,45 +106,21 @@
                                             </a>
                                         </div>
                                         <div class="layui-col-xs3 layuimini-qiuck-module">
-                                            <a href="javascript:;" layuimini-content-href="page/setting.html" data-title="系统设置" data-icon="fa fa-gears">
-                                                <i class="fa fa-gears"></i>
-                                                <cite>系统设置</cite>
+                                            <a href="javascript:;" layuimini-content-href="page/phalapi-plugins/index.html" data-title="应用市场" data-icon="fa fa-gears">
+                                                <i class="fa fa-th"></i>
+                                                <cite>应用市场</cite>
                                             </a>
                                         </div>
                                         <div class="layui-col-xs3 layuimini-qiuck-module">
-                                            <a href="javascript:;" layuimini-content-href="page/table.html" data-title="表格示例" data-icon="fa fa-file-text">
-                                                <i class="fa fa-file-text"></i>
-                                                <cite>表格示例</cite>
+                                            <a href="javascript:;" layuimini-content-href="page/phalapi-plugins/mine.html" data-title="我的应用" data-icon="fa fa-file-text">
+                                                <i class="fa fa-cube"></i>
+                                                <cite>我的应用</cite>
                                             </a>
                                         </div>
                                         <div class="layui-col-xs3 layuimini-qiuck-module">
-                                            <a href="javascript:;" layuimini-content-href="page/icon.html" data-title="图标列表" data-icon="fa fa-dot-circle-o">
-                                                <i class="fa fa-dot-circle-o"></i>
-                                                <cite>图标列表</cite>
-                                            </a>
-                                        </div>
-                                        <div class="layui-col-xs3 layuimini-qiuck-module">
-                                            <a href="javascript:;" layuimini-content-href="page/form.html" data-title="表单示例" data-icon="fa fa-calendar">
+                                            <a href="javascript:;" layuimini-content-href="page/phalapi-curd-table/index.html" data-title="CURD表格示例" data-icon="fa fa-dot-circle-o">
                                                 <i class="fa fa-calendar"></i>
-                                                <cite>表单示例</cite>
-                                            </a>
-                                        </div>
-                                        <div class="layui-col-xs3 layuimini-qiuck-module">
-                                            <a href="javascript:;" layuimini-content-href="page/404.html" data-title="404页面" data-icon="fa fa-hourglass-end">
-                                                <i class="fa fa-hourglass-end"></i>
-                                                <cite>404页面</cite>
-                                            </a>
-                                        </div>
-                                        <div class="layui-col-xs3 layuimini-qiuck-module">
-                                            <a href="javascript:;" layuimini-content-href="page/button.html" data-title="按钮示例" data-icon="fa fa-snowflake-o">
-                                                <i class="fa fa-snowflake-o"></i>
-                                                <cite>按钮示例</cite>
-                                            </a>
-                                        </div>
-                                        <div class="layui-col-xs3 layuimini-qiuck-module">
-                                            <a href="javascript:;" layuimini-content-href="page/layer.html" data-title="弹出层" data-icon="fa fa-shield">
-                                                <i class="fa fa-shield"></i>
-                                                <cite>弹出层</cite>
+                                                <cite>表格示例</cite>
                                             </a>
                                         </div>
                                     </div>
@@ -169,7 +131,7 @@
                     </div>
                     <div class="layui-col-md12">
                         <div class="layui-card">
-                            <div class="layui-card-header"><i class="fa fa-line-chart icon"></i>报表统计</div>
+                            <div class="layui-card-header"><i class="fa fa-line-chart icon"></i>用户注册统计</div>
                             <div class="layui-card-body">
                                 <div id="echarts-records" style="width: 100%;min-height:500px"></div>
                             </div>
@@ -197,7 +159,7 @@
                             </tr>
                             <tr>
                                 <td>当前版本</td>
-                                <td>PhalApi 2.12.0 + layuimini v2.0.0</td>
+                                <td>PhalApi 2.x + layuimini v2.0.0</td>
                             </tr>
                             <tr>
                                 <td>码云</td>
@@ -220,9 +182,9 @@
                 </div>
 
                 <div class="layui-card">
-                    <div class="layui-card-header"><i class="fa fa-paper-plane-o icon"></i>作者心语</div>
+                    <div class="layui-card-header"><i class="fa fa-paper-plane-o icon"></i>帮助信息</div>
                     <div class="layui-card-body layui-text layadmin-text">
-                        <p>当前管理后台基于优秀的layuimini开发，结合PhalApi开发的后端接口。PhalApi 技术交流QQ群（459352221）</p>
+                        <p> + PhalApi技术交流QQ群：459352221</p>
                         <p> + PhalApi接口开发文档地址：<a class="layui-btn layui-btn-xs layui-btn-danger" target="_blank" href="http://docs.phalapi.net/#/v2.0/" >PhalApi 2.x 文档</a>。</p>
                         <p> + layui开发文档地址：<a class="layui-btn layui-btn-xs layui-btn-danger" target="_blank" href="http://www.layui.com/doc">layui文档</a></p>
                     </div>
@@ -242,97 +204,62 @@
             echarts = layui.echarts;
 
         miniTab.listen();
-
-        /**
-         * 查看公告信息
-         **/
-        $('body').on('click', '.layuimini-notice', function () {
-            var title = $(this).children('.layuimini-notice-title').text(),
-                noticeTime = $(this).children('.layuimini-notice-extra').text(),
-                content = $(this).children('.layuimini-notice-content').html();
-            var html = '<div style="padding:15px 20px; text-align:justify; line-height: 22px;border-bottom:1px solid #e2e2e2;background-color: #2f4056;color: #ffffff">\n' +
-                '<div style="text-align: center;margin-bottom: 20px;font-weight: bold;border-bottom:1px solid #718fb5;padding-bottom: 5px"><h4 class="text-danger">' + title + '</h4></div>\n' +
-                '<div style="font-size: 12px">' + content + '</div>\n' +
-                '</div>\n';
-            parent.layer.open({
-                type: 1,
-                title: '系统公告'+'<span style="float: right;right: 1px;font-size: 12px;color: #b1b3b9;margin-top: 1px">'+noticeTime+'</span>',
-                area: '300px;',
-                shade: 0.8,
-                id: 'layuimini-notice',
-                btn: ['查看', '取消'],
-                btnAlign: 'c',
-                moveType: 1,
-                content:html,
-                success: function (layero) {
-                    var btn = layero.find('.layui-layer-btn');
-                    btn.find('.layui-layer-btn0').attr({
-                        href: 'https://gitee.com/zhongshaofa/layuimini',
-                        target: '_blank'
-                    });
-                }
-            });
+        
+        $.getJSON('/?s=Portal.Page.Welcome', function (data) {
+        	if (data.ret == 200) {
+        		$("#admin_total_id").html(data.data.admin_total);
+        		$("#plugin_total_id").html(data.data.plugin_total);
+        		$("#user_total_id").html(data.data.user_total);
+        	}
         });
-
-        /**
-         * 报表功能
-         */
-        var echartsRecords = echarts.init(document.getElementById('echarts-records'), 'walden');
-        var optionRecords = {
-            tooltip: {
-                trigger: 'axis'
-            },
-            legend: {
-                data:['邮件营销','联盟广告','视频广告','直接访问','搜索引擎']
-            },
-            grid: {
-                left: '3%',
-                right: '4%',
-                bottom: '3%',
-                containLabel: true
-            },
-            toolbox: {
-                feature: {
-                    saveAsImage: {}
-                }
-            },
-            xAxis: {
-                type: 'category',
-                boundaryGap: false,
-                data: ['周一','周二','周三','周四','周五','周六','周日']
-            },
-            yAxis: {
-                type: 'value'
-            },
-            series: [
-                {
-                    name:'邮件营销',
-                    type:'line',
-                    data:[120, 132, 101, 134, 90, 230, 210]
+        
+        
+        $.getJSON('/?s=Portal.User_User.GetUserRegisterStat&days=30', function (data) {
+        	if (data.ret == 200) {
+        		$("#admin_total_id").html(data.data.admin_total);
+        		$("#plugin_total_id").html(data.data.plugin_total);
+        		$("#user_total_id").html(data.data.user_total);
+        	}
+            /**
+             * 报表功能
+             */
+            var echartsRecords = echarts.init(document.getElementById('echarts-records'), 'walden');
+            var optionRecords = {
+                tooltip: {
+                    trigger: 'axis'
                 },
-                {
-                    name:'联盟广告',
-                    type:'line',
-                    data:[220, 182, 191, 234, 290, 330, 310]
+                legend: {
+                    data:['注册用户']
                 },
-                {
-                    name:'视频广告',
-                    type:'line',
-                    data:[150, 232, 201, 154, 190, 330, 410]
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
                 },
-                {
-                    name:'直接访问',
-                    type:'line',
-                    data:[320, 332, 301, 334, 390, 330, 320]
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
                 },
-                {
-                    name:'搜索引擎',
-                    type:'line',
-                    data:[820, 932, 901, 934, 1290, 1330, 1320]
-                }
-            ]
-        };
-        echartsRecords.setOption(optionRecords);
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: data.data.xAxisData
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [
+                    {
+                        name:'注册用户',
+                        type:'line',
+                        data: data.data.seriesData
+                    }
+                ]
+            };
+            echartsRecords.setOption(optionRecords);
+        });
 
         // echarts 窗口缩放自适应
         window.onresize = function(){

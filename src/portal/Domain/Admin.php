@@ -86,4 +86,9 @@ class Admin {
         $model = new AdminRoleModel();
         return $model->getList();
     }
+    
+    public function getTotalNum() {
+        $model = new AdminModel();
+        return intval($model->getTotalNum());
+    }
 }

@@ -315,8 +315,18 @@ class Plugin {
         }
 
         $items = array_values($items);
+        $total = count($items);
 
         return array('total' => $total, 'items' => $items);
+    }
+    
+    public function getMinePluginsInstallNum() {
+        $total = 0;
+        // 加载已安装插件
+        foreach (glob(API_ROOT . '/plugins/*.json') as $file) {
+            $total ++;
+        }
+        return $total;
     }
 
     public function marketTopContent() {

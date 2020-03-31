@@ -4,6 +4,7 @@ namespace Portal\Api;
 use Portal\Common\Api;
 use Portal\Domain\Menu as MenuDomain;
 use Portal\Domain\Admin as AdminDomain;
+use Portal\Domain\Plugin as PluginDomain;
 
 /**
  * 运营平台接口
@@ -114,5 +115,17 @@ class Page extends Api {
     public function updateMenu() {
         $domain = new MenuDomain();
         return array('is_updated' => $domain->updateMenu($this->id, $this->title, $this->href, $this->sort_num, array_keys($this->assign_admin_roles), $this->assgin_admin_usernames));
+    }
+    
+    /**
+     * 欢迎页面数据
+     * @desc 获取欢迎页面数据的展示数据
+     */
+    public function welcome() {
+        $adminDomain = new AdminDomain();
+        $pluginDomain = new PluginDomain();
+        $userModel = new \Portal\Model\User\User;
+        $user_total = $userModel->count();
+        return array('admin_total' => $adminDomain->getTotalNum(), 'plugin_total' => $pluginDomain->getMinePluginsInstallNum(), 'user_total' => $user_total);
     }
 }

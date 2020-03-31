@@ -13,5 +13,10 @@ class Admin extends NotORMModel {
         return $this->getORM()
             ->where('username', $username)
             ->fetchOne();
-    }    
+    }
+    
+    public function getTotalNum() {
+        return $this->getORM()
+            ->count('id');
+    }
 }
