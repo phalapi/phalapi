@@ -30,6 +30,17 @@
                                 <input type="text" name="username" autocomplete="off" class="layui-input">
                             </div>
                         </div>
+		                <div class="layui-inline">
+		                    <label class="layui-form-label">性别</label>
+		                    <div class="layui-input-inline">
+		                        <select name="sex" >
+		                            <option value="">--全部--</option>
+		                            <option value="1">男</option>
+		                            <option value="2">女</option>
+		                            <option value="0">未知</option>
+		                        </select>
+		                    </div>
+		                </div>
                         <div class="layui-inline">
                             <button type="submit" class="layui-btn layui-btn-primary" lay-submit  lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
                         </div>
@@ -47,6 +58,7 @@
         <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
 
         <script type="text/html" id="currentTableBar">
+            <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
             <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
         </script>
 
@@ -177,7 +189,7 @@
                 sessionStorage.setItem('edit_id', obj.data.id); // HACK
 
                 var index = layer.open({
-                    title: '编辑数据',
+                    title: '编辑用户',
                     type: 2,
                     shade: 0.2,
                     maxmin:true,

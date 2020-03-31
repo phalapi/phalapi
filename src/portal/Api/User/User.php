@@ -41,6 +41,23 @@ class User extends Api {
         return 'id,username,nickname,reg_time,avatar,mobile,sex,email';
     }
     
+    // 更新时不允许更新的字段
+    protected function updateDataExcludeKeys() {
+        return array('username,salt');
+    }
+    
+    protected function beforeUpdateData($updateData) {
+        if (empty($updateData['password'])) {
+            unset($updateData['password']);
+        } else {
+            // 修改密码
+            $domain = new \App\Domain\User\User;
+            $user = $domain->getUserInfo($this->id, 'salt');
+            $updateData['password'] = $domain->encryptPassword($updateData['password'], $user['salt']);
+        }
+        return $updateData;
+    }
+    
     /**
      * 用户注册统计
      * @desc 获取最近用户注册的报表统计数据

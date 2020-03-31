@@ -28,6 +28,7 @@ class User {
         }
     }
     
+    // 登录用户
     public function login($user_id) {
         $userDomain = new UserDomain();
         $profile = $userDomain->getUserInfo($user_id, 'id,username,nickname,reg_time,avatar,mobile,sex,email');
