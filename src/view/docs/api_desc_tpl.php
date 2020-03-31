@@ -335,6 +335,11 @@ foreach (array(
         $demoCodes[$whatCode] = str_replace(array('{url}', '{s}'), array($url, $service), $demoCodes[$whatCode]);
     }
 }
+
+if (empty($demoCodes)) {
+    $demoCodes['json'] = '# 暂无示例，可添加示例文件：./src/view/docs/demos/' . $service . '.json';
+}
+
 $codeName = array(
     'json' => 'HTTP通用示例',
     'js' => 'Javascript示例',
