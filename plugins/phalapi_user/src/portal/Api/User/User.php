@@ -3,7 +3,6 @@ namespace Portal\Api\User;
 
 use Portal\Common\DataApi as Api;
 use Portal\Model\User\User as UserModel;
-use PhalApi\Exception\BadRequestException;
 
 /**
  * 用户插件
@@ -52,33 +51,11 @@ class User extends Api {
             unset($updateData['password']);
         } else {
             // 修改密码
-            $domain = new \App\Domain\User\User();
+            $domain = new \App\Domain\User\User;
             $user = $domain->getUserInfo($this->id, 'salt');
             $updateData['password'] = $domain->encryptPassword($updateData['password'], $user['salt']);
         }
         return $updateData;
-    }
-    
-    // 必须提供的字段
-    protected function createDataRequireKeys() {
-        return array('username', 'password');
-    }
-    
-    // 创建时更多初始化的数据
-    protected function beforeCreateData($newData) {
-        if (strlen($newData['password']) < 6 || strlen($newData['username']) == 0) {
-            throw new BadRequestException('密码长度不够或缺少账号');
-        }
-        
-        $domain = new \App\Domain\User\User();
-        $user = $domain->getUserByUsername($newData['username']);
-        if ($user) {
-            throw new BadRequestException('账号已存在');
-        }
-        
-        $newData['salt'] = \PhalApi\Tool::createRandStr(32);
-        $newData['password'] = $domain->encryptPassword($newData['password'], $newData['salt']);
-        return $newData;
     }
     
     /**
