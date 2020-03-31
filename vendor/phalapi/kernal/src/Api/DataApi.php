@@ -259,7 +259,7 @@ class DataApi extends Api {
             $where = array('id' => $this->id);
             $where = $this->getUpdateDataWhere($where);
 
-            $rows = $model->update($where, $updateData);
+            $rows = $model->updateAll($where, $updateData);
             return $this->returnDataResult(array('updated_num' => $rows));
         } catch (\PDOException $ex) {
             throw new BadRequestException(\PhalApi\DI()->debug ? $ex->getMessage() : \PhalApi\T('system error, please contact engeneer'));
