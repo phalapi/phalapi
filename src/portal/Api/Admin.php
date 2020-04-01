@@ -65,6 +65,16 @@ class Admin extends Api {
      * @desc 首次安装，安装后可以把此接口永久关闭
      */
     public function install() {
+        $domain = new AdminDomain();
+        try {
+            if ($domain->getTotalNum() > 0) {
+                // 避免重复安装
+                throw new \PhalApi\Exception\BadRequestException('检测到已经有管理员账号，不能重复安装');
+            }
+        } catch (\PDOException $ex) {
+            // 表示还没安装
+        }
+        
         // 创建数据库表
         $sql = file_get_contents(API_ROOT . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'phalapi.sql');
         // 兼容windows的换行
@@ -101,7 +111,6 @@ class Admin extends Api {
         }
         
         // 添加管理员
-        $domain = new AdminDomain();
         $domain->createAdmin($this->username, $this->password, AdminDomain::ADMIN_ROLE_SUPERMAN);
         
         return array();
@@ -131,8 +140,8 @@ class Admin extends Api {
         return array('is_logout' => true);
     }
     
-    public function adminRoles() {
-        $domain = new AdminDomain();
-        return array('admin_roles' => $domain->getAdminRoles());
-    }
+//     public function adminRoles() {
+//         $domain = new AdminDomain();
+//         return array('admin_roles' => $domain->getAdminRoles());
+//     }
 }
