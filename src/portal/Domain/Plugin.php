@@ -124,7 +124,7 @@ class Plugin {
         $jsonFile = $this->getJsonFile($pluginKey);
         if (!$this->installCheckInstalled($pluginKey, $detail)) {
             // 安装失败
-            $detail[] = '插件安装失败，无法找到json配置文件。';
+            $detail[] = '插件安装失败，无法找到json配置文件。请确保目录有写入权限，解决方法：进行环境预热：php ./bin/phalapi-plugin-prepare.php，或使用命令安装：php ./bin/phalapi-plugin-install.php。';
             return false;
         }
 
