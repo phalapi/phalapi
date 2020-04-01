@@ -17,7 +17,7 @@ class User extends DataModel {
             ->select("count(*) as reg_total, FROM_UNIXTIME(reg_time, '%Y-%m-%d') as reg_date")
             ->where('reg_time > ?', $start_reg_time)
             ->group("FROM_UNIXTIME(reg_time, '%Y-%m-%d')")
-            ->order(reg_date)
+            ->order('reg_date')
             ->fetchAll();
     }
 }
