@@ -8,7 +8,7 @@ class Menu {
 
     public function getMenuInfo() {
         $model = new MenuModel();
-        $menus = $model->getAllMenus();
+        $menus = $this->filterUnassignMenus($model->getAllMenus());
 
         // 第一层
         $menuInfo = $this->getByParentId($menus);
@@ -145,15 +145,16 @@ class Menu {
         if ($role == 'super') {
             return $menus;
         }
-        
+        $filmenus=array();
         foreach ($menus as $key => $it) {
             $it['assign_admin_roles'] = explode('|', $it['assign_admin_roles']);
             $it['assgin_admin_usernames'] = explode('|', $it['assgin_admin_usernames']);
-            if (!in_array($role, $it['assign_admin_roles']) && !in_array($username, $it['assgin_admin_usernames'])) {
-                unset($menus[$key]);
+            if (in_array($role, $it['assign_admin_roles']) || in_array($username, $it['assgin_admin_usernames'])) {
+				array_push($filmenus,$it);
             }
         }
         
-        return $menus;
+        return $filmenus;
+		
     }
 }
