@@ -58,6 +58,6 @@ class User {
     
     // 获取资料
     public function __get($name) {
-        return isset($tihs->profile[$name]) ? $tihs->profile[$name] : NULL;
+        return isset($this->profile[$name]) ? $this->profile[$name] : NULL;
     }
 }
