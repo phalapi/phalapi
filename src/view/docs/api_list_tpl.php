@@ -15,7 +15,7 @@ if (substr(PHP_SAPI, 0, 3) == 'cli') {
     <link rel="stylesheet" href="<?php echo $semanticPath; ?>semantic.min.css">
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 
-    <script src="https://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="/static/jquery.min.js"></script>
 <script src="<?php echo $semanticPath; ?>semantic.min.js"></script>
     <meta name="robots" content="none"/>
 </head>

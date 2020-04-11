@@ -26,8 +26,8 @@ echo <<<EOT
     <link rel="stylesheet" href="{$semanticPath}components/label.min.css">
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 
-    <script src="https://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://apps.bdimg.com/libs/jquery.cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="/static/jquery.min.js"></script>
+    <script src="/static/jquery.cookie.min.js"></script>
 </head>
 
 <body>
