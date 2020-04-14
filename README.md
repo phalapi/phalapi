@@ -10,7 +10,7 @@
 [![Latest Unstable Version](https://poser.pugx.org/phalapi/phalapi/v/unstable)](https://packagist.org/packages/phalapi/phalapi)
 [![License](https://poser.pugx.org/phalapi/phalapi/license)](https://packagist.org/packages/phalapi/phalapi)
 
-> [PhalApi Pro 专业版 - 开发API接口系统的专业选择!](http://pro.yesapi.cn/)
+> [PhalApi Pro 专业版 - 搭建开发平台的最佳选择!](http://pro.yesapi.cn/)
  
 ## 1、开发文档
 专为PHPer准备的优雅而详细的开发文档，请看：[PhalApi 2.x 开发文档](http://docs.phalapi.net/#/v2.0/)。  
