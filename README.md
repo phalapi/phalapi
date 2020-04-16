@@ -8,7 +8,7 @@
 [![License](https://poser.pugx.org/phalapi/phalapi/license)](https://packagist.org/packages/phalapi/phalapi)
 
 > [PhalApi Pro 专业版 - 搭建云平台的最佳选择!](http://pro.yesapi.cn/)  
-> [PhalApi Pro  - best choice to build clound platform](http://pro.yesapi.cn/)  
+> [PhalApi Pro  - best choice to build cloud platform](http://pro.yesapi.cn/)  
  
 ## 开发文档 / Documents
 专为PHPer准备的优雅而详细的开发文档，请看：[PhalApi 2.x 开发文档](http://docs.phalapi.net/#/v2.0/)。  
