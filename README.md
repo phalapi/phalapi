@@ -12,15 +12,15 @@
  
 ## 开发文档 / Documents
 专为PHPer准备的优雅而详细的开发文档，请看：[PhalApi 2.x 开发文档](http://docs.phalapi.net/#/v2.0/)。  
-[PhalApi 2.x English Docs](http://docs-en.phalapi.net/#/v2.0/)。  
+[PhalApi 2.x English Docs](http://docs-en.phalapi.net/#/v2.0/).  
 
 ## 在线示例 / Demo
  + 默认接口服务：[http://demo.phalapi.net/?s=App.Site.Index](http://demo.phalapi.net/?s=App.Site.Index)
  + 在线接口文档：[http://demo.phalapi.net/docs.php](http://demo.phalapi.net/docs.php)
  + 接口详情文档（以默认接口为例）：[http://demo.phalapi.net/docs.php?service=App.Site.Index&detail=1&type=fold](http://demo.phalapi.net/docs.php?service=App.Site.Index&detail=1&type=fold)
  + **PhalApi创新项目-小白接口**（免费、免开发、直接可用的的云端API）：[https://www.yesapi.cn/](https://www.yesapi.cn/?f=github)
- 
-
+    
+  
  + Default API：[http://demo.phalapi.net/?s=App.Site.Index](http://demo.phalapi.net/?s=App.Site.Index)
  + Online API List Documents：[http://demo.phalapi.net/docs.php](http://demo.phalapi.net/docs.php)
  + Online API Detail Document：[http://demo.phalapi.net/docs.php?service=App.Site.Index&detail=1&type=fold](http://demo.phalapi.net/docs.php?service=App.Site.Index&detail=1&type=fold)
@@ -30,29 +30,19 @@
 
 ### composer一键安装 / Install by composer
 
-使用composer创建项目的命令，可实现一键安装。
+使用composer创建项目的命令，可实现一键安装。  
+
+One-click installation can be achieved by using the command of composer to create a project.  
 
 ```bash
 $ composer create-project phalapi/phalapi
 ```
-> 温馨提示：关于composer的使用，请参考[Composer 中文网 / Packagist 中国全量镜像](http://www.phpcomposer.com/)。
-
-One-click installation can be achieved by using the command of composer to create a project.
-
-```bash
-$ composer create-project phalapi/phalapi
-```
-
+> 温馨提示：关于composer的使用，请参考[Composer 中文网 / Packagist 中国全量镜像](http://www.phpcomposer.com/)。  
 
 ### 手动下载安装 / Download and Install manually
 
 或者，也可以进行手动安装。将此Git项目代码下载解压后，进行可选的composer更新，即：  
-```bash
-$ composer update
-```
-
-Alternatively, manual installation is also possible. Download phalapi Project master-2x branch Source code. After downloading and unzipping, perform an optional composer update:
-
+Alternatively, manual installation is also possible. Download phalapi Project master-2x branch Source code. After downloading and unzipping, perform an optional composer update:  
 ```bash
 $ composer update
 ```
@@ -129,10 +119,9 @@ At last, change folder ```runtime``` writeable. For more detail about installati
 
 在PhalApi，你可以通过service参数（短名字是s参数）指定需要调用的接口服务。例如，访问默认接口服务。  
 
- + 默认接口：[http://dev.phalapi.net/?s=App.Site.Index](http://dev.phalapi.net/?s=App.Site.Index)  
-
 For PhalApi, the default communicate protocol is HTTP. According to the specific implementation of the API service, we could use GET or POST to request. By default, you can specify the ```service``` parameter or ```s``` for short when requesting. The default API service is ```App.Site.Index```.    
 
+ + 默认接口：[http://dev.phalapi.net/?s=App.Site.Index](http://dev.phalapi.net/?s=App.Site.Index)  
  + Default API：[http://dev.phalapi.net/?s=App.Site.Index](http://dev.phalapi.net/?s=App.Site.Index)  
 
 
@@ -192,23 +181,22 @@ API result as below after request:
 ```
 
 运行效果，截图如下：  
+Runtime sreenshot:  
 
 ![_20190201151943](https://user-images.githubusercontent.com/12585518/52108414-e98d0980-2634-11e9-9e68-9c3fae304a46.png)
 
 ### 查看在线接口文档 / Visit Online API List Documents
 
 PhalApi会根据你编写的接口的参数配置和代码注释，自动实时生成在线接口文档。在线接口文档链接为：  
- 
- + 在线接口文档：[http://dev.phalapi.net/docs.php](http://dev.phalapi.net/docs.php)
-
-浏览效果类似如下：  
-
-![](http://cdn7.okayapi.com/yesyesapi_20200310225952_d319cc197a31f8f3522a82643bf31d60.png)  
-
-PhalApi会根据你编写的接口的参数配置和代码注释，自动实时生成在线接口文档。在线接口文档链接为：  
 PhalApi will auto generate realtime online API documents by PHP code and PHP comments. You can visit them by:  
  
- + Online API Docs：[http://dev.phalapi.net/docs.php](http://dev.phalapi.net/docs.php)
+ + 在线接口文档：[http://dev.phalapi.net/docs.php](http://dev.phalapi.net/docs.php)  
+ + Online API Docs：[http://dev.phalapi.net/docs.php](http://dev.phalapi.net/docs.php)  
+
+浏览效果类似如下：  
+Preview:  
+![](http://cdn7.okayapi.com/yesyesapi_20200310225952_d319cc197a31f8f3522a82643bf31d60.png)  
+ 
 
 ### 客户端请求示例及SDK / Client SDK
 
