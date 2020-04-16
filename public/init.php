@@ -27,5 +27,8 @@ if (\PhalApi\DI()->debug) {
     ini_set('display_errors', 'On'); 
 }
 
-// 翻译语言包设定
+// 翻译语言包设定-简体中文
 \PhalApi\SL('zh_cn');
+
+// English
+// \PhalApi\SL('en');
