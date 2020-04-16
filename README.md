@@ -209,6 +209,18 @@ PhalApi provides an new management system and we named it Portal.
 
 ![](http://cdn7.okayapi.com/yesyesapi_20200309172737_a4b73f5763b4d8758f367a2a34230830.png)
 
+## 翻译 / i18n  
+
+修改```./public/init.php```文件，可设置当前语言。  
+Edit ```./public/init.php``` file to set language.  
+```php
+// 翻译语言包设定-简体中文
+\PhalApi\SL('zh_cn');
+
+// English
+\PhalApi\SL('en');
+```
+
 ## 一张图告诉你如何使用PhalApi 2.x / All in One Picture
 ![phalapi-install](https://user-images.githubusercontent.com/12585518/52995681-4ae71200-3456-11e9-8d00-065a42cf4382.gif)
 
