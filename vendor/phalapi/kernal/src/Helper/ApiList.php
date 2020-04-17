@@ -174,9 +174,9 @@ class ApiList extends ApiOnline
     public function makeThemeButton($theme) {
         $curUrl = $_SERVER['SCRIPT_NAME'];
         if ($theme == 'fold') {
-            echo '<div style="float: right"><a href="' . $curUrl . '?type=expand">切换到展开版</a></div>';
+            echo '<div style="float: right"><a href="' . $curUrl . '?type=expand">'.\PhalApi\T('Expand All').'</a></div>';
         } else {
-            echo '<div style="float: right"><a href="' . $curUrl . '?type=fold">切换到折叠版</a></div>';
+            echo '<div style="float: right"><a href="' . $curUrl . '?type=fold">'.\PhalApi\T('Fold All').'</a></div>';
         }
     }
 

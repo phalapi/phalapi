@@ -196,11 +196,8 @@ PhalApi will generate realtime online API documents automatically by PHP code an
 浏览效果类似如下：  
 Preview:  
 ![](http://cdn7.okayapi.com/yesyesapi_20200310225952_d319cc197a31f8f3522a82643bf31d60.png)  
- 
 
-### 客户端请求示例及SDK / Client SDK
-
-![](http://cdn7.okayapi.com/yesyesapi_20200330114340_6e22156e2b9a248ddd81c77db7cf4210.png)
+![](http://cdn7.okayapi.com/yesyesapi_20200417145333_e8096f41f0ac10dfcd337fad4fdebfdb.png)  
 
 ### 进入Portal运营平台 / Use Portal Platform
 PhalApi采用了当前流行且优秀的layuimin开发全新的管理后台，专门提供给非技术的运营人员使用（技术人员也可使用）。安装Portal前请先配置好数据库连接。如果需要单独升级Portal，可进入[应用市场](http://www.yesdev.cn/)免费下载到本地后安装升级。  
