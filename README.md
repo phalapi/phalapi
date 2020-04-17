@@ -111,7 +111,7 @@ return array(
 ```
 
 最后，需要给runtime目录添加写入权限。更多安装说明请参考文档[下载与安装](http://docs.phalapi.net/#/v2.0/download-and-setup)。  
-At last, change folder ```runtime``` writeable. For more detail about installation, refer to [Download and Installation](https://docs-en.phalapi.net/#/v2.0/download-and-setup).   
+At last, add writeable permission to folder ```runtime```. For more detail about installation, refer to [Download and Installation](https://docs-en.phalapi.net/#/v2.0/download-and-setup).   
 
 ## 使用 / Usage
 
