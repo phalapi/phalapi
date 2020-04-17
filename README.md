@@ -205,19 +205,19 @@ Preview:
 ### 进入Portal运营平台 / Use Portal Platform
 PhalApi采用了当前流行且优秀的layuimin开发全新的管理后台，专门提供给非技术的运营人员使用（技术人员也可使用）。安装Portal前请先配置好数据库连接。如果需要单独升级Portal，可进入[应用市场](http://www.yesdev.cn/)免费下载到本地后安装升级。  
 
-PhalApi provides an new management system and we named it Portal.  
+PhalApi provides a new management system and we name it Portal.  
 
 ![](http://cdn7.okayapi.com/yesyesapi_20200309172737_a4b73f5763b4d8758f367a2a34230830.png)
 
 ## 翻译 / i18n  
 
 修改```./public/init.php```文件，可设置当前语言。  
-Edit ```./public/init.php``` file to set language.  
+Edit ```./public/init.php``` file to set current language.  
 ```php
 // 翻译语言包设定-简体中文
 \PhalApi\SL('zh_cn');
 
-// English
+// Setting language to English
 \PhalApi\SL('en');
 ```
 
