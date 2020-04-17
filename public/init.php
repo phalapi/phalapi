@@ -28,7 +28,7 @@ if (\PhalApi\DI()->debug) {
 }
 
 // 翻译语言包设定-简体中文
-\PhalApi\SL('zh_cn');
+\PhalApi\SL(isset($_COOKIE['language']) ? $_COOKIE['language'] : 'zh_cn');
 
 // English
 // \PhalApi\SL('en');

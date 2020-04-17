@@ -29,7 +29,12 @@
 
 require_once dirname(__FILE__) . '/init.php';
 
-$projectName = 'PhalApi开源接口框架';
+if (!empty($_GET['language'])) {
+    \PhalApi\SL($_GET['language']);
+    setcookie('language', $_GET['language'], time() + 86400 * 360, '/');
+}
+
+$projectName = \PhalApi\T('PhalApi API Framework');
 $docViewCode = ''; // 查看文档密码，为空时不限制
 
 $detailTpl = API_ROOT . '/src/view/docs/api_desc_tpl.php';
@@ -71,7 +76,7 @@ function checkViewCode() {
         if ($_POST['view_code'] == $docViewCode) {
             $_SESSION['doc_view_code'] = $docViewCode;
         } else {
-            $submitError = '查看密码错误！';
+            $submitError = \PhalApi\T('wrong view password');
         }
     }
 

@@ -10,14 +10,15 @@ if (substr(PHP_SAPI, 0, 3) == 'cli') {
     $semanticPath = 'https://cdn.bootcss.com/semantic-ui/2.2.2/';
 }
 
-$whoami = \PhalApi\DI()->admin->check(false) ? \PhalApi\DI()->admin->username : '登录';
+$whoami = \PhalApi\DI()->admin->check(false) ? \PhalApi\DI()->admin->username : \PhalApi\T('Sign In');
+$suffixTitle = \PhalApi\T('Online API Docs');
 
 echo <<<EOT
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>{$description} - {$service} - {$projectName} - 在线接口文档</title>
+    <title>{$description} - {$service} - {$projectName} - {$suffixTitle}</title>
 
     <link rel="stylesheet" href="{$semanticPath}semantic.min.css">
     <link rel="stylesheet" href="{$semanticPath}components/table.min.css">
@@ -31,30 +32,11 @@ echo <<<EOT
 </head>
 
 <body>
+EOT;
 
-  <div class="ui fixed inverted blue menu">
-    <div class="ui container">
-      <a href="/docs.php" class="header item">
-        <img class="logo" src="http://cdn7.phalapi.net/20180316214150_f6f390e686d0397f1f1d6a66320864d6">
-        {$projectName}
-      </a>
-      <a href="/docs.php" class="item"><i class="home icon"></i> 首页</a>
-      <a href="https://www.phalapi.net/" class="item"><i class="globe icon"></i> PhalApi</a>
-      <a href="http://docs.phalapi.net/#/v2.0/" class="item"><i class="file alternate outline icon"></i> 开发文档</a>
-      <a href="/portal/" class="item"><i class="chart line icon"></i> 运营平台</a>
 
-     <div class="right menu">
-         <div class="item">
-             <div class="ui form">
-             <form action="/docs.php?search=k" method="get">
-                <input type="text" name="keyword" placeholder="搜索接口" value="{$keyword}">
-             </form>
-             </div>
-         </div>
-         <a target="_blank" href="/portal" class="item"><i class="user icon"></i> {$whoami}</a>
-      </div>
-    </div>
-  </div>
+include dirname(__FILE__) . '/api_menu.php';
+?>
 
 <div class="row" style="margin-top: 60px;" ></div>
 
@@ -64,34 +46,27 @@ echo <<<EOT
     <h2 class="ui header">
       <i class="settings icon"></i>
       <div class="content">
-        {$service}
-        <div class="sub header">{$description}</div>
+        <?php echo $service; ?>
+        <div class="sub header"><?php echo $description; ?></div>
       </div>
     </h2>
 
-            <h4><i class="linkify in alternate icon"></i>接口地址：{$url}?s={$service}</h4>
+            <h4><i class="linkify in alternate icon"></i><?php echo \PhalApi\T('API Url'); ?>：<?php echo $url; ?>?s=<?php echo $service; ?></h4>
 
-EOT;
-
-/**
- * 接口说明 & 接口参数
- */
-echo <<<EOT
             <div class="ui raised segment">
-                <span class="ui red ribbon label">接口文档</span>
+                <span class="ui red ribbon label"><?php echo \PhalApi\T('API Docs'); ?></span>
                 <div class="ui message">
-                <p>{$descComment}</p>
+                <p><?php echo \PhalApi\T('API Description'); ?>：<?php echo $descComment; ?></p>
                 </div>
             </div>
 
-            <h3><i class="sign in alternate icon"></i>接口参数</h3>
+            <h3><i class="sign in alternate icon"></i><?php echo \PhalApi\T('API Parameters'); ?></h3>
             <table class="ui red celled striped table" >
                 <thead>
-                    <tr><th>参数名字</th><th>类型</th><th>是否必须</th><th>默认值</th><th>其他</th><th>说明</th></tr>
+                    <tr><th><?php echo \PhalApi\T('Parameter Name'); ?></th><th><?php echo \PhalApi\T('Type'); ?></th><th><?php echo \PhalApi\T('Is Required'); ?></th><th><?php echo \PhalApi\T('Default'); ?></th><th><?php echo \PhalApi\T('Note'); ?></th><th><?php echo \PhalApi\T('Description'); ?></th></tr>
                 </thead>
                 <tbody>
-EOT;
-
+<?php
 $typeMaps = array(
     'string' => '字符串',
     'int' => '整型',
@@ -103,6 +78,9 @@ $typeMaps = array(
     'enum' => '枚举类型',
     'object' => '对象',
 );
+foreach ($typeMaps as $key => &$tmRef) {
+    $tmRef = \PhalApi\T($key);
+}
 
 foreach ($rules as $key => $rule) {
     // 接口文档不显示
@@ -115,7 +93,7 @@ foreach ($rules as $key => $rule) {
         $rule['type'] = 'string';
     }
     $type = isset($typeMaps[$rule['type']]) ? $typeMaps[$rule['type']] : $rule['type'];
-    $require = isset($rule['require']) && $rule['require'] ? '<font color="red">必须</font>' : '可选';
+    $require = isset($rule['require']) && $rule['require'] ? '<font color="red">'.\PhalApi\T('Required').'</font>' : \PhalApi\T('Optional');
     $default = isset($rule['default']) ? $rule['default'] : '';
     if ($default === NULL) {
         $default = 'NULL';
@@ -136,23 +114,23 @@ foreach ($rules as $key => $rule) {
         $type .= sprintf(
             '<span class="ui label blue small">%s</span>',
             $rule['format'] == 'json'
-            ? 'JSON格式'
-            : sprintf('用%s分割', isset($rule['separator']) ? $rule['separator'] : ',')
+            ? \PhalApi\T('json')
+            : sprintf(\PhalApi\T('seperated by %s'), isset($rule['separator']) ? $rule['separator'] : ',')
         );
     }
 
     $other = array();
     if (isset($rule['min'])) {
-        $other[] = '最小：' . $rule['min'];
+        $other[] = \PhalApi\T('min: ') . $rule['min'];
     }
     if (isset($rule['max'])) {
-        $other[] = '最大：' . $rule['max'];
+        $other[] = \PhalApi\T('max: ') . $rule['max'];
     }
     if (isset($rule['range'])) {
-        $other[] = '范围：' . implode('/', $rule['range']);
+        $other[] = \PhalApi\T('range: ') . implode('/', $rule['range']);
     }
     if (isset($rule['source'])) {
-        $other[] = '数据源：' . strtoupper($rule['source']);
+        $other[] = \PhalApi\T('source: ') . strtoupper($rule['source']);
     }
     $other = implode('；', $other);
 
@@ -164,17 +142,17 @@ foreach ($rules as $key => $rule) {
 /**
  * 返回结果
  */
-echo <<<EOT
+?>
                 </tbody>
             </table>
-            <h3><i class="sign out alternate icon"></i>返回结果</h3>
-            <table class="ui red celled striped table" >
+            <h3><i class="sign out alternate icon"></i><?php echo \PhalApi\T('Parameter Name'); ?></h3>
+            <table class="ui green celled striped table" >
                 <thead>
-                    <tr><th>返回字段</th><th>类型</th><th>说明</th></tr>
+                    <tr><th><?php echo \PhalApi\T('Response Result'); ?></th><th><?php echo \PhalApi\T('Type'); ?></th><th><?php echo \PhalApi\T('Description'); ?></th></tr>
                 </thead>
                 <tbody>
-EOT;
-
+                
+<?php
 foreach ($returns as $item) {
     $name = $item[1];
     $type = isset($typeMaps[$item[0]]) ? $typeMaps[$item[0]] : $item[0];
@@ -192,11 +170,14 @@ EOT;
  * 异常情况
  */
 if (!empty($exceptions)) {
+    $elt = \PhalApi\T('Error List');
+    $est = \PhalApi\T('Error Status');
+    $edt = \PhalApi\T('Error Description');
     echo <<<EOT
-            <h3><i class="bell icon"></i>异常情况</h3>
+            <h3 id="ret_code_list_id"><i class="bell icon"></i>{$elt}</h3>
             <table class="ui red celled striped table" >
                 <thead>
-                    <tr><th>错误码</th><th>错误描述信息</th>
+                    <tr><th>{$est}</th><th>{$edt}</th>
                 </thead>
                 <tbody>
 EOT;
@@ -211,30 +192,29 @@ EOT;
             </tbody>
         </table>
 EOT;
-}
 
 /**
  * 返回结果
  */
-echo <<<EOT
+}
+?>
+
 <h3>
-    <i class="bug icon"></i>在线测试 &nbsp;&nbsp;
+    <i class="bug icon"></i><?php echo \PhalApi\T('Test Online'); ?> &nbsp;&nbsp;
 </h3>
-EOT;
 
 
-echo <<<EOT
 <table class="ui red celled striped table" >
     <thead>
-        <tr><th width="25%">参数</th><th width="10%">是否必填</th><th width="65%">值</th></tr>
+        <tr><th width="25%"><?php echo \PhalApi\T('Parameter'); ?></th><th width="10%"><?php echo \PhalApi\T('Is Required'); ?></th><th width="65%"><?php echo \PhalApi\T('Value'); ?></th></tr>
     </thead>
     <tbody id="params">
         <tr>
             <td>service</td>
-            <td><font color="red">必须</font></td>
-            <td><div class="ui fluid input disabled"><input name="service" data-source="get" value="{$service}" style="width:100%;" class="C_input" /></div></td>
+            <td><font color="red"><?php echo \PhalApi\T('Required'); ?></font></td>
+            <td><div class="ui fluid input disabled"><input name="service" data-source="get" value="<?php echo $service; ?>" style="width:100%;" class="C_input" /></div></td>
         </tr>
-EOT;
+<?php
 foreach ($rules as $key => $rule){
     // 接口文档不显示
     if (!empty($rule['is_doc_hide'])) {
@@ -247,7 +227,7 @@ foreach ($rules as $key => $rule){
         continue;
     }
     $name = $rule['name'];
-    $require = isset($rule['require']) && $rule['require'] ? '<font color="red">必须</font>' : '可选';
+    $require = isset($rule['require']) && $rule['require'] ? '<font color="red">'.\PhalApi\T('Required').'</font>' : \PhalApi\T('Optional');
     // 提供给表单的默认值
     $default = isset($rule['default'])
         ? (is_array($rule['default']) // 针对数组，进行反序列化
@@ -272,7 +252,7 @@ foreach ($rules as $key => $rule){
         </tr>
 EOT;
 }
-echo <<<EOT
+?>
     </tbody>
 </table>
 <div style="display: flex;align-items:center;">
@@ -280,8 +260,6 @@ echo <<<EOT
         <option value="POST">POST</option>
         <option value="GET">GET</option>
     </select>-->
-EOT;
-echo <<<EOT
 <!--
 接口链接：&nbsp;<input name="request_url" value="{$url}" style="width:500px; height:24px; line-height:18px; font-size:13px;position:relative; padding-left:5px;margin-left: 10px"/>
     <input type="submit" name="submit" value="发送" id="submit" style="font-size:14px;line-height: 20px;margin-left: 10px " class="ui green button" />
@@ -290,27 +268,16 @@ echo <<<EOT
 </div>
 
 <div class="ui fluid action input">
-      <input placeholder="请求的接口链接" type="text" name="request_url" value="{$url}" >
-      <button class="ui button blue" id="submit" >请求当前接口</button>
+      <input placeholder="请求的接口链接" type="text" name="request_url" value="<?php echo $url; ?>" >
+      <button class="ui button blue" id="submit" ><?php echo \PhalApi\T('Request API'); ?></button>
 </div>
-EOT;
 
-/**
- * JSON结果
- */
-echo <<<EOT
 <div class="ui blue message" id="json_output" style="overflow: auto;">
 </div>
-EOT;
 
+<h3><i class="code icon"></i><?php echo \PhalApi\T('Client Request Demo'); ?></h3>
 
-/**
- * 动态生成客户端代码示例
- */
-echo <<<EOT
-<h3><i class="code icon"></i>客户端请求示例</h3>
-EOT;
-
+<?php
 $demoCodes = array();
 $demoPath = dirname(__FILE__) . '/demos';
 foreach (array(
@@ -354,6 +321,9 @@ $codeName = array(
     'go' => 'Golang示例',
     'cs' => 'C#示例',
 );
+foreach ($codeName as $key => &$cnRef) {
+    $cnRef = \PhalApi\T($key . ' demo');
+}
 
 if (!empty($demoCodes)) {
     $allKeys = array_keys($demoCodes);
@@ -392,145 +362,24 @@ EOT;
  */
 $version = PHALAPI_VERSION;
 $thisYear = date('Y');
+$tips = \PhalApi\T('Tips: ');
+$helpMsg = \PhalApi\T('This API Document will be generated automately by PHP code and comments. More detail please visit <a href="{url}" target="_blank">Docs</a>.', array('url' => 'http://docs.phalapi.net/#/v2.0/api-docs'));
 echo <<<EOT
         <div class="ui blue message">
-          <strong>温馨提示：</strong> 此接口文档根据接口代码和注释实时自动生成，帮助文档请见<a href="http://docs.phalapi.net/#/v2.0/api-docs" target="_blank">PhalApi 2.x 开发文档</a>。
+          <strong>{$tips}</strong> {$helpMsg}
         </div>
         </div>
 
     </div>
-
-  <div class="ui inverted vertical footer segment" style="margin-top:30px; background: #1B1C1D none repeat scroll 0% 0%;" >
-    <div class="ui container">
-      <div class="ui stackable inverted divided equal height stackable grid">
-        <div class="ten wide column centered">
-            <div class="column" align="center" >
-                <img src="https://www.phalapi.net/images/icon_logo.png" alt="PhalApi">
-            </div>
-            <div class="column" align="center">
-                <p>
-                    <strong>接口，从简单开始！</strong>
-                    <br />
-                    © 2015-{$thisYear} Powered  By <a href="http://www.phalapi.net/" target="">开源接口框架 PhalApi {$version} </a> <span id="version_update"></span>
-                    &nbsp;&nbsp;
-                    <a target="_blank" href="http://pro.phalapi.net/" class="orange"><span class="ui tiny label orange"><i class="icon arrow alternate circle up"></i>专业版<span></a>
-                </p>
-            </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
 <!-- tag -->
 <script src="{$semanticPath}semantic.min.js" ></script>
 <script src="{$semanticPath}components/tab.js"></script>
 
-    <script type="text/javascript">
-        function getData() {
-            var data = new FormData();
-            var param = [];
-            $("td input").each(function(index,e) {
-                if ($.trim(e.value)){
-                    if (e.type != 'file'){
-                        if ($(e).data('source') == 'get') {
-                            param.push(e.name + '=' + e.value);
-                        } else {
-                            data.append(e.name, e.value);
-                        }
-
-                        if (e.name != "service") $.cookie(e.name, e.value, {expires: 30});
-                    } else{
-                        var files = e.files;
-                        if (files.length == 1){
-                            data.append(e.name, files[0]);
-                        } else{
-                            for (var i = 0; i < files.length; i++) {
-                                data.append(e.name + '[]', files[i]);
-                            }
-                        }
-                    }
-                }
-            });
-            param = param.join('&');
-            return {param:param, data:data};
-        }
-        
-        $(function(){
-            $("#json_output").hide();
-            $("#submit").on("click",function(){
-                $("#json_output").html('<div class="ui active inverted dimmer"><div class="ui text loader">接口请求中……</div></div>');
-                $("#json_output").show();
-
-                var data = getData();
-                var url_arr = $("input[name=request_url]").val().split('?');
-                var url = url_arr.shift();
-                var param = url_arr.join('?');
-                param = param.length > 0 ? param + '&' + data.param : data.param;
-                url = url + '?' + param;
-                $.ajax({
-                    url: url,
-                    type:'post',
-                    data:data.data,
-                    cache: false,
-                    processData: false,
-                    contentType: false,
-                    success:function(res,status,xhr){
-                        console.log(xhr);
-                        var statu = xhr.status + ' ' + xhr.statusText;
-                        var header = xhr.getAllResponseHeaders();
-                        var json_text = JSON.stringify(res, null, 4);    // 缩进4个空格
-                        $("#json_output").html('<pre>' + statu + '<br/>' + header + '<br/>' + json_text + '</pre>');
-                        $("#json_output").show();
-                    },
-                    error:function(error){
-                        $("#json_output").html('接口请求失败：' + error);
-                    }
-                })
-            })
-
-            fillHistoryData();
-
-            checkLastestVersion();
-
-            // 选项卡
-            $('.tabular.menu .item').tab();
-        })
-
-        // 填充历史数据
-        function fillHistoryData() {
-            $("td input").each(function(index,e) {
-                var cookie_value = $.cookie(e.name);
-                if (e.name != "service" && cookie_value != "" && cookie_value !== undefined) {
-                    e.value = cookie_value;
-                }
-            });
-        }
-
-        // 检测最新版本
-        function checkLastestVersion() {
-                $.ajax({
-                    url:'https://www.phalapi.net/check_lastest_version.php',
-                    type:'get',
-                    data:{version : '$version'},
-                    success:function(res,status,xhr){
-                        if (!res.ret || res.ret != 200) {
-                            return;
-                        }
-                        if (res.data.need_upgrade >= 0) {
-                            return;
-                        }          
-
-                        $('#version_update').html('&nbsp; | &nbsp; <a target="_blank" href=" ' + res.data.url + ' "><strong>免费升级到 PhalApi ' + res.data.version + '</strong></a>');              
-                    },
-                    error:function(error){
-                        console.log(error)
-                    }
-                })
-
-        }
-    </script>
-</body>
-</html>
 EOT;
+
+include dirname(__FILE__) . '/api_footer.php';
+
+?>
 
 
