@@ -225,7 +225,7 @@ Edit ```./public/init.php``` file to set language.
 ![phalapi-install](https://user-images.githubusercontent.com/12585518/52995681-4ae71200-3456-11e9-8d00-065a42cf4382.gif)
 
 ## 子项目 / Sub Projects
- + [phalapi/kernal](https://github.com/phalapi/kernal)框架内核 / Framework kernal  
+ + [phalapi/kernal](https://github.com/phalapi/kernal)框架内核 / Framework Kernal  
  + [phalapi/notorm](https://github.com/phalapi/notorm)数据库包 / Database Library based on NotORM  
 
 ## 还有问题，怎么办？/ Any Question?  
@@ -233,7 +233,7 @@ Edit ```./public/init.php``` file to set language.
 如发现问题，或者任何问题，欢迎提交Issue到[这里](https://github.com/phalapi/phalapi/issues)，或进入[PhalApi开源社区](http://talk.phalapi.net/?f=github)。  
 如果喜欢，请帮忙在[Github](https://github.com/phalapi/phalapi)或[码云](https://gitee.com/dogstar/PhalApi)给个Star，也可以对PhalApi进行[捐赠](https://www.phalapi.net/donate.html)哦 ^_^。  
 
-Welcome to report any issue at [here](https://github.com/phalapi/phalapi/issues).   
+Welcome to report any issue [here](https://github.com/phalapi/phalapi/issues).   
 If you like PhalApi, welcome to give us a Star at [Github](https://github.com/phalapi/phalapi).  
 
 ## 开源许可协议 / Licence
