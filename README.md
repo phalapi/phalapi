@@ -22,7 +22,7 @@
     
   
  + Default API：[http://demo.phalapi.net/?s=App.Site.Index](http://demo.phalapi.net/?s=App.Site.Index)
- + Online API List Documents：[http://demo.phalapi.net/docs.php](http://demo.phalapi.net/docs.php)
+ + Online API List Document：[http://demo.phalapi.net/docs.php](http://demo.phalapi.net/docs.php)
  + Online API Detail Document：[http://demo.phalapi.net/docs.php?service=App.Site.Index&detail=1&type=fold](http://demo.phalapi.net/docs.php?service=App.Site.Index&detail=1&type=fold)
  + **Innovation project based on PhalApi-YesApi**：[https://www.yesapi.cn/](https://www.yesapi.cn/?f=github)
  
@@ -42,7 +42,7 @@ $ composer create-project phalapi/phalapi
 ### 手动下载安装 / Download and Install manually
 
 或者，也可以进行手动安装。将此Git项目代码下载解压后，进行可选的composer更新，即：  
-Alternatively, manual installation is also possible. Download phalapi Project master-2x branch Source code. After downloading and unzipping, perform an optional composer update:  
+Alternatively, manual installation is also possible. Download PhalApi Project master-2x branch Source code. After downloading and unzipping, perform an optional composer update:  
 ```bash
 $ composer update
 ```
@@ -76,14 +76,14 @@ server {
 }
 ```
 配置时需要将网站根目录设置到public目录，配置保存后重启nginx。  
-Save and reload nginx.  
+Point the root path of the visit to public folder. Save and reload nginx.  
 
 > 温馨提示：推荐将访问根路径指向/path/to/phalapi/public。  
-> Tips: It is recommended to point the root path of the visit to /path/to/phalapi/public. In the subsequent development documents, unless otherwise specified, this configuration method is agreed.
+> Tips: It is recommended to point the root path of the visit to /path/to/phalapi/public.
 
 ### 数据库配置 / Database Configuration
 如何使用的是MySQL数据库，参考修改```./config/dbs.php```数据库配置。  
-If you use MySQL, please edit ```./config/dbs.php```.  
+If you are using MySQL, please edit ```./config/dbs.php```.  
 
 ```php
 return array(
@@ -111,7 +111,7 @@ return array(
 ```
 
 最后，需要给runtime目录添加写入权限。更多安装说明请参考文档[下载与安装](http://docs.phalapi.net/#/v2.0/download-and-setup)。  
-At last, change folder ```runtime``` writeable. For more detail about installation, refer [Download and Installation](https://docs-en.phalapi.net/#/v2.0/download-and-setup).   
+At last, change folder ```runtime``` writeable. For more detail about installation, refer to [Download and Installation](https://docs-en.phalapi.net/#/v2.0/download-and-setup).   
 
 ## 使用 / Usage
 
@@ -119,7 +119,7 @@ At last, change folder ```runtime``` writeable. For more detail about installati
 
 在PhalApi，你可以通过service参数（短名字是s参数）指定需要调用的接口服务。例如，访问默认接口服务。  
 
-For PhalApi, the default communicate protocol is HTTP. According to the specific implementation of the API service, we could use GET or POST to request. By default, you can specify the ```service``` parameter or ```s``` for short when requesting. The default API service is ```App.Site.Index```.    
+For PhalApi, the default communicate protocol is HTTP/HTTPS. According to the specific implementation of the API service, we could use GET or POST to request. By default, you can specify the ```service``` parameter or ```s``` for short when requesting. The default API service is ```App.Site.Index```.    
 
  + 默认接口：[http://dev.phalapi.net/?s=App.Site.Index](http://dev.phalapi.net/?s=App.Site.Index)  
  + Default API：[http://dev.phalapi.net/?s=App.Site.Index](http://dev.phalapi.net/?s=App.Site.Index)  
@@ -167,7 +167,7 @@ class Site extends Api {
 ```
 
 接口请求后结果输出类似如下：  
-API result as below after request:    
+API result as below after requesting:    
 ```
 {
     "ret": 200,
@@ -181,14 +181,14 @@ API result as below after request:
 ```
 
 运行效果，截图如下：  
-Runtime sreenshot:  
+Runtime Sreenshot:  
 
 ![_20190201151943](https://user-images.githubusercontent.com/12585518/52108414-e98d0980-2634-11e9-9e68-9c3fae304a46.png)
 
 ### 查看在线接口文档 / Visit Online API List Documents
 
 PhalApi会根据你编写的接口的参数配置和代码注释，自动实时生成在线接口文档。在线接口文档链接为：  
-PhalApi will auto generate realtime online API documents by PHP code and PHP comments. You can visit them by:  
+PhalApi will generate realtime online API documents automatically by PHP code and PHP comments. You can visit them by:  
  
  + 在线接口文档：[http://dev.phalapi.net/docs.php](http://dev.phalapi.net/docs.php)  
  + Online API Docs：[http://dev.phalapi.net/docs.php](http://dev.phalapi.net/docs.php)  
@@ -228,13 +228,13 @@ Edit ```./public/init.php``` file to set language.
  + [phalapi/kernal](https://github.com/phalapi/kernal)框架内核 / Framework kernal  
  + [phalapi/notorm](https://github.com/phalapi/notorm)数据库包 / Database Library based on NotORM  
 
-## 还有问题，怎么办？/ More Detail?  
+## 还有问题，怎么办？/ Any Question?  
 
 如发现问题，或者任何问题，欢迎提交Issue到[这里](https://github.com/phalapi/phalapi/issues)，或进入[PhalApi开源社区](http://talk.phalapi.net/?f=github)。  
 如果喜欢，请帮忙在[Github](https://github.com/phalapi/phalapi)或[码云](https://gitee.com/dogstar/PhalApi)给个Star，也可以对PhalApi进行[捐赠](https://www.phalapi.net/donate.html)哦 ^_^。  
 
-Welcome to report an issue at [here](https://github.com/phalapi/phalapi/issues).   
-If you like PhalApi, welcome star at [Github](https://github.com/phalapi/phalapi).  
+Welcome to report any issue at [here](https://github.com/phalapi/phalapi/issues).   
+If you like PhalApi, welcome to give us a Star at [Github](https://github.com/phalapi/phalapi).  
 
 ## 开源许可协议 / Licence
 GPL-2.0
