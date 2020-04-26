@@ -54,4 +54,6 @@ return array(
     'miss update data' => '缺少更新的数据',
     'must implement userCheck() to protected your API' => '接口类必须实现userCheck()方法以便进行用户身份验证，避免接口被非法调用',
     '{error} ({errno}): {errstr} in [File: {errfile}, Line: {errline}, Time: {time}]' => '{error}({errno})：{errstr} [文件：{errfile}，行号：{errline}，时间：{time}]',
+    'Expand All' => '切换到展开版',
+    'Fold All' => '切换到折叠版',
 );

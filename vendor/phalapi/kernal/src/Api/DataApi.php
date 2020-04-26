@@ -63,7 +63,7 @@ class DataApi extends Api {
 
     /**
      * 获取表格列表数据
-     * @desc 运营平台数据接口，获取表格列表数据，默认按ID降序返回，支持分页和搜索
+     * @desc 通用数据接口，获取表格列表数据，默认按ID降序返回，支持分页和搜索
      */
     public function tableList() {
         $model = $this->getDataModel();
@@ -114,7 +114,7 @@ class DataApi extends Api {
     
     /**
      * 创建新数据
-     * @desc 运营平台数据接口，创建一条新数据
+     * @desc 通用数据接口，创建一条新数据
      * @return int id 新纪录的ID
      */
     public function createData() {
@@ -184,7 +184,7 @@ class DataApi extends Api {
     
     /**
      * 批量删除
-     * @desc 运营平台数据接口，根据ID批量删除数据
+     * @desc 通用数据接口，根据ID批量删除数据
      */
     public function deleteDataIDs() {
         $model = $this->getDataModel();
@@ -194,7 +194,7 @@ class DataApi extends Api {
     
     /**
      * 获取一条数据
-     * @desc 运营平台数据接口，根据ID获取一条数据
+     * @desc 通用数据接口，根据ID获取一条数据
      * @return object|null 数据
      */
     public function getData() {
@@ -230,7 +230,7 @@ class DataApi extends Api {
     
     /**
      * 更新数据
-     * @desc 运营平台数据接口，根据ID更新单条数据
+     * @desc 通用数据接口，根据ID更新单条数据
      * @return int|boolean updated_num 更新的数据条数，0表示无更新，1表示更新成功
      */
     public function updateData() {
