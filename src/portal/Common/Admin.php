@@ -21,7 +21,17 @@ class Admin {
     const SESSION_KEY = 'phalapi_Portal';
 
     public function __construct() {
-        session_start();
+        // 检测session是否已启动
+        if (version_compare(PHP_VERSION, '5.4.0') >= 0) {
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }
+        } else {
+            // 如果 PHP < 5.4.0的版本，使用session_id()检查
+            if(session_id() == '') {
+                session_start();
+            }
+        }
     }
 
     /**

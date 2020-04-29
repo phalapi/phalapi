@@ -3,7 +3,7 @@
     "plugin_name": "PhalApi运营平台",
     "plugin_author": "dogstar",
     "plugin_desc": "PhalApi 2.x Portal运营平台",
-    "plugin_version": "1.1",
+    "plugin_version": "1.2",
     "plugin_encrypt": 0,
     "plugin_depends": {
         "PHP": "5.6",
