@@ -234,5 +234,5 @@ Welcome to report any issue [here](https://github.com/phalapi/phalapi/issues).
 If you like PhalApi, welcome to give us a Star at [Github](https://github.com/phalapi/phalapi).  
 
 ## 开源许可协议 / Licence
-GPL-2.0
+Apache2
 
