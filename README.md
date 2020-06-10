@@ -7,8 +7,8 @@
 [![Latest Unstable Version](https://poser.pugx.org/phalapi/phalapi/v/unstable)](https://packagist.org/packages/phalapi/phalapi)
 [![License](https://poser.pugx.org/phalapi/phalapi/license)](https://packagist.org/packages/phalapi/phalapi)
 
-> [PhalApi Pro 专业版 - 搭建云平台的最佳选择!](http://pro.yesapi.cn/)  
-> [PhalApi Pro  - best choice to build cloud platform](http://pro.yesapi.cn/)  
+> [PhalApi Pro 专业版 - 专注接口开发管理和开放平台搭建](http://pro.yesapi.cn/)  
+> [PhalApi Pro  - focus on API and Open Platform](http://pro.yesapi.cn/)  
  
 ## 开发文档 / Documents
 专为PHPer准备的优雅而详细的开发文档，请看：[PhalApi 2.x 开发文档](http://docs.phalapi.net/#/v2.0/)。  
@@ -234,5 +234,5 @@ Welcome to report any issue [here](https://github.com/phalapi/phalapi/issues).
 If you like PhalApi, welcome to give us a Star at [Github](https://github.com/phalapi/phalapi).  
 
 ## 开源许可协议 / Licence
-GPL-2.0
+Apache 2.0，Apache Licence是著名的非盈利开源组织Apache采用的协议。该协议和BSD类似，同样鼓励代码共享和尊重原作者的著作权，同样允许代码修改，再发布（作为开源或商业软件）。
 
