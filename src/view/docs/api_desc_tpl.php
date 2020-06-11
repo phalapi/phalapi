@@ -380,6 +380,8 @@ EOT;
 
 include dirname(__FILE__) . '/api_footer.php';
 
+echo <<<EOT
+</body>
+</html>
+EOT;
 ?>
-
-
