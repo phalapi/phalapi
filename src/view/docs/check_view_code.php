@@ -107,3 +107,6 @@ $semanticPath = '/semantic/'; // 本地
  </div>
         
 <?php include dirname(__FILE__) . '/api_footer.php';?>
+
+</body>
+</html>
