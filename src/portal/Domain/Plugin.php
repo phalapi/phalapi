@@ -236,7 +236,7 @@ class Plugin {
 
     public function getMarketPlugins($page = 1, $perpage = 20, $searchParams = array()) {
         $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
-        $url = 'http://demo.phalapi.net/plugins.php?' . http_build_query(array('page' => $page, 'perpage' => $perpage, 'searchParams' => json_encode($searchParams), 'host' => $host, 'version' => PHALAPI_VERSION));
+        $url = 'https://www.phalapi.net/plugins.php?' . http_build_query(array('page' => $page, 'perpage' => $perpage, 'searchParams' => json_encode($searchParams), 'host' => $host, 'version' => PHALAPI_VERSION));
         $curl = new \PhalApi\CUrl();
         $result = $curl->get($url, 10000);
         $result = json_decode($result, true);
@@ -332,7 +332,7 @@ class Plugin {
     public function marketTopContent() {
         $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
         $curl = new \PhalApi\CUrl();
-        $result = $curl->get('http://demo.phalapi.net/plugins_hot.php', 10000);
+        $result = $curl->get('https://www.phalapi.net/plugins_hot.php', 10000);
         $result = json_decode($result, true);
         $moreContent = !empty($result['hot']) ? $result['hot'] : '';
 
