@@ -5,7 +5,7 @@ $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
 $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']) ? 'https://' : 'http://';
 $url = $url . (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost');
 $url .= trim(substr($_SERVER['SCRIPT_NAME'], 0, strrpos($_SERVER['SCRIPT_NAME'], '/') + 1), '.');
-$semanticPath = '/semantic/'; // 本地
+$semanticPath = './semantic/'; // 本地
 if (substr(PHP_SAPI, 0, 3) == 'cli') {
     $semanticPath = 'https://cdn.bootcss.com/semantic-ui/2.2.2/';
 }

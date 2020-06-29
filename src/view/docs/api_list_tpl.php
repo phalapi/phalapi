@@ -1,6 +1,6 @@
 <?php
 $table_color_arr = explode(" ", "red orange yellow olive teal blue violet purple pink grey black");
-$semanticPath = '/semantic/'; // 本地
+$semanticPath = './semantic/'; // 本地
 if (substr(PHP_SAPI, 0, 3) == 'cli') {
     $semanticPath = 'https://cdn.bootcss.com/semantic-ui/2.2.2/';
 }
