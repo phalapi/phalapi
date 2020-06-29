@@ -337,8 +337,8 @@ class Plugin {
         $moreContent = !empty($result['hot']) ? $result['hot'] : '';
 
         $content = sprintf('<blockquote class="layui-elem-quote">当前网站域名是：%s，PhalApi版本是：v%s。
-            更多精品插件和优质应用，尽在<a href="%s" target="_blank"  class="layui-btn layui-btn-normal layui-btn-sm ">PhalApi应用市场</a>。%s</blockquote>', 
-            $host, PHALAPI_VERSION, 'http://www.yesx2.com?from_portal=' . $host, $moreContent);
+            更多精品插件和优质应用，尽在<a href="%s" target="_blank"  class="layui-btn layui-btn-normal layui-btn-sm ">PhalApi插件仓库</a>。%s</blockquote>', 
+            $host, PHALAPI_VERSION, 'https://gitee.com/dogstar/PhalApi-Net/tree/master/download/plugins', $moreContent);
 
         return $content;
     }
