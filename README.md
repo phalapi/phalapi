@@ -9,7 +9,12 @@
 
 > [PhalApi Pro 专业版 - 专注接口开发管理和开放平台搭建](http://pro.yesapi.cn/)  
 > [PhalApi Pro  - focus on API and Open Platform](http://pro.yesapi.cn/)  
- 
+
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/phalapi/phalapi.svg)](https://starchart.cc/phalapi/phalapi)
+   
+   
 ## 开发文档 / Documents
 专为PHPer准备的优雅而详细的开发文档，请看：[PhalApi 2.x 开发文档](http://docs.phalapi.net/#/v2.0/)。  
 [PhalApi 2.x English Docs](http://docs-en.phalapi.net/#/v2.0/).  
