@@ -31,6 +31,7 @@ class ApiDesc extends ApiOnline {
         $returns = array();
         $description = '';
         $descComment = '//请使用@desc 注释';
+        $methods = '';
         $exceptions = array();
 
         $projectName = $this->projectName;
@@ -80,6 +81,13 @@ class ApiDesc extends ApiOnline {
             $pos = stripos($comment, '@desc');
             if ($pos !== FALSE) {
                 $descComment = substr($comment, $pos + 5);
+                continue;
+            }
+
+            //@method注释
+            $pos = stripos($comment, '@method');
+            if ($pos !== FALSE) {
+                $methods = substr($comment, $pos + 8);
                 continue;
             }
 

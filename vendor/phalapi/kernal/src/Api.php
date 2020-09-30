@@ -1,6 +1,7 @@
 <?php
 namespace PhalApi;
 
+use PhalApi\Exception\BadRequestException;
 use PhalApi\Exception\InternalServerErrorException;
 
 /**
@@ -59,7 +60,7 @@ class Api {
     /**
      * 获取规则解析后的接口参数
      * @param string $name 接口参数名字
-     * @throws Exception_InternalServerError 获取未设置的接口参数时，返回500
+     * @throws PhalApi\Exception\InternalServerErrorException 获取未设置的接口参数时，返回500
      * @return mixed
      */
     public function __get($name) {
@@ -86,11 +87,44 @@ class Api {
      * @return null
      */
     public function init() {
+        $this->checkRequestMethod();
+
         $this->createMemberValue();
 
         $this->filterCheck();
 
         $this->userCheck();
+    }
+
+    /**
+     * 检测请求方式
+     * 
+     * 根据接口方法@method注解，判断请求方式
+     *
+     * @throw \PhalApi\Exception\BadRequestException
+     */
+    protected function checkRequestMethod() {
+        $action = \PhalApi\DI()->request->getServiceAction();
+
+        try {
+            $rMethod = new \ReflectionMethod($this, $action);
+        } catch (\ReflectionException $ex) {
+            return;
+        }
+
+        $commentArr = explode("\n", $rMethod->getDocComment());
+        foreach ($commentArr as $comment) {
+            $comment = trim($comment);
+            $pos = stripos($comment, '@method');
+            if ($pos !== FALSE) {
+                if (isset($_SERVER['REQUEST_METHOD']) && stripos($comment, ' ' . $_SERVER['REQUEST_METHOD']) === FALSE) {
+                    throw new BadRequestException(
+                        T('request method not allowed, only {method}', array('method' => substr($comment, $pos + 8))), 4
+                    );
+                }
+                break;
+            }
+        }
     }
 
     /**

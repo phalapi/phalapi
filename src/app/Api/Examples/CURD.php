@@ -62,6 +62,7 @@ class CURD extends Api {
     /**
      * 更新数据
      * @desc 根据ID更新数据库中的一条纪录数据
+     * @method POST
      * @return int code 更新的结果，1表示成功，0表示无更新，false表示失败
      */
     public function update() {

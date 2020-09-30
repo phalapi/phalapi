@@ -54,7 +54,7 @@ include dirname(__FILE__) . '/api_menu.php';
             <h4><i class="linkify in alternate icon"></i><?php echo \PhalApi\T('API Url'); ?>：<?php echo $url; ?>?s=<?php echo $service; ?></h4>
 
             <div class="ui raised segment">
-                <span class="ui red ribbon label"><?php echo \PhalApi\T('API Docs'); ?></span>
+                <span class="ui red ribbon label"><?php echo !empty($methods) ? $methods : \PhalApi\T('API Docs'); ?></span>
                 <div class="ui message">
                 <p><?php echo \PhalApi\T('API Description'); ?>：<?php echo $descComment; ?></p>
                 </div>
@@ -145,10 +145,10 @@ foreach ($rules as $key => $rule) {
 ?>
                 </tbody>
             </table>
-            <h3><i class="sign out alternate icon"></i><?php echo \PhalApi\T('Parameter Name'); ?></h3>
+            <h3><i class="sign out alternate icon"></i><?php echo \PhalApi\T('Response Result'); ?></h3>
             <table class="ui green celled striped table" >
                 <thead>
-                    <tr><th><?php echo \PhalApi\T('Response Result'); ?></th><th><?php echo \PhalApi\T('Type'); ?></th><th><?php echo \PhalApi\T('Description'); ?></th></tr>
+                    <tr><th><?php echo \PhalApi\T('Parameter Name'); ?></th><th><?php echo \PhalApi\T('Type'); ?></th><th><?php echo \PhalApi\T('Description'); ?></th></tr>
                 </thead>
                 <tbody>
                 

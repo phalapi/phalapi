@@ -104,6 +104,8 @@ class ApiList extends ApiOnline
 
                     $title = '//请检测函数注释';
                     $desc = '//请使用@desc 注释';
+                    $methods = '';
+
                     $isMethodIgnore = false;
                     $docComment = $rMethod->getDocComment();
                     if ($docComment !== false) {
@@ -120,6 +122,13 @@ class ApiList extends ApiOnline
                             if (stripos($comment, '@ignore') !== false) {
                                 $isMethodIgnore = true;
                             }
+
+                            //@method注释
+                            $pos = stripos($comment, '@method');
+                            if ($pos !== FALSE) {
+                                $methods = substr($comment, $pos + 8);
+                                continue;
+                            }
                         }
                     }
 
@@ -132,6 +141,7 @@ class ApiList extends ApiOnline
                         'service' => $service,
                         'title' => $title,
                         'desc' => $desc,
+                        'methods' => $methods,
                     );
                 }
             }

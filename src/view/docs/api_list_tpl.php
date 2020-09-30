@@ -134,6 +134,7 @@ if (substr(PHP_SAPI, 0, 3) == 'cli') {
                             <tr>
                                 <th>#</th>
                                 <th><?php echo \PhalApi\T('API Service'); ?></th>
+                                <th><?php echo \PhalApi\T('Request Method'); ?></th>
                                 <th><?php echo \PhalApi\T('API Title'); ?></th>
                                 <th><?php echo \PhalApi\T('API Description'); ?></th>
                             </tr>
@@ -146,7 +147,7 @@ if (substr(PHP_SAPI, 0, 3) == 'cli') {
                                 $s = str_replace('\\', '_', $mItem['service']);
                                 $link = $this->makeApiServiceLink($s,$theme);
                                 $NO   = $num++;
-                                echo "<tr><td>{$NO}</td><td><a href=\"$link\" target='_blank'>{$s}</a></td><td>{$mItem['title']}</td><td>{$mItem['desc']}</td></tr>";
+                                echo "<tr><td>{$NO}</td><td><a href=\"$link\" target='_blank'>{$s}</a></td><td>{$mItem['methods']}</td><td>{$mItem['title']}</td><td>{$mItem['desc']}</td></tr>";
                             }
                             ?>
                             </tbody>

@@ -56,4 +56,5 @@ return array(
     '{error} ({errno}): {errstr} in [File: {errfile}, Line: {errline}, Time: {time}]' => '{error}({errno})：{errstr} [文件：{errfile}，行号：{errline}，时间：{time}]',
     'Expand All' => '切换到展开版',
     'Fold All' => '切换到折叠版',
+    'request method not allowed, only {method}' => '请求方式错误，仅支持：{method}',
 );
