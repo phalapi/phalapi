@@ -32,18 +32,18 @@ $di->notorm = new NotORMDatabase($di->config->get('dbs'), $di->config->get('sys.
 // JSON中文输出
 // $di->response = new \PhalApi\Response\JsonResponse(JSON_UNESCAPED_UNICODE);
 
-// 错误处理
+// 错误处理，如果不需要纪录错误信息可注释
 $di->error = new ApiError();
 
-// portal后台管理员
+// portal后台管理员，如果不需要portal后台可注释
 $di->admin = new Portal\Common\Admin();
 
 /** ---------------- 第三应用 服务注册 ---------------- **/
 
 // 加载plugins目录下的第三方应用初始化文件
-foreach (glob(API_ROOT . DIRECTORY_SEPARATOR . 'plugins' . DIRECTORY_SEPARATOR . '*.php') as $pluginFile) {
-    include_once $pluginFile;
-}
+// foreach (glob(API_ROOT . DIRECTORY_SEPARATOR . 'plugins' . DIRECTORY_SEPARATOR . '*.php') as $pluginFile) {
+//    include_once $pluginFile;
+// }
 
 /** ---------------- 当前项目 定制注册 可选服务组件 ---------------- **/
 
