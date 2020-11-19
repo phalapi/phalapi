@@ -60,6 +60,9 @@ foreach (glob(API_ROOT . DIRECTORY_SEPARATOR . 'plugins' . DIRECTORY_SEPARATOR .
 //     $di->response = new \PhalApi\Response\JsonpResponse($_GET['callback']);
 // }
 
+// 切换到页面渲染
+// $di->response = new \PhalApi\Response\HtmlResponse();
+
 // 生成二维码扩展，参考示例：?s=App.Examples_QrCode.Png
 // $di->qrcode = function() {
 //     return new \PhalApi\QrCode\Lite();
