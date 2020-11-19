@@ -1,14 +1,13 @@
 ![apic](http://cdn7.okayapi.com/yesyesapi_20190709223344_8aadbcfdbfa297a193012c0dada32a58.jpeg)  
 
-# [PhalApi接口框架 / PhalApi API Framework](https://www.phalapi.net/) 
+# [PhalApi开源接口框架 / PhalApi API Framework](https://www.phalapi.net/)   
+
+> 读音：派框架
 
 [![Latest Stable Version](https://poser.pugx.org/phalapi/phalapi/v/stable)](https://packagist.org/packages/phalapi/phalapi)
 [![Total Downloads](https://poser.pugx.org/phalapi/phalapi/downloads)](https://packagist.org/packages/phalapi/phalapi)
 [![Latest Unstable Version](https://poser.pugx.org/phalapi/phalapi/v/unstable)](https://packagist.org/packages/phalapi/phalapi)
 [![License](https://poser.pugx.org/phalapi/phalapi/license)](https://packagist.org/packages/phalapi/phalapi)
-
-> [PhalApi Pro 专业版 - 专注接口开发管理和开放平台搭建](http://pro.yesapi.cn/)  
-> [PhalApi Pro  - focus on API and Open Platform](http://pro.yesapi.cn/)  
 
 ## Stargazers over time
 
