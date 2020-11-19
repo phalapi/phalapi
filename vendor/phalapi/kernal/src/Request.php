@@ -292,26 +292,52 @@ class Request {
     public function getService() {
         $service = $this->get('service', $this->get('s'));
 
+        // 默认命名空间
+        $defaultNamespace = $this->getDefaultNamespace();
+
         // 尝试根据REQUEST_URI进行路由解析
         if ($service === NULL) {
-            $service = 'App.Site.Index';
-            if (isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] !== '/' && \PhalApi\DI()->config->get('sys.enable_uri_match')) {
+            $service = $defaultNamespace . '.Site.Index';
+            $indexName = $this->getApiEntranceFileName();
+            if (isset($_SERVER['REQUEST_URI']) && !in_array($_SERVER['REQUEST_URI'], array('/', '/' . $indexName)) && \PhalApi\DI()->config->get('sys.enable_uri_match')) {
                 // 截取index.php和问号之间的路径
                 $uri        = $_SERVER['REQUEST_URI'];
-                $startPos   = strpos($uri, 'index.php');
-                $startPos   = $startPos !== FALSE ? $startPos + strlen('index.php') : 0;
+                $startPos   = strpos($uri, $indexName);
+                $startPos   = $startPos === FALSE ? 0 : $startPos + strlen($indexName);
                 $endPos     = strpos($uri, '?');
-                $uri        = $endPos != FALSE ? substr($uri, $startPos, $endPos - $startPos) : substr($uri, $startPos);
+                $uri        = $endPos === FALSE ? substr($uri, $startPos) : substr($uri, $startPos, $endPos - $startPos);
 
-                $service = str_replace('/', '.', trim($uri, '/'));
+                $uri = str_replace('/', '.', trim($uri, '/'));
+                if (strlen($uri) >= 1) {
+                    $service = $uri;
+                }
             }
         }
 
-        if (count(explode('.', $service)) == 2) {
-            $service = 'App.' . $service;
+        $sCount = $service ? count(explode('.', $service)) : 0;
+        switch ($sCount) {
+        case 1:
+            $service =  $defaultNamespace . '.' . $service . '.Index';
+            break;
+        case 2:
+            $service =  $defaultNamespace . '.' . $service;
+            break;
         }
 
         return $service;
+    }
+
+    // 返回接口的入口
+    protected function getApiEntranceFileName() {
+        return 'index.php';
+    }
+
+    /**
+     * 获取默认的命名空间
+     * - 方便入口指定不同的模块
+     */
+    protected function getDefaultNamespace() {
+        return defined('API_NAMESPACE') ? API_NAMESPACE : 'App';
     }
 
     /**
