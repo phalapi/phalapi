@@ -47,24 +47,24 @@
     },
     {
         "name": "phalapi/kernal",
-        "version": "2.17.0",
-        "version_normalized": "2.17.0.0",
+        "version": "2.17.1",
+        "version_normalized": "2.17.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/phalapi/kernal.git",
-            "reference": "d40b61b121c1202830c69932a1345c5d793cb4f5"
+            "reference": "d415a5e13ac57e8f1cd04a7425b61397d4f28131"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/phalapi/kernal/zipball/d40b61b121c1202830c69932a1345c5d793cb4f5",
-            "reference": "d40b61b121c1202830c69932a1345c5d793cb4f5",
+            "url": "https://api.github.com/repos/phalapi/kernal/zipball/d415a5e13ac57e8f1cd04a7425b61397d4f28131",
+            "reference": "d415a5e13ac57e8f1cd04a7425b61397d4f28131",
             "shasum": ""
         },
         "require": {
             "phalapi/notorm": "2.*.*",
             "php": ">=5.3.3"
         },
-        "time": "2020-11-28T12:26:00+00:00",
+        "time": "2020-12-05T03:54:25+00:00",
         "type": "library",
         "installation-source": "source",
         "autoload": {

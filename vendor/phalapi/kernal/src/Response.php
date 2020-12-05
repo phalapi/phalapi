@@ -208,7 +208,7 @@ abstract class Response {
         );
 
         $protocol = isset($_SERVER['SERVER_PROTOCOL']) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.1';
-        $str = isset($httpStatus[$this->ret]) ? $protocol .' '. $this->ret .' '. $httpStatus[$this->ret] : "HTTP/1.1 {$this->ret} Unknown Http Status Code";
+        $str = "{$protocol} {$this->ret} " . (isset($httpStatus[$this->ret]) ? $httpStatus[$this->ret] : 'Unknown Http Status Code');
         @header($str);
 
         return $this;

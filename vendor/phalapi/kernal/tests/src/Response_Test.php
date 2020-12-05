@@ -112,5 +112,8 @@ class PhpUnderControl_PhalApiResponse_Test extends \PHPUnit_Framework_TestCase
     public function testAdustHttpStatus()
     {
         $this->response->adjustHttpStatus();
+
+        $this->response->setRet(100000);
+        $this->response->adjustHttpStatus();
     }
 }
