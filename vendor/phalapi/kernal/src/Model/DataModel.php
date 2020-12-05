@@ -105,7 +105,7 @@ class DataModel extends NotORMModel {
     /**
      * 获取字段值（多个）
      * @param string $field 需要查询的字段名，通常为主键或带有唯一索引的字段
-     * @param string|int|float|NULL $value 查询的值
+     * @param string|array|int|float|NULL $value 查询的值
      * @param string $selectFiled 需要获取的字段
      * @param int $limit 需要获取的数量，为0时无限制，顺序获取
      * @param boolean $isDistinct 是否去重
