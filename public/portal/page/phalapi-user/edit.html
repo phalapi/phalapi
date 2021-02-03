@@ -56,9 +56,9 @@
     <div class="layui-form-item">
         <label class="layui-form-label">性别</label>
         <div class="layui-input-block">
-            <input type="radio" name="sex" value="1" title="男" {{# if (d.state == 1) }} checked="" {{# }}>
-            <input type="radio" name="sex" value="2" title="女" {{# if (d.state == 2) }} checked="" {{# }}>
-            <input type="radio" name="sex" value="0" title="未知" {{# if (d.state == 0) }} checked="" {{# }}>
+            <input type="radio" name="sex" value="1" title="男" >
+            <input type="radio" name="sex" value="2" title="女" >
+            <input type="radio" name="sex" value="0" title="未知">
         </div>
     </div>
 
@@ -88,6 +88,16 @@
 
             laytpl(getTpl).render(data.data.data, function(html){
                 view.innerHTML = html;
+
+                // 默认选中radio
+                var sex = data.data.data.sex.toString();
+                $.each($("input[name='sex']") ,function (index, d) {//index是索引,从0开始
+                    if( d.value === sex ) {
+                        $(d).prop('checked', 'true');//选中
+
+                    }
+                })
+
               	form.render('radio');
             });
         });

@@ -37,11 +37,8 @@
     <div class="layui-form-item">
         <label class="layui-form-label required">状态</label>
         <div class="layui-input-block">
-<!--
-            <input type="text" name="state" value="{{=d.state}}" class="layui-input" >
--->
-            <input type="radio" name="state" value="1" title="开启" {{# if (d.state == 1) }} checked="" {{# }}>
-            <input type="radio" name="state" value="0" title="关闭" {{# if (d.state == 0) }} checked="" {{# }}>
+            <input type="radio" name="state" value="1" title="开启" >
+            <input type="radio" name="state" value="0" title="关闭" >
         </div>
     </div>
 
@@ -71,6 +68,16 @@
 
             laytpl(getTpl).render(data.data.data, function(html){
                 view.innerHTML = html;
+
+                // 默认选中radio
+                var state = data.data.data.state.toString();
+                $.each($("input[name='state']") ,function (index, d) {//index是索引,从0开始
+                    if( d.value === state ) {
+                        $(d).prop('checked', 'true');//选中
+
+                    }
+                })
+
               	form.render('radio');
             });
         });

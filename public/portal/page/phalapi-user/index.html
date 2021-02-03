@@ -145,6 +145,9 @@
                     shadeClose: true,
                     area: ['100%', '100%'],
                     content: './add.html',
+                    end: function(){
+                        location.reload();//弹出层结束后，刷新主页面
+                    }
                 });
                 $(window).on("resize", function () {
                     layer.full(index);
@@ -197,6 +200,9 @@
                     shadeClose: true,
                     area: ['100%', '100%'],
                     content: './edit.html?id=' + obj.data.id,
+                    end: function(){
+                        location.reload();//弹出层结束后，刷新主页面
+                    }
                 });
                 $(window).on("resize", function () {
                     layer.full(index);
