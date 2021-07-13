@@ -15,12 +15,12 @@
    
    
 ## 开发文档
-专为PHPer准备的优雅而详细的开发文档，请看：[PhalApi 2.x 开发文档](http://docs.phalapi.net/#/v2.0/)。  
+专为PHPer准备的优雅而详细的开发文档，基本都能在文档找到你要的答案，请看：[PhalApi 2.x 开发文档](http://docs.phalapi.net/#/v2.0/)。  
 
-## 在线示例 / Demo
- + 默认接口服务：[http://demo.phalapi.net/?s=App.Site.Index](http://demo.phalapi.net/?s=App.Site.Index)
+## 在线示例
  + 在线接口文档：[http://demo.phalapi.net/docs.php](http://demo.phalapi.net/docs.php)
  + 接口详情文档（以默认接口为例）：[http://demo.phalapi.net/docs.php?service=App.Site.Index&detail=1&type=fold](http://demo.phalapi.net/docs.php?service=App.Site.Index&detail=1&type=fold)
+ + 默认接口服务：[http://demo.phalapi.net/?s=App.Site.Index](http://demo.phalapi.net/?s=App.Site.Index)
  
 ## 快速安装
 
@@ -44,7 +44,7 @@ $ composer update
 
 ### Nginx配置
 如果使用的是Nginx，可参考以下配置。  
-```
+```nginx
 server {
     listen 80;
     server_name dev.phalapi.net;
@@ -107,10 +107,22 @@ return array(
 
 在PhalApi，你可以通过service参数（短名字是s参数）指定需要调用的接口服务。例如，访问默认接口服务。  
 
- + 默认接口请求结果：[http://dev.phalapi.net/?s=App.Site.Index](http://dev.phalapi.net/?s=App.Site.Index)  
- + 在线接口文档列表页（支持搜索）：http://demo.phalapi.net/docs.php
- + 接口文档详情页：http://demo.phalapi.net/docs.php?service=App.Site.Index&detail=1&type=fold
+```
+http://dev.phalapi.net/?s=App.Site.Index
+```
 
+接口请求后结果输出类似如下：  
+```
+{
+    "ret": 200,
+    "data": {
+        "title": "Hello PhalApi",
+        "version": "2.4.2",
+        "time": 1501079142
+    },
+    "msg": ""
+}
+```
 
 对应执行的PHP代码在./src/app/Api/Site.php文件，源码片段如下：  
 
@@ -151,19 +163,6 @@ class Site extends Api {
 }
 ```
 
-接口请求后结果输出类似如下：  
-```
-{
-    "ret": 200,
-    "data": {
-        "title": "Hello PhalApi",
-        "version": "2.4.2",
-        "time": 1501079142
-    },
-    "msg": ""
-}
-```
-
 运行效果，截图如下：  
 
 ![_20190201151943](https://user-images.githubusercontent.com/12585518/52108414-e98d0980-2634-11e9-9e68-9c3fae304a46.png)
@@ -177,6 +176,8 @@ PhalApi会根据你编写的接口的参数配置和代码注释，自动实时�
 浏览效果类似如下：  
 ![](http://cdn7.okayapi.com/yesyesapi_20200310225952_d319cc197a31f8f3522a82643bf31d60.png)  
 
+接口文档详情页效果类似如下：  
+支持在线接口测试、请求示例说明、生成离线版HTML接口文档、实时更新。  
 ![](http://cd8.okayapi.com/yesyesapi_20210713093959_d5581323d74a1191d0f5a2d1056b5087.png)  
 
 ## 翻译
@@ -193,10 +194,12 @@ PhalApi会根据你编写的接口的参数配置和代码注释，自动实时�
 ## 一张图告诉你如何使用PhalApi 2.x
 ![phalapi-install](https://user-images.githubusercontent.com/12585518/52995681-4ae71200-3456-11e9-8d00-065a42cf4382.gif)
 
+## 2020视频教程
+ + [B站首发，第一课~第十一课](http://docs.phalapi.net/#/v2.0/video_1)  
+
 ## 子项目
  + [phalapi/kernal](https://github.com/phalapi/kernal)框架内核
  + [phalapi/notorm](https://github.com/phalapi/notorm)数据库包
-
 
 ## PhalApi composer 扩展
  + [phalapi/auth](https://github.com/twodayw/auth.git)Auth权限扩展
