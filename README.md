@@ -2,7 +2,7 @@
 
 # [PhalApi开源接口框架 / PhalApi API Framework](https://www.phalapi.net/)   
 
-> 读音：派框架
+> 读音：派框架，官网：https://www.phalapi.net/  
 
 [![Latest Stable Version](https://poser.pugx.org/phalapi/phalapi/v/stable)](https://packagist.org/packages/phalapi/phalapi)
 [![Total Downloads](https://poser.pugx.org/phalapi/phalapi/downloads)](https://packagist.org/packages/phalapi/phalapi)
