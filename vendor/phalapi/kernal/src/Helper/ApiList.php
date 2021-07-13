@@ -25,7 +25,7 @@ class ApiList extends ApiOnline
 
         $psr4 = isset($composerArr['autoload']['psr-4']) ? $composerArr['autoload']['psr-4'] : array();
         //检测通用项目API
-        $root = @$psr4[''];
+        $root = !empty($psr4['']) ? $psr4[''] : null;
         if (!empty($root)) {//其它通用项目检测
             unset($psr4['']);
             if (is_string($root)) $root = array($root);

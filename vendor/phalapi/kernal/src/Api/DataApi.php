@@ -46,7 +46,7 @@ class DataApi extends Api {
                 'newData' => array('name' => 'newData', 'type' => 'array', 'format' => 'json', 'require' => true, 'desc' => \PhalApi\T('post data')),
             ),
             'deleteData' => array(
-                'id' => array('name' => 'id', 'require' => true, 'type' => 'int', 'min' => 1, 'desc' => '待删除的ID'),
+                'id' => array('name' => 'id', 'require' => true, 'type' => 'int', 'min' => 1, 'desc' => \PhalApi\T('ids to delete')),
             ),
             'deleteDataIDs' => array(
                 'ids' => array('name' => 'ids', 'type' => 'array', 'format' => 'explode', 'seperator' => ',', 'require' => true, 'desc' => \PhalApi\T('ids to delete'))

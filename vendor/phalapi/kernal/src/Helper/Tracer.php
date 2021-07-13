@@ -90,12 +90,17 @@ class Tracer {
      * @return NULL
      */
     public function sql($statement) {
+        $di = \PhalApi\DI();
         $this->sqls[] = $statement;
 
+        // 只提取部分必要的参数，避免全部记录，以及避免记录密码等敏感信息到日志文件
+        $request = array(
+            'service' => $di->request->getService(),
+        );
+
         // 保存到日志
-        $di = \PhalApi\DI();
         if ($di->config->get('sys.enable_sql_log')) {
-            $di->logger->log('SQL', $statement, array('request' => $di->request->getAll()));
+            $di->logger->log('SQL', $statement, array('request' => $request));
         }
     }
 

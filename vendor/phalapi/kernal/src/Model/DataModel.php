@@ -219,7 +219,7 @@ class DataModel extends NotORMModel {
         }
 
         throw new InternalServerErrorException(
-            \PhalApi\T('Error: Call to undefined function PhalApi\Model\DataModel::${name}()', array('name' => $name))
+            \PhalApi\T('Error: Call to undefined function PhalApi\Model\DataModel::{name}()', array('name' => $name))
         );
 
     }
