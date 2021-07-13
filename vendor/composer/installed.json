@@ -12,7 +12,13 @@
             "type": "zip",
             "url": "https://api.github.com/repos/phalapi/cli/zipball/c5df41e5fa483ad5990296421cde808a0d29f36f",
             "reference": "c5df41e5fa483ad5990296421cde808a0d29f36f",
-            "shasum": ""
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
         },
         "require": {
             "php": ">=5.3.3"
@@ -58,7 +64,13 @@
             "type": "zip",
             "url": "https://api.github.com/repos/phalapi/kernal/zipball/d415a5e13ac57e8f1cd04a7425b61397d4f28131",
             "reference": "d415a5e13ac57e8f1cd04a7425b61397d4f28131",
-            "shasum": ""
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
         },
         "require": {
             "phalapi/notorm": "2.*.*",
@@ -114,7 +126,13 @@
             "type": "zip",
             "url": "https://api.github.com/repos/phalapi/notorm/zipball/337cac09d3563a325d574298b87c6a7a5f8f759f",
             "reference": "337cac09d3563a325d574298b87c6a7a5f8f759f",
-            "shasum": ""
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
         },
         "require": {
             "php": ">=5.3.3"
@@ -160,7 +178,13 @@
             "type": "zip",
             "url": "https://api.github.com/repos/phalapi/qrcode/zipball/cbb3c5f3f95a7902b0a72786a77495ada0c006b7",
             "reference": "cbb3c5f3f95a7902b0a72786a77495ada0c006b7",
-            "shasum": ""
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
         },
         "time": "2017-12-29T12:03:03+00:00",
         "type": "library",
@@ -204,7 +228,13 @@
             "type": "zip",
             "url": "https://api.github.com/repos/phalapi/task/zipball/552421219a3097a81c576fc2607d96894d489def",
             "reference": "552421219a3097a81c576fc2607d96894d489def",
-            "shasum": ""
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
         },
         "require": {
             "php": ">=5.3.3"
