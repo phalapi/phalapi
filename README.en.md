@@ -14,36 +14,41 @@
 [![Stargazers over time](https://starchart.cc/phalapi/phalapi.svg)](https://starchart.cc/phalapi/phalapi)
    
    
-## 开发文档
+## 开发文档 / Documents
 专为PHPer准备的优雅而详细的开发文档，请看：[PhalApi 2.x 开发文档](http://docs.phalapi.net/#/v2.0/)。  
+[PhalApi 2.x English Docs](http://docs-en.phalapi.net/#/v2.0/).  
 
 ## 在线示例 / Demo
  + 默认接口服务：[http://demo.phalapi.net/?s=App.Site.Index](http://demo.phalapi.net/?s=App.Site.Index)
  + 在线接口文档：[http://demo.phalapi.net/docs.php](http://demo.phalapi.net/docs.php)
  + 接口详情文档（以默认接口为例）：[http://demo.phalapi.net/docs.php?service=App.Site.Index&detail=1&type=fold](http://demo.phalapi.net/docs.php?service=App.Site.Index&detail=1&type=fold)
  
-## 快速安装
+## 快速安装 / Install
 
-### composer一键安装
+### composer一键安装 / Install by composer
 
 使用composer创建项目的命令，可实现一键安装。  
+
+One-click installation can be achieved by using the command of composer to create a project.  
 
 ```bash
 $ composer create-project phalapi/phalapi
 ```
 > 温馨提示：关于composer的使用，请参考[Composer 中文网 / Packagist 中国全量镜像](http://www.phpcomposer.com/)。  
 
-### 手动下载安装
+### 手动下载安装 / Download and Install manually
 
 或者，也可以进行手动安装。将此Git项目代码下载解压后，进行可选的composer更新，即：  
+Alternatively, manual installation is also possible. Download PhalApi Project master-2x branch Source code. After downloading and unzipping, perform an optional composer update:  
 ```bash
 $ composer update
 ```
 
-## 部署
+## 部署 / Deployment
 
-### Nginx配置
+### Nginx配置 / Nginx Configuration
 如果使用的是Nginx，可参考以下配置。  
+If you are using Nginx, you can refer to the following configuration.  
 ```
 server {
     listen 80;
@@ -68,11 +73,14 @@ server {
 }
 ```
 配置时需要将网站根目录设置到public目录，配置保存后重启nginx。  
+Point the root path of the visit to public folder. Save and reload nginx.  
 
 > 温馨提示：推荐将访问根路径指向/path/to/phalapi/public。  
+> Tips: It is recommended to point the root path of the visit to /path/to/phalapi/public.
 
-### 数据库配置
+### 数据库配置 / Database Configuration
 如何使用的是MySQL数据库，参考修改```./config/dbs.php```数据库配置。  
+If you are using MySQL, please edit ```./config/dbs.php```.  
 
 ```php
 return array(
@@ -100,19 +108,23 @@ return array(
 ```
 
 最后，需要给runtime目录添加写入权限。更多安装说明请参考文档[下载与安装](http://docs.phalapi.net/#/v2.0/download-and-setup)。  
+At last, add writeable permission to folder ```runtime```. For more detail about installation, refer to [Download and Installation](https://docs-en.phalapi.net/#/v2.0/download-and-setup).   
 
-## 使用
+## 使用 / Usage
 
-### 调用接口
+### 调用接口 / API Request
 
 在PhalApi，你可以通过service参数（短名字是s参数）指定需要调用的接口服务。例如，访问默认接口服务。  
 
- + 默认接口请求结果：[http://dev.phalapi.net/?s=App.Site.Index](http://dev.phalapi.net/?s=App.Site.Index)  
- + 在线接口文档列表页（支持搜索）：http://demo.phalapi.net/docs.php
- + 接口文档详情页：http://demo.phalapi.net/docs.php?service=App.Site.Index&detail=1&type=fold
+For PhalApi, the default communicate protocol is HTTP/HTTPS. According to the specific implementation of the API service, we could use GET or POST to request. By default, you can specify the ```service``` parameter or ```s``` for short when requesting. The default API service is ```App.Site.Index```.    
+
+ + 默认接口：[http://dev.phalapi.net/?s=App.Site.Index](http://dev.phalapi.net/?s=App.Site.Index)  
+ + Default API：[http://dev.phalapi.net/?s=App.Site.Index](http://dev.phalapi.net/?s=App.Site.Index)  
+
 
 
 对应执行的PHP代码在./src/app/Api/Site.php文件，源码片段如下：  
+The source PHP code of ```App.Site.Index``` API service is at ```./src/app/Api/Site.php``` file.  
 
 ```php
 <?php
@@ -152,6 +164,7 @@ class Site extends Api {
 ```
 
 接口请求后结果输出类似如下：  
+API result as below after requesting:    
 ```
 {
     "ret": 200,
@@ -165,23 +178,28 @@ class Site extends Api {
 ```
 
 运行效果，截图如下：  
+Runtime Sreenshot:  
 
 ![_20190201151943](https://user-images.githubusercontent.com/12585518/52108414-e98d0980-2634-11e9-9e68-9c3fae304a46.png)
 
-### 查看在线接口文档
+### 查看在线接口文档 / Visit Online API List Documents
 
 PhalApi会根据你编写的接口的参数配置和代码注释，自动实时生成在线接口文档。在线接口文档链接为：  
+PhalApi will generate realtime online API documents automatically by PHP code and PHP comments. You can visit them by:  
  
  + 在线接口文档：[http://dev.phalapi.net/docs.php](http://dev.phalapi.net/docs.php)  
+ + Online API Docs：[http://dev.phalapi.net/docs.php](http://dev.phalapi.net/docs.php)  
 
 浏览效果类似如下：  
+Preview:  
 ![](http://cdn7.okayapi.com/yesyesapi_20200310225952_d319cc197a31f8f3522a82643bf31d60.png)  
 
-![](http://cd8.okayapi.com/yesyesapi_20210713093959_d5581323d74a1191d0f5a2d1056b5087.png)  
+![](http://cdn7.okayapi.com/yesyesapi_20200417145333_e8096f41f0ac10dfcd337fad4fdebfdb.png)  
 
-## 翻译
+## 翻译 / i18n  
 
 修改```./public/init.php```文件，可设置当前语言。  
+Edit ```./public/init.php``` file to set current language.  
 ```php
 // 翻译语言包设定-简体中文
 \PhalApi\SL('zh_cn');
@@ -190,52 +208,20 @@ PhalApi会根据你编写的接口的参数配置和代码注释，自动实时�
 \PhalApi\SL('en');
 ```
 
-## 一张图告诉你如何使用PhalApi 2.x
+## 一张图告诉你如何使用PhalApi 2.x / All in One Picture
 ![phalapi-install](https://user-images.githubusercontent.com/12585518/52995681-4ae71200-3456-11e9-8d00-065a42cf4382.gif)
 
-## 子项目
- + [phalapi/kernal](https://github.com/phalapi/kernal)框架内核
- + [phalapi/notorm](https://github.com/phalapi/notorm)数据库包
+## 子项目 / Sub Projects
+ + [phalapi/kernal](https://github.com/phalapi/kernal)框架内核 / Framework Kernal  
+ + [phalapi/notorm](https://github.com/phalapi/notorm)数据库包 / Database Library based on NotORM  
 
+## 还有问题，怎么办？/ Any Question?  
 
-## PhalApi composer 扩展
- + [phalapi/auth](https://github.com/twodayw/auth.git)Auth权限扩展
- + [phalapi/cli](https://github.com/phalapi/cli)CLI扩展类库
- + [phalapi/fast-route](https://github.com/phalapi/fast-route)FastRoute快速路由
- + [phalapi-aliyun-oss](https://github.com/vivlong/phalapi-aliyun-oss)PhalApi-OSS阿里云OSS包
- + [phalapi/PHPMailer](https://github.com/phalapi/PHPMailer)基于PHPMailer的邮件发送
- + [phalapi/qiniu](https://github.com/phalapi/qiniu)七牛云存储接口调用
- + [phalapi/qrcode](https://github.com/phalapi/qrcode)PhalApi 二维码扩展
- + [phalapi/pinyin](https://github.com/phalapi/pinyin)PhalApi 2.x 拼音扩展
- + [phalapi/jwt](https://github.com/twodayw/phalapi2-jwt)基于PhalApi2的JWT拓展
- + [chenall/phalapi-weixin](https://github.com/chenall/phalapi-weixin)微信扩展
- + [phalapi/wechatmini](https://github.com/JamesLiuquan/wechatmini)微信小程序扩展
- + [phalapi/ding-com-bot](https://gitee.com/kaihangchen_admin/DingComBot)钉钉企业内部webhook机器人扩展
- + [phalapi-pay](https://github.com/phalapi/pay)支持微信支付和支付宝支付
-
-> 温馨提示：以上扩展需要先通过composer安装再使用。更多扩展类库的使用和开发，请参考文档：[PhalApi框架扩展类库](http://docs.phalapi.net/#/v2.0/library)。 
-
-## PhalApi应用插件
- + [运营平台插件](https://gitee.com/dogstar/PhalApi-Net/blob/master/download/plugins/phalapi_portal.zip)
- + [应用用户插件](https://gitee.com/dogstar/PhalApi-Net/blob/master/download/plugins/phalapi_user.zip)
- + [加密解密插件](https://gitee.com/dogstar/PhalApi-Net/blob/master/download/plugins/crypt_decrypt.zip)
- + [支付宝插件](https://gitee.com/dogstar/PhalApi-Net/blob/master/download/plugins/phalapi_alipay.zip)
- + [茶店微信小程序应用](https://gitee.com/dogstar/PhalApi-Net/blob/master/download/plugins/phalapi_mini_tea_ALL.zip)
- + [在线接口文档主题包](https://gitee.com/dogstar/PhalApi-Net/blob/master/download/plugins/phalapi-theme-magician.zip)
-
-> 温馨提示：应用插件和composer扩展的区别在于，应用插件颗粒度更大，功能更具体，可能不仅有数据库、接口、界面、还可能配合其他终端，并且不受composer的规范约束，是PhalApi自主发明和设计的开发方式。更多请参考：[第三方应用插件开发教程](http://docs.phalapi.net/#/v2.0/how-to-dev-plugin)。   
-
-## 推荐产品
- + [接口大师-即刻搭建您的接口开放平台(原名：PhalApi专业版)](http://pro.phalapi.net/)
- + [果创云-后端低代码开发平台](http://yesapi.cn/)  
- + [YesDev协作云-在线协作你的全部项目](https://www.yesdev.cn/)  
-
-> 温馨提示：以上产品均使用了PhalApi开源框架，并为官方自主研发的产品，欢迎个人/团队/企业使用。  
-
-## 还有问题，怎么办？ 
-
-如发现问题，或者任何问题，欢迎提交Issue到[这里](https://github.com/phalapi/phalapi/issues)。  
+如发现问题，或者任何问题，欢迎提交Issue到[这里](https://github.com/phalapi/phalapi/issues)，或进入[PhalApi开源社区](http://talk.phalapi.net/?f=github)。  
 如果喜欢，请帮忙在[Github](https://github.com/phalapi/phalapi)或[码云](https://gitee.com/dogstar/PhalApi)给个Star，也可以对PhalApi进行[捐赠](https://www.phalapi.net/donate.html)哦 ^_^。  
+
+Welcome to report any issue [here](https://github.com/phalapi/phalapi/issues).   
+If you like PhalApi, welcome to give us a Star at [Github](https://github.com/phalapi/phalapi).  
 
 ## 开源许可协议 / Licence
 Apache 2.0，Apache Licence是著名的非盈利开源组织Apache采用的协议。该协议和BSD类似，同样鼓励代码共享和尊重原作者的著作权，同样允许代码修改，再发布（作为开源或商业软件）。
