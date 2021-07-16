@@ -20,7 +20,10 @@
   </div>
 
     <script type="text/javascript">
-	
+        let elem = document.getElementById('service');
+        let sep = '_';
+        let service = elem ? elem.value + sep : sep;
+
         function getData() {
             var data = new FormData();
             var param = [];
@@ -33,7 +36,13 @@
                             data.append(e.name, e.value);
                         }
 
-                        if (e.name != "service") $.cookie(e.name, e.value, {expires: 30});
+                        if (e.name !== "service" && e.value !== '') {
+                            if (window.localStorage) {
+                                localStorage.setItem(service + e.name, e.value);
+                            } else {
+                                $.cookie(service + e.name, e.value, {expires: 30});
+                            }
+                        }
                     } else{
                         var files = e.files;
                         if (files.length == 1){
@@ -99,8 +108,13 @@
         // 填充历史数据
         function fillHistoryData() {
             $("td input").each(function(index,e) {
-                var cookie_value = $.cookie(e.name);
-                if (e.name != "service" && cookie_value != "" && cookie_value !== undefined) {
+                let cookie_value;
+                if (window.localStorage) {
+                    cookie_value = localStorage.getItem(service + e.name);
+                } else {
+                    cookie_value = $.cookie(service + e.name);
+                }
+                if (e.name !== "service" && cookie_value !== "" && cookie_value !== undefined) {
                     e.value = cookie_value;
                 }
             });
