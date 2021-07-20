@@ -212,7 +212,7 @@ EOT;
         <tr>
             <td>service</td>
             <td><font color="red"><?php echo \PhalApi\T('Required'); ?></font></td>
-            <td><div class="ui fluid input disabled"><input name="service" data-source="get" value="<?php echo $service; ?>" style="width:100%;" class="C_input" /></div></td>
+            <td><div class="ui fluid input disabled"><input name="service" data-source="get" value="<?php echo $service; ?>" style="width:100%;" class="C_input" id="service" /></div></td>
         </tr>
 <?php
 foreach ($rules as $key => $rule){
