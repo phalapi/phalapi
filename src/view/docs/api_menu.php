@@ -14,7 +14,7 @@
          <div class="item">
              <div class="ui form">
              <form action="/docs.php?search=k" method="get" target="_blank">
-                 <input type="text" name="keyword" placeholder="<?php echo \PhalApi\T('Search API'); ?>" value="<?php echo isset($_GET['keyword']) ? $_GET['keyword'] : ''; ?>">
+                 <input type="text" name="keyword" placeholder="<?php echo \PhalApi\T('Search API'); ?>" value="<?php echo isset($_GET['keyword']) ? htmlspecialchars($_GET['keyword']) : ''; ?>">
              </form>
              </div>
          </div>

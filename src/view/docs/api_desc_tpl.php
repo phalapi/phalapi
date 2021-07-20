@@ -1,7 +1,7 @@
 <?php
 
 // 搜索关键字
-$keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
+$keyword = isset($_GET['keyword']) ? htmlspecialchars($_GET['keyword']) : '';
 $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']) ? 'https://' : 'http://';
 $url = $url . (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost');
 $url .= trim(substr($_SERVER['SCRIPT_NAME'], 0, strrpos($_SERVER['SCRIPT_NAME'], '/') + 1), '.');
