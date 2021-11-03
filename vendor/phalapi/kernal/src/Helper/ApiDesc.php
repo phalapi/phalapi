@@ -72,7 +72,7 @@ class ApiDesc extends ApiOnline {
             $comment = trim($comment);
 
             //标题描述
-            if (empty($description) && strpos($comment, '@') === FALSE && strpos($comment, '/') === FALSE) {
+            if (empty($description) && strpos($comment, '@') === FALSE && strpos($comment, '* ') !== FALSE) {
                 $description = substr($comment, strpos($comment, '*') + 1);
                 continue;
             }

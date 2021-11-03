@@ -16,7 +16,7 @@ class Site extends Api {
     }
 
     /**
-     * 默认接口服务
+     * 默认接口服务 <span class="ui label green small">默认</span>
      * @desc 默认接口服务，当未指定接口服务时执行此接口服务
      * @return string title 标题
      * @return string content 内容
