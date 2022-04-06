@@ -3,7 +3,7 @@
       <div class="ui stackable inverted divided equal height stackable grid">
         <div class="ten wide column centered">
             <div class="column" align="center" >
-                <img src="https://www.phalapi.net/images/icon_logo.png" alt="PhalApi">
+                <img src="/phalapi_logo.png" alt="PhalApi">
             </div>
             <div class="column" align="center">
                 <p>
@@ -125,7 +125,7 @@
                 $.ajax({
                     url:'https://www.phalapi.net/check_lastest_version.php',
                     type:'get',
-                    data:{version : '$version'},
+                    data:{version : '<?php echo PHALAPI_VERSION; ?>'},
                     success:function(res,status,xhr){
                         if (!res.ret || res.ret != 200) {
                             return;

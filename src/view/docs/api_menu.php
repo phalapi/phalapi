@@ -2,7 +2,7 @@
   <div class="ui fixed inverted menu blue">
     <div class="ui container">
       <a href="/docs.php" class="header item">
-        <img class="logo" alt="phalapi" src="http://cdn7.phalapi.net/20180316214150_f6f390e686d0397f1f1d6a66320864d6">
+        <img class="logo" alt="phalapi" src="/phalapi_logo.png">
         <?php echo $projectName; ?>
       </a>
       
