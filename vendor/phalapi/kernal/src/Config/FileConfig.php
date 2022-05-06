@@ -29,7 +29,7 @@ class FileConfig implements Config {
 	/**
 	 * @var string $path 配置文件的目录位置
 	 */
-	private $path = '';
+	protected $path = '';
 
     protected $debug = FALSE;
 	

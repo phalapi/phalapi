@@ -138,13 +138,33 @@ class Request {
 
         //对没有getallheaders函数做处理
         $headers = array();
+        $copy_server = array(
+            'CONTENT_TYPE'   => 'Content-Type',
+            'CONTENT_LENGTH' => 'Content-Length',
+            'CONTENT_MD5'    => 'Content-Md5',
+            'USER_AGENT'     => 'User-Agent'
+        );
         foreach ($_SERVER as $name => $value) {
-            if (is_array($value) || substr($name, 0, 5) != 'HTTP_') {
-                continue;
+            if (substr($name, 0, 5) === 'HTTP_') {
+                $key = substr($name, 5);
+                if (!isset($copy_server[$key]) || !isset($_SERVER[$key])) {
+                    $key = $this->formatHeaderKey($key);
+                    $headers[$key] = $value;
+                }
+            } elseif (isset($copy_server[$name])) {
+                $headers[$copy_server[$name]] = $value;
             }
-
-            $key = $this->formatHeaderKey($name);
-            $headers[$key] = $value;
+        }
+        // 其他
+        if (!isset($headers['Authorization'])) {
+            if (isset($_SERVER['REDIRECT_HTTP_AUTHORIZATION'])) {
+                $headers['Authorization'] = $_SERVER['REDIRECT_HTTP_AUTHORIZATION'];
+            } elseif (isset($_SERVER['PHP_AUTH_USER'])) {
+                $basic_pass = isset($_SERVER['PHP_AUTH_PW']) ? $_SERVER['PHP_AUTH_PW'] : '';
+                $headers['Authorization'] = 'Basic ' . base64_encode($_SERVER['PHP_AUTH_USER'] . ':' . $basic_pass);
+            } elseif (isset($_SERVER['PHP_AUTH_DIGEST'])) {
+                $headers['Authorization'] = $_SERVER['PHP_AUTH_DIGEST'];
+            }
         }
 
         return $headers;
@@ -166,8 +186,9 @@ class Request {
 
         // 保持一致性，兼容多种格式的KEY输入，提高友好性 @dogstar 2019032
         if (stripos($key, 'HTTP_') !== FALSE) {
-            $key = $this->formatHeaderKey($key);
+            $key = substr($key, 5);
         }
+        $key = $this->formatHeaderKey($key);
 
         return isset($this->headers[$key]) ? $this->headers[$key] : $default;
     }
@@ -177,7 +198,7 @@ class Request {
      * 例如，将HTTP_USER_AGENT转为User-Agent，更贴合浏览器查看的格式
      */
     protected function formatHeaderKey($key) {
-        return implode('-', array_map('ucwords', explode('_', strtolower(substr($key, 5)))));
+        return str_replace(' ', '-', ucwords(strtolower(str_replace(['-','_'], ' ', $key))));
     }
 
     /**

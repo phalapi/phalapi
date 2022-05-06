@@ -37,7 +37,7 @@ use PhalApi\Exception\InternalServerErrorException;
 ```       
  *      
  * @property \PhalApi\Request        $request    请求
- * @property \PhalApi\Response_Json  $response   结果响应
+ * @property \PhalApi\Response\JsonResponse  $response   结果响应
  * @property \PhalApi\Cache          $cache      缓存
  * @property \PhalApi\Crypt          $crypt      加密
  * @property \PhalApi\Config         $config     配置

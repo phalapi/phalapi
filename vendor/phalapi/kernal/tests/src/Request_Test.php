@@ -125,10 +125,14 @@ class PhpUnderControl_PhalApiRequest_Test extends \PHPUnit_Framework_TestCase
         $_SERVER['HTTP_ACCEPT_CHARSET'] = 'utf-8';
         //$_SERVER['PHP_AUTH_DIGEST'] = 'xxx';
 
+        $_SERVER['USER_AGENT'] = 'ATest';
+
         $request = new Request();
         $this->assertEquals('application/text', $request->getHeader('Accept'));
         $this->assertEquals('utf-8', $request->getHeader('Accept-Charset'));
         //$this->assertEquals('xxx', $request->getHeader('AUTHORIZATION'));
+
+        $this->assertEquals('ATest', $request->getHeader('USER_AGENT'));
 
         $this->assertEquals('123', $request->getHeader('no-this-key', '123'));
         $this->assertSame(NULL, $request->getHeader('no-this-key'));
@@ -141,6 +145,7 @@ class PhpUnderControl_PhalApiRequest_Test extends \PHPUnit_Framework_TestCase
     // 兼容多种拼写方式
     public function testGetHeaderMoreKindly()
     {
+        $_SERVER = array();
         $_SERVER['HTTP_USER_AGENT'] = 'PHPUnit';
 
         $request = new Request();
