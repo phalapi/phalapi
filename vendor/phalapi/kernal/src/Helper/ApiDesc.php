@@ -71,8 +71,8 @@ class ApiDesc extends ApiOnline {
         foreach ($docCommentArr as $comment) {
             $comment = trim($comment);
 
-            //标题描述
-            if (empty($description) && strpos($comment, '@') === FALSE && strpos($comment, '* ') !== FALSE) {
+            //标题描述-兼容支持标题有HTML的情况
+            if (empty($description) && $comment !== '' && strpos($comment, '@') === FALSE && strpos(strip_tags($comment), '/') === FALSE) {
                 $description = substr($comment, strpos($comment, '*') + 1);
                 continue;
             }

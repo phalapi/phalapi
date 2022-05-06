@@ -145,9 +145,10 @@ if (substr(PHP_SAPI, 0, 3) == 'cli') {
                             $num = 1;
                             foreach ($item['methods'] as $mKey => $mItem) {
                                 $s = str_replace('\\', '_', $mItem['service']);
+                                $mItemMethods = !empty($mItem['methods']) ? $mItem['methods'] : 'GET/POST';
                                 $link = $this->makeApiServiceLink($s,$theme);
                                 $NO   = $num++;
-                                echo "<tr><td>{$NO}</td><td><a href=\"$link\" target='_blank'>{$s}</a></td><td>{$mItem['methods']}</td><td>{$mItem['title']}</td><td>{$mItem['desc']}</td></tr>";
+                                echo "<tr><td>{$NO}</td><td><a href=\"$link\" target='_blank'>{$s}</a></td><td>{$mItemMethods}</td><td>{$mItem['title']}</td><td>{$mItem['desc']}</td></tr>";
                             }
                             ?>
                             </tbody>

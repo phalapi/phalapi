@@ -13,12 +13,14 @@ if (substr(PHP_SAPI, 0, 3) == 'cli') {
 $whoami = \PhalApi\DI()->admin->check(false) ? \PhalApi\DI()->admin->username : \PhalApi\T('Sign In');
 $suffixTitle = \PhalApi\T('Online API Docs');
 
+$descriptionNoHtml = strip_tags($description);
+
 echo <<<EOT
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>{$description} - {$service} - {$projectName} - {$suffixTitle}</title>
+    <title>{$descriptionNoHtml} - {$service} - {$projectName} - {$suffixTitle}</title>
 
     <link rel="stylesheet" href="{$semanticPath}semantic.min.css">
     <link rel="stylesheet" href="{$semanticPath}components/table.min.css">
@@ -54,7 +56,7 @@ include dirname(__FILE__) . '/api_menu.php';
             <h4><i class="linkify in alternate icon"></i><?php echo \PhalApi\T('API Url'); ?>：<?php echo $url; ?>?s=<?php echo $service; ?></h4>
 
             <div class="ui raised segment">
-                <span class="ui red ribbon label"><?php echo !empty($methods) ? $methods : \PhalApi\T('API Docs'); ?></span>
+                <span class="ui red ribbon label"><?php echo \PhalApi\T('Request Method'), '&nbsp; ', !empty($methods) ? $methods : 'GET/POST'; ?></span>
                 <div class="ui message">
                 <p><?php echo \PhalApi\T('API Description'); ?>：<?php echo $descComment; ?></p>
                 </div>
