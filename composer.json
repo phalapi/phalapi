@@ -20,7 +20,8 @@
 		"phalapi/kernal" : "2.*.*",
 		"phalapi/qrcode" : "dev-master",
 		"phalapi/cli" : "dev-master",
-		"phalapi/task" : "dev-master"
+		"phalapi/task" : "dev-master",
+		"vlucas/phpdotenv": "5.4.x-dev"
 	},
 	"autoload" : {
 		"files" : [

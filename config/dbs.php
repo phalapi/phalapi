@@ -13,13 +13,13 @@ return array(
      */
     'servers' => array(
         'db_master' => array(                       // 服务器标记 / database identify
-            'type'      => 'mysql',                 // 数据库类型，暂时只支持：mysql, sqlserver / database type
-            'host'      => '127.0.0.1',             // 数据库域名 / database host
-            'name'      => 'phalapi',               // 数据库名字 / database name
-            'user'      => 'dogstar',                  // 数据库用户名 / database user
-            'password'  => '123',                      // 数据库密码 / database password
-            'port'      => 3306,                    // 数据库端口 / database port
-            'charset'   => 'UTF8',                  // 数据库字符集 / database charset
+            'type'      => isset($_ENV['PHALAPI_DB_TYPE'])      ? $_ENV['PHALAPI_DB_TYPE']      : 'mysql',                 // 数据库类型，暂时只支持：mysql, sqlserver / database type
+            'host'      => isset($_ENV['PHALAPI_DB_HOST'])      ? $_ENV['PHALAPI_DB_HOST']      : 'localhost',             // 数据库域名 / database host
+            'name'      => isset($_ENV['PHALAPI_DB_NAME'])      ? $_ENV['PHALAPI_DB_NAME']      : 'phalapi',               // 数据库名字 / database name
+            'user'      => isset($_ENV['PHALAPI_DB_USER'])      ? $_ENV['PHALAPI_DB_USER']      : 'root',                  // 数据库用户名 / database user
+            'password'  => isset($_ENV['PHALAPI_DB_PASSWORD'])  ? $_ENV['PHALAPI_DB_PASSWORD']  : '',                      // 数据库密码 / database password
+            'port'      => isset($_ENV['PHALAPI_DB_PORT'])      ? $_ENV['PHALAPI_DB_PORT']      : '3306',                  // 数据库端口 / database port
+            'charset'   => isset($_ENV['PHALAPI_DB_CHARSET'])   ? $_ENV['PHALAPI_DB_CHARSET']   : 'UTF8',                  // 数据库字符集 / database charset
             'pdo_attr_string'   => false,           // 数据库查询结果统一使用字符串，true是，false否
             'driver_options' => array(              // PDO初始化时的连接选项配置
                 // 若需要更多配置，请参考官方文档：https://www.php.net/manual/zh/pdo.constants.php
