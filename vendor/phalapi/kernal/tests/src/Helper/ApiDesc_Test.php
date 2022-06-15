@@ -66,6 +66,7 @@ class UserMock extends Api
     /**
      * @param int user_id ID
      * @return int code sth...
+     * @version 1.0
      */
     public function getBaseInfo() {
     }

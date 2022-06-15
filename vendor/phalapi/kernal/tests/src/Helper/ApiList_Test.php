@@ -48,7 +48,7 @@ class PhpUnderControl_PhalApiHelperApiList_Test extends TestCase
     public function testStaticOutPut() {
         \PhalApi\DI()->request = new Request(array());
         $rs = @$this->apiCreate->render();
-        $this->expectOutputRegex("/Usage/");
+        $this->expectOutputRegex("/保存路径为/");
     }
 
 

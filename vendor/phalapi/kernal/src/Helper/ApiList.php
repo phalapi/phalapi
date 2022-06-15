@@ -18,6 +18,7 @@ class ApiList extends ApiOnline
 {
 
     public function render($tplPath = NULL) {
+        $tplPath = !empty($tplPath) ? $tplPath : dirname(__FILE__) . '/api_list_tpl.php';
         parent::render($tplPath);
 
         $composerJson = file_get_contents(API_ROOT . D_S . 'composer.json');
@@ -168,7 +169,6 @@ class ApiList extends ApiOnline
 
         $projectName = $this->projectName;
 
-        $tplPath = !empty($tplPath) ? $tplPath : dirname(__FILE__) . '/api_list_tpl.php';
         include $tplPath;
     }
 
