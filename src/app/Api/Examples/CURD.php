@@ -84,6 +84,7 @@ class CURD extends Api {
     /**
      * 获取数据
      * @desc 根据ID获取数据库中的一条纪录数据
+     * @method GET
      * @return int      id          主键ID
      * @return string   title       标题
      * @return string   content     内容
