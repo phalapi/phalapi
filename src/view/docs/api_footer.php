@@ -73,7 +73,7 @@
                 url = url + '?' + param;
                 $.ajax({
                     url: url,
-                    type:'post',
+                    type:'<?php echo !empty($methods) && strtoupper($methods) == 'GET' ? 'GET' : 'POST'; ?>',
                     data:data.data,
                     cache: false,
                     processData: false,
