@@ -17,6 +17,7 @@ use PhalApi\Exception;
 class ApiDesc extends ApiOnline {
 
     public function render($tplPath = NULL) {
+        $tplPath = !empty($tplPath) ? $tplPath : dirname(__FILE__) . '/api_desc_tpl.php';
         parent::render($tplPath);
 
         $service    = \PhalApi\DI()->request->getService();
@@ -33,6 +34,7 @@ class ApiDesc extends ApiOnline {
         $descComment = '//请使用@desc 注释';
         $methods = '';
         $exceptions = array();
+        $version = '';
 
         $projectName = $this->projectName;
 
@@ -41,7 +43,7 @@ class ApiDesc extends ApiOnline {
             $rules = $pai->getApiRules();
         } catch (Exception $ex){
             $service .= ' - ' . $ex->getMessage();
-            include dirname(__FILE__) . '/api_desc_tpl.php';
+            include $tplPath;
             return;
         }
 
@@ -77,21 +79,21 @@ class ApiDesc extends ApiOnline {
                 continue;
             }
 
-            //@desc注释
+            // @desc注解
             $pos = stripos($comment, '@desc');
             if ($pos !== FALSE) {
                 $descComment = substr($comment, $pos + 5);
                 continue;
             }
 
-            //@method注释
+            // @method注解
             $pos = stripos($comment, '@method');
             if ($pos !== FALSE) {
                 $methods = substr($comment, $pos + 8);
                 continue;
             }
 
-            //@exception注释
+            // @exception注解
             $pos = stripos($comment, '@exception');
             if ($pos !== FALSE) {
                 $exArr = explode(' ', trim(substr($comment, $pos + 10)));
@@ -99,7 +101,14 @@ class ApiDesc extends ApiOnline {
                 continue;
             }
 
-            //@return注释
+            // @version注解
+            $pos = stripos($comment, '@version');
+            if ($pos !== FALSE) {
+                $version = substr($comment, $pos + 8);
+                continue;
+            }
+
+            // @return注解
             $pos = stripos($comment, '@return');
             if ($pos === FALSE) {
                 continue;
@@ -122,7 +131,6 @@ class ApiDesc extends ApiOnline {
             $returns[$returnCommentArr[1]] = $returnCommentArr; 
         }
 
-        $tplPath = !empty($tplPath) ? $tplPath : dirname(__FILE__) . '/api_desc_tpl.php';
         include $tplPath;
     }
 }

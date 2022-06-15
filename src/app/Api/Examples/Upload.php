@@ -32,6 +32,8 @@ class Upload extends Api {
     /**
      * 图片文件上传
      * @desc 只能上传单个图片文件
+     * @method POST
+     * @version 2.3
      * @return int code 操作状态码，0成功，1失败
      * @return url string 成功上传时返回的图片URL
      */

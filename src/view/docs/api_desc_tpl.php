@@ -49,14 +49,19 @@ include dirname(__FILE__) . '/api_menu.php';
       <i class="settings icon"></i>
       <div class="content">
         <?php echo $service; ?>
-        <div class="sub header"><?php echo $description; ?></div>
+        <?php if (!empty($version)) { ?>
+            <span class="ui label small">v <?php echo $version; ?></span>
+        <?php } ?>
+        <div class="sub header">
+            <?php echo $description; ?>
+        </div>
       </div>
     </h2>
 
             <h4><i class="linkify in alternate icon"></i><?php echo \PhalApi\T('API Url'); ?>：<?php echo $url; ?>?s=<?php echo $service; ?></h4>
 
             <div class="ui raised segment">
-                <span class="ui red ribbon label"><?php echo \PhalApi\T('Request Method'), '&nbsp; ', !empty($methods) ? $methods : 'GET/POST'; ?></span>
+                <span class="ui <?php echo !empty($methods) && strtoupper($methods) == 'POST' ? 'green' : 'blue'; ?> ribbon label"><?php echo \PhalApi\T('Request Method'), '&nbsp; ', !empty($methods) ? $methods : 'GET/POST'; ?></span>
                 <div class="ui message">
                 <p><?php echo \PhalApi\T('API Description'); ?>：<?php echo $descComment; ?></p>
                 </div>
@@ -271,7 +276,7 @@ EOT;
 
 <div class="ui fluid action input">
       <input placeholder="请求的接口链接" type="text" name="request_url" value="<?php echo $url; ?>" >
-      <button class="ui button blue" id="submit" ><?php echo \PhalApi\T('Request API'); ?></button>
+      <button class="ui button <?php echo !empty($methods) && strtoupper($methods) == 'POST' ? 'green' : 'blue'; ?>" id="submit" ><?php echo \PhalApi\T('Request API'); ?></button>
 </div>
 
 <div class="ui blue message" id="json_output" style="overflow: auto;">
