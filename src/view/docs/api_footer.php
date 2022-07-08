@@ -24,14 +24,16 @@
         let sep = '_';
         let service = elem ? elem.value + sep : sep;
 
-        function getData() {
+        function getData(apiMethod) {
+            apiMethod = apiMethod ? apiMethod : 'POST';
+
             var data = new FormData();
             var param = [];
             $("td input").each(function(index,e) {
                 if ($.trim(e.value)){
                     if (e.type != 'file'){
-                        if ($(e).data('source') == 'get') {
-                            param.push(e.name + '=' + e.value);
+                        if ($(e).data('source') == 'get' || apiMethod == 'GET') {
+                            param.push(e.name + '=' + encodeURIComponent(e.value));
                         } else {
                             data.append(e.name, e.value);
                         }
@@ -65,7 +67,9 @@
                 $("#json_output").html('<div class="ui active inverted dimmer"><div class="ui text loader">接口请求中……</div></div>');
                 $("#json_output").show();
 
-                var data = getData();
+                var apiMethod = '<?php echo !empty($methods) && strtoupper($methods) == 'GET' ? 'GET' : 'POST'; ?>';
+
+                var data = getData(apiMethod);
                 var url_arr = $("input[name=request_url]").val().split('?');
                 var url = url_arr.shift();
                 var param = url_arr.join('?');
@@ -73,8 +77,8 @@
                 url = url + '?' + param;
                 $.ajax({
                     url: url,
-                    type:'<?php echo !empty($methods) && strtoupper($methods) == 'GET' ? 'GET' : 'POST'; ?>',
-                    data:data.data,
+                    type: apiMethod,
+                    data: apiMethod == 'GET' ? '' : data.data,
                     cache: false,
                     processData: false,
                     contentType: false,
