@@ -104,7 +104,7 @@ class ApiDesc extends ApiOnline {
             // @version注解
             $pos = stripos($comment, '@version');
             if ($pos !== FALSE) {
-                $version = substr($comment, $pos + 8);
+                $version = substr($comment, $pos + 9);
                 continue;
             }
 

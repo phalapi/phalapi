@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '4fc38c1bbb63cd96a6388467e621ed63ae217757',
+        'reference' => 'fac1c4c77bf1c2c7b9849e19246b4976b9a44b8d',
         'name' => 'phalapi/phalapi',
         'dev' => true,
     ),
@@ -31,12 +31,12 @@
             'dev_requirement' => false,
         ),
         'phalapi/kernal' => array(
-            'pretty_version' => '2.18.0',
-            'version' => '2.18.0.0',
+            'pretty_version' => '2.18.1',
+            'version' => '2.18.1.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phalapi/kernal',
             'aliases' => array(),
-            'reference' => '6895aaa3e9944d3c6c7ffe1df0cdfc65e172a036',
+            'reference' => '856f05ea852ee3619e298ffad7a42a89f74799e6',
             'dev_requirement' => false,
         ),
         'phalapi/notorm' => array(
@@ -54,7 +54,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '4fc38c1bbb63cd96a6388467e621ed63ae217757',
+            'reference' => 'fac1c4c77bf1c2c7b9849e19246b4976b9a44b8d',
             'dev_requirement' => false,
         ),
         'phalapi/qrcode' => array(
