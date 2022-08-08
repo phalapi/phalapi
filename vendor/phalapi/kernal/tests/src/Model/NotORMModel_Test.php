@@ -325,4 +325,29 @@ class PhpUnderControl_PhalApiModelNotORM_Test extends \PHPUnit_Framework_TestCas
             $this->assertArrayHasKey('c_title', $it);
         }
     }
+
+    public function testWhereNULLOrNotWithArray() {
+        // SELECT * FROM tbl_notormtest WHERE (ext_data IS NULL) LIMIT 1;
+        $rs = \PhalApi\DI()->notorm->notormtest
+            ->where(array('ext_data' => null))
+            ->fetchOne();
+
+        if ($rs) {
+            $this->assertSame($rs['ext_data'], NULL);
+        } else {
+            $this->assertTrue(true);
+        }
+
+        // NOT NULL
+        // SELECT * FROM tbl_notormtest WHERE (NOT ext_data IS NULL) LIMIT 1;
+        $rs = \PhalApi\DI()->notorm->notormtest
+            ->where(array('NOT ext_data' => null))
+            ->fetchOne();
+
+        if ($rs) {
+            $this->assertNotEmpty($rs['ext_data']);
+        } else {
+            $this->assertTrue(true);
+        }
+    }
 }

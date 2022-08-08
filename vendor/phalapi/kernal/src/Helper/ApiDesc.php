@@ -37,12 +37,15 @@ class ApiDesc extends ApiOnline {
         $version = '';
 
         $projectName = $this->projectName;
+        $isException = false;
 
         try {
             $pai = ApiFactory::generateService(FALSE);
             $rules = $pai->getApiRules();
         } catch (Exception $ex){
-            $service .= ' - ' . $ex->getMessage();
+            $isException = true;
+            $description = $ex->getCode();
+            $descComment = $ex->getMessage();
             include $tplPath;
             return;
         }
