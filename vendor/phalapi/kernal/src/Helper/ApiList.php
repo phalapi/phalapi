@@ -14,8 +14,21 @@ defined('D_S') || define('D_S', DIRECTORY_SEPARATOR);
  * @link        http://www.phalapi.net/
  * @author      dogstar <chanzonghuang@gmail.com> 2017-11-22
  */
-class ApiList extends ApiOnline
-{
+class ApiList extends ApiOnline {
+
+    const API_CATE_TYPE_API_CLASS_NAME = 0;     // 按API类名分类
+    const API_CATE_TYPE_API_CLASS_TITLE = 1;    // 按接口模块名称分类
+
+    /**
+     * @var int $apiCateType 接口分类的方式
+     */
+    protected $apiCateType;
+
+    public function __construct($projectName, $apiCateType = NULL) {
+        $this->projectName = $projectName;
+
+        $this->apiCateType = intval($apiCateType);
+    }
 
     public function render($tplPath = NULL) {
         $tplPath = !empty($tplPath) ? $tplPath : dirname(__FILE__) . '/api_list_tpl.php';
@@ -91,9 +104,13 @@ class ApiList extends ApiOnline
                     continue;
                 }
 
-                $allApiS[$namespace][$apiClassShortName]['title'] = $title;
-                $allApiS[$namespace][$apiClassShortName]['desc'] = $desc;
-                $allApiS[$namespace][$apiClassShortName]['methods'] = array();
+                $apiCateVal = $this->apiCateType == self::API_CATE_TYPE_API_CLASS_TITLE ? $title : $apiClassShortName;
+                if (!isset($allApiS[$namespace][$apiCateVal])) {
+                    $allApiS[$namespace][$apiCateVal] = array('methods' => array());
+                }
+
+                $allApiS[$namespace][$apiCateVal]['title'] = $title;
+                $allApiS[$namespace][$apiCateVal]['desc'] = $desc;
 
                 $method = array_diff(get_class_methods($apiClassName), $allPhalApiApiMethods);
                 sort($method);
@@ -138,7 +155,7 @@ class ApiList extends ApiOnline
                     }
 
                     $service = trim($namespace, '\\') . '.' . $apiClassShortName . '.' . ucfirst($mValue);
-                    $allApiS[$namespace][$apiClassShortName]['methods'][$service] = array(
+                    $allApiS[$namespace][$apiCateVal]['methods'][$service] = array(
                         'service' => $service,
                         'title' => $title,
                         'desc' => $desc,
