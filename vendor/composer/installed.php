@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '83ec2d15d7c79e2ba0c538d5a353ed00469c0059',
+        'reference' => '79343f4a83c1c76038a7dd675a5bd1319e5e2c1e',
         'name' => 'phalapi/phalapi',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../graham-campbell/result-type',
             'aliases' => array(),
-            'reference' => 'ec4daa4b45faf6a683c9c0acf92fe1377d695a54',
+            'reference' => '2c41119c817eaf5bf08d362005b980dc45999b5b',
             'dev_requirement' => false,
         ),
         'phalapi/cli' => array(
@@ -54,7 +54,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '83ec2d15d7c79e2ba0c538d5a353ed00469c0059',
+            'reference' => '79343f4a83c1c76038a7dd675a5bd1319e5e2c1e',
             'dev_requirement' => false,
         ),
         'phalapi/qrcode' => array(
@@ -80,14 +80,12 @@
             'dev_requirement' => false,
         ),
         'phpoption/phpoption' => array(
-            'pretty_version' => 'dev-master',
-            'version' => 'dev-master',
+            'pretty_version' => '1.8.x-dev',
+            'version' => '1.8.9999999.9999999-dev',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpoption/phpoption',
-            'aliases' => array(
-                0 => '1.8.x-dev',
-            ),
-            'reference' => '5f59b1b59025b3c66cf1ca0898247d9de39c6200',
+            'aliases' => array(),
+            'reference' => 'eab7a0df01fe2344d172bff4cd6dbd3f8b84ad15',
             'dev_requirement' => false,
         ),
         'symfony/polyfill-ctype' => array(
