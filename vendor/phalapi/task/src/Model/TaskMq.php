@@ -14,8 +14,11 @@ use PhalApi\Model\NotORMModel as NotORM;
 class TaskMq extends NotORM {
 
     protected function getTableName($id = NULL) {
-        $prefix = hexdec(substr(sha1($id), -1)) % 10;
-        return 'task_mq_' . $prefix;
+        // 取消分表
+        return 'task_mq';
+
+        // $prefix = hexdec(substr(sha1($id), -1)) % 10;
+        // return 'task_mq_' . $prefix;
     }
 
     public function add($service, $params = array()) {

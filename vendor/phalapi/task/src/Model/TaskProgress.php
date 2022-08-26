@@ -19,8 +19,7 @@ class TaskProgress extends NotORM {
     public function getWrongItems($maxLastFireTime) {
         $rows = $this->getORM()
             ->select('id, title')
-            ->where('state != ?', self::STATE_WAITTING)
-            ->where('last_fire_time < ?', $maxLastFireTime)
+            ->where('(state = ? AND last_fire_time < ?) OR (state = ?)', self::STATE_RUNNING, $maxLastFireTime, self::STATE_EXCEPTION) // 长时间在执行中，或者上次执行异常的
             ->where('enable = ?', self::ENABLE_ON)
             ->order('last_fire_time ASC')
             ->fetchAll();
@@ -36,7 +35,7 @@ class TaskProgress extends NotORM {
         $rows = $this->getORM()
             ->select('id, title, trigger_class, fire_params')
             ->where('state', self::STATE_WAITTING)
-            ->where('interval_time + last_fire_time < ?', $_SERVER['REQUEST_TIME'])
+            ->where('interval_time + last_fire_time < ?', time())
             ->where('enable = ?', self::ENABLE_ON)
             ->fetchAll();
 
@@ -61,7 +60,7 @@ class TaskProgress extends NotORM {
         $data = array(
             'result' => json_encode($result),
             'state' => self::STATE_WAITTING,
-            'last_fire_time' => $_SERVER['REQUEST_TIME'],
+            'last_fire_time' => time(),
         );
 
         return $this->update($id, $data);
@@ -71,7 +70,7 @@ class TaskProgress extends NotORM {
         $data = array(
             'result' => $errorMsg,
             'state' => self::STATE_EXCEPTION,
-            'last_fire_time' => $_SERVER['REQUEST_TIME'],
+            'last_fire_time' => time(),
         );
 
         return $this->update($id, $data);
