@@ -127,17 +127,17 @@
         },
         {
             "name": "phalapi/kernal",
-            "version": "2.18.3",
-            "version_normalized": "2.18.3.0",
+            "version": "2.18.6",
+            "version_normalized": "2.18.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phalapi/kernal.git",
-                "reference": "10580444fc589fa8bb1c9ec05b1e7fd6d8f01117"
+                "reference": "d1bedd54c8784ae35c2956500541f757031e305f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phalapi/kernal/zipball/10580444fc589fa8bb1c9ec05b1e7fd6d8f01117",
-                "reference": "10580444fc589fa8bb1c9ec05b1e7fd6d8f01117",
+                "url": "https://api.github.com/repos/phalapi/kernal/zipball/d1bedd54c8784ae35c2956500541f757031e305f",
+                "reference": "d1bedd54c8784ae35c2956500541f757031e305f",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -150,7 +150,7 @@
                 "phalapi/notorm": "2.*.*",
                 "php": ">=5.3.3"
             },
-            "time": "2022-08-09T12:37:48+00:00",
+            "time": "2022-10-19T03:23:25+00:00",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -188,7 +188,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phalapi/kernal/issues",
-                "source": "https://github.com/phalapi/kernal/tree/2.18.3"
+                "source": "https://github.com/phalapi/kernal/tree/2.18.6"
             },
             "install-path": "../phalapi/kernal"
         },
@@ -303,12 +303,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phalapi/task.git",
-                "reference": "552421219a3097a81c576fc2607d96894d489def"
+                "reference": "b68075bdcffe41b6585934e15f73954a5ba42c5c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phalapi/task/zipball/552421219a3097a81c576fc2607d96894d489def",
-                "reference": "552421219a3097a81c576fc2607d96894d489def",
+                "url": "https://api.github.com/repos/phalapi/task/zipball/b68075bdcffe41b6585934e15f73954a5ba42c5c",
+                "reference": "b68075bdcffe41b6585934e15f73954a5ba42c5c",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -320,7 +320,8 @@
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "2018-04-24T14:25:40+00:00",
+            "time": "2022-08-26T03:49:29+00:00",
+            "default-branch": true,
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -334,7 +335,7 @@
             ],
             "authors": [
                 {
-                    "name": "Dogstar Huang",
+                    "name": "dogstar huang",
                     "email": "chanzonghuang@gmail.com",
                     "homepage": "http://my.oschina.net/dogstar",
                     "role": "Developer"
@@ -347,6 +348,10 @@
                 "phalapi-task",
                 "task"
             ],
+            "support": {
+                "issues": "https://github.com/phalapi/task/issues",
+                "source": "https://github.com/phalapi/task/tree/master"
+            },
             "install-path": "../phalapi/task"
         },
         {

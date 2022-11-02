@@ -1,10 +1,16 @@
-# task
+# PhalApi Task 接口计划任务
+
 PhalApi 2.x 扩展类库 - Task计划任务，以接口服务形式实现的新型计划任务。
 
-## 简单使用说明
+## Usage 使用说明
 
 ### 安装
-修改你的项目根目录下的 composer.json文件，并添加：  
+composer安装命令：  
+```bash
+$ composer require phalapi/task
+```
+
+或者，手动修改你的项目根目录下的 composer.json文件，并添加：  
 ```
 "require": {
         "phalapi/task": "dev-master"
@@ -15,7 +21,7 @@ PhalApi 2.x 扩展类库 - Task计划任务，以接口服务形式实现的新�
 
 ### 配置
 
-修改 ./config/app.php文件，并添加：  
+修改 ./config/app.php 文件，并添加：  
 ```php
     /**
      * 计划任务配置
@@ -48,7 +54,7 @@ CREATE TABLE `tbl_task_progress` (
         `fire_params` varchar(255) DEFAULT '' COMMENT '需要传递的参数，格式自定',
         `interval_time` int(11) DEFAULT '0' COMMENT '执行间隔，单位：秒',
         `enable` tinyint(1) DEFAULT '1' COMMENT '是否启动，1启动，0禁止',
-        `result` varchar(255) DEFAULT '' COMMENT '运行的结果，以json格式保存',
+        `result` text COMMENT '运行的结果，以json格式保存',
         `state` tinyint(1) DEFAULT '0' COMMENT '进程状态，0空闲，1运行中，-1异常退出',
         `last_fire_time` int(11) DEFAULT '0' COMMENT '上一次运行时间',
         PRIMARY KEY (`id`)
@@ -66,12 +72,12 @@ CREATE TABLE `tbl_task_progress` (
 
 ## 启动计划任务
 
-在启动计划任务前，我们需要编写简单的脚本，一如这样：  
+在启动计划任务前，我们需要一个能运行计划任务的入口脚本，可以把以下PHP代码放到```./bin/crontab.php```文件中。  
 ```php
-// my_task.php
 <?php
 /**
  * 计划任务入口示例
+ * ./bin/crontab.php 文件
  */
 require_once dirname(__FILE__) . '/../public/init.php';
 
@@ -86,7 +92,24 @@ try {
 }
 ```
 
-最后，就可以直接在命令行，或者通过crontab定时执行上面的计划任务啦～～
+最后，就可以直接在命令行，或者通过crontab定时执行上面的计划任务。  
+
+直接手动执行计划任务：  
+```bash
+$ php ./bin/crontab.php
+```
+
+通过配置crontab计划任务定时执行，例如每1分钟检测一次计划任务。  
+```bash
+# PhalApi-Task计划任务
+*/1 * * * * php /path/to/phalapi-pro/bin/crontab.php > /dev/null
+```
+
+你也可以把计划任务执行的结果保存到日记文件，注意要定期手动查看和清理一下。  
+```bash
+# PhalApi-Task计划任务
+*/1 * * * * php /path/to/phalapi-pro/bin/crontab.php >> /path/to/phalapi-pro/runtime/crontab.log 2>&1
+```
 
 ## 文档  
 

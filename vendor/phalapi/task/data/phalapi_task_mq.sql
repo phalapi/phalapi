@@ -7,7 +7,7 @@ CREATE TABLE `tbl_task_mq` (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+/**
 CREATE TABLE `tbl_task_mq_0` (
     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
     `service` varchar(200) DEFAULT '' COMMENT '接口服务名称',
@@ -106,4 +106,4 @@ CREATE TABLE `tbl_task_mq_9` (
     `ext_data` text COMMENT 'json data here',
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
+*/

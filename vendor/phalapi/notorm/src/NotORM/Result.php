@@ -219,11 +219,12 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
                 // @dogstar 20190523 更细致的SQL上下文信息
                 $debugTrace['sql'] = $debug;
                 if (!empty($findBacktrace)) {
-                    $debugTrace['sql'] = sprintf('%s(%s):    %s%s    %s    %s',
+                    $debugTrace['sql'] = sprintf('%s(%s):    %s%s    %s%s    %s',
                         isset($findBacktrace['file'])       ? $findBacktrace['file']            : (isset($preBacktrace['file']) ? $preBacktrace['file'] : '__index.php'),   // 在哪个文件
                         isset($findBacktrace['line'])       ? $findBacktrace['line']            : (isset($preBacktrace['line']) ? $preBacktrace['line'] : 0),               // 在哪一行
                         isset($findBacktrace['class'])      ? $findBacktrace['class'] . '::'    : '',              // 在哪个类
                         isset($findBacktrace['function'])   ? $findBacktrace['function'] . '()' : '__main()',      // 在哪个方法
+                        $this->notORM->dbName ? $this->notORM->dbName . '.' : '',                                  // 在哪个数据库
                         $this->table,                                                                              // 针对哪个表
                         $debug                                                                                     // 执行了什么SQL
                     );

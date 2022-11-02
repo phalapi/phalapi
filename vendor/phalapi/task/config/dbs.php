@@ -8,13 +8,13 @@
 return array(
 
     'tables' => array(
-        // 10张表，可根据需要，自行调整表前缀、主键名和路由
         'task_mq' => array(
             'prefix' => 'tbl_',
             'key' => 'id',
             'map' => array(
                 array('db' => 'db_master'),
-                array('start' => 0, 'end' => 9, 'db' => 'db_master'),
+                // 10张表，可根据需要，自行调整表前缀、主键名和路由
+                // array('start' => 0, 'end' => 9, 'db' => 'db_master'),
             ),
         ),
     )

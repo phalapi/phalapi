@@ -32,7 +32,9 @@ abstract class NotORM_Abstract {
 	protected $freeze = false;
 	protected $rowClass = 'NotORM_Row';
 	protected $jsonAsArray = false;
-    protected $isKeepPrimaryKeyIndex = FALSE; //@dogstar 20151230
+    protected $isKeepPrimaryKeyIndex = FALSE; // @dogstar 20151230
+
+    protected $dbName = ''; // @dogstar 20221102 追加显示数据库名称，方便进行日记追踪
 	
 	protected function access($key, $delete = false) {
 	}
@@ -86,7 +88,7 @@ class NotORM extends NotORM_Abstract {
      * @return bool
      */
 	function __set($name, $value) {
-		if ($name == "debug" || $name == "debugTimer" || $name == "freeze" || $name == "rowClass" || $name == "jsonAsArray" || $name == 'isKeepPrimaryKeyIndex') {
+		if ($name == 'debug' || $name == 'debugTimer' || $name == 'freeze' || $name == 'rowClass' || $name == 'jsonAsArray' || $name == 'isKeepPrimaryKeyIndex' || $name == 'dbName') {
 			$this->$name = $value;
 		}
 		if ($name == "transaction") {

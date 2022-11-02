@@ -1,10 +1,10 @@
 <?php
 /**
  * 计划任务入口示例
+ * ./bin/crontab.php 文件
  */
 
-require_once dirname(__FILE__) . '/path/to/autoload.php';
-require_once '/path/to/phalapi/config/di.php';
+require_once dirname(__FILE__) . '/../public/init.php';
 
 try {
     $progress = new PhalApi\Task\Progress();
