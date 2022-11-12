@@ -3,8 +3,9 @@ namespace App\Api;
 use PhalApi\Api;
 
 /**
- * 默认接口服务类
+ * 首页
  * @author: dogstar <chanzonghuang@gmail.com> 2014-10-04
+ * @ignore
  */
 class Site extends Api {
     public function getRules() {
@@ -25,6 +26,11 @@ class Site extends Api {
      * @exception 400 非法请求，参数传递错误
      */
     public function index() {
+        // 切换为默认的首页 @dogstar 20221112
+        $projectName = \PhalApi\T('PhalApi API Framework');
+        include API_ROOT . '/src/view/site/index.php';
+        exit(0);
+
         return array(
             'title' => 'Hello ' . $this->username,
             'version' => PHALAPI_VERSION,

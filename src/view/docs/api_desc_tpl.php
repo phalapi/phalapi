@@ -22,6 +22,9 @@ echo <<<EOT
     <meta charset="utf-8">
     <title>{$descriptionNoHtml} - {$service} - {$projectName} - {$suffixTitle}</title>
 
+    <meta name="description" content="{$descComment} - {$descriptionNoHtml} - {$service} - {$projectName}。基于PhalApi开源接口框架。">
+    <meta name="keywords" content="{$descriptionNoHtml},{$service},{$projectName},PhalApi">
+
     <link rel="stylesheet" href="{$semanticPath}semantic.min.css">
     <link rel="stylesheet" href="{$semanticPath}components/table.min.css">
     <link rel="stylesheet" href="{$semanticPath}components/container.min.css">

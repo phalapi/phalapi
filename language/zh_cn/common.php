@@ -32,6 +32,7 @@ return array(
     'API Description' => '接口描述',
     'Language' => '语言',
     'API Docs' => '接口文档',
+    'Dev Docs' => '开发文档',
     'API Url' => '接口地址',
     'Protocol' => '请求协议',
     'Method' => '请求方式',

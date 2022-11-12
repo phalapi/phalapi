@@ -1,15 +1,15 @@
 
   <div class="ui fixed inverted menu blue">
     <div class="ui container">
-      <a href="/docs.php" class="header item">
+      <a href="/" class="header item">
         <img class="logo" alt="phalapi" src="/phalapi_logo.png">
         <?php echo $projectName; ?>
       </a>
       
-          <a href="/docs.php" class="item"><?php echo \PhalApi\T('Home'); ?></a>
-      	  <a href="https://www.phalapi.net/" class="item"><i class="globe icon"></i> PhalApi</a>
-     	 <a href="http://docs.phalapi.net/#/v2.0/" class="item"><i class="file alternate outline icon"></i> <?php echo \PhalApi\T('Docs'); ?></a>
-      	<a href="/portal/" class="item"><i class="chart line icon"></i> <?php echo \PhalApi\T('Portal'); ?></a>
+          <a href="/" class="item"><?php echo \PhalApi\T('Home'); ?></a>
+      	  <a href="/docs.php" class="item"><i class="globe icon"></i><?php echo \PhalApi\T('API Docs'); ?></a>
+     	 <a href="http://docs.phalapi.net/#/v2.0/" class="item" target="_blank"><i class="file alternate outline icon"></i> <?php echo \PhalApi\T('Dev Docs'); ?></a>
+      	<a href="/portal/" class="item" target="_blank"><i class="chart line icon"></i> <?php echo \PhalApi\T('Portal'); ?></a>
 
          <div class="item">
              <div class="ui form">
@@ -29,7 +29,7 @@
         </div>
       </div>
               <!-- 欢迎/注册 -->
-    <?php if (\PhalApi\DI()->admin->check(false)) { ?>
+    <?php if (\PhalApi\DI()->admin && \PhalApi\DI()->admin->check(false)) { ?>
     <a class="item" target="_blank" href="/portal" ><?php echo \PhalApi\T('welcome'); ?>: <?php echo \PhalApi\DI()->admin->username; ?></a>
       <?php } else { ?>
       

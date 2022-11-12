@@ -260,7 +260,7 @@ class NotORMDatabase /** implements Database */ {
      * @param string $dbKey 数据库表名唯一KEY
      * @return PDO
      */
-    protected function getPdo($dbKey) {
+    public function getPdo($dbKey) {
         if (!isset($this->_pdos[$dbKey])) {
             $dbCfg = isset($this->_configs['servers'][$dbKey]) 
                 ? $this->_configs['servers'][$dbKey] : array();

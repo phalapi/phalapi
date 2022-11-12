@@ -11,6 +11,9 @@ if (substr(PHP_SAPI, 0, 3) == 'cli') {
     <meta charset="utf-8">
     <title><?php echo $projectName; ?> - <?php echo \PhalApi\T('Online API Docs'); ?></title>
 
+    <meta name="description" content="<?php echo $projectName; ?>。基于PhalApi开源接口框架。">
+    <meta name="keywords" content="<?php echo $projectName; ?>,PhalApi">
+
     <!-- <link href="https://lib.baomitu.com/semantic-ui/2.3.3/semantic.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="<?php echo $semanticPath; ?>semantic.min.css">
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
