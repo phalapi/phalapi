@@ -257,7 +257,7 @@ class NotORMDatabase /** implements Database */ {
 
     /**
      * 获取 PDO连接
-     * @param string $dbKey 数据库表名唯一KEY
+     * @param string $dbKey 数据库标志，例如：db_master
      * @return PDO
      */
     public function getPdo($dbKey) {

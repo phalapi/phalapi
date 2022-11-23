@@ -16,6 +16,7 @@
         }
     ],
     "require": {
+        "ulrichsg/getopt-php": "3.4.0",
         "php": ">=5.3.3"
     },
     "autoload": {

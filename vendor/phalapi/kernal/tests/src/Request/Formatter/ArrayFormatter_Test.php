@@ -98,4 +98,33 @@ class PhpUnderControl_PhalApiRequestFormatterArray_Test extends \PHPUnit_Framewo
         $this->assertEmpty($rs);
         $this->assertSame(array(), $rs);
     }
+
+    public function testExplodeNotString() {
+        $rule = array('name' => 'testKey', 'type' => 'array', 'format' => 'explode', 'message' => '显示指定的错误信息');
+
+        $rs = $this->arrayFormatter->parse(false, $rule);
+        $this->assertTrue(is_array($rs));
+        $rs = $this->arrayFormatter->parse(123, $rule);
+        $this->assertTrue(is_array($rs));
+        $rs = $this->arrayFormatter->parse(123.9, $rule);
+        $this->assertTrue(is_array($rs));
+    }
+
+    /**
+     * @expectedException PhalApi\Exception\InternalServerErrorException
+     */
+    public function testExplodeButSeperatorEmptyOrFalse() {
+        $rule = array('name' => 'testKey', 'type' => 'array', 'format' => 'explode', 'message' => '显示指定的错误信息', 'separator' => '');
+
+        $rs = $this->arrayFormatter->parse('1,2,3', $rule);
+    }
+
+    /**
+     * @expectedException PhalApi\Exception\BadRequestException
+     */
+    public function testJsonIntergerError() {
+        $rule = array('name' => 'testKey', 'type' => 'array', 'format' => 'json', 'message' => '显示指定的错误信息');
+
+        $rs = $this->arrayFormatter->parse(1, $rule);
+    }
 }

@@ -57,4 +57,6 @@ return array(
     'Expand All'                                                    => '切换到展开版',
     'Fold All'                                                      => '切换到折叠版',
     'request method not allowed, only {method}'                     => '请求方式错误，仅支持：{method}',
+    'separator CAT NOT be empty'                                    => 'separator配置项不能为空',
+    'illegal parameter {name}'                                      => '{name}参数错误',
 );

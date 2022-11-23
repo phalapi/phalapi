@@ -1,0 +1,28 @@
+language: php
+dist: trusty
+sudo: false
+php:
+  - 7.0
+  - 7.1
+  - 7.2
+  - 7.3
+  - 7.4
+  - 5.6
+  - 5.5
+  - 5.4
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+before_script:
+  - composer install --no-interaction
+  - sh -c 'if [ "$TRAVIS_PHP_VERSION" = "7.0" ]; then composer require satooshi/php-coveralls:~0.6@stable; fi;'
+  - mkdir -p build/logs
+
+script:
+  - composer code-style
+  - sh -c 'if [ "$TRAVIS_PHP_VERSION" = "7.0" ]; then composer coverage; else composer test; fi;'
+
+after_script:
+  - sh -c 'if [ "$TRAVIS_PHP_VERSION" = "7.0" ]; then php vendor/bin/coveralls -v -x build/coverage.xml; fi;'

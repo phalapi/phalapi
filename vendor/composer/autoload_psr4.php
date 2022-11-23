@@ -17,6 +17,7 @@ return array(
     'PhalApi\\CLI\\' => array($vendorDir . '/phalapi/cli/src'),
     'PhalApi\\' => array($vendorDir . '/phalapi/kernal/src'),
     'GrahamCampbell\\ResultType\\' => array($vendorDir . '/graham-campbell/result-type/src'),
+    'GetOpt\\' => array($vendorDir . '/ulrichsg/getopt-php/src'),
     'Dotenv\\' => array($vendorDir . '/vlucas/phpdotenv/src'),
     'App\\' => array($baseDir . '/src/app'),
 );

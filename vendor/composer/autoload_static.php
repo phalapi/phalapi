@@ -35,6 +35,7 @@ class ComposerStaticInit6835957bc29912b8a4cd2dd758af2e80
         'G' => 
         array (
             'GrahamCampbell\\ResultType\\' => 26,
+            'GetOpt\\' => 7,
         ),
         'D' => 
         array (
@@ -90,6 +91,10 @@ class ComposerStaticInit6835957bc29912b8a4cd2dd758af2e80
         'GrahamCampbell\\ResultType\\' => 
         array (
             0 => __DIR__ . '/..' . '/graham-campbell/result-type/src',
+        ),
+        'GetOpt\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ulrichsg/getopt-php/src',
         ),
         'Dotenv\\' => 
         array (

@@ -362,4 +362,19 @@ class PhpUnderControl_PhalApiDBNotORM_Test extends \PHPUnit_Framework_TestCase
         $rs = $notorm->demo_99999->order('id DESC')->limit(1, 2)->fetchAll();
 
     }
+
+    public function testGetPdoAndExec() {
+        $sql = "DROP TABLE  IF EXISTS `my_table_name`;
+
+CREATE TABLE `my_table_name` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `my_name` varchar(20)
+);";
+
+        $notorm = new NotORMDatabase(\PhalApi\DI()->config->get('dbs'), true);
+        $pdo = $notorm->getPdo('DB_A');
+
+        $rs = $pdo->exec($sql);
+        $this->assertEquals(1, $rs);
+    }
 }

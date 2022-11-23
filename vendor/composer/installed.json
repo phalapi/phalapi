@@ -74,17 +74,17 @@
         },
         {
             "name": "phalapi/cli",
-            "version": "dev-master",
-            "version_normalized": "dev-master",
+            "version": "v3.1.0",
+            "version_normalized": "3.1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phalapi/cli.git",
-                "reference": "c5df41e5fa483ad5990296421cde808a0d29f36f"
+                "reference": "6f7849337b0a6064c45059a2acacfa072123a69e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phalapi/cli/zipball/c5df41e5fa483ad5990296421cde808a0d29f36f",
-                "reference": "c5df41e5fa483ad5990296421cde808a0d29f36f",
+                "url": "https://api.github.com/repos/phalapi/cli/zipball/6f7849337b0a6064c45059a2acacfa072123a69e",
+                "reference": "6f7849337b0a6064c45059a2acacfa072123a69e",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -94,9 +94,10 @@
                 ]
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": ">=5.3.3",
+                "ulrichsg/getopt-php": "3.4.0"
             },
-            "time": "2019-03-30T15:41:41+00:00",
+            "time": "2022-11-23T14:38:31+00:00",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -110,7 +111,7 @@
             ],
             "authors": [
                 {
-                    "name": "Dogstar Huang",
+                    "name": "dogstar huang",
                     "email": "chanzonghuang@gmail.com",
                     "homepage": "http://my.oschina.net/dogstar",
                     "role": "Developer"
@@ -123,21 +124,25 @@
                 "phalapi",
                 "phalapi-cli"
             ],
+            "support": {
+                "issues": "https://github.com/phalapi/cli/issues",
+                "source": "https://github.com/phalapi/cli/tree/v3.1.0"
+            },
             "install-path": "../phalapi/cli"
         },
         {
             "name": "phalapi/kernal",
-            "version": "2.18.8",
-            "version_normalized": "2.18.8.0",
+            "version": "2.18.9",
+            "version_normalized": "2.18.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phalapi/kernal.git",
-                "reference": "f854c996770ca52a10103195d2ca8809e4d1671e"
+                "reference": "21f0daf318f80cccc5f5bca96a88f82d32016313"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phalapi/kernal/zipball/f854c996770ca52a10103195d2ca8809e4d1671e",
-                "reference": "f854c996770ca52a10103195d2ca8809e4d1671e",
+                "url": "https://api.github.com/repos/phalapi/kernal/zipball/21f0daf318f80cccc5f5bca96a88f82d32016313",
+                "reference": "21f0daf318f80cccc5f5bca96a88f82d32016313",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -150,7 +155,7 @@
                 "phalapi/notorm": "2.*.*",
                 "php": ">=5.3.3"
             },
-            "time": "2022-11-04T11:08:58+00:00",
+            "time": "2022-11-13T12:38:14+00:00",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -188,7 +193,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phalapi/kernal/issues",
-                "source": "https://github.com/phalapi/kernal/tree/2.18.8"
+                "source": "https://github.com/phalapi/kernal/tree/2.18.9"
             },
             "install-path": "../phalapi/kernal"
         },
@@ -441,12 +446,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "6fd1b9a79f6e3cf65f9e679b23af304cd9e010d4"
+                "reference": "5bbc823adecdae860bb64756d639ecfec17b050a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/6fd1b9a79f6e3cf65f9e679b23af304cd9e010d4",
-                "reference": "6fd1b9a79f6e3cf65f9e679b23af304cd9e010d4",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/5bbc823adecdae860bb64756d639ecfec17b050a",
+                "reference": "5bbc823adecdae860bb64756d639ecfec17b050a",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -464,12 +469,12 @@
             "suggest": {
                 "ext-ctype": "For best performance"
             },
-            "time": "2022-05-24T11:49:31+00:00",
+            "time": "2022-11-03T14:55:06+00:00",
             "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.26-dev"
+                    "dev-main": "1.27-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -508,7 +513,7 @@
                 "portable"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-ctype/tree/main"
+                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.27.0"
             },
             "funding": [
                 {
@@ -528,17 +533,17 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "dev-main",
-            "version_normalized": "dev-main",
+            "version": "v1.27.0",
+            "version_normalized": "1.27.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "9344f9cb97f3b19424af1a21a3b0e75b0a7d8d7e"
+                "reference": "8ad114f6b39e2c98a8b0e3bd907732c207c2b534"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/9344f9cb97f3b19424af1a21a3b0e75b0a7d8d7e",
-                "reference": "9344f9cb97f3b19424af1a21a3b0e75b0a7d8d7e",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/8ad114f6b39e2c98a8b0e3bd907732c207c2b534",
+                "reference": "8ad114f6b39e2c98a8b0e3bd907732c207c2b534",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -556,12 +561,11 @@
             "suggest": {
                 "ext-mbstring": "For best performance"
             },
-            "time": "2022-05-24T11:49:31+00:00",
-            "default-branch": true,
+            "time": "2022-11-03T14:55:06+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.26-dev"
+                    "dev-main": "1.27-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -601,7 +605,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.26.0"
+                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.27.0"
             },
             "funding": [
                 {
@@ -626,12 +630,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php80.git",
-                "reference": "cfa0ae98841b9e461207c13ab093d76b0fa7bace"
+                "reference": "7a6ff3f1959bb01aefccb463a0f2cd3d3d2fd936"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/cfa0ae98841b9e461207c13ab093d76b0fa7bace",
-                "reference": "cfa0ae98841b9e461207c13ab093d76b0fa7bace",
+                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/7a6ff3f1959bb01aefccb463a0f2cd3d3d2fd936",
+                "reference": "7a6ff3f1959bb01aefccb463a0f2cd3d3d2fd936",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -643,12 +647,12 @@
             "require": {
                 "php": ">=7.1"
             },
-            "time": "2022-05-10T07:21:04+00:00",
+            "time": "2022-11-03T14:55:06+00:00",
             "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.26-dev"
+                    "dev-main": "1.27-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -694,7 +698,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php80/tree/v1.26.0"
+                "source": "https://github.com/symfony/polyfill-php80/tree/v1.27.0"
             },
             "funding": [
                 {
@@ -713,9 +717,68 @@
             "install-path": "../symfony/polyfill-php80"
         },
         {
+            "name": "ulrichsg/getopt-php",
+            "version": "v3.4.0",
+            "version_normalized": "3.4.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/getopt-php/getopt-php.git",
+                "reference": "9121d7c2c51a6a59ee407c49a13b4d8cfae71075"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/getopt-php/getopt-php/zipball/9121d7c2c51a6a59ee407c49a13b4d8cfae71075",
+                "reference": "9121d7c2c51a6a59ee407c49a13b4d8cfae71075",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8",
+                "squizlabs/php_codesniffer": "^2.7"
+            },
+            "time": "2020-07-14T06:09:04+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "GetOpt\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ulrich Schmidt-Goertz",
+                    "email": "ulrich@schmidt-goertz.de"
+                },
+                {
+                    "name": "Thomas Flori",
+                    "email": "thflori@gmail.com"
+                }
+            ],
+            "description": "Command line arguments parser for PHP 5.4 - 7.3",
+            "homepage": "http://getopt-php.github.io/getopt-php",
+            "support": {
+                "issues": "https://github.com/getopt-php/getopt-php/issues",
+                "source": "https://github.com/getopt-php/getopt-php/tree/v3.4.0"
+            },
+            "install-path": "../ulrichsg/getopt-php"
+        },
+        {
             "name": "vlucas/phpdotenv",
-            "version": "dev-master",
-            "version_normalized": "dev-master",
+            "version": "5.4.x-dev",
+            "version_normalized": "5.4.9999999.9999999-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vlucas/phpdotenv.git",
@@ -751,7 +814,6 @@
                 "ext-filter": "Required to use the boolean validator."
             },
             "time": "2021-12-17T00:42:26+00:00",
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
