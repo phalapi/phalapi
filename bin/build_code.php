@@ -11,7 +11,7 @@ if($argc < 2)
 {
     echo "Wecome to use {$argv[0]} command tool v0.0.1" . PHP_EOL . PHP_EOL;
     FormatOutput::setContent("Example:")->colorType('NOTE')->outPut();
-    echo "  {$argv[0]} -a User/Reg" . PHP_EOL . PHP_EOL;
+    echo "  {$argv[0]} --a User/Reg" . PHP_EOL . PHP_EOL;
     FormatOutput::setContent("Usage:")->colorType('NOTE')->outPut();
     echo "  Command [options] [arguments]" . PHP_EOL;
     FormatOutput::setContent("  --a")->colorType('NOTE')->outPut();
@@ -31,7 +31,7 @@ $baseDir = API_ROOT."/src/".$project;
 
 if(empty($params))
 {
-    FormatOutput::setContent('options error')->colorType('FAILURE')->outPut("\n");
+    FormatOutput::setContent('options error')->colorType('FAILURE')->outPut(PHP_EOL);
 }
 
 if(isset($params['a']))
@@ -55,18 +55,33 @@ function createApi($pathName)
     $project = ucfirst($project);
     $pathInfo = pathinfo($pathName);
     if("." != $pathInfo['dirname'])
-        $namespace = "\\".$pathInfo['dirname'];
+        $namespace = "\\". str_replace("/", "\\", $pathInfo['dirname']); // 兼容多层级目录
     else
         $namespace = "";
     $temp = <<<apiTemp
 <?php
-
 namespace {$project}\Api{$namespace};
 
 use PhalApi\Api;
 
+/**
+ * {$pathInfo['filename']} 接口模块名称
+ */
 class {$pathInfo['filename']} extends Api {
+
+    // 接口参数规则
     public function getRules() {
+        return array(
+            'doSth' => array(
+            ),
+        );
+    }
+
+    /**
+     * 新接口标题
+     * @desc 接口功能描述
+     */
+    public function doSth() {
         return array();
     }
 }
@@ -80,22 +95,22 @@ apiTemp;
         {
             if(!mkdir($dir,0755))
             {
-                FormatOutput::setContent('Dir create fail!')->color(255)->outPut("\n");
+                FormatOutput::setContent('Dir create fail!')->colorType('FAILURE')->outPut(PHP_EOL);
             }
         }
         if(touch($file))
         {
             if(file_put_contents($file,$temp))
             {
-                FormatOutput::setContent('Api file created successfully.')->color(118,136,45)->outPut("\n");
+                FormatOutput::setContent('Api file created successfully.')->colorType('SUCCESS')->outPut(PHP_EOL);
             }else{
-                FormatOutput::setContent('File create fail!')->color(255)->outPut("\n");
+                FormatOutput::setContent('File create fail!')->colorType('SUCCESS')->outPut(PHP_EOL);
             }
         }else{
-            FormatOutput::setContent('File create fail!')->color(255)->outPut("\n");
+            FormatOutput::setContent('File create fail!')->colorType('FAILURE')->outPut(PHP_EOL);
         }
     }else{
-        FormatOutput::setContent('File already created!')->color(255)->outPut("\n");
+        FormatOutput::setContent('File already exists!')->colorType('WARNING')->outPut(PHP_EOL);
     }
 }
 
@@ -105,14 +120,16 @@ function createDomain($pathName)
     $project = ucfirst($project);
     $pathInfo = pathinfo($pathName);
     if("." != $pathInfo['dirname'])
-        $namespace = "\\".$pathInfo['dirname'];
+        $namespace = "\\". str_replace("/", "\\", $pathInfo['dirname']);
     else
         $namespace = "";
     $temp = <<<apiTemp
 <?php
-
 namespace {$project}\Domain{$namespace};
 
+/**
+ * {$pathInfo['filename']} 业务领域层
+ */
 class {$pathInfo['filename']} {
     
 }
@@ -126,22 +143,22 @@ apiTemp;
         {
             if(!mkdir($dir,0755))
             {
-                FormatOutput::setContent('Dir create fail!')->color(255)->outPut("\n");
+                FormatOutput::setContent('Dir create fail!')->colorType('FAILURE')->outPut(PHP_EOL);
             }
         }
         if(touch($file))
         {
             if(file_put_contents($file,$temp))
             {
-                FormatOutput::setContent('Api file created successfully.')->color(118,136,45)->outPut("\n");
+                FormatOutput::setContent('Api file created successfully.')->colorType('SUCCESS')->outPut(PHP_EOL);
             }else{
-                FormatOutput::setContent('File create fail!')->color(255)->outPut("\n");
+                FormatOutput::setContent('File create fail!')->colorType('FAILURE')->outPut(PHP_EOL);
             }
         }else{
-            FormatOutput::setContent('File create fail!')->color(255)->outPut("\n");
+            FormatOutput::setContent('File create fail!')->colorType('FAILURE')->outPut(PHP_EOL);
         }
     }else{
-        FormatOutput::setContent('File already created!')->color(255)->outPut("\n");
+        FormatOutput::setContent('File already exists!')->colorType('WARNING')->outPut(PHP_EOL);
     }
 }
 
@@ -151,16 +168,18 @@ function createModel($pathName)
     $project = ucfirst($project);
     $pathInfo = pathinfo($pathName);
     if("." != $pathInfo['dirname'])
-        $namespace = "\\".$pathInfo['dirname'];
+        $namespace = "\\". str_replace("/", "\\", $pathInfo['dirname']);
     else
         $namespace = "";
     $temp = <<<apiTemp
 <?php
-
 namespace {$project}\Model{$namespace};
 
 use PhalApi\Model\DataModel;
 
+/**
+ * {$pathInfo['filename']} 数据模型层
+ */
 class {$pathInfo['filename']} extends DataModel {
 
     protected function getTableName(\$id) {
@@ -177,22 +196,22 @@ apiTemp;
         {
             if(!mkdir($dir,0755))
             {
-                FormatOutput::setContent('Dir create fail!')->color(255)->outPut("\n");
+                FormatOutput::setContent('Dir create fail!')->colorType('FAILURE')->outPut(PHP_EOL);
             }
         }
         if(touch($file))
         {
             if(file_put_contents($file,$temp))
             {
-                FormatOutput::setContent('Api file created successfully.')->color(118,136,45)->outPut("\n");
+                FormatOutput::setContent('Api file created successfully.')->colorType('SUCCESS')->outPut(PHP_EOL);
             }else{
-                FormatOutput::setContent('File create fail!')->color(255)->outPut("\n");
+                FormatOutput::setContent('File create fail!')->colorType('FAILURE')->outPut(PHP_EOL);
             }
         }else{
-            FormatOutput::setContent('File create fail!')->color(255)->outPut("\n");
+            FormatOutput::setContent('File create fail!')->colorType('FAILURE')->outPut(PHP_EOL);
         }
     }else{
-        FormatOutput::setContent('File already created!')->color(255)->outPut("\n");
+        FormatOutput::setContent('File already exists!')->colorType('WARNING')->outPut(PHP_EOL);
     }
 }
 
