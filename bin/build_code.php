@@ -1,19 +1,26 @@
 <?php
+/**
+ * 生成API等PHP代码
+ * 
+ * @author 萤火虫
+ * @author dogstar 20221202
+ */
 require_once dirname(__FILE__) . '/../public/init.php';
 
 if($argc < 2)
 {
-    echo "Wecome use phal command tool v0.0.1 \n\n";
-    FormatOutput::setContent("Example:")->color(170,137,44)->outPut();
-    echo "  {$argv[0]} -a User/Reg\n\n";
-    FormatOutput::setContent("Usage:")->color(170,137,44)->outPut();
-    echo "  Command [options] [arguments] \n";
-    FormatOutput::setContent("  --a")->color(118,136,45)->outPut();
-    echo "          创建一个API层文件 \n";
-    FormatOutput::setContent("  --d")->color(118,136,45)->outPut();
-    echo "          创建一个Domain层文件 \n";
-    FormatOutput::setContent("  --m")->color(118,136,45)->outPut();
-    echo "          创建一个Model层文件 \n";
+    echo "Wecome to use {$argv[0]} command tool v0.0.1" . PHP_EOL . PHP_EOL;
+    FormatOutput::setContent("Example:")->colorType('NOTE')->outPut();
+    echo "  {$argv[0]} -a User/Reg" . PHP_EOL . PHP_EOL;
+    FormatOutput::setContent("Usage:")->colorType('NOTE')->outPut();
+    echo "  Command [options] [arguments]" . PHP_EOL;
+    FormatOutput::setContent("  --a")->colorType('NOTE')->outPut();
+    echo "          创建一个API层文件" . PHP_EOL;
+    FormatOutput::setContent("  --d")->colorType('NOTE')->outPut();
+    echo "          创建一个Domain层文件" . PHP_EOL;
+    FormatOutput::setContent("  --m")->colorType('NOTE')->outPut();
+    echo "          创建一个Model层文件" . PHP_EOL;
+    echo PHP_EOL;
 }
 
 $params = getopt('',['a:','d:','m:','p:']);
@@ -24,7 +31,7 @@ $baseDir = API_ROOT."/src/".$project;
 
 if(empty($params))
 {
-    FormatOutput::setContent('options error')->backgroundColor(255)->color()->outPut("\n");
+    FormatOutput::setContent('options error')->colorType('FAILURE')->outPut("\n");
 }
 
 if(isset($params['a']))
@@ -288,6 +295,17 @@ class FormatOutput
         return $this;
     }
 
+    public function colorType($type) {
+        $colors = array(
+            'WARNING'   => '1;33',
+            'NOTE'      => '1;36',
+            'SUCCESS'   => '1;32',
+            'FAILURE'   => '1;35',
+        );
+        $this->label.= $colors[$type];
+        return $this;
+    }
+
     /**
      * 设置背景景色(rgb色值 默认为黑色)
      * @param int $r 红 0-255
@@ -319,7 +337,7 @@ class FormatOutput
     public function getFormatContent(): string
     {
         $this->label = rtrim($this->label,';');
-        return "\e[{$this->label}m{$this->content}\e[0m";
+        return "\033[{$this->label}m{$this->content}\033[0m";
     }
 
     /**
