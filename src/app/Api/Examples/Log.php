@@ -4,12 +4,12 @@ namespace App\Api\Examples;
 use PhalApi\Api;
 
 /**
- * 日志
+ * 接口示例
  */
 class Log extends Api {
 
     /**
-     * 写入日志
+     * 日记 - 写入日志
      * @desc 演示日志操作，包括写系统异常类日志、业务纪录类日志、开发调试类日志
      */
     public function run() {

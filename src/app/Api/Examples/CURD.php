@@ -5,7 +5,7 @@ use PhalApi\Api;
 use App\Domain\Examples\CURD as DomainCURD;
 
 /**
- * 数据库CURD基本操作示例
+ * 接口示例
  * @author dogstar 20170612
  */
 
@@ -39,7 +39,7 @@ class CURD extends Api {
     }
 
     /**
-     * 插入数据
+     * 数据库示例 - 插入数据
      * @desc 向数据库插入一条纪录数据
      * @return int id 新增的ID
      */
@@ -60,7 +60,7 @@ class CURD extends Api {
     }
 
     /**
-     * 更新数据
+     * 数据库示例 - 更新数据
      * @desc 根据ID更新数据库中的一条纪录数据
      * @method POST
      * @return int code 更新的结果，1表示成功，0表示无更新，false表示失败
@@ -82,7 +82,7 @@ class CURD extends Api {
     }
 
     /**
-     * 获取数据
+     * 数据库示例 - 获取数据
      * @desc 根据ID获取数据库中的一条纪录数据
      * @method GET
      * @return int      id          主键ID
@@ -99,7 +99,7 @@ class CURD extends Api {
     }
 
     /**
-     * 删除数据
+     * 数据库示例 - 删除数据
      * @desc 根据ID删除数据库中的一条纪录数据
      * @return int code 删除的结果，1表示成功，0表示失败
      */
@@ -114,7 +114,7 @@ class CURD extends Api {
     }
 
     /**
-     * 获取分页列表数据
+     * 数据库示例 - 获取分页列表数据
      * @desc 根据状态筛选列表数据，支持分页
      * @return array    items   列表数据
      * @return int      total   总数量
@@ -136,7 +136,7 @@ class CURD extends Api {
     }
 
     /**
-     * 演示如何进行SQL调试和相关的使用
+     * 数据库示例 - 演示如何进行SQL调试和相关的使用
      * @desc 除此接口外，其他示例也可进行在线调试。本示例将便详细说明如何调试。
      */
     public function sqlDebug() {

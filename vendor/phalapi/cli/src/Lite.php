@@ -70,6 +70,11 @@ class Lite {
             // PhalApi接口参数转换为命令行参数
             $rule2opts = array();
             foreach ($rules as $ruleKey => $ruleItem) {
+                // 避免重复参数规则
+                if (in_array($ruleItem['name'], array('s', 'service', 'h', 'help'))) {
+                    continue;
+                }
+
                 $opt = Option::create(null, $ruleItem['name'], !empty($ruleItem['require']) ? GetOpt::REQUIRED_ARGUMENT : GetOpt::OPTIONAL_ARGUMENT);
 
                 $optDesc = array();
@@ -97,11 +102,6 @@ class Lite {
                 }
 
                 $rule2opts[] = $opt;
-            }
-
-            // 优化：http://qa.phalapi.net/?/question/1499
-            if (empty($rule2opts)) {
-                $rule2opts[] = $helpOpt;
             }
 
             // 添加参数选项，提取命令行参数并重新注册请求

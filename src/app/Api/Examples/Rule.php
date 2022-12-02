@@ -4,7 +4,7 @@ namespace App\Api\Examples;
 use PhalApi\Api;
 
 /**
- * 接口参数示例
+ * 接口示例
  * @author dogstar 20190325
  */
 class Rule extends Api {
@@ -72,7 +72,7 @@ class Rule extends Api {
     /** ---------------------- string 字符串参数 ---------------------- **/
 
     /**
-     * 字符串参数
+     * 参数示例 - 字符串参数
      * @desc 简单的字符串参数
      */
     public function str() {
@@ -80,7 +80,7 @@ class Rule extends Api {
     }
 
     /**
-     * 默认且必须的字符串参数
+     * 参数示例 - 默认且必须的字符串参数
      * @desc 带默认值，并且为必须的字符串参数。默认是string类型，所以一般不用配置type为string。
      */
     public function defaultStr() {
@@ -88,7 +88,7 @@ class Rule extends Api {
     }
 
     /**
-     * 正则字符串参数
+     * 参数示例 - 正则字符串参数
      * @desc 指定正则的字符串参数
      */
     public function regexStr() {
@@ -98,7 +98,7 @@ class Rule extends Api {
     /** ---------------------- int 整数参数 ---------------------- **/
 
     /**
-     * 整数参数
+     * 参数示例 - 整数参数
      * @desc 必须的整数参数
      */
     public function number() {
@@ -106,7 +106,7 @@ class Rule extends Api {
     }
 
     /**
-     * 指定范围的整数参数
+     * 参数示例 - 指定范围的整数参数
      * @desc 指定范围的整数参数，可以设置最小值、最大值，当设定默认值时，对客户端则不是必传参数。
      */
     public function rangeNumber() {
@@ -116,7 +116,7 @@ class Rule extends Api {
     /** ---------------------- boolean 布尔参数 ---------------------- **/
 
     /**
-     * 开关参数
+     * 参数示例 - 开关参数
      * @desc true或false的开关参数。
      */
     public function trueOrFalse() {
@@ -126,7 +126,7 @@ class Rule extends Api {
     /** ---------------------- date 日期参数 ---------------------- **/
 
     /**
-     * 日期参数
+     * 参数示例 - 日期参数
      * @desc 字符串的日期参数，例如格式：Y-m-d H:i:s
      */
     public function dateStr() {
@@ -134,7 +134,7 @@ class Rule extends Api {
     }
 
     /**
-     * 时间戳日期参数
+     * 参数示例 - 时间戳日期参数
      * @desc 时间戳日期参数，输入日期字符串参数，如传：2019-03-01 00:00:00，接口接收后会转成：1551369600。
      */
     public function dateTimestamp() {
@@ -144,7 +144,7 @@ class Rule extends Api {
     /** ---------------------- array 数组参数 ---------------------- **/
 
     /**
-     * JSON数组参数
+     * 参数示例 - JSON数组参数
      * @desc 演示如何配置JSON格式的数组参数，并原路返回。
      */
     public function jsonArray() {
@@ -152,7 +152,7 @@ class Rule extends Api {
     }
 
     /**
-     * 分割的数组参数
+     * 参数示例 - 分割的数组参数
      * @desc 以英文逗号分割的数组，并且可以设置数组个数。
      */
     public function explodeArray() {
@@ -162,7 +162,7 @@ class Rule extends Api {
     /** ---------------------- enum 枚举参数 ---------------------- **/
 
     /**
-     * 枚举参数
+     * 参数示例 - 枚举参数
      * @desc 例如，男或女的性别参数。
      */
     public function sexEnum() {
@@ -170,7 +170,7 @@ class Rule extends Api {
     }
 
     /**
-     * 状态枚举参数
+     * 参数示例 - 状态枚举参数
      * @desc 对于是数值的枚举范围，注意配置时请用字符串类型。
      */
     public function statusEnum() {
@@ -180,7 +180,7 @@ class Rule extends Api {
     /** ---------------------- callable/callback 回调参数 ---------------------- **/
 
     /**
-     * 版本回调参数
+     * 参数示例 - 版本回调参数
      * @desc 回调类型的参数，可以自定义参数的检测、转换和校验逻辑。例如版本号。
      */
     public function versionCallback() {

@@ -4,7 +4,7 @@ namespace App\Api\Examples;
 use PhalApi\Api;
 
 /**
- * 生成二维码
+ * 接口示例
  */
 class QrCode extends Api {
 
@@ -20,7 +20,7 @@ class QrCode extends Api {
     }
 
     /**
-     * 根据文本内容，生成二维码
+     * 二维码 - 根据文本内容，生成二维码
      * @desc 可根据传入的文本内容，生成对应的二维码，还可以调整尺寸大小。可以直接输出png图片，也可以返回base64后的图片数据。
      */
     public function png() {

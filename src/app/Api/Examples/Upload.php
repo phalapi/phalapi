@@ -4,7 +4,7 @@ namespace App\Api\Examples;
 use PhalApi\Api;
 
 /**
- * 文件上传示例
+ * 接口示例
  * 
  * 测试页面： http://localhost/upload.html
  *
@@ -30,7 +30,7 @@ class Upload extends Api {
     }   
 
     /**
-     * 图片文件上传
+     * 文件上传 - 图片文件上传
      * @desc 只能上传单个图片文件
      * @method POST
      * @version 2.3

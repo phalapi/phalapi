@@ -19,15 +19,24 @@ class ApiList extends ApiOnline {
     const API_CATE_TYPE_API_CLASS_NAME = 0;     // 按API类名分类
     const API_CATE_TYPE_API_CLASS_TITLE = 1;    // 按接口模块名称分类
 
+    const API_LIST_SORT_BY_API_NAME = 0;        // 接口列表，根据接口名称排序
+    const API_LIST_SORT_BY_API_TITLE = 1;       // 接口列表，根据接口标题排序
+
     /**
      * @var int $apiCateType 接口分类的方式
      */
     protected $apiCateType;
 
-    public function __construct($projectName, $apiCateType = NULL) {
+    /**
+     * @var int $apiListSortBy 接口列表的排序方式
+     */
+    protected $apiListSortBy;
+
+    public function __construct($projectName, $apiCateType = NULL, $apiListSortBy = NULL) {
         $this->projectName = $projectName;
 
         $this->apiCateType = intval($apiCateType);
+        $this->apiListSortBy = intval($apiListSortBy);
     }
 
     public function render($tplPath = NULL) {
@@ -113,7 +122,6 @@ class ApiList extends ApiOnline {
                 $allApiS[$namespace][$apiCateVal]['desc'] = $desc;
 
                 $method = array_diff(get_class_methods($apiClassName), $allPhalApiApiMethods);
-                sort($method);
                 foreach ($method as $mValue) {
                     $rMethod = new \Reflectionmethod($apiClassName, $mValue);
                     if (!$rMethod->isPublic() || strpos($mValue, '__') === 0) {
@@ -174,12 +182,31 @@ class ApiList extends ApiOnline {
             $theme = 'expand';
         }
 
-        //echo json_encode($allApiS) ;
         // 字典排列与过滤
         foreach ($allApiS as $namespace => &$subAllApiS) {
-            ksort($subAllApiS);
             if (empty($subAllApiS)) {
                 unset($allApiS[$namespace]);
+                continue;
+            }
+
+            // 接口大列表排序
+            if ($this->apiListSortBy == self::API_LIST_SORT_BY_API_TITLE) {
+                // 根据自定义接口标题排序
+                $sortTiles = array_column($subAllApiS, 'title');
+                array_multisort($subAllApiS, SORT_ASC, SORT_STRING, $sortTiles);
+            } else {
+                // 默认根据接口名称排序
+                ksort($subAllApiS);
+            }
+
+            // 接口小列表排序
+            foreach ($subAllApiS as &$subMethods) {
+                if ($this->apiListSortBy == self::API_LIST_SORT_BY_API_TITLE) {
+                    $subSortTitles = array_column($subMethods['methods'], 'title');
+                    array_multisort($subMethods['methods'], SORT_ASC, SORT_STRING, $subSortTitles);
+                } else {
+                    ksort($subMethods);
+                }
             }
         }
         unset($subAllApiS);
