@@ -193,7 +193,8 @@ class ApiList extends ApiOnline {
             if ($this->apiListSortBy == self::API_LIST_SORT_BY_API_TITLE) {
                 // 根据自定义接口标题排序
                 $sortTiles = array_column($subAllApiS, 'title');
-                array_multisort($subAllApiS, SORT_ASC, SORT_STRING, $sortTiles);
+                // @link https://www.php.net/manual/zh/function.array-multisort.php 示例 #4
+                array_multisort($sortTiles, SORT_ASC, SORT_STRING, $subAllApiS);
             } else {
                 // 默认根据接口名称排序
                 ksort($subAllApiS);
@@ -203,7 +204,7 @@ class ApiList extends ApiOnline {
             foreach ($subAllApiS as &$subMethods) {
                 if ($this->apiListSortBy == self::API_LIST_SORT_BY_API_TITLE) {
                     $subSortTitles = array_column($subMethods['methods'], 'title');
-                    array_multisort($subMethods['methods'], SORT_ASC, SORT_STRING, $subSortTitles);
+                    array_multisort($subSortTitles, SORT_ASC, SORT_STRING, $subMethods['methods']);
                 } else {
                     ksort($subMethods);
                 }
