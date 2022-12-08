@@ -50,6 +50,12 @@ class Lite {
             $getOpt->process();
 
             $service = $getOpt['service'];
+
+            // 转编号
+            $serviceList = $this->getServiceList();
+            if ($service !== NULL && isset($serviceList[$service])) {
+                $service = $serviceList[$service][0];
+            }
         } catch (\Exception $ex) {
             // 后续统一处理
         }
@@ -132,7 +138,14 @@ class Lite {
             }
 
 
-            \PhalApi\DI()->request = new Request($getOpt->getOptions());
+            $options = $getOpt->getOptions();
+            // 同步转编号后的service
+            $options['s'] = $options['service'] = $service;
+
+            $options = $this->afterGetOptions($options);
+
+            // 构建全部命令行参数
+            \PhalApi\DI()->request = new Request($options);
 
             // 转交PhalApi重新响应处理
             $api = new PhalApi();
@@ -144,9 +157,42 @@ class Lite {
         } catch (\Exception $ex) {
             echo $this->getHelpText($getOpt->getHelpText());
             echo PHP_EOL . $this->colorfulString('Service: ' . $service, 'NOTE');
+            if ($service === NULL) {
+                echo PHP_EOL . $this->getServiceListHelpText();
+            }
             echo PHP_EOL . $this->colorfulString($ex->getMessage(), 'FAILURE') . PHP_EOL . PHP_EOL;
             exit(1);
         }
+    }
+
+    // 完成命令行参数获取后的操作，方便追加公共参数
+    protected function afterGetOptions($options) {
+        return $options;
+    }
+
+    // 提供接口列表，service -> 接口功能说明
+    protected function getServiceList() {
+        return array(
+            // 1 => ['App.Hello.World', '演示接口'],
+        );
+    }
+
+    // 提示输出
+    protected function getServiceListHelpText() {
+        $list = $this->getServiceList();
+
+        $topLen = 20;
+        foreach ($list as $pos => $it) {
+            $topLen = max(strlen($it[0]), $topLen);
+        }
+        $topLen += 2;
+
+        $text = '';
+        foreach ($list as $pos => $it) {
+            $text .= $this->colorfulString($pos . ') ', 'NOTE') . $this->colorfulString(sprintf(" %-{$topLen}s", $it[0]), 'NOTE') . $it[1] . PHP_EOL;
+        }
+
+        return $text;
     }
 
     // 自定义帮助说明

@@ -74,17 +74,17 @@
         },
         {
             "name": "phalapi/cli",
-            "version": "v3.2.0",
-            "version_normalized": "3.2.0.0",
+            "version": "v3.3.0",
+            "version_normalized": "3.3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phalapi/cli.git",
-                "reference": "8676449b3674993da7265a48b5138c28323dfe06"
+                "reference": "ea1d54aff3931662037ebfffe7c0a79d0cfafc1b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phalapi/cli/zipball/8676449b3674993da7265a48b5138c28323dfe06",
-                "reference": "8676449b3674993da7265a48b5138c28323dfe06",
+                "url": "https://api.github.com/repos/phalapi/cli/zipball/ea1d54aff3931662037ebfffe7c0a79d0cfafc1b",
+                "reference": "ea1d54aff3931662037ebfffe7c0a79d0cfafc1b",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -97,7 +97,7 @@
                 "php": ">=5.3.3",
                 "ulrichsg/getopt-php": "3.4.0"
             },
-            "time": "2022-12-08T09:18:07+00:00",
+            "time": "2022-12-08T10:02:48+00:00",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -126,7 +126,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phalapi/cli/issues",
-                "source": "https://github.com/phalapi/cli/tree/v3.2.0"
+                "source": "https://github.com/phalapi/cli/tree/v3.3.0"
             },
             "install-path": "../phalapi/cli"
         },

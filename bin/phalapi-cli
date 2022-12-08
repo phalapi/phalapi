@@ -11,6 +11,13 @@ class MyCLI extends PhalApi\CLI\Lite {
 
         return $text . PHP_EOL . $context;
     }
+
+    // 提供接口列表，service -> 接口功能说明
+    protected function getServiceList() {
+        return array(
+            1 => ['App.Hello.World', '演示接口'],
+        );
+    }
 }
 
 $cli = new MyCLI();

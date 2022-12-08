@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '65684c2b0dbbcb9b7ff2035a7e49393e28ebba74',
+        'reference' => 'd77a1ada5bd9b22b623dfb1db9f3228db2e9ec8a',
         'name' => 'phalapi/phalapi',
         'dev' => true,
     ),
@@ -20,12 +20,12 @@
             'dev_requirement' => false,
         ),
         'phalapi/cli' => array(
-            'pretty_version' => 'v3.2.0',
-            'version' => '3.2.0.0',
+            'pretty_version' => 'v3.3.0',
+            'version' => '3.3.0.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phalapi/cli',
             'aliases' => array(),
-            'reference' => '8676449b3674993da7265a48b5138c28323dfe06',
+            'reference' => 'ea1d54aff3931662037ebfffe7c0a79d0cfafc1b',
             'dev_requirement' => false,
         ),
         'phalapi/kernal' => array(
@@ -52,7 +52,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '65684c2b0dbbcb9b7ff2035a7e49393e28ebba74',
+            'reference' => 'd77a1ada5bd9b22b623dfb1db9f3228db2e9ec8a',
             'dev_requirement' => false,
         ),
         'phalapi/qrcode' => array(
