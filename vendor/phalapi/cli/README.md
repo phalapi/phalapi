@@ -103,7 +103,9 @@ Service: App.User_User.Register
 ![20221208-174039](https://user-images.githubusercontent.com/12585518/206418256-59df5a90-8707-465f-b93d-f7e4db09d938.png)
 
 
-## 扩展帮助说明  
+## 扩展
+
+### 扩展帮助说明  
 
 如果需要定制你的命令脚本的帮助说明，可以重载```PhalApi\CLI\Lite::getHelpText($text)```方法。例如，修改```./bin/phalapi-cli```脚本，改为： 
  
@@ -123,10 +125,11 @@ class MyCLI extends PhalApi\CLI\Lite {
     }
 }
 
-$cli = new MyCLI;
+$cli = new MyCLI();
 $cli->response();
 
 ```
+
 
 执行后效果是：  
 ```bash
@@ -144,6 +147,70 @@ Service:
 缺少service参数，请使用 -s 或 --service 指定需要调用的API接口
 ```
 
+### 扩展接口命令列表
+
+可以重载扩展 ```PhalApi\CLI\Lite::getServiceList()```方法。返回一个数组，在里面配置：  
+```
+array(
+  编号 => array('service接口服务名称', '功能说明'),
+)
+```
+
+例如，  
+```php
+class MyCLI extends PhalApi\CLI\Lite {
+
+    // 提供接口列表，service -> 接口功能说明
+    protected function getServiceList() {
+        return array(
+            1 => ['App.Hello.World', '演示接口'],
+        );
+    }
+}
+
+```
+
+运行效果是：  
+```bash
+$ ./bin/phalapi-cli
+Usage: ./bin/phalapi-cli [options] [operands]
+
+Options:
+  -s, --service <arg>  接口服务
+  -h, --help           查看帮助信息
+
+
+--- 自定义的帮助说明 ---
+
+Service: 
+1)  App.Hello.World       演示接口
+
+缺少service参数，请使用 -s 或 --service 指定需要调用的API接口。
+```
+
+然后，可以使用快速编号执行对应的接口命令，如：  
+```bash
+$ ./bin/phalapi-cli -s 1
+
+Service: App.Hello.World
+{
+    "ret": 200,
+    "data": {
+        "content": "Hello World!"
+    },
+    "msg": ""
+}
+```
+
+### 扩展公共命令参数  
+
+可以加工处理以下方法：  
+```
+    // 完成命令行参数获取后的操作，方便追加公共参数
+    protected function afterGetOptions($options) {
+        return $options;
+    }
+```
 
 ## 参考和依赖  
 
