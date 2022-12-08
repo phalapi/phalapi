@@ -2,5 +2,17 @@
 <?php
 require_once dirname(__FILE__) . '/../public/init.php';
 
-$cli = new PhalApi\CLI\Lite();
+class MyCLI extends PhalApi\CLI\Lite {
+
+    // 自定义帮助说明
+    protected function getHelpText($text) {
+        // 在原有的帮助说明，后面追加自己的文字  
+        $context = "--- 自定义的帮助说明 ---" . PHP_EOL;
+
+        return $text . PHP_EOL . $context;
+    }
+}
+
+$cli = new MyCLI();
 $cli->response();
+

@@ -90,7 +90,7 @@ class Lite {
                     $default = is_array($ruleItem['default']) ? json_encode($ruleItem['default'], JSON_UNESCAPED_UNICODE) : $ruleItem['default']; 
                     $opt->setDefaultValue($default);
 
-                    $optDesc[] = '默认 ' . $default;
+                    $optDesc[] = '默认 ' . ($default !== '' ? $default : '[空]');
                 }
 
                 if (isset($ruleItem['desc'])) {
@@ -110,7 +110,7 @@ class Lite {
             $getOpt->process();
 
             if ($getOpt['help']) {
-                echo $getOpt->getHelpText();
+                echo $this->getHelpText($getOpt->getHelpText());
                 exit(1);
             }
 
@@ -126,7 +126,7 @@ class Lite {
                     $_d = isset($ruleItem['desc']) ? $ruleItem['desc'] : $_n;
                     $val = $getOpt[$_n];
                     if ($val === NULL) {
-                        throw new \Exception("缺少 {$_n} 参数，请使用 --{$_n} 指定：{$_d}");
+                        throw new \Exception("缺少{$_n}参数，请使用 --{$_n} 指定：{$_d}");
                     }
                 }
             }
@@ -138,12 +138,20 @@ class Lite {
             $api = new PhalApi();
             $rs = $api->response();
             $arr = $rs->getResult();
-            echo $this->colorfulString(json_encode($arr, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT), 'SUCCESS') . PHP_EOL;
+
+            echo PHP_EOL . $this->colorfulString('Service: ' . $service, 'NOTE');
+            echo PHP_EOL . $this->colorfulString(json_encode($arr, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT), 'SUCCESS') . PHP_EOL;
         } catch (\Exception $ex) {
-            echo $getOpt->getHelpText();
+            echo $this->getHelpText($getOpt->getHelpText());
+            echo PHP_EOL . $this->colorfulString('Service: ' . $service, 'NOTE');
             echo PHP_EOL . $this->colorfulString($ex->getMessage(), 'FAILURE') . PHP_EOL . PHP_EOL;
             exit(1);
         }
+    }
+
+    // 自定义帮助说明
+    protected function getHelpText($text) {
+        return $text;
     }
 
     protected function colorfulString($text, $type = NULL) {
