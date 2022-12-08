@@ -114,16 +114,51 @@ class Lite {
                 exit(1);
             }
 
+            // 必填参数
+            foreach ($rules as $ruleKey => $ruleItem) {
+                // 避免重复参数规则
+                if (in_array($ruleItem['name'], array('s', 'service', 'h', 'help'))) {
+                    continue;
+                }
+
+                if (!empty($ruleItem['require']) && !isset($ruleItem['default'])) {
+                    $_n = $ruleItem['name'];
+                    $_d = isset($ruleItem['desc']) ? $ruleItem['desc'] : $_n;
+                    $val = $getOpt[$_n];
+                    if ($val === NULL) {
+                        throw new \Exception("缺少 {$_n} 参数，请使用 --{$_n} 指定：{$_d}");
+                    }
+                }
+            }
+
+
             \PhalApi\DI()->request = new Request($getOpt->getOptions());
 
             // 转交PhalApi重新响应处理
             $api = new PhalApi();
             $rs = $api->response();
-            $rs->output();
+            $arr = $rs->getResult();
+            echo $this->colorfulString(json_encode($arr, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT), 'SUCCESS') . PHP_EOL;
         } catch (\Exception $ex) {
             echo $getOpt->getHelpText();
-            echo PHP_EOL . $ex->getMessage() . PHP_EOL . PHP_EOL;
+            echo PHP_EOL . $this->colorfulString($ex->getMessage(), 'FAILURE') . PHP_EOL . PHP_EOL;
             exit(1);
         }
     }
+
+    protected function colorfulString($text, $type = NULL) {
+        $colors = array(
+            'WARNING'   => '1;33',
+            'NOTE'      => '1;36',
+            'SUCCESS'   => '1;32',
+            'FAILURE'   => '1;35',
+        );
+
+        if (empty($type) || !isset($colors[$type])){
+            return $text;
+        }
+
+        return "\033[" . $colors[$type] . "m" . $text . "\033[0m";
+    }
+
 }

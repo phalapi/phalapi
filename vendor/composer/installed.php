@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '4d8ff69832d15236a8086e956b2461ddc8f17b37',
+        'reference' => 'd7db4eb36df41622af3b8ecb05c2bb17561f011f',
         'name' => 'phalapi/phalapi',
         'dev' => true,
     ),
@@ -52,7 +52,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '4d8ff69832d15236a8086e956b2461ddc8f17b37',
+            'reference' => 'd7db4eb36df41622af3b8ecb05c2bb17561f011f',
             'dev_requirement' => false,
         ),
         'phalapi/qrcode' => array(
