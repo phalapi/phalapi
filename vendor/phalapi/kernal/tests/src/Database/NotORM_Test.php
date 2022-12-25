@@ -377,4 +377,15 @@ CREATE TABLE `my_table_name` (
         $rs = $pdo->exec($sql);
         $this->assertEquals(1, $rs);
     }
+
+    public function testReplaceWithLiteral() {
+        // 问号绑定
+        $rows = $this->notorm->demo->where('id = ?', 1)->update(array('name' => new \NotORM_Literal('REPLACE(`name`, ?, ?)', 'from-name', 'to-new-name')));
+
+        // :name 绑定
+        $rows = $this->notorm->demo->where('id = :id', [':id' => 1])->update(array('name' => new \NotORM_Literal('REPLACE(`name`, :fn, :tn)', [':fn' => 'from-name', ':tn' => 'to-new-name'])));
+
+        $this->assertTrue(true);
+    }
+
 }

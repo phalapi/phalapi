@@ -132,17 +132,17 @@
         },
         {
             "name": "phalapi/kernal",
-            "version": "2.19.0",
-            "version_normalized": "2.19.0.0",
+            "version": "2.20.0",
+            "version_normalized": "2.20.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phalapi/kernal.git",
-                "reference": "bc39c3824cd431dfa3abfc02ffb827cf278d43ec"
+                "reference": "6e8e923dd85e09ef3863d4fec46a8bf41a363c73"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phalapi/kernal/zipball/bc39c3824cd431dfa3abfc02ffb827cf278d43ec",
-                "reference": "bc39c3824cd431dfa3abfc02ffb827cf278d43ec",
+                "url": "https://api.github.com/repos/phalapi/kernal/zipball/6e8e923dd85e09ef3863d4fec46a8bf41a363c73",
+                "reference": "6e8e923dd85e09ef3863d4fec46a8bf41a363c73",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -155,7 +155,7 @@
                 "phalapi/notorm": "2.*.*",
                 "php": ">=5.3.3"
             },
-            "time": "2022-12-02T07:38:36+00:00",
+            "time": "2022-12-13T14:24:05+00:00",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -193,23 +193,23 @@
             ],
             "support": {
                 "issues": "https://github.com/phalapi/kernal/issues",
-                "source": "https://github.com/phalapi/kernal/tree/2.19.0"
+                "source": "https://github.com/phalapi/kernal/tree/2.20.0"
             },
             "install-path": "../phalapi/kernal"
         },
         {
             "name": "phalapi/notorm",
-            "version": "2.10.0",
-            "version_normalized": "2.10.0.0",
+            "version": "2.12.1",
+            "version_normalized": "2.12.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phalapi/notorm.git",
-                "reference": "337cac09d3563a325d574298b87c6a7a5f8f759f"
+                "reference": "2ce376d106bf46496d68b7ebff56ead63f38d4a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phalapi/notorm/zipball/337cac09d3563a325d574298b87c6a7a5f8f759f",
-                "reference": "337cac09d3563a325d574298b87c6a7a5f8f759f",
+                "url": "https://api.github.com/repos/phalapi/notorm/zipball/2ce376d106bf46496d68b7ebff56ead63f38d4a6",
+                "reference": "2ce376d106bf46496d68b7ebff56ead63f38d4a6",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -221,7 +221,7 @@
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "2020-03-10T11:52:02+00:00",
+            "time": "2022-12-13T10:02:46+00:00",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -248,6 +248,10 @@
                 "notorm",
                 "phalapi"
             ],
+            "support": {
+                "issues": "https://github.com/phalapi/notorm/issues",
+                "source": "https://github.com/phalapi/notorm/tree/2.12.1"
+            },
             "install-path": "../phalapi/notorm"
         },
         {

@@ -378,7 +378,7 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
                 $values[] = $this->quote($value);
                 foreach($value as $val){
                     if($val instanceof NotORM_Literal && $val->parameters){
-                        $parameters = array_merge($parameters, $val->parameters);
+                        $parameters = $this->mergeLiteralParamaters($parameters, $val->parameters);
                     }
                 }
             }
@@ -459,7 +459,7 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
             // doesn't use binding because $this->parameters can be filled by ? or :name
             $values[] = "{$quoteChar}{$key}{$quoteChar} = " . $this->quote($val);
             if($val instanceof NotORM_Literal && $val->parameters){
-                $parameters = array_merge($parameters, $val->parameters);
+                $parameters = $this->mergeLiteralParamaters($parameters, $val->parameters);
             }
         }
         if($this->parameters){
@@ -507,6 +507,14 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
         return new NotORM_Literal(
             sprintf('%s %s %s', $column, $number >= 0 ? '+' : '-', abs($number))
         );
+    }
+
+    /**
+     * 合并NotORM_Literal的参数，让其支持:name的参数绑定方式
+     */
+    protected function mergeLiteralParamaters($parameters, $literalParamaters) {
+        $mergeArr = isset($literalParamaters[0]) && is_array($literalParamaters[0]) ? $literalParamaters[0] : $literalParamaters;
+        return array_merge($parameters, $mergeArr);
     }
 
     /**
@@ -908,7 +916,7 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
                 $this->having
             ), $this->order, $this->unionOrder) as $val){
                 if(($val instanceof NotORM_Literal || $val instanceof self) && $val->parameters){
-                    $parameters = array_merge($parameters, $val->parameters);
+                    $parameters = $this->mergeLiteralParamaters($parameters, $val->parameters);
                 }
             }
             try{
