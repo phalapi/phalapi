@@ -18,7 +18,6 @@ class ApiDesc extends ApiOnline {
 
     public function render($tplPath = NULL) {
         $tplPath = !empty($tplPath) ? $tplPath : dirname(__FILE__) . '/api_desc_tpl.php';
-        parent::render($tplPath);
 
         $service    = \PhalApi\DI()->request->getService();
         $namespace  = \PhalApi\DI()->request->getNamespace();
@@ -134,6 +133,22 @@ class ApiDesc extends ApiOnline {
             $returns[$returnCommentArr[1]] = $returnCommentArr; 
         }
 
-        include $tplPath;
+        $this->assign('service', $service);
+        $this->assign('namespace', $namespace);
+        $this->assign('api', $api);
+        $this->assign('action', $action);
+        $this->assign('className', $className);
+
+        $this->assign('rules', $rules);
+        $this->assign('returns', $returns);
+        $this->assign('description', $description);
+        $this->assign('descComment', $descComment);
+        $this->assign('methods', $methods);
+        $this->assign('exceptions', $exceptions);
+        $this->assign('version', $version);
+
+        $this->assign('isException', $isException);
+
+        parent::render($tplPath);
     }
 }

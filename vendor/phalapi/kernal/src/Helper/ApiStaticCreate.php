@@ -16,8 +16,8 @@ class ApiStaticCreate extends ApiList
     protected $theme = '';
     protected $detailTplPath = NULL;
 
-    public function __construct($projectName, $theme = 'fold', $detailTplPath = NULL) {
-        parent::__construct($projectName);
+    public function __construct($projectName, $theme = 'expand', $detailTplPath = NULL, $apiCateType = NULL, $apiListSortBy = NULL) {
+        parent::__construct($projectName, $apiCateType, $apiListSortBy);
         $this->theme = $theme;
         if (!empty($detailTplPath)) {
             $this->detailTplPath = $detailTplPath;

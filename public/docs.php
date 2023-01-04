@@ -46,7 +46,7 @@ $listTpl = API_ROOT . '/src/view/docs/api_list_tpl.php';
 
 if (substr(PHP_SAPI, 0, 3) == 'cli') {
     // 生成离线文档
-    $apiHtml = new ApiStaticCreate($projectName, 'fold', $detailTpl);
+    $apiHtml = new ApiStaticCreate($projectName, 'fold', $detailTpl, ApiList::API_CATE_TYPE_API_CLASS_TITLE, ApiList::API_LIST_SORT_BY_API_TITLE);
     $apiHtml->render($listTpl);
 } else if (!empty($_GET['detail'])) {
     checkViewCode();

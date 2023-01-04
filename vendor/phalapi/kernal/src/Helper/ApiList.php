@@ -33,7 +33,7 @@ class ApiList extends ApiOnline {
     protected $apiListSortBy;
 
     public function __construct($projectName, $apiCateType = NULL, $apiListSortBy = NULL) {
-        $this->projectName = $projectName;
+        parent::__construct($projectName);
 
         $this->apiCateType = intval($apiCateType);
         $this->apiListSortBy = intval($apiListSortBy);
@@ -41,7 +41,6 @@ class ApiList extends ApiOnline {
 
     public function render($tplPath = NULL) {
         $tplPath = !empty($tplPath) ? $tplPath : dirname(__FILE__) . '/api_list_tpl.php';
-        parent::render($tplPath);
 
         $composerJson = file_get_contents(API_ROOT . D_S . 'composer.json');
         $composerArr = json_decode($composerJson, TRUE);
@@ -212,9 +211,11 @@ class ApiList extends ApiOnline {
         }
         unset($subAllApiS);
 
-        $projectName = $this->projectName;
+        $this->assign('allApiS', $allApiS);
+        $this->assign('errorMessage', $errorMessage);
+        $this->assign('theme', $theme);
 
-        include $tplPath;
+        parent::render($tplPath);
     }
 
     public function makeApiServiceLink($service, $theme = '') {

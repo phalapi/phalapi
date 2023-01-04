@@ -14,8 +14,20 @@ class ApiOnline {
 
     protected $projectName;
 
+    protected $tplData = array();
+
     public function __construct($projectName) {
         $this->projectName = $projectName;
+
+        $this->assign('projectName', $projectName);
+    }
+
+    /**
+     * 赋值模板变量
+     */
+    public function assign($name, $value) {
+        $this->tplData[$name] = $value;
+        return $this;
     }
 
     /**
@@ -23,5 +35,9 @@ class ApiOnline {
      */
     public function render($tplPath = NULL) {
         header('Content-Type:text/html;charset=utf-8');
+
+        extract($this->tplData);
+
+        include $tplPath;
     }
 }

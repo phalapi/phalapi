@@ -11,7 +11,7 @@ return array(
     /**
      * @var boolean 是否开启接口调试模式，开启后在客户端可以直接看到更多调试信息
      */
-    'debug' => false,
+    'debug' => true,
 
     /**
      * @var boolean 是否开启NotORM调试模式，开启后仅针对NotORM服务开启调试模式
