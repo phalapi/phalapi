@@ -31,13 +31,22 @@ class ApiOnline {
     }
 
     /**
+     * 获取模板变量
+     */
+    public function getTplData() {
+        return $this->tplData;
+    }
+
+    /**
      * @param string $tplPath 模板绝对路径
      */
     public function render($tplPath = NULL) {
-        header('Content-Type:text/html;charset=utf-8');
+        if ($tplPath && file_exists($tplPath)) {
+            header('Content-Type:text/html;charset=utf-8');
 
-        extract($this->tplData);
+            extract($this->tplData);
 
-        include $tplPath;
+            include $tplPath;
+        }
     }
 }
