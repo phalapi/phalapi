@@ -117,6 +117,7 @@ class ApiList extends ApiOnline {
                     $allApiS[$namespace][$apiCateVal] = array('methods' => array());
                 }
 
+                $allApiS[$namespace][$apiCateVal]['class'] = $apiClassShortName;
                 $allApiS[$namespace][$apiCateVal]['title'] = $title;
                 $allApiS[$namespace][$apiCateVal]['desc'] = $desc;
 
