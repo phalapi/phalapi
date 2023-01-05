@@ -127,12 +127,17 @@ if (substr(PHP_SAPI, 0, 3) == 'cli') {
             ?>
                 <?php
                 $num2 = 0;
+                // 表格随机颜色
+                $tableColors = array('red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'purple', 'pink', 'brown');
+
                 foreach ($allApiS as $namespace => $subAllApiS) {
                 foreach ($subAllApiS as $key => $item) {
+                    $uiTableColor = $tableColors[($num2 % count($tableColors))];
+
                     ?>
                     <div class="ui  tab <?php if ($num2 == 0) { ?>active<?php } ?>" data-tab="<?php echo str_replace('\\', '_', $namespace) . $key; ?>">
                         <table
-                            class="ui red celled striped table celled striped table">
+                            class="ui <?php echo $uiTableColor; ?> celled striped table celled striped table">
                             <thead>
                             <tr>
                                 <th>#</th>
