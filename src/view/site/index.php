@@ -52,12 +52,12 @@ if (substr(PHP_SAPI, 0, 3) == 'cli') {
   </div>
 </div>
 
-<div class="feature alternate ui stripe vertical segment">
+<div class="feature alternate ui stripe vertical segment" style="margin-top:30px;" >
   <div class="ui three column center aligned divided relaxed stackable grid container">
-    <div class="row">
+    <div class="row" style="padding-bottom: 48px;">
       <div class="column">
         <h2 class="ui icon header">
-          <img class="ui icon image" src="/semantic/rocket.png" style="height: 65px;">
+          <i class="tv icon" style="margin-bottom:30px;"></i>
           更简单的API接口开发
         </h2>
         <p>立即编写和运行你的第一个API接口，通过参数：<strong><code>s=接口服务名称</code></strong> 可以指定调用的API接口。</p>
@@ -65,7 +65,7 @@ if (substr(PHP_SAPI, 0, 3) == 'cli') {
       </div>
       <div class="column">
         <h2 class="ui icon header">
-          <img class="ui icon image" src="/semantic/book.png" style="height: 65px;">
+          <i class="paper plane outline icon" style="margin-bottom:30px;"></i>
           PhalApi 2.x 完整开发文档
         </h2>
         <p>PhalApi，简称π框架，是一个PHP轻量级开源接口框架，专注于服务端接口开发。</p>
@@ -73,7 +73,7 @@ if (substr(PHP_SAPI, 0, 3) == 'cli') {
       </div>
       <div class="column">
         <h2 class="ui icon header">
-          <img class="ui icon image" src="/semantic/lab.png" style="height: 65px;">
+          <i class="calendar check outline icon" style="margin-bottom:30px;"></i>
           PhalApi.net 官网
         </h2>
         <p>
@@ -85,7 +85,18 @@ if (substr(PHP_SAPI, 0, 3) == 'cli') {
   </div>
 </div>
 
-<div class="ui vertical stripe intro " style="margin-top:30px;">
+<div class="ui placeholder segment">
+  <div class="ui icon header">
+    <i class="search icon"></i>
+    当前使用版本：<?php echo \PhalApi\T('PhalApi API Framework'), ' v', PHALAPI_VERSION; ?>
+  </div>
+  <div class="inline">
+    <a class="ui primary button" target="_blank" href="https://github.com/phalapi/phalapi">Github</a>
+    <a target="_blank" href="http://docs.phalapi.net/#/v2.0/changelog" class="ui button">版本更新日记</a>
+  </div>
+</div>
+
+<div class="ui vertical stripe intro " style="margin-top:30px; padding-top: 48px; padding-bottom: 48px;">
   <div class="ui stackable very relaxed center aligned grid container">
     <div class="row">
       <div class="twelve wide column">
