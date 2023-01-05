@@ -88,10 +88,14 @@ if (substr(PHP_SAPI, 0, 3) == 'cli') {
 <div class="ui placeholder segment">
   <div class="ui icon header">
     <i class="search icon"></i>
-    当前使用版本：<?php echo \PhalApi\T('PhalApi API Framework'), ' v', PHALAPI_VERSION; ?>
+    技术栈：
+      <a target="_blank" href="https://www.phalapi.net/"><?php echo \PhalApi\T('PhalApi API Framework'), ' v', PHALAPI_VERSION; ?></a>、
+      <a target="_blank" href="https://semantic-ui.com/">Semantic UI</a>、
+      <a target="_blank" href="https://www.ilayuis.com/">Layui</a>
   </div>
   <div class="inline">
     <a class="ui primary button" target="_blank" href="https://github.com/phalapi/phalapi">Github</a>
+    <a target="_blank" href="https://gitee.com/dogstar/PhalApi/" class="ui button">码云</a>
     <a target="_blank" href="http://docs.phalapi.net/#/v2.0/changelog" class="ui button">版本更新日记</a>
   </div>
 </div>
