@@ -7,7 +7,7 @@ use PhalApi\Translator;
 /**
  * PhalApi框架 Kernal内核 版本号
  */
-defined('PHALAPI_VERSION') || define('PHALAPI_VERSION', '2.20.6');
+defined('PHALAPI_VERSION') || define('PHALAPI_VERSION', '2.21.0');
 
 /**
  * 考虑再三，出于人性化关怀，提供要些快速的函数和方法

@@ -132,17 +132,17 @@
         },
         {
             "name": "phalapi/kernal",
-            "version": "2.20.6",
-            "version_normalized": "2.20.6.0",
+            "version": "2.21.0",
+            "version_normalized": "2.21.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phalapi/kernal.git",
-                "reference": "d40643cfa415653e5c4db164b99d401d0dc5589e"
+                "reference": "6dd19940aabfb93f13599e7ce04284bdc12ae7bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phalapi/kernal/zipball/d40643cfa415653e5c4db164b99d401d0dc5589e",
-                "reference": "d40643cfa415653e5c4db164b99d401d0dc5589e",
+                "url": "https://api.github.com/repos/phalapi/kernal/zipball/6dd19940aabfb93f13599e7ce04284bdc12ae7bb",
+                "reference": "6dd19940aabfb93f13599e7ce04284bdc12ae7bb",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -155,7 +155,7 @@
                 "phalapi/notorm": "2.*.*",
                 "php": ">=5.3.3"
             },
-            "time": "2023-01-05T06:35:18+00:00",
+            "time": "2023-01-05T10:16:41+00:00",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -193,7 +193,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phalapi/kernal/issues",
-                "source": "https://github.com/phalapi/kernal/tree/2.20.6"
+                "source": "https://github.com/phalapi/kernal/tree/2.21.0"
             },
             "install-path": "../phalapi/kernal"
         },

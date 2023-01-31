@@ -141,8 +141,8 @@ if (substr(PHP_SAPI, 0, 3) == 'cli') {
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th><?php echo \PhalApi\T('API Service'); ?></th>
                                 <th><?php echo \PhalApi\T('Request Method'); ?></th>
+                                <th><?php echo \PhalApi\T('API Service'); ?></th>
                                 <th><?php echo \PhalApi\T('API Title'); ?></th>
                                 <th><?php echo \PhalApi\T('API Description'); ?></th>
                             </tr>
