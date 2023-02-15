@@ -34,6 +34,13 @@ echo <<<EOT
 
     <script src="/static/jquery.min.js"></script>
     <script src="/static/jquery.cookie.min.js"></script>
+
+    <style>
+        #json_output pre span {
+            white-space: normal;
+            word-break: break-all;
+        }
+    </style>
 </head>
 
 <body>
@@ -358,8 +365,8 @@ if (!empty($demoCodes)) {
 </div>
 
 <!-- 代码高亮 -->
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css">
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+<link rel="stylesheet" href="/static/highlight.min.css">
+<script src="/static/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
 EOT;

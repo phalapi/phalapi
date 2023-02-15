@@ -19,6 +19,15 @@
     </div>
   </div>
 
+  <style type="text/css">
+    #json_output {
+        pre span {
+            white-space: normal;
+            word-break: break-all;
+        }
+    }
+  </style>
+
     <script type="text/javascript">
         let elem = document.getElementById('service');
         let sep = '_';
@@ -83,10 +92,16 @@
                     processData: false,
                     contentType: false,
                     success:function(res,status,xhr){
-                        console.log(xhr);
+                        // console.log(xhr);
                         var statu = xhr.status + ' ' + xhr.statusText;
                         var header = xhr.getAllResponseHeaders();
                         var json_text = JSON.stringify(res, null, 4);    // 缩进4个空格
+                        if (hljs) {
+                            // var hightLightCode = hljs.highlightAuto(json_text);
+                            var hightLightCode = hljs.highlight('json', json_text);
+                            json_text = hightLightCode.value;
+                          }
+
                         $("#json_output").html('<pre>' + statu + '<br/>' + header + '<br/>' + json_text + '</pre>');
                         $("#json_output").show();
                     },
