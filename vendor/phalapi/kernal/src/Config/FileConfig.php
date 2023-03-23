@@ -98,4 +98,14 @@ class FileConfig implements Config {
 		
 		$this->map[$fileName] = $config;
 	}
+
+    /**
+     * 重置文件配置缓存
+     * 为应对诸如计划任务等服务长期加载众多PHP配置文件而导致内存溢出，添加些接口以便手动释放内存空间
+     * @return \PhalApi\Config\FileConfig
+     */
+    public function resetConfig() {
+        $this->map = array();
+        return $this;
+    }
 }

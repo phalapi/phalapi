@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '241d9337f6683f41a429d2605287c42406f67b04',
+        'reference' => 'aefcb7578b22aa24137936285d0a987c585ab970',
         'name' => 'phalapi/phalapi',
         'dev' => true,
     ),
@@ -29,12 +29,12 @@
             'dev_requirement' => false,
         ),
         'phalapi/kernal' => array(
-            'pretty_version' => '2.21.0',
-            'version' => '2.21.0.0',
+            'pretty_version' => '2.21.5',
+            'version' => '2.21.5.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phalapi/kernal',
             'aliases' => array(),
-            'reference' => '6dd19940aabfb93f13599e7ce04284bdc12ae7bb',
+            'reference' => '882ad9c2f78a9370de729cdf3439d9a77cb3598c',
             'dev_requirement' => false,
         ),
         'phalapi/notorm' => array(
@@ -52,7 +52,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '241d9337f6683f41a429d2605287c42406f67b04',
+            'reference' => 'aefcb7578b22aa24137936285d0a987c585ab970',
             'dev_requirement' => false,
         ),
         'phalapi/qrcode' => array(
@@ -94,16 +94,18 @@
             'aliases' => array(
                 0 => '1.27.x-dev',
             ),
-            'reference' => '5bbc823adecdae860bb64756d639ecfec17b050a',
+            'reference' => 'b4285dfbe6119d27def5265962ca376177232e58',
             'dev_requirement' => false,
         ),
         'symfony/polyfill-mbstring' => array(
-            'pretty_version' => 'v1.27.0',
-            'version' => '1.27.0.0',
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/polyfill-mbstring',
-            'aliases' => array(),
-            'reference' => '8ad114f6b39e2c98a8b0e3bd907732c207c2b534',
+            'aliases' => array(
+                0 => '1.28.x-dev',
+            ),
+            'reference' => 'f9c7affe77a00ae32ca127ca6833d034e6d33f25',
             'dev_requirement' => false,
         ),
         'symfony/polyfill-php80' => array(
@@ -112,9 +114,9 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/polyfill-php80',
             'aliases' => array(
-                0 => '1.27.x-dev',
+                0 => '1.28.x-dev',
             ),
-            'reference' => '7a6ff3f1959bb01aefccb463a0f2cd3d3d2fd936',
+            'reference' => '6caa57379c4aec19c0a12a38b59b26487dcfe4b5',
             'dev_requirement' => false,
         ),
         'ulrichsg/getopt-php' => array(

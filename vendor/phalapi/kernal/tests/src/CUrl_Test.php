@@ -33,8 +33,8 @@ class PhpUnderControl_PhalApiCUrl_Test extends \PHPUnit_Framework_TestCase
      */ 
     public function testGet()
     {
-        $url = 'http://demo.phalapi.net/';
-        $timeoutMs = 1000;
+        $url = 'http://demo.phalapi.net/?s=App.Hello.World';
+        $timeoutMs = 3000;
 
         $rs = $this->curl->get($url, $timeoutMs);
         //var_dump($rs);
@@ -50,7 +50,7 @@ class PhpUnderControl_PhalApiCUrl_Test extends \PHPUnit_Framework_TestCase
     {
         $url = 'http://demo.phalapi.net/';
         $data = array('username' => 'phalapi');
-        $timeoutMs = 1000;
+        $timeoutMs = 3000;
 
         $rs = $this->curl->post($url, $data, $timeoutMs);
 
@@ -71,7 +71,7 @@ class PhpUnderControl_PhalApiCUrl_Test extends \PHPUnit_Framework_TestCase
 
         $this->curl->withCookies();
 
-        $rs = $this->curl->get('http://demo.phalapi.net/', 1000);
+        $rs = $this->curl->get('http://demo.phalapi.net/', 3000);
     }
 
     public function testGetRetCookie()
@@ -88,6 +88,11 @@ class PhpUnderControl_PhalApiCUrl_Test extends \PHPUnit_Framework_TestCase
     public function testGetFail()
     {
         $this->curl->get('http_wrong', 100);
+    }
+
+    public function testGetFailNoException()
+    {
+        $this->curl->setIsThrowException(false)->get('http_wrong', 100);
     }
 }
 

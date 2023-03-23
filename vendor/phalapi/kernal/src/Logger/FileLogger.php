@@ -98,10 +98,12 @@ class FileLogger extends Logger {
         if (!file_exists($folder)) {
             if ($this->debug) {
                 // 调试时，显示warning提示
-                mkdir($folder . '/', 0777, TRUE);
+                mkdir($folder, 0777, TRUE);
+                chmod($folder, 0777);
             } else {
                 // 静默创建
-                @mkdir($folder . '/', 0777, TRUE);
+                @mkdir($folder, 0777, TRUE);
+                @chmod($folder, 0777);
             }
         }
 

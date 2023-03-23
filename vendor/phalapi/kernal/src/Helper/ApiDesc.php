@@ -45,8 +45,7 @@ class ApiDesc extends ApiOnline {
             $isException = true;
             $description = $ex->getCode();
             $descComment = $ex->getMessage();
-            include $tplPath;
-            return;
+            return parent::render($tplPath);
         }
 
 

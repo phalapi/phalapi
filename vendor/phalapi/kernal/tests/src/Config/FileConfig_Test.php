@@ -79,4 +79,16 @@ class PhpUnderControl_PhalApiConfigFile_Test extends \PHPUnit_Framework_TestCase
         $this->assertTrue(true);
         $this->assertSame(null, $rs);
     }
+
+    public function testGetNormalAndReset()
+    {
+        $key = 'sys.debug';
+
+        $rs = $this->fileConfig->resetConfig()->get($key);
+        $this->assertFalse($rs);
+
+        $rs = $this->fileConfig->get($key);
+        $this->assertFalse($rs);
+
+    }
 }
