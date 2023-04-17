@@ -5,18 +5,18 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'aefcb7578b22aa24137936285d0a987c585ab970',
+        'reference' => '8c8a8f2a27043c645a73a072f9e3c82c497ff469',
         'name' => 'phalapi/phalapi',
         'dev' => true,
     ),
     'versions' => array(
         'graham-campbell/result-type' => array(
-            'pretty_version' => '1.0.x-dev',
-            'version' => '1.0.9999999.9999999-dev',
+            'pretty_version' => '1.1.x-dev',
+            'version' => '1.1.9999999.9999999-dev',
             'type' => 'library',
             'install_path' => __DIR__ . '/../graham-campbell/result-type',
             'aliases' => array(),
-            'reference' => '2c41119c817eaf5bf08d362005b980dc45999b5b',
+            'reference' => '60c5f57bee20beb1a4a3cc5fe9170de4a64521d2',
             'dev_requirement' => false,
         ),
         'phalapi/cli' => array(
@@ -29,12 +29,12 @@
             'dev_requirement' => false,
         ),
         'phalapi/kernal' => array(
-            'pretty_version' => '2.21.5',
-            'version' => '2.21.5.0',
+            'pretty_version' => '2.21.6',
+            'version' => '2.21.6.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phalapi/kernal',
             'aliases' => array(),
-            'reference' => '882ad9c2f78a9370de729cdf3439d9a77cb3598c',
+            'reference' => '69aa51d85d6c6be005c030e1dddc7f9436d83736',
             'dev_requirement' => false,
         ),
         'phalapi/notorm' => array(
@@ -52,7 +52,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'aefcb7578b22aa24137936285d0a987c585ab970',
+            'reference' => '8c8a8f2a27043c645a73a072f9e3c82c497ff469',
             'dev_requirement' => false,
         ),
         'phalapi/qrcode' => array(
@@ -78,12 +78,14 @@
             'dev_requirement' => false,
         ),
         'phpoption/phpoption' => array(
-            'pretty_version' => '1.8.x-dev',
-            'version' => '1.8.9999999.9999999-dev',
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpoption/phpoption',
-            'aliases' => array(),
-            'reference' => 'eab7a0df01fe2344d172bff4cd6dbd3f8b84ad15',
+            'aliases' => array(
+                0 => '1.9.x-dev',
+            ),
+            'reference' => 'dd3a383e599f49777d8b628dadbb90cae435b87e',
             'dev_requirement' => false,
         ),
         'symfony/polyfill-ctype' => array(

@@ -116,4 +116,15 @@ class PhpUnderControl_PhalApiResponse_Test extends \PHPUnit_Framework_TestCase
         $this->response->setRet(100000);
         $this->response->adjustHttpStatus();
     }
+
+    public function testAddResult()
+    {
+        $this->response->addResult('status', 'OK')->addResult('time', time());
+
+        $rs = $this->response->getResult();
+        // var_dump($rs);
+
+        $this->assertEquals('OK', $rs['status']);
+        $this->assertGreaterThan(0, $rs['time']);
+    }
 }
