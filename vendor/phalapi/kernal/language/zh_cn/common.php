@@ -48,6 +48,7 @@ return array(
     'search params'                                                 => '搜索条件，JSON格式，键值对，默认使用相等判断，若指定条件则可使用问号表示，例如：{"username":"PhalApi","version > ?":"2.17.0"}，复杂的条件或限制，请重载实现。',
     'post data'                                                     => '需要创建的数据，JSON格式，键值对，例如：{"username":"PhalApi","version":"2.17.0"}，键值对应数据库表字段名',
     'ids to delete'                                                 => '待删除的多个ID，用英文逗号分割',
+    'ID to delete'                                                  => '待删除的ID',
     'data to update'                                                => '需要更新的数据，JSON格式，键值对，例如：{"username":"PhalApi","version":"2.17.0"}，键值对应数据库表字段名',
     'miss post data'                                                => '缺少创建的数据',
     'system error, please contact engeneer'                         => '系统错误，请联系技术人员',

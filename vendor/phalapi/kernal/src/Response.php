@@ -40,6 +40,11 @@ abstract class Response {
      */
     protected $debug = array();
 
+    /**
+     * @var array 自定义额外的结果数据
+     */
+    protected $extraResult = array();
+
     /** ------------------ setter ------------------ **/
 
     /**
@@ -82,6 +87,17 @@ abstract class Response {
         if (DI()->debug) {
             $this->debug[$key] = $value;
         }
+        return $this;
+    }
+
+    /**
+     * 设置额外的根节点返回结果
+     * @param   string  $key        根节点键值，应避免和系统的 ret/msg/data/debug 重复
+     * @param   mixed   $value      自定义数据
+     * @return  Response
+     */
+    public function addResult($key, $value) {
+        $this->extraResult[$key] = $value;
         return $this;
     }
 
@@ -227,6 +243,9 @@ abstract class Response {
         if (!empty($this->debug)) {
             $rs['debug'] = $this->debug;
         }
+
+        // 合并自定义结果
+        $rs = array_merge($rs, $this->extraResult);
 
         return $rs;
     }
