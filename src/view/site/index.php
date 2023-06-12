@@ -91,7 +91,7 @@ if (substr(PHP_SAPI, 0, 3) == 'cli') {
     技术栈：
       <a target="_blank" href="https://www.phalapi.net/"><?php echo \PhalApi\T('PhalApi API Framework'), ' v', PHALAPI_VERSION; ?></a>、
       <a target="_blank" href="https://semantic-ui.com/">Semantic UI</a>、
-      <a target="_blank" href="https://www.ilayuis.com/">Layui</a>
+      <a target="_blank" href="https://docsify.js.org/">Docsify</a>
   </div>
   <div class="inline">
     <a class="ui primary button" target="_blank" href="https://github.com/phalapi/phalapi">Github</a>
