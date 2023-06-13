@@ -10,7 +10,6 @@ if (substr(PHP_SAPI, 0, 3) == 'cli') {
     $semanticPath = 'https://cdn.bootcss.com/semantic-ui/2.2.2/';
 }
 
-$whoami = \PhalApi\DI()->admin->check(false) ? \PhalApi\DI()->admin->username : \PhalApi\T('Sign In');
 $suffixTitle = \PhalApi\T('Online API Docs');
 
 $descriptionNoHtml = strip_tags($description);
