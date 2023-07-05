@@ -6,9 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    '320cde22f66dd4f5d3fd621d3e88b98f' => $vendorDir . '/symfony/polyfill-ctype/bootstrap.php',
-    '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => $vendorDir . '/symfony/polyfill-mbstring/bootstrap.php',
-    'a4a119a56e50fbb293281d9a48007e0e' => $vendorDir . '/symfony/polyfill-php80/bootstrap.php',
     'b0655c4b47b25ec49f0e931fe41ab7a3' => $vendorDir . '/phalapi/kernal/src/bootstrap.php',
     '5cab427b0519bb4ddb2f894b03d1d957' => $vendorDir . '/phalapi/kernal/src/functions.php',
     'dee36c56d6bb319b2a744b267373bb4b' => $baseDir . '/src/app/functions.php',

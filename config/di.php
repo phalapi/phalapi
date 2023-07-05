@@ -18,9 +18,9 @@ use PhalApi\Error\ApiError;
 $di = \PhalApi\DI();
 
 // 加载 .env 环境配置
-$di->dotenv = Dotenv\Dotenv::createImmutable(API_ROOT);
+// $di->dotenv = Dotenv\Dotenv::createImmutable(API_ROOT);
 // .env 非必须的加载
-$di->dotenv->safeLoad(); 
+// $di->dotenv->safeLoad(); 
 // .env 必须的加载方式
 // $di->dotenv->load();
 
