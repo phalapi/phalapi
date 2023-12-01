@@ -196,6 +196,7 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
 
         if($this->notORM->debug){
             $debugTrace['startTime'] = microtime(true);
+            $debugTrace['startMemory'] = memory_get_usage();
 
             if(!is_callable($this->notORM->debug)){
                 $debug = "$query;";
@@ -283,10 +284,18 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
 
         if($this->notORM->debug){
             $debugTrace['endTime'] = microtime(true);
+            $debugTrace['endMemory'] = memory_get_usage();
 
-            $sqlInfo = sprintf("[#%s - %sms - SQL]%s", 
+            // 消耗的内存大小
+            $size = $debugTrace['endMemory']- $debugTrace['startMemory']; 
+            $unit = array('B','KB','MB','GB','TB','PB');
+            $i = floor(log($size, 1024));
+            $strMemory = round($size/pow(1024, $i), 1) . $unit[$i];
+
+            $sqlInfo = sprintf("[#%s - %sms - %s - SQL]%s", 
                 self::$queryTimes, 
                 round(($debugTrace['endTime'] - $debugTrace['startTime']) * 1000, 2), 
+                $strMemory,
                 $debugTrace['sql']
             );
 

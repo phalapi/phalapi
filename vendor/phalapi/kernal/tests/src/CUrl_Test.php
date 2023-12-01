@@ -16,6 +16,8 @@ class PhpUnderControl_PhalApiCUrl_Test extends \PHPUnit_Framework_TestCase
 {
     public $curl;
 
+    public $apiHost = 'http://demo.phalapi.net';
+
     protected function setUp()
     {
         parent::setUp();
@@ -33,8 +35,8 @@ class PhpUnderControl_PhalApiCUrl_Test extends \PHPUnit_Framework_TestCase
      */ 
     public function testGet()
     {
-        $url = 'http://demo.phalapi.net/?s=App.Hello.World';
-        $timeoutMs = 3000;
+        $url = $this->apiHost . '/?s=App.Hello.World';
+        $timeoutMs = 30000;
 
         $rs = $this->curl->get($url, $timeoutMs);
         //var_dump($rs);
@@ -48,11 +50,47 @@ class PhpUnderControl_PhalApiCUrl_Test extends \PHPUnit_Framework_TestCase
      */ 
     public function testPost()
     {
-        $url = 'http://demo.phalapi.net/';
+        $url = $this->apiHost . '/';
         $data = array('username' => 'phalapi');
-        $timeoutMs = 3000;
+        $timeoutMs = 30000;
 
         $rs = $this->curl->post($url, $data, $timeoutMs);
+
+        $this->assertTrue(is_string($rs));
+
+    }
+
+    public function testPut()
+    {
+        $url = $this->apiHost . '/';
+        $data = array('username' => 'phalapi');
+        $timeoutMs = 30000;
+
+        $rs = $this->curl->put($url, $data, $timeoutMs);
+
+        $this->assertTrue(is_string($rs));
+
+    }
+
+    public function testDelete()
+    {
+        $url = $this->apiHost . '/';
+        $data = array('username' => 'phalapi');
+        $timeoutMs = 30000;
+
+        $rs = $this->curl->delete($url, $data, $timeoutMs);
+
+        $this->assertTrue(is_string($rs));
+
+    }
+
+    public function testPatch()
+    {
+        $url = $this->apiHost . '/';
+        $data = array('username' => 'phalapi');
+        $timeoutMs = 30000;
+
+        $rs = $this->curl->patch($url, $data, $timeoutMs);
 
         $this->assertTrue(is_string($rs));
 
@@ -71,7 +109,7 @@ class PhpUnderControl_PhalApiCUrl_Test extends \PHPUnit_Framework_TestCase
 
         $this->curl->withCookies();
 
-        $rs = $this->curl->get('http://demo.phalapi.net/', 3000);
+        $rs = $this->curl->get('http://demo.phalapi.net/', 30000);
     }
 
     public function testGetRetCookie()

@@ -26,6 +26,15 @@ class Tracer {
     protected $sqls = array();
 
     /**
+     * 日志服务
+     */
+    protected $logger;
+
+    public function __construct($logger = NULL) {
+        $this->logger = $logger ? $logger : \PhalApi\DI()->logger;
+    }
+
+    /**
      * 打点，纪录当前时间点
      * @param string $tag 当前纪录点的名称，方便最后查看路径节点
      * @return NULL
@@ -46,6 +55,7 @@ class Tracer {
             'time' => $this->getCurMicroTime(),
             'file' => isset($backTrace[0]['file']) ? $backTrace[0]['file'] : '',
             'line' => isset($backTrace[0]['line']) ? $backTrace[0]['line'] : 0,
+            'memory' => $this->getMemoryUsage(), 
         );
     }
 
@@ -64,9 +74,10 @@ class Tracer {
             $internalTime = $item['time'] - $preMicroTime;
             $internalTime = round($internalTime/10, 1);
 
-            $stack[] = sprintf('[#%d - %sms%s]%s(%d)',
+            $stack[] = sprintf('[#%d - %sms - %s%s]%s(%d)',
                 $index + 1, 
                 $internalTime, 
+                $item['memory'],
                 $item['tag'] !== NULL ? ' - ' . $item['tag'] : '', 
                 $item['file'], 
                 $item['line']
@@ -85,6 +96,19 @@ class Tracer {
     }
 
     /**
+     * 获取内存使用
+     * @param boolean $realUsage 为true时表示获取系统分配总的内存尺寸（不管是否使用）；为false时获取实际使用的内存量
+     * @return string 格式化的内存大小，保留一位小数点，如：120.5MB
+     */
+    protected function getMemoryUsage($realUsage = false) {
+        $size = memory_get_usage($realUsage);
+        $unit = array('B','KB','MB','GB','TB','PB');
+        $i = floor(log($size, 1024));
+        $str = round($size/pow(1024, $i), 1) . $unit[$i];
+        return $str;
+    }
+
+    /**
      * 纪录SQL语句
      * @param string $string  SQL语句
      * @return NULL
@@ -100,7 +124,7 @@ class Tracer {
 
         // 保存到日志
         if ($di->config->get('sys.enable_sql_log')) {
-            $di->logger->log('SQL', $statement, array('request' => $request));
+            $this->logger->log('SQL', $statement, array('request' => $request));
         }
     }
 
@@ -110,5 +134,13 @@ class Tracer {
      */
     public function getSqls() {
         return $this->sqls;
+    }
+
+    /**
+     * 返回最后一条SQL语句
+     * @return string|false 没有任何SQL语句时返回false
+     */
+    public function getLastSql() {
+        return end($this->sqls);
     }
 }

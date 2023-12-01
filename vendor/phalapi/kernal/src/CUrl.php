@@ -64,10 +64,10 @@ class CUrl {
 	 * GET方式的请求
 	 * @param string $url 请求的链接
 	 * @param int $timeoutMs 超时设置，单位：毫秒
-	 * @return string 接口返回的内容，超时返回false
+	 * @return string|boolean 接口返回的内容，超时返回false
 	 */
     public function get($url, $timeoutMs = 3000) {
-        return $this->request($url, array(), $timeoutMs);
+        return $this->request($url, array(), $timeoutMs, 'GET');
     } 
 
     /**
@@ -75,10 +75,43 @@ class CUrl {
      * @param string $url 请求的链接
      * @param array $data POST的数据
      * @param int $timeoutMs 超时设置，单位：毫秒
-     * @return string 接口返回的内容，超时返回false
+     * @return string|boolean 接口返回的内容，超时返回false
      */
     public function post($url, $data, $timeoutMs = 3000) {
-        return $this->request($url, $data, $timeoutMs);
+        return $this->request($url, $data, $timeoutMs, 'POST');
+    }
+
+    /**
+     * PUT方式的请求
+     * @param string $url 请求的链接
+     * @param array $data PUT的数据
+     * @param int $timeoutMs 超时设置，单位：毫秒
+     * @return string|boolean 接口返回的内容，超时返回false
+     */
+    public function put($url, $data, $timeoutMs = 3000) {
+        return $this->request($url, $data, $timeoutMs, 'PUT');
+    }
+
+    /**
+     * DELETE方式的请求
+     * @param string $url 请求的链接
+     * @param array $data DELETE的数据
+     * @param int $timeoutMs 超时设置，单位：毫秒
+     * @return string|boolean 接口返回的内容，超时返回false
+     */
+    public function delete($url, $data, $timeoutMs = 3000) {
+        return $this->request($url, $data, $timeoutMs, 'DELETE');
+    }
+
+    /**
+     * PATCH方式的请求
+     * @param string $url 请求的链接
+     * @param array $data PATCH的数据
+     * @param int $timeoutMs 超时设置，单位：毫秒
+     * @return string|boolean 接口返回的内容，超时返回false
+     */
+    public function patch($url, $data, $timeoutMs = 3000) {
+        return $this->request($url, $data, $timeoutMs, 'PATCH');
     }
 
     /** ------------------ 前置方法 ------------------ **/
@@ -159,26 +192,36 @@ class CUrl {
      * @param string $url 请求的链接
      * @param array $data POST的数据
      * @param int $timeoutMs 超时设置，单位：毫秒
-	 * @return string 接口返回的内容，超时返回false，异常取消抛出时返回NULL
+     * @param string $requestMethod 请求方式，例如：GET/POST/PUT/DELETE，不确定服务器支持这个自定义方法则不要使用它。
+     * @return string 接口返回的内容，超时返回false，异常取消抛出时返回NULL
      * @throws Exception
      */
-    protected function request($url, $data, $timeoutMs = 3000) {
+    public function request($url, $data, $timeoutMs = 3000, $requestMethod = NULL) {
         $rs = NULL;
 
         $options = array(
             CURLOPT_URL                 => $url,
             CURLOPT_RETURNTRANSFER      => TRUE,
             CURLOPT_HEADER              => 0,
+            CURLOPT_TIMEOUT_MS          => $timeoutMs,
             CURLOPT_CONNECTTIMEOUT_MS   => $timeoutMs,
             CURLOPT_HTTPHEADER          => $this->getHeaders(),
         );
 
-        if (!empty($data)) {
-            $options[CURLOPT_POST]          = 1;
-            $options[CURLOPT_POSTFIELDS]    = $data;
+        // 请求方式
+        $requestMethod = strtoupper($requestMethod);
+        if ($requestMethod) {
+            $options[CURLOPT_CUSTOMREQUEST] = $requestMethod;
+        }
+        if ($requestMethod == 'POST') {
+            $options[CURLOPT_POST] = TRUE;
         }
         
-        $options = $this->option + $options; //$this->>option优先
+        if (!empty($data)) {
+            $options[CURLOPT_POSTFIELDS] = $data;
+        }
+        
+        $options = $this->option + $options; // $this->>option优先
         
         $ch = curl_init();
         curl_setopt_array($ch, $options);
@@ -189,10 +232,10 @@ class CUrl {
         } while ($rs === FALSE && $curRetryTimes >= 0);
         $errno = curl_errno($ch);
         if ($errno && $this->isThrowExcption) {
-            throw new InternalServerErrorException(sprintf("%s::%s(%d)\n", $url, curl_error($ch), $errno));
+            throw new InternalServerErrorException(sprintf("%s %s (Curl error: %d)\n", $url, curl_error($ch), $errno));
         }
 
-        //update cookie
+        // update cookie
         if ($this->hascookie) {
             $cookie = $this->getRetCookie(curl_getinfo($ch, CURLINFO_COOKIELIST));
             !empty($cookie) && $this->cookie = $cookie + $this->cookie;
@@ -200,6 +243,7 @@ class CUrl {
             unset($this->header['Cookie']);
             unset($this->option[CURLOPT_COOKIEFILE]);
         }
+
         curl_close($ch);
 
         return $rs;

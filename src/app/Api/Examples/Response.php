@@ -19,4 +19,16 @@ class Response extends Api {
 
         return array('status' => 'data结构内的status 状态码');
     }
+
+    /**
+     * 展示调试相关能力
+     * @desc 使用前请开启调试模式，效果更佳
+     */
+    public function debug() {
+        $di = \PhalApi\DI();
+
+        $di->tracer->mark('打点查看内存使用情况');
+
+        return [];
+    }
 }

@@ -38,5 +38,8 @@ class Log extends Api {
         // 开发调试类日志：更灵活的日志分类
         \PhalApi\DI()->logger->log('demo', 'add user exp', array('name' => 'dogstar', 'after' => 12));
         \PhalApi\DI()->logger->log('test', 'add user exp', array('name' => 'dogstar', 'after' => 12));
+
+        // 打印获取到的最后一条SQL语句
+        \PhalApi\DI()->logger->debug('最后一条SQL语句', \PhalApi\DI()->tracer->getLastSql());
     }
 }
