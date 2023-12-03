@@ -25,8 +25,11 @@ class Response extends Api {
      * @desc 使用前请开启调试模式，效果更佳
      */
     public function debug() {
-        $di = \PhalApi\DI();
+        // 添加纪录埋点
+        \PhalApi\DI()->tracer->mark();
 
+        // 添加纪录埋点，并指定节点标识
+        $di = \PhalApi\DI();
         $di->tracer->mark('打点查看内存使用情况');
 
         return [];

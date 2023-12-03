@@ -19,16 +19,16 @@ class CURD extends Api {
                 'state' => array('name' => 'state', 'type' => 'int', 'default' => 0, 'desc' => '状态'),
             ),
             'update' => array(
-                'id' => array('name' => 'id', 'require' => true, 'min' => 1, 'desc' => 'ID'),
+                'id' => array('name' => 'id', 'require' => true, 'type' => 'int', 'min' => 1, 'desc' => 'ID'),
                 'title' => array('name' => 'title', 'require' => true, 'min' => 1, 'max' => '20', 'desc' => '标题'),
                 'content' => array('name' => 'content', 'require' => true, 'min' => 1, 'desc' => '内容'),
                 'state' => array('name' => 'state', 'type' => 'int', 'default' => 0, 'desc' => '状态'),
             ),
             'get' => array(
-                'id' => array('name' => 'id', 'require' => true, 'min' => 1, 'desc' => 'ID'),
+                'id' => array('name' => 'id', 'require' => true, 'type' => 'int', 'min' => 1, 'desc' => 'ID'),
             ),
             'delete' => array(
-                'id' => array('name' => 'id', 'require' => true, 'min' => 1, 'desc' => 'ID'),
+                'id' => array('name' => 'id', 'require' => true, 'type' => 'int', 'min' => 1, 'desc' => 'ID'),
             ),
             'getList' => array(
                 'page' => array('name' => 'page', 'type' => 'int', 'min' => 1, 'default' => 1, 'desc' => '第几页'),
