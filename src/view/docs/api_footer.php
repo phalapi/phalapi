@@ -105,8 +105,12 @@
                         $("#json_output").html('<pre>' + statu + '<br/>' + header + '<br/>' + json_text + '</pre>');
                         $("#json_output").show();
                     },
-                    error:function(error){
-                        $("#json_output").html('接口请求失败：' + error);
+                    error:function(xhr,status,error){
+                        var statu = xhr.status + ' ' + xhr.statusText;
+                        var header = xhr.getAllResponseHeaders();
+
+                        $("#json_output").html('<pre>' + statu + '<br/><br/>' + header + '<br/>' + error + '</pre>');
+                        $("#json_output").show();
                     }
                 })
             })
