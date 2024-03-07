@@ -108,10 +108,12 @@
                     error:function(xhr,status,error){
                         var statu = xhr.status + ' ' + xhr.statusText;
                         var header = xhr.getAllResponseHeaders();
+                        var responseText = xhr.responseText;
 
-                        $("#json_output").html('<pre>' + statu + '<br/><br/>' + header + '<br/>' + error + '</pre>');
+                        $("#json_output").html('<pre>' + statu + '<br/><br/>' + header + '<br/>' + responseText + '</pre>');
                         $("#json_output").show();
                     }
+
                 })
             })
 
