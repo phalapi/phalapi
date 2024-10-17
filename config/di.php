@@ -45,9 +45,9 @@ $di->error = new ApiError();
 /** ---------------- 第三应用 服务注册 ---------------- **/
 
 // 加载plugins目录下的第三方应用初始化文件
-// foreach (glob(API_ROOT . DIRECTORY_SEPARATOR . 'plugins' . DIRECTORY_SEPARATOR . '*.php') as $pluginFile) {
-//    include_once $pluginFile;
-// }
+foreach (glob(API_ROOT . DIRECTORY_SEPARATOR . 'plugins' . DIRECTORY_SEPARATOR . '*.php') as $pluginFile) {
+   include_once $pluginFile;
+}
 
 /** ---------------- 当前项目 定制注册 可选服务组件 ---------------- **/
 
