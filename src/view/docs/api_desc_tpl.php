@@ -74,6 +74,7 @@ include dirname(__FILE__) . '/api_menu.php';
                 <div class="ui message">
                 <p><?php echo \PhalApi\T('API Description'); ?>：<?php echo $descComment; ?></p>
                 </div>
+                <a href="/docs.php?s=<?php echo $service; ?>&is_markdown=1&detail=1&type=fold" target="_blank"><?php echo \PhalApi\T('Download Markdown ApiDoc'); ?></a>
             </div>
 
             <h3><i class="sign in alternate icon"></i><?php echo \PhalApi\T('API Parameters'); ?></h3>
@@ -294,7 +295,9 @@ EOT;
 <h3><i class="code icon"></i><?php echo \PhalApi\T('Client Request Demo'); ?></h3>
 
 <?php
-$demoCodes = array();
+$demoCodes = array(
+    'ai' => \App\Common\ApiDoc::generateMarkdown($projectName, $url, $service, $methods, $version, $description, $descComment, $rules, $returns, $exceptions),
+);
 $demoPath = dirname(__FILE__) . '/demos';
 foreach (array(
     'json', 'curl', 'js', 'php', 'py', 'java', 'cs', 'go', 'oc',
@@ -327,6 +330,7 @@ if (empty($demoCodes)) {
 }
 
 $codeName = array(
+    'ai' => 'AI提示词',
     'json' => 'HTTP通用示例',
     'js' => 'Javascript示例',
     'oc' => 'Object-C示例',

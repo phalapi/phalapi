@@ -51,8 +51,15 @@ if (substr(PHP_SAPI, 0, 3) == 'cli') {
 } else if (!empty($_GET['detail'])) {
     checkViewCode();
 
-    // 接口详情页
     $apiDesc = new ApiDesc($projectName);
+    
+    // Markdown格式
+    if (!empty($_GET['is_markdown'])) {
+        $apiDesc->render(API_ROOT . '/src/view/docs/api_desc_tpl_markdown.php');
+        exit(0);
+    }
+
+    // 接口详情页
     $apiDesc->render($detailTpl);
 } else {
     checkViewCode();
