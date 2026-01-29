@@ -56,30 +56,36 @@ if (substr(PHP_SAPI, 0, 3) == 'cli') {
   <div class="ui three column center aligned divided relaxed stackable grid container">
     <div class="row" style="padding-bottom: 48px;">
       <div class="column">
-        <h2 class="ui icon header">
-          <i class="tv icon" style="margin-bottom:30px;"></i>
-          更简单的API接口开发
-        </h2>
-        <p>立即编写和运行你的第一个API接口，通过参数：<strong><code>s=接口服务名称</code></strong> 可以指定调用的API接口。</p>
-        <a class="ui large button" href="/?s=App.Hello.World" target="_blank">Hello World</a>
+        <div class="feature-card">
+          <h2 class="ui icon header">
+            <i class="tv icon" style="margin-bottom:30px;"></i>
+            更简单的API接口开发
+          </h2>
+          <p>立即编写和运行你的第一个API接口，通过参数：<strong><code>s=接口服务名称</code></strong> 可以指定调用的API接口。</p>
+          <a class="ui large button" href="/?s=App.Hello.World" target="_blank">Hello World</a>
+        </div>
       </div>
       <div class="column">
-        <h2 class="ui icon header">
-          <i class="paper plane outline icon" style="margin-bottom:30px;"></i>
-          PhalApi 2.x 完整开发文档
-        </h2>
-        <p>PhalApi，简称π框架，是一个PHP轻量级开源接口框架，专注于服务端接口开发。</p>
-        <a class="ui primary view-ui large button" href="http://docs.phalapi.net/#/v2.0/tutorial" target="_blank">查看开发文档</a>
+        <div class="feature-card">
+          <h2 class="ui icon header">
+            <i class="paper plane outline icon" style="margin-bottom:30px;"></i>
+            PhalApi 2.x 完整开发文档
+          </h2>
+          <p>PhalApi，简称π框架，是一个PHP轻量级开源接口框架，专注于服务端接口开发。</p>
+          <a class="ui primary view-ui large button" href="http://docs.phalapi.net/#/v2.0/tutorial" target="_blank">查看开发文档</a>
+        </div>
       </div>
       <div class="column">
-        <h2 class="ui icon header">
-          <i class="calendar check outline icon" style="margin-bottom:30px;"></i>
-          PhalApi.net 官网
-        </h2>
-        <p>
-          拥有自动生成的在线接口文档、多种开发语言的客户端SDK包以及可重用的扩展类库。
-        </p>
-        <a href="https://www.phalapi.net/" class="ui large button" target="_blank">发现更多</a>
+        <div class="feature-card">
+          <h2 class="ui icon header">
+            <i class="calendar check outline icon" style="margin-bottom:30px;"></i>
+            PhalApi.net 官网
+          </h2>
+          <p>
+            拥有自动生成的在线接口文档、多种开发语言的客户端SDK包以及可重用的扩展类库。
+          </p>
+          <a href="https://www.phalapi.net/" class="ui large button" target="_blank">发现更多</a>
+        </div>
       </div>
     </div>
   </div>
@@ -96,7 +102,7 @@ if (substr(PHP_SAPI, 0, 3) == 'cli') {
   <div class="inline">
     <a class="ui primary button" target="_blank" href="https://github.com/phalapi/phalapi">Github</a>
     <a target="_blank" href="https://gitee.com/dogstar/PhalApi/" class="ui button">码云</a>
-    <a target="_blank" href="http://docs.phalapi.net/#/v2.0/changelog" class="ui button">版本更新日记</a>
+    <a target="_blank" href="http://docs.phalapi.net/#/v2.0/changelog" class="ui button">版本更新日志</a>
   </div>
 </div>
 

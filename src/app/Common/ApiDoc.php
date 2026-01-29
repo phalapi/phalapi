@@ -3,6 +3,7 @@ namespace App\Common;
 
 /**
  * API文档生成类
+ * - 可根据项目需要，自行调整。
  * @author dogstar <chanzonghuang@gmail.com> 2026-01-29
  */
 class ApiDoc {
@@ -16,7 +17,8 @@ class ApiDoc {
         $apiHost = rtrim($apiHost, '/');
         $description = strip_tags($description);
         $descComment = strip_tags($descComment);
-        $version = $version ? $version : '1.0.0';
+        $version = $version ?: '1.0.0';
+        $methods = $methods ?: 'POST';
 
         $sysParamsMd = "| s | string | 必填 | 接口服务名，固定为`{$service}` |
 ";
@@ -67,11 +69,11 @@ class ApiDoc {
         $prefixCode = '';
         $prefixFile = $demoPath . '/_prefix.json';
         if (file_exists($prefixFile)) {
-            $prefixCode = htmlspecialchars(file_get_contents($prefixFile));
+            $prefixCode = file_get_contents($prefixFile);
         }
         $codeFile = $demoPath . '/' . $service . '.json';
         if (file_exists($codeFile)) {
-            $demoJson = $prefixCode . htmlspecialchars(file_get_contents($codeFile));
+            $demoJson = $prefixCode . file_get_contents($codeFile);
         }
         
 
@@ -87,12 +89,12 @@ class ApiDoc {
 
 ## 请求参数说明
 
-### 系统参数（使用Query传递）
+### 系统参数
 | 参数名 | 类型 | 必填 | 说明 |
 |---|---|---|---|
 {$sysParamsMd}
 
-### 业务参数（使用POST或Query传递）
+### 业务参数
 | 参数名 | 类型 | 必填 | 说明 |
 |---|---|---|---|
 {$paramsMd}
