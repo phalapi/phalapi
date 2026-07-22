@@ -60,8 +60,8 @@
         },
         {
             "name": "phalapi/kernal",
-            "version": "2.23.0",
-            "version_normalized": "2.23.0.0",
+            "version": "2.23.1",
+            "version_normalized": "2.23.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phalapi/kernal.git",
@@ -71,13 +71,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/phalapi/kernal/zipball/eb0f2f07b4d4f8b0af2dfaed2a703df5259ce84e",
                 "reference": "eb0f2f07b4d4f8b0af2dfaed2a703df5259ce84e",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
+                "shasum": ""
             },
             "require": {
                 "phalapi/notorm": "2.*.*",
@@ -121,7 +115,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phalapi/kernal/issues",
-                "source": "https://github.com/phalapi/kernal/tree/2.23.0"
+                "source": "https://github.com/phalapi/kernal/tree/2.23.1"
             },
             "install-path": "../phalapi/kernal"
         },

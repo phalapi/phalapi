@@ -1,11 +1,11 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => 'dev-master',
-        'version' => 'dev-master',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '0e700df2f6fb2e89258c24f2fae7bd408d4ffb6f',
+        'reference' => '34af7ffe5e2b68e8b908eb36c5c02592df7745a0',
         'name' => 'phalapi/phalapi',
         'dev' => true,
     ),
@@ -20,8 +20,8 @@
             'dev_requirement' => false,
         ),
         'phalapi/kernal' => array(
-            'pretty_version' => '2.23.0',
-            'version' => '2.23.0.0',
+            'pretty_version' => '2.23.1',
+            'version' => '2.23.1.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phalapi/kernal',
             'aliases' => array(),
@@ -38,12 +38,12 @@
             'dev_requirement' => false,
         ),
         'phalapi/phalapi' => array(
-            'pretty_version' => 'dev-master',
-            'version' => 'dev-master',
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '0e700df2f6fb2e89258c24f2fae7bd408d4ffb6f',
+            'reference' => '34af7ffe5e2b68e8b908eb36c5c02592df7745a0',
             'dev_requirement' => false,
         ),
         'phalapi/qrcode' => array(
