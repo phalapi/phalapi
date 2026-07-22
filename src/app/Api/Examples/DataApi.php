@@ -13,7 +13,11 @@ class DataApi extends \PhalApi\Api\DataApi {
 
     protected function getDataModel() {
         throw new \PhalApi\Exception\BadRequestException('示例未指定Model子类');
-        // return new \App\Model\CURD();
+        // return new \App\Model\Examples\User();
+    }
+
+    protected function getTableListSearchAllowKeys() {
+        return array('id', 'username', 'nickname', 'email', 'mobile', 'sex', 'avatar', 'reg_time');
     }
 }
 

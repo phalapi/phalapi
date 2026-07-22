@@ -69,8 +69,13 @@ class DataApi extends Api {
         $model = $this->getDataModel();
 
         $searchParams = array();
+        $allowKeys = $this->getTableListSearchAllowKeys();
         foreach ($this->searchParams as $key => $val) {
             if ($val !==  '') {
+                // @dogstar 20260722 防御 SQL 注入：searchParams 的 key 只能是合法列名
+                if (!$this->isSafeSearchParamKey($key, $allowKeys)) {
+                    throw new BadRequestException(\PhalApi\T('illegal search field: {name}', array('name' => $key)));
+                }
                 $searchParams[$key] = $val;
             }
         }
@@ -105,6 +110,40 @@ class DataApi extends Api {
     // 查询条件
     protected function getTableListWhere($where) {
         return $where;
+    }
+
+    /**
+     * 列表搜索允许的字段名白名单
+     * - 返回 null/空数组：允许所有符合列名规范的字段
+     * - 返回非空数组：仅允许列表中的字段（更安全，推荐业务子类重载）
+     * @return array|null
+     */
+    protected function getTableListSearchAllowKeys() {
+        return null;
+    }
+
+    /**
+     * 校验 searchParams 的字段名是否安全
+     * @param mixed $key
+     * @param array|null $allowKeys
+     * @return bool
+     */
+    protected function isSafeSearchParamKey($key, $allowKeys = null) {
+        if (!is_string($key) && !is_numeric($key)) {
+            return false;
+        }
+        $key = (string) $key;
+
+        // 仅允许列名标识符，禁止把原始 SQL 片段作为 key
+        if (!preg_match('/^(?:`?[A-Za-z_][A-Za-z0-9_]*`?\.)?`?[A-Za-z_][A-Za-z0-9_]*`?$/', $key)) {
+            return false;
+        }
+
+        if (is_array($allowKeys) && !empty($allowKeys)) {
+            return in_array($key, $allowKeys, true);
+        }
+
+        return true;
     }
     
     // 取到列表数据后的加工处理
