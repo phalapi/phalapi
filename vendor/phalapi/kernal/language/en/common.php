@@ -26,4 +26,6 @@ return array(
     'missing {name} extension' => 'missing {name} extension',
     'Failed to log into file, because permission denied: {path}'      => 'Failed to log into file, because permission denied: {path}',
     'Config file not found: {path}'                                 => 'Config file not found: {path}',
+    'search params'                                                 => 'Search conditions as JSON object. Only column-name equality is allowed, e.g. {"username":"PhalApi","version":"2.17.0"}. For complex conditions, override getTableListWhere().',
+    'illegal search field: {name}'                                  => 'illegal search field: {name}',
 );

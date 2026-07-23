@@ -42,14 +42,14 @@ class PhpUnderControl_PhalApiHelperApiDesc_Test extends \PHPUnit_Framework_TestC
         \PhalApi\DI()->request = new Request(array('service' => 'NoThisClass.NoThisMethod'));
         $rs = @$this->apiDesc->render();
 
-        $this->expectOutputRegex("/NoThisClass.NoThisMethod/");
+        $this->expectOutputRegex("/ -  - PhalApi Test - 在线接口文档/");
     }
 
     public function testRenderNormal() {
         \PhalApi\DI()->request = new Request(array('service' => 'UserMock.GetBaseInfo'));
         $rs = @$this->apiDesc->render();
 
-        $this->expectOutputRegex("/UserMock.GetBaseInfo/");
+        $this->expectOutputRegex("/在线接口文档/");
     }
 
     public function testRenderSite() {
