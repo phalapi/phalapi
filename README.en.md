@@ -14,6 +14,25 @@
 [![Stargazers over time](https://starchart.cc/phalapi/phalapi.svg)](https://starchart.cc/phalapi/phalapi)
    
    
+## 版本与运行环境 / Requirements
+
+| 项目 / Item | 说明 / Description |
+|---|---|
+| 当前版本 / Version | **v8.0.0** |
+| PHP 要求 / PHP | **>= 8.0**（已实测 8.0 与 8.4 / tested on 8.0 and 8.4） |
+| PHP 7.x | 不支持 / Not supported |
+
+> **关于版本号 / About the version**：`v8.0.0` 中的 **8 表示“支持 PHP 8”**，不是框架第 8 代。这是 2.x 的兼容性发布。
+> The **8 in `v8.0.0` means "PHP 8 support"**, not the 8th generation of the framework. This is a compatibility release of 2.x.
+
+### 从 2.x 升级 / Upgrading from 2.x
+
+1. PHP 必须 >= 8.0 / PHP must be 8.0 or later;
+2. **仓库不再自带 `vendor`**，必须执行 `composer install` / The repository no longer ships `vendor`, run `composer install`;
+3. `McryptCrypt` 改为 OpenSSL AES-256-CBC，历史密文不兼容 / ciphertext from older versions cannot be decrypted.
+
+完整说明 / Full guide：[升级到 v8.0.0](http://docs.phalapi.net/#/v2.0/php8-upgrade)
+
 ## 开发文档 / Documents
 专为PHPer准备的优雅而详细的开发文档，请看：[PhalApi 2.x 开发文档](http://docs.phalapi.net/#/v2.0/)。  
 [PhalApi 2.x English Docs](http://docs-en.phalapi.net/#/v2.0/).  
@@ -32,17 +51,19 @@
 One-click installation can be achieved by using the command of composer to create a project.  
 
 ```bash
-$ composer create-project phalapi/phalapi
+$ composer create-project phalapi/phalapi:^8.0
 ```
 > 温馨提示：关于composer的使用，请参考[Composer 中文网 / Packagist 中国全量镜像](http://www.phpcomposer.com/)。  
 
 ### 手动下载安装 / Download and Install manually
 
 或者，也可以进行手动安装。将此Git项目代码下载解压后，进行可选的composer更新，即：  
-Alternatively, manual installation is also possible. Download PhalApi Project master-2x branch Source code. After downloading and unzipping, perform an optional composer update:  
+Alternatively, manual installation is also possible. Download PhalApi Project master-2x branch Source code. **After downloading and unzipping, you must run composer install**:  
 ```bash
-$ composer update
+$ composer install
 ```
+
+> Note: since v8.0.0 the repository no longer contains the `vendor` directory. Skipping `composer install` will cause a failure because `vendor/autoload.php` cannot be found.
 
 ## 部署 / Deployment
 
@@ -170,7 +191,7 @@ API result as below after requesting:
     "ret": 200,
     "data": {
         "title": "Hello PhalApi",
-        "version": "2.4.2",
+        "version": "8.0.0",
         "time": 1501079142
     },
     "msg": ""
