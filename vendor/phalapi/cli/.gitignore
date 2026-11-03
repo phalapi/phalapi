@@ -1,6 +1,0 @@
-/vendor/
-composer.lock
-tests/runtime
-
-.DS_Store
-
