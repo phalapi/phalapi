@@ -34,8 +34,8 @@
 完整说明 / Full guide：[升级到 v8.0.0](http://docs.phalapi.net/#/v2.0/php8-upgrade)
 
 ## 开发文档 / Documents
-专为PHPer准备的优雅而详细的开发文档，请看：[PhalApi 2.x 开发文档](http://docs.phalapi.net/#/v2.0/)。  
-[PhalApi 2.x English Docs](http://docs-en.phalapi.net/#/v2.0/).  
+专为PHPer准备的优雅而详细的开发文档，请看：[PhalApi 8.x 开发文档](http://docs.phalapi.net/#/v2.0/)。  
+[PhalApi 8.x English Docs](http://docs-en.phalapi.net/#/v2.0/).  
 
 ## 在线示例 / Demo
  + 默认接口服务：[http://demo.phalapi.net/?s=App.Site.Index](http://demo.phalapi.net/?s=App.Site.Index)
@@ -229,7 +229,7 @@ Edit ```./public/init.php``` file to set current language.
 \PhalApi\SL('en');
 ```
 
-## 一张图告诉你如何使用PhalApi 2.x / All in One Picture
+## 一张图告诉你如何使用PhalApi 8.x / All in One Picture
 ![phalapi-install](https://user-images.githubusercontent.com/12585518/52995681-4ae71200-3456-11e9-8d00-065a42cf4382.gif)
 
 ## 子项目 / Sub Projects
