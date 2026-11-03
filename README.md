@@ -14,6 +14,24 @@
 [![Stargazers over time](https://starchart.cc/phalapi/phalapi.svg)](https://starchart.cc/phalapi/phalapi)
    
    
+## 版本与运行环境
+
+| 项目 | 说明 |
+|---|---|
+| 当前版本 | **v8.0.0** |
+| PHP 要求 | **>= 8.0**（已实测 8.0 与 8.4） |
+| PHP 7.x | 不支持，`composer install` 会被拒绝 |
+
+> **版本号说明**：`v8.0.0` 中的 **8 表示“支持 PHP 8”**，不是 PhalAPI 的第 8 代版本。这是 2.x 的兼容性发布，接口写法与项目结构保持不变。
+
+### 从 2.x 升级到 v8.0.0 的注意事项
+
+1. PHP 必须升级到 8.0 及以上；
+2. **本仓库不再自带 `vendor` 目录**，拉取代码后必须执行 `composer install`，否则无法运行；
+3. `PhalApi\Crypt\McryptCrypt` 已由 mcrypt 改为 OpenSSL AES-256-CBC，**历史密文不兼容**（mcrypt 自 PHP 7.2 起已从 PHP 移除）。
+
+完整步骤、破坏性变更与自查清单见：[升级到 v8.0.0（PHP 8 支持）](http://docs.phalapi.net/#/v2.0/php8-upgrade)。
+
 ## 开发文档
 专为PHPer准备的优雅而详细的开发文档，基本都能在文档找到你要的答案，请看：[PhalApi 2.x 开发文档](http://docs.phalapi.net/#/v2.0/)。  
 
@@ -29,16 +47,18 @@
 使用composer创建项目的命令，可实现一键安装。  
 
 ```bash
-$ composer create-project phalapi/phalapi
+$ composer create-project phalapi/phalapi:^8.0
 ```
 > 温馨提示：关于composer的使用，请参考[Composer 中文网 / Packagist 中国全量镜像](http://www.phpcomposer.com/)。  
 
 ### 手动下载安装
 
-或者，也可以进行手动安装。将此Git项目代码下载解压后，进行可选的composer更新，即：  
+或者，也可以进行手动安装。将此Git项目代码下载解压后，**必须执行composer安装依赖**：  
 ```bash
-$ composer update
+$ composer install
 ```
+
+> 温馨提示：自 v8.0.0 起，仓库不再包含 `vendor` 目录（此前会附带一份缺省的 vendor 安装包）。若跳过 `composer install`，访问时会因找不到 `vendor/autoload.php` 而失败。
 
 ## 部署
 
@@ -117,7 +137,7 @@ http://dev.phalapi.net/?s=App.Site.Index
     "ret": 200,
     "data": {
         "title": "Hello PhalApi",
-        "version": "2.4.2",
+        "version": "8.0.0",
         "time": 1501079142
     },
     "msg": ""
@@ -215,7 +235,7 @@ PhalApi会根据你编写的接口的参数配置和代码注释，自动实时�
 │   │   └── Model # 数据源层，负责数据持久化存储及操作
 │   └── view # 页面模板目录（如接口文档）
 ├── tests # 单元测试
-└── vendor # composer包，不需要手动修改，通过composer install/update可进行安装和更新
+└── vendor # composer包，由 composer install 生成，不在版本库中
 ```
 
 ## 翻译
