@@ -1,6 +1,6 @@
 {
 	"name" : "phalapi/phalapi",
-	"description" : "PhalApi v2.x，一个PHP轻量级开源接口框架，v8.0.0 起支持 PHP 8，致力于快速开发接口服务。",
+	"description" : "PhalApi v8.x，一个PHP轻量级开源接口框架，v8.0.0 起支持 PHP 8，致力于快速开发接口服务。",
 	"type" : "project",
 	"keywords" : [
 		"api"
