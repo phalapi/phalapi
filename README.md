@@ -33,7 +33,7 @@
 完整步骤、破坏性变更与自查清单见：[升级到 v8.0.0（PHP 8 支持）](http://docs.phalapi.net/#/v2.0/php8-upgrade)。
 
 ## 开发文档
-专为PHPer准备的优雅而详细的开发文档，基本都能在文档找到你要的答案，请看：[PhalApi 2.x 开发文档](http://docs.phalapi.net/#/v2.0/)。  
+专为PHPer准备的优雅而详细的开发文档，基本都能在文档找到你要的答案，请看：[PhalApi 8.x 开发文档](http://docs.phalapi.net/#/v2.0/)。  
 
 ## 在线示例
  + 在线接口文档：[http://demo.phalapi.net/docs.php](http://demo.phalapi.net/docs.php)
@@ -249,7 +249,7 @@ PhalApi会根据你编写的接口的参数配置和代码注释，自动实时�
 \PhalApi\SL('en');
 ```
 
-## 一张图告诉你如何使用PhalApi 2.x
+## 一张图告诉你如何使用PhalApi 8.x
 ![phalapi-install](https://user-images.githubusercontent.com/12585518/52995681-4ae71200-3456-11e9-8d00-065a42cf4382.gif)
 
 ## 2020视频教程
@@ -267,7 +267,7 @@ PhalApi会根据你编写的接口的参数配置和代码注释，自动实时�
  + [phalapi/PHPMailer](https://github.com/phalapi/PHPMailer)基于PHPMailer的邮件发送
  + [phalapi/qiniu](https://github.com/phalapi/qiniu)七牛云存储接口调用
  + [phalapi/qrcode](https://github.com/phalapi/qrcode)PhalApi 二维码扩展
- + [phalapi/pinyin](https://github.com/phalapi/pinyin)PhalApi 2.x 拼音扩展
+ + [phalapi/pinyin](https://github.com/phalapi/pinyin)PhalApi 8.x 拼音扩展
  + [phalapi/jwt](https://github.com/twodayw/phalapi2-jwt)基于PhalApi2的JWT拓展
  + [chenall/phalapi-weixin](https://github.com/chenall/phalapi-weixin)微信扩展
  + [phalapi/wechatmini](https://github.com/JamesLiuquan/wechatmini)微信小程序扩展
