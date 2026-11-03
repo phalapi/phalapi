@@ -17,7 +17,7 @@
 	],
 	"require" : {
 		"php" : ">=8.0",
-		"phalapi/kernal" : "2.*.*",
+		"phalapi/kernal" : "8.*.*",
 		"phalapi/qrcode" : "dev-master",
 		"phalapi/cli" : "^3.0",
 		"phalapi/task" : "dev-master"
