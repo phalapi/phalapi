@@ -22,7 +22,7 @@
 	"require" : {
 		"php" : ">=8.0",
 		"phalapi/kernal" : "8.*.*",
-		"phalapi/qrcode" : "dev-master",
+		"phalapi/qrcode" : "^8.0",
 		"phalapi/cli" : "^8.0",
 		"phalapi/task" : "dev-master"
 	},
