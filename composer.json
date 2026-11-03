@@ -16,7 +16,7 @@
 		}
 	],
 	"require" : {
-		"php" : ">=5.3.3",
+		"php" : ">=8.0",
 		"phalapi/kernal" : "2.*.*",
 		"phalapi/qrcode" : "dev-master",
 		"phalapi/cli" : "^3.0",

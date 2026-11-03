@@ -1,5 +1,7 @@
 composer.lock
 
+/vendor/
+
 runtime/*
 
 public/docs
